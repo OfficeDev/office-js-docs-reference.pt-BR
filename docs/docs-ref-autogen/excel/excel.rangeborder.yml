@@ -1,0 +1,124 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 1bf62bc9850d9594622af568f2cc7c93f622ffe0
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24039028"
+items:
+- uid: excel.Excel.RangeBorder
+  summary: >-
+    Representa a borda de um objeto.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.RangeBorder
+  fullName: excel.Excel.RangeBorder
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.RangeBorder.color
+  - excel.Excel.RangeBorder.load
+  - excel.Excel.RangeBorder.sideIndex
+  - excel.Excel.RangeBorder.style
+  - excel.Excel.RangeBorder.toJSON
+  - excel.Excel.RangeBorder.weight
+- uid: excel.Excel.RangeBorder.color
+  summary: >-
+    Código de cores HTML, representando a cor da linha de borda, do formulário \#RRGGBB (por exemplo, "FFA500") ou como uma cor HTML nomeada (por exemplo, "laranja").
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: color
+  fullName: excel.Excel.RangeBorder.color
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'color: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.RangeBorder.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): Excel.RangeBorder`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeBorder`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    var borders = range.format.borders;\n    borders.load('items');\n    return ctx.sync().then(function() {\n        console.log(borders.count);\n        for (var i = 0; i < borders.items.length; i++)\n        {\n            console.log(borders.items[i].sideIndex);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below adds grid border around the range.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.borders.getItem('InsideHorizontal').style = 'Continuous';\n    range.format.borders.getItem('InsideVertical').style = 'Continuous';\n    range.format.borders.getItem('EdgeBottom').style = 'Continuous';\n    range.format.borders.getItem('EdgeLeft').style = 'Continuous';\n    range.format.borders.getItem('EdgeRight').style = 'Continuous';\n    range.format.borders.getItem('EdgeTop').style = 'Continuous';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.RangeBorder.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.RangeBorder;'
+    return:
+      type:
+      - excel.Excel.RangeBorder
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: excel.Excel.RangeBorder.sideIndex
+  summary: >-
+    Valor de constante que indica o lado específico da borda. Consulte Excel.BorderIndex para obter detalhes. Somente leitura.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: sideIndex
+  fullName: excel.Excel.RangeBorder.sideIndex
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly sideIndex: Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp";'
+    return:
+      type:
+      - Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp"
+- uid: excel.Excel.RangeBorder.style
+  summary: >-
+    Uma das constantes de estilo de linha, especificando o estilo de linha da borda. Consulte Excel.BorderLineStyle para obter detalhes.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: style
+  fullName: excel.Excel.RangeBorder.style
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'style: Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot";'
+    return:
+      type:
+      - Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot"
+- uid: excel.Excel.RangeBorder.toJSON
+  name: toJSON()
+  fullName: excel.Excel.RangeBorder.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.RangeBorderData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.RangeBorderData
+      description: ''
+- uid: excel.Excel.RangeBorder.weight
+  summary: >-
+    Especifica o peso da borda em torno de um intervalo. Consulte Excel.BorderWeight para obter detalhes.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: weight
+  fullName: excel.Excel.RangeBorder.weight
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'weight: Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick";'
+    return:
+      type:
+      - Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick"

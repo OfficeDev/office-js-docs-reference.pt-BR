@@ -1,0 +1,126 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 4ed07b5245e9a8aae88cec9c951ab1b6f7e01d68
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24038578"
+items:
+- uid: excel.Excel.WorkbookProtection
+  summary: >-
+    Representa a proteção de um objeto workbook.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.WorkbookProtection
+  fullName: excel.Excel.WorkbookProtection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.WorkbookProtection.load
+  - excel.Excel.WorkbookProtection.protect
+  - excel.Excel.WorkbookProtection.protected
+  - excel.Excel.WorkbookProtection.toJSON
+  - excel.Excel.WorkbookProtection.unprotect
+- uid: excel.Excel.WorkbookProtection.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.WorkbookProtection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorkbookProtection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+  name: load(option)
+  fullName: excel.Excel.WorkbookProtection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.WorkbookProtection;'
+    return:
+      type:
+      - excel.Excel.WorkbookProtection
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: excel.Excel.WorkbookProtection.protect
+  summary: >-
+    Protege uma pasta de trabalho. Falha se a pasta de trabalho foi protegida.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: protect(password)
+  fullName: excel.Excel.WorkbookProtection.protect
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'protect(password?: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect();\n    }\n});\n```\n```typescript\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect(password);\n    }\n});\n```"
+    parameters:
+    - id: password
+      description: senha de proteção da pasta de trabalho.
+      type:
+      - string
+- uid: excel.Excel.WorkbookProtection.protected
+  summary: >-
+    Indica se a pasta de trabalho está protegida. Somente Leitura.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: protected
+  fullName: excel.Excel.WorkbookProtection.protected
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly protected: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.WorkbookProtection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.WorkbookProtection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.WorkbookProtectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.WorkbookProtectionData
+      description: ''
+- uid: excel.Excel.WorkbookProtection.unprotect
+  summary: >-
+    Desprotege a uma pasta de trabalho.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: unprotect(password)
+  fullName: excel.Excel.WorkbookProtection.unprotect
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'unprotect(password?: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect();\n});\n```\n```typescript\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect(password);\n});\n```"
+    parameters:
+    - id: password
+      description: senha de proteção da pasta de trabalho.
+      type:
+      - string
