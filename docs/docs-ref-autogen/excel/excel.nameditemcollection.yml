@@ -1,0 +1,195 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: a7c0c486d36061167d60cf520714b1cce33ef801
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24039030"
+items:
+- uid: excel.Excel.NamedItemCollection
+  summary: >-
+    Uma coleção de todos os objetos getNamedItem que fazem parte da pasta de trabalho ou planilha, dependendo de como ela foi alcançada.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.NamedItemCollection
+  fullName: excel.Excel.NamedItemCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.NamedItemCollection.add
+  - excel.Excel.NamedItemCollection.addFormulaLocal
+  - excel.Excel.NamedItemCollection.getCount
+  - excel.Excel.NamedItemCollection.getItem
+  - excel.Excel.NamedItemCollection.getItemOrNullObject
+  - excel.Excel.NamedItemCollection.items
+  - excel.Excel.NamedItemCollection.load
+  - excel.Excel.NamedItemCollection.toJSON
+- uid: excel.Excel.NamedItemCollection.add
+  summary: >-
+    Adiciona um novo nome à coleção do escopo fornecido.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: add(name, reference, comment)
+  fullName: excel.Excel.NamedItemCollection.add
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(name: string, reference: Range | string, comment?: string): Excel.NamedItem;'
+    return:
+      type:
+      - excel.Excel.NamedItem
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const headerRange = sheet.getRange(\"A1:E1\");\n    sheet.names.add(\"ExpensesHeader\", headerRange);\n    const namedItems = sheet.names.load(\"name, type\");\n\n    await context.sync();\n\n    let namedItemsList = `This workbook contains ${namedItems.items.length} named item(s):`;\n    for (let i = 0; i < namedItems.items.length; i++) {\n        namedItemsList += JSON.stringify(namedItems.items[i]);\n    }\n    OfficeHelpers.UI.notify(namedItemsList);\n\n    await context.sync();\n});\n```\n```typescript\ntry {\n    await Excel.run(async (context) => {\n\n        await OfficeHelpers.ExcelUtilities.forceCreateSheet(context.workbook, \"Sample\");\n\n        const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n        let expensesTable = sheet.tables.add(\"A1:D1\", true);\n        expensesTable.name = \"ExpensesTable\";\n\n        expensesTable.getHeaderRowRange().values = [[\"DATE\", \"MERCHANT\", \"CATEGORY\", \"AMOUNT\"]];\n\n        let newData = transactions.map(item =>\n            [item.DATE, item.MERCHANT, item.CATEGORY, item.AMOUNT]);\n\n        expensesTable.rows.add(null, newData);\n\n        sheet.names.add(\"TotalAmount\", \"=SUM(ExpensesTable[AMOUNT])\");\n\n        sheet.getRange(\"D11\").values = [[\"=TotalAmount\"]];\n\n        if (Office.context.requirements.isSetSupported(\"ExcelApi\", 1.2)) {\n            sheet.getUsedRange().format.autofitColumns();\n            sheet.getUsedRange().format.autofitRows();\n        }\n\n        sheet.activate();\n\n        await context.sync();\n    });\n}\ncatch (error) {\n    OfficeHelpers.UI.notify(error);\n    OfficeHelpers.Utilities.log(error);\n}\n```"
+    parameters:
+    - id: name
+      description: O nome do item nomeado.
+      type:
+      - string
+    - id: reference
+      description: A fórmula ou o intervalo ao qual o nome fará referência.
+      type:
+      - Range | string
+    - id: comment
+      description: Opcional. O comentário associado ao item nomeado.
+      type:
+      - string
+- uid: excel.Excel.NamedItemCollection.addFormulaLocal
+  summary: >-
+    Adiciona um novo nome à coleção de escopo fornecido usando a localidade do usuário para a fórmula.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: addFormulaLocal(name, formula, comment)
+  fullName: excel.Excel.NamedItemCollection.addFormulaLocal
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFormulaLocal(name: string, formula: string, comment?: string): Excel.NamedItem;'
+    return:
+      type:
+      - excel.Excel.NamedItem
+      description: ''
+    parameters:
+    - id: name
+      description: O "nome" do item nomeado.
+      type:
+      - string
+    - id: formula
+      description: A fórmula na localidade do usuário à qual o nome se referirá.
+      type:
+      - string
+    - id: comment
+      description: Opcional. O comentário associado ao item nomeado.
+      type:
+      - string
+- uid: excel.Excel.NamedItemCollection.getCount
+  summary: >-
+    Obtém o número de itens nomeados na coleção.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: excel.Excel.NamedItemCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel.Excel.NamedItemCollection.getItem
+  summary: >-
+    Obtém um objeto getNamedItem usando seu nome.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(name)
+  fullName: excel.Excel.NamedItemCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(name: string): Excel.NamedItem;'
+    return:
+      type:
+      - excel.Excel.NamedItem
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = 'Sheet1';\n    var nameditem = ctx.workbook.names.getItem(sheetName);\n    nameditem.load('type');\n    return ctx.sync().then(function() {\n            console.log(nameditem.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: name
+      description: Nome de getNamedItem.
+      type:
+      - string
+- uid: excel.Excel.NamedItemCollection.getItemOrNullObject
+  summary: >-
+    Obtém um objeto getNamedItem usando seu nome. Se o objeto getNamedItem não existir, retornará um objeto nulo.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(name)
+  fullName: excel.Excel.NamedItemCollection.getItemOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(name: string): Excel.NamedItem;'
+    return:
+      type:
+      - excel.Excel.NamedItem
+      description: ''
+    parameters:
+    - id: name
+      description: Nome de getNamedItem.
+      type:
+      - string
+- uid: excel.Excel.NamedItemCollection.items
+  summary: Obtém o filho carregado itens nesta coleção.
+  name: items
+  fullName: excel.Excel.NamedItemCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.NamedItem[];'
+    return:
+      type:
+      - Excel.NamedItem[]
+- uid: excel.Excel.NamedItemCollection.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): Excel.NamedItemCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItemCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var nameditems = ctx.workbook.names;\n    nameditems.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < nameditems.items.length; i++)\n        {\n            console.log(nameditems.items[i].name);\n            console.log(nameditems.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.NamedItemCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.NamedItemCollection;'
+    return:
+      type:
+      - excel.Excel.NamedItemCollection
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: excel.Excel.NamedItemCollection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.NamedItemCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.NamedItemCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.NamedItemCollectionData
+      description: ''

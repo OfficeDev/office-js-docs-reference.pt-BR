@@ -1,0 +1,327 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 393eef4c68e70a9d056b46c4c2ba3352c4abea34
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24039688"
+items:
+- uid: excel.Excel.ChartTitle
+  summary: >-
+    Representa um objeto ChartTitle de um gráfico.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartTitle
+  fullName: excel.Excel.ChartTitle
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartTitle.format
+  - excel.Excel.ChartTitle.getSubstring
+  - excel.Excel.ChartTitle.height
+  - excel.Excel.ChartTitle.horizontalAlignment
+  - excel.Excel.ChartTitle.left
+  - excel.Excel.ChartTitle.load
+  - excel.Excel.ChartTitle.overlay
+  - excel.Excel.ChartTitle.position
+  - excel.Excel.ChartTitle.setFormula
+  - excel.Excel.ChartTitle.showShadow
+  - excel.Excel.ChartTitle.text
+  - excel.Excel.ChartTitle.textOrientation
+  - excel.Excel.ChartTitle.toJSON
+  - excel.Excel.ChartTitle.top
+  - excel.Excel.ChartTitle.verticalAlignment
+  - excel.Excel.ChartTitle.visible
+  - excel.Excel.ChartTitle.width
+- uid: excel.Excel.ChartTitle.format
+  summary: >-
+    Representa a formatação de um título do gráfico, que inclui a formatação de fonte e de preenchimento. Somente leitura.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: format
+  fullName: excel.Excel.ChartTitle.format
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly format: Excel.ChartTitleFormat;'
+    return:
+      type:
+      - excel.Excel.ChartTitleFormat
+- uid: excel.Excel.ChartTitle.getSubstring
+  summary: >-
+    Obtenha a subcadeia de caracteres do título de um gráfico. Quebra de linha '\\n' também conta um caractere.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getSubstring(start, length)
+  fullName: excel.Excel.ChartTitle.getSubstring
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSubstring(start: number, length: number): Excel.ChartFormatString;'
+    return:
+      type:
+      - excel.Excel.ChartFormatString
+      description: ''
+    parameters:
+    - id: start
+      description: Posição inicial do subcadeia de caracteres a ser recuperado. Posição iniciar com 0.
+      type:
+      - number
+    - id: length
+      description: Comprimento da subcadeia de caracteres a ser recuperado.
+      type:
+      - number
+- uid: excel.Excel.ChartTitle.height
+  summary: >-
+    Retorna a altura, em pontos, do título do gráfico. Nulo se o título do gráfico não estiver visível. Somente leitura.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: height
+  fullName: excel.Excel.ChartTitle.height
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly height: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartTitle.horizontalAlignment
+  summary: >-
+    Representa o alinhamento horizontal para o título do gráfico.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: horizontalAlignment
+  fullName: excel.Excel.ChartTitle.horizontalAlignment
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'horizontalAlignment: Excel.ChartTextHorizontalAlignment | "Center" | "Left" | "Right" | "Justify" | "Distributed";'
+    return:
+      type:
+      - Excel.ChartTextHorizontalAlignment | "Center" | "Left" | "Right" | "Justify" | "Distributed"
+- uid: excel.Excel.ChartTitle.left
+  summary: >-
+    Representa a distância, em pontos, da borda esquerda do título do gráfico até a borda esquerda da área do gráfico. Nulo se o título do gráfico não estiver visível.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: left
+  fullName: excel.Excel.ChartTitle.left
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'left: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartTitle.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartTitle`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartTitle`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the text of Chart Title from Chart1.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    var title = chart.title;\n    title.load('text');\n    return ctx.sync().then(function() {\n            console.log(title.text);\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```\n```javascript\n// Set the text of Chart Title to \"My Chart\" and Make it show on top of the chart without overlaying.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    chart.title.text= \"My Chart\"; \n    chart.title.visible=true;\n    chart.title.overlay=true;\n    \n    return ctx.sync().then(function() {\n        console.log(\"Char Title Changed\");\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.ChartTitle.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.ChartTitle;'
+    return:
+      type:
+      - excel.Excel.ChartTitle
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: excel.Excel.ChartTitle.overlay
+  summary: >-
+    Valor booliano que determina se o título do gráfico deve se sobrepor ao gráfico ou não.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: overlay
+  fullName: excel.Excel.ChartTitle.overlay
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'overlay: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartTitle.position
+  summary: >-
+    Representa a posição do título do gráfico. Consulte Excel.ChartTitlePosition para obter detalhes.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: position
+  fullName: excel.Excel.ChartTitle.position
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'position: Excel.ChartTitlePosition | "Automatic" | "Top" | "Bottom" | "Left" | "Right";'
+    return:
+      type:
+      - Excel.ChartTitlePosition | "Automatic" | "Top" | "Bottom" | "Left" | "Right"
+- uid: excel.Excel.ChartTitle.setFormula
+  summary: >-
+    Define um valor string que representa a fórmula do título do gráfico usando a notação de estilo A1.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: setFormula(formula)
+  fullName: excel.Excel.ChartTitle.setFormula
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setFormula(formula: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: formula
+      description: Uma string que representa a fórmula a ser definido.
+      type:
+      - string
+- uid: excel.Excel.ChartTitle.showShadow
+  summary: >-
+    Representa um valor boolean que determina se o título do gráfico tem uma sombra.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: showShadow
+  fullName: excel.Excel.ChartTitle.showShadow
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showShadow: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartTitle.text
+  summary: >-
+    Representa o texto do título de um gráfico.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: text
+  fullName: excel.Excel.ChartTitle.text
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'text: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.ChartTitle.textOrientation
+  summary: >-
+    Representa a orientação do texto do título do gráfico. O valor deve ser um inteiro de – 90 a 90 ou 180 para texto orientado verticalmente.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: textOrientation
+  fullName: excel.Excel.ChartTitle.textOrientation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'textOrientation: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartTitle.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartTitle.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartTitleData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.ChartTitleData
+      description: ''
+- uid: excel.Excel.ChartTitle.top
+  summary: >-
+    Representa a distância, em pontos, da borda superior do título do gráfico para o topo da área do gráfico. Nulo se o título do gráfico não estiver visível.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: top
+  fullName: excel.Excel.ChartTitle.top
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'top: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartTitle.verticalAlignment
+  summary: >-
+    Representa o alinhamento vertical do título do gráfico. Consulte Excel.ChartTextVerticalAlignment para obter detalhes.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: verticalAlignment
+  fullName: excel.Excel.ChartTitle.verticalAlignment
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'verticalAlignment: Excel.ChartTextVerticalAlignment | "Center" | "Bottom" | "Top" | "Justify" | "Distributed";'
+    return:
+      type:
+      - Excel.ChartTextVerticalAlignment | "Center" | "Bottom" | "Top" | "Justify" | "Distributed"
+- uid: excel.Excel.ChartTitle.visible
+  summary: >-
+    Um valor booliano que representa a visibilidade de um objeto de título de gráfico.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: visible
+  fullName: excel.Excel.ChartTitle.visible
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'visible: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.ChartTitle.width
+  summary: >-
+    Retorna a largura, em pontos, do título do gráfico. Nulo se o título do gráfico não estiver visível. Somente leitura.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: width
+  fullName: excel.Excel.ChartTitle.width
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly width: number;'
+    return:
+      type:
+      - number

@@ -1,0 +1,221 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: a687c8c72f3f55328eca10581e5db1bc61c325d8
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24039566"
+items:
+- uid: visio.Visio.PageView
+  summary: >-
+    Representa a classe PageView.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: Visio.PageView
+  fullName: visio.Visio.PageView
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: visio
+  children:
+  - visio.Visio.PageView.centerViewportOnShape
+  - visio.Visio.PageView.fitToWindow
+  - visio.Visio.PageView.getPosition
+  - visio.Visio.PageView.getSelection
+  - visio.Visio.PageView.isShapeInViewport
+  - visio.Visio.PageView.load
+  - visio.Visio.PageView.setPosition
+  - visio.Visio.PageView.toJSON
+  - visio.Visio.PageView.zoom
+- uid: visio.Visio.PageView.centerViewportOnShape
+  summary: >-
+    Desloca o desenho do Visio para posicionar a forma especificada no centro da visualização.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: centerViewportOnShape(ShapeId)
+  fullName: visio.Visio.PageView.centerViewportOnShape
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'centerViewportOnShape(ShapeId: number): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var activePage = ctx.document.getActivePage();\n    var shape = activePage.shapes.getItem(0);\n    activePage.view.centerViewportOnShape(shape.Id);\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: ShapeId
+      description: ShapeId a ser exibida no centro.
+      type:
+      - number
+- uid: visio.Visio.PageView.fitToWindow
+  summary: >-
+    Ajustar Page à janela atual.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: fitToWindow()
+  fullName: visio.Visio.PageView.fitToWindow
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'fitToWindow(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: visio.Visio.PageView.getPosition
+  summary: >-
+    Retorna o objeto position que especifica a posição da página no modo de exibição.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getPosition()
+  fullName: visio.Visio.PageView.getPosition
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPosition(): OfficeExtension.ClientResult<Visio.Position>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Visio.Position>
+      description: ''
+- uid: visio.Visio.PageView.getSelection
+  summary: >-
+    Representa a Seleção na página.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: getSelection()
+  fullName: visio.Visio.PageView.getSelection
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelection(): Visio.Selection;'
+    return:
+      type:
+      - visio.Visio.Selection
+      description: ''
+- uid: visio.Visio.PageView.isShapeInViewport
+  summary: >-
+    Para verificar se a forma está no modo de exibição da página ou não.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: isShapeInViewport(Shape)
+  fullName: visio.Visio.PageView.isShapeInViewport
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'isShapeInViewport(Shape: Visio.Shape): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<boolean>
+      description: ''
+    parameters:
+    - id: Shape
+      description: Forma a ser verificada.
+      type:
+      - visio.Visio.Shape
+- uid: visio.Visio.PageView.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: { select?: string; expand?: string; }): Visio.PageView`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageView`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Visio.run(session, function (ctx) {
+        var activePage = ctx.document.getActivePage();
+        activePage.view.zoom = 300;
+        return ctx.sync();
+    }).catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: load(option)
+  fullName: visio.Visio.PageView.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Visio.PageView;'
+    return:
+      type:
+      - visio.Visio.PageView
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: visio.Visio.PageView.setPosition
+  summary: >-
+    Define a posição da página no modo de exibição.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: setPosition(Position)
+  fullName: visio.Visio.PageView.setPosition
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setPosition(Position: Visio.Position): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: Position
+      description: Objeto Position que especifica a nova posição da página na visualização.
+      type:
+      - visio.Visio.Position
+- uid: visio.Visio.PageView.toJSON
+  name: toJSON()
+  fullName: visio.Visio.PageView.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Visio.Interfaces.PageViewData;'
+    return:
+      type:
+      - visio.Visio.Interfaces.PageViewData
+      description: ''
+- uid: visio.Visio.PageView.zoom
+  summary: >-
+    Obter e definir o nível de Zoom da página. O valor pode ser entre 10 e 400 e indica a porcentagem de zoom.
+
+
+    \[[Conjunto de APIs: 1.1](/javascript/office/overview/visio-javascript-reference-overview)\]
+  name: zoom
+  fullName: visio.Visio.PageView.zoom
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'zoom: number;'
+    return:
+      type:
+      - number
