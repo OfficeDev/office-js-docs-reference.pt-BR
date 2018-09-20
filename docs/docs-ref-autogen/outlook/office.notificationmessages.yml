@@ -1,0 +1,292 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 57d73162f8050fb564d4a81460c3876514093793
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24038526"
+items:
+- uid: outlook.Office.NotificationMessages
+  summary: >-
+    <span data-ttu-id="2aa56-101">O objeto NotificationMessages é retornado como a propriedade notificationMessages de um item.</span><span class="sxs-lookup"><span data-stu-id="2aa56-101">The NotificationMessages object is returned as the notificationMessages property of an item.</span></span>
+
+
+    <span data-ttu-id="2aa56-102">\[[Conjunto de APIs: caixa de correio 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2aa56-102">\[ [API set: Mailbox 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="2aa56-103">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="2aa56-103">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="2aa56-104">ReadItem</span><span class="sxs-lookup"><span data-stu-id="2aa56-104">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="2aa56-105">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="2aa56-105">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="2aa56-106">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="2aa56-106">Compose or read</span></span></td></tr></table>
+  name: Office.NotificationMessages
+  fullName: outlook.Office.NotificationMessages
+  langs:
+  - typeScript
+  type: interface
+  package: outlook
+  children:
+  - outlook.Office.NotificationMessages.addAsync
+  - outlook.Office.NotificationMessages.getAllAsync
+  - outlook.Office.NotificationMessages.removeAsync
+  - outlook.Office.NotificationMessages.replaceAsync
+- uid: outlook.Office.NotificationMessages.addAsync
+  summary: >-
+    <span data-ttu-id="2aa56-107">Adiciona uma notificação a um item.</span><span class="sxs-lookup"><span data-stu-id="2aa56-107">Adds a notification to an item.</span></span>
+
+
+    <span data-ttu-id="2aa56-p101">Há um máximo de 5 notificações por mensagem. Definir mais retornará um erro NumberOfNotificationMessagesExceeded.</span><span class="sxs-lookup"><span data-stu-id="2aa56-p101">There are a maximum of 5 notifications per message. Setting more will return a NumberOfNotificationMessagesExceeded error.</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="2aa56-110">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="2aa56-110">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="2aa56-111">ReadItem</span><span class="sxs-lookup"><span data-stu-id="2aa56-111">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="2aa56-112">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="2aa56-112">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="2aa56-113">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="2aa56-113">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="2aa56-114">Além dessa assinatura, o método também tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="2aa56-114">In addition to this signature, the method also has the following signatures:</span></span>
+
+
+    `addAsync(key: string, JSONmessage: NotificationMessageDetails): void;`
+
+
+    `addAsync(key: string, JSONmessage: NotificationMessageDetails, options: Office.AsyncContextOptions): void;`
+
+
+    `addAsync(key: string, JSONmessage: NotificationMessageDetails, callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="2aa56-115">Exemplos</span><span class="sxs-lookup"><span data-stu-id="2aa56-115">Examples</span></span>
+
+
+    ```javascript
+
+    // Create three notifications, each with a different key
+
+    Office.context.mailbox.item.notificationMessages.addAsync("progress", {
+        type: "progressIndicator",
+        message : "An add-in is processing this message."
+    });
+
+    Office.context.mailbox.item.notificationMessages.addAsync("information", {
+        type: "informationalMessage",
+        message : "The add-in processed this message.",
+        icon : "iconid",
+        persistent: false
+    });
+
+    Office.context.mailbox.item.notificationMessages.addAsync("error", {
+        type: "errorMessage",
+        message : "The add-in failed to process this message."
+    });
+
+    ```
+  name: addAsync(key, JSONmessage, options, callback)
+  fullName: outlook.Office.NotificationMessages.addAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: key
+      description: <span data-ttu-id="2aa56-p102">Uma chave especificada pelo desenvolvedor usada para fazer referência a essa mensagem de notificação. Os desenvolvedores podem usá-la para modificar esta mensagem mais tarde. Ela não pode ter mais de 32 caracteres.</span><span class="sxs-lookup"><span data-stu-id="2aa56-p102">A developer-specified key used to reference this notification message. Developers can use it to modify this message later. It can't be longer than 32 characters.</span></span>
+      type:
+      - string
+    - id: JSONmessage
+      description: <span data-ttu-id="2aa56-119">Um objeto JSON que contém a mensagem de notificação a ser adicionado ao item.</span><span class="sxs-lookup"><span data-stu-id="2aa56-119">A JSON object that contains the notification message to be added to the item.</span></span> <span data-ttu-id="2aa56-120">Ele contém um objeto NotificationMessageDetails.</span><span class="sxs-lookup"><span data-stu-id="2aa56-120">It contains a NotificationMessageDetails object.</span></span>
+      type:
+      - NotificationMessageDetails
+    - id: options
+      description: '<span data-ttu-id="2aa56-121">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-121">Optional.</span></span> <span data-ttu-id="2aa56-122">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="2aa56-122">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="2aa56-123">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="2aa56-123">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: '<span data-ttu-id="2aa56-124">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-124">Optional.</span></span> <span data-ttu-id="2aa56-125">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="2aa56-125">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="2aa56-126">\[Conjunto de APIs: caixa de correio 1.3\]</span><span class="sxs-lookup"><span data-stu-id="2aa56-126">\[Api set: Mailbox 1.3\]</span></span>'
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.NotificationMessages.getAllAsync
+  summary: >-
+    <span data-ttu-id="2aa56-127">Retorna todas as chaves e mensagens de um item.</span><span class="sxs-lookup"><span data-stu-id="2aa56-127">Returns all keys and messages for an item.</span></span>
+
+
+    <span data-ttu-id="2aa56-128">\[[Conjunto de APIs: caixa de correio 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2aa56-128">\[ [API set: Mailbox 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="2aa56-129">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="2aa56-129">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="2aa56-130">ReadItem</span><span class="sxs-lookup"><span data-stu-id="2aa56-130">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="2aa56-131">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="2aa56-131">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="2aa56-132">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="2aa56-132">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="2aa56-133">Além da assinatura principal, esse método também tem essa assinatura:</span><span class="sxs-lookup"><span data-stu-id="2aa56-133">In addition to the main signature, this method also has this signature:</span></span>
+
+
+    `getAllAsync(callback: (result: AsyncResult&lt;Office.NotificationMessageDetails[]&gt;) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="2aa56-134">Exemplos</span><span class="sxs-lookup"><span data-stu-id="2aa56-134">Examples</span></span>
+
+
+    ```javascript
+
+    // Get all notifications
+
+    Office.context.mailbox.item.notificationMessages.getAllAsync(function (asyncResult) {
+        if (asyncResult.status != "failed") {
+            Office.context.mailbox.item.notificationMessages.replaceAsync( "notifications", {
+                type: "informationalMessage",
+                message : "Found " + asyncResult.value.length + " notifications.",
+                icon : "iconid",
+                persistent: false
+            });
+        }
+    });
+
+    ```
+  name: getAllAsync(options, callback)
+  fullName: outlook.Office.NotificationMessages.getAllAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAllAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.NotificationMessageDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: '<span data-ttu-id="2aa56-135">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-135">Optional.</span></span> <span data-ttu-id="2aa56-136">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="2aa56-136">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="2aa56-137">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="2aa56-137">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="2aa56-138">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-138">Optional.</span></span> <span data-ttu-id="2aa56-139">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="2aa56-139">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="2aa56-140">O `value` propriedade do resultado é uma matriz de objetos NotificationMessageDetails.</span><span class="sxs-lookup"><span data-stu-id="2aa56-140">The `value` property of the result is an array of NotificationMessageDetails objects.</span></span>
+      type:
+      - '(result: AsyncResult<Office.NotificationMessageDetails[]>) => void'
+- uid: outlook.Office.NotificationMessages.removeAsync
+  summary: >-
+    <span data-ttu-id="2aa56-141">Obtém uma mensagem de notificação de um item.</span><span class="sxs-lookup"><span data-stu-id="2aa56-141">Removes a notification message for an item.</span></span>
+
+
+    <span data-ttu-id="2aa56-142">\[[Conjunto de APIs: caixa de correio 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2aa56-142">\[ [API set: Mailbox 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="2aa56-143">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="2aa56-143">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="2aa56-144">ReadItem</span><span class="sxs-lookup"><span data-stu-id="2aa56-144">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="2aa56-145">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="2aa56-145">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="2aa56-146">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="2aa56-146">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="2aa56-147">Além da assinatura principal, esse método também tem essas assinaturas:</span><span class="sxs-lookup"><span data-stu-id="2aa56-147">In addition to the main signature, this method also has these signatures:</span></span>
+
+
+    `removeAsync(key: string): void;`
+
+
+    `removeAsync(key: string, options: Office.AsyncContextOptions): void;`
+
+
+    `removeAsync(key: string, callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="2aa56-148">Exemplos</span><span class="sxs-lookup"><span data-stu-id="2aa56-148">Examples</span></span>
+
+
+    ```javascript
+
+    // Remove a notification
+
+    Office.context.mailbox.item.notificationMessages.removeAsync("progress");
+
+    ```
+  name: removeAsync(key, options, callback)
+  fullName: outlook.Office.NotificationMessages.removeAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAsync(key: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: key
+      description: <span data-ttu-id="2aa56-149">A chave para a mensagem de notificação a remover.</span><span class="sxs-lookup"><span data-stu-id="2aa56-149">The key for the notification message to remove.</span></span>
+      type:
+      - string
+    - id: options
+      description: '<span data-ttu-id="2aa56-150">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-150">Optional.</span></span> <span data-ttu-id="2aa56-151">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="2aa56-151">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="2aa56-152">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="2aa56-152">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="2aa56-153">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-153">Optional.</span></span> <span data-ttu-id="2aa56-154">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="2aa56-154">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span>
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.NotificationMessages.replaceAsync
+  summary: >-
+    <span data-ttu-id="2aa56-155">Substitui uma mensagem de notificação que tenha uma determinada chave com outra mensagem.</span><span class="sxs-lookup"><span data-stu-id="2aa56-155">Replaces a notification message that has a given key with another message.</span></span>
+
+
+    <span data-ttu-id="2aa56-156">Se uma mensagem de notificação com a chave especificada não existir, replaceAsync adicionará a notificação.</span><span class="sxs-lookup"><span data-stu-id="2aa56-156">If a notification message with the specified key doesn't exist, replaceAsync will add the notification.</span></span>
+
+
+    <span data-ttu-id="2aa56-157">\[[Conjunto de APIs: caixa de correio 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="2aa56-157">\[ [API set: Mailbox 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="2aa56-158">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="2aa56-158">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="2aa56-159">ReadItem</span><span class="sxs-lookup"><span data-stu-id="2aa56-159">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="2aa56-160">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="2aa56-160">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="2aa56-161">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="2aa56-161">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="2aa56-162">Além da assinatura principal, esse método também tem essas assinaturas:</span><span class="sxs-lookup"><span data-stu-id="2aa56-162">In addition to the main signature, this method also has these signatures:</span></span>
+
+
+    `replaceAsync(key: string, JSONmessage: NotificationMessageDetails): void;`
+
+
+    `replaceAsync(key: string, JSONmessage: NotificationMessageDetails, options: Office.AsyncContextOptions): void;`
+
+
+    `replaceAsync(key: string, JSONmessage: NotificationMessageDetails, callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="2aa56-163">Exemplos</span><span class="sxs-lookup"><span data-stu-id="2aa56-163">Examples</span></span>
+
+
+    ```javascript
+
+    // Replace a notification with an informational notification
+
+    Office.context.mailbox.item.notificationMessages.replaceAsync("progress", {
+        type: "informationalMessage",
+        message : "The message was processed successfully.",
+        icon : "iconid",
+        persistent: false
+    });
+
+    ```
+  name: replaceAsync(key, JSONmessage, options, callback)
+  fullName: outlook.Office.NotificationMessages.replaceAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'replaceAsync(key: string, JSONmessage: NotificationMessageDetails, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: key
+      description: <span data-ttu-id="2aa56-p110">A chave para a mensagem de notificação a substituir. Ela não pode ter mais de 32 caracteres.</span><span class="sxs-lookup"><span data-stu-id="2aa56-p110">The key for the notification message to replace. It can't be longer than 32 characters.</span></span>
+      type:
+      - string
+    - id: JSONmessage
+      description: <span data-ttu-id="2aa56-166">Um objeto JSON que contém a nova mensagem de notificação para substituir a mensagem existente.</span><span class="sxs-lookup"><span data-stu-id="2aa56-166">A JSON object that contains the new notification message to replace the existing message.</span></span> <span data-ttu-id="2aa56-167">Ele contém um objeto NotificationMessageDetails.</span><span class="sxs-lookup"><span data-stu-id="2aa56-167">It contains a NotificationMessageDetails object.</span></span>
+      type:
+      - NotificationMessageDetails
+    - id: options
+      description: '<span data-ttu-id="2aa56-168">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-168">Optional.</span></span> <span data-ttu-id="2aa56-169">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="2aa56-169">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="2aa56-170">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="2aa56-170">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="2aa56-171">Opcional.</span><span class="sxs-lookup"><span data-stu-id="2aa56-171">Optional.</span></span> <span data-ttu-id="2aa56-172">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="2aa56-172">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span>
+      type:
+      - '(result: AsyncResult<void>) => void'
