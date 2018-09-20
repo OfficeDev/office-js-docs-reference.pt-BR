@@ -1,0 +1,516 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 1edb094a629be9ec233e0765e18a470a0cd5e3c4
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24039908"
+items:
+- uid: outlook.Office.Item
+  summary: >-
+    <span data-ttu-id="a5a38-101">O namespace do item é usado para acessar a mensagem atualmente selecionada, solicitação de reunião ou compromisso.</span><span class="sxs-lookup"><span data-stu-id="a5a38-101">The item namespace is used to access the currently selected message, meeting request, or appointment.</span></span> <span data-ttu-id="a5a38-102">Você pode determinar o tipo do item usando o `itemType` propriedade.</span><span class="sxs-lookup"><span data-stu-id="a5a38-102">You can determine the type of the item by using the `itemType` property.</span></span>
+
+
+    <span data-ttu-id="a5a38-103">\[[Conjunto de APIs: caixa de correio 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-103">\[ [API set: Mailbox 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-104">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-104">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-105">Restrito</span><span class="sxs-lookup"><span data-stu-id="a5a38-105">Restricted</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-106">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-106">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-107">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-107">Compose or read</span></span></td></tr></table>
+  name: Office.Item
+  fullName: outlook.Office.Item
+  langs:
+  - typeScript
+  type: interface
+  package: outlook
+  children:
+  - outlook.Office.Item.addHandlerAsync
+  - outlook.Office.Item.body
+  - outlook.Office.Item.dateTimeCreated
+  - outlook.Office.Item.dateTimeModifed
+  - outlook.Office.Item.getInitializationContextAsync
+  - outlook.Office.Item.itemType
+  - outlook.Office.Item.loadCustomPropertiesAsync
+  - outlook.Office.Item.notificationMessages
+  - outlook.Office.Item.recurrence
+  - outlook.Office.Item.removeHandlerAsync
+  - outlook.Office.Item.seriesId
+- uid: outlook.Office.Item.addHandlerAsync
+  summary: >-
+    <span data-ttu-id="a5a38-108">Adiciona um manipulador de eventos a um evento com suporte.</span><span class="sxs-lookup"><span data-stu-id="a5a38-108">Adds an event handler for a supported event.</span></span>
+
+
+    <span data-ttu-id="a5a38-109">No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrencePatternChanged`.</span><span class="sxs-lookup"><span data-stu-id="a5a38-109">Currently the supported event types are `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, and `Office.EventType.RecurrencePatternChanged`.</span></span>
+
+
+    <span data-ttu-id="a5a38-110">\[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-110">\[ [API set: Mailbox Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-111">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-111">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-112">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-112">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-113">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-113">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-114">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-114">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="a5a38-115">Além dessa assinatura, o método também tem a seguinte assinatura:</span><span class="sxs-lookup"><span data-stu-id="a5a38-115">In addition to this signature, the method also has the following signature:</span></span>
+
+
+    `addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="a5a38-116">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a5a38-116">Examples</span></span>
+
+
+    ```javascript
+
+    Office.initialize = function (reason) {
+        $(document).ready(function () {
+            Office.context.mailbox.item.addHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
+                if (result.status === Office.AsyncResultStatus.Failed) {
+                    // Handle error
+                }
+            });
+        });
+    };
+
+
+    function loadNewItem(eventArgs) {
+        // Load the properties of the newly selected item
+        loadProps(Office.context.mailbox.item);
+    };
+
+    ```
+  isPreview: true
+  name: addHandlerAsync(eventType, handler, options, callback)
+  fullName: outlook.Office.Item.addHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: <span data-ttu-id="a5a38-117">O evento que deve invocar o manipulador.</span><span class="sxs-lookup"><span data-stu-id="a5a38-117">The event that should invoke the handler.</span></span>
+      type:
+      - Office.EventType
+    - id: handler
+      description: <span data-ttu-id="a5a38-118">A função para manipular o evento.</span><span class="sxs-lookup"><span data-stu-id="a5a38-118">The function to handle the event.</span></span> <span data-ttu-id="a5a38-119">A função deve aceitar um único parâmetro, que é um objeto literal.</span><span class="sxs-lookup"><span data-stu-id="a5a38-119">The function must accept a single parameter, which is an object literal.</span></span> <span data-ttu-id="a5a38-120">A propriedade type do parâmetro isso coincidirá com o parâmetro eventType passado para addHandlerAsync.</span><span class="sxs-lookup"><span data-stu-id="a5a38-120">The type property on the parameter will match the eventType parameter passed to addHandlerAsync.</span></span>
+      type:
+      - any
+    - id: options
+      description: '<span data-ttu-id="a5a38-121">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-121">Optional.</span></span> <span data-ttu-id="a5a38-122">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a5a38-122">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a5a38-123">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a5a38-123">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - any
+    - id: callback
+      description: <span data-ttu-id="a5a38-124">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-124">Optional.</span></span> <span data-ttu-id="a5a38-125">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a5a38-125">When the method completes, the function passed in the callback parameter is called with a single parameter, asyncResult, which is an Office.AsyncResult object.</span></span>
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.Item.body
+  summary: >-
+    <span data-ttu-id="a5a38-126">Obtém um objeto que fornece métodos para manipular o corpo de um item.</span><span class="sxs-lookup"><span data-stu-id="a5a38-126">Gets an object that provides methods for manipulating the body of an item.</span></span>
+
+
+    <span data-ttu-id="a5a38-127">\[[Conjunto de APIs: caixa de correio 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-127">\[ [API set: Mailbox 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-128">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-128">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-129">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-129">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-130">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-130">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-131">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-131">Compose or read</span></span></td></tr></table>
+  name: body
+  fullName: outlook.Office.Item.body
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'body: Office.Body;'
+    return:
+      type:
+      - outlook.Office.Body
+- uid: outlook.Office.Item.dateTimeCreated
+  summary: >-
+    <span data-ttu-id="a5a38-p105">Obtém a data e a hora em que um item foi criado. Somente modo de leitura.</span><span class="sxs-lookup"><span data-stu-id="a5a38-p105">Gets the date and time that an item was created. Read mode only.</span></span>
+
+
+    <span data-ttu-id="a5a38-134">\[[Conjunto de APIs: caixa de correio 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-134">\[ [API set: Mailbox 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-135">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-135">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-136">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-136">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-137">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-137">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-138">Read</span><span class="sxs-lookup"><span data-stu-id="a5a38-138">Read</span></span></td></tr></table>
+  name: dateTimeCreated
+  fullName: outlook.Office.Item.dateTimeCreated
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'dateTimeCreated: Date;'
+    return:
+      type:
+      - Date
+- uid: outlook.Office.Item.dateTimeModifed
+  summary: >-
+    <span data-ttu-id="a5a38-p106">Obtém a data e a hora em que um item foi alterado pela última vez. Somente modo de leitura.</span><span class="sxs-lookup"><span data-stu-id="a5a38-p106">Gets the date and time that an item was last modified. Read mode only.</span></span>
+
+
+    <span data-ttu-id="a5a38-141">\[[Conjunto de APIs: caixa de correio 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-141">\[ [API set: Mailbox 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-142">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-142">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-143">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-143">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-144">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-144">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-145">Read</span><span class="sxs-lookup"><span data-stu-id="a5a38-145">Read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="a5a38-146">Observação: não há suporte para esse membro no Outlook para iOS ou no Outlook para Android.</span><span class="sxs-lookup"><span data-stu-id="a5a38-146">Note: This member is not supported in Outlook for iOS or Outlook for Android.</span></span>
+  name: dateTimeModifed
+  fullName: outlook.Office.Item.dateTimeModifed
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'dateTimeModifed: Date;'
+    return:
+      type:
+      - Date
+- uid: outlook.Office.Item.getInitializationContextAsync
+  summary: >-
+    <span data-ttu-id="a5a38-147">Obtém os dados de inicialização passados quando o suplemento é [ativado por uma mensagem acionável](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)<!-- -->.</span><span class="sxs-lookup"><span data-stu-id="a5a38-147">Gets initialization data passed when the add-in is [activated by an actionable message](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)<!-- -->.</span></span>
+
+
+    <span data-ttu-id="a5a38-148">Observação: esse método só é compatível com o Outlook 2016 para Windows (versões Clique para Executar posteriores à 16.0.8413.1000) e o Outlook na Web para o Office 365.</span><span class="sxs-lookup"><span data-stu-id="a5a38-148">Note: This method is only supported by Outlook 2016 for Windows (Click-to-Run versions greater than 16.0.8413.1000) and Outlook on the web for Office 365.</span></span>
+
+
+    <span data-ttu-id="a5a38-149">\[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-149">\[ [API set: Mailbox Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-150">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-150">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-151">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-151">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-152">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-152">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-153">Participante do compromisso</span><span class="sxs-lookup"><span data-stu-id="a5a38-153">Appointment Attendee</span></span></td></tr></table>
+
+
+    <span data-ttu-id="a5a38-154">Além dessa assinatura, o método também tem a seguinte assinatura:</span><span class="sxs-lookup"><span data-stu-id="a5a38-154">In addition to this signature, the method also has the following signature:</span></span>
+
+
+    `getInitializationContextAsync(callback?: (result: AsyncResult<string>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="a5a38-155">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a5a38-155">Examples</span></span>
+
+
+    ```javascript
+
+    // Get the initialization context (if present)
+
+    Office.context.mailbox.item.getInitializationContextAsync(
+        function(asyncResult) {
+            if (asyncResult.status == Office.AsyncResultStatus.Succeeded) {
+                if (asyncResult.value != null && asyncResult.value.length > 0) {
+                    // The value is a string, parse to an object
+                    var context = JSON.parse(asyncResult.value);
+                    // Do something with context
+                } else {
+                    // Empty context, treat as no context
+                }
+            } else {
+                if (asyncResult.error.code == 9020) {
+                    // GenericResponseError returned when there is no context
+                    // Treat as no context
+                } else {
+                    // Handle the error
+                }
+            }
+        }
+    );
+
+    ```
+  isPreview: true
+  name: getInitializationContextAsync(options, callback)
+  fullName: outlook.Office.Item.getInitializationContextAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: '<span data-ttu-id="a5a38-156">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-156">Optional.</span></span> <span data-ttu-id="a5a38-157">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a5a38-157">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a5a38-158">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a5a38-158">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: <span data-ttu-id="a5a38-159">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-159">Optional.</span></span> <span data-ttu-id="a5a38-160">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a5a38-160">When the method completes, the function passed in the callback parameter is called with a single parameter, asyncResult, which is an Office.AsyncResult object.</span></span> <span data-ttu-id="a5a38-161">Em caso de sucesso, os dados de inicialização são fornecidos na propriedade asyncResult.value como uma cadeia de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a5a38-161">On success, the initialization data is provided in the asyncResult.value property as a string.</span></span> <span data-ttu-id="a5a38-162">Se não houver nenhum contexto de inicialização, o objeto asyncResult irá conter um objeto Error com sua propriedade de código definido como 9020 e sua propriedade name definido como GenericResponseError.</span><span class="sxs-lookup"><span data-stu-id="a5a38-162">If there is no initialization context, the asyncResult object will contain an Error object with its code property set to 9020 and its name property set to GenericResponseError.</span></span>
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.Item.itemType
+  summary: >-
+    <span data-ttu-id="a5a38-163">Obtém o tipo de item que representa uma instância.</span><span class="sxs-lookup"><span data-stu-id="a5a38-163">Gets the type of item that an instance represents.</span></span>
+
+
+    <span data-ttu-id="a5a38-164">A propriedade itemType retorna um dos valores de enumeração ItemType, indicando se a instância do objeto item é uma mensagem ou um compromisso.</span><span class="sxs-lookup"><span data-stu-id="a5a38-164">The itemType property returns one of the ItemType enumeration values, indicating whether the item object instance is a message or an appointment.</span></span>
+
+
+    <span data-ttu-id="a5a38-165">\[[Conjunto de APIs: caixa de correio 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-165">\[ [API set: Mailbox 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-166">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-166">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-167">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-167">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-168">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-168">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-169">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-169">Compose or read</span></span></td></tr></table><span data-ttu-id="a5a38-170">
+
+    ####Exemplos</span><span class="sxs-lookup"><span data-stu-id="a5a38-170">
+
+    #### Examples</span></span>
+
+
+    ```javascript
+
+    if (Office.context.mailbox.item.itemType == Office.MailboxEnums.ItemType.Message)
+        // do something
+    else
+        // do something else
+    ```
+  name: itemType
+  fullName: outlook.Office.Item.itemType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'itemType: Office.MailboxEnums.ItemType;'
+    return:
+      type:
+      - outlook.Office.MailboxEnums.ItemType
+- uid: outlook.Office.Item.loadCustomPropertiesAsync
+  summary: >-
+    <span data-ttu-id="a5a38-171">Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.</span><span class="sxs-lookup"><span data-stu-id="a5a38-171">Asynchronously loads custom properties for this add-in on the selected item.</span></span>
+
+
+    <span data-ttu-id="a5a38-p109">Propriedades personalizadas são armazenadas como pares chave/valor de acordo com o aplicativo e o item. Este método retorna um objeto CustomProperties no retorno de chamada, que oferece métodos para acessar as propriedades personalizadas específicas para o item atual e o suplemento atual. Propriedades personalizadas não são criptografadas no item, portanto não devem ser usadas como armazenamento seguro.</span><span class="sxs-lookup"><span data-stu-id="a5a38-p109">Custom properties are stored as key/value pairs on a per-app, per-item basis. This method returns a CustomProperties object in the callback, which provides methods to access the custom properties specific to the current item and the current add-in. Custom properties are not encrypted on the item, so this should not be used as secure storage.</span></span>
+
+
+    <span data-ttu-id="a5a38-p110">As propriedades personalizadas são fornecidas como um objeto CustomProperties na propriedade asyncResult.value. Esse objeto pode ser usado para obter, definir e remover as propriedades personalizadas do item e salvar as alterações na propriedade personalizada definida de volta no servidor.</span><span class="sxs-lookup"><span data-stu-id="a5a38-p110">The custom properties are provided as a CustomProperties object in the asyncResult.value property. This object can be used to get, set, and remove custom properties from the item and save changes to the custom property set back to the server.</span></span>
+
+
+    <span data-ttu-id="a5a38-177">\[[Conjunto de APIs: caixa de correio 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-177">\[ [API set: Mailbox 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-178">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-178">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-179">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-179">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-180">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-180">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-181">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-181">Compose or read</span></span></td></tr></table><span data-ttu-id="a5a38-182">
+
+    ####Exemplos</span><span class="sxs-lookup"><span data-stu-id="a5a38-182">
+
+    #### Examples</span></span>
+
+
+    ```javascript
+
+    // The following example shows how to use the loadCustomPropertiesAsync method
+
+    // to asynchronously load custom properties that are specific to the current item.
+
+    // The example also shows how to use the saveAsync method to save these properties
+
+    // back to the server. After loading the custom properties, the example uses the
+
+    // get method to read the custom property myProp, the set method to write the
+
+    // custom property otherProp, and then finally calls the saveAsync method to save
+
+    // the custom properties.
+
+    Office.initialize = function () {
+        // Checks for the DOM to load using the jQuery ready function.
+        $(document).ready(function () {
+            // After the DOM is loaded, add-in-specific code can run.
+            var mailbox = Office.context.mailbox;
+            mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
+        });
+    }
+
+    function customPropsCallback(asyncResult) {
+        var customProps = asyncResult.value;
+        var myProp = customProps.get("myProp");
+
+        customProps.set("otherProp", "value");
+        customProps.saveAsync(saveCallback);
+    }
+
+
+    function saveCallback(asyncResult) {
+
+    }
+
+    ```
+  name: loadCustomPropertiesAsync(callback, userContext)
+  fullName: outlook.Office.Item.loadCustomPropertiesAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'loadCustomPropertiesAsync(callback: (result: AsyncResult<Office.CustomProperties>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: <span data-ttu-id="a5a38-183">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a5a38-183">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span>
+      type:
+      - '(result: AsyncResult<Office.CustomProperties>) => void'
+    - id: userContext
+      description: <span data-ttu-id="a5a38-184">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-184">Optional.</span></span> <span data-ttu-id="a5a38-185">Os desenvolvedores podem fornecer qualquer objeto que desejam acessar na função de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a5a38-185">Developers can provide any object they wish to access in the callback function.</span></span> <span data-ttu-id="a5a38-186">Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a5a38-186">This object can be accessed by the asyncResult.asyncContext property in the callback function.</span></span>
+      type:
+      - any
+- uid: outlook.Office.Item.notificationMessages
+  summary: >-
+    <span data-ttu-id="a5a38-187">Obtém as mensagens de notificação de um item.</span><span class="sxs-lookup"><span data-stu-id="a5a38-187">Gets the notification messages for an item.</span></span>
+
+
+    <span data-ttu-id="a5a38-188">\[[Conjunto de APIs: caixa de correio 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-188">\[ [API set: Mailbox 1.3](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-189">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-189">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-190">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-190">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-191">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-191">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-192">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-192">Compose or read</span></span></td></tr></table>
+  name: notificationMessages
+  fullName: outlook.Office.Item.notificationMessages
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'notificationMessages: Office.NotificationMessages;'
+    return:
+      type:
+      - outlook.Office.NotificationMessages
+- uid: outlook.Office.Item.recurrence
+  summary: >-
+    <span data-ttu-id="a5a38-193">Obtém ou define o padrão de recorrência de um compromisso.</span><span class="sxs-lookup"><span data-stu-id="a5a38-193">Gets or sets the recurrence pattern of an appointment.</span></span> <span data-ttu-id="a5a38-194">Obtém o padrão de recorrência de uma solicitação de reunião.</span><span class="sxs-lookup"><span data-stu-id="a5a38-194">Gets the recurrence pattern of a meeting request.</span></span> <span data-ttu-id="a5a38-195">Leitura e redação modos para itens de compromisso.</span><span class="sxs-lookup"><span data-stu-id="a5a38-195">Read and compose modes for appointment items.</span></span> <span data-ttu-id="a5a38-196">Modo de leitura para os itens de solicitação de reunião.</span><span class="sxs-lookup"><span data-stu-id="a5a38-196">Read mode for meeting request items.</span></span>
+
+
+    <span data-ttu-id="a5a38-197">A propriedade de recorrência retorna um objeto de recorrência para solicitações de reuniões ou compromissos recorrentes se um item é uma série ou uma instância de uma série.</span><span class="sxs-lookup"><span data-stu-id="a5a38-197">The recurrence property returns a recurrence object for recurring appointments or meetings requests if an item is a series or an instance in a series.</span></span> <span data-ttu-id="a5a38-198">`null`é retornada para um único compromissos e solicitações de reunião de compromissos de única.</span><span class="sxs-lookup"><span data-stu-id="a5a38-198">`null` is returned for single appointments and meeting requests of single appointments.</span></span> <span data-ttu-id="a5a38-199">`undefined`é retornado para mensagens que não fazem solicitações de reunião.</span><span class="sxs-lookup"><span data-stu-id="a5a38-199">`undefined` is returned for messages that are not meeting requests.</span></span>
+
+
+    <span data-ttu-id="a5a38-200">Observação: A solicitações de reunião tem um valor itemClass IPM. Schedule.Meeting.Request.</span><span class="sxs-lookup"><span data-stu-id="a5a38-200">Note: Meeting requests have an itemClass value of IPM.Schedule.Meeting.Request.</span></span>
+
+
+    <span data-ttu-id="a5a38-201">Observação: Se o objeto de recorrência for nulo, isso indica que o objeto é um compromisso único ou uma solicitação de reunião de um único compromisso e não fizer parte de uma série.</span><span class="sxs-lookup"><span data-stu-id="a5a38-201">Note: If the recurrence object is null, this indicates that the object is a single appointment or a meeting request of a single appointment and NOT a part of a series.</span></span>
+
+
+    <span data-ttu-id="a5a38-202">\[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-202">\[ [API set: Mailbox Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-203">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-203">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-204">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-204">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-205">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-205">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-206">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-206">Compose or read</span></span></td></tr></table>
+  isPreview: true
+  name: recurrence
+  fullName: outlook.Office.Item.recurrence
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'recurrence: Office.Recurrence;'
+    return:
+      type:
+      - outlook.Office.Recurrence
+- uid: outlook.Office.Item.removeHandlerAsync
+  summary: >-
+    <span data-ttu-id="a5a38-207">Remove um manipulador de eventos para um evento com suporte.</span><span class="sxs-lookup"><span data-stu-id="a5a38-207">Removes an event handler for a supported event.</span></span>
+
+
+    <span data-ttu-id="a5a38-208">No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrencePatternChanged`.</span><span class="sxs-lookup"><span data-stu-id="a5a38-208">Currently the supported event types are `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, and `Office.EventType.RecurrencePatternChanged`.</span></span>
+
+
+    <span data-ttu-id="a5a38-209">\[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-209">\[ [API set: Mailbox Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: >-
+    <table><tr><td>[<span data-ttu-id="a5a38-210">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="a5a38-210">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a5a38-211">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a5a38-211">ReadItem</span></span></td></tr>
+
+
+    <tr><td>[<span data-ttu-id="a5a38-212">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="a5a38-212">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a5a38-213">Composição ou leitura</span><span class="sxs-lookup"><span data-stu-id="a5a38-213">Compose or read</span></span></td></tr></table>
+
+
+    <span data-ttu-id="a5a38-214">Além dessa assinatura, o método também tem a seguinte assinatura:</span><span class="sxs-lookup"><span data-stu-id="a5a38-214">In addition to this signature, the method also has the following signature:</span></span>
+
+
+    `removeHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a><span data-ttu-id="a5a38-215">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a5a38-215">Examples</span></span>
+
+
+    ```javascript
+
+    Office.initialize = function (reason) {
+        $(document).ready(function () {
+            Office.context.mailbox.item.removeHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
+                if (result.status === Office.AsyncResultStatus.Failed) {
+                    // Handle error
+                }
+            });
+        });
+    };
+
+
+    function loadNewItem(eventArgs) {
+        // Load the properties of the newly selected item
+        loadProps(Office.context.mailbox.item);
+    };
+
+    ```
+  isPreview: true
+  name: removeHandlerAsync(eventType, handler, options, callback)
+  fullName: outlook.Office.Item.removeHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: <span data-ttu-id="a5a38-216">O evento que deve invocar o manipulador.</span><span class="sxs-lookup"><span data-stu-id="a5a38-216">The event that should invoke the handler.</span></span>
+      type:
+      - Office.EventType
+    - id: handler
+      description: <span data-ttu-id="a5a38-217">A função para manipular o evento.</span><span class="sxs-lookup"><span data-stu-id="a5a38-217">The function to handle the event.</span></span> <span data-ttu-id="a5a38-218">A função deve aceitar um único parâmetro, que é um objeto literal.</span><span class="sxs-lookup"><span data-stu-id="a5a38-218">The function must accept a single parameter, which is an object literal.</span></span> <span data-ttu-id="a5a38-219">A propriedade type do parâmetro isso coincidirá com o parâmetro eventType passado para removeHandlerAsync.</span><span class="sxs-lookup"><span data-stu-id="a5a38-219">The type property on the parameter will match the eventType parameter passed to removeHandlerAsync.</span></span>
+      type:
+      - any
+    - id: options
+      description: '<span data-ttu-id="a5a38-220">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-220">Optional.</span></span> <span data-ttu-id="a5a38-221">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a5a38-221">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a5a38-222">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a5a38-222">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+      type:
+      - any
+    - id: callback
+      description: <span data-ttu-id="a5a38-223">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a5a38-223">Optional.</span></span> <span data-ttu-id="a5a38-224">Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a5a38-224">When the method completes, the function passed in the callback parameter is called with a single parameter, asyncResult, which is an Office.AsyncResult object.</span></span>
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.Item.seriesId
+  summary: >-
+    <span data-ttu-id="a5a38-225">Obtém a identificação da série que uma instância pertence.</span><span class="sxs-lookup"><span data-stu-id="a5a38-225">Gets the id of the series that an instance belongs to.</span></span>
+
+
+    <span data-ttu-id="a5a38-226">No OWA e no Outlook, o seriesId retorna a ID de serviços Web do Exchange (EWS) do item pai (série) que este item pertence.</span><span class="sxs-lookup"><span data-stu-id="a5a38-226">In OWA and Outlook, the seriesId returns the Exchange Web Services (EWS) ID of the parent (series) item that this item belongs to.</span></span> <span data-ttu-id="a5a38-227">No entanto, em iOS e Android, o seriesId retorna a ID do restante do item pai.</span><span class="sxs-lookup"><span data-stu-id="a5a38-227">However, in iOS and Android, the seriesId returns the REST ID of the parent item.</span></span>
+
+
+    <span data-ttu-id="a5a38-228">Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange.</span><span class="sxs-lookup"><span data-stu-id="a5a38-228">Note: The identifier returned by the seriesId property is the same as the Exchange Web Services item identifier.</span></span> <span data-ttu-id="a5a38-229">A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook.</span><span class="sxs-lookup"><span data-stu-id="a5a38-229">The seriesId property is not identical to the Outlook IDs used by the Outlook REST API.</span></span> <span data-ttu-id="a5a38-230">Antes de fazer chamadas de API REST usando esse valor, ele deve ser convertido usando Office.context.mailbox.convertToRestId.</span><span class="sxs-lookup"><span data-stu-id="a5a38-230">Before making REST API calls using this value, it should be converted using Office.context.mailbox.convertToRestId.</span></span> <span data-ttu-id="a5a38-231">Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.</span><span class="sxs-lookup"><span data-stu-id="a5a38-231">For more details, see [Use the Outlook REST APIs from an Outlook add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.</span></span>
+
+
+    <span data-ttu-id="a5a38-232">A propriedade seriesId retorna null para itens que não têm itens pai, como o único compromissos, itens de série, ou solicitações de reunião e retorna indefinido para todos os itens que não fazem solicitações de reunião.</span><span class="sxs-lookup"><span data-stu-id="a5a38-232">The seriesId property returns null for items that do not have parent items such as single appointments, series items, or meeting requests and returns undefined for any other items that are not meeting requests.</span></span>
+
+
+    <span data-ttu-id="a5a38-233">\[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a5a38-233">\[ [API set: Mailbox Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+  remarks: "<table><tr><td>[<span data-ttu-id=\"a5a38-234\">Nível de permissão mínimo</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5a38-234\">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id=\"a5a38-235\">ReadItem</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5a38-235\">ReadItem</span></span></td></tr>\n\n<tr><td>[<span data-ttu-id=\"a5a38-236\">Modo do Outlook aplicável</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5a38-236\">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id=\"a5a38-237\">Composição ou leitura</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5a38-237\">Compose or read</span></span></td></tr></table><span data-ttu-id=\"a5a38-238\">\n####Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"a5a38-238\">\n#### Examples</span></span>\n\n```javascript\nvar seriesId = Office.context.mailbox.item.seriesId; \nvar isSeries = (seriesId == null);\n```"
+  isPreview: true
+  name: seriesId
+  fullName: outlook.Office.Item.seriesId
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'seriesId: string;'
+    return:
+      type:
+      - string
