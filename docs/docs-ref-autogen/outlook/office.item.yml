@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1edb094a629be9ec233e0765e18a470a0cd5e3c4
-ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.openlocfilehash: 3e861175f277ad252c2e8c6c85fe83b8208db9b1
+ms.sourcegitcommit: 9b0526d43475e18288823139e53c2a70f1a7e7b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "24039908"
+ms.lasthandoff: 09/22/2018
+ms.locfileid: "24967946"
 items:
 - uid: outlook.Office.Item
   summary: >-
@@ -29,6 +29,7 @@ items:
   - outlook.Office.Item.dateTimeCreated
   - outlook.Office.Item.dateTimeModifed
   - outlook.Office.Item.getInitializationContextAsync
+  - outlook.Office.Item.getSharedPropertiesAsync
   - outlook.Office.Item.itemType
   - outlook.Office.Item.loadCustomPropertiesAsync
   - outlook.Office.Item.notificationMessages
@@ -40,10 +41,10 @@ items:
     Adiciona um manipulador de eventos a um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrencePatternChanged`.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrenceChanged`.
 
 
-    \[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1.7](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
@@ -55,30 +56,6 @@ items:
 
 
     `addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
-
-    #### <a name="examples"></a>Exemplos
-
-
-    ```javascript
-
-    Office.initialize = function (reason) {
-        $(document).ready(function () {
-            Office.context.mailbox.item.addHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
-                if (result.status === Office.AsyncResultStatus.Failed) {
-                    // Handle error
-                }
-            });
-        });
-    };
-
-
-    function loadNewItem(eventArgs) {
-        // Load the properties of the newly selected item
-        loadProps(Office.context.mailbox.item);
-    };
-
-    ```
-  isPreview: true
   name: addHandlerAsync(eventType, handler, options, callback)
   fullName: outlook.Office.Item.addHandlerAsync
   langs:
@@ -244,6 +221,58 @@ items:
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult. Em caso de sucesso, os dados de inicialização são fornecidos na propriedade asyncResult.value como uma cadeia de caracteres. Se não houver nenhum contexto de inicialização, o objeto asyncResult irá conter um objeto Error com sua propriedade de código definido como 9020 e sua propriedade name definido como GenericResponseError.
       type:
       - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.Item.getSharedPropertiesAsync
+  summary: >-
+    Obtém as propriedades de um compromisso ou uma mensagem em uma pasta compartilhada, calendário ou caixa de correio.
+
+
+    \[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição ou leitura</td></tr></table>
+
+
+    Além dessa assinatura, esse método também tem a seguinte assinatura:
+
+
+    `getAsync(callback: (result: AsyncResult&lt;Office.SharedProperties&gt;) => void): void;`
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Office.context.mailbox.item.getSharedPropertiesAsync(callback);
+
+    function callback (asyncResult) {
+        var context=asyncResult.context;
+        var sharedProperties = asyncResult.value;
+    }
+
+    ```
+  isPreview: true
+  name: getSharedPropertiesAsync(options, callback)
+  fullName: outlook.Office.Item.getSharedPropertiesAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSharedPropertiesAsync(options: Office.AsyncContextOptions, callback: (result: AsyncResult<Office.SharedProperties>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. O `value` propriedade do resultado é nas propriedades do item compartilhado.
+      type:
+      - '(result: AsyncResult<Office.SharedProperties>) => void'
 - uid: outlook.Office.Item.itemType
   summary: >-
     Obtém o tipo de item que representa uma instância.
@@ -394,13 +423,12 @@ items:
     Observação: Se o objeto de recorrência for nulo, isso indica que o objeto é um compromisso único ou uma solicitação de reunião de um único compromisso e não fizer parte de uma série.
 
 
-    \[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1.7](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição ou leitura</td></tr></table>
-  isPreview: true
   name: recurrence
   fullName: outlook.Office.Item.recurrence
   langs:
@@ -416,10 +444,10 @@ items:
     Remove um manipulador de eventos para um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrencePatternChanged`.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, e `Office.EventType.RecurrenceChanged`.
 
 
-    \[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1.7](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
@@ -431,30 +459,6 @@ items:
 
 
     `removeHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
-
-    #### <a name="examples"></a>Exemplos
-
-
-    ```javascript
-
-    Office.initialize = function (reason) {
-        $(document).ready(function () {
-            Office.context.mailbox.item.removeHandlerAsync(Office.EventType.RecurrencePatternChanged, loadNewItem, function (result) {
-                if (result.status === Office.AsyncResultStatus.Failed) {
-                    // Handle error
-                }
-            });
-        });
-    };
-
-
-    function loadNewItem(eventArgs) {
-        // Load the properties of the newly selected item
-        loadProps(Office.context.mailbox.item);
-    };
-
-    ```
-  isPreview: true
   name: removeHandlerAsync(eventType, handler, options, callback)
   fullName: outlook.Office.Item.removeHandlerAsync
   langs:
@@ -497,9 +501,8 @@ items:
     A propriedade seriesId retorna null para itens que não têm itens pai, como o único compromissos, itens de série, ou solicitações de reunião e retorna indefinido para todos os itens que não fazem solicitações de reunião.
 
 
-    \[[Conjunto de APIs: visualização da caixa de correio](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1.7](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
   remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição ou leitura</td></tr></table>\n####Exemplos\n\n```javascript\nvar seriesId = Office.context.mailbox.item.seriesId; \nvar isSeries = (seriesId == null);\n```"
-  isPreview: true
   name: seriesId
   fullName: outlook.Office.Item.seriesId
   langs:

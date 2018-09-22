@@ -12,11 +12,12 @@ Suplementos do Excel enfrentar diversas versões do Office, incluindo o Office 2
 |  Conjunto de requisitos  |  Office 365 para Windows\*  |  Office 365 para iPad  |  Office 365 para Mac  | Office Online  |  Servidor do Office Online  |
 |:-----|-----|:-----|:-----|:-----|:-----|
 | Beta  | Por favor, [visite nossa página de especificação open API do JavaScript Excel](https://github.com/OfficeDev/office-js-docs/tree/ExcelJs_OpenSpec)! |
-| ExcelApi1.7  | Versão 1801 (Build 9001.2171) ou posterior| 2,9 ou posterior | 16,9 ou posterior | Abril de 2018 | Em breve |
-| ExcelApi1.6  | Versão 1704 (Compilação 8201.2001) ou posterior| 2.2 ou posterior |15.36 ou posterior| Abril de 2017 | Em breve|
-| ExcelApi1.5  | Versão 1703 (Compilação 8067.2070) ou posterior| 2.2 ou posterior |15.36 ou posterior| Março de 2017 | Em breve|
-| ExcelApi1.4 | Versão 1701 (build 7870.2024) ou posterior| 2.2 ou posterior |15.36 ou posterior| Janeiro de 2017 | Em breve|
-| ExcelApi1.3  | Versão 1608 (build 7369.2055) ou posterior| 1.27 ou posterior |  15.27 ou posterior| Setembro de 2016 | Versão 1608 (build 7601.6800) ou posterior|
+| ExcelApi1.8  | Versão 1808 (Build 10730.20102) ou posterior | 2,17 ou posterior | 16,17 ou posterior | Setembro de 2018 | Em breve |
+| ExcelApi1.7  | Versão 1801 (Build 9001.2171) ou posterior   | 2,9 ou posterior | 16,9 ou posterior | Abril de 2018 | Em breve |
+| ExcelApi1.6  | Versão 1704 (Compilação 8201.2001) ou posterior   | 2.2 ou posterior |15.36 ou posterior| Abril de 2017 | Em breve|
+| ExcelApi1.5  | Versão 1703 (Compilação 8067.2070) ou posterior   | 2.2 ou posterior |15.36 ou posterior| Março de 2017 | Em breve|
+| ExcelApi1.4  | Versão 1701 (build 7870.2024) ou posterior   | 2.2 ou posterior |15.36 ou posterior| Janeiro de 2017 | Em breve|
+| ExcelApi1.3  | Versão 1608 (build 7369.2055) ou posterior | 1.27 ou posterior |  15.27 ou posterior| Setembro de 2016 | Versão 1608 (build 7601.6800) ou posterior|
 | ExcelApi1.2  | Versão 1601 (build 6741.2088) ou posterior | 1.21 ou posterior | 15.22 ou posterior| janeiro de 2016 ||
 | ExcelApi1.1  | Versão 1509 (build 4266.1001) ou posterior | 1.19 ou posterior | 15.20 ou posterior| janeiro de 2016 ||
 
@@ -33,9 +34,279 @@ Para obter mais informações sobre versões, números de compilação e servido
 - 
   [Visão geral sobre o Servidor do Office Online](https://docs.microsoft.com/officeonlineserver/office-online-server-overview)
 
+## <a name="whats-new-in-excel-javascript-api-18"></a>O que há de novo no Excel JavaScript API 1,8
+
+Os recursos do Excel JavaScript API requisito set 1,8 incluem APIs para tabelas dinâmicas, validação de dados, gráficos, eventos para a criação da pasta de trabalho, opções de desempenho e gráficos.
+
+### <a name="pivottable"></a>PivotTable
+
+2 de onda das APIs do PivotTable permite que os suplementos defina as hierarquias de uma tabela dinâmica. Agora você pode controlar os dados e como ele é agregado. Nosso [artigo de tabela dinâmica](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables) tem mais informações sobre a nova funcionalidade de tabela dinâmica.
+
+### <a name="data-validation"></a>Validação de dados
+
+Permite de validação de dados que você controle do que o usuário entra em uma planilha. Você pode limitar as células a conjuntos de resposta predefinidos ou dar avisos pop-up sobre entrada indesejável. Saiba mais sobre a [adição de validação de dados para intervalos de](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation) hoje.
+
+### <a name="charts"></a>Charts
+
+Outra round das APIs do gráfico traz ainda maior controle programático sobre elementos do gráfico. Agora, você tem acesso maior para a legenda, eixos, linha de tendência e área de plotagem.
+
+### <a name="events"></a>Eventos
+
+Mais [eventos](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-events) foram adicionados para gráficos. Ter seu suplemento reagir aos usuários interagir com o gráfico. Você também pode [eventos de alternância](https://docs.microsoft.com/office/dev/add-ins/excel/performance#enable-and-disable-events) disparar entre a pasta de trabalho inteira.
+
+
+|Objeto| Novidades| Descrição|Requisito Set|
+|:----|:----|:----|:----|
+|[application](/javascript/api/excel/excel.application)|_Método_ > [createWorkbook(base64File: string)](/javascript/api/excel/excel.application)|Cria uma nova pasta de trabalho oculta usando um arquivo de extensões. xlsx codificada base64 opcional.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Propriedade_ > formula1|Obtém ou define o Formula1, ou seja, o valor mínimo ou valor, dependendo do operador.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Propriedade_ > formula2|Obtém ou define o Formula2, ou seja, o valor máximo ou valor, dependendo do operador.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Relacionamento_ > operador|O operador a ser usado para validar os dados.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Propriedade_ > categoryLabelLevel|Retorna ou define uma constante da enumeração de ChartCategoryLabelLevel referindo-se ao nível de onde os rótulos de categoria estão sendo originados. Leitura/gravação.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Propriedade_ > plotVisibleOnly|True se somente as células visíveis são plotadas. False se as células visíveis quanto ocultas são plotadas. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Propriedade_ > seriesNameLevel|Retorna ou define uma constante da enumeração de ChartSeriesNameLevel referindo-se ao nível de onde os nomes das sequências estão sendo originados. Leitura/gravação.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Propriedade_ > showDataLabelsOverMaximum|Representa se deve mostrar os rótulos de dados quando o valor é maior que o valor máximo no eixo dos valores.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Propriedade_ > style|Retorna ou define o estilo de gráfico do gráfico. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Relacionamento_ > displayBlanksAs|Retorna ou define a forma com que as células vazias são plotadas em um gráfico. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Relacionamento_ > plotArea|Representa o plotArea do gráfico. Somente leitura.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Relacionamento_ > plotBy|Retorna ou define a maneira como as linhas ou colunas são usadas como série de dados no gráfico. ReadWrite.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Propriedade_ > chartId|Obtém a identificação do gráfico que é ativado.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Propriedade_ > tipo|Obtém o tipo de evento.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Propriedade_ > worksheetId|Obtém a identificação da planilha em que o gráfico é ativado.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Propriedade_ > chartId|Obtém a identificação do gráfico que é adicionado à planilha.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Propriedade_ > tipo|Obtém o tipo de evento.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Propriedade_ > worksheetId|Obtém a identificação da planilha em que o gráfico é adicionado.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Relacionamento_ > fonte|Obtém a origem do evento.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > isBetweenCategories|Indica se o eixo dos valores cruza o eixo das categorias entre categorias.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > vários níveis|Indica se um eixo é vários níveis ou não.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > numberFormat|Representa o código de formatação para o rótulo de escala do eixo.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > deslocamento|Representa a distância entre os níveis dos rótulos e a distância entre o primeiro nível e a linha de eixo. O valor deve ser um inteiro de 0 a 1000.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > positionAt|Representa a posição do eixo especificado onde o outro eixo cruza no. Você deve usar o método SetPositionAt(double) para definir essa propriedade. Somente leitura.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Propriedade_ > textOrientation|Representa a orientação do texto do rótulo de escala do eixo. O valor deve ser um inteiro de – 90 a 90 ou 180 para texto orientado verticalmente.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Relacionamento_ > alinhamento|Representa o alinhamento para o rótulo de escala do eixo especificado.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Relacionamento_ > posição|Representa a posição do eixo especificado onde o outro eixo o atravessa.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Método_ > [setPositionAt(value: double)](/javascript/api/excel/excel.chartaxis)|Defina a posição do eixo especificado onde o outro eixo cruza no.|1,8|
+|[chartAxisFormat](/javascript/api/excel/excel.chartaxisformat)|_Relacionamento_ > preenchimento|Representa formatação de preenchimento do gráfico. Somente leitura.|1,8|
+|[chartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|_Método_ > [setFormula(formula: string)](/javascript/api/excel/excel.chartaxistitle)|Um valor string que representa a fórmula do título do eixo de gráfico usando a notação de estilo A1.|1,8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_Relacionamento_ > borda|Representa o formato de borda, que inclui linestyle, cor e espessura. Somente leitura.|1,8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_Relacionamento_ > preenchimento|Representa formatação de preenchimento do gráfico. Somente leitura.|1,8|
+|[chartBorder](/javascript/api/excel/excel.chartborder)|_Método_ > [clear()](/javascript/api/excel/excel.chartborder)|Desmarque o formato de borda de um elemento de gráfico.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > AutoTexto|Valor booleano que representa se rótulo de dados automaticamente gera texto adequado com base no contexto.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > fórmula|Valor de cadeia de caracteres que representa a fórmula do rótulo de dados do gráfico usando a notação de estilo A1.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > height|Retorna a altura, em pontos, do rótulo de dados do gráfico. Somente leitura. Nulo se o rótulo de dados do gráfico não estiver visível. Somente leitura.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > esquerda|Representa a distância, em pontos, da borda esquerda do rótulo de dados do gráfico até a borda esquerda da área do gráfico. Nulo se o rótulo de dados do gráfico não estiver visível.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > numberFormat|Valor de cadeia de caracteres que representa o código de formatação do rótulo de dados.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > texto|Cadeia de caracteres que representa o texto do rótulo de dados em um gráfico.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > textOrientation|Representa a orientação do texto do rótulo de dados do gráfico. O valor deve ser um inteiro de – 90 a 90 ou 180 para texto orientado verticalmente.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > superior|Representa a distância, em pontos, da borda superior do rótulo de dados do gráfico para o topo da área do gráfico. Nulo se o rótulo de dados do gráfico não estiver visível.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Propriedade_ > width|Retorna a largura, em pontos, do rótulo de dados do gráfico. Somente leitura. Nulo se o rótulo de dados do gráfico não estiver visível. Somente leitura.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Relacionamento_ > formato|Representa o formato de rótulo de dados do gráfico. Somente leitura.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Relação_ > horizontalAlignment|Representa o alinhamento horizontal para o rótulo de dados do gráfico.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Relação_ > verticalAlignment|Representa o alinhamento vertical do rótulo de dados do gráfico.|1,8|
+|[chartDataLabelFormat](/javascript/api/excel/excel.chartdatalabelformat)|_Relacionamento_ > borda|Representa o formato de borda, que inclui linestyle, cor e espessura. Somente leitura.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Propriedade_ > AutoTexto|Indica se os rótulos de dados geram automaticamente o texto apropriado com base no contexto.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Propriedade_ > numberFormat|Representa o código de formatação para os rótulos de dados.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Propriedade_ > textOrientation|Representa a orientação do texto dos rótulos de dados. O valor deve ser um inteiro de – 90 a 90 ou 0 para 180 para texto orientado verticalmente.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Relação_ > horizontalAlignment|Representa o alinhamento horizontal para o rótulo de dados do gráfico.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Relação_ > verticalAlignment|Representa o alinhamento vertical do rótulo de dados do gráfico.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Propriedade_ > chartId|Obtém a identificação do gráfico que é desativada.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Propriedade_ > tipo|Obtém o tipo de evento.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Propriedade_ > worksheetId|Obtém a identificação da planilha em que o gráfico é desativado.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Propriedade_ > chartId|Obtém a identificação do gráfico que será excluída da planilha.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Propriedade_ > tipo|Obtém o tipo de evento.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Propriedade_ > worksheetId|Obtém a identificação da planilha em que o gráfico é excluído.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Relacionamento_ > fonte|Obtém a origem do evento.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Propriedade_ > height|Representa a altura do legendEntry na legenda do gráfico. Somente leitura.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Propriedade_ > index|Representa o índice do legendEntry na legenda do gráfico. Somente leitura.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Propriedade_ > esquerda|Representa a parte esquerda da legendEntry gráfico. Somente leitura.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Propriedade_ > superior|Representa a parte superior da legendEntry gráfico. Somente leitura.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Propriedade_ > width|Representa a largura do legendEntry na legenda do gráfico. Somente leitura.|1,8|
+|[chartLegendFormat](/javascript/api/excel/excel.chartlegendformat)|_Relacionamento_ > borda|Representa o formato de borda, que inclui linestyle, cor e espessura. Somente leitura.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > height|Representa o valor de altura da plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > insideHeight|Representa o valor de insideHeight do plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > insideLeft|Representa o valor insideLeft plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > insideTop|Representa o valor insideTop plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > insideWidth|Representa o valor insideWidth plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > esquerda|Representa o valor à esquerda da plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > superior|Representa o valor superior da plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Propriedade_ > width|Representa o valor de largura de plotArea.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Relacionamento_ > formato|Representa a formatação do plotArea gráfico. Somente leitura.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Relacionamento_ > posição|Representa a posição do plotArea.|1,8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_Relacionamento_ > borda|Representa os atributos de borda de um gráfico de plotArea. Somente leitura.|1,8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_Relacionamento_ > preenchimento|Representa o formato de preenchimento de um objeto, que inclui informações sobre a formatação da tela de fundo. Somente leitura.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > explosion|Retorna ou define o valor de explosão para uma fatia de pizza ou gráfico de rosca. Retorna 0 (zero) se não houver nenhum detalhamento (a ponta da fatia estiver no centro da pizza). ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > firstSliceAngle|Retorna ou define o ângulo da primeira fatia de pizza ou gráfico de rosca, em graus (no sentido horário a partir da vertical). Só se aplica a gráficos de rosca, de pizza e pizza 3D. Pode ser um valor de 0 a 360. ReadWrite|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > invertIfNegative|True se o Microsoft Excel inverte o padrão no item quando este corresponde a um número negativo. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > overlap|Especifica como as barras e colunas são posicionadas. Pode ser um valor entre -100 e 100. Aplica-se somente a gráficos de colunas 2D e de barras 2D. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > secondPlotSize|Retorna ou define o tamanho da seção secundária de uma gráfico pizza de pizza ou barra de gráfico de pizza, como um percentual do tamanho da pizza principal. Pode ser um valor de 5 a 200. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Propriedade_ > varyByCategories|True se o Microsoft Excel atribui uma cor ou padrão diferente para cada marcador de dados. O gráfico precisa conter somente uma série. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Relacionamento_ > axisGroup|Retorna ou define o grupo para a série especificada. ReadWrite|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Relacionamento_ > dataLabels|Representa uma coleção de todos os dataLabels na série. Somente leitura.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Relacionamento_ > splitType|Retorna ou define a maneira como as duas seções de uma gráfico pizza de pizza ou uma barra de pizza são divididas. ReadWrite.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Propriedade_ > backwardPeriod|Representa o número de períodos em que a linha de tendência se estende para trás.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Propriedade_ > forwardPeriod|Representa o número de períodos em que a linha de tendência se estende para frente.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Propriedade_ > showEquation|True se a equação para a linha de tendência é exibida no gráfico.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Propriedade_ > showRSquared|True se o quadrada da linha de tendência é exibida no gráfico.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Relacionamento_ > rótulo|Representa o rótulo de uma linha de tendência do gráfico. Somente leitura.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > AutoTexto|Valor booleano que representa se o rótulo de linha de tendência gera automaticamente o texto adequado com base no contexto.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > fórmula|Valor de cadeia de caracteres que representa a fórmula do rótulo de linha de tendência de gráfico usando a notação de estilo A1.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > height|Retorna a altura, em pontos, do rótulo da linha de tendência de gráfico. Somente leitura. Nulo se o rótulo de linha de tendência de gráfico não estiver visível. Somente leitura.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > esquerda|Representa a distância, em pontos, da borda esquerda do rótulo de linha de tendência de gráfico até a borda esquerda da área do gráfico. Nulo se o rótulo de linha de tendência de gráfico não estiver visível.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > numberFormat|Valor de cadeia de caracteres que representa o código de formatação do rótulo de linha de tendência.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > texto|Cadeia de caracteres que representa o texto do rótulo da linha de tendência em um gráfico.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > textOrientation|Representa a orientação do texto do rótulo de linha de tendência do gráfico. O valor deve ser um inteiro de – 90 a 90 ou 180 para texto orientado verticalmente.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > superior|Representa a distância, em pontos, da borda superior do rótulo de linha de tendência de gráfico na parte superior da área do gráfico. Nulo se o rótulo de linha de tendência de gráfico não estiver visível.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Propriedade_ > width|Retorna a largura, em pontos, do rótulo da linha de tendência de gráfico. Somente leitura. Nulo se o rótulo de linha de tendência de gráfico não estiver visível. Somente leitura.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Relacionamento_ > formato|Representa o formato do rótulo de linha de tendência do gráfico. Somente leitura.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Relação_ > horizontalAlignment|Representa o alinhamento horizontal para o rótulo de linha de tendência do gráfico.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Relação_ > verticalAlignment|Representa o alinhamento vertical do rótulo de linha de tendência do gráfico.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Relacionamento_ > borda|Representa o formato de borda, que inclui linestyle, cor e espessura. Somente leitura.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Relacionamento_ > preenchimento|Representa o formato de preenchimento do rótulo da linha de tendência de gráfico atual. Somente leitura.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Relação_ > font|Representa os atributos de fonte (nome da fonte, tamanho da fonte, cor, etc.) para um rótulo de linha de tendência do gráfico. Somente leitura.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Propriedade_ > fakeFileId|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Propriedade_ > fileBase64|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Relacionamento_ > actionType|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[customDataValidation](/javascript/api/excel/excel.customdatavalidation)|_Propriedade_ > fórmula| Uma fórmula de validação de dados personalizados. Isso cria regras especiais de entrada, como impedindo duplicatas ou limitar o total em um intervalo de células.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Propriedade_ > id|ID do DataPivotHierarchy. Somente leitura.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Propriedade_ > nome|Nome da DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Propriedade_ > numberFormat|Formato de número do DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Propriedade_ > posição|Posição do DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Relacionamento_ > campo|Retorna o PivotFields associado a DataPivotHierarchy. Somente leitura.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Relacionamento_ > showAs|Determina se os dados devem ser exibidos como um cálculo de resumo específico ou não.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Relacionamento_ > summarizeBy|Determina se deve mostrar todos os itens do que o DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Método_ > [setToDefault()](/javascript/api/excel/excel.datapivothierarchy#settodefault)|Redefina o DataPivotHierarchy volta para seus valores padrão.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Propriedade_ > itens|Uma coleção de objetos dataPivotHierarchy. Somente leitura.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Método_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|Adiciona o PivotHierarchy ao eixo atual.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Método_ > [getCount()](/javascript/api/excel/excel.datapivothierarchycollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.datapivothierarchycollection)|Obtém um DataPivotHierarchy por seu nome ou id.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.datapivothierarchycollection)|Obtém um DataPivotHierarchy pelo nome. Se não existir, o DataPivotHierarchy retornará um objeto nulo.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Método_ > [remove(DataPivotHierarchy: DataPivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|Remove o PivotHierarchy do eixo atual.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Propriedade_ > ignoreBlanks|Ignorar espaços em branco: a validação de dados será realizada em células em branco, o padrão é true.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Propriedade_ > válido|Representa se todos os valores de célula são válidos de acordo com as regras de validação de dados. Somente leitura.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Relacionamento_ > errorAlert|Alerta de erro quando o usuário inserir dados inválidos.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Relacionamento_ > prompt|Prompt quando os usuários seleciona uma célula.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Relacionamento_ > regra|Regra de validação de dados que contém os tipos diferentes de critérios de validação de dados.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Relação_ > type|Digite da validação de dados, consulte [Excel.DataValidationType](/javascript/api/excel/excel.datavalidationtype) para obter detalhes. Somente leitura.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Método_ > [clear()](/javascript/api/excel/excel.datavalidation)|Limpa a validação de dados do intervalo atual.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Propriedade_ > mensagem|Representa a mensagem de alerta de erro.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Propriedade_ > showAlert|Determina se deve mostrar uma caixa de diálogo alerta de erro ou não quando um usuário insere dados inválidos. O padrão é true.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Propriedade_ > title|Representa o título da caixa de diálogo alerta de erro.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Relacionamento_ > estilo|Representa a validação de dados tipo de alerta, consulte [Excel.DataValidationAlertStyle](/javascript/api/excel/excel.datavalidationalertstyle) para obter detalhes.|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Propriedade_ > mensagem|Representa a mensagem do prompt.|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Propriedade_ > showPrompt|Determina se deve ou não mostrar o prompt quando o usuário seleciona uma célula com a validação de dados.|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Propriedade_ > title|Representa o título para o prompt.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > personalizado|Critérios de validação de dados personalizados.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > Data|Critérios de validação de dados de data.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > decimal|Critérios de validação de dados decimal.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relação_ > list|Critérios de validação de dados de lista.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > textLength|TextLength critérios de validação de dados.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > tempo|Critérios de validação de dados de tempo.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Relacionamento_ > wholeNumber|Critérios de validação de dados WholeNumber.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Propriedade_ > formula1|Obtém ou define o Formula1, o valor mínimo ou seja, ou o valor dependendo do operador.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Propriedade_ > formula2|Obtém ou define o Formula2, isto é, máximo valor ou valor dependendo do operador.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Relacionamento_ > operador|O operador a ser usado para validar os dados.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Propriedade_ > {isEnableEvents|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Relacionamento_ > actionType|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Relacionamento_ > controlId|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Propriedade_ > enableMultipleFilterItems|Determina se deve permitir que vários itens de filtro.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Propriedade_ > id|ID do FilterPivotHierarchy. Somente leitura.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Propriedade_ > nome|Nome da FilterPivotHierarchy.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Propriedade_ > posição|Posição do FilterPivotHierarchy.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Relação_ > fields|Retorna o PivotFields associado a FilterPivotHierarchy. Somente leitura.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Método_ > [setToDefault()](/javascript/api/excel/excel.filterpivothierarchy)|Redefina o FilterPivotHierarchy volta para seus valores padrão.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Propriedade_ > itens|Uma coleção de objetos filterPivotHierarchy. Somente leitura.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Método_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|Adiciona o PivotHierarchy ao eixo atual. Se a hierarquia estiver presente em outro lugar na linha, coluna ou eixo filtro, ela será removida desse local.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Método_ > [getCount()](/javascript/api/excel/excel.filterpivothierarchycollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.filterpivothierarchycollection)|Obtém um FilterPivotHierarchy por seu nome ou id.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.filterpivothierarchycollection)|Obtém um FilterPivotHierarchy pelo nome. Se não existir, o FilterPivotHierarchy retornará um objeto nulo.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Método_ > [remove(filterPivotHierarchy: FilterPivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|Remove o PivotHierarchy do eixo atual.|1,8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_Propriedade_ > inCellDropDown|Exibe a lista na célula menu suspenso ou não, o padrão é true.|1,8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_Propriedade_ > fonte|Origem da lista para validação de dados|1,8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_Propriedade_ > fakeFileId|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_Relacionamento_ > actionType|Transmite dados adicionais ao lado do cliente, por exemplo, worksheetId para TableSelectionChangedEvent.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Propriedade_ > id|ID do PivotField. Somente leitura.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Propriedade_ > nome|Nome do PivotField.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Propriedade_ > showAllItems|Determina se deve mostrar todos os itens do PivotField.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Relacionamento_ > itens|Retorna o PivotFields associado ao campo dinâmico. Somente leitura.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Relacionamento_ > subtotais|Subtotais do PivotField.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Método_ > [sortByLabels(sortby: SortBy)](/javascript/api/excel/excel.pivotfield)|Classifica o campo dinâmico. Se um DataPivotHierarchy for especificado, então classificação será aplicada com base nele, se não classificação será baseada no campo dinâmico em si.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Propriedade_ > itens|Uma coleção de objetos pivotField. Somente leitura.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Método_ > [getCount()](/javascript/api/excel/excel.pivotfieldcollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.pivotfieldcollection)|Obtém um PivotHierarchy por seu nome ou id.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotfieldcollection)|Obtém um PivotHierarchy pelo nome. Se não existir, o PivotHierarchy retornará um objeto nulo.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Propriedade_ > id|ID do PivotHierarchy. Somente leitura.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Propriedade_ > nome|Nome da PivotHierarchy.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Relação_ > fields|Retorna o PivotFields associado a PivotHierarchy. Somente leitura.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Propriedade_ > itens|Uma coleção de objetos pivotHierarchy. Somente leitura.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Método_ > [getCount()](/javascript/api/excel/excel.pivothierarchycollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.pivothierarchycollection)|Obtém um PivotHierarchy por seu nome ou id.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivothierarchycollection)|Obtém um PivotHierarchy pelo nome. Se não existir, o PivotHierarchy retornará um objeto nulo.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Propriedade_ > id|ID do PivotItem a. Somente leitura.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Propriedade_ > isExpanded|Determina se o item é expandido para mostrar itens filhos ou se ele é recolhido e itens filhos estão ocultas.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Propriedade_ > nome|Nome do PivotItem a.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Propriedade_ > visível|Determina se o PivotItem é visível ou não.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Propriedade_ > itens|Uma coleção de objetos pivotItem. Somente leitura.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Método_ > [getCount()](/javascript/api/excel/excel.pivotitemcollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.pivotitemcollection)|Obtém um PivotHierarchy por seu nome ou id.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotitemcollection)|Obtém um PivotHierarchy pelo nome. Se não existir, o PivotHierarchy retornará um objeto nulo.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Propriedade_ > showColumnGrandTotals|True se a tabela dinâmica relatório mostra geral de totais para colunas.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Propriedade_ > showRowGrandTotals|True se a tabela dinâmica relatório mostra geral dos totais para linhas.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Propriedade_ > subtotalLocation|Esta propriedade indica o SubtotalLocationType de todos os campos na tabela dinâmica. Se os campos tiverem diferentes estados, isso será nulo. Os valores possíveis são: AtTop, AtBottom.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Relacionamento_ > layoutType|Esta propriedade indica o PivotLayoutType de todos os campos na tabela dinâmica. Se os campos tiverem diferentes estados, isso será nulo.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Método_ > [getColumnLabelRange()](/javascript/api/excel/excel.pivotlayout)|Retorna o intervalo onde residem os rótulos de coluna da tabela dinâmica.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Método_ > [getDataBodyRange()](/javascript/api/excel/excel.pivotlayout)|Retorna o intervalo onde residem os valores de dados da tabela dinâmica.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout.md)|_Método_ > [getFilterAxisRange()](/javascript/api/excel/excel.pivotlayout)|Retorna o intervalo da área de filtro da tabela dinâmica.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Método_ > [getRange()](/javascript/api/excel/excel.pivotlayout)|Retorna o intervalo de que tabela dinâmica existe no, excluindo a área de filtro.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Método_ > [getRowLabelRange()](/javascript/api/excel/excel.pivotlayout)|Retorna o intervalo onde residem os rótulos de linha da tabela dinâmica.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > columnHierarchies|As hierarquias do pivô de coluna da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > dataHierarchies|As hierarquias de dinâmica de dados da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > filterHierarchies|As hierarquias do pivô de filtro da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > hierarquias|As hierarquias Pivot da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > layout|O PivotLayout descrevendo o layout e a estrutura visual da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Relacionamento_ > rowHierarchies|As hierarquias do pivô de linha da tabela dinâmica. Somente leitura.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Método_ > [delete()](/javascript/api/excel/excel.pivottable)|Exclui a tabela dinâmica.|1,8|
+|[pivotTableCollection](/javascript/api/excel/excel.pivottablecollection)|_Método_ > [add(name: string, source: object, destination: object)](/javascript/api/excel/excel.pivottablecollection)|Adicione uma tabela dinâmica com base nos dados de origem especificado e inseri-lo quando a célula superior esquerda do intervalo de destino.|1,8|
+|[range](/javascript/api/excel/excel.range)|_Relacionamento_ > dataValidation|Retorna um objeto de validação de dados. Somente leitura.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Propriedade_ > id|ID do RowColumnPivotHierarchy. Somente leitura.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Propriedade_ > nome|Nome da RowColumnPivotHierarchy.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Propriedade_ > posição|Posição do RowColumnPivotHierarchy.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Relação_ > fields|Retorna o PivotFields associado a RowColumnPivotHierarchy. Somente leitura.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Método_ > [setToDefault()](/javascript/api/excel/excel.rowcolumnpivothierarchy)|Redefina o RowColumnPivotHierarchy volta para seus valores padrão.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Propriedade_ > itens|Uma coleção de objetos rowColumnPivotHierarchy. Somente leitura.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Método_ > [add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Adiciona o PivotHierarchy ao eixo atual. Se a hierarquia estiver presente em outro lugar na linha, coluna,|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Método_ > [getCount()](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Obtém o número de hierarquias pivot na coleção.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Método_ > [getItem(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Obtém um RowColumnPivotHierarchy por seu nome ou id.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Método_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Obtém um RowColumnPivotHierarchy pelo nome. Se não existir, o RowColumnPivotHierarchy retornará um objeto nulo.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Método_ > [remove(rowColumnPivotHierarchy: RowColumnPivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Remove o PivotHierarchy do eixo atual.|1,8|
+|[tempo de execução](/javascript/api/excel/excel.runtime)|_Propriedade_ > enableEvents|Alternar entre os eventos de JavaScript no taskpane atual ou conteúdo suplemento.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Relacionamento_ > baseField|PivotField base para basear o cálculo de ShowAs, se aplicável baseado no tipo de ShowAsCalculation, else nulo.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Relacionamento_ > baseItem|O Item base para basear o cálculo de ShowAs ativado, se aplicável baseado no tipo de ShowAsCalculation, else nulo.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Relacionamento_ > cálculo|O cálculo de ShowAs a ser usado para o PivotField de dados.|1,8|
+|[style](/javascript/api/excel/excel.style)|_Propriedade_ > Recuar automaticamente|Indica se o texto será recuado automaticamente quando o alinhamento do texto em uma célula estiver definido como distribuição igual.|1,8|
+|[style](/javascript/api/excel/excel.style)|_Propriedade_ > textOrientation|A orientação do texto para o estilo.|1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > automática|Se automático estiver definido como true, depois de todos os outros valores será ignorado ao definir os subtotais.|1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > médio| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > contagem| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > countNumbers| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > max| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > min| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > produto| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > standardDeviation| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > standardDeviationP| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > soma| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > variação| |1,8|
+|[subtotais](/javascript/api/excel/excel.subtotals)|_Propriedade_ > varianceP| |1,8|
+|[table](/javascript/api/excel/excel.table)|_Propriedade_ > legacyId|Retorna uma id numérica. Somente leitura.|1,8|
+|[workbook](/javascript/api/excel/excel.workbook)|_Propriedade_ > readOnly|True se a pasta de trabalho for aberta no modo somente leitura. Somente leitura.|1,8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_Propriedade_ > id|Retorna um valor que identifica exclusivamente o objeto WorkbookCreated. Somente leitura.|1,8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_Método_ > [Open)](/javascript/api/excel/excel.workbookcreated)|Abra a pasta de trabalho.|1,8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_Propriedade_ > showGridlines|Obtém ou define o sinalizador de linhas de grade da planilha.|1,8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_Propriedade_ > showHeadings|Obtém ou define o sinalizador de títulos da planilha.|1,8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_Propriedade_ > tipo|Obtém o tipo de evento.|1,8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_Propriedade_ > worksheetId|Obtém a identificação da planilha que é calculada.|1,8|
+
 ## <a name="whats-new-in-excel-javascript-api-17"></a>O que há de novo no Excel JavaScript API 1.7
 
-Os recursos do Excel JavaScript API requisito set 1.7 incluem APIs para gráficos, eventos, validação de dados, planilhas, intervalos, propriedades de documento, denominado itens, opções de proteção e estilos.
+Os recursos do Excel JavaScript API requisito set 1.7 incluem APIs para gráficos, eventos, planilhas, intervalos, propriedades de documento, denominado itens, opções de proteção e estilos.
 
 ### <a name="customize-charts"></a>Personalizar gráficos
 

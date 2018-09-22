@@ -88,11 +88,11 @@ Especifica o evento associado a um manipulador de eventos.
 
 | Nome | Tipo | Descrição | Conjunto de requisitos mínimos |
 |---|---|---|---|
-|`AppointmentTimeChanged`| Cadeia de caracteres | O compromisso de data ou hora da série selecionada foi alterada. | Preview |
+|`AppointmentTimeChanged`| Cadeia de caracteres | A data ou hora do compromisso selecionado ou série foi alterada. | 1.7 |
 |`ItemChanged`| Cadeia de caracteres | O item selecionado foi alterado. | 1,5 |
 |`OfficeThemeChanged`| Cadeia de caracteres | O item selecionado foi alterado. | Preview |
-|`RecipientsChanged`| Cadeia de caracteres | A lista de destinatários do item selecionado foi alterado. | Preview |
-|`RecurrencePatternChanged`| Cadeia de caracteres | O padrão de recorrência da série selecionado foi alterada. | Preview |
+|`RecipientsChanged`| Cadeia de caracteres | A lista de destinatários do local de compromisso ou item selecionado foi alterado. | 1.7 |
+|`RecurrenceChanged`| Cadeia de caracteres | O padrão de recorrência da série selecionado foi alterada. | 1.7 |
 
 ##### <a name="requirements"></a>Requisitos
 

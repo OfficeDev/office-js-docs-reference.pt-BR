@@ -18,9 +18,9 @@ A especificação de uma versão mínima de conjunto de requisitos controla em q
 
 ## <a name="using-apis-from-later-requirement-sets"></a>Usar APIs de conjuntos de requisitos posteriores
 
-Definir um conjunto de requisitos não limita as APIs disponíveis que o suplemento pode usar. Por exemplo, se o suplemento especificar o conjunto de requisitos 1.1, mas estiver sendo executado em um cliente do Outlook que dá suporte à versão 1.3, o suplemento poderá usar APIs do conjunto de requisitos 1.3\.
+A definição de um conjunto de requisito não limitam as APIs disponíveis que pode usar o suplemento. Por exemplo, se o suplemento Especifica requisito definir 1.1, mas ele está sendo executado em um cliente do Outlook que oferece suporte a 1.3, o suplemento pode usar APIs do conjunto de requisito 1.3.
 
-Para usar as APIs mais recentes, os desenvolvedores podem apenas verificar sua existência usando a técnica JavaScript padrão.
+Para usar APIs mais recentes, os desenvolvedores apenas podem verificar sua existência usando técnica de JavaScript padrão:
 
 ```js
 if (item.somePropertyOrFunction !== undefined) {
@@ -40,7 +40,7 @@ Os clientes a seguir oferecem suporte para suplementos do Outlook.
 
 | Cliente | Conjuntos de requisitos de API suportados |
 | --- | --- |
-| Outlook 2016 (Clique para Executar) para Windows | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
+| Outlook 2016 (Clique para Executar) para Windows | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6, 1.7 |
 | Outlook 2016 (MSI) para Windows | 1.1, 1.2, 1.3, 1.4 |
 | Outlook 2016 para Mac | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
 | Outlook 2013 para Windows | 1.1, 1.2, 1.3, 1.4 |
@@ -50,5 +50,5 @@ Os clientes a seguir oferecem suporte para suplementos do Outlook.
 | Outlook Web App (Exchange 2013 local) | 1.1 |
 | Outlook Web App (Exchange 2016 local) | 1.1, 1.2. 1.3 |
 
-> [!NOTE] 
+> [!NOTE]
 > Suporte para 1.3 no Outlook 2013 foi adicionado como parte do [8 de dezembro 2015, atualizar para o Outlook 2013 (KB3114349)](https://support.microsoft.com/kb/3114349). Suporte para 1,4 no Outlook 2013 foi adicionado como parte da [13 de setembro, 2016, atualizar para o Outlook 2013 (KB3118280)](https://support.microsoft.com/help/3118280).
