@@ -40,6 +40,8 @@ Os clientes a seguir oferecem suporte para suplementos do Outlook.
 
 | Cliente | Conjuntos de requisitos de API suportados |
 | --- | --- |
+| Outlook 2019 para Windows | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
+| 2019 do Outlook para Mac | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
 | Outlook 2016 (Clique para Executar) para Windows | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6, 1.7 |
 | Outlook 2016 (MSI) para Windows | 1.1, 1.2, 1.3, 1.4 |
 | Outlook 2016 para Mac | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
