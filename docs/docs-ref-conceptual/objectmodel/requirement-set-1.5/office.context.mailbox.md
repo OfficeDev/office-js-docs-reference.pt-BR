@@ -78,7 +78,7 @@ Seu aplicativo deve ter a permissão **ReadItem** especificada em seu manifesto 
 No modo de composição, é preciso chamar o método [`saveAsync`](Office.context.mailbox.item.md#saveasyncoptions-callback) antes de poder usar o membro `restUrl`. Seu aplicativo deve ter permissões **ReadWriteItem** para chamar o método `saveAsync`.
 
 > [!NOTE]
-> Clientes do Outlook conectados a instalações de local do Exchange 2016 com uma URL personalizada do REST configurado retornará um valor inválido para `restUrl`.
+> Clientes do Outlook conectados a instalações de local do Exchange 2016 ou posteriores com uma URL personalizada do REST configurado retornará um valor inválido para `restUrl`.
 
 ##### <a name="type"></a>Tipo:
 

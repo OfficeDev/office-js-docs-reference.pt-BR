@@ -8,9 +8,9 @@ Define a guia da faixa de opções no qual seu comando de suplemento é exibido.
 |:-----|:-----|:-----|
 |  Grupo      | Sim |  Define um grupo de comandos. Você pode adicionar apenas um grupo por suplemento à guia padrão.  |
 
-A seguir estão os valores válidos de `id` por host. Os valores em **negrito** são suportados na área de trabalho e online (por exemplo, Word 2016 para Windows e Word Online). 
+A seguir estão os valores válidos de `id` por host. Valores em **negrito** são suportados no desktop e online (por exemplo, Word 2016 ou posterior para Windows e o Word Online).
 
-### <a name="outlook"></a>Outlook 
+### <a name="outlook"></a>Outlook
 
 - **TabDefault**
 

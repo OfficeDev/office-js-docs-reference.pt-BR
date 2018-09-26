@@ -26,7 +26,7 @@ Se você usar TypeScript e se tiver npm, poderá obter as definições de TypeSc
 
 Para executar o suplemento, use um manipulador de eventos Office.initialize. Confira [Understanding the API (Compreenda a API)](https://docs.microsoft.com/office/dev/add-ins/develop/understanding-the-javascript-api-for-office) para saber mais sobre a inicialização de suplementos.
 
-Você pode executar os suplementos destinados ao Word 2016 passando uma função pelo método **Word.run()**. A função passada pelo método **run** deve ter um argumento de contexto. Esse [objeto de contexto](/javascript/api/word/word.requestcontext) é diferente do objeto de contexto obtido do objeto do Office, embora ele seja usado para interagir com o ambiente de tempo de execução do Word. O objeto de contexto fornece acesso ao modelo de objeto da API JavaScript do Word. O exemplo a seguir mostra como inicializar e executar um suplemento do Word usando o método **Word.run()**.
+Suplementos que visam 2016 Word ou posterior executar passando-se uma função para o método **Word.run()** . A função passada para o método **run** deve ter um argumento de contexto. Este [objeto de contexto](/javascript/api/word/word.requestcontext) é diferente do que o objeto de contexto, que você obtém a partir do objeto do Office, mas ele também é usado para interagir com o ambiente de tempo de execução do Word. O objeto de contexto fornece acesso ao modelo de objeto do Word API do JavaScript. O exemplo a seguir mostra como inicializar e executar uma palavra suplemento usando o método **Word.run()** .
 
 ```js
 (function () {

@@ -2,7 +2,7 @@
 
 Os conjuntos de requisitos são grupos nomeados de membros da API. Suplementos do Office usam conjuntos de requisito especificados no manifesto ou uma seleção de tempo de execução para determinar se um host do Office oferece suporte a APIs que precisa de um suplemento. Para obter mais informações, consulte [define versões do Office e o requisito](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets).
 
-Suplementos do Word enfrentar diversas versões do Office, incluindo o Office 2016 para Windows, o Office para iPad, o Office para Mac e Office Online. A tabela a seguir lista os conjuntos de requisito do Word, os aplicativos de host do Office que oferecem suporte a números de conjunto e a compilação ou a versão esse requisito para esses aplicativos.
+Suplementos do Word enfrentar várias versões do Office, incluindo Office 2016 ou posterior para Windows, o Office para iPad, o Office para Mac e Office Online. A tabela a seguir lista os conjuntos de requisito do Word, os aplicativos de host do Office que oferecem suporte a números de conjunto e a compilação ou a versão esse requisito para esses aplicativos.
 
 > [!NOTE]
 > Para os conjuntos de requisito que são marcados como Beta, use a versão especificada (ou posterior) do software do Office e use a biblioteca de Beta da CDN: https://appsforoffice.microsoft.com/lib/beta/hosted/office.js.

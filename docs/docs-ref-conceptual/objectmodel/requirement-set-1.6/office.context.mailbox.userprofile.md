@@ -25,7 +25,7 @@
 ####  <a name="accounttype-string"></a>accountType: cadeia de caracteres
 
 > [!NOTE]
-> Este membro está atualmente apenas 2016 com suporte no Outlook para Mac, 16.9.1212 de compilação e maiores.
+> Este membro está atualmente apenas com suporte no Outlook 2016 ou posterior para Mac (build 16.9.1212 ou posterior).
 
 Obtém o tipo de conta do usuário associado com a caixa de correio. Os valores possíveis são listados na tabela a seguir.
 

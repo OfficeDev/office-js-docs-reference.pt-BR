@@ -2,7 +2,7 @@
 
 Os conjuntos de requisitos são grupos nomeados de membros da API. Suplementos do Office usam conjuntos de requisito especificados no manifesto ou uma seleção de tempo de execução para determinar se um host do Office oferece suporte a APIs que precisa de um suplemento. Para obter mais informações, consulte [define versões do Office e o requisito](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets).
 
-Suplementos do Excel enfrentar diversas versões do Office, incluindo o Office 2016 para Windows, o Office para iPad, o Office para Mac e Office Online. A tabela a seguir lista os conjuntos de requisito do Excel, os aplicativos de host do Office que suportam a cada conjunto de requisitos e as versões de compilação ou número para esses aplicativos.
+Suplementos do Excel execute em várias versões do Office, incluindo Office 2016 ou posterior para Windows, o Office para iPad, o Office para Mac e Office Online. A tabela a seguir lista os conjuntos de requisito do Excel, os aplicativos de host do Office que suportam a cada conjunto de requisitos e as versões de compilação ou número para esses aplicativos.
 
 > [!NOTE]
 > Qualquer API que está marcado como **Beta** não está pronto para a produção de usuário final. Podemos disponibilizá-los para que os desenvolvedores tente-los a saída em ambientes de teste e desenvolvimento. Eles não devem ser usadas contra documentos críticos de produção de negócios.

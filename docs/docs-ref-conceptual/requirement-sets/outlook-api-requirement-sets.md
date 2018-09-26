@@ -49,8 +49,8 @@ Os clientes a seguir oferecem suporte para suplementos do Outlook.
 | Outlook para iPhone | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook para Android | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook na Web (Office 365 e Outlook.com) | 1.1, 1.2, 1.3, 1,4, 1,5, 1.6 |
-| Outlook Web App (Exchange 2013 local) | 1.1 |
-| Outlook Web App (Exchange 2016 local) | 1.1, 1.2. 1.3 |
+| Outlook Web App (Exchange 2013 no local) | 1.1 |
+| Outlook Web App (2016 do Exchange no local) | 1.1, 1.2. 1.3 |
 
 > [!NOTE]
 > Suporte para 1.3 no Outlook 2013 foi adicionado como parte do [8 de dezembro 2015, atualizar para o Outlook 2013 (KB3114349)](https://support.microsoft.com/kb/3114349). Suporte para 1,4 no Outlook 2013 foi adicionado como parte da [13 de setembro, 2016, atualizar para o Outlook 2013 (KB3118280)](https://support.microsoft.com/help/3118280).
