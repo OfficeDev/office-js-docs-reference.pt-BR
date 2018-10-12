@@ -11,5 +11,5 @@ A API do JavaScript para Office permite criar aplicativos da web que interagem c
 
 ## <a name="see-also"></a>Confira também
 
-- [API JavaScript para Office](https://docs.microsoft.com/javascript/office/javascript-api-for-office?view=office-js)
+- [API JavaScript para Office](https://docs.microsoft.com/office/dev/add-ins/reference/javascript-api-for-office?view=office-js)
 - [Início rápido, tutoriais e guias de programação avançados para suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/overview/office-add-ins?view=office-js)
