@@ -170,7 +170,7 @@ Parabéns, você contribuiu com êxito para o projeto.
 
 ### <a name="markdown"></a>Markdown
 
-Todos os artigos neste repositório usam Markdown. Uma introdução completa (e lista de todos os a sintaxe) podem ser encontradas no [Daring bola de fogo - redução].
+Todos os artigos neste repositório usam Markdown. Uma introdução completa (e lista de todos os a sintaxe) podem ser encontradas no [Daring Fireball - redução].
  
 ## <a name="faq"></a>Perguntas frequentes
 
@@ -199,11 +199,11 @@ As solicitações pull geralmente são analisadas dentro de 10 dias úteis.
 
 ## <a name="more-resources"></a>Mais recursos
 
-* Para saber mais sobre redução, vá para o site do criador redução [Daring bola de fogo].
-* Para saber mais sobre como usar gito e GitHub, confira-a [GitHub ajuda].
+* Para saber mais sobre redução, vá para o site do criador redução [Daring Fireball].
+* Para saber mais sobre como usar gito e GitHub, confira-a [ajuda do GitHub].
 
 [GitHub Home]: http://github.com
 [Ajuda do GitHub]: http://help.github.com/
 [Configurar gito]: https://help.github.com/articles/set-up-git/
-[Daring bola de fogo - redução]: http://daringfireball.net/projects/markdown/
+[Daring Fireball - redução]: http://daringfireball.net/projects/markdown/
 [Daring Fireball]: http://daringfireball.net/
