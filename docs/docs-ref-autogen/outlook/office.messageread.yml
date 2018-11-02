@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 97c669e9f4fab0a2875518d5bde7bba9ea2126aa
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 7da2872b7646eb50e46b53a63dae749b1087ef8a
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25590851"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25912568"
 items:
 - uid: outlook.Office.MessageRead
   summary: >-
@@ -39,6 +39,7 @@ items:
   - outlook.Office.MessageRead.getRegExMatchesByName
   - outlook.Office.MessageRead.getSelectedEntities
   - outlook.Office.MessageRead.getSelectedRegExMatches
+  - outlook.Office.MessageRead.internetHeaders
   - outlook.Office.MessageRead.internetMessageId
   - outlook.Office.MessageRead.itemClass
   - outlook.Office.MessageRead.itemId
@@ -57,7 +58,7 @@ items:
     Adiciona um manipulador de eventos a um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -102,7 +103,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageRead.attachments
   summary: >-
-    Obtém uma matriz de anexos para o item.
+    Obtém os anexos do item como uma matriz.
 
 
     \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -608,7 +609,7 @@ items:
 
     \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restricted</td></tr>
+    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
 
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Read</td></tr></table>
@@ -918,6 +919,31 @@ items:
       type:
       - any
       description: Um objeto que contém matrizes de cadeias de caracteres que correspondem às expressões regulares definidas no arquivo XML do manifesto. O nome de cada matriz é igual ao valor correspondente do atributo RegExName da regra ItemHasRegularExpressionMatch correspondente ou do atributo FilterName da regra ItemHasKnownEntity correspondente.
+- uid: outlook.Office.MessageRead.internetHeaders
+  summary: >-
+    Obtém os cabeçalhos da internet de uma mensagem.
+
+
+    A propriedade internetHeaders retorna um objeto InternetHeaders que fornece os métodos para gerenciar os cabeçalhos da internet na mensagem.
+
+
+    \[[Conjunto de APIs: visualização da caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Leitura de mensagem</td></tr></table>
+  isPreview: true
+  name: internetHeaders
+  fullName: outlook.Office.MessageRead.internetHeaders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'internetHeaders: Office.InternetHeaders;'
+    return:
+      type:
+      - outlook.Office.InternetHeaders
 - uid: outlook.Office.MessageRead.internetMessageId
   summary: >-
     Obtém o identificador de mensagem da Internet para uma mensagem de email.
@@ -958,7 +984,7 @@ items:
     A propriedade itemClass especifica a classe da mensagem do item selecionado. A seguir estão as classes de mensagem padrão para o item de mensagem ou de compromisso.
 
 
-    <table> <tr> <th>Type</th> <th>Descrição</th> <th>Classe de item</th> </tr> <tr> <td>Itens de compromisso</td> <td>Esses são itens de calendário da classe de item IPM.Appointment ou IPM.Appointment.Occurence.</td> <td>IPM. Compromisso, IPM. Appointment.Occurence</td> </tr> <tr> <td>Itens de mensagem</td> <td>Incluem mensagens de email que têm a classe de mensagem padrão IPM.Note e solicitações de reunião, respostas e cancelamentos, que utilizam IPM.Schedule.Meeting como a classe de mensagem básica.</td> <td>IPM. Nota, IPM. Schedule.Meeting.Request,IPM. Schedule.Meeting.Neg,IPM. Schedule.Meeting.Pos,IPM. Schedule.Meeting.Tent,IPM. Schedule.Meeting.Canceled</td> </tr> </table>
+    <table> <tr> <th>Tipo</th> <th>Descrição</th> <th>Classe de item</th> </tr> <tr> <td>Itens de compromisso</td> <td>Esses são itens de calendário da classe de item IPM.Appointment ou IPM.Appointment.Occurence.</td> <td>IPM. Compromisso, IPM. Appointment.Occurence</td> </tr> <tr> <td>Itens de mensagem</td> <td>Incluem mensagens de email que têm a classe de mensagem padrão IPM.Note e solicitações de reunião, respostas e cancelamentos, que utilizam IPM.Schedule.Meeting como a classe de mensagem básica.</td> <td>IPM. Nota, IPM. Schedule.Meeting.Request,IPM. Schedule.Meeting.Neg,IPM. Schedule.Meeting.Pos,IPM. Schedule.Meeting.Tent,IPM. Schedule.Meeting.Canceled</td> </tr> </table>
   name: itemClass
   fullName: outlook.Office.MessageRead.itemClass
   langs:
@@ -1160,7 +1186,7 @@ items:
     Remove um manipulador de eventos para um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -1188,7 +1214,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: O evento que deve invocar o manipulador.
+      description: O que deve revogar o manipulador de evento.
       type:
       - EventType
     - id: handler

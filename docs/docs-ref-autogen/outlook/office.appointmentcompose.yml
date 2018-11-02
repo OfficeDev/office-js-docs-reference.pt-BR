@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6c616ec330f09b7d31dc22942a4a25639e73a1d4
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 2aac9cd9cd3a0c9ab9b91f311f7637f786170cf7
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25586273"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25912883"
 items:
 - uid: outlook.Office.AppointmentCompose
   summary: >-
@@ -30,6 +30,7 @@ items:
   - outlook.Office.AppointmentCompose.dateTimeCreated
   - outlook.Office.AppointmentCompose.dateTimeModifed
   - outlook.Office.AppointmentCompose.end
+  - outlook.Office.AppointmentCompose.getAttachmentsAsync
   - outlook.Office.AppointmentCompose.getInitializationContextAsync
   - outlook.Office.AppointmentCompose.getSelectedDataAsync
   - outlook.Office.AppointmentCompose.itemType
@@ -66,7 +67,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
+    <tr><td>Erros</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
 
 
     Além dessa assinatura, o método também tem as seguintes assinaturas:
@@ -150,7 +151,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
+    <tr><td>Erros</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
 
     ####Exemplos
 
@@ -207,7 +208,7 @@ items:
     Adiciona um manipulador de eventos a um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -272,7 +273,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
+    <tr><td>Erros</td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
 
 
     Além dessa assinatura, esse método também tem as seguintes assinaturas:
@@ -381,7 +382,7 @@ items:
 
     \[[Conjunto de APIs: caixa de correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restricted</td></tr>
+    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
 
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr></table>
@@ -496,6 +497,34 @@ items:
     return:
       type:
       - Time
+- uid: outlook.Office.AppointmentCompose.getAttachmentsAsync
+  summary: >-
+    Obtém os anexos do item como uma matriz.
+
+
+    \[[Conjunto de APIs: visualização da caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição</td></tr></table>\n####Exemplos\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  isPreview: true
+  name: getAttachmentsAsync(options, callback)
+  fullName: outlook.Office.AppointmentCompose.getAttachmentsAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Se a chamada falhar, a propriedade asyncResult.error conterá e código de erro com o motivo da falha.
+      type:
+      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
 - uid: outlook.Office.AppointmentCompose.getInitializationContextAsync
   summary: >-
     Obtém dados de inicialização que são transmitidos quando o suplemento é ativado por uma mensagem acionável.
@@ -830,7 +859,7 @@ items:
     Remove um anexo de uma mensagem ou de um compromisso.
 
 
-    O método removeAttachmentAsync remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook Web App e no OWA para Dispositivos, o identificador do anexo é válido apenas dentro da mesma sessão. Uma sessão é finalizada quando o usuário fecha o aplicativo ou se o usuário começa a compor em um formulário embutido e, subsequentemente, sai do formulário embutido para continuar em uma janela separada.
+    O método removeAttachmentAsync remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook Web App e no OWA para Dispositivos, o identificador do anexo é válido apenas dentro da mesma sessão. Uma sessão é sobre quando o usuário fecha o aplicativo, ou se o usuário começa a redigir uma forma embutida subsequentemente aciona o formulário para continuar em uma janela separada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -841,7 +870,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
+    <tr><td>Erros</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
 
 
     Além dessa assinatura, o método também tem as seguintes assinaturas:
@@ -901,7 +930,7 @@ items:
     Remove um manipulador de eventos para um evento com suporte.
 
 
-    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->.
+    No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -929,7 +958,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: O evento que deve invocar o manipulador.
+      description: O que deve revogar o manipulador de evento.
       type:
       - EventType
     - id: handler
@@ -1014,7 +1043,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
+    <tr><td>Erros</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
 
 
     Além dessa assinatura, o método também tem as seguintes assinaturas:
@@ -1026,7 +1055,7 @@ items:
     `saveAsync(options: Office.AsyncContextOptions): void;`
 
 
-    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+    `saveAsync(callback: (result: AsyncResult<string>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -1060,7 +1089,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -1073,7 +1102,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: AsyncResult<string>) => void'
 - uid: outlook.Office.AppointmentCompose.seriesId
   summary: >-
     Obtém a identificação da série que uma instância pertence.
@@ -1120,7 +1149,7 @@ items:
     <tr><td>[Modo aplicável do Outlook](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organizador de compromisso</td></tr>
 
 
-    <tr><td>Errors</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
+    <tr><td>Erros</td><td>InvalidAttachmentId - o identificador do anexo não existe.</td></tr></table>
 
 
     Além dessa assinatura, o método também tem as seguintes assinaturas:
