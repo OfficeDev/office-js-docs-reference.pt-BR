@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b2e1b230f23e5c1f3aa1389070cb4e62604b3a23
-ms.sourcegitcommit: a36161c2113d94680dc68150d024e68bdf0390fa
+ms.openlocfilehash: aa6161331e9c71617b5e3ca76fa0e282e8299458
+ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "25458961"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "26298243"
 items:
 - uid: office.Office.Settings
   summary: Representa configurações personalizadas para um suplemento de painel de tarefas ou conteúdo que são armazenadas no documento host como pares nome/valor.
@@ -26,7 +26,7 @@ items:
 
     O desenvolvedor é responsável por chamar o método de saveAsync após a adição ou exclusão de configurações para salvar as configurações do documento.
   name: Office.Settings
-  fullName: office.Office.Settings
+  fullName: Office.Settings
   langs:
   - typeScript
   type: interface
@@ -47,7 +47,7 @@ items:
     Importante: Código do suplemento pode registrar um manipulador para o evento settingsChanged quando o add-in está sendo executado com qualquer cliente do Excel, mas o evento será acionado apenas quando o suplemento for carregado com uma planilha que é aberta no Excel Online, e mais de um usuário está editando a planilha (coautoria). Portanto, efetivamente o evento settingsChanged é suportado no Excel Online em cenários de coautoria.
   remarks: "<table><tr><td>Conjuntos de requisito</td><td>Configurações</td></tr></table>\n\nVocê pode adicionar vários manipuladores de eventos para o eventType especificado desde que o nome de cada função do manipulador de eventos é exclusivo.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: office.Office.Settings.addHandlerAsync
+  fullName: addHandlerAsync
   langs:
   - typeScript
   type: method
@@ -94,7 +94,7 @@ items:
   summary: Recupera a configuração especificada.
   remarks: "<table><tr><td>Conjuntos de requisito</td><td>Configurações</td></tr></table>\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction displayMySetting() {\n    write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: get(name)
-  fullName: office.Office.Settings.get
+  fullName: get
   langs:
   - typeScript
   type: method
@@ -113,7 +113,7 @@ items:
   summary: Lê todas as configurações persistentes no documento e atualiza a cópia do suplemento de conteúdo ou painel de tarefas dessas configurações mantidas na memória.
   remarks: "<table><tr><td>Conjuntos de requisito</td><td>Configurações</td></tr></table>\n\nEsse método é útil no Excel, Word e PowerPoint coauthoring cenários quando várias instâncias do mesmo adicionar-in estiver trabalhando com o mesmo documento. Porque cada suplemento está funcionando contra uma cópia na memória das configurações carregadas do documento, no momento em que o usuário aberto, as configurações de valores usados por cada usuário podem obter fora de sincronia. Isso pode acontecer sempre que uma instância do add-in chama o método de Settings.saveAsync persistir todas as configurações desse usuário ao documento. Chamar o método de refreshAsync do manipulador de eventos para o evento settingsChanged do add-in atualizará os valores de configurações para todos os usuários.\n\nNa função de retorno de chamada passada para o método refreshAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.\n\n<table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar um objeto Settings com os valores atualizados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction refreshSettings() {\n    Office.context.document.settings.refreshAsync(function (asyncResult) {\n        write('Settings refreshed with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: refreshAsync(callback)
-  fullName: office.Office.Settings.refreshAsync
+  fullName: refreshAsync
   langs:
   - typeScript
   type: method
@@ -163,7 +163,7 @@ items:
 
     ```
   name: remove(name)
-  fullName: office.Office.Settings.remove
+  fullName: remove
   langs:
   - typeScript
   type: method
@@ -182,7 +182,7 @@ items:
   summary: Remove um manipulador de eventos para o evento settingsChanged.
   remarks: "<table><tr><td>Conjuntos de requisito</td><td>Configurações</td></tr></table>\n\nSe o parâmetro opcional manipulador for omitido, ao chamar o método removeHandlerAsync, todos os manipuladores de eventos para o eventType especificado serão removidos.\n\nQuando a função passada para o parâmetro callback é executada, ela recebe um objeto AsyncResult que você pode acessar do único parâmetro da função de retorno de chamada.\n\nNa função de retorno de chamada passada para o método removeHandlerAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction removeSettingsChangedEventHandler() {\n    Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: removeHandlerAsync(eventType, options, callback)
-  fullName: office.Office.Settings.removeHandlerAsync
+  fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
@@ -209,7 +209,7 @@ items:
   summary: Mantém a cópia na memória do recipiente de propriedades de configurações no documento.
   remarks: "Quaisquer configurações previamente salvas por um suplemento são carregadas quando ele for inicializado, portanto, durante o tempo de vida da sessão, você pode simplesmente usar os métodos set e get para trabalhar com a cópia na memória do recipiente de propriedades de configurações. Quando você desejar manter as configurações para que elas fiquem disponíveis na próxima vez que o suplemento for usado, use o método saveAsync.\n\nObservação: O método saveAsync persiste o recipiente de propriedades de configurações de memória para o arquivo de documento. No entanto, as alterações no arquivo de documento em si são salvas somente quando o usuário (ou a configuração de AutoRecuperação) salva o documento para o sistema de arquivos. O método refreshAsync só é útil em coautoria cenários quando outras instâncias do suplemento mesmo podem alterar as configurações e as alterações devem ser disponibilizadas para todas as instâncias.\n\n<table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna indefinido porque não há nenhum objeto ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> Y </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>PowerPoint</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> <tr><td><strong>Word</strong></td><td> Y </td><td> Y </td><td> Y </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction persistSettings() {\n    Office.context.document.settings.saveAsync(function (asyncResult) {\n        write('Settings saved with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   name: saveAsync(options, callback)
-  fullName: office.Office.Settings.saveAsync
+  fullName: saveAsync
   langs:
   - typeScript
   type: method
@@ -263,7 +263,7 @@ items:
 
     ```
   name: set(name, value)
-  fullName: office.Office.Settings.set
+  fullName: set
   langs:
   - typeScript
   type: method
