@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6e763044d3afdf2e5ebacbb62d8899852311df38
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 820752667671d6f5cc303eee618230a328faa647
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25586434"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26232421"
 items:
 - uid: onenote.OneNote.FloatingInk
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: OneNote.FloatingInk
-  fullName: onenote.OneNote.FloatingInk
+  fullName: OneNote.FloatingInk
   langs:
   - typeScript
   type: class
@@ -35,7 +35,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: id
-  fullName: onenote.OneNote.FloatingInk.id
+  fullName: id
   langs:
   - typeScript
   type: property
@@ -51,7 +51,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: inkStrokes
-  fullName: onenote.OneNote.FloatingInk.inkStrokes
+  fullName: inkStrokes
   langs:
   - typeScript
   type: property
@@ -64,7 +64,7 @@ items:
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n    var contents = page.contents;\n    \n    // Load page contents and their types.\n    page.load('contents/type');\n    return context.sync()\n        .then(function(){\n        \n            // Load every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    content.load('ink/id');\n                }                            \n            })\n            return context.sync();\n        })\n        .then(function(){\n        \n            // Log ID of every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    console.log(content.ink.id);\n                }                            \n            })                \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
   name: load(option)
-  fullName: onenote.OneNote.FloatingInk.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -86,7 +86,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: pageContent
-  fullName: onenote.OneNote.FloatingInk.pageContent
+  fullName: pageContent
   langs:
   - typeScript
   type: property
@@ -97,7 +97,7 @@ items:
       - onenote.OneNote.PageContent
 - uid: onenote.OneNote.FloatingInk.toJSON
   name: toJSON()
-  fullName: onenote.OneNote.FloatingInk.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
@@ -110,7 +110,7 @@ items:
 - uid: onenote.OneNote.FloatingInk.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: onenote.OneNote.FloatingInk.track
+  fullName: track
   langs:
   - typeScript
   type: method
@@ -123,7 +123,7 @@ items:
 - uid: onenote.OneNote.FloatingInk.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: onenote.OneNote.FloatingInk.untrack
+  fullName: untrack
   langs:
   - typeScript
   type: method
