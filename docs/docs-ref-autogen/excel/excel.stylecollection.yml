@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a2a33fce536c47bf5efa0de2147b6f5dd4df6325
-ms.sourcegitcommit: c12dfe8b909dec25d284f5254d97bd6478823b8f
+ms.openlocfilehash: 772c5560ce09199152087836ca8022b36272e3f9
+ms.sourcegitcommit: c756c5499da5aad3736cc71573ac35f9ca3d6738
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27243419"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "27378194"
 items:
 - uid: excel.Excel.StyleCollection
   summary: >-
@@ -23,9 +23,12 @@ items:
   children:
   - excel.Excel.StyleCollection.add
   - excel.Excel.StyleCollection.getItem
+  - excel.Excel.StyleCollection.items
+  - excel.Excel.StyleCollection.load
+  - excel.Excel.StyleCollection.toJSON
 - uid: excel.Excel.StyleCollection.add
   summary: >-
-    Adiciona um novo estilo à coleção.
+    Adiciona um novo estilo para o conjunto.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -47,7 +50,7 @@ items:
       - string
 - uid: excel.Excel.StyleCollection.getItem
   summary: >-
-    Obtém um estilo pelo nome.
+    Obtém um estilo por nome.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -67,3 +70,53 @@ items:
       description: Nome do estilo a ser recuperado.
       type:
       - string
+- uid: excel.Excel.StyleCollection.items
+  summary: Obtém o filho carregado itens nesta coleção.
+  name: items
+  fullName: items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.Style[];'
+    return:
+      type:
+      - Excel.Style[]
+- uid: excel.Excel.StyleCollection.load
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.StyleCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.StyleCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+  name: load(option)
+  fullName: load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.StyleCollection;'
+    return:
+      type:
+      - excel.Excel.StyleCollection
+      description: ''
+    parameters:
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      type:
+      - string | string[]
+- uid: excel.Excel.StyleCollection.toJSON
+  name: toJSON()
+  fullName: toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.StyleCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.StyleCollectionData
+      description: ''
