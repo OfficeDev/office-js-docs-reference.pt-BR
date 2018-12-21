@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4fc3e4ebdfb08f8edd153c8366511382643b345c
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: aa60539a74eb853496d919ad1aff9569a11b243f
+ms.sourcegitcommit: 1665198bc1913e60caf12b3d1342844b57a3453a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298446"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "27384268"
 items:
 - uid: outlook.Office.MessageCompose
   summary: >-
@@ -145,7 +145,7 @@ items:
       description: ''
     parameters:
     - id: base64File
-      description: O base64 codificado conteúdo de uma imagem ou um arquivo a ser adicionado a um email ou evento.
+      description: O conteúdo codificado em Base 64 de uma imagem ou arquivo a ser adicionado a um email ou evento.
       type:
       - string
     - id: attachmentName
@@ -304,7 +304,7 @@ items:
       - '(result: AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.bcc
   summary: >-
-    Obtém um objeto que fornece os métodos para obter ou atualizar os destinatários na linha Cco (com cópia oculta) de uma mensagem.
+    Obtém um objeto que fornece métodos para acessar ou atualizar os destinatários na linha Cco (com cópia oculta) de uma mensagem.
 
 
     \[[Conjunto de APIs: caixa de correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -364,7 +364,7 @@ items:
       - outlook.Office.Body
 - uid: outlook.Office.MessageCompose.cc
   summary: >-
-    Fornece acesso aos destinatários Cc (com cópia) de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
+    Fornece acesso aos destinatários na linha Cc (com cópia) de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
 
     Propriedade cc retorna um objeto de [Office.Recipients](xref:outlook.Office.Recipients) que fornece os métodos para obter ou atualizar os destinatários na linha Cc da mensagem.
@@ -554,7 +554,7 @@ items:
 
 
     \[[Conjunto de APIs: visualização da caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição</td></tr></table>\n####Exemplos\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever</td></tr></table>\n####Exemplos\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
   isPreview: true
   name: getAttachmentsAsync(options, callback)
   fullName: getAttachmentsAsync
@@ -760,7 +760,7 @@ items:
       type:
       - '(result: AsyncResult<Office.CustomProperties>) => void'
     - id: userContext
-      description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejam acessar na função de retorno de chamada. Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.
+      description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.
       type:
       - any
 - uid: outlook.Office.MessageCompose.notificationMessages
@@ -786,10 +786,10 @@ items:
       - outlook.Office.NotificationMessages
 - uid: outlook.Office.MessageCompose.recurrence
   summary: >-
-    Obtém ou define o padrão de recorrência de um compromisso. Obtém o padrão de recorrência de uma solicitação de reunião. Leitura e redação modos para itens de compromisso. Modo de leitura para os itens de solicitação de reunião.
+    Obtém ou configura o padrão de recorrência de um compromisso. Obtém o padrão de recorrência de uma solicitação de reunião. Modos de leitura e redação para itens do compromisso. Modo de leitura para os itens de solicitação de reunião.
 
 
-    A propriedade de recorrência retorna um objeto de recorrência para solicitações de reuniões ou compromissos recorrentes se um item é uma série ou uma instância de uma série. `null`é retornada para um único compromissos e solicitações de reunião de compromissos de única. `undefined`é retornado para mensagens que não fazem solicitações de reunião.
+    A propriedade de recorrência retorna um objeto de recorrência para solicitações de reuniões ou compromissos recorrentes se um item é uma série ou uma instância de uma série. `null` retorna para compromissos individuais e solicitações de reunião de compromissos individuais. `undefined` retorna para mensagens que não são solicitações de reunião.
 
 
     Observação: A solicitações de reunião tem um valor itemClass IPM. Schedule.Meeting.Request.
@@ -819,7 +819,7 @@ items:
     Remove um anexo de uma mensagem ou de um compromisso.
 
 
-    O método removeAttachmentAsync remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook Web App e no OWA para Dispositivos, o identificador do anexo é válido apenas dentro da mesma sessão. Uma sessão é sobre quando o usuário fecha o aplicativo, ou se o usuário começa a redigir uma forma embutida subsequentemente aciona o formulário para continuar em uma janela separada.
+    O método removeAttachmentAsync remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook Web App e no OWA para Dispositivos, o identificador do anexo é válido apenas dentro da mesma sessão. Uma sessão é finalizada quando o usuário fecha o aplicativo, ou se o usuário começa a compor em um formulário embutido e, subsequentemente, sai do formulário para continuar em uma janela separada.
 
 
     \[[Conjunto de APIs: caixa de correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -836,13 +836,13 @@ items:
     Além dessa assinatura, o método também tem as seguintes assinaturas:
 
 
-    `removeAttachmentAsync(attachmentIndex: string): void;`
+    `removeAttachmentAsync(attachmentId: string): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, options: Office.AsyncContextOptions): void;`
+    `removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;`
 
 
-    `removeAttachmentAsync(attachmentIndex: string, callback: (result: AsyncResult<void>) => void): void;`
+    `removeAttachmentAsync(attachmentId: string, callback: (result: AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -861,20 +861,20 @@ items:
     );
 
     ```
-  name: removeAttachmentAsync(attachmentIndex, options, callback)
+  name: removeAttachmentAsync(attachmentId, options, callback)
   fullName: removeAttachmentAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeAttachmentAsync(attachmentIndex: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: attachmentIndex
-      description: O identificador do anexo a remover. O comprimento máximo da cadeia é de 100 caracteres.
+    - id: attachmentId
+      description: O identificador do anexo a remover.
       type:
       - string
     - id: options
@@ -887,7 +887,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.removeHandlerAsync
   summary: >-
-    Remove um manipulador de eventos para um evento com suporte.
+    Remove um manipulador de eventos de um evento compatível.
 
 
     No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
@@ -918,7 +918,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: O que deve revogar o manipulador de evento.
+      description: O evento que deve revogar o manipulador.
       type:
       - EventType
     - id: handler
@@ -1026,13 +1026,13 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.seriesId
   summary: >-
-    Obtém a identificação da série que uma instância pertence.
+    Obtém a id da série a qual uma instância pertence.
 
 
     No OWA e no Outlook, o seriesId retorna a ID de serviços Web do Exchange (EWS) do item pai (série) que este item pertence. No entanto, em iOS e Android, o seriesId retorna a ID do restante do item pai.
 
 
-    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas de API REST usando esse valor, ele deve ser convertido usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
+    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 
 
     A propriedade seriesId retorna null para itens que não têm itens pai, como o único compromissos, itens de série, ou solicitações de reunião e retorna indefinido para todos os itens que não fazem solicitações de reunião.
@@ -1161,7 +1161,7 @@ items:
       - Subject
 - uid: outlook.Office.MessageCompose.to
   summary: >-
-    Fornece acesso aos destinatários na linha para de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
+    Fornece acesso aos destinatários na linha Para de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
 
     A propriedade retorna um objeto de destinatários que fornece métodos para obter ou atualizar os destinatários na linha para da mensagem.
