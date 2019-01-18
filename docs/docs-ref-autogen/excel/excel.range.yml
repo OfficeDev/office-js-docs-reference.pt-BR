@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0113e19fe75f6a676740174afd9f8d42681f847a
-ms.sourcegitcommit: c12dfe8b909dec25d284f5254d97bd6478823b8f
+ms.openlocfilehash: 8538878d7c5ae5deb7dd090b3760f6eaf146efed
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27243461"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724959"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -31,6 +31,7 @@ items:
   - excel.Excel.Range.columnHidden
   - excel.Excel.Range.columnIndex
   - excel.Excel.Range.conditionalFormats
+  - excel.Excel.Range.context
   - excel.Excel.Range.dataValidation
   - excel.Excel.Range.delete
   - excel.Excel.Range.format
@@ -235,6 +236,18 @@ items:
     return:
       type:
       - excel.Excel.ConditionalFormatCollection
+- uid: excel.Excel.Range.context
+  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Range.dataValidation
   summary: >-
     Retorna um objeto de validação de dados.
@@ -339,7 +352,7 @@ items:
       - any[][]
 - uid: excel.Excel.Range.getAbsoluteResizedRange
   summary: >-
-    Obtém um objeto Range com a mesma célula superior esquerda como o objeto de intervalo atual, mas com o número especificado de linhas e colunas.
+    Obtém um objeto Range com a mesma célula superior esquerda do objeto Range atual, mas com os números especificados de linhas e colunas.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -743,7 +756,7 @@ items:
       - number
 - uid: excel.Excel.Range.getSurroundingRegion
   summary: >-
-    Retorna um objeto Range que representa a região ao redor da célula superior esquerda nesse intervalo. Uma região redor é um intervalo limitado por qualquer combinação de linhas em branco e colunas em branco em relação esse intervalo.
+    Retorna um objeto Range que representa a região circundante da célula superior esquerda nesse intervalo. Uma região ao redor é um intervalo limitado por qualquer combinação de linhas e colunas em branco em relação a esse intervalo.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -876,7 +889,7 @@ items:
       - excel.Excel.InsertShiftDirection
 - uid: excel.Excel.Range.isEntireColumn
   summary: >-
-    Representa se o intervalo atual for uma coluna inteira. Somente leitura.
+    Representa se o intervalo atual está em uma coluna inteira. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -892,7 +905,7 @@ items:
       - boolean
 - uid: excel.Excel.Range.isEntireRow
   summary: >-
-    Representa se o intervalo atual for uma linha inteira. Somente leitura.
+    Representa se o intervalo atual está em uma linha inteira. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -965,7 +978,7 @@ items:
       - any[][]
 - uid: excel.Excel.Range.numberFormatLocal
   summary: >-
-    Representa o código de formato número do Excel para o intervalo especificado como uma cadeia de caracteres no idioma do usuário. Ao definir o formato de número local a um intervalo, o argumento value pode ser um valor único (string) ou uma matriz bidimensional. Se o argumento não for um valor único, ela será aplicada a todas as células no intervalo.
+    Representa o código de formato numérico do Excel para o intervalo fornecido como uma cadeia de caracteres no idioma do usuário. Ao definir o formato de número local a um intervalo, o argumento value pode ser um valor único (string) ou uma matriz bidimensional. Se o argumento não for um valor único, ela será aplicada a todas as células no intervalo.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1046,7 +1059,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:F10\"; \n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.select();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.Range.showCard
   summary: >-
-    Exibe o cartão para uma célula ativa se ela tiver o conteúdo de rich valor.
+    Exibe o cartão para uma célula ativa se ele tiver um conteúdo valioso.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1079,7 +1092,7 @@ items:
       - excel.Excel.RangeSort
 - uid: excel.Excel.Range.style
   summary: >-
-    Representa o estilo do intervalo atual. Se os estilos das células são inconsistentes, null será retornado. Para estilos personalizados, o nome do estilo será retornado. Para estilos internos, uma cadeia de caracteres representando um valor na enum BuiltInStyle será retornada.
+    Representa o estilo de intervalo atual. Se os estilos das células são inconsistentes, null será retornado. Para estilos personalizados, o nome do estilo será retornado. Para estilos internos, uma cadeia de caracteres representando um valor na enum BuiltInStyle será retornada.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1111,6 +1124,7 @@ items:
       type:
       - string[][]
 - uid: excel.Excel.Range.toJSON
+  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. Range original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.RangeData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
   fullName: toJSON
   langs:

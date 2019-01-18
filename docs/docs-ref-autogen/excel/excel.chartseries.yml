@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d80c2b5614e70b2f7bc3d2d5b76c5ef005934184
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 89607844254d949746bb049f3571256a51318f54
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996624"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724945"
 items:
 - uid: excel.Excel.ChartSeries
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.ChartSeries.axisGroup
   - excel.Excel.ChartSeries.chartType
+  - excel.Excel.ChartSeries.context
   - excel.Excel.ChartSeries.dataLabels
   - excel.Excel.ChartSeries.delete
   - excel.Excel.ChartSeries.doughnutHoleSize
@@ -84,9 +85,21 @@ items:
     return:
       type:
       - Excel.ChartType | "Invalid" | "ColumnClustered" | "ColumnStacked" | "ColumnStacked100" | "3DColumnClustered" | "3DColumnStacked" | "3DColumnStacked100" | "BarClustered" | "BarStacked" | "BarStacked100" | "3DBarClustered" | "3DBarStacked" | "3DBarStacked100" | "LineStacked" | "LineStacked100" | "LineMarkers" | "LineMarkersStacked" | "LineMarkersStacked100" | "PieOfPie" | "PieExploded" | "3DPieExploded" | "BarOfPie" | "XYScatterSmooth" | "XYScatterSmoothNoMarkers" | "XYScatterLines" | "XYScatterLinesNoMarkers" | "AreaStacked" | "AreaStacked100" | "3DAreaStacked" | "3DAreaStacked100" | "DoughnutExploded" | "RadarMarkers" | "RadarFilled" | "Surface" | "SurfaceWireframe" | "SurfaceTopView" | "SurfaceTopViewWireframe" | "Bubble" | "Bubble3DEffect" | "StockHLC" | "StockOHLC" | "StockVHLC" | "StockVOHLC" | "CylinderColClustered" | "CylinderColStacked" | "CylinderColStacked100" | "CylinderBarClustered" | "CylinderBarStacked" | "CylinderBarStacked100" | "CylinderCol" | "ConeColClustered" | "ConeColStacked" | "ConeColStacked100" | "ConeBarClustered" | "ConeBarStacked" | "ConeBarStacked100" | "ConeCol" | "PyramidColClustered" | "PyramidColStacked" | "PyramidColStacked100" | "PyramidBarClustered" | "PyramidBarStacked" | "PyramidBarStacked100" | "PyramidCol" | "3DColumn" | "Line" | "3DLine" | "3DPie" | "Pie" | "XYScatter" | "3DArea" | "Area" | "Doughnut" | "Radar" | "Histogram" | "Boxwhisker" | "Pareto" | "RegionMap" | "Treemap" | "Waterfall" | "Sunburst" | "Funnel"
+- uid: excel.Excel.ChartSeries.context
+  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.ChartSeries.dataLabels
   summary: >-
-    Representa uma coleção de todos os dataLabels na série.
+    Representa uma coleção de todos os dataLabels da série.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -119,7 +132,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const seriesCollection = sheet.charts.getItemAt(0).series;\n  seriesCollection.load(\"count\");\n  await context.sync();\n\n  if (seriesCollection.count > 0) {\n    const series = seriesCollection.getItemAt(0);\n\n    // Delete the first series.\n    series.delete();\n  }\n\n  await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.doughnutHoleSize
   summary: >-
-    Representa o tamanho do orifício de rosca uma série de gráficos. Válido somente em gráficos de rosca e doughnutExploded. Gera uma exceção de argumento inválido em gráficos inválidos.
+    Representa o tamanho do furo de rosca de uma série de gráficos. Válida apenas em gráficos de rosca e doughnutExploded. Gera uma exceção de argumento inválido em gráficos inválidos.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -135,7 +148,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.explosion
   summary: >-
-    Retorna ou define o valor de explosão para uma fatia de pizza ou gráfico de rosca. Retorna 0 (zero) se não houver nenhum detalhamento (a ponta da fatia estiver no centro da pizza). Leitura/gravação.
+    Retorna ou define o valor de explosão para um gráfico de pizza ou fatia de gráfico de rosca. Retorna 0 (zero) se não houver explosão (a ponta da fatia está no centro da pizza). Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -151,7 +164,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.filtered
   summary: >-
-    Valor booleano que representa se a série for filtrada ou não. Não se aplica a gráficos de superfície.
+    Valor booliano representando se a série é filtrada ou não. Não aplicável para gráficos de superfície.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,7 +180,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.firstSliceAngle
   summary: >-
-    Retorna ou define o ângulo da primeira fatia de pizza ou gráfico de rosca, em graus (no sentido horário a partir da vertical). Só se aplica a gráficos de rosca, de pizza e pizza 3D. Pode ser um valor de 0 a 360. Leitura/gravação
+    Retorna ou define o ângulo do primeiro gráfico de pizza ou fatia de gráfico de rosca, em graus (no sentido horário a partir da vertical). Aplica-se apenas a pizza, torta 3-D e gráficos de rosca.. Pode ser um valor de 0 a 360. Leitura/gravação
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -199,7 +212,7 @@ items:
       - excel.Excel.ChartSeriesFormat
 - uid: excel.Excel.ChartSeries.gapWidth
   summary: >-
-    Representa a largura do intervalo de uma série de gráfico. Só é válida na barra e gráficos de coluna, bem como classes específicas de linha e gráficos de pizza. Gera uma exceção de argumento inválido em gráficos inválidos.
+    Representa a largura do espaçamento de uma série de gráfico. Só é válida na barra e gráficos de coluna, bem como classes específicas de linha e gráficos de pizza. Gera uma exceção de argumento inválido em gráficos inválidos.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -215,7 +228,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.hasDataLabels
   summary: >-
-    Valor booleano que representa se a série tiver rótulos de dados ou não.
+    Valor booliano representando se a série tem rótulos de dados ou não.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -231,7 +244,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.invertIfNegative
   summary: >-
-    True se o Microsoft Excel inverte o padrão no item quando este corresponde a um número negativo. Leitura/gravação.
+    Verdadeiro se o Microsoft Excel inverte o padrão no item quando ele corresponde a um número negativo. Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -266,7 +279,7 @@ items:
       - string | string[]
 - uid: excel.Excel.ChartSeries.markerBackgroundColor
   summary: >-
-    Representa a cor de plano de fundo de marcadores de uma série de gráfico.
+    Representa a cor de fundo dos marcadores de uma série de gráficos.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -283,7 +296,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerForegroundColor
   summary: >-
-    Representa a cor de primeiro plano de marcadores de uma série de gráfico.
+    Representa cor de primeiro plano dos marcadores de uma série de gráfico.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -317,7 +330,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerStyle
   summary: >-
-    Representa o estilo de marcador de uma série de gráfico. Consulte Excel.ChartMarkerStyle para obter detalhes.
+    Representa o estilo do marcador de uma série de gráfico. Consulte Excel.ChartMarkerStyle para obter detalhes.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -350,7 +363,7 @@ items:
       - string
 - uid: excel.Excel.ChartSeries.overlap
   summary: >-
-    Especifica como as barras e colunas são posicionadas. Pode ser um valor entre – 100 e 100. Aplica-se somente a gráficos de colunas 2D e de barras 2D. Leitura/gravação.
+    Especifica como barras e colunas são posicionadas. Pode ser um valor entre – 100 e 100. Se aplicam apenas às barras 2D e gráficos de colunas 2D. Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -366,7 +379,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.plotOrder
   summary: >-
-    Representa a ordem de plotagem de uma série de gráfico dentro do grupo gráfico.
+    Representa a ordem de plotagem de uma série de gráficos dentro do grupo de gráfico.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -398,7 +411,7 @@ items:
       - excel.Excel.ChartPointsCollection
 - uid: excel.Excel.ChartSeries.secondPlotSize
   summary: >-
-    Retorna ou define o tamanho da seção secundária de uma gráfico pizza de pizza ou barra de gráfico de pizza, como um percentual do tamanho da pizza principal. Pode ser um valor de 5 a 200. Leitura/gravação.
+    Retorna ou define o tamanho da seção secundária de uma pizza do gráfico de pizza ou de uma barra de gráfico de pizza, como uma porcentagem do tamanho da pizza primária. Pode ser um valor de 5 de 200. Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -414,7 +427,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.setBubbleSizes
   summary: >-
-    Defina os tamanhos de bolha para uma série de gráfico. Funciona somente para gráficos de bolha.
+    Definir tamanhos das bolhas para uma série de gráfico. Funciona apenas para gráficos de bolhas.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -436,7 +449,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setValues
   summary: >-
-    Defina os valores de uma série de gráfico. Gráfico de dispersão, isso significa que valores do eixo Y.
+    Definir valores de uma série de gráficos. Para gráfico de dispersão, isso significa valores do eixo Y.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -458,7 +471,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setXAxisValues
   summary: >-
-    Defina os valores do eixo para uma série de gráfico X. Funciona somente para gráficos de dispersão.
+    Definir valores do eixo X para uma série de gráficos. Funciona apenas para gráficos de dispersão.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -496,7 +509,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.smooth
   summary: >-
-    Valor booleano que representa se a série é suave ou não. Só é aplicável a gráficos de linhas e de dispersão.
+    Valor booliano representando se a série é suave ou não. Só é aplicável a gráficos de linhas e de dispersão.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -512,7 +525,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.splitType
   summary: >-
-    Retorna ou define a maneira como as duas seções de uma gráfico pizza de pizza ou uma barra de pizza são divididas. Leitura/gravação.
+    Retorna ou define a maneira como as duas seções de uma pizza do gráfico de pizza ou de uma barra do gráfico de pizza são divididas. Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -522,11 +535,12 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'splitType: "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
+    content: 'splitType: Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
     return:
       type:
-      - "\"SplitByPosition\" | \"SplitByValue\" | \"SplitByPercentValue\" | \"SplitByCustomSplit\""
+      - Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit"
 - uid: excel.Excel.ChartSeries.toJSON
+  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.ChartSeries original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.ChartSeriesData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
   fullName: toJSON
   langs:
@@ -540,7 +554,7 @@ items:
       description: ''
 - uid: excel.Excel.ChartSeries.trendlines
   summary: >-
-    Representa uma coleção de linhas de tendência na série. Somente leitura.
+    Representa uma coleção de todas as linha de tendência da série. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -556,7 +570,7 @@ items:
       - excel.Excel.ChartTrendlineCollection
 - uid: excel.Excel.ChartSeries.varyByCategories
   summary: >-
-    True se o Microsoft Excel atribui uma cor ou padrão diferente para cada marcador de dados. O gráfico precisa conter somente uma série. Leitura/gravação.
+    Verdadeiro se o Microsoft Excel atribuir uma cor ou padrão diferente a cada marcador de dados. O gráfico deve conter apenas uma série. Leitura/gravação.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

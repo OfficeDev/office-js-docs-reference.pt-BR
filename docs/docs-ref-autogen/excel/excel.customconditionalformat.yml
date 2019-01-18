@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7fe2749f1909178ca2d68c749c88c39969676651
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: f4f916e815d07c180ea51cf80f2c481bfce96d25
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995035"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724462"
 items:
 - uid: excel.Excel.CustomConditionalFormat
   summary: >-
@@ -21,10 +21,23 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.CustomConditionalFormat.context
   - excel.Excel.CustomConditionalFormat.format
   - excel.Excel.CustomConditionalFormat.load
   - excel.Excel.CustomConditionalFormat.rule
   - excel.Excel.CustomConditionalFormat.toJSON
+- uid: excel.Excel.CustomConditionalFormat.context
+  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.CustomConditionalFormat.format
   summary: >-
     Retorna um objeto de formato, encapsulando a fonte, o preenchimento, as bordas e outras propriedades de formatos condicionais. Somente leitura.
@@ -84,8 +97,9 @@ items:
     return:
       type:
       - excel.Excel.ConditionalFormatRule
-      description: "\n#### <a name=\"examples\"></a>Examples\n\n```javascript\nExcel.run(function (ctx) {\n    var sheet = ctx.workbook.worksheets.getActiveWorksheet();\n    var range = sheet.getRange(\"A1:A5\");\n    range.values = [[1], [20], [\"\"], [5], [\"test\"]];\n    var cf = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);\n    var cfCustom = cf.customOrNullObject;\n    cfCustom.rule.formula = \"=ISBLANK(A1)\";\n    cfCustom.format.fill.color = \"#00FF00\";\n    return ctx.sync().then(function () {\n        console.log(\"Added new custom conditional format highlighting all blank cells.\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) {\n    var sheet = ctx.workbook.worksheets.getActiveWorksheet();\n    var range = sheet.getRange(\"A1:A5\");\n    range.values = [[1], [20], [\"\"], [5], [\"test\"]];\n    var cf = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);\n    var cfCustom = cf.customOrNullObject;\n    cfCustom.rule.formula = \"=ISBLANK(A1)\";\n    cfCustom.format.fill.color = \"#00FF00\";\n    return ctx.sync().then(function () {\n        console.log(\"Added new custom conditional format highlighting all blank cells.\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.CustomConditionalFormat.toJSON
+  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.CustomConditionalFormat original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.CustomConditionalFormatData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
   fullName: toJSON
   langs:

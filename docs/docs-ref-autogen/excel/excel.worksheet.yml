@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 2ab6816398b76df763a4803a12b6aa2417894b4d
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: cc4fcfd114add0f06f08cd80d8ba4ca8bcfc7152
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995490"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725001"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.Worksheet.activate
   - excel.Excel.Worksheet.calculate
   - excel.Excel.Worksheet.charts
+  - excel.Excel.Worksheet.context
   - excel.Excel.Worksheet.copy
   - excel.Excel.Worksheet.delete
   - excel.Excel.Worksheet.freezePanes
@@ -112,9 +113,21 @@ items:
     return:
       type:
       - excel.Excel.ChartCollection
+- uid: excel.Excel.Worksheet.context
+  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Worksheet.copy
   summary: >-
-    Copiar uma planilha e coloca na posição especificada. Retorne a planilha copiada.
+    Copia uma planilha e a coloca na posição especificada. Retorna à planilha copiada.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -243,7 +256,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getPrevious
   summary: >-
-    Obtém a planilha anterior a esta. Se não houver nenhuma planilha anterior, este método gerará um erro.
+    Obtém a planilha anterior a esta. Se não houver nenhuma planilha anterior, esse método lançará um erro.
 
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -308,7 +321,11 @@ items:
       type:
       - string
 - uid: excel.Excel.Worksheet.getRangeByIndexes
-  summary: " Obtém o objeto Range que começa em um determinado índice de linha e índice de coluna e que abrange um determinado número de linhas e colunas.\n\n\\[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\\]"
+  summary: >-
+    Obtém o objeto Range que começa em um determinado índice de linha e índice de coluna e que abrange um determinado número de linhas e colunas.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   fullName: getRangeByIndexes
   langs:
@@ -579,7 +596,7 @@ items:
       - excel.Excel.WorksheetProtection
 - uid: excel.Excel.Worksheet.showGridlines
   summary: >-
-    Obtém ou define o sinalizador de linhas de grade da planilha. Esse sinalizador determina se as linhas de grade estarão visíveis para o usuário.
+    Obtém ou define um sinalizador de linhas de grade da planilha. Esse sinalizador determina se as linhas de grade estarão visíveis para o usuário.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -596,7 +613,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.showGridlines = true;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.showHeadings
   summary: >-
-    Obtém ou define o sinalizador de títulos da planilha. Esse sinalizador determina se os títulos são visíveis para o usuário.
+    É ou define um sinalizador de cabeçalhos da planilha. Esse sinalizador determina se os títulos são visíveis para o usuário.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -612,7 +629,7 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.standardHeight
   summary: >-
-    Retorna a altura padrão (padrão) de todas as linhas na planilha, em pontos. Somente leitura.
+    Retorna a altura padrão de todas as linhas na planilha, em pontos. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -628,7 +645,7 @@ items:
       - number
 - uid: excel.Excel.Worksheet.standardWidth
   summary: >-
-    Retorna ou define a largura padrão (padrão) de todas as colunas na planilha. Uma unidade de largura de coluna é igual à largura de um caractere no estilo Normal. Para fontes proporcionais, a largura do caractere 0 (zero) é usada.
+    Retorna ou define a largura padrão de todas as colunas na planilha. Uma unidade de largura da coluna é igual à largura de um caractere no estilo Normal. Para fontes proporcionais, a largura do caractere 0 (zero) é usada.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -676,6 +693,7 @@ items:
       type:
       - excel.Excel.TableCollection
 - uid: excel.Excel.Worksheet.toJSON
+  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.Worksheet original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.WorksheetData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
   fullName: toJSON
   langs:
