@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 533959bd84b874bdcb9ec273179250f75bfd91ca
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: 009ce2031f68d04dfc98399f52828ee8944e2f3f
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26221259"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29384556"
 items:
 - uid: word
   name: word
@@ -32,6 +32,7 @@ items:
   - word.Word.DocumentProperties
   - word.Word.DocumentPropertyType
   - word.Word.ErrorCodes
+  - word.Word.EventType
   - word.Word.FileContentFormat
   - word.Word.Font
   - word.Word.HeaderFooterType
@@ -124,23 +125,27 @@ items:
   - word.Word.UnderlineType
   - word.Word.VerticalAlignment
 - uid: word.Word.run
-  summary: Executa um script de lote que realiza ações no modelo de objeto do Word, usando o RequestContext de objetos de API criado anteriormente.
-  name: run(objects, batch)
+  summary: Executa um script de lote que realiza ações no modelo de objeto do Word, usando um novo RequestContext. Quando a promessa for resolvida, quaisquer objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  remarks: >-
+    Além dessa assinatura, o método também tem as seguintes assinaturas, que permitem que você deve continuar usando o contexto de solicitação de objetos criados anteriormente:
+
+
+    Execute<T>(objeto: OfficeExtension.ClientObject, lote: (contexto: Word.RequestContext) =&gt; promessa<T>): promessa<T>;
+
+
+    Execute<T>(objetos: OfficeExtension.ClientObject\[\], lote: (contexto: Word.RequestContext) =&gt; promessa<T>): promessa<T>;
+  name: run(batch)
   fullName: Word.run
   langs:
   - typeScript
   type: function
   syntax:
-    content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: Word.RequestContext) => Promise<T>): Promise<T>;'
+    content: 'export function run<T>(batch: (context: Word.RequestContext) => Promise<T>): Promise<T>;'
     return:
       type:
       - Promise<T>
       description: ''
     parameters:
-    - id: objects
-      description: Uma matriz de objetos de API criado anteriormente. A matriz será validada para certificar-se de que todos os objetos compartilham o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que quaisquer alterações aplicadas a esses objetos serão obtidas por "context.sync()".
-      type:
-      - OfficeExtension.ClientObject[]
     - id: batch
       description: Uma função que recebe um RequestContext e retorna uma promessa (geralmente, apenas o resultado da "context.sync()"). O parâmetro context facilita a solicitações para o aplicativo Word. Desde o suplemento do Office e o aplicativo Word executar em dois processos diferentes, RequestContext é necessário para obter acesso ao modelo de objeto do Word, do add-in.
       type:
@@ -184,6 +189,8 @@ references:
   name: Word.DocumentPropertyType
 - uid: word.Word.ErrorCodes
   name: Word.ErrorCodes
+- uid: word.Word.EventType
+  name: Word.EventType
 - uid: word.Word.FileContentFormat
   name: Word.FileContentFormat
 - uid: word.Word.Font

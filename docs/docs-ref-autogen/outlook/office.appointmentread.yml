@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 9e812f4592c762e1aa7004df6a55416c9d1f4363
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: 8742db4c3d537157faa2fc70b6fdc1106ee0af77
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298299"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29385067"
 items:
 - uid: outlook.Office.AppointmentRead
   summary: >-
@@ -528,7 +528,7 @@ items:
       description: ''
 - uid: outlook.Office.AppointmentRead.getEntitiesByType
   summary: >-
-    Obtém uma matriz de todas as entidades do tipo de entidade especificada encontradas no corpo do item selecionado.
+    Obtém uma matriz de todas as entidades do tipo de entidade especificado encontradas no corpo do item selecionado.
 
 
     Observação: não há suporte para esse método no Outlook para iOS ou no Outlook para Android.
@@ -536,7 +536,7 @@ items:
 
     \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
+    <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restricted</td></tr>
 
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Participante do compromisso</td></tr></table>
@@ -581,7 +581,7 @@ items:
     return:
       type:
       - (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]
-      description: Se o valor passado entityType não for um membro válido da enumeração EntityType, o método retornará null. Se não há entidades do tipo especificado estiverem presentes no corpo do item, o método retorna uma matriz vazia. Caso contrário, o tipo dos objetos na matriz retornada depende do tipo de entidade solicitada no parâmetro entityType.
+      description: Se o valor passado entityType não for um membro válido da enumeração EntityType, o método retornará null. Se nenhuma entidade do tipo especificado estiver presente no corpo do item, o método retorna uma matriz vazia. Caso contrário, o tipo dos objetos na matriz retornada depende do tipo de entidade solicitada no parâmetro entityType.
     parameters:
     - id: entityType
       description: Um dos valores de enumeração de EntityType.
@@ -884,7 +884,7 @@ items:
     A propriedade itemId não está disponível no modo de redação. Se um identificador de item for necessário, o método saveAsync pode ser usado para salvar o item para o repositório, que irá retornar o identificador do item no parâmetro AsyncResult.value na função de retorno de chamada.
 
 
-    Observação: O identificador retornado pela propriedade itemId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade itemId não é idêntica à identificação de entrada do Outlook ou o ID usado pela API REST do Outlook. Antes de fazer chamadas de API REST usando esse valor, ele deve ser convertido usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
+    Observação: O identificador retornado pela propriedade itemId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade itemId não é idêntica à identificação de entrada do Outlook ou o ID usado pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
 
 
     \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -984,7 +984,7 @@ items:
       type:
       - '(result: AsyncResult<Office.CustomProperties>) => void'
     - id: userContext
-      description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejam acessar na função de retorno de chamada. Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.
+      description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.
       type:
       - any
 - uid: outlook.Office.AppointmentRead.location
@@ -1152,7 +1152,7 @@ items:
     Obtém o padrão de recorrência de um compromisso. Obtém o padrão de recorrência de uma solicitação de reunião.
 
 
-    A propriedade de recorrência retorna um objeto de recorrência para solicitações de reuniões ou compromissos recorrentes se um item é uma série ou uma instância de uma série. `null`é retornada para um único compromissos e solicitações de reunião de compromissos de única.
+    A propriedade de recorrência retorna um objeto de recorrência para solicitações de reuniões ou compromissos recorrentes se um item é uma série ou uma instância de uma série. `null` retorna para compromissos individuais e solicitações de reunião de compromissos individuais.
 
 
     Observação: A solicitações de reunião tem um valor itemClass IPM. Schedule.Meeting.Request.
@@ -1179,7 +1179,7 @@ items:
       - Recurrence
 - uid: outlook.Office.AppointmentRead.removeHandlerAsync
   summary: >-
-    Remove um manipulador de eventos para um evento com suporte.
+    Remove os manipuladores de eventos para um tipo de evento aceitos.
 
 
     No momento os tipos de evento aceitos são `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, e `Office.EventType.RecurrenceChanged` <!-- -->. No modo de visualização, `Office.EventType.AttachmentsChanged` também é suportada.
@@ -1196,27 +1196,23 @@ items:
     Além dessa assinatura, o método também tem a seguinte assinatura:
 
 
-    `removeHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
-  name: removeHandlerAsync(eventType, handler, options, callback)
+    `removeHandlerAsync(eventType:EventType, callback?: (result: AsyncResult<void>) => void): void;`
+  name: removeHandlerAsync(eventType, options, callback)
   fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType:EventType, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: eventType
-      description: O que deve revogar o manipulador de evento.
+      description: O evento que deve revogar o manipulador.
       type:
       - EventType
-    - id: handler
-      description: A função para manipular o evento. A função deve aceitar um único parâmetro, que é um objeto literal. A propriedade type do parâmetro isso coincidirá com o parâmetro eventType passado para removeHandlerAsync.
-      type:
-      - any
     - id: options
       description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.'
       type:
@@ -1227,7 +1223,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.AppointmentRead.requiredAttendees
   summary: >-
-    Fornece acesso aos participantes necessários de um evento. O tipo de objeto e o nível de acesso dependem do modo do item atual.
+    Fornece acesso aos participantes obrigatórios de um evento. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
 
     A propriedade requiredAttendees retorna uma matriz que contém um objeto [Office.EmailAddressDetails](xref:outlook.Office.EmailAddressDetails) para cada participante necessário para a reunião.
@@ -1269,13 +1265,13 @@ items:
       - EmailAddressDetails[]
 - uid: outlook.Office.AppointmentRead.seriesId
   summary: >-
-    Obtém a identificação da série que uma instância pertence.
+    Obtém a id da série a qual uma instância pertence.
 
 
     No OWA e no Outlook, o seriesId retorna a ID de serviços Web do Exchange (EWS) do item pai (série) que este item pertence. No entanto, em iOS e Android, o seriesId retorna a ID do restante do item pai.
 
 
-    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas de API REST usando esse valor, ele deve ser convertido usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
+    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 
 
     A propriedade seriesId retorna null para itens que não têm itens pai, como o único compromissos, itens de série, ou solicitações de reunião e retorna indefinido para todos os itens que não fazem solicitações de reunião.
