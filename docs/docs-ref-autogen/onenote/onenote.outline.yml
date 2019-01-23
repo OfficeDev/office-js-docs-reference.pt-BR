@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4b6f02c67f3c411c1e10e134f28be2cfd62a1146
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: ce7beafa8cc45451065485e031fa1f91100f7307
+ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995203"
+ms.lasthandoff: 01/23/2019
+ms.locfileid: "29384752"
 items:
 - uid: onenote.OneNote.Outline
   summary: >-
-    <span data-ttu-id="ed6f0-101">Representa um contêiner para objetos Paragraph.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-101">Represents a container for Paragraph objects.</span></span>
+    <span data-ttu-id="ce0a2-101">Representa um contêiner para objetos Paragraph.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-101">Represents a container for Paragraph objects.</span></span>
 
 
-    <span data-ttu-id="ed6f0-102">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-102">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: OneNote.Outline
   fullName: OneNote.Outline
   langs:
@@ -25,6 +25,7 @@ items:
   - onenote.OneNote.Outline.appendImage
   - onenote.OneNote.Outline.appendRichText
   - onenote.OneNote.Outline.appendTable
+  - onenote.OneNote.Outline.context
   - onenote.OneNote.Outline.id
   - onenote.OneNote.Outline.isTitle
   - onenote.OneNote.Outline.load
@@ -35,10 +36,10 @@ items:
   - onenote.OneNote.Outline.untrack
 - uid: onenote.OneNote.Outline.appendHtml
   summary: >-
-    <span data-ttu-id="ed6f0-103">Adiciona o HTML especificado na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-103">Adds the specified HTML to the bottom of the Outline.</span></span>
+    <span data-ttu-id="ce0a2-103">Adiciona o HTML especificado na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-103">Adds the specified HTML to the bottom of the Outline.</span></span>
 
 
-    <span data-ttu-id="ed6f0-104">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-104">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: appendHtml(html)
   fullName: appendHtml
   langs:
@@ -49,18 +50,18 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"ed6f0-105\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ed6f0-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\")\n            {\n                // First item is an outline.\n                outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendHtml(\"<p>new paragraph</p>\");\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"ce0a2-105\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ce0a2-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\")\n            {\n                // First item is an outline.\n                outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendHtml(\"<p>new paragraph</p>\");\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: html
-      description: <span data-ttu-id="ed6f0-106">A cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-106">The HTML string to append.</span></span> <span data-ttu-id="ed6f0-107">Consulte [HTML com suporte](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) para API do JavaScript de suplementos do OneNote.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-107">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
+      description: <span data-ttu-id="ce0a2-106">A cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-106">The HTML string to append.</span></span> <span data-ttu-id="ce0a2-107">Consulte [HTML com suporte](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) para API do JavaScript de suplementos do OneNote.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-107">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
       type:
       - string
 - uid: onenote.OneNote.Outline.appendImage
   summary: >-
-    <span data-ttu-id="ed6f0-108">Adiciona a imagem especificada na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-108">Adds the specified image to the bottom of the Outline.</span></span>
+    <span data-ttu-id="ce0a2-108">Adiciona a imagem especificada na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-108">Adds the specified image to the bottom of the Outline.</span></span>
 
 
-    <span data-ttu-id="ed6f0-109">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-109">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: appendImage(base64EncodedImage, width, height)
   fullName: appendImage
   langs:
@@ -74,23 +75,23 @@ items:
       description: ''
     parameters:
     - id: base64EncodedImage
-      description: <span data-ttu-id="ed6f0-110">Cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-110">HTML string to append.</span></span>
+      description: <span data-ttu-id="ce0a2-110">Cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-110">HTML string to append.</span></span>
       type:
       - string
     - id: width
-      description: <span data-ttu-id="ed6f0-p102">Opcional. Largura na unidade de pontos. O valor padrão é nulo, e será respeitada a largura da imagem.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p102">Optional. Width in the unit of Points. The default value is null and image width will be respected.</span></span>
+      description: <span data-ttu-id="ce0a2-p102">Opcional. Largura na unidade de pontos. O valor padrão é nulo, e será respeitada a largura da imagem.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p102">Optional. Width in the unit of Points. The default value is null and image width will be respected.</span></span>
       type:
       - number
     - id: height
-      description: <span data-ttu-id="ed6f0-p103">Opcional. Altura na unidade de pontos. O valor padrão é nulo, e será respeitada a altura da imagem.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p103">Optional. Height in the unit of Points. The default value is null and image height will be respected.</span></span>
+      description: <span data-ttu-id="ce0a2-p103">Opcional. Altura na unidade de pontos. O valor padrão é nulo, e será respeitada a altura da imagem.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p103">Optional. Height in the unit of Points. The default value is null and image height will be respected.</span></span>
       type:
       - number
 - uid: onenote.OneNote.Outline.appendRichText
   summary: >-
-    <span data-ttu-id="ed6f0-117">Adiciona o texto especificado na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-117">Adds the specified text to the bottom of the Outline.</span></span>
+    <span data-ttu-id="ce0a2-117">Adiciona o texto especificado na parte inferior de Outline.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-117">Adds the specified text to the bottom of the Outline.</span></span>
 
 
-    <span data-ttu-id="ed6f0-118">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-118">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-118">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-118">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: appendRichText(paragraphText)
   fullName: appendRichText
   langs:
@@ -104,15 +105,15 @@ items:
       description: ''
     parameters:
     - id: paragraphText
-      description: <span data-ttu-id="ed6f0-119">Cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-119">HTML string to append.</span></span>
+      description: <span data-ttu-id="ce0a2-119">Cadeia de caracteres HTML para acrescentar.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-119">HTML string to append.</span></span>
       type:
       - string
 - uid: onenote.OneNote.Outline.appendTable
   summary: >-
-    <span data-ttu-id="ed6f0-120">Adiciona uma tabela com a quantidade especificada de linhas e colunas na parte inferior da estrutura de tópicos.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-120">Adds a table with the specified number of rows and columns to the bottom of the outline.</span></span>
+    <span data-ttu-id="ce0a2-120">Adiciona uma tabela com a quantidade especificada de linhas e colunas na parte inferior da estrutura de tópicos.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-120">Adds a table with the specified number of rows and columns to the bottom of the outline.</span></span>
 
 
-    <span data-ttu-id="ed6f0-121">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-121">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-121">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-121">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: appendTable(rowCount, columnCount, values)
   fullName: appendTable
   langs:
@@ -123,26 +124,38 @@ items:
     return:
       type:
       - OneNote.Table
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"ed6f0-122\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ed6f0-122\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\") {\n                // First item is an outline.\n                var outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendTable(2, 2, [[1, 2],[3, 4]]);\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"ce0a2-122\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"ce0a2-122\">Examples</span></span>\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\") {\n                // First item is an outline.\n                var outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendTable(2, 2, [[1, 2],[3, 4]]);\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: rowCount
-      description: <span data-ttu-id="ed6f0-p104">Obrigatório. A quantidade de linhas na tabela.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p104">Required. The number of rows in the table.</span></span>
+      description: <span data-ttu-id="ce0a2-p104">Obrigatório. A quantidade de linhas na tabela.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p104">Required. The number of rows in the table.</span></span>
       type:
       - number
     - id: columnCount
-      description: <span data-ttu-id="ed6f0-p105">Obrigatório. A quantidade de colunas na tabela.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p105">Required. The number of columns in the table.</span></span>
+      description: <span data-ttu-id="ce0a2-p105">Obrigatório. A quantidade de colunas na tabela.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p105">Required. The number of columns in the table.</span></span>
       type:
       - number
     - id: values
-      description: <span data-ttu-id="ed6f0-127">Matriz 2D opcional.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-127">Optional 2D array.</span></span> <span data-ttu-id="ed6f0-128">As células serão preenchidas se as cadeias de caracteres correspondentes estiverem especificadas na matriz.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-128">Cells are filled if the corresponding strings are specified in the array.</span></span>
+      description: <span data-ttu-id="ce0a2-127">Matriz 2D opcional.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-127">Optional 2D array.</span></span> <span data-ttu-id="ce0a2-128">As células serão preenchidas se as cadeias de caracteres correspondentes estiverem especificadas na matriz.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-128">Cells are filled if the corresponding strings are specified in the array.</span></span>
       type:
       - string[][]
+- uid: onenote.OneNote.Outline.context
+  summary: <span data-ttu-id="ce0a2-129">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-129">The request context associated with the object.</span></span> <span data-ttu-id="ce0a2-130">Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-130">This connects the add-in's process to the Office host application's process.</span></span>
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: onenote.OneNote.Outline.id
   summary: >-
-    <span data-ttu-id="ed6f0-p107">Obtém a ID do objeto Outline. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p107">Gets the ID of the Outline object. Read-only.</span></span>
+    <span data-ttu-id="ce0a2-p108">Obtém a ID do objeto Outline. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p108">Gets the ID of the Outline object. Read-only.</span></span>
 
 
-    <span data-ttu-id="ed6f0-131">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-131">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-133">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-133">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: id
   fullName: id
   langs:
@@ -155,10 +168,10 @@ items:
       - string
 - uid: onenote.OneNote.Outline.isTitle
   summary: >-
-    <span data-ttu-id="ed6f0-132">Verifique se o contorno é a estrutura de tópicos do título.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-132">Check if the outline is title outline.</span></span>
+    <span data-ttu-id="ce0a2-134">Verifique se o contorno é a estrutura de tópicos do título.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-134">Check if the outline is title outline.</span></span>
 
 
-    <span data-ttu-id="ed6f0-133">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-133">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-135">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-135">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: isTitle()
   fullName: isTitle
   langs:
@@ -171,15 +184,15 @@ items:
       - OfficeExtension.ClientResult<boolean>
       description: ''
 - uid: onenote.OneNote.Outline.load
-  summary: <span data-ttu-id="ed6f0-134">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-134">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="ed6f0-135">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-135">You must call "context.sync()" before reading the properties.</span></span>
+  summary: <span data-ttu-id="ce0a2-136">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-136">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="ce0a2-137">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-137">You must call "context.sync()" before reading the properties.</span></span>
   remarks: >-
-    <span data-ttu-id="ed6f0-136">Além dessa assinatura, esse método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="ed6f0-136">In addition to this signature, this method has the following signatures:</span></span>
+    <span data-ttu-id="ce0a2-138">Além dessa assinatura, esse método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="ce0a2-138">In addition to this signature, this method has the following signatures:</span></span>
 
 
-    <span data-ttu-id="ed6f0-137">`load(option?: { select?: string; expand?: string; }): OneNote.Outline`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-137">`load(option?: { select?: string; expand?: string; }): OneNote.Outline` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+    <span data-ttu-id="ce0a2-139">`load(option?: { select?: string; expand?: string; }): OneNote.Outline`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-139">`load(option?: { select?: string; expand?: string; }): OneNote.Outline` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
 
 
-    <span data-ttu-id="ed6f0-138">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline`-Só está disponível em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-138">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline` - Only available on collection types.</span></span> <span data-ttu-id="ed6f0-139">Ele é semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-139">It is similar to the preceding signature.</span></span> <span data-ttu-id="ed6f0-140">Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-140">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="ed6f0-141">Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-141">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="ed6f0-142">Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-142">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    <span data-ttu-id="ce0a2-140">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline`-Só está disponível em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-140">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline` - Only available on collection types.</span></span> <span data-ttu-id="ce0a2-141">Ele é semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-141">It is similar to the preceding signature.</span></span> <span data-ttu-id="ce0a2-142">Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-142">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="ce0a2-143">Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-143">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="ce0a2-144">Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-144">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
   name: load(option)
   fullName: load
   langs:
@@ -193,15 +206,15 @@ items:
       description: ''
     parameters:
     - id: option
-      description: <span data-ttu-id="ed6f0-143">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-143">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+      description: <span data-ttu-id="ce0a2-145">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-145">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
       type:
       - string | string[]
 - uid: onenote.OneNote.Outline.pageContent
   summary: >-
-    <span data-ttu-id="ed6f0-p110">Obtém o objeto PageContent que contém o Outline. Este objeto define a posição do Outline na página. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p110">Gets the PageContent object that contains the Outline. This object defines the position of the Outline on the page. Read-only.</span></span>
+    <span data-ttu-id="ce0a2-p111">Obtém o objeto PageContent que contém o Outline. Este objeto define a posição do Outline na página. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p111">Gets the PageContent object that contains the Outline. This object defines the position of the Outline on the page. Read-only.</span></span>
 
 
-    <span data-ttu-id="ed6f0-147">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-147">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-149">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-149">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: pageContent
   fullName: pageContent
   langs:
@@ -214,10 +227,10 @@ items:
       - onenote.OneNote.PageContent
 - uid: onenote.OneNote.Outline.paragraphs
   summary: >-
-    <span data-ttu-id="ed6f0-p111">Obtém o conjunto de objetos Paragraph presentes no Outline. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-p111">Gets the collection of Paragraph objects in the Outline. Read-only.</span></span>
+    <span data-ttu-id="ce0a2-p112">Obtém o conjunto de objetos Paragraph presentes no Outline. Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-p112">Gets the collection of Paragraph objects in the Outline. Read-only.</span></span>
 
 
-    <span data-ttu-id="ed6f0-150">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ed6f0-150">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="ce0a2-152">\[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="ce0a2-152">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
   name: paragraphs
   fullName: paragraphs
   langs:
@@ -229,6 +242,7 @@ items:
       type:
       - onenote.OneNote.ParagraphCollection
 - uid: onenote.OneNote.Outline.toJSON
+  summary: <span data-ttu-id="ce0a2-153">Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-153">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="ce0a2-154">(`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto OneNote.Outline original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `OneNote.Interfaces.OutlineData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-154">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.Outline object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.OutlineData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
   name: toJSON()
   fullName: toJSON
   langs:
@@ -241,7 +255,7 @@ items:
       - onenote.OneNote.Interfaces.OutlineData
       description: ''
 - uid: onenote.OneNote.Outline.track
-  summary: <span data-ttu-id="ed6f0-151">Rastrear o objeto para ajuste automático, com base em torno de alterações no documento.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-151">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="ed6f0-152">Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject).</span><span class="sxs-lookup"><span data-stu-id="ed6f0-152">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="ed6f0-153">Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-153">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
+  summary: <span data-ttu-id="ce0a2-155">Rastrear o objeto para ajuste automático, com base em torno de alterações no documento.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-155">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="ce0a2-156">Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject).</span><span class="sxs-lookup"><span data-stu-id="ce0a2-156">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="ce0a2-157">Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-157">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
   name: track()
   fullName: track
   langs:
@@ -254,7 +268,7 @@ items:
       - onenote.OneNote.Outline
       description: ''
 - uid: onenote.OneNote.Outline.untrack
-  summary: <span data-ttu-id="ed6f0-154">Versão a memória associada a este objeto, se tiver sido rastreado anteriormente.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-154">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="ed6f0-155">Essa chamada é um atalho para context.trackedObjects.remove(thisObject).</span><span class="sxs-lookup"><span data-stu-id="ed6f0-155">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="ed6f0-156">Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-156">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="ed6f0-157">Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.</span><span class="sxs-lookup"><span data-stu-id="ed6f0-157">You will need to call "context.sync()" before the memory release takes effect.</span></span>
+  summary: <span data-ttu-id="ce0a2-158">Versão a memória associada a este objeto, se tiver sido rastreado anteriormente.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-158">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="ce0a2-159">Essa chamada é um atalho para context.trackedObjects.remove(thisObject).</span><span class="sxs-lookup"><span data-stu-id="ce0a2-159">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="ce0a2-160">Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-160">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="ce0a2-161">Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.</span><span class="sxs-lookup"><span data-stu-id="ce0a2-161">You will need to call "context.sync()" before the memory release takes effect.</span></span>
   name: untrack()
   fullName: untrack
   langs:
