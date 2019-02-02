@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1c1907743ae61b2ee7420699f6ff46a32cde6c11
-ms.sourcegitcommit: 1d3a730f48caaabe5af4f1abb74802bc91b75f4e
+ms.openlocfilehash: a21743ba36a38ad2e52374855858862c9ed5bb74
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/25/2019
-ms.locfileid: "29539454"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29704552"
 items:
 - uid: outlook.Office.MessageCompose
   summary: >-
@@ -60,14 +60,14 @@ items:
 
 
     \[[Conjunto de APIs: caixa de correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr>\n\n<tr><td>Erros</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>\n\nAlém dessa assinatura, o método também tem as seguintes assinaturas:\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
+  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr>\n\n<tr><td>Erros</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>\n\nAlém dessa assinatura, o método também tem as seguintes assinaturas:\n\n`addFileAttachmentAsync(uri: string, attachmentName: string): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, options: AsyncContextOptions): void;`\n\n`addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction callback(result) {\n    if (result.error) {\n        showMessage(result.error);\n    } else {\n        showMessage(\"Attachment added\");\n    }\n}\n\nfunction addAttachment() {\n    // The values in asyncContext can be accessed in the callback\n    var options = { 'asyncContext': { var1: 1, var2: 2 } };\n\n    var attachmentURL = \"https://contoso.com/rtm/icon.png\";\n    Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);\n}\n```\n```javascript\n// The following example adds an image file as an inline attachment and\n// references the attachment in the message body.\nOffice.context.mailbox.item.addFileAttachmentAsync\n(\n    \"http://i.imgur.com/WJXklif.png\",\n    \"cute_bird.png\",\n    {\n        isInline: true\n    },\n    function (asyncResult) {\n        Office.context.mailbox.item.body.setAsync(\n            \"<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>\",\n            {\n                \"coercionType\": \"html\"\n            },\n            function (asyncResult) {\n                \n            });\n    });\n```"
   name: addFileAttachmentAsync(uri, attachmentName, options, callback)
   fullName: addFileAttachmentAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -88,13 +88,13 @@ items:
     - id: callback
       description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Em caso de sucesso, o identificador de anexo será fornecido na propriedade asyncResult.value. Se o carregamento de anexo falhar, o objeto asyncResult conterá um objeto Error que fornece uma descrição do erro.
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.addFileAttachmentFromBase64Async
   summary: >-
     Adiciona um arquivo a uma mensagem ou um compromisso como um anexo.
 
 
-    O método addFileAttachmentFromBase64Async carrega o arquivo a partir da codificação base64 e o anexa ao item no formato redação. Esse método retorna o identificador de anexo no objeto AsyncResult.value.
+    O método addFileAttachmentFromBase64Async carrega o arquivo a partir da codificação base64 e o anexa ao item no formato redação. Esse método retorna o identificador de anexo no objeto asyncResult.value.
 
 
     Posteriormente, você pode usar o identificador com o método removeAttachmentAsync para remover o anexo na mesma sessão.
@@ -110,7 +110,7 @@ items:
 
     <tr><td>Erros</td><td>AttachmentSizeExceeded - o anexo é maior do que o permitido.</td></tr><tr><td></td><td>FileTypeNotSupported - o anexo tem uma extensão que não é permitida.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - a mensagem ou um compromisso tem muitos anexos.</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -138,7 +138,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -157,9 +157,9 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo asyncResult. Em caso de sucesso, o identificador de anexo será fornecido na propriedade asyncResult.value. Se o carregamento de anexo falhar, o objeto asyncResult conterá um objeto Error que fornece uma descrição do erro.
+      description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Em caso de sucesso, o identificador de anexo será fornecido na propriedade asyncResult.value. Se o carregamento de anexo falhar, o objeto asyncResult conterá um objeto Error que fornece uma descrição do erro.
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.addHandlerAsync
   summary: >-
     Adiciona um manipulador de eventos a um evento com suporte.
@@ -179,14 +179,14 @@ items:
     Além dessa assinatura, o método também tem a seguinte assinatura:
 
 
-    `addHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+    `addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: addHandlerAsync(eventType, handler, options, callback)
   fullName: addHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'addHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: any, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -195,7 +195,7 @@ items:
     - id: eventType
       description: O evento que deve invocar o manipulador.
       type:
-      - EventType
+      - Office.EventType
     - id: handler
       description: A função para manipular o evento. A função deve aceitar um único parâmetro, que é um objeto literal. A propriedade type do parâmetro isso coincidirá com o parâmetro eventType passado para addHandlerAsync.
       type:
@@ -207,7 +207,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.addItemAttachmentAsync
   summary: >-
     Adiciona um item do Exchange, como uma mensagem, como anexo na mensagem ou no compromisso.
@@ -242,7 +242,7 @@ items:
     `addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions): void;`
 
 
-    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: Office.AsyncResult<string>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -280,7 +280,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -299,9 +299,9 @@ items:
       type:
       - office.Office.AsyncContextOptions
     - id: callback
-      description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo AsyncResult. Em caso de sucesso, o identificador de anexo será fornecido na propriedade asyncResult.value. Se o anexo a adição falhar, o objeto asyncResult conterá um objeto Error que fornece uma descrição do erro.
+      description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Em caso de sucesso, o identificador de anexo será fornecido na propriedade asyncResult.value. Se o anexo a adição falhar, o objeto asyncResult conterá um objeto Error que fornece uma descrição do erro.
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.bcc
   summary: >-
     Obtém um objeto que fornece métodos para acessar ou atualizar os destinatários na linha Cco (com cópia oculta) de uma mensagem.
@@ -314,7 +314,7 @@ items:
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -358,16 +358,16 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'body: Office.Body;'
+    content: 'body: Body;'
     return:
       type:
-      - outlook.Office.Body
+      - Body
 - uid: outlook.Office.MessageCompose.cc
   summary: >-
     Fornece acesso aos destinatários na linha Cc (com cópia) de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
 
-    Propriedade cc retorna um objeto de [Office.Recipients](xref:outlook.Office.Recipients) que fornece os métodos para obter ou atualizar os destinatários na linha Cc da mensagem.
+    Propriedade cc retorna um objeto [Office.Recipients](xref:outlook.Office.Recipients) que fornece os métodos para obter ou atualizar os destinatários na linha Cc da mensagem.
 
 
     \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -377,7 +377,7 @@ items:
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -406,7 +406,7 @@ items:
       - Recipients
 - uid: outlook.Office.MessageCompose.close
   summary: >-
-    Fecha o item atual que está sendo composto.
+    Fecha o item atual que está sendo composto
 
 
     Os comportamentos do método close depende do estado atual do item que está sendo composto. Se o item possui alterações não salvas, o cliente solicita ao usuário salvar, descartar ou fechar a ação.
@@ -525,7 +525,7 @@ items:
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -544,17 +544,17 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'from: Office.From;'
+    content: 'from: From;'
     return:
       type:
-      - outlook.Office.From
+      - From
 - uid: outlook.Office.MessageCompose.getAttachmentsAsync
   summary: >-
     Obtém os anexos do item como uma matriz.
 
 
     \[[Conjunto de APIs: visualização da caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever</td></tr></table>Exemplos\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  remarks: "<table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever</td></tr></table>\n####Exemplos\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
   isPreview: true
   name: getAttachmentsAsync(options, callback)
   fullName: getAttachmentsAsync
@@ -562,7 +562,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<AttachmentDetails[]>) => void): void;'
     return:
       type:
       - void
@@ -575,7 +575,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Se a chamada falhar, a propriedade asyncResult.error conterá e código de erro com o motivo da falha.
       type:
-      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
+      - '(result: Office.AsyncResult<AttachmentDetails[]>) => void'
 - uid: outlook.Office.MessageCompose.getInitializationContextAsync
   summary: >-
     Obtém dados de inicialização que são transmitidos quando o suplemento é ativado por uma mensagem acionável.
@@ -600,7 +600,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -613,7 +613,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Em caso de sucesso, os dados de inicialização são fornecidos na propriedade asyncResult.value como uma cadeia de caracteres. Se não houver nenhum contexto de inicialização, o objeto asyncResult irá conter um objeto Error com sua propriedade de código definido como 9020 e sua propriedade name definido como GenericResponseError.
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.MessageCompose.getSelectedDataAsync
   summary: >-
     Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
@@ -632,7 +632,7 @@ items:
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -663,7 +663,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSelectedDataAsync(coercionType: Office.CoercionType, callback: (result: AsyncResult<any>) => void): void;'
+    content: 'getSelectedDataAsync(coercionType: Office.CoercionType, callback: (result: Office.AsyncResult<any>) => void): void;'
     return:
       type:
       - void
@@ -676,7 +676,7 @@ items:
     - id: callback
       description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
       type:
-      - '(result: AsyncResult<any>) => void'
+      - '(result: Office.AsyncResult<any>) => void'
 - uid: outlook.Office.MessageCompose.internetHeaders
   summary: >-
     Define os cabeçalhos de internet de uma mensagem.
@@ -698,7 +698,7 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'internetHeaders: Office.InternetHeaders;'
+    content: 'internetHeaders: InternetHeaders;'
     return:
       type:
       - outlook.Office.InternetHeaders
@@ -722,10 +722,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'itemType: Office.MailboxEnums.ItemType;'
+    content: 'itemType: MailboxEnums.ItemType;'
     return:
       type:
-      - outlook.Office.MailboxEnums.ItemType
+      - MailboxEnums.ItemType
 - uid: outlook.Office.MessageCompose.loadCustomPropertiesAsync
   summary: >-
     Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.
@@ -749,7 +749,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: AsyncResult<Office.CustomProperties>) => void, userContext?: any): void;'
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -758,7 +758,7 @@ items:
     - id: callback
       description: Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
       type:
-      - '(result: AsyncResult<Office.CustomProperties>) => void'
+      - '(result: Office.AsyncResult<CustomProperties>) => void'
     - id: userContext
       description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Este objeto pode ser acessado pela propriedade asyncResult.asyncContext na função de retorno de chamada.
       type:
@@ -780,10 +780,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'notificationMessages: Office.NotificationMessages;'
+    content: 'notificationMessages: NotificationMessages;'
     return:
       type:
-      - outlook.Office.NotificationMessages
+      - NotificationMessages
 - uid: outlook.Office.MessageCompose.recurrence
   summary: >-
     Obtém ou configura o padrão de recorrência de um compromisso. Obtém o padrão de recorrência de uma solicitação de reunião. Modos de leitura e redação para itens do compromisso. Modo de leitura para os itens de solicitação de reunião.
@@ -842,7 +842,7 @@ items:
     `removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions): void;`
 
 
-    `removeAttachmentAsync(attachmentId: string, callback: (result: AsyncResult<void>) => void): void;`
+    `removeAttachmentAsync(attachmentId: string, callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -867,7 +867,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -884,7 +884,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult. Se o anexo a remoção falhar, a propriedade asyncResult.error conterá um código de erro com o motivo da falha.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.removeHandlerAsync
   summary: >-
     Remove um manipulador de eventos para um tipo de evento com suporte.
@@ -904,14 +904,14 @@ items:
     Além dessa assinatura, o método também tem a seguinte assinatura:
 
 
-    `removeHandlerAsync(eventType:EventType, callback?: (result: AsyncResult<void>) => void): void;`
+    `removeHandlerAsync(eventType: Office.EventType, callback?: (result: Office.AsyncResult<void>) => void): void;`
   name: removeHandlerAsync(eventType, options, callback)
   fullName: removeHandlerAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'removeHandlerAsync(eventType:EventType, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType: Office.EventType, options?: any, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -920,7 +920,7 @@ items:
     - id: eventType
       description: O evento que deve revogar o manipulador.
       type:
-      - EventType
+      - Office.EventType
     - id: options
       description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejam acessar o método de retorno de chamada.'
       type:
@@ -928,7 +928,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro, asyncResult, que é um objeto Office.AsyncResult.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.saveAsync
   summary: >-
     Salva um item de forma assíncrona.
@@ -972,7 +972,7 @@ items:
     `saveAsync(options: Office.AsyncContextOptions): void;`
 
 
-    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+    `saveAsync(callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -1006,7 +1006,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1019,7 +1019,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.seriesId
   summary: >-
     Obtém a id da série a qual uma instância pertence.
@@ -1028,7 +1028,7 @@ items:
     No OWA e no Outlook, o seriesId retorna a ID de serviços Web do Exchange (EWS) do item pai (série) que este item pertence. No entanto, em iOS e Android, o seriesId retorna a ID do restante do item pai.
 
 
-    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter detalhes, confira [Usar APIs REST do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api).
+    Observação: O identificador retornado pela propriedade seriesId é o mesmo que o identificador do item de serviços Web do Exchange. A propriedade seriesId não é idêntica às IDs do Outlook usada pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [Use as APIs do restante do Outlook de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 
 
     A propriedade seriesId retorna null para itens que não têm itens pai, como o único compromissos, itens de série, ou solicitações de reunião e retorna indefinido para todos os itens que não fazem solicitações de reunião.
@@ -1078,7 +1078,7 @@ items:
     `setSelectedDataAsync(data: string, options: Office.AsyncContextOptions & CoercionTypeOptions): void;`
 
 
-    `setSelectedDataAsync(data: string, callback: (result: AsyncResult<void>) => void): void;`
+    `setSelectedDataAsync(data: string, callback: (result: Office.AsyncResult<void>) => void): void;`
 
     #### <a name="examples"></a>Exemplos
 
@@ -1096,7 +1096,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -1113,7 +1113,7 @@ items:
     - id: callback
       description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'
 - uid: outlook.Office.MessageCompose.subject
   summary: >-
     Obtém ou define a descrição que aparece no campo de assunto de um item.
@@ -1132,7 +1132,7 @@ items:
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
 
-    ####
+    ####Exemplos
 
 
     ```javascript
@@ -1168,7 +1168,9 @@ items:
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>Examples
+    <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Composição de mensagem</td></tr></table>
+
+    ####Exemplos
 
 
     ```javascript
