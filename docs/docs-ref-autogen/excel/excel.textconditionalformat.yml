@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 84d9bbc70d85f1cc092218f4f43b47b4827eb5e1
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: 9968ecc0ab7a15cc7c868a0527cfb9b20b63343a
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724714"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769110"
 items:
 - uid: excel.Excel.TextConditionalFormat
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.TextConditionalFormat.format
   - excel.Excel.TextConditionalFormat.load
   - excel.Excel.TextConditionalFormat.rule
+  - excel.Excel.TextConditionalFormat.set
   - excel.Excel.TextConditionalFormat.toJSON
 - uid: excel.Excel.TextConditionalFormat.context
   summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
@@ -98,6 +99,33 @@ items:
       type:
       - excel.Excel.ConditionalTextComparisonRule
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B16:D18\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.containsText);\n    conditionalFormat.textComparison.format.font.color = \"red\";\n    conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: \"Delayed\" };\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.TextConditionalFormat.set
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Esse método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.TextConditionalFormat): void`
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.TextConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: Um objeto de JavaScript com propriedades que são estruturadas isomorphically às propriedades do objeto no qual o método é chamado.
+      type:
+      - Interfaces.TextConditionalFormatUpdateData
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.TextConditionalFormat.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.TextConditionalFormat original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.TextConditionalFormatData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()

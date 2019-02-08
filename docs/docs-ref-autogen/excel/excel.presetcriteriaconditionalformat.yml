@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b25f9a9508a221fb18c36da566c0523ce1271a82
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: a6fd797ad1fa718951fbca172f25efde753c2a5e
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724504"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769754"
 items:
 - uid: excel.Excel.PresetCriteriaConditionalFormat
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.PresetCriteriaConditionalFormat.format
   - excel.Excel.PresetCriteriaConditionalFormat.load
   - excel.Excel.PresetCriteriaConditionalFormat.rule
+  - excel.Excel.PresetCriteriaConditionalFormat.set
   - excel.Excel.PresetCriteriaConditionalFormat.toJSON
 - uid: excel.Excel.PresetCriteriaConditionalFormat.context
   summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
@@ -97,6 +98,33 @@ items:
       type:
       - excel.Excel.ConditionalPresetCriteriaRule
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:M5\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.presetCriteria);\n    conditionalFormat.preset.format.font.color = \"white\";\n    conditionalFormat.preset.rule = { criterion: Excel.ConditionalFormatPresetCriterion.oneStdDevAboveAverage };\n\n    await context.sync();\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);\n    conditionalFormat.custom.rule.formula = '=IF(B8>INDIRECT(\"RC[-1]\",0),TRUE)';\n    conditionalFormat.custom.format.font.color = \"green\";\n\n    await context.sync();\n});\n```"
+- uid: excel.Excel.PresetCriteriaConditionalFormat.set
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Esse método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.PresetCriteriaConditionalFormat): void`
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.PresetCriteriaConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: Um objeto de JavaScript com propriedades que são estruturadas isomorphically às propriedades do objeto no qual o método é chamado.
+      type:
+      - Interfaces.PresetCriteriaConditionalFormatUpdateData
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.PresetCriteriaConditionalFormat.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.PresetCriteriaConditionalFormat original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.PresetCriteriaConditionalFormatData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
