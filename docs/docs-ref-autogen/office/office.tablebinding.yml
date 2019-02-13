@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 27d48a51f19010dde231703142ec1329bf42c7f7
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 3b11a41affca0912cb50d65dd94b8330d40b8b34
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26995469"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979502"
 items:
 - uid: office.Office.TableBinding
   summary: Representa uma associação em duas dimensões de linhas e colunas, opcionalmente com cabeçalhos.
@@ -22,19 +22,26 @@ items:
   - typeScript
   type: interface
   extends:
-  - Binding
+  - 'Binding '
   package: office
   children:
   - office.Office.TableBinding.addColumnsAsync
+  - office.Office.TableBinding.addColumnsAsync_1
   - office.Office.TableBinding.addRowsAsync
+  - office.Office.TableBinding.addRowsAsync_1
   - office.Office.TableBinding.clearFormatsAsync
-  - office.Office.TableBinding.columnCount
+  - office.Office.TableBinding.clearFormatsAsync_1
   - office.Office.TableBinding.deleteAllDataValuesAsync
+  - office.Office.TableBinding.deleteAllDataValuesAsync_1
   - office.Office.TableBinding.getFormatsAsync
+  - office.Office.TableBinding.getFormatsAsync_1
+  - office.Office.TableBinding.setFormatsAsync
+  - office.Office.TableBinding.setFormatsAsync_1
+  - office.Office.TableBinding.setTableOptionsAsync
+  - office.Office.TableBinding.setTableOptionsAsync_1
+  - office.Office.TableBinding.columnCount
   - office.Office.TableBinding.hasHeaders
   - office.Office.TableBinding.rowCount
-  - office.Office.TableBinding.setFormatsAsync
-  - office.Office.TableBinding.setTableOptionsAsync
 - uid: office.Office.TableBinding.addColumnsAsync
   summary: Adiciona os dados especificados na tabela como colunas adicionais.
   remarks: >-
@@ -111,7 +118,7 @@ items:
 
     ```
   name: addColumnsAsync(tableData, options, callback)
-  fullName: addColumnsAsync
+  fullName: addColumnsAsync(tableData, options, callback)
   langs:
   - typeScript
   type: method
@@ -130,6 +137,57 @@ items:
       description: Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterado, para uso em um retorno de chamada.
       type:
       - office.Office.AsyncContextOptions
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.addColumnsAsync_1
+  summary: Adiciona os dados especificados na tabela como colunas adicionais.
+  remarks: >-
+    Para adicionar uma ou mais especificando os valores dos dados e cabeçalhos de colunas, passe um objeto de tabela como o parâmetro de dados. Para adicionar uma ou mais colunas especificando somente os dados, passe uma matriz de matrizes ("matrix") como o parâmetro de dados.
+
+
+    O sucesso ou falha de uma operação addColumnsAsync é atômica. Ou seja, toda a adicionar colunas de operação deve ter êxito, ou ele será completamente revertido (e a propriedade AsyncResult.status retornada para o retorno de chamada relatará falha):
+
+
+    - Cada linha da matriz em que você passa como o argumento de dados deve ter o mesmo número de linhas que a tabela que está sendo atualizado. Caso contrário, toda a operação falhará.
+
+
+    - Cada linha e célula na matriz devem adicionar com êxito essa linha ou célula à tabela nas colunas recém-adicionadas. Se qualquer linha ou célula falhar em ser definida por qualquer motivo, toda a operação falhará.
+
+
+    - Se você passar um objeto tabela como o argumento de dados, o número de linhas de cabeçalho deve coincidir da tabela que está sendo atualizada.
+
+
+    Comentário adicional para o Excel Online: O número total de células na tabela objeto passado para o parâmetro de dados não pode exceder 20.000 em uma única chamada deste método.
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: addColumnsAsync(tableData, callback)
+  fullName: addColumnsAsync(tableData, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addColumnsAsync(tableData: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: tableData
+      description: Uma matriz de matrizes ("matrix") ou um objeto de tabela que contém uma ou mais colunas de dados para adicionar à tabela. Obrigatório.
+      type:
+      - TableData | any[][]
     - id: callback
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
@@ -177,7 +235,7 @@ items:
 
     ```
   name: addRowsAsync(rows, options, callback)
-  fullName: addRowsAsync
+  fullName: addRowsAsync(rows, options, callback)
   langs:
   - typeScript
   type: method
@@ -196,6 +254,54 @@ items:
       description: Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterado, para uso em um retorno de chamada.
       type:
       - office.Office.AsyncContextOptions
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.addRowsAsync_1
+  summary: Adiciona os dados especificados na tabela como linhas adicionais.
+  remarks: >-
+    O sucesso ou falha de uma operação addRowsAsync é atômica. Ou seja, toda a adicionar colunas de operação deve ter êxito, ou ele será completamente revertido (e a propriedade AsyncResult.status retornada para o retorno de chamada relatará falha):
+
+
+    - Cada linha da matriz em que você passa como o argumento de dados deve ter o mesmo número de colunas que a tabela que está sendo atualizado. Caso contrário, toda a operação falhará.
+
+
+    - Cada coluna e uma célula na matriz com êxito devem adicionar essa coluna ou uma célula à tabela nas linhas recém-adicionado (s). Se qualquer coluna ou célula falhar a ser definido por qualquer motivo, toda a operação falhará.
+
+
+    - Se você passar um objeto tabela como o argumento de dados, o número de linhas de cabeçalho deve coincidir da tabela que está sendo atualizada.
+
+
+    Comentário adicional para o Excel Online: O número total de células na tabela objeto passado para o parâmetro de dados não pode exceder 20.000 em uma única chamada deste método.
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: addRowsAsync(rows, callback)
+  fullName: addRowsAsync(rows, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addRowsAsync(rows: TableData | any[][], callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: rows
+      description: Uma matriz de matrizes ("matrix") ou um objeto de tabela que contém uma ou mais linhas de dados para adicionar à tabela. Obrigatório.
+      type:
+      - TableData | any[][]
     - id: callback
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
@@ -228,7 +334,7 @@ items:
 
     ```
   name: clearFormatsAsync(options, callback)
-  fullName: clearFormatsAsync
+  fullName: clearFormatsAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -247,19 +353,38 @@ items:
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
       - '(result: AsyncResult<void>) => void'
-- uid: office.Office.TableBinding.columnCount
-  summary: Obtém o número de colunas no TableBinding, como um valor inteiro.
-  remarks: "**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction showBindingColumnCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Column: \" + asyncResult.value.columnCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: columnCount
-  fullName: columnCount
+- uid: office.Office.TableBinding.clearFormatsAsync_1
+  summary: Limpa a formatação na tabela associada.
+  remarks: >-
+    Consulte [as tabelas de formato em suplementos do Excel](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table) para obter mais informações.
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: clearFormatsAsync(callback)
+  fullName: clearFormatsAsync(callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'columnCount: number;'
+    content: 'clearFormatsAsync(callback?: (result: AsyncResult<void>) => void): void;'
     return:
       type:
-      - number
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.TableBinding.deleteAllDataValuesAsync
   summary: Exclui todas as linhas que não são de cabeçalho e seus valores na tabela, fazendo o deslocamento adequado para o aplicativo host.
   remarks: >-
@@ -291,7 +416,7 @@ items:
 
     ```
   name: deleteAllDataValuesAsync(options, callback)
-  fullName: deleteAllDataValuesAsync
+  fullName: deleteAllDataValuesAsync(options, callback)
   langs:
   - typeScript
   type: method
@@ -306,6 +431,38 @@ items:
       description: Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterado, para uso em um retorno de chamada.
       type:
       - office.Office.AsyncContextOptions
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.deleteAllDataValuesAsync_1
+  summary: Exclui todas as linhas que não são de cabeçalho e seus valores na tabela, fazendo o deslocamento adequado para o aplicativo host.
+  remarks: >-
+    No Excel, se a tabela não tiver nenhuma linha de cabeçalho, esse método excluirá a tabela em si.
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: deleteAllDataValuesAsync(callback)
+  fullName: deleteAllDataValuesAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'deleteAllDataValuesAsync(callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
     - id: callback
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
@@ -330,7 +487,7 @@ items:
 
     O `format:` propriedade especifica a caixa de valores que correspondem a um subconjunto das configurações disponíveis na caixa de diálogo Formatar células no Excel (clique com o botão &gt; Formatar células ou residência &gt; formato &gt; Formatar células).
   name: getFormatsAsync(cellReference, formats, options, callback)
-  fullName: getFormatsAsync
+  fullName: getFormatsAsync(cellReference, formats, options, callback)
   langs:
   - typeScript
   type: method
@@ -357,37 +514,54 @@ items:
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->. O `value` propriedade do resultado é uma matriz que contém um ou mais objetos do JavaScript, especificando a formatação de suas células correspondentes.
       type:
       - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
-- uid: office.Office.TableBinding.hasHeaders
-  summary: True se a tabela tem cabeçalhos; Caso contrário false.
-  remarks: "**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction showBindingHasHeaders() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Binding has headers: \" + asyncResult.value.hasHeaders);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: hasHeaders
-  fullName: hasHeaders
+- uid: office.Office.TableBinding.getFormatsAsync_1
+  summary: Obtém a formatação em itens especificados na tabela.
+  remarks: >-
+    **Estrutura de formato de retornado**
+
+
+    Cada objeto de JavaScript da matriz de valores de retorno tem este formato:`{cells:{ cell_range }, format:{ format_definition }}`
+
+
+    O `cells:` propriedade especifica o intervalo que você deseja usar formatação usando um dos seguintes valores:
+
+
+    **Intervalos com suporte na propriedade das células**
+
+
+    <table> <tr> <th>configurações de intervalo de células</th> <th>Descrição</th> </tr> <tr> <td>`{row: n}`</td> <td>Especifica o intervalo que é baseado em zero enésima linha de dados da tabela.</td> </tr> <tr> <td>`{column: n}`</td> <td>Especifica o intervalo que é a coluna enésima baseado em zero de dados da tabela.</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>Especifica a célula única que é a coluna de linha e jth de pagamento da tabela.</td> </tr> <tr> <td>`Office.Table.All`</td> <td>Especifica a tabela inteira, incluindo cabeçalhos de coluna, dados e totais (se houver).</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>Especifica apenas os dados na tabela (sem cabeçalhos e totais).</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>Especifica somente a linha de cabeçalho.</td> </tr> </table>
+
+
+    O `format:` propriedade especifica a caixa de valores que correspondem a um subconjunto das configurações disponíveis na caixa de diálogo Formatar células no Excel (clique com o botão &gt; Formatar células ou residência &gt; formato &gt; Formatar células).
+  name: getFormatsAsync(cellReference, formats, callback)
+  fullName: getFormatsAsync(cellReference, formats, callback)
   langs:
   - typeScript
-  type: property
+  type: method
   syntax:
-    content: 'hasHeaders: boolean;'
+    content: 'getFormatsAsync(cellReference?: any, formats?: any[], callback?: (result: AsyncResult< ({ cells: any, format: any})[]>) => void): void;'
     return:
       type:
-      - boolean
-- uid: office.Office.TableBinding.rowCount
-  summary: Obtém o número de linhas no TableBinding, como um valor inteiro.
-  remarks: "Quando você insere uma tabela vazia selecionando uma única linha no Excel 2013 e no Excel Online a ambos os aplicativos de host do Office (usando a tabela na guia Inserir), criam uma única linha de cabeçalhos seguidos por uma única linha em branco. No entanto, se script do add-in cria uma ligação para isso recentemente inserido tabela (por exemplo, usando o [Office.Bindings](xref:office.Office.Bindings)<!-- -->método .addFromSelectionAsync) e verifica o valor da propriedade rowCount, o valor retornado será diferente Dependendo se a planilha é aberta no Excel 2013 ou Excel Online.\n\n- No Excel na área de trabalho, rowCount retornará 0 (a linha em branco após os cabeçalhos não é contabilizada).\n\n- No Excel Online, rowCount retornará 1 (a linha em branco após os cabeçalhos é contabilizada).\n\nVocê pode contornar essa diferença em seu script, verificando se rowCount = = 1 e em caso afirmativo, verificando se a linha contém todas as cadeias de caracteres vazias.\n\nEm conteúdo suplementos para o Access, por motivos de desempenho a propriedade rowCount sempre retornará -1.\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction showBindingRowCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Rows: \" + asyncResult.value.rowCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: rowCount
-  fullName: rowCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rowCount: number;'
-    return:
+      - void
+      description: ''
+    parameters:
+    - id: cellReference
+      description: Um literal que contém os pares nome-valor que especificam o intervalo de células para obter a formatação do objeto.
       type:
-      - number
+      - any
+    - id: formats
+      description: Uma matriz especificando as propriedades de formato a ser obtido.
+      type:
+      - any[]
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->. O `value` propriedade do resultado é uma matriz que contém um ou mais objetos do JavaScript, especificando a formatação de suas células correspondentes.
+      type:
+      - '(result: AsyncResult< ({ cells: any, format: any})[]>) => void'
 - uid: office.Office.TableBinding.setFormatsAsync
   summary: Define a formatação em itens especificados e dados da tabela.
   remarks: "**Especificando o parâmetro cellFormat**\n\nUse o parâmetro cellFormat para definir ou alterar valores, como a largura, altura, fonte, plano de fundo, alinhamento e assim por diante de formatação de célula. O valor que você passar como o parâmetro cellFormat é uma matriz que contém uma lista de um ou mais JavaScript objetos que especificam quais células de destino (`cells:`<!-- -->) e os formatos (`format:`<!-- -->) para aplicar a eles.\n\nCada objeto de JavaScript na matriz cellFormat tem este formato:`{cells:{ cell_range }, format:{ format_definition }}`\n\nO `cells:` propriedade especifica o intervalo que você deseja usar formatação usando um dos seguintes valores:\n\n**Intervalos com suporte na propriedade das células**\n\n<table> <tr> <th>configurações de intervalo de células</th> <th>Descrição</th> </tr> <tr> <td>`{row: n}`</td> <td>Especifica o intervalo que é baseado em zero enésima linha de dados da tabela.</td> </tr> <tr> <td>`{column: n}`</td> <td>Especifica o intervalo que é a coluna enésima baseado em zero de dados da tabela.</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>Especifica a célula única que é a coluna de linha e jth de pagamento da tabela.</td> </tr> <tr> <td>`Office.Table.All`</td> <td>Especifica a tabela inteira, incluindo cabeçalhos de coluna, dados e totais (se houver).</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>Especifica apenas os dados na tabela (sem cabeçalhos e totais).</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>Especifica somente a linha de cabeçalho.</td> </tr> </table>\n\nO `format:` propriedade especifica a caixa de valores que correspondem a um subconjunto das configurações disponíveis na caixa de diálogo Formatar células no Excel (clique com o botão &gt; Formatar células ou residência &gt; formato &gt; Formatar células).\n\nEspecificar o valor do `format:` a propriedade como uma lista de nome de propriedade de um ou mais - pares de valor em um objeto de JavaScript literal. O nome da propriedade especifica o nome da propriedade formatação para definir e valor Especifica o valor da propriedade. Você pode especificar vários valores para um determinado formato, como tanto o cor e o tamanho da fonte.\n\nAqui é três `format:` exemplos de valor de propriedade:\n\n`//Set cells: font color to green and size to 15 points.`\n\n`format: {fontColor : \"green\", fontSize : 15}`\n\n`//Set cells: border to dotted blue.`\n\n`format: {borderStyle: \"dotted\", borderColor: \"blue\"}`\n\n`//Set cells: background to red and alignment to centered.`\n\n`format: {backgroundColor: \"red\", alignHorizontal: \"center\"}`\n\nVocê pode especificar os formatos de número, especificando o número de formatação de cadeia de caracteres \"código\" no `numberFormat:` propriedade. As cadeias de caracteres numéricas do formato, que você pode especificar correspondem às que você pode definir no Excel usando na categoria personalizada na guia número da caixa de diálogo Formatar células. Este exemplo mostra como formatar um número como uma porcentagem com duas casas decimais:\n\n`format: {numberFormat:\"0.00%\"}`\n\nPara obter mais detalhes, consulte como [criar um formato de número personalizado](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->.\n\nPara definir a formatação em tabelas ao gravar dados, use os parâmetros opcionais tableOptions e cellFormat do `Document.setSelectedDataAsync` ou `TableBinding.setDataAsync` métodos.\n\nA definição de formatação com os parâmetros opcionais do `Document.setSelectedDataAsync` e `TableBinding.setDataAsync` métodos funciona apenas para definir a formatação ao gravar dados da primeira tempo. Para fazer alterações de formatação depois de gravar dados, use os seguintes métodos:\n\n- Para atualizar a formatação de célula, como a cor da fonte e o estilo, use o `TableBinding.setFormatsAsync` método (esse método).\n\n- Para atualizar as opções de tabela, como linhas de faixa e botões de filtro, use o `TableBinding.setTableOptions` método.\n\n- Para limpar formatação, use o `TableBinding.clearFormats` método.\n\nPara obter mais detalhes e exemplos, consulte [como formatar tabelas de suplementos do Excel](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)<!-- -->.\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Specifying a single target\n// The following example shows a cellFormat value that sets the font color of the header row to red.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: Office.Table.Headers, format: {fontColor: \"red\"}}], \n    function (asyncResult){});\n\n// Specifying multiple targets\n// The setFormatsAsync method can support formatting multiple targets within the bound table in a \n// single function call. To do that, you pass a list of objects in the cellFormat array \n// for each target that you want to format.\n// For example, the following line of code will set the font color of the first row yellow, \n// and the fourth cell in the third row to have a white border and bold text.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: {row: 1}, format: {fontColor: \"yellow\"}}, \n        {cells: {row: 3, column: 4}, format: {borderColor: \"white\", fontStyle: \"bold\"}}], \n    function (asyncResult){});\n\n// Additional remarks for Excel Online\n// The number of formatting groups passed to the cellFormat parameter can't exceed 100. \n// A single formatting group consists of a set of formatting applied to a specified range of cells. \n// For example, the following call passes two formatting groups to cellFormat.\nOffice.select(\"bindings#myBinding\").setFormatsAsync(\n    [{cells: {row: 1}, format: {fontColor: \"yellow\"}}, \n        {cells: {row: 3, column: 4}, format: {borderColor: \"white\", fontStyle: \"bold\"}}], \n    function (asyncResult){});\n```"
   name: setFormatsAsync(cellFormat, options, callback)
-  fullName: setFormatsAsync
+  fullName: setFormatsAsync(cellFormat, options, callback)
   langs:
   - typeScript
   type: method
@@ -410,11 +584,116 @@ items:
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.setFormatsAsync_1
+  summary: Define a formatação em itens especificados e dados da tabela.
+  remarks: >-
+    **Especificando o parâmetro cellFormat**
+
+
+    Use o parâmetro cellFormat para definir ou alterar valores, como a largura, altura, fonte, plano de fundo, alinhamento e assim por diante de formatação de célula. O valor que você passar como o parâmetro cellFormat é uma matriz que contém uma lista de um ou mais JavaScript objetos que especificam quais células de destino (`cells:`<!-- -->) e os formatos (`format:`<!-- -->) para aplicar a eles.
+
+
+    Cada objeto de JavaScript na matriz cellFormat tem este formato:`{cells:{ cell_range }, format:{ format_definition }}`
+
+
+    O `cells:` propriedade especifica o intervalo que você deseja usar formatação usando um dos seguintes valores:
+
+
+    **Intervalos com suporte na propriedade das células**
+
+
+    <table> <tr> <th>configurações de intervalo de células</th> <th>Descrição</th> </tr> <tr> <td>`{row: n}`</td> <td>Especifica o intervalo que é baseado em zero enésima linha de dados da tabela.</td> </tr> <tr> <td>`{column: n}`</td> <td>Especifica o intervalo que é a coluna enésima baseado em zero de dados da tabela.</td> </tr> <tr> <td>`{row: i, column: j}`</td> <td>Especifica a célula única que é a coluna de linha e jth de pagamento da tabela.</td> </tr> <tr> <td>`Office.Table.All`</td> <td>Especifica a tabela inteira, incluindo cabeçalhos de coluna, dados e totais (se houver).</td> </tr> <tr> <td>`Office.Table.Data`</td> <td>Especifica apenas os dados na tabela (sem cabeçalhos e totais).</td> </tr> <tr> <td>`Office.Table.Headers`</td> <td>Especifica somente a linha de cabeçalho.</td> </tr> </table>
+
+
+    O `format:` propriedade especifica a caixa de valores que correspondem a um subconjunto das configurações disponíveis na caixa de diálogo Formatar células no Excel (clique com o botão &gt; Formatar células ou residência &gt; formato &gt; Formatar células).
+
+
+    Especificar o valor do `format:` a propriedade como uma lista de nome de propriedade de um ou mais - pares de valor em um objeto de JavaScript literal. O nome da propriedade especifica o nome da propriedade formatação para definir e valor Especifica o valor da propriedade. Você pode especificar vários valores para um determinado formato, como tanto o cor e o tamanho da fonte.
+
+
+    Aqui é três `format:` exemplos de valor de propriedade:
+
+
+    `//Set cells: font color to green and size to 15 points.`
+
+
+    `format: {fontColor : "green", fontSize : 15}`
+
+
+    `//Set cells: border to dotted blue.`
+
+
+    `format: {borderStyle: "dotted", borderColor: "blue"}`
+
+
+    `//Set cells: background to red and alignment to centered.`
+
+
+    `format: {backgroundColor: "red", alignHorizontal: "center"}`
+
+
+    Você pode especificar os formatos de número, especificando o número de formatação de cadeia de caracteres "código" no `numberFormat:` propriedade. As cadeias de caracteres numéricas do formato, que você pode especificar correspondem às que você pode definir no Excel usando na categoria personalizada na guia número da caixa de diálogo Formatar células. Este exemplo mostra como formatar um número como uma porcentagem com duas casas decimais:
+
+
+    `format: {numberFormat:"0.00%"}`
+
+
+    Para obter mais detalhes, consulte como [criar um formato de número personalizado](https://support.office.com/article/create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4)<!-- -->.
+
+
+    Para definir a formatação em tabelas ao gravar dados, use os parâmetros opcionais tableOptions e cellFormat do `Document.setSelectedDataAsync` ou `TableBinding.setDataAsync` métodos.
+
+
+    A definição de formatação com os parâmetros opcionais do `Document.setSelectedDataAsync` e `TableBinding.setDataAsync` métodos funciona apenas para definir a formatação ao gravar dados da primeira tempo. Para fazer alterações de formatação depois de gravar dados, use os seguintes métodos:
+
+
+    - Para atualizar a formatação de célula, como a cor da fonte e o estilo, use o `TableBinding.setFormatsAsync` método (esse método).
+
+
+    - Para atualizar as opções de tabela, como linhas de faixa e botões de filtro, use o `TableBinding.setTableOptions` método.
+
+
+    - Para limpar formatação, use o `TableBinding.clearFormats` método.
+
+
+    Para obter mais detalhes e exemplos, consulte [como formatar tabelas de suplementos do Excel](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables#format-a-table)<!-- -->.
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: setFormatsAsync(cellFormat, callback)
+  fullName: setFormatsAsync(cellFormat, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setFormatsAsync(cellFormat: any[], callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: cellFormat
+      description: Uma matriz que contém um ou mais objetos de JavaScript que especificam quais células de destino e a formatação para aplicar a eles.
+      type:
+      - any[]
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
 - uid: office.Office.TableBinding.setTableOptionsAsync
   summary: Atualiza as opções de formatação de tabela na tabela associada.
   remarks: "<table><tr><td>Hosts</td><td>Excel</td></tr>\n\n<tr><td>Conjuntos de requisito</td><td>Não está em um conjunto</td></tr></table>\n\nNa função de retorno de chamada passada para o método goToByIdAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.\n\n<table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna indefinido porque não há nenhum dado ou o objeto ser recuperado durante a configuração de formatos.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// The following example shows how to:\n// 1. Create an object literal that specifies the table formatting options to update on the bound table.\n// 2. Call setTableOptions on a previously bound table (with an id of myBinding) passing the object\n//    with formatting setting as the tableOptions parameter.\nfunction updateTableFormatting(){\n    var tableOptions = {bandedRows: true, filterButton: false, style: \"TableStyleMedium3\"}; \n\n    Office.select(\"bindings#myBinding\").setTableOptionsAsync(tableOptions, function(asyncResult){});\n}\n```"
   name: setTableOptionsAsync(tableOptions, options, callback)
-  fullName: setTableOptionsAsync
+  fullName: setTableOptionsAsync(tableOptions, options, callback)
   langs:
   - typeScript
   type: method
@@ -437,3 +716,87 @@ items:
       description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
       type:
       - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.setTableOptionsAsync_1
+  summary: Atualiza as opções de formatação de tabela na tabela associada.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Excel</td></tr>
+
+
+    <tr><td>Conjuntos de requisito</td><td>Não está em um conjunto</td></tr></table>
+
+
+    Na função de retorno de chamada passada para o método goToByIdAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
+
+
+    <table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna indefinido porque não há nenhum dado ou o objeto ser recuperado durante a configuração de formatos.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
+
+
+    **Detalhes do suporte**
+
+
+    Um S maiúsculo na matriz a seguir indica que esse método tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a esse método.
+
+
+    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
+  name: setTableOptionsAsync(tableOptions, callback)
+  fullName: setTableOptionsAsync(tableOptions, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setTableOptionsAsync(tableOptions: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: tableOptions
+      description: Um literal de objeto contendo uma lista de pares nome-valor da propriedade que definem as opções da tabela a ser aplicado.
+      type:
+      - any
+    - id: callback
+      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.TableBinding.columnCount
+  summary: Obtém o número de colunas no TableBinding, como um valor inteiro.
+  remarks: "**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction showBindingColumnCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Column: \" + asyncResult.value.columnCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: columnCount
+  fullName: columnCount
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'columnCount: number;'
+    return:
+      type:
+      - number
+- uid: office.Office.TableBinding.hasHeaders
+  summary: True se a tabela tem cabeçalhos; Caso contrário false.
+  remarks: "**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction showBindingHasHeaders() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Binding has headers: \" + asyncResult.value.hasHeaders);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: hasHeaders
+  fullName: hasHeaders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'hasHeaders: boolean;'
+    return:
+      type:
+      - boolean
+- uid: office.Office.TableBinding.rowCount
+  summary: Obtém o número de linhas no TableBinding, como um valor inteiro.
+  remarks: "Quando você insere uma tabela vazia selecionando uma única linha no Excel 2013 e no Excel Online a ambos os aplicativos de host do Office (usando a tabela na guia Inserir), criam uma única linha de cabeçalhos seguidos por uma única linha em branco. No entanto, se script do add-in cria uma ligação para isso recentemente inserido tabela (por exemplo, usando o [Office.Bindings](xref:office.Office.Bindings)<!-- -->método .addFromSelectionAsync) e verifica o valor da propriedade rowCount, o valor retornado será diferente Dependendo se a planilha é aberta no Excel 2013 ou Excel Online.\n\n- No Excel na área de trabalho, rowCount retornará 0 (a linha em branco após os cabeçalhos não é contabilizada).\n\n- No Excel Online, rowCount retornará 1 (a linha em branco após os cabeçalhos é contabilizada).\n\nVocê pode contornar essa diferença em seu script, verificando se rowCount = = 1 e em caso afirmativo, verificando se a linha contém todas as cadeias de caracteres vazias.\n\nEm conteúdo suplementos para o Access, por motivos de desempenho a propriedade rowCount sempre retornará -1.\n\n**Detalhes do suporte**\n\nUm S maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa propriedade.\n\nPara obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Acesso</strong></td><td> </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>\n#### <a name=\"examples\"></a>Examples\n\n```javascript\nfunction showBindingRowCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Rows: \" + asyncResult.value.rowCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: rowCount
+  fullName: rowCount
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'rowCount: number;'
+    return:
+      type:
+      - number
