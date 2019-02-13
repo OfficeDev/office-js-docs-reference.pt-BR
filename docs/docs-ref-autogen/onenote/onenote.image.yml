@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 666a8cfb2db0f4c625cfab3e42d1b3b1c9d492d3
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: a9b45f83c85272d254f5c31f3d26a5b60240fe4b
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769628"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976859"
 items:
 - uid: onenote.OneNote.Image
   summary: >-
@@ -28,10 +28,13 @@ items:
   - onenote.OneNote.Image.hyperlink
   - onenote.OneNote.Image.id
   - onenote.OneNote.Image.load
+  - onenote.OneNote.Image.load_1
+  - onenote.OneNote.Image.load_2
   - onenote.OneNote.Image.ocrData
   - onenote.OneNote.Image.pageContent
   - onenote.OneNote.Image.paragraph
   - onenote.OneNote.Image.set
+  - onenote.OneNote.Image.set_1
   - onenote.OneNote.Image.toJSON
   - onenote.OneNote.Image.track
   - onenote.OneNote.Image.untrack
@@ -71,7 +74,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: getBase64Image()
-  fullName: getBase64Image
+  fullName: getBase64Image()
   langs:
   - typeScript
   type: method
@@ -131,23 +134,69 @@ items:
       - string
 - uid: onenote.OneNote.Image.load
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): OneNote.Image`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Image`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var image = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {\n                // load every properties and relationships\n                ctx.load(image);\n                return ctx.sync();\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {                   \n                console.log(\"image \" + image.id + \" width is \" + image.width + \" height is \" + image.height);\n                console.log(\"description: \" + image.description);                   \n                console.log(\"hyperlink: \" + image.hyperlink);\n            }\n        });\n});\n```\n```javascript\nvar image = null;\n\nOneNote.run(function(ctx){\n    // Get the current outline.\n    var outline = ctx.application.getActiveOutline();\n\n    // Queue a command to load paragraphs and their types.\n    outline.load(\"paragraphs\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n            if (image != null)\n            {\n               image.load(\"ocrData\");\n            }\n            return ctx.sync();\n        })\n        .then(function(){\n            console.log(image.ocrData);\n        });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var searchedParagraph = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function() {\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    searchedParagraph = paragraph;\n                    break;\n                }\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {\n                // load every properties and relationships\n                searchedParagraph.image.load('paragraph');\n                return ctx.sync();\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {                   \n                if (searchedParagraph.id != searchedParagraph.image.paragraph.id)\n                {\n                    console.log(\"id must match\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): OneNote.Image`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.Image`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Image`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): OneNote.Image;'
+    content: 'load(option?: OneNote.Interfaces.ImageLoadOptions): OneNote.Image;'
     return:
       type:
       - onenote.OneNote.Image
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - onenote.OneNote.Interfaces.ImageLoadOptions
+- uid: onenote.OneNote.Image.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var image = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {\n                // load every properties and relationships\n                ctx.load(image);\n                return ctx.sync();\n            }\n        })\n        .then(function(){\n            if (image != null)\n            {                   \n                console.log(\"image \" + image.id + \" width is \" + image.width + \" height is \" + image.height);\n                console.log(\"description: \" + image.description);                   \n                console.log(\"hyperlink: \" + image.hyperlink);\n            }\n        });\n});\n```\n```javascript\nvar image = null;\n\nOneNote.run(function(ctx){\n    // Get the current outline.\n    var outline = ctx.application.getActiveOutline();\n\n    // Queue a command to load paragraphs and their types.\n    outline.load(\"paragraphs\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n            if (image != null)\n            {\n               image.load(\"ocrData\");\n            }\n            return ctx.sync();\n        })\n        .then(function(){\n            console.log(image.ocrData);\n        });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function(ctx){\n    // Get the current outline.         \n    var outline = ctx.application.getActiveOutline();\n    var searchedParagraph = null;\n    \n    // Queue a command to load paragraphs and their types. \n    outline.load(\"paragraphs/type\")\n    return ctx.sync().\n        then(function() {\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    searchedParagraph = paragraph;\n                    break;\n                }\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {\n                // load every properties and relationships\n                searchedParagraph.image.load('paragraph');\n                return ctx.sync();\n            }\n        })\n        .then(function() {\n            if (searchedParagraph != null)\n            {                   \n                if (searchedParagraph.id != searchedParagraph.image.paragraph.id)\n                {\n                    console.log(\"id must match\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: onenote.OneNote.Image.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: onenote.OneNote.Image.ocrData
   summary: >-
     Obtém os dados obtidos por OCR (reconhecimento óptico de caracteres) dessa imagem, como texto OCR e idioma.
@@ -164,6 +213,7 @@ items:
     return:
       type:
       - onenote.OneNote.ImageOcrData
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nvar image = null;\n\nOneNote.run(function(ctx){\n    // Get the current outline.\n    var outline = ctx.application.getActiveOutline();\n\n    // Queue a command to load paragraphs and their types.\n    outline.load(\"paragraphs\")\n    return ctx.sync().\n        then(function(){\n            for (var i=0; i < outline.paragraphs.items.length; i++)\n            {\n                var paragraph = outline.paragraphs.items[i];\n                if (paragraph.type == \"Image\")\n                {\n                    image = paragraph.image;\n                }\n            }\n            if (image != null)\n            {\n               image.load(\"ocrData\");\n            }\n            return ctx.sync();\n        })\n        .then(function(){\n            \n            // Log ocrText and ocrLanguageId\n            console.log(image.ocrData.ocrText);\n            console.log(image.ocrData.ocrLanguageId);\n        });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: onenote.OneNote.Image.pageContent
   summary: >-
     Obtém o objeto PageContent que contém o Image. É gerado se a Imagem não é um filho direto de um PageContent. Este objeto define a posição de Image na página. Somente leitura.
@@ -204,7 +254,7 @@ items:
 
     `set(properties: OneNote.Image): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -223,10 +273,28 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: onenote.OneNote.Image.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: OneNote.Image): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - onenote.OneNote.Image
 - uid: onenote.OneNote.Image.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto OneNote.Image original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `OneNote.Interfaces.ImageData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -239,7 +307,7 @@ items:
 - uid: onenote.OneNote.Image.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -252,7 +320,7 @@ items:
 - uid: onenote.OneNote.Image.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method
