@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1cfa3656eefa39d8b94ff821a282022fa463fa5d
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: 990db0af48c256761dd985fbbd1137741ae560a0
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385529"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29977801"
 items:
 - uid: word.Word.ContentControlCollection
   summary: >-
@@ -32,6 +32,8 @@ items:
   - word.Word.ContentControlCollection.getItem
   - word.Word.ContentControlCollection.items
   - word.Word.ContentControlCollection.load
+  - word.Word.ContentControlCollection.load_1
+  - word.Word.ContentControlCollection.load_2
   - word.Word.ContentControlCollection.toJSON
   - word.Word.ContentControlCollection.track
   - word.Word.ContentControlCollection.untrack
@@ -54,7 +56,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getById(id)
-  fullName: getById
+  fullName: getById(id)
   langs:
   - typeScript
   type: method
@@ -76,7 +78,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getByIdOrNullObject(id)
-  fullName: getByIdOrNullObject
+  fullName: getByIdOrNullObject(id)
   langs:
   - typeScript
   type: method
@@ -98,7 +100,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getByTag(tag)
-  fullName: getByTag
+  fullName: getByTag(tag)
   langs:
   - typeScript
   type: method
@@ -120,7 +122,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getByTitle(title)
-  fullName: getByTitle
+  fullName: getByTitle(title)
   langs:
   - typeScript
   type: method
@@ -142,7 +144,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getByTypes(types)
-  fullName: getByTypes
+  fullName: getByTypes(types)
   langs:
   - typeScript
   type: method
@@ -164,7 +166,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getFirst()
-  fullName: getFirst
+  fullName: getFirst()
   langs:
   - typeScript
   type: method
@@ -181,7 +183,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getFirstOrNullObject()
-  fullName: getFirstOrNullObject
+  fullName: getFirstOrNullObject()
   langs:
   - typeScript
   type: method
@@ -198,7 +200,7 @@ items:
 
     \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: getItem(index)
-  fullName: getItem
+  fullName: getItem(index)
   langs:
   - typeScript
   type: method
@@ -229,6 +231,9 @@ items:
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: >-
     Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Word.ContentControlCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
 
 
     `load(option?: { select?: string; expand?: string; }): Word.ContentControlCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
@@ -315,24 +320,59 @@ items:
 
     ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Word.ContentControlCollection;'
+    content: 'load(option?: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ContentControlCollection;'
     return:
       type:
       - word.Word.ContentControlCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions
+- uid: word.Word.ContentControlCollection.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Word.ContentControlCollection;'
+    return:
+      type:
+      - word.Word.ContentControlCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: word.Word.ContentControlCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
+    return:
+      type:
+      - word.Word.ContentControlCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: word.Word.ContentControlCollection.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -345,7 +385,7 @@ items:
 - uid: word.Word.ContentControlCollection.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -358,7 +398,7 @@ items:
 - uid: word.Word.ContentControlCollection.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

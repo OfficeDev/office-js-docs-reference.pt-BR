@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 124023953de7147e48d616ad493f4a497d5c5a2b
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 27fbf15be2fa0b8da0e050411f174bfa984ff414
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29768901"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29977647"
 items:
 - uid: excel.Excel.ChartAxes
   summary: >-
@@ -24,9 +24,13 @@ items:
   - excel.Excel.ChartAxes.categoryAxis
   - excel.Excel.ChartAxes.context
   - excel.Excel.ChartAxes.getItem
+  - excel.Excel.ChartAxes.getItem_1
   - excel.Excel.ChartAxes.load
+  - excel.Excel.ChartAxes.load_1
+  - excel.Excel.ChartAxes.load_2
   - excel.Excel.ChartAxes.seriesAxis
   - excel.Excel.ChartAxes.set
+  - excel.Excel.ChartAxes.set_1
   - excel.Excel.ChartAxes.toJSON
   - excel.Excel.ChartAxes.valueAxis
 - uid: excel.Excel.ChartAxes.categoryAxis
@@ -64,7 +68,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(type, group)
-  fullName: getItem
+  fullName: getItem(type, group)
   langs:
   - typeScript
   type: method
@@ -83,10 +87,39 @@ items:
       description: Opcional. Especifica o grupo de eixo. Consulte Excel.ChartAxisGroup para obter detalhes.
       type:
       - excel.Excel.ChartAxisGroup
+- uid: excel.Excel.ChartAxes.getItem_1
+  summary: >-
+    Retorna o eixo específico identificado por tipo e grupo.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(typeString, group)
+  fullName: getItem(typeString, group)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(typeString: "Invalid" | "Category" | "Value" | "Series", group?: "Primary" | "Secondary"): Excel.ChartAxis;'
+    return:
+      type:
+      - excel.Excel.ChartAxis
+      description: ''
+    parameters:
+    - id: typeString
+      description: Especifica o tipo de eixo. Consulte Excel.ChartAxisType para obter detalhes.
+      type:
+      - "\"Invalid\" | \"Category\" | \"Value\" | \"Series\""
+    - id: group
+      description: Opcional. Especifica o grupo de eixo. Consulte Excel.ChartAxisGroup para obter detalhes.
+      type:
+      - "\"Primary\" | \"Secondary\""
 - uid: excel.Excel.ChartAxes.load
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: >-
     Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Excel.ChartAxes`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
 
 
     `load(option?: { select?: string; expand?: string; }): Excel.ChartAxes`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
@@ -94,21 +127,57 @@ items:
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAxes`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartAxes;'
+    content: 'load(option?: Excel.Interfaces.ChartAxesLoadOptions): Excel.ChartAxes;'
     return:
       type:
       - excel.Excel.ChartAxes
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ChartAxesLoadOptions
+- uid: excel.Excel.ChartAxes.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartAxes;'
+    return:
+      type:
+      - excel.Excel.ChartAxes
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.ChartAxes.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartAxes;'
+    return:
+      type:
+      - excel.Excel.ChartAxes
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.ChartAxes.seriesAxis
   summary: >-
     Representa o eixo das séries de um gráfico 3D. Somente leitura.
@@ -133,7 +202,7 @@ items:
 
     `set(properties: Excel.ChartAxes): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -152,10 +221,28 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.ChartAxes.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.ChartAxes): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.ChartAxes
 - uid: excel.Excel.ChartAxes.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.ChartAxes original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.ChartAxesData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
