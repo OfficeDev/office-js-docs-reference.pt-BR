@@ -1,25 +1,47 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: dfbf93452ccfffb66f127d60e98f84333d6d3a07
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 23d6c0ddca524eb59160312251df2626d8239f45
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26645408"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980265"
 items:
 - uid: Outlook_1_3.Office.TaskSuggestion
   summary: >-
-    <span data-ttu-id="d3b58-p101">Representa uma tarefa sugerida identificada em um item. Somente modo de leitura.</span><span class="sxs-lookup"><span data-stu-id="d3b58-p101">Represents a suggested task identified in an item. Read mode only.</span></span>
+    <span data-ttu-id="f1f68-p101">Representa uma tarefa sugerida identificada em um item. Somente modo de leitura.</span><span class="sxs-lookup"><span data-stu-id="f1f68-p101">Represents a suggested task identified in an item. Read mode only.</span></span>
 
 
-    <span data-ttu-id="d3b58-103">A lista de tarefas sugerido em uma mensagem de email é retornada na propriedade taskSuggestions do objeto de [entidades](xref:Outlook_1_3.Office.Entities) que é retornado quando o método getEntities ou getEntitiesByType é chamado no item ativo.</span><span class="sxs-lookup"><span data-stu-id="d3b58-103">The list of tasks suggested in an email message is returned in the taskSuggestions property of the [Entities](xref:Outlook_1_3.Office.Entities) object that is returned when the getEntities or getEntitiesByType method is called on the active item.</span></span>
+    <span data-ttu-id="f1f68-103">A lista de tarefas sugerido em uma mensagem de email é retornada na propriedade taskSuggestions do objeto de [entidades](xref:Outlook_1_3.Office.Entities) que é retornado quando o método getEntities ou getEntitiesByType é chamado no item ativo.</span><span class="sxs-lookup"><span data-stu-id="f1f68-103">The list of tasks suggested in an email message is returned in the taskSuggestions property of the [Entities](xref:Outlook_1_3.Office.Entities) object that is returned when the getEntities or getEntitiesByType method is called on the active item.</span></span>
 
 
-    <span data-ttu-id="d3b58-104">\[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d3b58-104">\[ [API set: Mailbox 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="f1f68-104">\[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="f1f68-104">\[ [API set: Mailbox 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
   remarks: >-
-    <table><tr><td>[<span data-ttu-id="d3b58-105">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="d3b58-105">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="d3b58-106">ReadItem</span><span class="sxs-lookup"><span data-stu-id="d3b58-106">ReadItem</span></span></td></tr>
+    <table><tr><td>[<span data-ttu-id="f1f68-105">Nível de permissão mínimo</span><span class="sxs-lookup"><span data-stu-id="f1f68-105">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="f1f68-106">ReadItem</span><span class="sxs-lookup"><span data-stu-id="f1f68-106">ReadItem</span></span></td></tr>
 
 
-    <tr><td>[<span data-ttu-id="d3b58-107">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="d3b58-107">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="d3b58-108">Leitura</span><span class="sxs-lookup"><span data-stu-id="d3b58-108">Read</span></span></td></tr></table>
+    <tr><td>[<span data-ttu-id="f1f68-107">Modo do Outlook aplicável</span><span class="sxs-lookup"><span data-stu-id="f1f68-107">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="f1f68-108">Read</span><span class="sxs-lookup"><span data-stu-id="f1f68-108">Read</span></span></td></tr></table><span data-ttu-id="f1f68-109">
+
+    ####Exemplos</span><span class="sxs-lookup"><span data-stu-id="f1f68-109">
+
+    #### Examples</span></span>
+
+
+    ```javascript
+
+    var item = Office.context.mailbox.item;
+
+    // Get an array of strings that represent task suggestions in the current item's body.
+
+    var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
+
+    console.log("There are " + taskSuggestions.length + " task suggestions.")
+
+    taskSuggestions.forEach(function (taskSuggestion) {
+        console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
+        console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
+    });
+
+    ```
   name: Office.TaskSuggestion
   fullName: Office.TaskSuggestion
   langs:
@@ -30,7 +52,7 @@ items:
   - Outlook_1_3.Office.TaskSuggestion.assignees
   - Outlook_1_3.Office.TaskSuggestion.taskString
 - uid: Outlook_1_3.Office.TaskSuggestion.assignees
-  summary: <span data-ttu-id="d3b58-109">Obtém os usuários que devem ter uma tarefa sugerida atribuída a eles.</span><span class="sxs-lookup"><span data-stu-id="d3b58-109">Gets the users that should be assigned a suggested task.</span></span>
+  summary: <span data-ttu-id="f1f68-110">Obtém os usuários que devem ter uma tarefa sugerida atribuída a eles.</span><span class="sxs-lookup"><span data-stu-id="f1f68-110">Gets the users that should be assigned a suggested task.</span></span>
   name: assignees
   fullName: assignees
   langs:
@@ -42,7 +64,7 @@ items:
       type:
       - EmailUser[]
 - uid: Outlook_1_3.Office.TaskSuggestion.taskString
-  summary: <span data-ttu-id="d3b58-110">Obtém o texto de um item que foi identificado como uma sugestão de tarefa.</span><span class="sxs-lookup"><span data-stu-id="d3b58-110">Gets the text of an item that was identified as a task suggestion.</span></span>
+  summary: <span data-ttu-id="f1f68-111">Obtém o texto de um item que foi identificado como uma sugestão de tarefa.</span><span class="sxs-lookup"><span data-stu-id="f1f68-111">Gets the text of an item that was identified as a task suggestion.</span></span>
   name: taskString
   fullName: taskString
   langs:
