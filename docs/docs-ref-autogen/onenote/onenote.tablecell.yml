@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 12a882cb62123624255e79b1beaa558a21448d96
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: d3416765ed68d59c6960960d8cc928c576212861
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769831"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974217"
 items:
 - uid: onenote.OneNote.TableCell
   summary: >-
@@ -30,10 +30,13 @@ items:
   - onenote.OneNote.TableCell.context
   - onenote.OneNote.TableCell.id
   - onenote.OneNote.TableCell.load
+  - onenote.OneNote.TableCell.load_1
+  - onenote.OneNote.TableCell.load_2
   - onenote.OneNote.TableCell.paragraphs
   - onenote.OneNote.TableCell.parentRow
   - onenote.OneNote.TableCell.rowIndex
   - onenote.OneNote.TableCell.set
+  - onenote.OneNote.TableCell.set_1
   - onenote.OneNote.TableCell.shadingColor
   - onenote.OneNote.TableCell.toJSON
   - onenote.OneNote.TableCell.track
@@ -45,7 +48,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendHtml(html)
-  fullName: appendHtml
+  fullName: appendHtml(html)
   langs:
   - typeScript
   type: method
@@ -67,7 +70,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendImage(base64EncodedImage, width, height)
-  fullName: appendImage
+  fullName: appendImage(base64EncodedImage, width, height)
   langs:
   - typeScript
   type: method
@@ -97,7 +100,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendRichText(paragraphText)
-  fullName: appendRichText
+  fullName: appendRichText(paragraphText)
   langs:
   - typeScript
   type: method
@@ -119,7 +122,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: appendTable(rowCount, columnCount, values)
-  fullName: appendTable
+  fullName: appendTable(rowCount, columnCount, values)
   langs:
   - typeScript
   type: method
@@ -165,7 +168,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: clear()
-  fullName: clear
+  fullName: clear()
   langs:
   - typeScript
   type: method
@@ -205,23 +208,69 @@ items:
       - string
 - uid: onenote.OneNote.TableCell.load
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load the table cell.\n                ctx.load(cell);\n                ctx.sync().then(function() {\n                    console.log(\"Cell Id: \" + cell.id);\n                    console.log(\"Cell Index: \" + cell.cellIndex);\n                    console.log(\"Cell's Row Index: \" + cell.rowIndex);\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nParentTable, ParentRow, Paragraphs\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load parentTable, parentRow and paragraphs of the table cell.\n                ctx.load(cell, \"parentTable, parentRow, paragraphs\");\n                \n                ctx.sync().then(function() {\n                    console.log(\"Parent Table Id: \" + cell.parentTable.id);\n                    console.log(\"Parent Row Id: \" + cell.parentRow.id);\n                    var paragraphs = cell.paragraphs;\n                    \n                    for (var i = 0; i < paragraphs.items.length; i++) {\n                        console.log(\"Paragraph Id: \" + paragraphs.items[i].id);\n                    }\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): OneNote.TableCell`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): OneNote.TableCell;'
+    content: 'load(option?: OneNote.Interfaces.TableCellLoadOptions): OneNote.TableCell;'
     return:
       type:
       - onenote.OneNote.TableCell
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - onenote.OneNote.Interfaces.TableCellLoadOptions
+- uid: onenote.OneNote.TableCell.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.TableCell;'
+    return:
+      type:
+      - onenote.OneNote.TableCell
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load the table cell.\n                ctx.load(cell);\n                ctx.sync().then(function() {\n                    console.log(\"Cell Id: \" + cell.id);\n                    console.log(\"Cell Index: \" + cell.cellIndex);\n                    console.log(\"Cell's Row Index: \" + cell.rowIndex);\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nParentTable, ParentRow, Paragraphs\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load parentTable, parentRow and paragraphs of the table cell.\n                ctx.load(cell, \"parentTable, parentRow, paragraphs\");\n                \n                ctx.sync().then(function() {\n                    console.log(\"Parent Table Id: \" + cell.parentTable.id);\n                    console.log(\"Parent Row Id: \" + cell.parentRow.id);\n                    var paragraphs = cell.paragraphs;\n                    \n                    for (var i = 0; i < paragraphs.items.length; i++) {\n                        console.log(\"Paragraph Id: \" + paragraphs.items[i].id);\n                    }\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: onenote.OneNote.TableCell.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableCell;'
+    return:
+      type:
+      - onenote.OneNote.TableCell
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: onenote.OneNote.TableCell.paragraphs
   summary: >-
     Obtém o conjunto de objetos Paragraph presentes em TableCell. Somente leitura.
@@ -278,7 +327,7 @@ items:
 
     `set(properties: OneNote.TableCell): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -297,6 +346,24 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: onenote.OneNote.TableCell.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: OneNote.TableCell): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - onenote.OneNote.TableCell
 - uid: onenote.OneNote.TableCell.shadingColor
   summary: >-
     Obtém e define a cor de sombreamento da célula
@@ -316,7 +383,7 @@ items:
 - uid: onenote.OneNote.TableCell.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto OneNote.TableCell original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `OneNote.Interfaces.TableCellData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -329,7 +396,7 @@ items:
 - uid: onenote.OneNote.TableCell.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -342,7 +409,7 @@ items:
 - uid: onenote.OneNote.TableCell.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

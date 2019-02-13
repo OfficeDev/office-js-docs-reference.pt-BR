@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5fe434d1c8f4f600d58557d386c66725b01c33e1
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: da30016ca97501d797671147d3cd11a91901f8d2
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385319"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29978291"
 items:
 - uid: onenote.OneNote.InkWord
   summary: >-
@@ -25,6 +25,8 @@ items:
   - onenote.OneNote.InkWord.id
   - onenote.OneNote.InkWord.languageId
   - onenote.OneNote.InkWord.load
+  - onenote.OneNote.InkWord.load_1
+  - onenote.OneNote.InkWord.load_2
   - onenote.OneNote.InkWord.paragraph
   - onenote.OneNote.InkWord.toJSON
   - onenote.OneNote.InkWord.track
@@ -80,26 +82,65 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): OneNote.InkWord`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): OneNote.InkWord`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.InkWord`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): OneNote.InkWord;'
+    content: 'load(option?: OneNote.Interfaces.InkWordLoadOptions): OneNote.InkWord;'
     return:
       type:
       - onenote.OneNote.InkWord
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - onenote.OneNote.Interfaces.InkWordLoadOptions
+- uid: onenote.OneNote.InkWord.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.InkWord;'
+    return:
+      type:
+      - onenote.OneNote.InkWord
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: onenote.OneNote.InkWord.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.InkWord;'
+    return:
+      type:
+      - onenote.OneNote.InkWord
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: onenote.OneNote.InkWord.paragraph
   summary: >-
     O parágrafo pai que contém a palavra de tinta. Somente leitura.
@@ -119,7 +160,7 @@ items:
 - uid: onenote.OneNote.InkWord.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto OneNote.InkWord original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `OneNote.Interfaces.InkWordData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -132,7 +173,7 @@ items:
 - uid: onenote.OneNote.InkWord.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -145,7 +186,7 @@ items:
 - uid: onenote.OneNote.InkWord.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

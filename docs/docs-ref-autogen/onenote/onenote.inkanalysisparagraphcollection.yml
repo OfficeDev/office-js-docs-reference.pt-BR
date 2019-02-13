@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5f9f528800896362e17bcdd55b79835b5959c134
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: c449a9fd1b5a1e072eb18757f9fe58f31a103ef1
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385333"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29973972"
 items:
 - uid: onenote.OneNote.InkAnalysisParagraphCollection
   summary: >-
@@ -27,6 +27,8 @@ items:
   - onenote.OneNote.InkAnalysisParagraphCollection.getItemAt
   - onenote.OneNote.InkAnalysisParagraphCollection.items
   - onenote.OneNote.InkAnalysisParagraphCollection.load
+  - onenote.OneNote.InkAnalysisParagraphCollection.load_1
+  - onenote.OneNote.InkAnalysisParagraphCollection.load_2
   - onenote.OneNote.InkAnalysisParagraphCollection.toJSON
   - onenote.OneNote.InkAnalysisParagraphCollection.track
   - onenote.OneNote.InkAnalysisParagraphCollection.untrack
@@ -65,7 +67,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: getItem(index)
-  fullName: getItem
+  fullName: getItem(index)
   langs:
   - typeScript
   type: method
@@ -87,7 +89,7 @@ items:
 
     \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   name: getItemAt(index)
-  fullName: getItemAt
+  fullName: getItemAt(index)
   langs:
   - typeScript
   type: method
@@ -120,30 +122,68 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): OneNote.InkAnalysisParagraphCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): OneNote.InkAnalysisParagraphCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.InkAnalysisParagraphCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): OneNote.InkAnalysisParagraphCollection;'
+    content: 'load(option?: OneNote.Interfaces.InkAnalysisParagraphCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.InkAnalysisParagraphCollection;'
     return:
       type:
       - onenote.OneNote.InkAnalysisParagraphCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - OneNote.Interfaces.InkAnalysisParagraphCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
+- uid: onenote.OneNote.InkAnalysisParagraphCollection.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): OneNote.InkAnalysisParagraphCollection;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisParagraphCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: onenote.OneNote.InkAnalysisParagraphCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): OneNote.InkAnalysisParagraphCollection;'
+    return:
+      type:
+      - onenote.OneNote.InkAnalysisParagraphCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: onenote.OneNote.InkAnalysisParagraphCollection.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `OneNote.InkAnalysisParagraphCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `OneNote.Interfaces.InkAnalysisParagraphCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
@@ -156,7 +196,7 @@ items:
 - uid: onenote.OneNote.InkAnalysisParagraphCollection.track
   summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
   name: track()
-  fullName: track
+  fullName: track()
   langs:
   - typeScript
   type: method
@@ -169,7 +209,7 @@ items:
 - uid: onenote.OneNote.InkAnalysisParagraphCollection.untrack
   summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
   name: untrack()
-  fullName: untrack
+  fullName: untrack()
   langs:
   - typeScript
   type: method

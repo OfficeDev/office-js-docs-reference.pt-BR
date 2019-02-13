@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0e70ea1fc171d7db759e1aec1cc670905cb42fb4
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: cf5951ca9bd2af75d62ed75f8234856b0d541595
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769495"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981266"
 items:
 - uid: visio.Visio.DocumentView
   summary: >-
@@ -26,7 +26,10 @@ items:
   - visio.Visio.DocumentView.disableZoom
   - visio.Visio.DocumentView.hideDiagramBoundary
   - visio.Visio.DocumentView.load
+  - visio.Visio.DocumentView.load_1
+  - visio.Visio.DocumentView.load_2
   - visio.Visio.DocumentView.set
+  - visio.Visio.DocumentView.set_1
   - visio.Visio.DocumentView.toJSON
 - uid: visio.Visio.DocumentView.disableHyperlinks
   summary: >-
@@ -44,6 +47,7 @@ items:
     return:
       type:
       - boolean
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var documentView = ctx.document.view;\n    documentView.disableHyperlinks();\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: visio.Visio.DocumentView.disablePan
   summary: >-
     Desabilitar Panorâmica.
@@ -98,26 +102,65 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): Visio.DocumentView`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): Visio.DocumentView`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.DocumentView`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Visio.DocumentView;'
+    content: 'load(option?: Visio.Interfaces.DocumentViewLoadOptions): Visio.DocumentView;'
     return:
       type:
       - visio.Visio.DocumentView
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - visio.Visio.Interfaces.DocumentViewLoadOptions
+- uid: visio.Visio.DocumentView.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Visio.DocumentView;'
+    return:
+      type:
+      - visio.Visio.DocumentView
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: visio.Visio.DocumentView.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.DocumentView;'
+    return:
+      type:
+      - visio.Visio.DocumentView
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: visio.Visio.DocumentView.set
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
   remarks: >-
@@ -126,7 +169,7 @@ items:
 
     `set(properties: Visio.DocumentView): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -145,9 +188,27 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: visio.Visio.DocumentView.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Visio.DocumentView): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - visio.Visio.DocumentView
 - uid: visio.Visio.DocumentView.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

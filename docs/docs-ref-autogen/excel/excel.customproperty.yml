@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 58e493095cffb2a6c4af30b2daa7850f2c3b05c3
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 789dc38738042914aeeb527a67cf146a60261c35
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29768908"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981126"
 items:
 - uid: excel.Excel.CustomProperty
   summary: >-
@@ -25,7 +25,10 @@ items:
   - excel.Excel.CustomProperty.delete
   - excel.Excel.CustomProperty.key
   - excel.Excel.CustomProperty.load
+  - excel.Excel.CustomProperty.load_1
+  - excel.Excel.CustomProperty.load_2
   - excel.Excel.CustomProperty.set
+  - excel.Excel.CustomProperty.set_1
   - excel.Excel.CustomProperty.toJSON
   - excel.Excel.CustomProperty.type
   - excel.Excel.CustomProperty.value
@@ -48,7 +51,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -80,26 +83,65 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): Excel.CustomProperty`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.CustomProperty`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomProperty`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.CustomProperty;'
+    content: 'load(option?: Excel.Interfaces.CustomPropertyLoadOptions): Excel.CustomProperty;'
     return:
       type:
       - excel.Excel.CustomProperty
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.CustomPropertyLoadOptions
+- uid: excel.Excel.CustomProperty.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomProperty;'
+    return:
+      type:
+      - excel.Excel.CustomProperty
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.CustomProperty.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.CustomProperty;'
+    return:
+      type:
+      - excel.Excel.CustomProperty
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.CustomProperty.set
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
   remarks: >-
@@ -108,7 +150,7 @@ items:
 
     `set(properties: Excel.CustomProperty): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -127,10 +169,28 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.CustomProperty.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.CustomProperty): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.CustomProperty
 - uid: excel.Excel.CustomProperty.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.CustomProperty original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.CustomPropertyData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

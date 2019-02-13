@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0e6e4bfa9ee34faa51252f3d07524d7fd0fefda2
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: f1af835bd78cbbe54cec0d73ab8d053d834a1e63
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28725512"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979208"
 items:
 - uid: excel.Excel.TableSort
   summary: >-
@@ -22,10 +22,13 @@ items:
   package: excel
   children:
   - excel.Excel.TableSort.apply
+  - excel.Excel.TableSort.apply_1
   - excel.Excel.TableSort.clear
   - excel.Excel.TableSort.context
   - excel.Excel.TableSort.fields
   - excel.Excel.TableSort.load
+  - excel.Excel.TableSort.load_1
+  - excel.Excel.TableSort.load_2
   - excel.Excel.TableSort.matchCase
   - excel.Excel.TableSort.method
   - excel.Excel.TableSort.reapply
@@ -37,7 +40,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: apply(fields, matchCase, method)
-  fullName: apply
+  fullName: apply(fields, matchCase, method)
   langs:
   - typeScript
   type: method
@@ -60,6 +63,36 @@ items:
       description: Opcional. O método de ordenação usado para caracteres chineses.
       type:
       - excel.Excel.SortMethod
+- uid: excel.Excel.TableSort.apply_1
+  summary: >-
+    Executa uma operação de classificação.
+
+
+    \[[Conjunto de APIs: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: apply(fields, matchCase, methodString)
+  fullName: apply(fields, matchCase, methodString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'apply(fields: Excel.SortField[], matchCase?: boolean, methodString?: "PinYin" | "StrokeCount"): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: fields
+      description: A lista de condições para a classificação.
+      type:
+      - Excel.SortField[]
+    - id: matchCase
+      description: Opcional. Define se o uso de maiúsculas ou minúsculas afeta a ordenação da cadeia de caracteres.
+      type:
+      - boolean
+    - id: methodString
+      description: Opcional. O método de ordenação usado para caracteres chineses.
+      type:
+      - "\"PinYin\" | \"StrokeCount\""
 - uid: excel.Excel.TableSort.clear
   summary: >-
     Limpa a classificação que está na tabela. Essa ação não modifica a ordenação da tabela, mas limpa o estado dos botões do cabeçalho.
@@ -67,7 +100,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: clear()
-  fullName: clear
+  fullName: clear()
   langs:
   - typeScript
   type: method
@@ -111,26 +144,65 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): Excel.TableSort`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.TableSort`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableSort`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.TableSort;'
+    content: 'load(option?: Excel.Interfaces.TableSortLoadOptions): Excel.TableSort;'
     return:
       type:
       - excel.Excel.TableSort
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.TableSortLoadOptions
+- uid: excel.Excel.TableSort.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableSort;'
+    return:
+      type:
+      - excel.Excel.TableSort
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.TableSort.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TableSort;'
+    return:
+      type:
+      - excel.Excel.TableSort
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.TableSort.matchCase
   summary: >-
     Indica se o uso de maiúsculas ou minúsculas afetou a última classificação da tabela. Somente leitura.
@@ -170,7 +242,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: reapply()
-  fullName: reapply
+  fullName: reapply()
   langs:
   - typeScript
   type: method
@@ -183,7 +255,7 @@ items:
 - uid: excel.Excel.TableSort.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.TableSort original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.TableSortData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

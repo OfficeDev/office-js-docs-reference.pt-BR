@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 21da61576224455d59c18e4d2ab4f0f9185b1e8f
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: d6fe6846fdd0dbf1eeeac097002e51a35cdfa070
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769971"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981833"
 items:
 - uid: excel.Excel.ChartAxisTitle
   summary: >-
@@ -24,7 +24,10 @@ items:
   - excel.Excel.ChartAxisTitle.context
   - excel.Excel.ChartAxisTitle.format
   - excel.Excel.ChartAxisTitle.load
+  - excel.Excel.ChartAxisTitle.load_1
+  - excel.Excel.ChartAxisTitle.load_2
   - excel.Excel.ChartAxisTitle.set
+  - excel.Excel.ChartAxisTitle.set_1
   - excel.Excel.ChartAxisTitle.setFormula
   - excel.Excel.ChartAxisTitle.text
   - excel.Excel.ChartAxisTitle.toJSON
@@ -59,23 +62,69 @@ items:
       - excel.Excel.ChartAxisTitleFormat
 - uid: excel.Excel.ChartAxisTitle.load
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartAxisTitle`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAxisTitle`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the text of Chart Axis Title from the value axis of Chart1.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\"); \n    var title = chart.axes.valueAxis.title;\n    title.load('text');\n    return ctx.sync().then(function() {\n            console.log(title.text);\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```\n```javascript\n// Add \"Values\" as the title for the value Axis \nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\"); \n    chart.axes.valueAxis.title.text = \"Values\";\n    return ctx.sync().then(function() {\n            console.log(\"Axis Title Added \");\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Excel.ChartAxisTitle`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.ChartAxisTitle`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAxisTitle`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartAxisTitle;'
+    content: 'load(option?: Excel.Interfaces.ChartAxisTitleLoadOptions): Excel.ChartAxisTitle;'
     return:
       type:
       - excel.Excel.ChartAxisTitle
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ChartAxisTitleLoadOptions
+- uid: excel.Excel.ChartAxisTitle.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartAxisTitle;'
+    return:
+      type:
+      - excel.Excel.ChartAxisTitle
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the text of Chart Axis Title from the value axis of Chart1.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\"); \n    var title = chart.axes.valueAxis.title;\n    title.load('text');\n    return ctx.sync().then(function() {\n            console.log(title.text);\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```\n```javascript\n// Add \"Values\" as the title for the value Axis \nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\"); \n    chart.axes.valueAxis.title.text = \"Values\";\n    return ctx.sync().then(function() {\n            console.log(\"Axis Title Added \");\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.ChartAxisTitle.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartAxisTitle;'
+    return:
+      type:
+      - excel.Excel.ChartAxisTitle
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.ChartAxisTitle.set
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
   remarks: >-
@@ -84,7 +133,7 @@ items:
 
     `set(properties: Excel.ChartAxisTitle): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -103,6 +152,24 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.ChartAxisTitle.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.ChartAxisTitle): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.ChartAxisTitle
 - uid: excel.Excel.ChartAxisTitle.setFormula
   summary: >-
     Um valor de cadeia de caracteres que representa a fórmula do título do eixo do gráfico usando a notação no estilo A1.
@@ -110,7 +177,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setFormula(formula)
-  fullName: setFormula
+  fullName: setFormula(formula)
   langs:
   - typeScript
   type: method
@@ -144,7 +211,7 @@ items:
 - uid: excel.Excel.ChartAxisTitle.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.ChartAxisTitle original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.ChartAxisTitleData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

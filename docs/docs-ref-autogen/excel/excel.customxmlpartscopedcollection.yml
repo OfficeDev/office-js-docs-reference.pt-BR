@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0ba9b9efdfcbcd0573ab1eda7c0a4734a0de14a9
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: a9585ddc38ae3feda009bc79262b11f63d60f415
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724609"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974280"
 items:
 - uid: excel.Excel.CustomXmlPartScopedCollection
   summary: >-
@@ -29,6 +29,8 @@ items:
   - excel.Excel.CustomXmlPartScopedCollection.getOnlyItemOrNullObject
   - excel.Excel.CustomXmlPartScopedCollection.items
   - excel.Excel.CustomXmlPartScopedCollection.load
+  - excel.Excel.CustomXmlPartScopedCollection.load_1
+  - excel.Excel.CustomXmlPartScopedCollection.load_2
   - excel.Excel.CustomXmlPartScopedCollection.toJSON
 - uid: excel.Excel.CustomXmlPartScopedCollection.context
   summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
@@ -49,7 +51,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -66,7 +68,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(id)
-  fullName: getItem
+  fullName: getItem(id)
   langs:
   - typeScript
   type: method
@@ -88,7 +90,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemOrNullObject(id)
-  fullName: getItemOrNullObject
+  fullName: getItemOrNullObject(id)
   langs:
   - typeScript
   type: method
@@ -110,7 +112,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getOnlyItem()
-  fullName: getOnlyItem
+  fullName: getOnlyItem()
   langs:
   - typeScript
   type: method
@@ -127,7 +129,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getOnlyItemOrNullObject()
-  fullName: getOnlyItemOrNullObject
+  fullName: getOnlyItemOrNullObject()
   langs:
   - typeScript
   type: method
@@ -155,30 +157,68 @@ items:
     Além dessa assinatura, esse método tem as seguintes assinaturas:
 
 
+    `load(option?: string | string[]): Excel.CustomXmlPartScopedCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPartScopedCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPartScopedCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.CustomXmlPartScopedCollection;'
+    content: 'load(option?: Excel.Interfaces.CustomXmlPartScopedCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CustomXmlPartScopedCollection;'
     return:
       type:
       - excel.Excel.CustomXmlPartScopedCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.CustomXmlPartScopedCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.CustomXmlPartScopedCollection.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPartScopedCollection;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPartScopedCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.CustomXmlPartScopedCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.CustomXmlPartScopedCollection;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPartScopedCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.CustomXmlPartScopedCollection.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `Excel.CustomXmlPartScopedCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `Excel.Interfaces.CustomXmlPartScopedCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

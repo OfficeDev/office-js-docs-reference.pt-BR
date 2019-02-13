@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3712e4b3d00b0558baabaa7776639c3e838febef
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: df730ec942ba1c37d4c57c9a5e1d0fd9a700d341
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769677"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974392"
 items:
 - uid: excel.Excel.ChartTitle
   summary: >-
@@ -28,9 +28,12 @@ items:
   - excel.Excel.ChartTitle.horizontalAlignment
   - excel.Excel.ChartTitle.left
   - excel.Excel.ChartTitle.load
+  - excel.Excel.ChartTitle.load_1
+  - excel.Excel.ChartTitle.load_2
   - excel.Excel.ChartTitle.overlay
   - excel.Excel.ChartTitle.position
   - excel.Excel.ChartTitle.set
+  - excel.Excel.ChartTitle.set_1
   - excel.Excel.ChartTitle.setFormula
   - excel.Excel.ChartTitle.showShadow
   - excel.Excel.ChartTitle.text
@@ -70,12 +73,12 @@ items:
       - excel.Excel.ChartTitleFormat
 - uid: excel.Excel.ChartTitle.getSubstring
   summary: >-
-    Obtenha a subcadeia de caracteres do título de um gráfico. Quebra de linha '\\n' também conta um caractere.
+    Obtenha a subcadeia de caracteres do título de um gráfico. Quebra de linha '<!-- -->\\<!-- -->n' também conta um caractere.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getSubstring(start, length)
-  fullName: getSubstring
+  fullName: getSubstring(start, length)
   langs:
   - typeScript
   type: method
@@ -144,23 +147,69 @@ items:
       - number
 - uid: excel.Excel.ChartTitle.load
   summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: "Além dessa assinatura, esse método tem as seguintes assinaturas:\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartTitle`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartTitle`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the text of Chart Title from Chart1.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    var title = chart.title;\n    title.load('text');\n    return ctx.sync().then(function() {\n            console.log(title.text);\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```\n```javascript\n// Set the text of Chart Title to \"My Chart\" and Make it show on top of the chart without overlaying.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    chart.title.text= \"My Chart\"; \n    chart.title.visible=true;\n    chart.title.overlay=true;\n    \n    return ctx.sync().then(function() {\n        console.log(\"Char Title Changed\");\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```"
+  remarks: >-
+    Além dessa assinatura, esse método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Excel.ChartTitle`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.ChartTitle`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartTitle`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartTitle;'
+    content: 'load(option?: Excel.Interfaces.ChartTitleLoadOptions): Excel.ChartTitle;'
     return:
       type:
       - excel.Excel.ChartTitle
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ChartTitleLoadOptions
+- uid: excel.Excel.ChartTitle.load_1
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartTitle;'
+    return:
+      type:
+      - excel.Excel.ChartTitle
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the text of Chart Title from Chart1.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    var title = chart.title;\n    title.load('text');\n    return ctx.sync().then(function() {\n            console.log(title.text);\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```\n```javascript\n// Set the text of Chart Title to \"My Chart\" and Make it show on top of the chart without overlaying.\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    \n    chart.title.text= \"My Chart\"; \n    chart.title.visible=true;\n    chart.title.overlay=true;\n    \n    return ctx.sync().then(function() {\n        console.log(\"Char Title Changed\");\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
       type:
       - string | string[]
+- uid: excel.Excel.ChartTitle.load_2
+  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartTitle;'
+    return:
+      type:
+      - excel.Excel.ChartTitle
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.ChartTitle.overlay
   summary: >-
     Valor booliano que determina se o título do gráfico deve se sobrepor ao gráfico ou não.
@@ -201,7 +250,7 @@ items:
 
     `set(properties: Excel.ChartTitle): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -220,6 +269,24 @@ items:
       description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.ChartTitle.set_1
+  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.ChartTitle): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.ChartTitle
 - uid: excel.Excel.ChartTitle.setFormula
   summary: >-
     Define um valor de cadeia de caracteres que representa a fórmula do título do eixo do gráfico usando a notação no estilo A1.
@@ -227,7 +294,7 @@ items:
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: setFormula(formula)
-  fullName: setFormula
+  fullName: setFormula(formula)
   langs:
   - typeScript
   type: method
@@ -294,7 +361,7 @@ items:
 - uid: excel.Excel.ChartTitle.toJSON
   summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.ChartTitle original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.ChartTitleData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
