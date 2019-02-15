@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a8c215da1a94d96631254e3bee531c562c1e70b3
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 463850d5262b80c4873aefc5dd8002e2f1fbbb72
+ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29982598"
+ms.lasthandoff: 02/15/2019
+ms.locfileid: "30055175"
 items:
 - uid: Outlook_1_1.Office.RoamingSettings
   summary: >-
@@ -20,30 +20,30 @@ items:
     O objeto RoamingSettings pode ser acessado por meio da propriedade roamingSettings no namespace Office.context.
 
 
-    **Importante**: RoamingSettings o objeto é inicializado do armazenamento persistente somente quando o suplemento for carregado pela primeira vez. Para painéis de tarefas, isso significa que ele é inicializado somente quando o painel de tarefas é aberta. Se o painel de tarefas navega para outra página ou recarrega a página atual, o objeto na memória é redefinido para seus valores iniciais, mesmo se o add-in tem persistente alterações. As alterações persistentes não estará disponíveis até que o painel de tarefas é fechado e reabri-lo.
+    **Importante**: o objeto RoamingSettings é inicializado somente a partir do armazenamento persistente quando o suplemento é carregado pela primeira vez. Para painéis de tarefas, isso significa que ele só será inicializado quando o painel de tarefas for aberto pela primeira vez. Se o painel de tarefas navegar para outra página ou recarregar a página atual, o objeto na memória será redefinido para seus valores iniciais, mesmo que seu suplemento tenha persistentedo alterações. As alterações persistentes não estarão disponíveis até que o painel de tarefas seja fechado e reaberto.
 
 
-    \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
 
     <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr></table>
 
-    ####Exemplos
+    ####Veja
 
 
     ```javascript
 
-    // Get the current value of the 'myKey' setting
+    // Get the current value of the 'myKey' setting.
 
     var value = Office.context.roamingSettings.get('myKey');
 
-    // Update the value of the 'myKey' setting
+    // Update the value of the 'myKey' setting.
 
     Office.context.roamingSettings.set('myKey', 'Hello World!');
 
-    // Persist the change
+    // Persist the change.
 
     Office.context.roamingSettings.saveAsync();
 
@@ -64,7 +64,7 @@ items:
     Recupera a configuração especificada.
 
 
-    \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
@@ -80,7 +80,7 @@ items:
     return:
       type:
       - any
-      description: 'Tipo: a cadeia de caracteres \| número \| Boolean \| objeto \| matriz'
+      description: 'Tipo: matriz \| de \| objeto \| \| Boolean de número de cadeia de caracteres'
     parameters:
     - id: name
       description: O nome da configuração a ser recuperado diferencia maiúsculas de minúsculas.
@@ -91,7 +91,7 @@ items:
     Remove a configuração especificada
 
 
-    \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
@@ -121,7 +121,7 @@ items:
     Quaisquer configurações previamente salvas por um suplemento são carregadas quando ele for inicializado, portanto durante o ciclo de vida da sessão você pode simplesmente usar os métodos set e get para trabalhar com a cópia do conjunto de propriedades de configurações que está na memória. Quando você desejar manter as configurações para que elas fiquem disponíveis na próxima vez que o suplemento for usado, use o método saveAsync.
 
 
-    \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
@@ -140,7 +140,7 @@ items:
       description: ''
     parameters:
     - id: callback
-      description: Opcional. Quando o método for concluído, a função passada no parâmetro de retorno de chamada é chamada com um único parâmetro do tipo Office.AsyncResult.
+      description: Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.
       type:
       - '(result: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_1.Office.RoamingSettings.set
@@ -151,13 +151,13 @@ items:
     O método set cria uma nova configuração do nome especificado, caso ainda não exista, ou define uma configuração existente do nome especificado. O valor é armazenado no documento como a representação JSON serializada do seu tipo de dados.
 
 
-    Um máximo de 32KB está disponível para as configurações de cada suplemento.
+    Um máximo de 32 KB está disponível para as configurações de cada suplemento.
 
 
     Qualquer alteração feita em configurações usando a função set não será salva no servidor até que a função saveAsync seja chamada.
 
 
-    \[[Conjunto de APIs: caixa de correio 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
     <table><tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Restrito</td></tr>
 
