@@ -1,0 +1,323 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 2b8430fe5999a52ef42600ade810bb497ddd1401
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30109490"
+items:
+- uid: excel_release.Excel.PivotLayout
+  summary: >-
+    Representa o layout visual da tabela dinâmica.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.PivotLayout
+  fullName: Excel.PivotLayout
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.PivotLayout.context
+  - excel_release.Excel.PivotLayout.getColumnLabelRange
+  - excel_release.Excel.PivotLayout.getDataBodyRange
+  - excel_release.Excel.PivotLayout.getFilterAxisRange
+  - excel_release.Excel.PivotLayout.getRange
+  - excel_release.Excel.PivotLayout.getRowLabelRange
+  - excel_release.Excel.PivotLayout.layoutType
+  - excel_release.Excel.PivotLayout.load
+  - excel_release.Excel.PivotLayout.load_1
+  - excel_release.Excel.PivotLayout.load_2
+  - excel_release.Excel.PivotLayout.set
+  - excel_release.Excel.PivotLayout.set_1
+  - excel_release.Excel.PivotLayout.showColumnGrandTotals
+  - excel_release.Excel.PivotLayout.showRowGrandTotals
+  - excel_release.Excel.PivotLayout.subtotalLocation
+  - excel_release.Excel.PivotLayout.toJSON
+- uid: excel_release.Excel.PivotLayout.context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.PivotLayout.getColumnLabelRange
+  summary: >-
+    Retorna o intervalo onde residem os rótulos de coluna da Tabela Dinâmica.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getColumnLabelRange()
+  fullName: getColumnLabelRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getColumnLabelRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getDataBodyRange
+  summary: >-
+    Retorna o intervalo onde residem os valores de dados da tabela dinâmica.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getDataBodyRange()
+  fullName: getDataBodyRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataBodyRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n\n    // the layout controls the ranges used by the PivotTable\n    const range = pivotTable.layout.getDataBodyRange();\n\n    // get all the data hierarchy totals\n    const grandTotalRange = range.getLastRow();\n    grandTotalRange.load(\"address\");\n    await context.sync();\n    \n    // use the wholesale and farm sale totals to make a final sum\n    const masterTotalRange = context.workbook.worksheets.getActiveWorksheet().getRange(\"B27:C27\");\n    masterTotalRange.formulas = [[\"All Crates\", \"=SUM(\" + grandTotalRange.address + \")\"]];\n    await context.sync();\n});\n```"
+- uid: excel_release.Excel.PivotLayout.getFilterAxisRange
+  summary: >-
+    Retorna o intervalo de área de filtro da Tabela Dinâmica.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getFilterAxisRange()
+  fullName: getFilterAxisRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getFilterAxisRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getRange
+  summary: >-
+    Retorna o intervalo em que a Tabela Dinâmica existe, excluindo a área de filtro.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange()
+  fullName: getRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.getRowLabelRange
+  summary: >-
+    Retorna o intervalo onde residem os rótulos de linha da Tabela Dinâmica.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getRowLabelRange()
+  fullName: getRowLabelRange()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRowLabelRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel_release.Excel.PivotLayout.layoutType
+  summary: >-
+    Essa propriedade indica o PivotLayoutType de todos os campos da Tabela Dinâmica. Se os campos têm diferentes estados, ele será nulo.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: layoutType
+  fullName: layoutType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'layoutType: Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline";'
+    return:
+      type:
+      - Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline"
+- uid: excel_release.Excel.PivotLayout.load
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
+  remarks: >-
+    Além dessa assinatura, este método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Excel.PivotLayout`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.PivotLayoutLoadOptions): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.PivotLayoutLoadOptions
+- uid: excel_release.Excel.PivotLayout.load_1
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      type:
+      - string | string[]
+- uid: excel_release.Excel.PivotLayout.load_2
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.PivotLayout;'
+    return:
+      type:
+      - excel.Excel.PivotLayout
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+      type:
+      - '{ select?: string; expand?: string; }'
+- uid: excel_release.Excel.PivotLayout.set
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.PivotLayout): void`
+  name: set(properties, options)
+  fullName: set(properties, options)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.PivotLayoutUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+      type:
+      - Interfaces.PivotLayoutUpdateData
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+      type:
+      - office.OfficeExtension.UpdateOptions
+- uid: excel_release.Excel.PivotLayout.set_1
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.PivotLayout): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.PivotLayout
+- uid: excel_release.Excel.PivotLayout.showColumnGrandTotals
+  summary: >-
+    Verdadeiro, quando o relatório de Tabela Dinâmica mostra os totais de colunas.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: showColumnGrandTotals
+  fullName: showColumnGrandTotals
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showColumnGrandTotals: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel_release.Excel.PivotLayout.showRowGrandTotals
+  summary: >-
+    Verdadeiro, quando o relatório de Tabela Dinâmica mostra os totais de linhas.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: showRowGrandTotals
+  fullName: showRowGrandTotals
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'showRowGrandTotals: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel_release.Excel.PivotLayout.subtotalLocation
+  summary: >-
+    Essa propriedade indica SubtotalLocationType de todos os campos da Tabela Dinâmica. Se os campos têm diferentes estados, ele será nulo.
+
+
+    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: subtotalLocation
+  fullName: subtotalLocation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'subtotalLocation: Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off";'
+    return:
+      type:
+      - Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"
+- uid: excel_release.Excel.PivotLayout.toJSON
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. PivotLayout original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.PivotLayoutData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.PivotLayoutData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.PivotLayoutData
+      description: ''
