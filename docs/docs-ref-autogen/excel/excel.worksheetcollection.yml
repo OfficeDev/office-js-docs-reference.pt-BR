@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 09ae4be877fcadf8d226394758f6569dff40a618
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 0cc0db56f3778fc9cef827cc4541bed17a5f34c2
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29980286"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30096112"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
-    <span data-ttu-id="d47d6-101">Representa uma coleção de todos os objetos worksheet que fazem parte da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="d47d6-101">Represents a collection of worksheet objects that are part of the workbook.</span></span>
+    <span data-ttu-id="32963-101">Representa uma coleção de todos os objetos worksheet que fazem parte da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="32963-101">Represents a collection of worksheet objects that are part of the workbook.</span></span>
 
 
-    <span data-ttu-id="d47d6-102">\[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-102">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-102">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: Excel.WorksheetCollection
   fullName: Excel.WorksheetCollection
   langs:
@@ -22,6 +22,8 @@ items:
   package: excel
   children:
   - excel.Excel.WorksheetCollection.add
+  - excel.Excel.WorksheetCollection.addFromBase64
+  - excel.Excel.WorksheetCollection.addFromBase64_1
   - excel.Excel.WorksheetCollection.context
   - excel.Excel.WorksheetCollection.getActiveWorksheet
   - excel.Excel.WorksheetCollection.getCount
@@ -36,15 +38,19 @@ items:
   - excel.Excel.WorksheetCollection.onActivated
   - excel.Excel.WorksheetCollection.onAdded
   - excel.Excel.WorksheetCollection.onCalculated
+  - excel.Excel.WorksheetCollection.onChanged
   - excel.Excel.WorksheetCollection.onDeactivated
   - excel.Excel.WorksheetCollection.onDeleted
+  - excel.Excel.WorksheetCollection.onFiltered
+  - excel.Excel.WorksheetCollection.onFormatChanged
+  - excel.Excel.WorksheetCollection.onSelectionChanged
   - excel.Excel.WorksheetCollection.toJSON
 - uid: excel.Excel.WorksheetCollection.add
   summary: >-
-    <span data-ttu-id="d47d6-p101">Adiciona uma nova planilha à pasta de trabalho. A planilha será adicionada ao final das planilhas existentes. Se você quiser ativar a planilha recém-adicionada, chame “.activate()” nela.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p101">Adds a new worksheet to the workbook. The worksheet will be added at the end of existing worksheets. If you wish to activate the newly added worksheet, call ".activate() on it.</span></span>
+    <span data-ttu-id="32963-p101">Adiciona uma nova planilha à pasta de trabalho. A planilha será adicionada ao final das planilhas existentes. Se você quiser ativar a planilha recém-adicionada, chame “.activate()” nela.</span><span class="sxs-lookup"><span data-stu-id="32963-p101">Adds a new worksheet to the workbook. The worksheet will be added at the end of existing worksheets. If you wish to activate the newly added worksheet, call ".activate() on it.</span></span>
 
 
-    <span data-ttu-id="d47d6-106">\[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-106">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-106">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-106">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: add(name)
   fullName: add(name)
   langs:
@@ -55,14 +61,84 @@ items:
     return:
       type:
       - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-107\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-107\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sample Name';\n    var worksheet = ctx.workbook.worksheets.add(wSheetName);\n    worksheet.load('name');\n    return ctx.sync().then(function() {\n        console.log(worksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-107\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-107\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sample Name';\n    var worksheet = ctx.workbook.worksheets.add(wSheetName);\n    worksheet.load('name');\n    return ctx.sync().then(function() {\n        console.log(worksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: name
-      description: <span data-ttu-id="d47d6-p102">Opcional. O nome da planilha a ser adicionada. Se especificado, o nome deve ser exclusivo. Se não especificado, o Excel determina o nome da nova planilha.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p102">Optional. The name of the worksheet to be added. If specified, name should be unqiue. If not specified, Excel determines the name of the new worksheet.</span></span>
+      description: <span data-ttu-id="32963-p102">Opcional. O nome da planilha a ser adicionada. Se especificado, o nome deve ser exclusivo. Se não especificado, o Excel determina o nome da nova planilha.</span><span class="sxs-lookup"><span data-stu-id="32963-p102">Optional. The name of the worksheet to be added. If specified, name should be unqiue. If not specified, Excel determines the name of the new worksheet.</span></span>
       type:
       - string
+- uid: excel.Excel.WorksheetCollection.addFromBase64
+  summary: >-
+    <span data-ttu-id="32963-112">Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-112">Inserts the specified worksheets of a workbook into the current workbook.</span></span>
+
+
+    <span data-ttu-id="32963-113">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-113">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: addFromBase64(base64File, sheetNamesToInsert, positionType, relativeTo)
+  fullName: addFromBase64(base64File, sheetNamesToInsert, positionType, relativeTo)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet | string): OfficeExtension.ClientResult<string[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string[]>
+      description: <span data-ttu-id="32963-114">Uma matriz em que cada item representa a ID da nova planilha inserida.</span><span class="sxs-lookup"><span data-stu-id="32963-114">An array where each item represents the Id of the new inserted worksheet.</span></span>
+    parameters:
+    - id: base64File
+      description: <span data-ttu-id="32963-115">Obrigatório.</span><span class="sxs-lookup"><span data-stu-id="32963-115">Required.</span></span> <span data-ttu-id="32963-116">Cadeia de caracteres Base64 representando a pasta de trabalho de origem.</span><span class="sxs-lookup"><span data-stu-id="32963-116">Base64 string representing the source workbook.</span></span>
+      type:
+      - string
+    - id: sheetNamesToInsert
+      description: <span data-ttu-id="32963-117">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-117">Optional.</span></span> <span data-ttu-id="32963-118">Os nomes da planilha do speified a inserir.</span><span class="sxs-lookup"><span data-stu-id="32963-118">The speified worksheet names to insert.</span></span> <span data-ttu-id="32963-119">Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.</span><span class="sxs-lookup"><span data-stu-id="32963-119">By default it will insert all worksheets from the source workbook.</span></span>
+      type:
+      - string[]
+    - id: positionType
+      description: <span data-ttu-id="32963-120">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-120">Optional.</span></span> <span data-ttu-id="32963-121">Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="32963-121">Insert position type, see Excel.WorksheetPositionType for details.</span></span> <span data-ttu-id="32963-122">O padrão é "Start".</span><span class="sxs-lookup"><span data-stu-id="32963-122">Default is "Start".</span></span>
+      type:
+      - excel.Excel.WorksheetPositionType
+    - id: relativeTo
+      description: <span data-ttu-id="32963-123">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-123">Optional.</span></span> <span data-ttu-id="32963-124">O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-124">The referencing worksheet object or worksheet name/id in the current workbook.</span></span> <span data-ttu-id="32963-125">O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-125">Default is null and based on the postionType parameter it will insert worksheets at the start or end of the current workbook.</span></span>
+      type:
+      - Worksheet | string
+- uid: excel.Excel.WorksheetCollection.addFromBase64_1
+  summary: >-
+    <span data-ttu-id="32963-126">Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-126">Inserts the specified worksheets of a workbook into the current workbook.</span></span>
+
+
+    <span data-ttu-id="32963-127">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-127">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: addFromBase64(base64File, sheetNamesToInsert, positionTypeString, relativeTo)
+  fullName: addFromBase64(base64File, sheetNamesToInsert, positionTypeString, relativeTo)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionTypeString?: "None" | "Before" | "After" | "Beginning" | "End", relativeTo?: Worksheet | string): OfficeExtension.ClientResult<string[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string[]>
+      description: <span data-ttu-id="32963-128">Uma matriz em que cada item representa a ID da nova planilha inserida.</span><span class="sxs-lookup"><span data-stu-id="32963-128">An array where each item represents the Id of the new inserted worksheet.</span></span>
+    parameters:
+    - id: base64File
+      description: <span data-ttu-id="32963-129">Obrigatório.</span><span class="sxs-lookup"><span data-stu-id="32963-129">Required.</span></span> <span data-ttu-id="32963-130">Cadeia de caracteres Base64 representando a pasta de trabalho de origem.</span><span class="sxs-lookup"><span data-stu-id="32963-130">Base64 string representing the source workbook.</span></span>
+      type:
+      - string
+    - id: sheetNamesToInsert
+      description: <span data-ttu-id="32963-131">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-131">Optional.</span></span> <span data-ttu-id="32963-132">Os nomes da planilha do speified a inserir.</span><span class="sxs-lookup"><span data-stu-id="32963-132">The speified worksheet names to insert.</span></span> <span data-ttu-id="32963-133">Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.</span><span class="sxs-lookup"><span data-stu-id="32963-133">By default it will insert all worksheets from the source workbook.</span></span>
+      type:
+      - string[]
+    - id: positionTypeString
+      description: <span data-ttu-id="32963-134">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-134">Optional.</span></span> <span data-ttu-id="32963-135">Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="32963-135">Insert position type, see Excel.WorksheetPositionType for details.</span></span> <span data-ttu-id="32963-136">O padrão é "Start".</span><span class="sxs-lookup"><span data-stu-id="32963-136">Default is "Start".</span></span>
+      type:
+      - "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
+    - id: relativeTo
+      description: <span data-ttu-id="32963-137">Opcional.</span><span class="sxs-lookup"><span data-stu-id="32963-137">Optional.</span></span> <span data-ttu-id="32963-138">O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-138">The referencing worksheet object or worksheet name/id in the current workbook.</span></span> <span data-ttu-id="32963-139">O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.</span><span class="sxs-lookup"><span data-stu-id="32963-139">Default is null and based on the postionType parameter it will insert worksheets at the start or end of the current workbook.</span></span>
+      type:
+      - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.context
-  summary: <span data-ttu-id="d47d6-112">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="d47d6-112">The request context associated with the object.</span></span> <span data-ttu-id="d47d6-113">Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="d47d6-113">This connects the add-in's process to the Office host application's process.</span></span>
+  summary: <span data-ttu-id="32963-140">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="32963-140">The request context associated with the object.</span></span> <span data-ttu-id="32963-141">Isso conecta o processo do suplemento ao processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="32963-141">This connects the add-in's process to the Office host application's process.</span></span>
   name: context
   fullName: context
   langs:
@@ -75,10 +151,10 @@ items:
       - RequestContext
 - uid: excel.Excel.WorksheetCollection.getActiveWorksheet
   summary: >-
-    <span data-ttu-id="d47d6-114">Obtém a planilha ativa no momento na pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="d47d6-114">Gets the currently active worksheet in the workbook.</span></span>
+    <span data-ttu-id="32963-142">Obtém a planilha ativa no momento na pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="32963-142">Gets the currently active worksheet in the workbook.</span></span>
 
 
-    <span data-ttu-id="d47d6-115">\[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-115">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-143">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-143">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getActiveWorksheet()
   fullName: getActiveWorksheet()
   langs:
@@ -89,13 +165,13 @@ items:
     return:
       type:
       - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-116\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-116\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) {  \n    var activeWorksheet = ctx.workbook.worksheets.getActiveWorksheet();\n    activeWorksheet.load('name');\n    return ctx.sync().then(function() {\n            console.log(activeWorksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-144\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-144\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) {  \n    var activeWorksheet = ctx.workbook.worksheets.getActiveWorksheet();\n    activeWorksheet.load('name');\n    return ctx.sync().then(function() {\n            console.log(activeWorksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.WorksheetCollection.getCount
   summary: >-
-    <span data-ttu-id="d47d6-117">Obtém o número de planilhas na coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-117">Gets the number of worksheets in the collection.</span></span>
+    <span data-ttu-id="32963-145">Obtém o número de planilhas na coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-145">Gets the number of worksheets in the collection.</span></span>
 
 
-    <span data-ttu-id="d47d6-118">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-118">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-146">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-146">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getCount(visibleOnly)
   fullName: getCount(visibleOnly)
   langs:
@@ -109,15 +185,15 @@ items:
       description: ''
     parameters:
     - id: visibleOnly
-      description: <span data-ttu-id="d47d6-p104">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p104">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
+      description: <span data-ttu-id="32963-p112">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="32963-p112">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getFirst
   summary: >-
-    <span data-ttu-id="d47d6-121">Obtém a primeira planilha na coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-121">Gets the first worksheet in the collection.</span></span>
+    <span data-ttu-id="32963-149">Obtém a primeira planilha na coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-149">Gets the first worksheet in the collection.</span></span>
 
 
-    <span data-ttu-id="d47d6-122">\[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-122">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-150">\[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-150">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getFirst(visibleOnly)
   fullName: getFirst(visibleOnly)
   langs:
@@ -128,18 +204,18 @@ items:
     return:
       type:
       - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-123\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-123\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-151\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-151\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: <span data-ttu-id="d47d6-p105">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p105">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
+      description: <span data-ttu-id="32963-p113">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="32963-p113">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getItem
   summary: >-
-    <span data-ttu-id="d47d6-126">Obtém um objeto de planilha usando o Nome ou ID dele.</span><span class="sxs-lookup"><span data-stu-id="d47d6-126">Gets a worksheet object using its Name or ID.</span></span>
+    <span data-ttu-id="32963-154">Obtém um objeto de planilha usando o Nome ou ID dele.</span><span class="sxs-lookup"><span data-stu-id="32963-154">Gets a worksheet object using its Name or ID.</span></span>
 
 
-    <span data-ttu-id="d47d6-127">\[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-127">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-155">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-155">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getItem(key)
   fullName: getItem(key)
   langs:
@@ -153,15 +229,15 @@ items:
       description: ''
     parameters:
     - id: key
-      description: <span data-ttu-id="d47d6-128">O Nome ou ID da planilha.</span><span class="sxs-lookup"><span data-stu-id="d47d6-128">The Name or ID of the worksheet.</span></span>
+      description: <span data-ttu-id="32963-156">O Nome ou ID da planilha.</span><span class="sxs-lookup"><span data-stu-id="32963-156">The Name or ID of the worksheet.</span></span>
       type:
       - string
 - uid: excel.Excel.WorksheetCollection.getItemOrNullObject
   summary: >-
-    <span data-ttu-id="d47d6-p106">Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, retornará um objeto null.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p106">Gets a worksheet object using its Name or ID. If the worksheet does not exist, will return a null object.</span></span>
+    <span data-ttu-id="32963-p114">Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, retornará um objeto null.</span><span class="sxs-lookup"><span data-stu-id="32963-p114">Gets a worksheet object using its Name or ID. If the worksheet does not exist, will return a null object.</span></span>
 
 
-    <span data-ttu-id="d47d6-131">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-131">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-159">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-159">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getItemOrNullObject(key)
   fullName: getItemOrNullObject(key)
   langs:
@@ -175,15 +251,15 @@ items:
       description: ''
     parameters:
     - id: key
-      description: <span data-ttu-id="d47d6-132">O Nome ou ID da planilha.</span><span class="sxs-lookup"><span data-stu-id="d47d6-132">The Name or ID of the worksheet.</span></span>
+      description: <span data-ttu-id="32963-160">O Nome ou ID da planilha.</span><span class="sxs-lookup"><span data-stu-id="32963-160">The Name or ID of the worksheet.</span></span>
       type:
       - string
 - uid: excel.Excel.WorksheetCollection.getLast
   summary: >-
-    <span data-ttu-id="d47d6-133">Obtém a última planilha na coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-133">Gets the last worksheet in the collection.</span></span>
+    <span data-ttu-id="32963-161">Obtém a última planilha na coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-161">Gets the last worksheet in the collection.</span></span>
 
 
-    <span data-ttu-id="d47d6-134">\[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-134">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-162">\[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-162">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: getLast(visibleOnly)
   fullName: getLast(visibleOnly)
   langs:
@@ -194,14 +270,14 @@ items:
     return:
       type:
       - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-135\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-135\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-163\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-163\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: <span data-ttu-id="d47d6-p107">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="d47d6-p107">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
+      description: <span data-ttu-id="32963-p115">Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.</span><span class="sxs-lookup"><span data-stu-id="32963-p115">Optional. If true, considers only visible worksheets, skipping over any hidden ones.</span></span>
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.items
-  summary: <span data-ttu-id="d47d6-138">Obtém o filho carregado itens nesta coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-138">Gets the loaded child items in this collection.</span></span>
+  summary: <span data-ttu-id="32963-166">Obtém os itens filhos carregados nesta coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-166">Gets the loaded child items in this collection.</span></span>
   name: items
   fullName: items
   langs:
@@ -213,18 +289,18 @@ items:
       type:
       - Excel.Worksheet[]
 - uid: excel.Excel.WorksheetCollection.load
-  summary: <span data-ttu-id="d47d6-139">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="d47d6-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="d47d6-140">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="d47d6-140">You must call "context.sync()" before reading the properties.</span></span>
+  summary: <span data-ttu-id="32963-167">Enfileira um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="32963-167">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="32963-168">Você deve chamar "context. Sync ()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="32963-168">You must call "context.sync()" before reading the properties.</span></span>
   remarks: >-
-    <span data-ttu-id="d47d6-141">Além dessa assinatura, esse método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="d47d6-141">In addition to this signature, this method has the following signatures:</span></span>
+    <span data-ttu-id="32963-169">Além dessa assinatura, este método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="32963-169">In addition to this signature, this method has the following signatures:</span></span>
 
 
-    <span data-ttu-id="d47d6-142">`load(option?: string | string[]): Excel.WorksheetCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="d47d6-142">`load(option?: string | string[]): Excel.WorksheetCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+    <span data-ttu-id="32963-170">`load(option?: string | string[]): Excel.WorksheetCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="32963-170">`load(option?: string | string[]): Excel.WorksheetCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
 
 
-    <span data-ttu-id="d47d6-143">`load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.</span><span class="sxs-lookup"><span data-stu-id="d47d6-143">`load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+    <span data-ttu-id="32963-171">`load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="32963-171">`load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
 
 
-    <span data-ttu-id="d47d6-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`-Só está disponível em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection` - Only available on collection types.</span></span> <span data-ttu-id="d47d6-145">Ele é semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="d47d6-145">It is similar to the preceding signature.</span></span> <span data-ttu-id="d47d6-146">Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção.</span><span class="sxs-lookup"><span data-stu-id="d47d6-146">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="d47d6-147">Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="d47d6-147">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="d47d6-148">Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="d47d6-148">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    <span data-ttu-id="32963-172">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`– Disponível somente nos tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-172">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection` - Only available on collection types.</span></span> <span data-ttu-id="32963-173">É semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="32963-173">It is similar to the preceding signature.</span></span> <span data-ttu-id="32963-174">Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="32963-174">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="32963-175">Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="32963-175">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="32963-176">Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="32963-176">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
   name: load(option)
   fullName: load(option)
   langs:
@@ -242,7 +318,7 @@ items:
       type:
       - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.WorksheetCollection.load_1
-  summary: <span data-ttu-id="d47d6-149">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="d47d6-149">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="d47d6-150">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="d47d6-150">You must call `context.sync()` before reading the properties.</span></span>
+  summary: <span data-ttu-id="32963-177">Enfileira um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="32963-177">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="32963-178">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="32963-178">You must call `context.sync()` before reading the properties.</span></span>
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -253,10 +329,10 @@ items:
     return:
       type:
       - excel.Excel.WorksheetCollection
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-151\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-151\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-179\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-179\">Examples</span></span>\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: propertyNames
-      description: <span data-ttu-id="d47d6-152">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="d47d6-152">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+      description: <span data-ttu-id="32963-180">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="32963-180">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
       type:
       - string | string[]
 - uid: excel.Excel.WorksheetCollection.load_2
@@ -278,10 +354,10 @@ items:
       - office.OfficeExtension.LoadOption
 - uid: excel.Excel.WorksheetCollection.onActivated
   summary: >-
-    <span data-ttu-id="d47d6-153">Ocorre quando uma planilha na pasta de trabalho é ativada.</span><span class="sxs-lookup"><span data-stu-id="d47d6-153">Occurs when any worksheet in the workbook is activated.</span></span>
+    <span data-ttu-id="32963-181">Ocorre quando qualquer planilha na pasta de trabalho é ativada.</span><span class="sxs-lookup"><span data-stu-id="32963-181">Occurs when any worksheet in the workbook is activated.</span></span>
 
 
-    <span data-ttu-id="d47d6-154">\[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-154">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-182">\[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-182">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: onActivated
   fullName: onActivated
   langs:
@@ -292,13 +368,13 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetActivatedEventArgs>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-155\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-155\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onActivated.add(onActivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnActivate event.\");\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-183\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-183\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onActivated.add(onActivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnActivate event.\");\n});\n```"
 - uid: excel.Excel.WorksheetCollection.onAdded
   summary: >-
-    <span data-ttu-id="d47d6-156">Ocorre quando uma nova planilha é adicionada à pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="d47d6-156">Occurs when a new worksheet is added to the workbook.</span></span>
+    <span data-ttu-id="32963-184">Ocorre quando uma nova planilha é adicionada à pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="32963-184">Occurs when a new worksheet is added to the workbook.</span></span>
 
 
-    <span data-ttu-id="d47d6-157">\[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-157">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-185">\[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-185">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: onAdded
   fullName: onAdded
   langs:
@@ -309,13 +385,13 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetAddedEventArgs>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-158\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-158\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets;\n    sheet.onAdded.add(onWorksheetAdd);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnAdded event.\");\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-186\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-186\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets;\n    sheet.onAdded.add(onWorksheetAdd);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnAdded event.\");\n});\n```"
 - uid: excel.Excel.WorksheetCollection.onCalculated
   summary: >-
-    <span data-ttu-id="d47d6-159">Ocorre quando uma planilha na pasta de trabalho é calculada.</span><span class="sxs-lookup"><span data-stu-id="d47d6-159">Occurs when any worksheet in the workbook is calculated.</span></span>
+    <span data-ttu-id="32963-187">Ocorre quando qualquer planilha na pasta de trabalho é calculada.</span><span class="sxs-lookup"><span data-stu-id="32963-187">Occurs when any worksheet in the workbook is calculated.</span></span>
 
 
-    <span data-ttu-id="d47d6-160">\[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-160">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-188">\[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-188">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: onCalculated
   fullName: onCalculated
   langs:
@@ -326,12 +402,29 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onChanged
+  summary: >-
+    <span data-ttu-id="32963-189">Ocorre quando qualquer planilha na pasta de trabalho é alterada.</span><span class="sxs-lookup"><span data-stu-id="32963-189">Occurs when any worksheet in the workbook is changed.</span></span>
+
+
+    <span data-ttu-id="32963-190">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-190">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: onChanged
+  fullName: onChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onDeactivated
   summary: >-
-    <span data-ttu-id="d47d6-161">Ocorre quando uma planilha na pasta de trabalho é desativada.</span><span class="sxs-lookup"><span data-stu-id="d47d6-161">Occurs when any worksheet in the workbook is deactivated.</span></span>
+    <span data-ttu-id="32963-191">Ocorre quando qualquer planilha na pasta de trabalho é desativada.</span><span class="sxs-lookup"><span data-stu-id="32963-191">Occurs when any worksheet in the workbook is deactivated.</span></span>
 
 
-    <span data-ttu-id="d47d6-162">\[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-162">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-192">\[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-192">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: onDeactivated
   fullName: onDeactivated
   langs:
@@ -342,13 +435,13 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"d47d6-163\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"d47d6-163\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onDeactivated.add(onDeactivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnDeactivate event.\");\n});\n```"
+      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"32963-193\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"32963-193\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onDeactivated.add(onDeactivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnDeactivate event.\");\n});\n```"
 - uid: excel.Excel.WorksheetCollection.onDeleted
   summary: >-
-    <span data-ttu-id="d47d6-164">Ocorre quando uma planilha é excluída da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="d47d6-164">Occurs when a worksheet is deleted from the workbook.</span></span>
+    <span data-ttu-id="32963-194">Ocorre quando uma planilha é excluída da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="32963-194">Occurs when a worksheet is deleted from the workbook.</span></span>
 
 
-    <span data-ttu-id="d47d6-165">\[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="d47d6-165">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    <span data-ttu-id="32963-195">\[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-195">\[ [API set: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
   name: onDeleted
   fullName: onDeleted
   langs:
@@ -359,8 +452,59 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onFiltered
+  summary: >-
+    <span data-ttu-id="32963-196">Ocorre quando o filtro de qualquer planilha é aplicado na pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="32963-196">Occurs when any worksheet's filter is applied in the workbook.</span></span>
+
+
+    <span data-ttu-id="32963-197">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-197">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: onFiltered
+  fullName: onFiltered
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFiltered: OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
+- uid: excel.Excel.WorksheetCollection.onFormatChanged
+  summary: >-
+    <span data-ttu-id="32963-198">Ocorre quando qualquer planilha na pasta de trabalho tem um formato alterado.</span><span class="sxs-lookup"><span data-stu-id="32963-198">Occurs when any worksheet in the workbook has format changed.</span></span>
+
+
+    <span data-ttu-id="32963-199">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-199">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: onFormatChanged
+  fullName: onFormatChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onSelectionChanged
+  summary: >-
+    <span data-ttu-id="32963-200">Ocorre quando a seleção é alterada em qualquer planilha.</span><span class="sxs-lookup"><span data-stu-id="32963-200">Occurs when the selection changes on any worksheet.</span></span>
+
+
+    <span data-ttu-id="32963-201">\[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="32963-201">\[ [API set: ExcelApi BETA (PREVIEW ONLY)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+  isPreview: true
+  name: onSelectionChanged
+  fullName: onSelectionChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.toJSON
-  summary: <span data-ttu-id="d47d6-166">Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->.</span><span class="sxs-lookup"><span data-stu-id="d47d6-166">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="d47d6-167">(`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `Excel.WorksheetCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `Excel.Interfaces.WorksheetCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.</span><span class="sxs-lookup"><span data-stu-id="d47d6-167">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.WorksheetCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.WorksheetCollectionData`<!-- -->) that contains an "items" array with shallow copies of any loaded properties from the collection's items.</span></span>
+  summary: <span data-ttu-id="32963-202">Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->.</span><span class="sxs-lookup"><span data-stu-id="32963-202">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="32963-203">(`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.WorksheetCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.</span><span class="sxs-lookup"><span data-stu-id="32963-203">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.WorksheetCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.WorksheetCollectionData`<!-- -->) that contains an "items" array with shallow copies of any loaded properties from the collection's items.</span></span>
   name: toJSON()
   fullName: toJSON()
   langs:
