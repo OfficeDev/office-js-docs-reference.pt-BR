@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e1aeb311af13a575bdc735e6fe2601d9cfe7a3e4
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 03b77d5315bd854e9f1766c69a92758779337b39
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29975190"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095818"
 items:
 - uid: excel.Excel.StyleCollection
   summary: >-
-    Representa uma coleção de todos os estilos. Aviso: A matriz de itens StyleCollection tem um problema conhecido ao carregar os itens da coleção. Não use `StyleCollection.items` <!-- -->, qualquer `load()` método e o `toJSON()` método.
+    Representa uma coleção de todos os estilos.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.StyleCollection
   fullName: Excel.StyleCollection
   langs:
@@ -23,7 +23,9 @@ items:
   children:
   - excel.Excel.StyleCollection.add
   - excel.Excel.StyleCollection.context
+  - excel.Excel.StyleCollection.getCount
   - excel.Excel.StyleCollection.getItem
+  - excel.Excel.StyleCollection.getItemAt
   - excel.Excel.StyleCollection.items
   - excel.Excel.StyleCollection.load
   - excel.Excel.StyleCollection.load_1
@@ -34,7 +36,7 @@ items:
     Adiciona um novo estilo para o conjunto.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(name)
   fullName: add(name)
   langs:
@@ -52,7 +54,7 @@ items:
       type:
       - string
 - uid: excel.Excel.StyleCollection.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -63,12 +65,30 @@ items:
     return:
       type:
       - RequestContext
+- uid: excel.Excel.StyleCollection.getCount
+  summary: >-
+    Obtém o número de estilos na coleção.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getCount()
+  fullName: getCount()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
 - uid: excel.Excel.StyleCollection.getItem
   summary: >-
     Obtém um estilo por nome.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(name)
   fullName: getItem(name)
   langs:
@@ -85,8 +105,31 @@ items:
       description: Nome do estilo a ser recuperado.
       type:
       - string
+- uid: excel.Excel.StyleCollection.getItemAt
+  summary: >-
+    Obtém um estilo com base em sua posição na coleção.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getItemAt(index)
+  fullName: getItemAt(index)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.Style;'
+    return:
+      type:
+      - excel.Excel.Style
+      description: ''
+    parameters:
+    - id: index
+      description: Valor de índice do objeto a ser recuperado. Indexados com zero.
+      type:
+      - number
 - uid: excel.Excel.StyleCollection.items
-  summary: 'Aviso: A matriz de itens StyleCollection tem um problema conhecido ao carregar os itens da coleção. Não use `StyleCollection.items` <!-- -->, qualquer `load()` método e o `toJSON()` método.'
+  summary: Obtém os itens filhos carregados nesta coleção.
   name: items
   fullName: items
   langs:
@@ -98,7 +141,18 @@ items:
       type:
       - Excel.Style[]
 - uid: excel.Excel.StyleCollection.load
-  summary: 'Aviso: A matriz de itens StyleCollection tem um problema conhecido ao carregar os itens da coleção. Não use `StyleCollection.items` <!-- -->, qualquer `load()` método e o `toJSON()` método.'
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
+  remarks: >-
+    Além dessa assinatura, este método tem as seguintes assinaturas:
+
+
+    `load(option?: string | string[]): Excel.StyleCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.StyleCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.StyleCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -116,7 +170,7 @@ items:
       type:
       - Excel.Interfaces.StyleCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.StyleCollection.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -130,7 +184,7 @@ items:
       description: ''
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.StyleCollection.load_2
@@ -151,7 +205,7 @@ items:
       type:
       - office.OfficeExtension.LoadOption
 - uid: excel.Excel.StyleCollection.toJSON
-  summary: 'Aviso: A matriz de itens StyleCollection tem um problema conhecido ao carregar os itens da coleção. Não use `StyleCollection.items` <!-- -->, qualquer `load()` método e o `toJSON()` método.'
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.StyleCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.StyleCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
   name: toJSON()
   fullName: toJSON()
   langs:

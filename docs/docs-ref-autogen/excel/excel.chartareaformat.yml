@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 097724980d9b3718f5b1e7717d0e2d84d215c699
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 8fd901f80865ba3bfaead20c10ab7cc5045c6ce9
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29979495"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30096056"
 items:
 - uid: excel.Excel.ChartAreaFormat
   summary: >-
     Encapsula as propriedades de formato da área de gráfico geral.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.ChartAreaFormat
   fullName: Excel.ChartAreaFormat
   langs:
@@ -22,21 +22,23 @@ items:
   package: excel
   children:
   - excel.Excel.ChartAreaFormat.border
+  - excel.Excel.ChartAreaFormat.colorScheme
   - excel.Excel.ChartAreaFormat.context
   - excel.Excel.ChartAreaFormat.fill
   - excel.Excel.ChartAreaFormat.font
   - excel.Excel.ChartAreaFormat.load
   - excel.Excel.ChartAreaFormat.load_1
   - excel.Excel.ChartAreaFormat.load_2
+  - excel.Excel.ChartAreaFormat.roundedCorners
   - excel.Excel.ChartAreaFormat.set
   - excel.Excel.ChartAreaFormat.set_1
   - excel.Excel.ChartAreaFormat.toJSON
 - uid: excel.Excel.ChartAreaFormat.border
   summary: >-
-    Representa o formato de borda da área do gráfico, que inclui linestyle, cor e espessura. Somente leitura.
+    Representa o formato da borda da área do gráfico, que inclui cores, LineStyle e Weight. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: border
   fullName: border
   langs:
@@ -47,8 +49,25 @@ items:
     return:
       type:
       - excel.Excel.ChartBorder
+- uid: excel.Excel.ChartAreaFormat.colorScheme
+  summary: >-
+    Retorna ou define um inteiro que representa o esquema de cores do gráfico. Leitura/gravação.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: colorScheme
+  fullName: colorScheme
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'colorScheme: Excel.ChartColorScheme | "ColorfulPalette1" | "ColorfulPalette2" | "ColorfulPalette3" | "ColorfulPalette4" | "MonochromaticPalette1" | "MonochromaticPalette2" | "MonochromaticPalette3" | "MonochromaticPalette4" | "MonochromaticPalette5" | "MonochromaticPalette6" | "MonochromaticPalette7" | "MonochromaticPalette8" | "MonochromaticPalette9" | "MonochromaticPalette10" | "MonochromaticPalette11" | "MonochromaticPalette12" | "MonochromaticPalette13";'
+    return:
+      type:
+      - Excel.ChartColorScheme | "ColorfulPalette1" | "ColorfulPalette2" | "ColorfulPalette3" | "ColorfulPalette4" | "MonochromaticPalette1" | "MonochromaticPalette2" | "MonochromaticPalette3" | "MonochromaticPalette4" | "MonochromaticPalette5" | "MonochromaticPalette6" | "MonochromaticPalette7" | "MonochromaticPalette8" | "MonochromaticPalette9" | "MonochromaticPalette10" | "MonochromaticPalette11" | "MonochromaticPalette12" | "MonochromaticPalette13"
 - uid: excel.Excel.ChartAreaFormat.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -64,7 +83,7 @@ items:
     Representa o formato de preenchimento de um objeto, que inclui informações sobre a formatação da tela de fundo. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: fill
   fullName: fill
   langs:
@@ -80,7 +99,7 @@ items:
     Representa os atributos de fonte do objeto atual, como nome, tamanho, cor, dentre outros. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: font
   fullName: font
   langs:
@@ -92,18 +111,18 @@ items:
       type:
       - excel.Excel.ChartFont
 - uid: excel.Excel.ChartAreaFormat.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
   remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
+    Além dessa assinatura, este método tem as seguintes assinaturas:
 
 
-    `load(option?: string | string[]): Excel.ChartAreaFormat`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+    `load(option?: string | string[]): Excel.ChartAreaFormat`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.ChartAreaFormat`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+    `load(option?: { select?: string; expand?: string; }): Excel.ChartAreaFormat`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAreaFormat`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartAreaFormat`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -121,7 +140,7 @@ items:
       type:
       - excel.Excel.Interfaces.ChartAreaFormatLoadOptions
 - uid: excel.Excel.ChartAreaFormat.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -135,11 +154,11 @@ items:
       description: ''
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.ChartAreaFormat.load_2
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -153,13 +172,30 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
       type:
       - '{ select?: string; expand?: string; }'
+- uid: excel.Excel.ChartAreaFormat.roundedCorners
+  summary: >-
+    True se a área do gráfico do gráfico tiver cantos arredondados. Leitura/gravação.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: roundedCorners
+  fullName: roundedCorners
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'roundedCorners: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.ChartAreaFormat.set
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
   remarks: >-
-    Esse método tem a seguinte assinatura adicional:
+    Este método tem a seguinte assinatura adicional:
 
 
     `set(properties: Excel.ChartAreaFormat): void`
@@ -176,15 +212,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: Um objeto de JavaScript com propriedades que são estruturadas isomorphically às propriedades do objeto no qual o método é chamado.
+      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
       type:
       - Interfaces.ChartAreaFormatUpdateData
     - id: options
-      description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
+      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.ChartAreaFormat.set_1
-  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -202,7 +238,7 @@ items:
       type:
       - excel.Excel.ChartAreaFormat
 - uid: excel.Excel.ChartAreaFormat.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.ChartAreaFormat original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.ChartAreaFormatData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. ChartAreaFormat original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.ChartAreaFormatData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   name: toJSON()
   fullName: toJSON()
   langs:

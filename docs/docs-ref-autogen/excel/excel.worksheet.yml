@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b497ed4356fd389b20f3f9a3a7a29dcf18a306a9
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: a3efae33e400954ea270e85c640f6f139cda2004
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981098"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095734"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
     Uma planilha do Excel é uma grade de células. Ela pode conter dados, tabelas, gráficos, etc.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.Worksheet
   fullName: Excel.Worksheet
   langs:
@@ -22,12 +22,17 @@ items:
   package: excel
   children:
   - excel.Excel.Worksheet.activate
+  - excel.Excel.Worksheet.autoFilter
   - excel.Excel.Worksheet.calculate
   - excel.Excel.Worksheet.charts
+  - excel.Excel.Worksheet.comments
   - excel.Excel.Worksheet.context
   - excel.Excel.Worksheet.copy
   - excel.Excel.Worksheet.copy_1
   - excel.Excel.Worksheet.delete
+  - excel.Excel.Worksheet.enableCalculation
+  - excel.Excel.Worksheet.findAll
+  - excel.Excel.Worksheet.findAllOrNullObject
   - excel.Excel.Worksheet.freezePanes
   - excel.Excel.Worksheet.getCell
   - excel.Excel.Worksheet.getNext
@@ -36,8 +41,10 @@ items:
   - excel.Excel.Worksheet.getPreviousOrNullObject
   - excel.Excel.Worksheet.getRange
   - excel.Excel.Worksheet.getRangeByIndexes
+  - excel.Excel.Worksheet.getRanges
   - excel.Excel.Worksheet.getUsedRange
   - excel.Excel.Worksheet.getUsedRangeOrNullObject
+  - excel.Excel.Worksheet.horizontalPageBreaks
   - excel.Excel.Worksheet.id
   - excel.Excel.Worksheet.load
   - excel.Excel.Worksheet.load_1
@@ -48,26 +55,33 @@ items:
   - excel.Excel.Worksheet.onCalculated
   - excel.Excel.Worksheet.onChanged
   - excel.Excel.Worksheet.onDeactivated
+  - excel.Excel.Worksheet.onFiltered
+  - excel.Excel.Worksheet.onFormatChanged
   - excel.Excel.Worksheet.onSelectionChanged
+  - excel.Excel.Worksheet.pageLayout
   - excel.Excel.Worksheet.pivotTables
   - excel.Excel.Worksheet.position
   - excel.Excel.Worksheet.protection
+  - excel.Excel.Worksheet.replaceAll
   - excel.Excel.Worksheet.set
   - excel.Excel.Worksheet.set_1
+  - excel.Excel.Worksheet.shapes
   - excel.Excel.Worksheet.showGridlines
   - excel.Excel.Worksheet.showHeadings
+  - excel.Excel.Worksheet.slicers
   - excel.Excel.Worksheet.standardHeight
   - excel.Excel.Worksheet.standardWidth
   - excel.Excel.Worksheet.tabColor
   - excel.Excel.Worksheet.tables
   - excel.Excel.Worksheet.toJSON
+  - excel.Excel.Worksheet.verticalPageBreaks
   - excel.Excel.Worksheet.visibility
 - uid: excel.Excel.Worksheet.activate
   summary: >-
     Ative a planilha na interface do usuário do Excel.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: activate()
   fullName: activate()
   langs:
@@ -79,12 +93,29 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.activate();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Worksheet.autoFilter
+  summary: >-
+    Representa o objeto autoFilter da planilha. Somente Leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: autoFilter
+  fullName: autoFilter
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly autoFilter: Excel.AutoFilter;'
+    return:
+      type:
+      - excel.Excel.AutoFilter
 - uid: excel.Excel.Worksheet.calculate
   summary: >-
     Calcula todas as células em uma planilha.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculate(markAllDirty)
   fullName: calculate(markAllDirty)
   langs:
@@ -98,7 +129,7 @@ items:
       description: ''
     parameters:
     - id: markAllDirty
-      description: True para marcar todos como sujo.
+      description: True, para marcar tudo como sujo.
       type:
       - boolean
 - uid: excel.Excel.Worksheet.charts
@@ -106,7 +137,7 @@ items:
     Retorna uma coleção de gráficos que fazem parte da planilha. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: charts
   fullName: charts
   langs:
@@ -117,8 +148,25 @@ items:
     return:
       type:
       - excel.Excel.ChartCollection
+- uid: excel.Excel.Worksheet.comments
+  summary: >-
+    Retorna uma coleção de todos os objetos Comments na planilha. Somente leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: comments
+  fullName: comments
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly comments: Excel.CommentCollection;'
+    return:
+      type:
+      - excel.Excel.CommentCollection
 - uid: excel.Excel.Worksheet.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -134,7 +182,7 @@ items:
     Copia uma planilha e a coloca na posição especificada. Retorna à planilha copiada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: copy(positionType, relativeTo)
   fullName: copy(positionType, relativeTo)
   langs:
@@ -160,7 +208,7 @@ items:
     Copia uma planilha e a coloca na posição especificada. Retorna à planilha copiada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: copy(positionTypeString, relativeTo)
   fullName: copy(positionTypeString, relativeTo)
   langs:
@@ -183,10 +231,10 @@ items:
       - excel.Excel.Worksheet
 - uid: excel.Excel.Worksheet.delete
   summary: >-
-    Exclui a planilha da pasta de trabalho.
+    Exclui a planilha da pasta de trabalho. Observe que, se a visibilidade da planilha estiver definida como "VeryHidden", a operação de exclusão falhará com uma Generalexception.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
   fullName: delete()
   langs:
@@ -198,12 +246,83 @@ items:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.delete();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.Worksheet.enableCalculation
+  summary: >-
+    Obtém ou define a propriedade enableCalculation da planilha. True se o Excel recalcular a planilha quando necessário. False se o Excel não recalcular a planilha.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: enableCalculation
+  fullName: enableCalculation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'enableCalculation: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Worksheet.findAll
+  summary: >-
+    Localiza todas as ocorrências da cadeia de caracteres fornecida com base nos critérios especificados e as retorna como um objeto RangeAreas, incluindo um ou mais intervalos retangulares.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: findAll(text, criteria)
+  fullName: findAll(text, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'findAll(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: Um objeto RangeArea, incluindo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se nenhuma célula atender a esses critérios, um erro ItemNotFound será gerado.
+    parameters:
+    - id: text
+      description: Cadeia de caracteres a ser localizada.
+      type:
+      - string
+    - id: criteria
+      description: Critérios adicionais.
+      type:
+      - excel.Excel.WorksheetSearchCriteria
+- uid: excel.Excel.Worksheet.findAllOrNullObject
+  summary: >-
+    Localiza todas as ocorrências da cadeia de caracteres fornecida com base nos critérios especificados e as retorna como um objeto RangeAreas, incluindo um ou mais intervalos retangulares.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: findAllOrNullObject(text, criteria)
+  fullName: findAllOrNullObject(text, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: Um objeto RangeArea, incluindo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se não houver nenhuma correspondência, esta função retornará um objeto NULL.
+    parameters:
+    - id: text
+      description: Cadeia de caracteres a ser localizada.
+      type:
+      - string
+    - id: criteria
+      description: Critérios adicionais.
+      type:
+      - excel.Excel.WorksheetSearchCriteria
 - uid: excel.Excel.Worksheet.freezePanes
   summary: >-
-    Obtém um objeto que pode ser usado para manipular os painéis congelados na planilha. Somente leitura.
+    Obtém um objeto que pode ser usado para manipular painéis congelados na planilha. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: freezePanes
   fullName: freezePanes
   langs:
@@ -216,10 +335,10 @@ items:
       - excel.Excel.WorksheetFreezePanes
 - uid: excel.Excel.Worksheet.getCell
   summary: >-
-    Obtém o objeto de intervalo que contém a célula única com base em números de linha e coluna. A célula pode ser fora dos limites do seu intervalo pai, contanto que ela fica dentro da grade da planilha.
+    Obtém o objeto Range que contém a célula única com base em números de linha e coluna. A célula pode estar fora dos limites de seu intervalo pai, desde que ela permaneça dentro da grade da planilha.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCell(row, column)
   fullName: getCell(row, column)
   langs:
@@ -330,10 +449,10 @@ items:
       - boolean
 - uid: excel.Excel.Worksheet.getRange
   summary: >-
-    Obtém o objeto range, que representa um único bloco retangular de células, especificado pelo nome ou endereço.
+    Obtém o objeto Range, representando um único bloco retangular de células, especificado pelo endereço ou nome.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange(address)
   fullName: getRange(address)
   langs:
@@ -347,7 +466,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Below example uses range address to get the range object.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Below example uses a named-range to get the range object.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeName = 'MyRange';\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeName);\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: address
-      description: 'Opcional. A cadeia de caracteres que representa o endereço ou o nome do intervalo. Por exemplo, "A1: B2". Se não especificado, o intervalo de planilha inteira será retornado.'
+      description: 'Opcional. A cadeia de caracteres que representa o endereço ou o nome do intervalo. Por exemplo, "a1: B2". Se não for especificado, todo o intervalo de planilha será retornado.'
       type:
       - string
 - uid: excel.Excel.Worksheet.getRangeByIndexes
@@ -355,7 +474,7 @@ items:
     Obtém o objeto Range que começa em um determinado índice de linha e índice de coluna e que abrange um determinado número de linhas e colunas.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   fullName: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   langs:
@@ -369,11 +488,11 @@ items:
       description: ''
     parameters:
     - id: startRow
-      description: Inicia a linha (indexado por zero).
+      description: Linha inicial (indexada por zero).
       type:
       - number
     - id: startColumn
-      description: Inicie a coluna (indexado por zero).
+      description: Coluna inicial (indexada por zero).
       type:
       - number
     - id: rowCount
@@ -384,12 +503,35 @@ items:
       description: Número de colunas a serem incluídas no intervalo.
       type:
       - number
+- uid: excel.Excel.Worksheet.getRanges
+  summary: >-
+    Obtém o objeto RangeAreas, que representa um ou mais blocos de intervalos retangulares, especificados pelo endereço ou nome.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getRanges(address)
+  fullName: getRanges(address)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRanges(address?: string): Excel.RangeAreas;'
+    return:
+      type:
+      - excel.Excel.RangeAreas
+      description: ''
+    parameters:
+    - id: address
+      description: 'Opcional. Uma cadeia de caracteres que contém os endereços ou nomes separados por vírgulas de intervalos individuais. Por exemplo, "a1: B2, A5: B5". Se não for especificado, será retornado um objeto RangeArea para a planilha inteira.'
+      type:
+      - string
 - uid: excel.Excel.Worksheet.getUsedRange
   summary: >-
-    O intervalo usado é o intervalo menor que abrange as células com um valor ou formatação atribuída a eles. Se a planilha inteira estiver vazia, essa função retornará a célula superior esquerda (ou seja, ela será *levanta um erro* ).
+    O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou formatação atribuída a elas. Se a planilha inteira estiver em branco, essa função retornará a célula superior esquerda (ou seja, *não* gerará um erro).
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getUsedRange(valuesOnly)
   fullName: getUsedRange(valuesOnly)
   langs:
@@ -403,7 +545,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    var usedRange = worksheet.getUsedRange();\n    usedRange.load('address');\n    return ctx.sync().then(function() {\n            console.log(usedRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: valuesOnly
-      description: 'Opcional. Se for true, considera apenas células com valores como células usadas (ignorando formatação). \[Conjunto de APIs: ExcelApi 1.2\]'
+      description: 'Opcional. Se true, considera apenas as células com valores como células usadas (ignorando a formatação). \[Conjunto de APIs: ExcelApi 1,2\]'
       type:
       - boolean
 - uid: excel.Excel.Worksheet.getUsedRangeOrNullObject
@@ -428,12 +570,29 @@ items:
       description: Opcional. Considera apenas as células com valores como células usadas.
       type:
       - boolean
+- uid: excel.Excel.Worksheet.horizontalPageBreaks
+  summary: >-
+    Obtém a coleção de quebra de página horizontal da planilha. Essa coleção contém apenas quebras de página manuais.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: horizontalPageBreaks
+  fullName: horizontalPageBreaks
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly horizontalPageBreaks: Excel.PageBreakCollection;'
+    return:
+      type:
+      - excel.Excel.PageBreakCollection
 - uid: excel.Excel.Worksheet.id
   summary: >-
     Retorna um valor que identifica de forma exclusiva a planilha em uma determinada pasta de trabalho. O valor do identificador permanece o mesmo, ainda que a planilha seja renomeada ou movida. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: id
   fullName: id
   langs:
@@ -445,18 +604,18 @@ items:
       type:
       - string
 - uid: excel.Excel.Worksheet.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
   remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
+    Além dessa assinatura, este método tem as seguintes assinaturas:
 
 
-    `load(option?: string | string[]): Excel.Worksheet`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+    `load(option?: string | string[]): Excel.Worksheet`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+    `load(option?: { select?: string; expand?: string; }): Excel.Worksheet`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Worksheet`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -474,7 +633,7 @@ items:
       type:
       - excel.Excel.Interfaces.WorksheetLoadOptions
 - uid: excel.Excel.Worksheet.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -488,11 +647,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get worksheet properties based on sheet name.\nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.load('position')\n    return ctx.sync().then(function() {\n            console.log(worksheet.position);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Set worksheet position. \nExcel.run(function (ctx) { \n    var wSheetName = 'Sheet1';\n    var worksheet = ctx.workbook.worksheets.getItem(wSheetName);\n    worksheet.position = 2;\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.Worksheet.load_2
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -506,7 +665,7 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
       type:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Worksheet.name
@@ -514,7 +673,7 @@ items:
     O nome de exibição da planilha.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: name
   fullName: name
   langs:
@@ -546,7 +705,7 @@ items:
     Ocorre quando a planilha é ativada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onActivated
   fullName: onActivated
   langs:
@@ -577,10 +736,10 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onCalculated.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The worksheet has recalculated.\");\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
 - uid: excel.Excel.Worksheet.onChanged
   summary: >-
-    Ocorre quando os dados alterados em uma planilha específica.
+    Ocorre quando os dados são alterados em uma planilha específica.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onChanged
   fullName: onChanged
   langs:
@@ -597,7 +756,7 @@ items:
     Ocorre quando a planilha é desativada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onDeactivated
   fullName: onDeactivated
   langs:
@@ -609,12 +768,46 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onDeactivated.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The deactivated worksheet is: \" + event.worksheetId);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
+- uid: excel.Excel.Worksheet.onFiltered
+  summary: >-
+    Ocorre quando o filtro é aplicado a uma planilha específica.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFiltered
+  fullName: onFiltered
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFiltered: OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
+- uid: excel.Excel.Worksheet.onFormatChanged
+  summary: >-
+    Ocorre quando o formato é alterado em uma planilha específica.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFormatChanged
+  fullName: onFormatChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
 - uid: excel.Excel.Worksheet.onSelectionChanged
   summary: >-
     Ocorre quando a seleção é alterada em uma planilha específica.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onSelectionChanged
   fullName: onSelectionChanged
   langs:
@@ -626,12 +819,29 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (context) {\n    var sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onSelectionChanged.add(function (event) {\n        return Excel.run((context) => {\n            console.log(\"The selected range has changed to: \" + event.address);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
+- uid: excel.Excel.Worksheet.pageLayout
+  summary: >-
+    Obtém o objeto PageLayout da planilha.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: pageLayout
+  fullName: pageLayout
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly pageLayout: Excel.PageLayout;'
+    return:
+      type:
+      - excel.Excel.PageLayout
 - uid: excel.Excel.Worksheet.pivotTables
   summary: >-
     Coleção de Tabelas Dinâmicas que fazem parte da planilha. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: pivotTables
   fullName: pivotTables
   langs:
@@ -647,7 +857,7 @@ items:
     A posição baseada em zero da planilha na pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: position
   fullName: position
   langs:
@@ -663,7 +873,7 @@ items:
     Retorna o objeto de proteção da planilha para uma planilha. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: protection
   fullName: protection
   langs:
@@ -674,10 +884,41 @@ items:
     return:
       type:
       - excel.Excel.WorksheetProtection
+- uid: excel.Excel.Worksheet.replaceAll
+  summary: >-
+    Localiza e substitui a cadeia de caracteres fornecida com base nos critérios especificados na planilha atual.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: replaceAll(text, replacement, criteria)
+  fullName: replaceAll(text, replacement, criteria)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: O número de substituições realizadas.
+    parameters:
+    - id: text
+      description: Cadeia de caracteres a ser localizada.
+      type:
+      - string
+    - id: replacement
+      description: Cadeia de caracteres para substituir o original por.
+      type:
+      - string
+    - id: criteria
+      description: Critérios adicionais de substituição.
+      type:
+      - excel.Excel.ReplaceCriteria
 - uid: excel.Excel.Worksheet.set
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
   remarks: >-
-    Esse método tem a seguinte assinatura adicional:
+    Este método tem a seguinte assinatura adicional:
 
 
     `set(properties: Excel.Worksheet): void`
@@ -694,15 +935,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: Um objeto de JavaScript com propriedades que são estruturadas isomorphically às propriedades do objeto no qual o método é chamado.
+      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
       type:
       - Interfaces.WorksheetUpdateData
     - id: options
-      description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
+      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.Worksheet.set_1
-  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -719,9 +960,26 @@ items:
       description: ''
       type:
       - excel.Excel.Worksheet
+- uid: excel.Excel.Worksheet.shapes
+  summary: >-
+    Retorna a coleção de todos os objetos Shape na planilha. Somente leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: shapes
+  fullName: shapes
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly shapes: Excel.ShapeCollection;'
+    return:
+      type:
+      - excel.Excel.ShapeCollection
 - uid: excel.Excel.Worksheet.showGridlines
   summary: >-
-    Obtém ou define um sinalizador de linhas de grade da planilha. Esse sinalizador determina se as linhas de grade estarão visíveis para o usuário.
+    Obtém ou define um sinalizador de linhas de grade da planilha. Este sinalizador determina se as linhas de grade são visíveis para o usuário.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -752,12 +1010,29 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Worksheet.slicers
+  summary: >-
+    Retorna a coleção de slicers que fazem parte da planilha. Somente leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: slicers
+  fullName: slicers
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly slicers: Excel.SlicerCollection;'
+    return:
+      type:
+      - excel.Excel.SlicerCollection
 - uid: excel.Excel.Worksheet.standardHeight
   summary: >-
     Retorna a altura padrão de todas as linhas na planilha, em pontos. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: standardHeight
   fullName: standardHeight
   langs:
@@ -773,7 +1048,7 @@ items:
     Retorna ou define a largura padrão de todas as colunas na planilha. Uma unidade de largura da coluna é igual à largura de um caractere no estilo Normal. Para fontes proporcionais, a largura do caractere 0 (zero) é usada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: standardWidth
   fullName: standardWidth
   langs:
@@ -786,10 +1061,10 @@ items:
       - number
 - uid: excel.Excel.Worksheet.tabColor
   summary: >-
-    Obtém ou define a cor da guia de planilha. Ao recuperar a cor da guia, se a planilha estiver invisível, o valor será nulo. Se a planilha estiver visível, mas a cor da guia está definida como auto, será retornada uma sequência vazia. Caso contrário, a propriedade será definida como uma cor, no formato "\#123456" ao definir a cor, use uma cadeia de caracteres vazia para definir uma cor de "automático", ou uma cor real, caso contrário.
+    Obtém ou define a cor da guia de planilha. Ao recuperar a cor de tabulação, se a planilha estiver invisível, o valor será NULL. Se a planilha estiver visível, mas a cor da guia estiver definida como auto, uma cadeia de caracteres vazia será retornada. Caso contrário, a propriedade será definida como uma cor, no formato "\#123456" ao definir a cor, usar uma cadeia de caracteres vazia para definir uma cor "auto" ou uma cor real caso contrário.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: tabColor
   fullName: tabColor
   langs:
@@ -806,7 +1081,7 @@ items:
     Coleção de tabelas que fazem parte da planilha. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: tables
   fullName: tables
   langs:
@@ -818,7 +1093,7 @@ items:
       type:
       - excel.Excel.TableCollection
 - uid: excel.Excel.Worksheet.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.Worksheet original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.WorksheetData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. Worksheet original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.WorksheetData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   name: toJSON()
   fullName: toJSON()
   langs:
@@ -830,12 +1105,29 @@ items:
       type:
       - excel.Excel.Interfaces.WorksheetData
       description: ''
+- uid: excel.Excel.Worksheet.verticalPageBreaks
+  summary: >-
+    Obtém a coleção de quebra de página vertical da planilha. Essa coleção contém apenas quebras de página manuais.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: verticalPageBreaks
+  fullName: verticalPageBreaks
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly verticalPageBreaks: Excel.PageBreakCollection;'
+    return:
+      type:
+      - excel.Excel.PageBreakCollection
 - uid: excel.Excel.Worksheet.visibility
   summary: >-
     A visibilidade da planilha.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1 na leitura visibilidade; 1.2 para a definição de proprietário.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+    \[[Conjunto de APIs: ExcelApi 1,1 para ler a visibilidade; 1,2 para configurá-la.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   name: visibility
   fullName: visibility
   langs:

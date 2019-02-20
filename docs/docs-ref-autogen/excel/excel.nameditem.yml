@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e87c660e1b41ad1a0112dc93abc1df6a29de8925
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 55b2e4a7959fda4d96ce6d67e844dd187fd50348
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29976128"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095111"
 items:
 - uid: excel.Excel.NamedItem
   summary: >-
-    Representa um nome definido para um intervalo de células ou valor. Nomes pode ser primitivo objetos nomeados (como visto no tipo abaixo), o intervalo de objeto, ou uma referência a um intervalo. Este objeto pode ser usado para obter associado aos nomes de objeto de intervalo.
+    Representa um nome definido para um intervalo de células ou valor. Os nomes podem ser objetos com nome primitivo (como visto no tipo abaixo), um objeto Range ou uma referência a um intervalo. Esse objeto pode ser usado para obter o objeto Range associado aos nomes.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.NamedItem
   fullName: Excel.NamedItem
   langs:
@@ -46,7 +46,7 @@ items:
     Retorna um objeto que contém valores e tipos do item nomeado. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: arrayValues
   fullName: arrayValues
   langs:
@@ -74,7 +74,7 @@ items:
       type:
       - string
 - uid: excel.Excel.NamedItem.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -107,7 +107,7 @@ items:
     Obtém ou define a fórmula do item nomeado. A fórmula sempre começa com um sinal de "=".
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: formula
   fullName: formula
   langs:
@@ -118,13 +118,13 @@ items:
     return:
       type:
       - any
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        OfficeHelpers.UI.notify(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Get the named item\n    const myNamedItem = sheet.names.getItemOrNullObject(\"MyRange\");\n    myNamedItem.load(\"name, formula\");\n    await context.sync();\n\n    if (myNamedItem.isNullObject) {\n        console.log(`There is no named item. Create it with \"Add named item for a range\" first.`);\n    } else {                    \n        // Update named item to point to the second range\n        myNamedItem.formula = \"=Sample!$B$10:$D$14\";\n        sheet.getRange(\"B10:D14\").select();\n        await context.sync();\n\n        console.log(`Just updated the named item \"${myNamedItem.name}\" -- it's now located here: ${myNamedItem.formula}`);\n    }\n});\n```"
 - uid: excel.Excel.NamedItem.getRange
   summary: >-
     Retorna o objeto Range associado ao nome. Gerará um erro se o tipo do item nomeado não for um intervalo.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange()
   fullName: getRange()
   langs:
@@ -154,18 +154,18 @@ items:
       - excel.Excel.Range
       description: ''
 - uid: excel.Excel.NamedItem.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
   remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
+    Além dessa assinatura, este método tem as seguintes assinaturas:
 
 
-    `load(option?: string | string[]): Excel.NamedItem`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+    `load(option?: string | string[]): Excel.NamedItem`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.NamedItem`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+    `load(option?: { select?: string; expand?: string; }): Excel.NamedItem`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -183,7 +183,7 @@ items:
       type:
       - excel.Excel.Interfaces.NamedItemLoadOptions
 - uid: excel.Excel.NamedItem.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -197,11 +197,11 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var namedItem = names.getItem('MyRange');\n    namedItem.load('type');\n    return ctx.sync().then(function() {\n            console.log(namedItem.type);\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.NamedItem.load_2
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -215,7 +215,7 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
       type:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.NamedItem.name
@@ -223,7 +223,7 @@ items:
     O nome do objeto. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: name
   fullName: name
   langs:
@@ -236,7 +236,7 @@ items:
       - string
 - uid: excel.Excel.NamedItem.scope
   summary: >-
-    Indica se o nome tem escopo para a pasta de trabalho ou para uma planilha específica. Os valores possíveis são: planilha, a pasta de trabalho. Somente leitura.
+    Indica se o nome tem escopo para a pasta de trabalho ou para uma planilha específica. Os valores possíveis são: planilha, pasta de trabalho. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -251,9 +251,9 @@ items:
       type:
       - Excel.NamedItemScope | "Worksheet" | "Workbook"
 - uid: excel.Excel.NamedItem.set
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto sem formatação com as propriedades adequadas ou outro objeto API do mesmo tipo.
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
   remarks: >-
-    Esse método tem a seguinte assinatura adicional:
+    Este método tem a seguinte assinatura adicional:
 
 
     `set(properties: Excel.NamedItem): void`
@@ -270,15 +270,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: Um objeto de JavaScript com propriedades que são estruturadas isomorphically às propriedades do objeto no qual o método é chamado.
+      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
       type:
       - Interfaces.NamedItemUpdateData
     - id: options
-      description: Fornece uma opção para suprimir erros se o objeto properties tenta definir todas as propriedades somente leitura.
+      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.NamedItem.set_1
-  summary: Define várias propriedades em um objeto ao mesmo tempo, com base em um objeto carregado existente.
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -296,7 +296,7 @@ items:
       type:
       - excel.Excel.NamedItem
 - uid: excel.Excel.NamedItem.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.NamedItem original é um objeto de API, o `toJSON` método retorna um objeto de JavaScript simples (digitado como `Excel.Interfaces.NamedItemData` <!-- -->) que contém superficiais cópias de todas as propriedades do objeto original filho carregado.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. NamedItem original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.NamedItemData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   name: toJSON()
   fullName: toJSON()
   langs:
@@ -310,10 +310,10 @@ items:
       description: ''
 - uid: excel.Excel.NamedItem.type
   summary: >-
-    Indica o tipo do valor retornado pela fórmula do nome. Consulte Excel.NamedItemType para obter detalhes. Somente leitura.
+    Indica o tipo do valor retornado pela fórmula do nome. Consulte Excel. NamedItemType para obter detalhes. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1 para a cadeia de caracteres, número inteiro, Double, Boolean, intervalo, erro; 1.7 para matriz](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1 para cadeia de caracteres, inteiro, duplo, booliano, intervalo, erro; 1,7 para a matriz](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: type
   fullName: type
   langs:
@@ -329,7 +329,7 @@ items:
     Representa o valor calculado pela fórmula do nome. Para um intervalo nomeado, retornará o endereço do intervalo. Somente leitura.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: value
   fullName: value
   langs:
@@ -345,7 +345,7 @@ items:
     Determina se o objeto fica visível ou não.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: visible
   fullName: visible
   langs:
@@ -358,7 +358,7 @@ items:
       - boolean
 - uid: excel.Excel.NamedItem.worksheet
   summary: >-
-    Retorna a planilha em que o item nomeado destinado a. Gera um erro se o item tem escopo para a pasta de trabalho em vez disso.
+    Retorna a planilha na qual o item nomeado tem escopo. Gera um erro se o item estiver no escopo da pasta de trabalho.
 
 
     \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -374,7 +374,7 @@ items:
       - excel.Excel.Worksheet
 - uid: excel.Excel.NamedItem.worksheetOrNullObject
   summary: >-
-    Retorna a planilha em que o item nomeado destinado a. Retorna um objeto nulo se o item tem escopo para a pasta de trabalho em vez disso.
+    Retorna a planilha na qual o item nomeado tem escopo. Retorna um objeto NULL se o item estiver no escopo da pasta de trabalho.
 
 
     \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

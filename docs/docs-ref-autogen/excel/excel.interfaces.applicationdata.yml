@@ -1,13 +1,13 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 09e106feb285ff791176873f18793ee288399c08
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
+ms.openlocfilehash: 7688e7fd7fdf72ee081f06e1bf36c29cf4d4955d
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26227755"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30093501"
 items:
 - uid: excel.Excel.Interfaces.ApplicationData
-  summary: Uma interface descrevendo os dados retornados pela chamada "application.toJSON()".
+  summary: Uma interface que descreve os dados retornados chamando "Application. toJSON ()".
   name: Excel.Interfaces.ApplicationData
   fullName: Excel.Interfaces.ApplicationData
   langs:
@@ -15,13 +15,33 @@ items:
   type: interface
   package: excel
   children:
+  - excel.Excel.Interfaces.ApplicationData.calculationEngineVersion
   - excel.Excel.Interfaces.ApplicationData.calculationMode
+  - excel.Excel.Interfaces.ApplicationData.calculationState
+  - excel.Excel.Interfaces.ApplicationData.iterativeCalculation
+- uid: excel.Excel.Interfaces.ApplicationData.calculationEngineVersion
+  summary: >-
+    Retorna um número sobre a versão do mecanismo de cálculo do Excel na qual a pasta de trabalho foi totalmente recalculada pela última vez. Somente leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: calculationEngineVersion
+  fullName: calculationEngineVersion
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'calculationEngineVersion?: number;'
+    return:
+      type:
+      - number
 - uid: excel.Excel.Interfaces.ApplicationData.calculationMode
   summary: >-
-    Retorna o modo de cálculo usado na pasta de trabalho, conforme definido pelas constantes em Excel.CalculationMode. Os valores possíveis são: `Automatic` <!-- -->, onde o Excel controla o recálculo; `AutomaticExceptTables` <!-- -->, onde o Excel controla o recálculo mas ignora as alterações nas tabelas; `Manual` <!-- -->, onde o cálculo é feito quando solicitado pelo usuário.
+    Retorna o modo de cálculo usado na pasta de trabalho, conforme definido pelas constantes no Excel. Calculation. Os valores possíveis são `Automatic` <!-- -->:, onde o Excel controla o recálculo; `AutomaticExceptTables`, onde o Excel controla o recálculo, mas ignora as alterações nas <!-- -->tabelas; `Manual`, onde o cálculo é feito quando o usuário <!-- -->solicita.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1 para get, 1,8 para conjunto](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1 para Get, 1,8 para Set](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculationMode
   fullName: calculationMode
   langs:
@@ -32,3 +52,37 @@ items:
     return:
       type:
       - Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual"
+- uid: excel.Excel.Interfaces.ApplicationData.calculationState
+  summary: >-
+    Retorna um Cálculostate que indica o estado de cálculo do aplicativo. Consulte Excel. Calculable para obter detalhes. Somente leitura.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: calculationState
+  fullName: calculationState
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'calculationState?: Excel.CalculationState | "Done" | "Calculating" | "Pending";'
+    return:
+      type:
+      - Excel.CalculationState | "Done" | "Calculating" | "Pending"
+- uid: excel.Excel.Interfaces.ApplicationData.iterativeCalculation
+  summary: >-
+    Retorna as configurações de cálculo iterativo. No Excel para Windows e no Excel para Mac, as configurações serão aplicadas ao aplicativo Excel. No Excel online e no Excel para outras plataformas, as configurações serão aplicadas à pasta de trabalho ativa.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: iterativeCalculation
+  fullName: iterativeCalculation
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'iterativeCalculation?: Excel.Interfaces.IterativeCalculationData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.IterativeCalculationData

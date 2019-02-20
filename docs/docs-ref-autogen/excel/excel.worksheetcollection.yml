@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 09ae4be877fcadf8d226394758f6569dff40a618
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 0cc0db56f3778fc9cef827cc4541bed17a5f34c2
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29980286"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30096112"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
     Representa uma coleção de todos os objetos worksheet que fazem parte da pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: Excel.WorksheetCollection
   fullName: Excel.WorksheetCollection
   langs:
@@ -22,6 +22,8 @@ items:
   package: excel
   children:
   - excel.Excel.WorksheetCollection.add
+  - excel.Excel.WorksheetCollection.addFromBase64
+  - excel.Excel.WorksheetCollection.addFromBase64_1
   - excel.Excel.WorksheetCollection.context
   - excel.Excel.WorksheetCollection.getActiveWorksheet
   - excel.Excel.WorksheetCollection.getCount
@@ -36,15 +38,19 @@ items:
   - excel.Excel.WorksheetCollection.onActivated
   - excel.Excel.WorksheetCollection.onAdded
   - excel.Excel.WorksheetCollection.onCalculated
+  - excel.Excel.WorksheetCollection.onChanged
   - excel.Excel.WorksheetCollection.onDeactivated
   - excel.Excel.WorksheetCollection.onDeleted
+  - excel.Excel.WorksheetCollection.onFiltered
+  - excel.Excel.WorksheetCollection.onFormatChanged
+  - excel.Excel.WorksheetCollection.onSelectionChanged
   - excel.Excel.WorksheetCollection.toJSON
 - uid: excel.Excel.WorksheetCollection.add
   summary: >-
     Adiciona uma nova planilha à pasta de trabalho. A planilha será adicionada ao final das planilhas existentes. Se você quiser ativar a planilha recém-adicionada, chame “.activate()” nela.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(name)
   fullName: add(name)
   langs:
@@ -61,8 +67,78 @@ items:
       description: Opcional. O nome da planilha a ser adicionada. Se especificado, o nome deve ser exclusivo. Se não especificado, o Excel determina o nome da nova planilha.
       type:
       - string
+- uid: excel.Excel.WorksheetCollection.addFromBase64
+  summary: >-
+    Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: addFromBase64(base64File, sheetNamesToInsert, positionType, relativeTo)
+  fullName: addFromBase64(base64File, sheetNamesToInsert, positionType, relativeTo)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet | string): OfficeExtension.ClientResult<string[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string[]>
+      description: Uma matriz em que cada item representa a ID da nova planilha inserida.
+    parameters:
+    - id: base64File
+      description: Obrigatório. Cadeia de caracteres Base64 representando a pasta de trabalho de origem.
+      type:
+      - string
+    - id: sheetNamesToInsert
+      description: Opcional. Os nomes da planilha do speified a inserir. Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.
+      type:
+      - string[]
+    - id: positionType
+      description: Opcional. Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
+      type:
+      - excel.Excel.WorksheetPositionType
+    - id: relativeTo
+      description: Opcional. O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual. O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
+      type:
+      - Worksheet | string
+- uid: excel.Excel.WorksheetCollection.addFromBase64_1
+  summary: >-
+    Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: addFromBase64(base64File, sheetNamesToInsert, positionTypeString, relativeTo)
+  fullName: addFromBase64(base64File, sheetNamesToInsert, positionTypeString, relativeTo)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionTypeString?: "None" | "Before" | "After" | "Beginning" | "End", relativeTo?: Worksheet | string): OfficeExtension.ClientResult<string[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string[]>
+      description: Uma matriz em que cada item representa a ID da nova planilha inserida.
+    parameters:
+    - id: base64File
+      description: Obrigatório. Cadeia de caracteres Base64 representando a pasta de trabalho de origem.
+      type:
+      - string
+    - id: sheetNamesToInsert
+      description: Opcional. Os nomes da planilha do speified a inserir. Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.
+      type:
+      - string[]
+    - id: positionTypeString
+      description: Opcional. Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
+      type:
+      - "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
+    - id: relativeTo
+      description: Opcional. O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual. O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
+      type:
+      - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -78,7 +154,7 @@ items:
     Obtém a planilha ativa no momento na pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getActiveWorksheet()
   fullName: getActiveWorksheet()
   langs:
@@ -139,7 +215,7 @@ items:
     Obtém um objeto de planilha usando o Nome ou ID dele.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(key)
   fullName: getItem(key)
   langs:
@@ -201,7 +277,7 @@ items:
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.items
-  summary: Obtém o filho carregado itens nesta coleção.
+  summary: Obtém os itens filhos carregados nesta coleção.
   name: items
   fullName: items
   langs:
@@ -213,18 +289,18 @@ items:
       type:
       - Excel.Worksheet[]
 - uid: excel.Excel.WorksheetCollection.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
   remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
+    Além dessa assinatura, este método tem as seguintes assinaturas:
 
 
-    `load(option?: string | string[]): Excel.WorksheetCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+    `load(option?: string | string[]): Excel.WorksheetCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+    `load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -242,7 +318,7 @@ items:
       type:
       - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.WorksheetCollection.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -256,7 +332,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.WorksheetCollection.load_2
@@ -278,10 +354,10 @@ items:
       - office.OfficeExtension.LoadOption
 - uid: excel.Excel.WorksheetCollection.onActivated
   summary: >-
-    Ocorre quando uma planilha na pasta de trabalho é ativada.
+    Ocorre quando qualquer planilha na pasta de trabalho é ativada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onActivated
   fullName: onActivated
   langs:
@@ -298,7 +374,7 @@ items:
     Ocorre quando uma nova planilha é adicionada à pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onAdded
   fullName: onAdded
   langs:
@@ -312,7 +388,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets;\n    sheet.onAdded.add(onWorksheetAdd);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnAdded event.\");\n});\n```"
 - uid: excel.Excel.WorksheetCollection.onCalculated
   summary: >-
-    Ocorre quando uma planilha na pasta de trabalho é calculada.
+    Ocorre quando qualquer planilha na pasta de trabalho é calculada.
 
 
     \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -326,12 +402,29 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onChanged
+  summary: >-
+    Ocorre quando qualquer planilha na pasta de trabalho é alterada.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onChanged
+  fullName: onChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onDeactivated
   summary: >-
-    Ocorre quando uma planilha na pasta de trabalho é desativada.
+    Ocorre quando qualquer planilha na pasta de trabalho é desativada.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onDeactivated
   fullName: onDeactivated
   langs:
@@ -348,7 +441,7 @@ items:
     Ocorre quando uma planilha é excluída da pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: onDeleted
   fullName: onDeleted
   langs:
@@ -359,8 +452,59 @@ items:
     return:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onFiltered
+  summary: >-
+    Ocorre quando o filtro de qualquer planilha é aplicado na pasta de trabalho.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFiltered
+  fullName: onFiltered
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFiltered: OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
+- uid: excel.Excel.WorksheetCollection.onFormatChanged
+  summary: >-
+    Ocorre quando qualquer planilha na pasta de trabalho tem um formato alterado.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onFormatChanged
+  fullName: onFormatChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
+- uid: excel.Excel.WorksheetCollection.onSelectionChanged
+  summary: >-
+    Ocorre quando a seleção é alterada em qualquer planilha.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: onSelectionChanged
+  fullName: onSelectionChanged
+  langs:
+  - typeScript
+  type: event
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>;'
+    return:
+      type:
+      - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `Excel.WorksheetCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `Excel.Interfaces.WorksheetCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.WorksheetCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
   name: toJSON()
   fullName: toJSON()
   langs:

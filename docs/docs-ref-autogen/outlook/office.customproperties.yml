@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1c7a82e7d218df5010d08d8a3f3782746e6c3319
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
+ms.openlocfilehash: ed12d91c1d446cb9a3995ddfff7e4a907421de5f
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30054909"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095615"
 items:
 - uid: outlook.Office.CustomProperties
   summary: >-
@@ -15,7 +15,7 @@ items:
 
 
     \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
   name: Office.CustomProperties
   fullName: Office.CustomProperties
   langs:
@@ -31,7 +31,7 @@ items:
   - outlook.Office.CustomProperties.set
 - uid: outlook.Office.CustomProperties.get
   summary: Retorna o valor da propriedade personalizada especificada.
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
   name: get(name)
   fullName: get(name)
   langs:
@@ -58,7 +58,7 @@ items:
 
 
     Para tornar a remoção da propriedade permanente, você precisa chamar o método saveAsync do objeto CustomProperties.
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
   name: remove(name)
   fullName: remove(name)
   langs:
@@ -88,8 +88,42 @@ items:
 
 
     É uma boa prática fazer a verificação de função de retorno de chamada e lidar com erros do saveAsync. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar saveAsync enquanto estiver no estado desconectado, saveAsync retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
+  name: saveAsync(callback, asyncContext)
+  fullName: saveAsync(callback, asyncContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+    - id: asyncContext
+      description: >-
+        Opcional. Quaisquer dados de estado que são passados ao método de retorno de chamada.
+
+
+        \[Conjunto de APIs: caixa de correio 1,0\]
+      type:
+      - any
+- uid: outlook.Office.CustomProperties.saveAsync_1
+  summary: >-
+    Salva propriedades personalizadas específicas do item no servidor.
+
+
+    Você precisa chamar o método saveAsync para manter as alterações feitas com o método set ou o método remove do objeto CustomProperties. A ação de salvar é assíncrona.
+
+
+    É uma boa prática fazer a verificação de função de retorno de chamada e lidar com erros do saveAsync. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar saveAsync enquanto estiver no estado desconectado, saveAsync retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
   remarks: >-
-    <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+    <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
 
     ####Veja
 
@@ -150,40 +184,6 @@ items:
     }
 
     ```
-  name: saveAsync(callback, asyncContext)
-  fullName: saveAsync(callback, asyncContext)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.
-      type:
-      - '(result: Office.AsyncResult<void>) => void'
-    - id: asyncContext
-      description: >-
-        Opcional. Quaisquer dados de estado que são passados ao método de retorno de chamada.
-
-
-        \[Conjunto de APIs: caixa de correio 1,0\]
-      type:
-      - any
-- uid: outlook.Office.CustomProperties.saveAsync_1
-  summary: >-
-    Salva propriedades personalizadas específicas do item no servidor.
-
-
-    Você precisa chamar o método saveAsync para manter as alterações feitas com o método set ou o método remove do objeto CustomProperties. A ação de salvar é assíncrona.
-
-
-    É uma boa prática fazer a verificação de função de retorno de chamada e lidar com erros do saveAsync. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar saveAsync enquanto estiver no estado desconectado, saveAsync retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
   name: saveAsync(callback)
   fullName: saveAsync(callback)
   langs:
@@ -216,7 +216,7 @@ items:
 
 
     \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
   name: saveAsync()
   fullName: saveAsync()
   langs:
@@ -240,7 +240,7 @@ items:
 
 
     \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Redação ou leitura</td></tr> </table>
+  remarks: <table> <tr><td>[Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Escrever ou Ler</td></tr> </table>
   name: set(name, value)
   fullName: set(name, value)
   langs:

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ddb5e3ab5990ec33d169d01228b3b915d3438c3b
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 34e8b88e4edc61c0f1de19517983cd9a03df8ae0
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981161"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30097890"
 items:
 - uid: excel.Excel.CustomXmlPartCollection
   summary: >-
@@ -55,7 +55,7 @@ items:
       type:
       - string
 - uid: excel.Excel.CustomXmlPartCollection.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
   name: context
   fullName: context
   langs:
@@ -82,10 +82,10 @@ items:
     return:
       type:
       - excel.Excel.CustomXmlPartScopedCollection
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    $(\"#display-xml\").text(\"\");\n    const contosoNamespace = \"http://schemas.contoso.com/review/1.0\";\n    const customXmlParts = context.workbook.customXmlParts;\n    const filteredXmlParts = customXmlParts.getByNamespace(contosoNamespace);\n    const numberOfPartsInNamespace = filteredXmlParts.getCount();\n\n    await context.sync();\n\n    if (numberOfPartsInNamespace.value == 1) {\n        const onlyXmlPartInNamespace = filteredXmlParts.getOnlyItem();\n        const xmlBlob = onlyXmlPartInNamespace.getXml();\n\n        await context.sync();\n\n        // Make it a bit more readable.\n        const readableXml = xmlBlob.value.replace(/></g, \">\\n<\");\n\n        $(\"#display-xml\").text(`The only XML part in the namespace ${contosoNamespace} is:\n            ${readableXml}`);\n\n    } else {\n        OfficeHelpers.UI.notify(`There are ${numberOfPartsInNamespace.value} XML parts with namespace ${contosoNamespace}.\n            There should be exactly 1.`);\n    }        \n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    $(\"#display-xml\").text(\"\");\n    const contosoNamespace = \"http://schemas.contoso.com/review/1.0\";\n    const customXmlParts = context.workbook.customXmlParts;\n    const filteredXmlParts = customXmlParts.getByNamespace(contosoNamespace);\n    const numberOfPartsInNamespace = filteredXmlParts.getCount();\n\n    await context.sync();\n\n    if (numberOfPartsInNamespace.value == 1) {\n        const onlyXmlPartInNamespace = filteredXmlParts.getOnlyItem();\n        const xmlBlob = onlyXmlPartInNamespace.getXml();\n\n        await context.sync();\n\n        // Make it a bit more readable.\n        const readableXml = xmlBlob.value.replace(/></g, \">\\n<\");\n\n        $(\"#display-xml\").text(`The only XML part in the namespace ${contosoNamespace} is:\n            ${readableXml}`);\n\n    } else {\n        console.log(`There are ${numberOfPartsInNamespace.value} XML parts with namespace ${contosoNamespace}. There should be exactly 1.`);\n    }        \n\n    await context.sync();\n});\n```"
     parameters:
     - id: namespaceUri
-      description: Este valor deve ser um URI; totalmente qualificado do esquema Por exemplo, "http://schemas.contoso.com/review/1.0".
+      description: Este deve ser um URI de esquema totalmente qualificado; por exemplo, "http://schemas.contoso.com/review/1.0".
       type:
       - string
 - uid: excel.Excel.CustomXmlPartCollection.getCount
@@ -129,7 +129,7 @@ items:
       - string
 - uid: excel.Excel.CustomXmlPartCollection.getItemOrNullObject
   summary: >-
-    Obtém uma parte XML personalizada com base em sua ID. Se o CustomXmlPart não existir, a propriedade isNull de retorno do objeto será true.
+    Obtém uma parte XML personalizada com base em sua ID. Se o CustomXmlPart não existir, a propriedade isNull do objeto Return será true.
 
 
     \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -150,7 +150,7 @@ items:
       type:
       - string
 - uid: excel.Excel.CustomXmlPartCollection.items
-  summary: Obtém o filho carregado itens nesta coleção.
+  summary: Obtém os itens filhos carregados nesta coleção.
   name: items
   fullName: items
   langs:
@@ -162,18 +162,18 @@ items:
       type:
       - Excel.CustomXmlPart[]
 - uid: excel.Excel.CustomXmlPartCollection.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
   remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
+    Além dessa assinatura, este método tem as seguintes assinaturas:
 
 
-    `load(option?: string | string[]): Excel.CustomXmlPartCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+    `load(option?: string | string[]): Excel.CustomXmlPartCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPartCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
+    `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPartCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPartCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPartCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
   name: load(option)
   fullName: load(option)
   langs:
@@ -191,7 +191,7 @@ items:
       type:
       - Excel.Interfaces.CustomXmlPartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.CustomXmlPartCollection.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -205,7 +205,7 @@ items:
       description: ''
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
       type:
       - string | string[]
 - uid: excel.Excel.CustomXmlPartCollection.load_2
@@ -226,7 +226,7 @@ items:
       type:
       - office.OfficeExtension.LoadOption
 - uid: excel.Excel.CustomXmlPartCollection.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `Excel.CustomXmlPartCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `Excel.Interfaces.CustomXmlPartCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.CustomXmlPartCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.CustomXmlPartCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
   name: toJSON()
   fullName: toJSON()
   langs:
