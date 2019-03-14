@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1936cfc035f5b7face1d797d176892a6ce3d449f
-ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
+ms.openlocfilehash: 9a859746d43c824cca45dbd18e1fbcd0909eaa50
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "30303358"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575960"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -75,7 +75,9 @@ items:
   - excel.Excel.Range.getSpecialCellsOrNullObject
   - excel.Excel.Range.getSpecialCellsOrNullObject_1
   - excel.Excel.Range.getSpillingToRange
+  - excel.Excel.Range.getSpillingToRangeOrNullObject
   - excel.Excel.Range.getSpillParent
+  - excel.Excel.Range.getSpillParentOrNullObject
   - excel.Excel.Range.getSurroundingRegion
   - excel.Excel.Range.getTables
   - excel.Excel.Range.getUsedRange
@@ -120,7 +122,7 @@ items:
   - excel.Excel.Range.worksheet
 - uid: excel.Excel.Range.address
   summary: >-
-    Representa a referência de intervalo no estilo a1. O valor de endereço conterá a referência de planilha (por exemplo, "Planilha1! A1: B4 "). Somente leitura.
+    Representa a referência do intervalo no estilo A1. O valor de endereço conterá a referência de planilha (por exemplo, "Planilha1! A1: B4 "). Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -256,7 +258,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Below example clears format and contents of the range. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"D:F\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.clear();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: applyTo
-      description: Opcional. Determina o tipo de ação de limpeza. Consulte Excel. ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Consulte Excel. ClearApplyTo para obter detalhes.
       type:
       - excel.Excel.ClearApplyTo
 - uid: excel.Excel.Range.clear_1
@@ -278,7 +280,7 @@ items:
       description: ''
     parameters:
     - id: applyToString
-      description: Opcional. Determina o tipo de ação de limpeza. Consulte Excel. ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Consulte Excel. ClearApplyTo para obter detalhes.
       type:
       - "\"All\" | \"Formats\" | \"Contents\" | \"Hyperlinks\" | \"RemoveHyperlinks\""
 - uid: excel.Excel.Range.columnCount
@@ -331,7 +333,7 @@ items:
       - number
 - uid: excel.Excel.Range.conditionalFormats
   summary: >-
-    Coleção de ConditionalFormats que formam uma interseção do intervalo. Somente leitura.
+    Conjunto de ConditionalFormats que interseccionam o intervalo. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -359,7 +361,7 @@ items:
       - RequestContext
 - uid: excel.Excel.Range.convertDataTypeToText
   summary: >-
-    Converte as células do intervalo com tipos de texto em texto.
+    Converte o intervalo de células com tipos de dados em texto.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -377,7 +379,7 @@ items:
       description: ''
 - uid: excel.Excel.Range.convertToLinkedDataType
   summary: >-
-    Converte as células do intervalo em tipo de dados vinculado na planilha.
+    Converte as células de intervalo em um tipo de dados vinculado na planilha.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -404,7 +406,7 @@ items:
       - string
 - uid: excel.Excel.Range.copyFrom
   summary: >-
-    Copia dados da célula ou formatação do intervalo de origem ou RangeAreas para o intervalo atual. O intervalo de destino pode ser de tamanho diferente do intervalo de origem ou RangeAreas. O destino será expandido automaticamente se for menor do que a origem.
+    Copia a formatação ou dados da célula do intervalo de origem ou de RangeAreas para o intervalo atual. O intervalo de destino pode ser de tamanho diferente do intervalo de origem ou RangeAreas. O destino será expandido automaticamente se for menor do que a origem.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -439,7 +441,7 @@ items:
       - boolean
 - uid: excel.Excel.Range.copyFrom_1
   summary: >-
-    Copia dados da célula ou formatação do intervalo de origem ou RangeAreas para o intervalo atual. O intervalo de destino pode ser de tamanho diferente do intervalo de origem ou RangeAreas. O destino será expandido automaticamente se for menor do que a origem.
+    Copia a formatação ou dados da célula do intervalo de origem ou de RangeAreas para o intervalo atual. O intervalo de destino pode ser de tamanho diferente do intervalo de origem ou RangeAreas. O destino será expandido automaticamente se for menor do que a origem.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -507,7 +509,7 @@ items:
       description: ''
     parameters:
     - id: shift
-      description: Especifica a maneira de deslocar as células. Consulte Excel. DeleteShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte Excel. DeleteShiftDirection para obter detalhes.
       type:
       - excel.Excel.DeleteShiftDirection
 - uid: excel.Excel.Range.delete_1
@@ -529,12 +531,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"D:F\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.delete(\"Left\");\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: shiftString
-      description: Especifica a maneira de deslocar as células. Consulte Excel. DeleteShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte Excel. DeleteShiftDirection para obter detalhes.
       type:
       - "\"Up\" | \"Left\""
 - uid: excel.Excel.Range.find
   summary: >-
-    Localiza a cadeia de caracteres fornecida com base nos critérios especificados. Se o intervalo atual for maior que uma única célula, a pesquisa será limitada a esse intervalo, caso contrário, a pesquisa cobrirá toda a planilha que começa após essa célula.
+    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior que uma única célula, a pesquisa será limitada a esse intervalo, caso contrário, a pesquisa cobrirá toda a planilha que começa após essa célula.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -561,7 +563,7 @@ items:
       - excel.Excel.SearchCriteria
 - uid: excel.Excel.Range.findOrNullObject
   summary: >-
-    Localiza a cadeia de caracteres fornecida com base nos critérios especificados. Se o intervalo atual for maior que uma única célula, a pesquisa será limitada a esse intervalo, caso contrário, a pesquisa cobrirá toda a planilha que começa após essa célula. Se não houver nenhuma correspondência, esta função retornará um objeto NULL.
+    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior que uma única célula, a pesquisa será limitada a esse intervalo, caso contrário, a pesquisa cobrirá toda a planilha que começa após essa célula. Se não houver nenhuma correspondência, esta função retornará um objeto NULL.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -638,7 +640,7 @@ items:
       - any[][]
 - uid: excel.Excel.Range.formulasLocal
   summary: >-
-    Representa a fórmula em notação de estilo a1, no idioma do usuário e na localidade de formatação de números. Por exemplo, a fórmula "= SUM (a1, 1,5)" em inglês se tornaria "= soma (a1; 1, 5) "em alemão. Ao definir fórmulas para um intervalo, o argumento value pode ser um valor único (uma cadeia de caracteres) ou uma matriz bidimensional. Se o argumento for um valor único, ele será aplicado a todas as células no intervalo.
+    Representa a fórmula em notação A1, na formatação de número da localidade e no idioma do usuário. Por exemplo, a fórmula "=SUM(A1, 1.5)" em inglês seria "=SOMA(A1; 1,5)" em português. Ao definir fórmulas para um intervalo, o argumento value pode ser um valor único (uma cadeia de caracteres) ou uma matriz bidimensional. Se o argumento for um valor único, ele será aplicado a todas as células no intervalo.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -713,12 +715,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"D4:G6\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var range = range.getBoundingRect(\"G4:H8\");\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address); // Prints Sheet1!D4:H8\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: anotherRange
-      description: O objeto de intervalo, endereço ou nome do intervalo.
+      description: O nome ou endereço do intervalo ou o objeto Range.
       type:
       - Range | string
 - uid: excel.Excel.Range.getCell
   summary: >-
-    Obtém o objeto Range que contém a célula única com base em números de linha e coluna. A célula pode estar fora dos limites de seu intervalo pai, desde que ela permaneça dentro da grade da planilha. A célula retornada está localizada em relação à célula superior esquerda do intervalo.
+    Obtém o objeto de intervalo que contém a célula única com base nos números de linha e de coluna. A célula pode estar fora dos limites de seu intervalo pai, desde que ela permaneça dentro da grade da planilha. A localização da célula retornada está relacionada à célula superior esquerda do intervalo.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -744,7 +746,7 @@ items:
       - number
 - uid: excel.Excel.Range.getCellProperties
   summary: >-
-    Retorna uma matriz 2D, encapsulando os dados para a fonte, o preenchimento, as bordas, o alinhamento e outras propriedades da célula.
+    Retorna uma matriz 2D encapsulando os dados de fonte, preenchimento, bordas, alinhamento e outras propriedades de cada célula.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -789,7 +791,7 @@ items:
       - number
 - uid: excel.Excel.Range.getColumnProperties
   summary: >-
-    Retorna uma matriz unidimensional, encapsulando os dados para a fonte, o preenchimento, as bordas, o alinhamento e outras propriedades de cada coluna. Para propriedades que não são consistentes em cada célula dentro de uma determinada coluna, NULL será retornado.
+    Retorna uma única matriz dimensional encapsulando os dados de fonte, preenchimento, bordas, alinhamento e outras propriedades de cada coluna. Para propriedades que não são consistentes nas células de uma determinada coluna, será retornado null.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -924,7 +926,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var range = \n        ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getIntersection(\"D4:G6\");\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address); // prints Sheet1!D4:F6\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: anotherRange
-      description: O objeto de intervalo ou o endereço do intervalo que será usado para determinar a interseção de intervalos.
+      description: O objeto Range ou o endereço do intervalo que será usado para determinar a interseção de intervalos.
       type:
       - Range | string
 - uid: excel.Excel.Range.getIntersectionOrNullObject
@@ -946,7 +948,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const salesTable = sheet.tables.getItem(\"SalesTable\");\n    const dataRange = salesTable.getDataBodyRange();\n\n    // We want the most recent quarter that has data, so\n    // exclude quarters without data and get the last of\n    // the remaining columns.\n    const usedDataRange = dataRange.getUsedRange(true /* valuesOnly */);\n    const currentQuarterRange = usedDataRange.getLastColumn();\n\n    // Asian and European teams have separate contests.\n    const asianSalesRange = sheet.getRange(\"A2:E4\");\n    const europeanSalesRange = sheet.getRange(\"A5:E7\");\n\n    // The data for each chart is the intersection of the\n    // current quarter column and the rows for the continent.\n    const asianContestRange = asianSalesRange.getIntersectionOrNullObject(currentQuarterRange);\n    const europeanContestRange = europeanSalesRange.getIntersectionOrNullObject(currentQuarterRange);\n\n    // Must sync before you can test the output of *OrNullObject\n    // method/property.\n    await context.sync();\n\n    if (asianContestRange.isNullObject) {\n        // See the declaration of this method for how to\n        // test this code path.\n        reportMissingData(\"Asian\");\n    } else {\n        createContinentChart(\n            sheet,\n            \"Asian\",\n            asianContestRange,\n            \"A9\",\n            \"F24\"\n        );\n    }\n\n    if (europeanContestRange.isNullObject) {\n        // See the declaration of this method for how to\n        // test this code path.\n        reportMissingData(\"European\");\n    } else {\n        createContinentChart(\n            sheet,\n            \"European\",\n            europeanContestRange,\n            \"A25\",\n            \"F40\"\n        );\n    }\n\n    await context.sync();\n});\n```"
     parameters:
     - id: anotherRange
-      description: O objeto de intervalo ou o endereço do intervalo que será usado para determinar a interseção de intervalos.
+      description: O objeto Range ou o endereço do intervalo que será usado para determinar a interseção de intervalos.
       type:
       - Range | string
 - uid: excel.Excel.Range.getLastCell
@@ -1076,7 +1078,7 @@ items:
       - number
 - uid: excel.Excel.Range.getRowProperties
   summary: >-
-    Retorna uma matriz unidimensional, encapsulando os dados para a fonte, o preenchimento, as bordas, o alinhamento e outras propriedades da linha. Para propriedades que não são consistentes em cada célula de uma determinada linha, NULL será retornado.
+    Retorna uma única matriz dimensional encapsulando os dados de fonte, preenchimento, bordas, alinhamento e outras propriedades de cada célula. Para propriedades que não são consistentes nas células de uma determinada linha, será retornado null.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1143,7 +1145,7 @@ items:
       - number
 - uid: excel.Excel.Range.getSpecialCells
   summary: >-
-    Obtém o objeto RangeAreas, incluindo um ou mais intervalos retangulares, que representa todas as células que correspondem ao tipo e valor especificados. Se nenhuma célula especial for encontrada, um erro ItemNotFound será lançado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos retangulares, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um erro ItemNotFound será lançado.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1165,12 +1167,12 @@ items:
       type:
       - excel.Excel.SpecialCellType
     - id: cellValueType
-      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas a constantes ou fórmulas, não importando o tipo.
+      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas as constantes ou as fórmulas, independente do tipo.
       type:
       - excel.Excel.SpecialCellValueType
 - uid: excel.Excel.Range.getSpecialCells_1
   summary: >-
-    Obtém o objeto RangeAreas, incluindo um ou mais intervalos retangulares, que representa todas as células que correspondem ao tipo e valor especificados. Se nenhuma célula especial for encontrada, um erro ItemNotFound será lançado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos retangulares, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um erro ItemNotFound será lançado.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1192,12 +1194,12 @@ items:
       type:
       - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas a constantes ou fórmulas, não importando o tipo.
+      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas as constantes ou as fórmulas, independente do tipo.
       type:
       - "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
 - uid: excel.Excel.Range.getSpecialCellsOrNullObject
   summary: >-
-    Obtém o objeto RangeAreas, incluindo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificados. Se nenhuma célula especial for encontrada, um objeto NULL será retornado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um objeto NULL será retornado.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1219,12 +1221,12 @@ items:
       type:
       - excel.Excel.SpecialCellType
     - id: cellValueType
-      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas a constantes ou fórmulas, não importando o tipo.
+      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas as constantes ou as fórmulas, independente do tipo.
       type:
       - excel.Excel.SpecialCellValueType
 - uid: excel.Excel.Range.getSpecialCellsOrNullObject_1
   summary: >-
-    Obtém o objeto RangeAreas, incluindo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificados. Se nenhuma célula especial for encontrada, um objeto NULL será retornado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um objeto NULL será retornado.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1246,12 +1248,12 @@ items:
       type:
       - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas a constantes ou fórmulas, não importando o tipo.
+      description: Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas as constantes ou as fórmulas, independente do tipo.
       type:
       - "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
 - uid: excel.Excel.Range.getSpillingToRange
   summary: >-
-    Obtém o objeto Range que contém o intervalo de despejo quando é chamado em uma célula de âncora. Falha se for aplicado a um intervalo com mais de uma célula. Somente leitura.
+    Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Falha se aplicado a um intervalo com mais de uma célula. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1267,9 +1269,27 @@ items:
       type:
       - excel.Excel.Range
       description: ''
+- uid: excel.Excel.Range.getSpillingToRangeOrNullObject
+  summary: >-
+    Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Somente leitura. Se o intervalo não for uma célula de âncora ou um intervalo de despejo não puder ser encontrado, um objeto NULL será retornado.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getSpillingToRangeOrNullObject()
+  fullName: getSpillingToRangeOrNullObject()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSpillingToRangeOrNullObject(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
 - uid: excel.Excel.Range.getSpillParent
   summary: >-
-    Obtém o objeto Range que contém a célula de âncora de uma célula que está recebendo derramado. Falha se for aplicado a um intervalo com mais de uma célula. Somente leitura.
+    Obtém o objeto range que contém a célula âncora para uma célula que recebe o despejo. Falha se aplicado a um intervalo com mais de uma célula. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1281,6 +1301,24 @@ items:
   type: method
   syntax:
     content: 'getSpillParent(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: ''
+- uid: excel.Excel.Range.getSpillParentOrNullObject
+  summary: >-
+    Obtém o objeto range que contém a célula âncora para uma célula que recebe o despejo. Somente leitura. Se não for uma célula de despejo ou mais de uma vez, as células serão retornadas.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getSpillParentOrNullObject()
+  fullName: getSpillParentOrNullObject()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSpillParentOrNullObject(): Excel.Range;'
     return:
       type:
       - excel.Excel.Range
@@ -1304,7 +1342,7 @@ items:
       description: ''
 - uid: excel.Excel.Range.getTables
   summary: >-
-    Obtém uma coleção com escopo de tabelas que se sobrepõe ao intervalo.
+    Obtém uma coleção de tabelas com escopo que se sobrepõe ao intervalo.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1322,7 +1360,7 @@ items:
       description: ''
     parameters:
     - id: fullyContained
-      description: Se true, retornará somente as tabelas que estão totalmente contidas dentro dos limites do intervalo. O valor padrão é false.
+      description: Se true, retornará somente as tabelas que estão totalmente contidas dentro dos limites do intervalo. O valor padrão é falso.
       type:
       - boolean
 - uid: excel.Excel.Range.getUsedRange
@@ -1455,7 +1493,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:F10\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.insert();\n    return ctx.sync(); \n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
     parameters:
     - id: shift
-      description: Especifica a maneira de deslocar as células. Consulte Excel. InsertShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte Excel. InsertShiftDirection para obter detalhes.
       type:
       - excel.Excel.InsertShiftDirection
 - uid: excel.Excel.Range.insert_1
@@ -1477,7 +1515,7 @@ items:
       description: ''
     parameters:
     - id: shiftString
-      description: Especifica a maneira de deslocar as células. Consulte Excel. InsertShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte Excel. InsertShiftDirection para obter detalhes.
       type:
       - "\"Down\" | \"Right\""
 - uid: excel.Excel.Range.isEntireColumn
@@ -1514,7 +1552,7 @@ items:
       - boolean
 - uid: excel.Excel.Range.linkedDataTypeState
   summary: >-
-    Representa o estado de tipo de dados de cada célula. Somente leitura.
+    Representa o estado do tipo de dados de cada célula. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1530,7 +1568,7 @@ items:
       type:
       - Excel.LinkedDataTypeState[][]
 - uid: excel.Excel.Range.load
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: >-
     Além dessa assinatura, este método tem as seguintes assinaturas:
 
@@ -1559,7 +1597,7 @@ items:
       type:
       - excel.Excel.Interfaces.RangeLoadOptions
 - uid: excel.Excel.Range.load_1
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -1577,7 +1615,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.Range.load_2
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -1668,7 +1706,7 @@ items:
       description: "O objeto resultante que contém o número de linhas removidas e o número de linhas exclusivas restantes.\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:D11\");\n\n    const deleteResult = range.removeDuplicates([0],true);    \n    deleteResult.load();    \n    await context.sync();\n\n    console.log(deleteResult.removed + \" entries with duplicate names removed.\");\n    console.log(deleteResult.uniqueRemaining + \" entries with unique names remain in the range.\");\n});\n```"
     parameters:
     - id: columns
-      description: As colunas dentro do intervalo que podem conter duplicatas. É necessário especificar pelo menos uma coluna. Indexado com zero.
+      description: As colunas dentro do intervalo que podem conter duplicatas. É necessário especificar pelo menos uma coluna. Indexados com zero.
       type:
       - number[]
     - id: includesHeader
@@ -1825,7 +1863,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setCellProperties(cellPropertiesData: SettableCellProperties[][]): void;'
+    content: 'setCellProperties(cellPropertiesData: SettableCellProperties[][] | OfficeExtension.ClientResult<SettableCellProperties[][]>): void;'
     return:
       type:
       - void
@@ -1834,10 +1872,10 @@ items:
     - id: cellPropertiesData
       description: ''
       type:
-      - SettableCellProperties[][]
+      - SettableCellProperties[][] | OfficeExtension.ClientResult<SettableCellProperties[][]>
 - uid: excel.Excel.Range.setColumnProperties
   summary: >-
-    Atualiza o intervalo com base em uma matriz unidimensional de propriedades de coluna, encapsulando itens como fonte, preenchimento, bordas, alinhamento e assim por diante.
+    Atualiza o intervalo com base em uma única matriz dimensional de propriedades da coluna, encapsulando itens como fonte, preenchimento, bordas, alinhamento e assim por diante.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1848,7 +1886,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setColumnProperties(columnPropertiesData: SettableColumnProperties[]): void;'
+    content: 'setColumnProperties(columnPropertiesData: SettableColumnProperties[] | OfficeExtension.ClientResult<SettableColumnProperties[]>): void;'
     return:
       type:
       - void
@@ -1857,10 +1895,10 @@ items:
     - id: columnPropertiesData
       description: ''
       type:
-      - SettableColumnProperties[]
+      - SettableColumnProperties[] | OfficeExtension.ClientResult<SettableColumnProperties[]>
 - uid: excel.Excel.Range.setDirty
   summary: >-
-    Defina um intervalo a ser recalculado quando o próximo recálculo ocorrer.
+    Define um intervalo a ser recalculado quando o próximo recálculo ocorrer.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1878,7 +1916,7 @@ items:
       description: ''
 - uid: excel.Excel.Range.setRowProperties
   summary: >-
-    Atualiza o intervalo com base em uma matriz unidimensional de propriedades de linha, encapsulando itens como fonte, preenchimento, bordas, alinhamento e assim por diante.
+    Atualiza o intervalo com base em uma única matriz dimensional de propriedades da linha, encapsulando itens como fonte, preenchimento, bordas, alinhamento e assim por diante.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1889,7 +1927,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'setRowProperties(rowPropertiesData: SettableRowProperties[]): void;'
+    content: 'setRowProperties(rowPropertiesData: SettableRowProperties[] | OfficeExtension.ClientResult<SettableRowProperties[]>): void;'
     return:
       type:
       - void
@@ -1898,7 +1936,7 @@ items:
     - id: rowPropertiesData
       description: ''
       type:
-      - SettableRowProperties[]
+      - SettableRowProperties[] | OfficeExtension.ClientResult<SettableRowProperties[]>
 - uid: excel.Excel.Range.showCard
   summary: >-
     Exibe o cartão para uma célula ativa se ele tiver um conteúdo valioso.
@@ -1951,7 +1989,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let worksheet = context.workbook.worksheets.getItem(\"Sample\");\n    let range = worksheet.getRange(\"A1:E1\");\n\n    // Apply built-in style. \n    // Styles are in the Home tab ribbon.\n    range.style = Excel.BuiltInStyle.neutral;\n    range.format.horizontalAlignment = \"Right\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Range.text
   summary: >-
-    Valores de texto do intervalo especificado. O valor de texto não dependerá da largura da célula. A \# substituição de sinal que acontece na IU do Excel não afetará o valor de texto RETORNADO pela API. Somente leitura.
+    Valores de texto do intervalo especificado. O valor de texto não depende da largura da célula. A \# substituição de sinal que acontece na IU do Excel não afetará o valor de texto RETORNADO pela API. Somente leitura.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1966,7 +2004,7 @@ items:
       type:
       - string[][]
 - uid: excel.Excel.Range.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. Range original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.RangeData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Range original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.RangeData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   name: toJSON()
   fullName: toJSON()
   langs:
@@ -1979,7 +2017,7 @@ items:
       - excel.Excel.Interfaces.RangeData
       description: ''
 - uid: excel.Excel.Range.track
-  summary: Rastrear o objeto para o ajuste automático com base nas alterações ao redor do documento. Essa chamada é uma abreviação de Context. trackedObjects. Add (ThisObject). Se você estiver usando esse objeto nas chamadas ". Sync" e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto ao objeto rastreado coleção quando o objeto foi criado pela primeira vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   name: track()
   fullName: track()
   langs:
@@ -2009,7 +2047,7 @@ items:
       - void
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.unmerge();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.Range.untrack
-  summary: Libere a memória associada a esse objeto, se tiver sido rastreada anteriormente. Essa chamada é abreviada para Context. trackedObjects. Remove (ThisObject). Ter vários objetos controlados torna lento o aplicativo host, portanto, lembre-se de liberar todos os objetos que você adicionar, quando terminar de usá-los. Você precisará chamar "context. Sync ()" antes da liberação da memória entrar em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.
   name: untrack()
   fullName: untrack()
   langs:
@@ -2023,7 +2061,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Range.values
   summary: >-
-    Representa os valores brutos do intervalo especificado. Os dados retornados podem ser do tipo String, Number ou Boolean. As células que contêm um erro retornarão a cadeia de caracteres de erro. Ao definir valores para um intervalo, o argumento value pode ser um valor único (String, Number ou Boolean) ou uma matriz bidimensional. Se o argumento for um valor único, ele será aplicado a todas as células no intervalo.
+    Representa os valores brutos do intervalo especificado. Os dados retornados podem ser dos tipos: cadeia de caracteres, número ou booliano. As células que contêm um erro retornarão a cadeia de caracteres de erro. Ao definir valores para um intervalo, o argumento value pode ser um valor único (String, Number ou Boolean) ou uma matriz bidimensional. Se o argumento for um valor único, ele será aplicado a todas as células no intervalo.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

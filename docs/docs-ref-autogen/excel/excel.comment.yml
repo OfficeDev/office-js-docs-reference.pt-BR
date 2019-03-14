@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0ea5cd6cd465b02e88d5fd4ac9df49c68a479b1d
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 7f5326d754fc3c11d77eb399b06f5a7bfc0f1297
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30113361"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575796"
 items:
 - uid: excel.Excel.Comment
   summary: >-
@@ -22,9 +22,13 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.Comment.authorEmail
+  - excel.Excel.Comment.authorName
   - excel.Excel.Comment.content
   - excel.Excel.Comment.context
+  - excel.Excel.Comment.creationDate
   - excel.Excel.Comment.delete
+  - excel.Excel.Comment.getLocation
   - excel.Excel.Comment.id
   - excel.Excel.Comment.isParent
   - excel.Excel.Comment.load
@@ -34,9 +38,43 @@ items:
   - excel.Excel.Comment.set
   - excel.Excel.Comment.set_1
   - excel.Excel.Comment.toJSON
+- uid: excel.Excel.Comment.authorEmail
+  summary: >-
+    Obtenha o email do autor do comentário.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: authorEmail
+  fullName: authorEmail
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly authorEmail: string;'
+    return:
+      type:
+      - string
+- uid: excel.Excel.Comment.authorName
+  summary: >-
+    Obtém o nome do autor do comentário.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: authorName
+  fullName: authorName
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly authorName: string;'
+    return:
+      type:
+      - string
 - uid: excel.Excel.Comment.content
   summary: >-
-    Obtém/define o conteúdo.
+    Obtém ou define o conteúdo.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -64,9 +102,26 @@ items:
     return:
       type:
       - RequestContext
+- uid: excel.Excel.Comment.creationDate
+  summary: >-
+    Obtém o tempo de criação do comentário. Retornará NULL se o comentário for convertido de observação, como neste caso, o comentário não terá data de criação.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: creationDate
+  fullName: creationDate
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly creationDate: Date;'
+    return:
+      type:
+      - Date
 - uid: excel.Excel.Comment.delete
   summary: >-
-    Exclui o thread de comentários.
+    Exclui o thread de comentários. 
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -81,6 +136,24 @@ items:
     return:
       type:
       - void
+      description: ''
+- uid: excel.Excel.Comment.getLocation
+  summary: >-
+    Obter local do comentário.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getLocation()
+  fullName: getLocation()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getLocation(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
       description: ''
 - uid: excel.Excel.Comment.id
   summary: >-
@@ -101,7 +174,7 @@ items:
       - string
 - uid: excel.Excel.Comment.isParent
   summary: >-
-    Representa se é um thread de comentário ou uma resposta. Sempre retorna true aqui. Somente leitura.
+    Representa se é um thread de comentário ou uma resposta. Sempre retornará true aqui. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -117,7 +190,7 @@ items:
       type:
       - boolean
 - uid: excel.Excel.Comment.load
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: >-
     Além dessa assinatura, este método tem as seguintes assinaturas:
 
@@ -147,7 +220,7 @@ items:
       type:
       - excel.Excel.Interfaces.CommentLoadOptions
 - uid: excel.Excel.Comment.load_1
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -166,7 +239,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.Comment.load_2
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   isPreview: true
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
@@ -186,7 +259,7 @@ items:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Comment.replies
   summary: >-
-    Representa uma coleção de objetos Reply associados ao comentário. Somente leitura.
+    Representa uma coleção de objetos de resposta associados ao comentário. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -249,7 +322,7 @@ items:
       type:
       - excel.Excel.Comment
 - uid: excel.Excel.Comment.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. Comment original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.CommentData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Comment original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CommentData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   isPreview: true
   name: toJSON()
   fullName: toJSON()

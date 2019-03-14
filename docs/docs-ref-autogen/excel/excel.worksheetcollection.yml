@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c827b346f429c90b6637cbaefe26dfa1c8677bb0
-ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
+ms.openlocfilehash: e6a2dd64fbef5ae636f64d3e17a129fb476fdd71
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "30303113"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575673"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
-    Representa uma coleção de todos os objetos worksheet que fazem parte da pasta de trabalho.
+    Representa uma coleção de todos os objetos da planilha que fazem parte da pasta de trabalho.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -84,22 +84,22 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string[]>
-      description: "Uma matriz em que cada item representa a ID da nova planilha inserida.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = (<string>(<FileReader>event.target).result).indexOf(\"base64,\");\n        const workbookContents = (<string>(<FileReader>event.target).result).substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
+      description: "Uma matriz de IDs correspondente a cada nova planilha inserida.\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    Excel.run((context) => {\n        // strip off the metadata before the base64-encoded string\n        const startIndex = (<string>(<FileReader>event.target).result).indexOf(\"base64,\");\n        const workbookContents = (<string>(<FileReader>event.target).result).substr(startIndex + 7);\n\n        const sheets = context.workbook.worksheets;\n        sheets.addFromBase64(\n            workbookContents,\n            null, // get all the worksheets \n            Excel.WorksheetPositionType.end // insert them after the current workbook's worksheets\n            );\n        return context.sync();\n    });\n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
     parameters:
     - id: base64File
-      description: Obrigatório. Cadeia de caracteres Base64 representando a pasta de trabalho de origem.
+      description: Obrigatório. A cadeia de caracteres codificada em base64 que representa o arquivo de pasta de trabalho de origem.
       type:
       - string
     - id: sheetNamesToInsert
-      description: Opcional. Os nomes da planilha do speified a inserir. Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.
+      description: Opcional. Os nomes de planilhas individuais a serem inseridas. Por padrão, todas as planilhas da pasta de trabalho de origem são inseridas.
       type:
       - string[]
     - id: positionType
-      description: Opcional. Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
+      description: Opcional. Em que na pasta de trabalho atual as novas planilhas serão inseridas. Consulte Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
       type:
       - excel.Excel.WorksheetPositionType
     - id: relativeTo
-      description: Opcional. O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual. O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
+      description: Opcional. A planilha na pasta de trabalho atual que é referenciada para o parâmetro PositionType. O padrão é nulo e, com base em PositionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
       type:
       - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.addFromBase64_1
@@ -119,22 +119,22 @@ items:
     return:
       type:
       - OfficeExtension.ClientResult<string[]>
-      description: Uma matriz em que cada item representa a ID da nova planilha inserida.
+      description: Uma matriz de IDs correspondente a cada nova planilha inserida.
     parameters:
     - id: base64File
-      description: Obrigatório. Cadeia de caracteres Base64 representando a pasta de trabalho de origem.
+      description: Obrigatório. A cadeia de caracteres codificada em base64 que representa o arquivo de pasta de trabalho de origem.
       type:
       - string
     - id: sheetNamesToInsert
-      description: Opcional. Os nomes da planilha do speified a inserir. Por padrão, ele inserirá todas as planilhas da pasta de trabalho de origem.
+      description: Opcional. Os nomes de planilhas individuais a serem inseridas. Por padrão, todas as planilhas da pasta de trabalho de origem são inseridas.
       type:
       - string[]
     - id: positionTypeString
-      description: Opcional. Inserir tipo de posição, confira Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
+      description: Opcional. Em que na pasta de trabalho atual as novas planilhas serão inseridas. Consulte Excel. WorksheetPositionType para obter detalhes. O padrão é "Start".
       type:
       - "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
-      description: Opcional. O objeto da planilha de referência ou o nome da planilha/ID na pasta de trabalho atual. O padrão é nulo e baseado no parâmetro postionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
+      description: Opcional. A planilha na pasta de trabalho atual que é referenciada para o parâmetro PositionType. O padrão é nulo e, com base em PositionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
       type:
       - Worksheet | string
 - uid: excel.Excel.WorksheetCollection.context
@@ -185,7 +185,7 @@ items:
       description: ''
     parameters:
     - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
+      description: Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getFirst
@@ -207,12 +207,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
+      description: Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.getItem
   summary: >-
-    Obtém um objeto de planilha usando o Nome ou ID dele.
+    Obtém um objeto worksheet usando o Nome ou ID dele.
 
 
     \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -273,7 +273,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
     parameters:
     - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
+      description: Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.
       type:
       - boolean
 - uid: excel.Excel.WorksheetCollection.items
@@ -289,7 +289,7 @@ items:
       type:
       - Excel.Worksheet[]
 - uid: excel.Excel.WorksheetCollection.load
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
   remarks: >-
     Além dessa assinatura, este método tem as seguintes assinaturas:
 
@@ -318,7 +318,7 @@ items:
       type:
       - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
 - uid: excel.Excel.WorksheetCollection.load_1
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -404,7 +404,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onChanged
   summary: >-
-    Ocorre quando qualquer planilha na pasta de trabalho é alterada.
+    Ocorre quando uma planilha da pasta de trabalho é alterada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -454,7 +454,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onFiltered
   summary: >-
-    Ocorre quando o filtro de qualquer planilha é aplicado na pasta de trabalho.
+    Ocorre quando filtro de uma planilha é aplicado na pasta de trabalho.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -471,7 +471,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetFilteredEventArgs>
 - uid: excel.Excel.WorksheetCollection.onFormatChanged
   summary: >-
-    Ocorre quando qualquer planilha na pasta de trabalho tem um formato alterado.
+    Ocorre quando uma planilha na pasta de trabalho tem o formato alterado.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -488,7 +488,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.onSelectionChanged
   summary: >-
-    Ocorre quando a seleção é alterada em qualquer planilha.
+    Ocorre quando a seleção é alterada em uma planilha.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -504,7 +504,7 @@ items:
       type:
       - OfficeExtension.EventHandlers<Excel.WorksheetSelectionChangedEventArgs>
 - uid: excel.Excel.WorksheetCollection.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.WorksheetCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorksheetCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
   name: toJSON()
   fullName: toJSON()
   langs:

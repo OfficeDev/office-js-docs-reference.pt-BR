@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 4438c2b727e8957db232766dbffb6b4f9e5670d1
-ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
+ms.openlocfilehash: 67621ae13426a756364e0cd8e317a2635a1bc17e
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "30413858"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575680"
 items:
 - uid: excel.Excel.Shape
   summary: >-
-    Representa um objeto Shape genérico na planilha.
+    Representa um objeto Shape genérico na planilha. Uma forma pode ser uma forma geométrica, uma linha, um grupo de formas, etc.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -30,6 +30,8 @@ items:
   - excel.Excel.Shape.fill
   - excel.Excel.Shape.geometricShape
   - excel.Excel.Shape.geometricShapeType
+  - excel.Excel.Shape.getAsImage
+  - excel.Excel.Shape.getAsImage_1
   - excel.Excel.Shape.group
   - excel.Excel.Shape.height
   - excel.Excel.Shape.id
@@ -51,8 +53,6 @@ items:
   - excel.Excel.Shape.parentGroup
   - excel.Excel.Shape.placement
   - excel.Excel.Shape.rotation
-  - excel.Excel.Shape.saveAsPicture
-  - excel.Excel.Shape.saveAsPicture_1
   - excel.Excel.Shape.scaleHeight
   - excel.Excel.Shape.scaleHeight_1
   - excel.Excel.Shape.scaleWidth
@@ -70,7 +70,7 @@ items:
   - excel.Excel.Shape.zorderPosition
 - uid: excel.Excel.Shape.altTextDescription
   summary: >-
-    Retorna ou define a cadeia de texto descritiva alternativa para um objeto Shape quando o objeto é salvo em uma página da Web.
+    Retorna ou define o texto de descrição alternativa para um objeto Shape.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -87,7 +87,7 @@ items:
       - string
 - uid: excel.Excel.Shape.altTextTitle
   summary: >-
-    Retorna ou define a cadeia de texto de título alternativa para um objeto Shape quando o objeto é salvo em uma página da Web.
+    Retorna ou define o texto de título alternativo para um objeto Shape.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -104,7 +104,7 @@ items:
       - string
 - uid: excel.Excel.Shape.connectionSiteCount
   summary: >-
-    Retorna o número de locais de conexão na forma especificada. Somente leitura.
+    Retorna o número de sites de conexão nesta forma. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -134,7 +134,7 @@ items:
       - RequestContext
 - uid: excel.Excel.Shape.delete
   summary: >-
-    Exclui a forma
+    Remove a forma da planilha.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -152,7 +152,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shapes = sheet.shapes;\n\n    // load all the shapes in the collection without loading their properties\n    shapes.load(\"items/$none\");\n    await context.sync();\n\n    shapes.items.forEach((shape) => shape.delete());\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.fill
   summary: >-
-    Retorna a formatação de preenchimento do objeto de forma. Somente leitura.
+    Retorna a formatação de preenchimento desta forma. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,10 +167,10 @@ items:
     return:
       type:
       - excel.Excel.ShapeFill
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.smileyFace);\n    shape.left = 300;\n    shape.top = 100;\n    shape.height = 100;\n    shape.width = 100;\n    shape.fill.foreColor = \"yellow\"\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.smileyFace);\n    shape.left = 300;\n    shape.top = 100;\n    shape.height = 100;\n    shape.width = 100;\n    shape.fill.foregroundColor = \"yellow\"\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.geometricShape
   summary: >-
-    Retorna o objeto geométrico do objeto de forma. Um erro será gerado, se o objeto shape for outro tipo de forma (Like, Image, SmartArt, etc.) em vez de GeometricShape.
+    Retorna a forma geométrica associada à forma. Um erro será gerado se o tipo de forma não for "GeometricShape".
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -187,7 +187,7 @@ items:
       - excel.Excel.GeometricShape
 - uid: excel.Excel.Shape.geometricShapeType
   summary: >-
-    Representa o tipo de forma geométricas da forma especificada. Para saber detalhes, confira Excel.GeometricShapeType. Retorna null se a forma não for geométrica, por exemplo, obtenha GeometricShapeType de uma linha ou um gráfico retornará null.
+    Representa o tipo de forma geométrica dessa forma geométrica. Consulte Excel. GeometricShapeType para obter detalhes. Retorna NULL se o tipo de forma não for "GeometricShape".
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -202,9 +202,55 @@ items:
     return:
       type:
       - Excel.GeometricShapeType | "LineInverse" | "Triangle" | "RightTriangle" | "Rectangle" | "Diamond" | "Parallelogram" | "Trapezoid" | "NonIsoscelesTrapezoid" | "Pentagon" | "Hexagon" | "Heptagon" | "Octagon" | "Decagon" | "Dodecagon" | "Star4" | "Star5" | "Star6" | "Star7" | "Star8" | "Star10" | "Star12" | "Star16" | "Star24" | "Star32" | "RoundRectangle" | "Round1Rectangle" | "Round2SameRectangle" | "Round2DiagonalRectangle" | "SnipRoundRectangle" | "Snip1Rectangle" | "Snip2SameRectangle" | "Snip2DiagonalRectangle" | "Plaque" | "Ellipse" | "Teardrop" | "HomePlate" | "Chevron" | "PieWedge" | "Pie" | "BlockArc" | "Donut" | "NoSmoking" | "RightArrow" | "LeftArrow" | "UpArrow" | "DownArrow" | "StripedRightArrow" | "NotchedRightArrow" | "BentUpArrow" | "LeftRightArrow" | "UpDownArrow" | "LeftUpArrow" | "LeftRightUpArrow" | "QuadArrow" | "LeftArrowCallout" | "RightArrowCallout" | "UpArrowCallout" | "DownArrowCallout" | "LeftRightArrowCallout" | "UpDownArrowCallout" | "QuadArrowCallout" | "BentArrow" | "UturnArrow" | "CircularArrow" | "LeftCircularArrow" | "LeftRightCircularArrow" | "CurvedRightArrow" | "CurvedLeftArrow" | "CurvedUpArrow" | "CurvedDownArrow" | "SwooshArrow" | "Cube" | "Can" | "LightningBolt" | "Heart" | "Sun" | "Moon" | "SmileyFace" | "IrregularSeal1" | "IrregularSeal2" | "FoldedCorner" | "Bevel" | "Frame" | "HalfFrame" | "Corner" | "DiagonalStripe" | "Chord" | "Arc" | "LeftBracket" | "RightBracket" | "LeftBrace" | "RightBrace" | "BracketPair" | "BracePair" | "Callout1" | "Callout2" | "Callout3" | "AccentCallout1" | "AccentCallout2" | "AccentCallout3" | "BorderCallout1" | "BorderCallout2" | "BorderCallout3" | "AccentBorderCallout1" | "AccentBorderCallout2" | "AccentBorderCallout3" | "WedgeRectCallout" | "WedgeRRectCallout" | "WedgeEllipseCallout" | "CloudCallout" | "Cloud" | "Ribbon" | "Ribbon2" | "EllipseRibbon" | "EllipseRibbon2" | "LeftRightRibbon" | "VerticalScroll" | "HorizontalScroll" | "Wave" | "DoubleWave" | "Plus" | "FlowChartProcess" | "FlowChartDecision" | "FlowChartInputOutput" | "FlowChartPredefinedProcess" | "FlowChartInternalStorage" | "FlowChartDocument" | "FlowChartMultidocument" | "FlowChartTerminator" | "FlowChartPreparation" | "FlowChartManualInput" | "FlowChartManualOperation" | "FlowChartConnector" | "FlowChartPunchedCard" | "FlowChartPunchedTape" | "FlowChartSummingJunction" | "FlowChartOr" | "FlowChartCollate" | "FlowChartSort" | "FlowChartExtract" | "FlowChartMerge" | "FlowChartOfflineStorage" | "FlowChartOnlineStorage" | "FlowChartMagneticTape" | "FlowChartMagneticDisk" | "FlowChartMagneticDrum" | "FlowChartDisplay" | "FlowChartDelay" | "FlowChartAlternateProcess" | "FlowChartOffpageConnector" | "ActionButtonBlank" | "ActionButtonHome" | "ActionButtonHelp" | "ActionButtonInformation" | "ActionButtonForwardNext" | "ActionButtonBackPrevious" | "ActionButtonEnd" | "ActionButtonBeginning" | "ActionButtonReturn" | "ActionButtonDocument" | "ActionButtonSound" | "ActionButtonMovie" | "Gear6" | "Gear9" | "Funnel" | "MathPlus" | "MathMinus" | "MathMultiply" | "MathDivide" | "MathEqual" | "MathNotEqual" | "CornerTabs" | "SquareTabs" | "PlaqueTabs" | "ChartX" | "ChartStar" | "ChartPlus"
+- uid: excel.Excel.Shape.getAsImage
+  summary: >-
+    Converte a forma em uma imagem e retorna a imagem como uma cadeia de caracteres codificada em base64. O DPI é 96. Os únicos formatos suportados são`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, e`Excel.PictureFormat.GIF`<!-- -->.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getAsImage(format)
+  fullName: getAsImage(format)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsImage(format: Excel.PictureFormat): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: ''
+    parameters:
+    - id: format
+      description: Especifica o formato da imagem.
+      type:
+      - excel.Excel.PictureFormat
+- uid: excel.Excel.Shape.getAsImage_1
+  summary: >-
+    Converte a forma em uma imagem e retorna a imagem como uma cadeia de caracteres codificada em base64. O DPI é 96. Os únicos formatos suportados são`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, e`Excel.PictureFormat.GIF`<!-- -->.
+
+
+    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getAsImage(formatString)
+  fullName: getAsImage(formatString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsImage(formatString: "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"): OfficeExtension.ClientResult<string>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<string>
+      description: ''
+    parameters:
+    - id: formatString
+      description: Especifica o formato da imagem.
+      type:
+      - "\"UNKNOWN\" | \"BMP\" | \"JPEG\" | \"GIF\" | \"PNG\" | \"SVG\""
 - uid: excel.Excel.Shape.group
   summary: >-
-    Retorna o grupo da forma no objeto de forma. Um erro será gerado, se o objeto shape for outro tipo de forma (Like, Image, SmartArt, etc.) em vez de GroupShape.
+    Retorna o grupo de formas associado à forma. Um erro será gerado se o tipo de forma não for "GroupShape".
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -219,9 +265,10 @@ items:
     return:
       type:
       - excel.Excel.ShapeGroup
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n\n    const shapeGroup = sheet.shapes.getItem(\"Group\").group;\n    shapeGroup.ungroup();\n    console.log(\"Shapes ungrouped\");\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.height
   summary: >-
-    Representa a altura, em pontos, da forma. Gera uma exceção de argumento inválida quando definida com valor negativo ou como zero como entrada.
+    Representa a altura, em pontos, da forma. Gera uma exceção de argumento inválida quando definida com um valor negativo ou zero como entrada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -255,7 +302,7 @@ items:
       - string
 - uid: excel.Excel.Shape.image
   summary: >-
-    Retorna a imagem do objeto de forma. Um erro será gerado, se, em vez de imagem, o objeto de forma for outro tipo de forma (como, GeometricShape, SmartArt, etc.).
+    Retorna a imagem associada à forma. Um erro será gerado se o tipo de forma não for "imagem".
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -290,12 +337,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Square\")\n    shape.incrementLeft(-25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: Especifica o quanto a forma deve ser movida horizontalmente, em pontos. Um valor positivo move a forma para a direita; um valor negativo a move para a esquerda. Se a planilha for DPE, IncrementLeft com um valor positivo deverá mover a forma para a esquerda em vez de direita.
+      description: 'O incremento, em pontos, a forma será horizontalmente movida. Um valor positivo move a forma para a direita e um valor negativo a move para a esquerda. Se a planilha for orientada da direita para a esquerda, ela será revertida: os valores positivos moverão a forma para a esquerda e os valores negativos a moverão para a direita.'
       type:
       - number
 - uid: excel.Excel.Shape.incrementRotation
   summary: >-
-    Altera a rotação da forma ao redor do eixo z pelo número especificado de graus. Use a propriedade Rotation para definir a rotação absoluta da forma.
+    Gira a forma no sentido horário em torno do eixo z pelo número especificado de graus. Use a `rotation` propriedade para definir a rotação absoluta da forma.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -313,7 +360,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Image\");\n    shape.incrementRotation(180);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: Especifica o quanto a forma deve ser girada horizontalmente, em graus. Um valor positivo gira a forma no sentido horário; um valor negativo a gira no sentido anti-horário.
+      description: Quantos graus a forma será girada. Um valor positivo gira a forma no sentido horário; um valor negativo a gira no sentido anti-horário.
       type:
       - number
 - uid: excel.Excel.Shape.incrementTop
@@ -336,12 +383,12 @@ items:
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Pentagon\")\n    shape.incrementTop(25);\n    await context.sync();\n});\n```"
     parameters:
     - id: increment
-      description: Especifica o quanto a forma deve ser movida verticalmente, em pontos. Um valor positivo move a forma para baixo; um valor negativo a move para cima.
+      description: O incremento, em pontos, a forma será movida verticalmente. em pontos. Um valor positivo move a forma para baixo e um valor negativo a move para cima.
       type:
       - number
 - uid: excel.Excel.Shape.left
   summary: >-
-    A distância, em pontos, da lateral esquerda da forma à esquerda da planilha. Gera uma exceção de argumento inválida quando definida com valor negativo como entrada.
+    A distância, em pontos, do lado esquerdo da forma até o lado esquerdo da planilha. Gera uma exceção de argumento inválida quando definida com um valor negativo como entrada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -358,7 +405,7 @@ items:
       - number
 - uid: excel.Excel.Shape.level
   summary: >-
-    Representa o nível da forma especificada. O nível 0 significa que a forma não faz parte de nenhum grupo. O nível 1 significa que a forma faz parte de um grupo de nível superior, etc.
+    Representa o nível da forma especificada. Por exemplo, um nível 0 significa que a forma não faz parte de nenhum grupo, um nível 1 significa que a forma faz parte de um grupo de nível superior e um nível 2 significa que a forma faz parte de um subgrupo do nível superior.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -375,7 +422,7 @@ items:
       - number
 - uid: excel.Excel.Shape.line
   summary: >-
-    Retorna o objeto de linha para o objeto de forma. Um erro será gerado, se, em vez de imagem, o objeto de forma for outro tipo de forma (como, GeometricShape, SmartArt, etc.).
+    Retorna a linha associada à forma. Um erro será gerado se o tipo de forma não for "linha".
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -390,10 +437,10 @@ items:
     return:
       type:
       - excel.Excel.Line
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const shapes = context.workbook.worksheets.getItem(\"Shapes\").shapes;\n    const line = shapes.getItem(\"StraightLine\").line;\n    line.beginArrowHeadLength = Excel.ArrowHeadLength.long;\n    line.beginArrowHeadWidth = Excel.ArrowHeadWidth.wide;\n    line.beginArrowHeadStyle = Excel.ArrowHeadStyle.oval;\n\n    line.endArrowHeadLength = Excel.ArrowHeadLength.long;\n    line.endArrowHeadWidth = Excel.ArrowHeadWidth.wide;\n    line.endArrowHeadStyle = Excel.ArrowHeadStyle.triangle;\n\n    await context.sync();\n});\n```"
+      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const shapes = context.workbook.worksheets.getItem(\"Shapes\").shapes;\n    const line = shapes.getItem(\"StraightLine\").line;\n    line.beginArrowheadLength = Excel.ArrowheadLength.long;\n    line.beginArrowheadWidth = Excel.ArrowheadWidth.wide;\n    line.beginArrowheadStyle = Excel.ArrowheadStyle.oval;\n\n    line.endArrowheadLength = Excel.ArrowheadLength.long;\n    line.endArrowheadWidth = Excel.ArrowheadWidth.wide;\n    line.endArrowheadStyle = Excel.ArrowheadStyle.triangle;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Shape.lineFormat
   summary: >-
-    Retorna a formatação de linha do objeto de forma. Somente leitura.
+    Retorna a formatação de linha dessa forma. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -478,7 +525,7 @@ items:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Shape.lockAspectRatio
   summary: >-
-    Representa se a taxa de proporção bloqueou a forma, em valores boolianos.
+    Especifica se a taxa de proporção dessa forma está ou não bloqueada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -529,7 +576,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.ShapeActivatedEventArgs>
 - uid: excel.Excel.Shape.onDeactivated
   summary: >-
-    Ocorre quando a forma é ativada.
+    Ocorre quando a forma é desativada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -546,7 +593,7 @@ items:
       - OfficeExtension.EventHandlers<Excel.ShapeDeactivatedEventArgs>
 - uid: excel.Excel.Shape.parentGroup
   summary: >-
-    Representa o grupo pai da forma especificada.
+    Representa o grupo pai desta forma.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -563,7 +610,7 @@ items:
       - excel.Excel.Shape
 - uid: excel.Excel.Shape.placement
   summary: >-
-    Representa o posicionamento, o valor que representa a maneira como o objeto é anexado às células abaixo dele.
+    Representa como o objeto é anexado às células abaixo dele.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -596,55 +643,9 @@ items:
       type:
       - number
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.triangle);\n    shape.left = 100;\n    shape.top = 300;\n    shape.height = 150;\n    shape.width = 200;\n    shape.rotation = 45;\n    shape.fill.clear();\n    await context.sync();\n});\n```"
-- uid: excel.Excel.Shape.saveAsPicture
-  summary: >-
-    Salva a forma como uma imagem e retorna a imagem na forma de cadeia de caracteres codificada na base 64 com o DPI definido como 96. Só é compatível com a ação de salvar como em Excel.PictureFormat.BMP, Excel.PictureFormat.PNG, Excel.PictureFormat.JPEG e Excel.PictureFormat.GIF.
-
-
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: saveAsPicture(format)
-  fullName: saveAsPicture(format)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsPicture(format: Excel.PictureFormat): OfficeExtension.ClientResult<string>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<string>
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Image\");\n    const result = shape.saveAsPicture(Excel.PictureFormat.png);\n    await context.sync();\n\n    const imageString = result.value;\n    // Your add-in would save this string as a .png file.\n    console.log(\"The image's base64-encoded string: \" + imageString);\n});\n```"
-    parameters:
-    - id: format
-      description: ''
-      type:
-      - excel.Excel.PictureFormat
-- uid: excel.Excel.Shape.saveAsPicture_1
-  summary: >-
-    Salva a forma como uma imagem e retorna a imagem na forma de cadeia de caracteres codificada na base 64 com o DPI definido como 96. Só é compatível com a ação de salvar como em Excel.PictureFormat.BMP, Excel.PictureFormat.PNG, Excel.PictureFormat.JPEG e Excel.PictureFormat.GIF.
-
-
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: saveAsPicture(formatString)
-  fullName: saveAsPicture(formatString)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsPicture(formatString: "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"): OfficeExtension.ClientResult<string>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<string>
-      description: ''
-    parameters:
-    - id: formatString
-      description: ''
-      type:
-      - "\"UNKNOWN\" | \"BMP\" | \"JPEG\" | \"GIF\" | \"PNG\" | \"SVG\""
 - uid: excel.Excel.Shape.scaleHeight
   summary: >-
-    Dimensiona a altura da forma por um fator especificado. Para imagens, é possível indicar se você deseja dimensionar a forma em relação ao tamanho original ou ao tamanho atual. As formas que não são figuras serão sempre dimensionadas em relação à sua altura atual.
+    Dimensiona a altura da forma por um fator especificado. Para imagens, você pode indicar se deseja dimensionar a forma em relação ao tamanho original ou atual. As formas que não são figuras serão sempre dimensionadas em relação à sua altura atual.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -666,16 +667,16 @@ items:
       type:
       - number
     - id: scaleType
-      description: OriginalSize para dimensionar a forma em relação a seu tamanho original. CurrentSize para dimensioná-lo em relação ao seu tamanho atual. Você pode especificar OriginalSize para esse argumento somente se a forma especificada for uma figura.
+      description: Especifica se a forma é dimensionada em relação ao seu tamanho original ou atual. A opção de escala de tamanho original só funciona para imagens.
       type:
       - excel.Excel.ShapeScaleType
     - id: scaleFrom
-      description: Opcional. Uma das constantes de ShapeScaleFrom que especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
+      description: Opcional. Especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
       type:
       - excel.Excel.ShapeScaleFrom
 - uid: excel.Excel.Shape.scaleHeight_1
   summary: >-
-    Dimensiona a altura da forma por um fator especificado. Para imagens, é possível indicar se você deseja dimensionar a forma em relação ao tamanho original ou ao tamanho atual. As formas que não são figuras serão sempre dimensionadas em relação à sua altura atual.
+    Dimensiona a altura da forma por um fator especificado. Para imagens, você pode indicar se deseja dimensionar a forma em relação ao tamanho original ou atual. As formas que não são figuras serão sempre dimensionadas em relação à sua altura atual.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -697,16 +698,16 @@ items:
       type:
       - number
     - id: scaleTypeString
-      description: OriginalSize para dimensionar a forma em relação a seu tamanho original. CurrentSize para dimensioná-lo em relação ao seu tamanho atual. Você pode especificar OriginalSize para esse argumento somente se a forma especificada for uma figura.
+      description: Especifica se a forma é dimensionada em relação ao seu tamanho original ou atual. A opção de escala de tamanho original só funciona para imagens.
       type:
       - "\"CurrentSize\" | \"OriginalSize\""
     - id: scaleFrom
-      description: Opcional. Uma das constantes de ShapeScaleFrom que especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
+      description: Opcional. Especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
       type:
       - "\"ScaleFromTopLeft\" | \"ScaleFromMiddle\" | \"ScaleFromBottomRight\""
 - uid: excel.Excel.Shape.scaleWidth
   summary: >-
-    Dimensiona a largura da forma por um fator especificado. Para imagens, é possível indicar se você deseja dimensionar a forma em relação ao tamanho original ou ao tamanho atual. As formas que não são figuras serão sempre dimensionadas em relação à sua largura atual.
+    Dimensiona a largura da forma por um fator especificado. Para imagens, você pode indicar se deseja dimensionar a forma em relação ao tamanho original ou atual. As formas que não são figuras serão sempre dimensionadas em relação à sua largura atual.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -728,16 +729,16 @@ items:
       type:
       - number
     - id: scaleType
-      description: OriginalSize para dimensionar a forma em relação a seu tamanho original. CurrentSize para dimensioná-lo em relação ao seu tamanho atual. Você pode especificar OriginalSize para esse argumento somente se a forma especificada for uma figura.
+      description: Especifica se a forma é dimensionada em relação ao seu tamanho original ou atual. A opção de escala de tamanho original só funciona para imagens.
       type:
       - excel.Excel.ShapeScaleType
     - id: scaleFrom
-      description: Opcional. Uma das constantes de ShapeScaleFrom que especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
+      description: Opcional. Especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
       type:
       - excel.Excel.ShapeScaleFrom
 - uid: excel.Excel.Shape.scaleWidth_1
   summary: >-
-    Dimensiona a largura da forma por um fator especificado. Para imagens, é possível indicar se você deseja dimensionar a forma em relação ao tamanho original ou ao tamanho atual. As formas que não são figuras serão sempre dimensionadas em relação à sua largura atual.
+    Dimensiona a largura da forma por um fator especificado. Para imagens, você pode indicar se deseja dimensionar a forma em relação ao tamanho original ou atual. As formas que não são figuras serão sempre dimensionadas em relação à sua largura atual.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -759,11 +760,11 @@ items:
       type:
       - number
     - id: scaleTypeString
-      description: OriginalSize para dimensionar a forma em relação a seu tamanho original. CurrentSize para dimensioná-lo em relação ao seu tamanho atual. Você pode especificar OriginalSize para esse argumento somente se a forma especificada for uma figura.
+      description: Especifica se a forma é dimensionada em relação ao seu tamanho original ou atual. A opção de escala de tamanho original só funciona para imagens.
       type:
       - "\"CurrentSize\" | \"OriginalSize\""
     - id: scaleFrom
-      description: Opcional. Uma das constantes de ShapeScaleFrom que especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
+      description: Opcional. Especifica qual parte da forma mantém sua posição quando a forma é dimensionada. Se for omitido, representará o canto superior esquerdo da forma mantém sua posição.
       type:
       - "\"ScaleFromTopLeft\" | \"ScaleFromMiddle\" | \"ScaleFromBottomRight\""
 - uid: excel.Excel.Shape.set
@@ -815,53 +816,53 @@ items:
       - excel.Excel.Shape
 - uid: excel.Excel.Shape.setZOrder
   summary: >-
-    Move a forma especificada para a frente ou para trás das outras formas na coleção (isto é, altera a posição da forma na ordem z).
+    Move a forma especificada para cima ou para baixo a ordem z da coleção, que o desloca para frente ou para trás de outras formas.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: setZOrder(value)
-  fullName: setZOrder(value)
+  name: setZOrder(position)
+  fullName: setZOrder(position)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setZOrder(value: Excel.ShapeZOrder): void;'
+    content: 'setZOrder(position: Excel.ShapeZOrder): void;'
     return:
       type:
       - void
       description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.getItem(\"Octagon\")\n    shape.setZOrder(Excel.ShapeZOrder.sendBackward);\n    await context.sync();\n});\n```"
     parameters:
-    - id: value
-      description: onde mover a forma especificada em relação às outras formas. Consulte Excel. ShapeZOrder para obter detalhes.
+    - id: position
+      description: Onde mover a forma na pilha da ordem z em relação às outras formas. Consulte Excel. ShapeZOrder para obter detalhes.
       type:
       - excel.Excel.ShapeZOrder
 - uid: excel.Excel.Shape.setZOrder_1
   summary: >-
-    Move a forma especificada para a frente ou para trás das outras formas na coleção (isto é, altera a posição da forma na ordem z).
+    Move a forma especificada para cima ou para baixo a ordem z da coleção, que o desloca para frente ou para trás de outras formas.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: setZOrder(valueString)
-  fullName: setZOrder(valueString)
+  name: setZOrder(positionString)
+  fullName: setZOrder(positionString)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setZOrder(valueString: "BringToFront" | "BringForward" | "SendToBack" | "SendBackward"): void;'
+    content: 'setZOrder(positionString: "BringToFront" | "BringForward" | "SendToBack" | "SendBackward"): void;'
     return:
       type:
       - void
       description: ''
     parameters:
-    - id: valueString
-      description: onde mover a forma especificada em relação às outras formas. Consulte Excel. ShapeZOrder para obter detalhes.
+    - id: positionString
+      description: Onde mover a forma na pilha da ordem z em relação às outras formas. Consulte Excel. ShapeZOrder para obter detalhes.
       type:
       - "\"BringToFront\" | \"BringForward\" | \"SendToBack\" | \"SendBackward\""
 - uid: excel.Excel.Shape.textFrame
   summary: >-
-    Retorna o objeto textFrame de uma forma. Somente leitura.
+    Retorna o objeto de quadro de texto desta forma. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -877,7 +878,7 @@ items:
       type:
       - excel.Excel.TextFrame
 - uid: excel.Excel.Shape.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. Shape original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.ShapeData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Shape original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ShapeData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
   isPreview: true
   name: toJSON()
   fullName: toJSON()
@@ -892,7 +893,7 @@ items:
       description: ''
 - uid: excel.Excel.Shape.top
   summary: >-
-    A distância, em pontos, da borda superior da forma até a borda superior da planilha. Gera uma exceção de argumento inválida quando definida com valor negativo como entrada.
+    A distância, em pontos, da borda superior da forma até a borda superior da planilha. Gera uma exceção de argumento inválida quando definida com um valor negativo como entrada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -909,7 +910,7 @@ items:
       - number
 - uid: excel.Excel.Shape.type
   summary: >-
-    Representa o tipo pai da forma especificada. Somente leitura. Para saber detalhes, confira Excel.ShapeType.
+    Retorna o tipo desta forma. ConFira Excel. ShapeType para obter detalhes. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -920,13 +921,13 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'readonly type: Excel.ShapeType | "Unknown" | "Image" | "GeometricShape" | "Group" | "Line";'
+    content: 'readonly type: Excel.ShapeType | "Unsupported" | "Image" | "GeometricShape" | "Group" | "Line";'
     return:
       type:
-      - Excel.ShapeType | "Unknown" | "Image" | "GeometricShape" | "Group" | "Line"
+      - Excel.ShapeType | "Unsupported" | "Image" | "GeometricShape" | "Group" | "Line"
 - uid: excel.Excel.Shape.visible
   summary: >-
-    Representa a visibilidade, em valor booliano, da forma especificada.
+    Representa a visibilidade dessa forma.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -943,7 +944,7 @@ items:
       - boolean
 - uid: excel.Excel.Shape.width
   summary: >-
-    Representa a largura, em pontos, da forma. Gera uma exceção de argumento inválida quando definida com valor negativo ou como zero como entrada.
+    Representa a largura, em pontos, da forma. Gera uma exceção de argumento inválida quando definida com um valor negativo ou zero como entrada.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -960,7 +961,7 @@ items:
       - number
 - uid: excel.Excel.Shape.zorderPosition
   summary: >-
-    Retorna a posição da forma especificada na ordem z, o valor da ordem z na forma da parte inferior é 0. Somente leitura.
+    Retorna a posição da forma especificada na ordem z, com 0 que representa a parte inferior da pilha da ordem. Somente leitura.
 
 
     \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
