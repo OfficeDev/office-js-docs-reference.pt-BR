@@ -1,69 +1,46 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 13242acd07836e0989463cf3c590f973a3236d45
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29977465"
 items:
-- uid: office.Office.SettingsChangedEventArgs
-  summary: Fornece informações sobre as configurações que geraram o evento settingsChanged.
-  remarks: >-
-    <table><tr><td>Conjuntos de requisito</td><td>Configurações</td></tr></table>
+  - uid: office.Office.SettingsChangedEventArgs
+    summary: |-
+      Fornece informações sobre as configurações que geraram o evento settingsChanged.
 
+      Para adicionar um manipulador de eventos para o evento SettingsChanged, use o método addHandlerAsync do objeto [Office. Settings](xref:office.Office.Settings) .
 
-    Para adicionar um manipulador de eventos para o evento settingsChanged, use o método addHandlerAsync do objeto [Office.Settings](xref:office.Office.Settings) .
+      O evento SettingsChanged só é acionado quando o script do seu suplemento chama o método Settings. saveAsync para manter a cópia na memória das configurações no arquivo de documento. O evento settingsChanged não é disparado quando os métodos Settings.set ou Settings.remove são chamados.
 
+      O evento SettingsChanged foi projetado para permitir que você manipule conflitos potenciais quando dois ou mais usuários estão tentando salvar as configurações ao mesmo tempo em que o suplemento é usado em um documento compartilhado (coautoria).
 
-    O evento settingsChanged dispara somente quando script do add-in chama o método de Settings.saveAsync para manter a cópia na memória das configurações no arquivo de documento. O evento settingsChanged não é acionado quando se chamam os métodos Settings.set ou Settings.remove.
-
-
-    O evento settingsChanged foi projetado para permitir a para lidar com conflitos potenciais quando dois ou mais usuários estão tentando salvar configurações ao mesmo tempo quando seu suplemento é usado em um documento compartilhado de (coautoria).
-
-
-    **Importante**: código do suplemento pode registrar um manipulador para o evento settingsChanged quando o add-in está sendo executado com qualquer cliente do Excel, mas o evento será acionado quando o suplemento for carregado somente com uma planilha que é aberta no Excel Online e mais de um usuário Edite a planilha (coautoria). Portanto, efetivamente o evento settingsChanged é suportado no Excel Online em cenários de coautoria.
-
-
-    **Detalhes do suporte**
-
-
-    Um capital Y a matriz a seguir indica que esta interface é suportado no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa interface.
-
-
-    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th></tr> <tr><td><strong>Excel</strong></td><td> </td><td> S </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> </td></tr> </table>
-  name: Office.SettingsChangedEventArgs
-  fullName: Office.SettingsChangedEventArgs
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.SettingsChangedEventArgs.settings
-  - office.Office.SettingsChangedEventArgs.type
-- uid: office.Office.SettingsChangedEventArgs.settings
-  summary: Obtém um objeto [Office.Settings](xref:office.Office.Settings) que representa as configurações que gerou o evento settingsChanged.
-  name: settings
-  fullName: settings
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'settings: Settings;'
-    return:
-      type:
-      - office.Office.Settings
-- uid: office.Office.SettingsChangedEventArgs.type
-  summary: Obtenha um valor de enumeração [Office.EventType](xref:office.Office.EventType) que identifica o tipo de evento que foi gerado.
-  name: type
-  fullName: type
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'type: EventType;'
-    return:
-      type:
-      - EventType
+      **Importante**: o código do suplemento pode registrar um manipulador para o evento SettingsChanged quando o suplemento é executado com qualquer cliente do Excel, mas o evento será acionado somente quando o suplemento for carregado com uma planilha aberta no Excel online e mais de um usuário o está editando a planilha (coautoria). Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+    name: Office.SettingsChangedEventArgs
+    fullName: Office.SettingsChangedEventArgs
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.SettingsChangedEventArgs.settings
+      - office.Office.SettingsChangedEventArgs.type
+  - uid: office.Office.SettingsChangedEventArgs.settings
+    summary: 'Obtém um objeto [Office. Settings](xref:office.Office.Settings) que representa as configurações que geraram o evento SettingsChanged.'
+    name: settings
+    fullName: settings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'settings: Settings;'
+      return:
+        type:
+          - office.Office.Settings
+  - uid: office.Office.SettingsChangedEventArgs.type
+    summary: 'Obtém um valor de enumeração [Office. EventType](xref:office.Office.EventType) que identifica o tipo de evento que foi gerado.'
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'type: EventType;'
+      return:
+        type:
+          - EventType

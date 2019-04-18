@@ -1,374 +1,510 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 292e911d7c741faa49a889d67ce7e8d23729eb07
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30109182"
 items:
-- uid: excel_release.Excel.WorksheetCollection
-  summary: >-
-    Representa uma coleção de todos os objetos worksheet que fazem parte da pasta de trabalho.
+  - uid: excel_release.Excel.WorksheetCollection
+    summary: |-
+      Representa uma coleção de todos os objetos da planilha que fazem parte da pasta de trabalho.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.WorksheetCollection
+    fullName: Excel.WorksheetCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel_release
+    children:
+      - excel_release.Excel.WorksheetCollection.add
+      - excel_release.Excel.WorksheetCollection.context
+      - excel_release.Excel.WorksheetCollection.getActiveWorksheet
+      - excel_release.Excel.WorksheetCollection.getCount
+      - excel_release.Excel.WorksheetCollection.getFirst
+      - excel_release.Excel.WorksheetCollection.getItem
+      - excel_release.Excel.WorksheetCollection.getItemOrNullObject
+      - excel_release.Excel.WorksheetCollection.getLast
+      - excel_release.Excel.WorksheetCollection.items
+      - excel_release.Excel.WorksheetCollection.load
+      - excel_release.Excel.WorksheetCollection.load_1
+      - excel_release.Excel.WorksheetCollection.load_2
+      - excel_release.Excel.WorksheetCollection.onActivated
+      - excel_release.Excel.WorksheetCollection.onAdded
+      - excel_release.Excel.WorksheetCollection.onCalculated
+      - excel_release.Excel.WorksheetCollection.onDeactivated
+      - excel_release.Excel.WorksheetCollection.onDeleted
+      - excel_release.Excel.WorksheetCollection.toJSON
+  - uid: excel_release.Excel.WorksheetCollection.add
+    summary: |-
+      Adiciona uma nova planilha à pasta de trabalho. A planilha será adicionada ao final das planilhas existentes. Se você quiser ativar a planilha recém-adicionada, chame “.activate()” nela.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: add(name)
+    fullName: add(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(name?: string): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.WorksheetCollection
-  fullName: Excel.WorksheetCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel_release
-  children:
-  - excel_release.Excel.WorksheetCollection.add
-  - excel_release.Excel.WorksheetCollection.context
-  - excel_release.Excel.WorksheetCollection.getActiveWorksheet
-  - excel_release.Excel.WorksheetCollection.getCount
-  - excel_release.Excel.WorksheetCollection.getFirst
-  - excel_release.Excel.WorksheetCollection.getItem
-  - excel_release.Excel.WorksheetCollection.getItemOrNullObject
-  - excel_release.Excel.WorksheetCollection.getLast
-  - excel_release.Excel.WorksheetCollection.items
-  - excel_release.Excel.WorksheetCollection.load
-  - excel_release.Excel.WorksheetCollection.load_1
-  - excel_release.Excel.WorksheetCollection.load_2
-  - excel_release.Excel.WorksheetCollection.onActivated
-  - excel_release.Excel.WorksheetCollection.onAdded
-  - excel_release.Excel.WorksheetCollection.onCalculated
-  - excel_release.Excel.WorksheetCollection.onDeactivated
-  - excel_release.Excel.WorksheetCollection.onDeleted
-  - excel_release.Excel.WorksheetCollection.toJSON
-- uid: excel_release.Excel.WorksheetCollection.add
-  summary: >-
-    Adiciona uma nova planilha à pasta de trabalho. A planilha será adicionada ao final das planilhas existentes. Se você quiser ativar a planilha recém-adicionada, chame “.activate()” nela.
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var wSheetName = 'Sample Name';
+              var worksheet = ctx.workbook.worksheets.add(wSheetName);
+              worksheet.load('name');
+              return ctx.sync().then(function() {
+                  console.log(worksheet.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: name
+          description: 'Opcional. O nome da planilha a ser adicionada. Se especificado, o nome deve ser exclusivo. Se não especificado, o Excel determina o nome da nova planilha.'
+          type:
+            - string
+  - uid: excel_release.Excel.WorksheetCollection.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel_release.Excel.WorksheetCollection.getActiveWorksheet
+    summary: |-
+      Obtém a planilha ativa no momento na pasta de trabalho.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getActiveWorksheet()
+    fullName: getActiveWorksheet()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveWorksheet(): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: add(name)
-  fullName: add(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'add(name?: string): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var wSheetName = 'Sample Name';\n    var worksheet = ctx.workbook.worksheets.add(wSheetName);\n    worksheet.load('name');\n    return ctx.sync().then(function() {\n        console.log(worksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: name
-      description: Opcional. O nome da planilha a ser adicionada. Se especificado, o nome deve ser exclusivo. Se não especificado, o Excel determina o nome da nova planilha.
-      type:
-      - string
-- uid: excel_release.Excel.WorksheetCollection.context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel_release.Excel.WorksheetCollection.getActiveWorksheet
-  summary: >-
-    Obtém a planilha ativa no momento na pasta de trabalho.
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) {  
+              var activeWorksheet = ctx.workbook.worksheets.getActiveWorksheet();
+              activeWorksheet.load('name');
+              return ctx.sync().then(function() {
+                      console.log(activeWorksheet.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel_release.Excel.WorksheetCollection.getCount
+    summary: |-
+      Obtém o número de planilhas na coleção.
+
+      \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getCount(visibleOnly)
+    fullName: getCount(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(visibleOnly?: boolean): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+      parameters:
+        - id: visibleOnly
+          description: 'Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.'
+          type:
+            - boolean
+  - uid: excel_release.Excel.WorksheetCollection.getFirst
+    summary: |-
+      Obtém a primeira planilha na coleção.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getFirst(visibleOnly)
+    fullName: getFirst(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFirst(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getActiveWorksheet()
-  fullName: getActiveWorksheet()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getActiveWorksheet(): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) {  \n    var activeWorksheet = ctx.workbook.worksheets.getActiveWorksheet();\n    activeWorksheet.load('name');\n    return ctx.sync().then(function() {\n            console.log(activeWorksheet.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: excel_release.Excel.WorksheetCollection.getCount
-  summary: >-
-    Obtém o número de planilhas na coleção.
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheets = context.workbook.worksheets;
+
+              // We don't want to include the default worksheet that was created
+              // when the workbook was created, so our "firstSheet" will be the one
+              // after the literal first. Note chaining of navigation methods.
+              const firstSheet = sheets.getFirst().getNext();
+              const lastSheet = sheets.getLast();
+              const firstTaxRateRange = firstSheet.getRange("B2");
+              const lastTaxRateRange = lastSheet.getRange("B2");
+
+              firstSheet.load("name");
+              lastSheet.load("name");
+              firstTaxRateRange.load("text");
+              lastTaxRateRange.load("text");
+
+              await context.sync();
+
+              let firstYear = firstSheet.name.substr(5, 4);
+              let lastYear = lastSheet.name.substr(5, 4);
+              console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: visibleOnly
+          description: 'Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.'
+          type:
+            - boolean
+  - uid: excel_release.Excel.WorksheetCollection.getItem
+    summary: |-
+      Obtém um objeto worksheet usando o Nome ou ID dele.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getItem(key)
+    fullName: getItem(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(key: string): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: key
+          description: O Nome ou ID da planilha.
+          type:
+            - string
+  - uid: excel_release.Excel.WorksheetCollection.getItemOrNullObject
+    summary: |-
+      Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, retornará um objeto null.
+
+      \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getItemOrNullObject(key)
+    fullName: getItemOrNullObject(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemOrNullObject(key: string): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: ''
+      parameters:
+        - id: key
+          description: O Nome ou ID da planilha.
+          type:
+            - string
+  - uid: excel_release.Excel.WorksheetCollection.getLast
+    summary: |-
+      Obtém a última planilha na coleção.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getLast(visibleOnly)
+    fullName: getLast(visibleOnly)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLast(visibleOnly?: boolean): Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getCount(visibleOnly)
-  fullName: getCount(visibleOnly)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getCount(visibleOnly?: boolean): OfficeExtension.ClientResult<number>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<number>
-      description: ''
-    parameters:
-    - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
-      type:
-      - boolean
-- uid: excel_release.Excel.WorksheetCollection.getFirst
-  summary: >-
-    Obtém a primeira planilha na coleção.
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheets = context.workbook.worksheets;
+
+              // We don't want to include the default worksheet that was created
+              // when the workbook was created, so our "firstSheet" will be the one
+              // after the literal first. Note chaining of navigation methods.
+              const firstSheet = sheets.getFirst().getNext();
+              const lastSheet = sheets.getLast();
+              const firstTaxRateRange = firstSheet.getRange("B2");
+              const lastTaxRateRange = lastSheet.getRange("B2");
+
+              firstSheet.load("name");
+              lastSheet.load("name");
+              firstTaxRateRange.load("text");
+              lastTaxRateRange.load("text");
+
+              await context.sync();
+
+              let firstYear = firstSheet.name.substr(5, 4);
+              let lastYear = lastSheet.name.substr(5, 4);
+              console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: visibleOnly
+          description: 'Opcional. Se true, só considera planilhas visíveis, ignorando as ocultas.'
+          type:
+            - boolean
+  - uid: excel_release.Excel.WorksheetCollection.items
+    summary: Obtém os itens filhos carregados nesta coleção.
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.Worksheet[];'
+      return:
+        type:
+          - 'Excel.Worksheet[]'
+  - uid: excel_release.Excel.WorksheetCollection.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): Excel.WorksheetCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.WorksheetCollection;'
+      return:
+        type:
+          - excel.Excel.WorksheetCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel_release.Excel.WorksheetCollection.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.WorksheetCollection;'
+      return:
+        type:
+          - excel.Excel.WorksheetCollection
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getFirst(visibleOnly)
-  fullName: getFirst(visibleOnly)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getFirst(visibleOnly?: boolean): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
-    parameters:
-    - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
-      type:
-      - boolean
-- uid: excel_release.Excel.WorksheetCollection.getItem
-  summary: >-
-    Obtém um objeto de planilha usando o Nome ou ID dele.
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var worksheets = ctx.workbook.worksheets;
+              worksheets.load('items');
+              return ctx.sync().then(function() {
+                  for (var i = 0; i < worksheets.items.length; i++)
+                  {
+                      console.log(worksheets.items[i].name);
+                      console.log(worksheets.items[i].index);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: excel_release.Excel.WorksheetCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.WorksheetCollection;'
+      return:
+        type:
+          - excel.Excel.WorksheetCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: excel_release.Excel.WorksheetCollection.onActivated
+    summary: |-
+      Ocorre quando qualquer planilha na pasta de trabalho é ativada.
+
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onActivated
+    fullName: onActivated
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorksheetActivatedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetActivatedEventArgs>
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getItem(key)
-  fullName: getItem(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(key: string): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: ''
-    parameters:
-    - id: key
-      description: O Nome ou ID da planilha.
-      type:
-      - string
-- uid: excel_release.Excel.WorksheetCollection.getItemOrNullObject
-  summary: >-
-    Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, retornará um objeto null.
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              let sheets = context.workbook.worksheets;
+              sheets.onActivated.add(onActivate);
+
+              await context.sync();
+              console.log("A handler has been registered for the OnActivate event.");
+          });
+          ```
+  - uid: excel_release.Excel.WorksheetCollection.onAdded
+    summary: |-
+      Ocorre quando uma nova planilha é adicionada à pasta de trabalho.
+
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onAdded
+    fullName: onAdded
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.WorksheetAddedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetAddedEventArgs>
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getItemOrNullObject(key)
-  fullName: getItemOrNullObject(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItemOrNullObject(key: string): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: ''
-    parameters:
-    - id: key
-      description: O Nome ou ID da planilha.
-      type:
-      - string
-- uid: excel_release.Excel.WorksheetCollection.getLast
-  summary: >-
-    Obtém a última planilha na coleção.
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              let sheet = context.workbook.worksheets;
+              sheet.onAdded.add(onWorksheetAdd);
+
+              await context.sync();
+              console.log("A handler has been registered for the OnAdded event.");
+          });
+          ```
+  - uid: excel_release.Excel.WorksheetCollection.onCalculated
+    summary: |-
+      Ocorre quando qualquer planilha na pasta de trabalho é calculada.
+
+      \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onCalculated
+    fullName: onCalculated
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onCalculated: OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
+  - uid: excel_release.Excel.WorksheetCollection.onDeactivated
+    summary: |-
+      Ocorre quando qualquer planilha na pasta de trabalho é desativada.
+
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onDeactivated
+    fullName: onDeactivated
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDeactivated: OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: getLast(visibleOnly)
-  fullName: getLast(visibleOnly)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getLast(visibleOnly?: boolean): Excel.Worksheet;'
-    return:
-      type:
-      - excel.Excel.Worksheet
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheets = context.workbook.worksheets;\n\n    // We don't want to include the default worksheet that was created\n    // when the workbook was created, so our \"firstSheet\" will be the one\n    // after the literal first. Note chaining of navigation methods.\n    const firstSheet = sheets.getFirst().getNext();\n    const lastSheet = sheets.getLast();\n    const firstTaxRateRange = firstSheet.getRange(\"B2\");\n    const lastTaxRateRange = lastSheet.getRange(\"B2\");\n\n    firstSheet.load(\"name\");\n    lastSheet.load(\"name\");\n    firstTaxRateRange.load(\"text\");\n    lastTaxRateRange.load(\"text\");\n\n    await context.sync();\n\n    let firstYear = firstSheet.name.substr(5, 4);\n    let lastYear = lastSheet.name.substr(5, 4);\n    console.log(`Tax Rate change from ${firstYear} to ${lastYear}`, `Tax rate for ${firstYear}: ${firstTaxRateRange.text[0][0]}\\nTax rate for ${lastYear}: ${lastTaxRateRange.text[0][0]}`)\n\n    await context.sync();\n});\n```"
-    parameters:
-    - id: visibleOnly
-      description: Opcional. Caso verdadeiro, considera apenas planilhas visíveis, ignorando as ocultas.
-      type:
-      - boolean
-- uid: excel_release.Excel.WorksheetCollection.items
-  summary: Obtém os itens filhos carregados nesta coleção.
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: Excel.Worksheet[];'
-    return:
-      type:
-      - Excel.Worksheet[]
-- uid: excel_release.Excel.WorksheetCollection.load
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
+          #### <a name="examples"></a>Exemplos
 
+          ```typescript
+          await Excel.run(async (context) => {
+              let sheets = context.workbook.worksheets;
+              sheets.onDeactivated.add(onDeactivate);
 
-    `load(option?: string | string[]): Excel.WorksheetCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+              await context.sync();
+              console.log("A handler has been registered for the OnDeactivate event.");
+          });
+          ```
+  - uid: excel_release.Excel.WorksheetCollection.onDeleted
+    summary: |-
+      Ocorre quando uma planilha é excluída da pasta de trabalho.
 
-
-    `load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.WorksheetCollection;'
-    return:
-      type:
-      - excel.Excel.WorksheetCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-- uid: excel_release.Excel.WorksheetCollection.load_1
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.WorksheetCollection;'
-    return:
-      type:
-      - excel.Excel.WorksheetCollection
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-      type:
-      - string | string[]
-- uid: excel_release.Excel.WorksheetCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Excel.WorksheetCollection;'
-    return:
-      type:
-      - excel.Excel.WorksheetCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: excel_release.Excel.WorksheetCollection.onActivated
-  summary: >-
-    Ocorre quando qualquer planilha na pasta de trabalho é ativada.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: onActivated
-  fullName: onActivated
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorksheetActivatedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.WorksheetActivatedEventArgs>
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onActivated.add(onActivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnActivate event.\");\n});\n```"
-- uid: excel_release.Excel.WorksheetCollection.onAdded
-  summary: >-
-    Ocorre quando uma nova planilha é adicionada à pasta de trabalho.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: onAdded
-  fullName: onAdded
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.WorksheetAddedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.WorksheetAddedEventArgs>
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets;\n    sheet.onAdded.add(onWorksheetAdd);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnAdded event.\");\n});\n```"
-- uid: excel_release.Excel.WorksheetCollection.onCalculated
-  summary: >-
-    Ocorre quando qualquer planilha na pasta de trabalho é calculada.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: onCalculated
-  fullName: onCalculated
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onCalculated: OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.WorksheetCalculatedEventArgs>
-- uid: excel_release.Excel.WorksheetCollection.onDeactivated
-  summary: >-
-    Ocorre quando qualquer planilha na pasta de trabalho é desativada.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: onDeactivated
-  fullName: onDeactivated
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onDeactivated: OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.WorksheetDeactivatedEventArgs>
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheets = context.workbook.worksheets;\n    sheets.onDeactivated.add(onDeactivate);\n\n    await context.sync();\n    console.log(\"A handler has been registered for the OnDeactivate event.\");\n});\n```"
-- uid: excel_release.Excel.WorksheetCollection.onDeleted
-  summary: >-
-    Ocorre quando uma planilha é excluída da pasta de trabalho.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: onDeleted
-  fullName: onDeleted
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>
-- uid: excel_release.Excel.WorksheetCollection.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.WorksheetCollectionData` <!-- -->como) que contém uma matriz "Items" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.WorksheetCollectionData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.WorksheetCollectionData
-      description: ''
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onDeleted
+    fullName: onDeleted
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetDeletedEventArgs>
+  - uid: excel_release.Excel.WorksheetCollection.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto `Excel.WorksheetCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorksheetCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.WorksheetCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.WorksheetCollectionData
+        description: ''
