@@ -1,157 +1,162 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 75b8b59dfb4eb9a725b22f3d45db1e5ee5e5aaee
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29973160"
 items:
-- uid: visio.Visio.PageCollection
-  summary: >-
-    Representa uma coleção de todos os objetos Page que fazem parte do documento.
+  - uid: visio.Visio.PageCollection
+    summary: |-
+      Representa uma coleção de todos os objetos da Página que fazem parte do documento.
+
+      \[[Conjunto de APIs: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.PageCollection
+    fullName: Visio.PageCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: visio
+    children:
+      - visio.Visio.PageCollection.getCount
+      - visio.Visio.PageCollection.getItem
+      - visio.Visio.PageCollection.items
+      - visio.Visio.PageCollection.load
+      - visio.Visio.PageCollection.load_1
+      - visio.Visio.PageCollection.load_2
+      - visio.Visio.PageCollection.toJSON
+  - uid: visio.Visio.PageCollection.getCount
+    summary: |-
+      Obtém a quantidade de páginas da coleção.
+
+      \[[Conjunto de APIs: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: visio.Visio.PageCollection.getItem
+    summary: |-
+      Obtém uma página usando sua chave (nome ou Id).
+
+      \[[Conjunto de APIs: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getItem(key)
+    fullName: getItem(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(key: number | string): Visio.Page;'
+      return:
+        type:
+          - Visio.Page
+        description: |-
 
 
-    \[[Conjunto de APIs: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: Visio.PageCollection
-  fullName: Visio.PageCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: visio
-  children:
-  - visio.Visio.PageCollection.getCount
-  - visio.Visio.PageCollection.getItem
-  - visio.Visio.PageCollection.items
-  - visio.Visio.PageCollection.load
-  - visio.Visio.PageCollection.load_1
-  - visio.Visio.PageCollection.load_2
-  - visio.Visio.PageCollection.toJSON
-- uid: visio.Visio.PageCollection.getCount
-  summary: >-
-    Obtém a quantidade de páginas da coleção.
+          #### <a name="examples"></a>Exemplos
 
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var pageName = 'Page-1';
+              var page = ctx.document.pages.getItem(pageName);
+              page.activate();
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: key
+          description: A chave é o nome ou Id da página a ser recuperada.
+          type:
+            - number | string
+  - uid: visio.Visio.PageCollection.items
+    summary: Obtém os itens filhos carregados nesta coleção.
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Visio.Page[];'
+      return:
+        type:
+          - 'Visio.Page[]'
+  - uid: visio.Visio.PageCollection.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
 
-    \[[Conjunto de APIs: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: getCount()
-  fullName: getCount()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getCount(): OfficeExtension.ClientResult<number>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<number>
-      description: ''
-- uid: visio.Visio.PageCollection.getItem
-  summary: >-
-    Obtém uma página usando sua chave (nome ou Id).
+      `load(option?: string | string[]): Visio.PageCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
+      `load(option?: { select?: string; expand?: string; }): Visio.PageCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
-    \[[Conjunto de APIs: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
-  name: getItem(key)
-  fullName: getItem(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(key: number | string): Visio.Page;'
-    return:
-      type:
-      - Visio.Page
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var pageName = 'Page-1';\n    var page = ctx.document.pages.getItem(pageName);\n    page.activate();\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: key
-      description: A chave é o nome ou Id da página a ser recuperada.
-      type:
-      - number | string
-- uid: visio.Visio.PageCollection.items
-  summary: Obtém o filho carregado itens nesta coleção.
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: Visio.Page[];'
-    return:
-      type:
-      - Visio.Page[]
-- uid: visio.Visio.PageCollection.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
-
-
-    `load(option?: string | string[]): Visio.PageCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
-
-
-    `load(option?: { select?: string; expand?: string; }): Visio.PageCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.PageCollection;'
-    return:
-      type:
-      - Visio.PageCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
-- uid: visio.Visio.PageCollection.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Visio.PageCollection;'
-    return:
-      type:
-      - Visio.PageCollection
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
-      type:
-      - string | string[]
-- uid: visio.Visio.PageCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Visio.PageCollection;'
-    return:
-      type:
-      - Visio.PageCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: visio.Visio.PageCollection.toJSON
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Visio.Interfaces.PageCollectionData;'
-    return:
-      type:
-      - Visio.Interfaces.PageCollectionData
-      description: ''
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.PageCollection;'
+      return:
+        type:
+          - Visio.PageCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
+  - uid: visio.Visio.PageCollection.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.PageCollection;'
+      return:
+        type:
+          - Visio.PageCollection
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.PageCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Visio.PageCollection;'
+      return:
+        type:
+          - Visio.PageCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: visio.Visio.PageCollection.toJSON
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.PageCollectionData;'
+      return:
+        type:
+          - Visio.Interfaces.PageCollectionData
+        description: ''

@@ -1,64 +1,72 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a63b2bbf964b282d38a6aa4214fb3f00a70b8eca
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055777"
 items:
-- uid: office.Office.MatrixBinding
-  summary: Representa uma associação em duas dimensões de linhas e colunas.
-  remarks: >-
-    <table><tr><td>Conjuntos de requisitos</td><td>MatrixBindings</td></tr></table>
+  - uid: office.Office.MatrixBinding
+    summary: Representa uma associação em duas dimensões de linhas e colunas.
+    remarks: 'O objeto Matrixbinding herda a propriedade ID, a propriedade Type, o método getDataAsync e o método setDataAsync do objeto Binding.'
+    name: Office.MatrixBinding
+    fullName: Office.MatrixBinding
+    langs:
+      - typeScript
+    type: interface
+    extends:
+      - 'Binding '
+    package: office
+    children:
+      - office.Office.MatrixBinding.columnCount
+      - office.Office.MatrixBinding.rowCount
+  - uid: office.Office.MatrixBinding.columnCount
+    summary: Obtém o número de colunas na estrutura de dados de matriz como um valor inteiro.
+    name: columnCount
+    fullName: columnCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'columnCount: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    O objeto Matrixbinding herda a propriedade ID, a propriedade Type, o método getDataAsync e o método setDataAsync do objeto Binding.
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          function showBindingColumnCount() {
+              Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+                  write("Column: " + asyncResult.value.columnCount);
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.MatrixBinding.rowCount
+    summary: 'Obtém o número de linhas na estrutura de dados de matriz, como um valor inteiro.'
+    name: rowCount
+    fullName: rowCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rowCount: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    **Detalhes do suporte**
+          #### <a name="examples"></a>Exemplos
 
-
-    Um Y maiúsculo na matriz a seguir indica que essa interface é compatível com o aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa interface.
-
-
-    Para obter mais informações sobre os requisitos de servidor e aplicativo host do Office, consulte [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Ele</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Palavras</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
-  name: Office.MatrixBinding
-  fullName: Office.MatrixBinding
-  langs:
-  - typeScript
-  type: interface
-  extends:
-  - 'Binding '
-  package: office
-  children:
-  - office.Office.MatrixBinding.columnCount
-  - office.Office.MatrixBinding.rowCount
-- uid: office.Office.MatrixBinding.columnCount
-  summary: Obtém o número de colunas na estrutura de dados de matriz como um valor inteiro.
-  remarks: "<table> <tr><td>Hosts</td><td>Access, Excel, PowerPoint, Project, Word</td></tr> <tr><td>Conjuntos de requisitos</td><td>MatrixBindings</td></tr> </table>\n#### Exemplos\n\n```javascript\nfunction showBindingColumnCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Column: \" + asyncResult.value.columnCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: columnCount
-  fullName: columnCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'columnCount: number;'
-    return:
-      type:
-      - number
-- uid: office.Office.MatrixBinding.rowCount
-  summary: Obtém o número de linhas na estrutura de dados de matriz, como um valor inteiro.
-  remarks: "<table> <tr><td>Hosts</td><td>Access, Excel, PowerPoint, Project, Word</td></tr> <tr><td>Conjuntos de requisitos</td><td>MatrixBindings</td></tr> </table>\n#### Examples\n\n```javascript\nfunction showBindingRowCount() {\n    Office.context.document.bindings.getByIdAsync(\"myBinding\", function (asyncResult) {\n        write(\"Rows: \" + asyncResult.value.rowCount);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: rowCount
-  fullName: rowCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rowCount: number;'
-    return:
-      type:
-      - number
+          ```javascript
+          function showBindingRowCount() {
+              Office.context.document.bindings.getByIdAsync("myBinding", function (asyncResult) {
+                  write("Rows: " + asyncResult.value.rowCount);
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```

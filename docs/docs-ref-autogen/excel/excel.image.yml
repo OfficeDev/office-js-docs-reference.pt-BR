@@ -1,179 +1,181 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 737731cf0427be95d4f6208c664862287d704903
-ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "30575771"
 items:
-- uid: excel.Excel.Image
-  summary: >-
-    Representa uma imagem na planilha. Para obter o objeto Shape correspondente, use Image. Shape.
+  - uid: excel.Excel.Image
+    summary: |-
+      Representa uma imagem na planilha. Para obter o objeto Shape correspondente, use Image. Shape.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: Excel.Image
+    fullName: Excel.Image
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.Image.context
+      - excel.Excel.Image.format
+      - excel.Excel.Image.id
+      - excel.Excel.Image.load
+      - excel.Excel.Image.load_1
+      - excel.Excel.Image.load_2
+      - excel.Excel.Image.shape
+      - excel.Excel.Image.toJSON
+  - uid: excel.Excel.Image.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    isPreview: true
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.Image.format
+    summary: |-
+      Retorna o formato da imagem. Somente leitura.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly format: Excel.PictureFormat | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG";'
+      return:
+        type:
+          - Excel.PictureFormat | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"
+        description: |-
 
 
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: Excel.Image
-  fullName: Excel.Image
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.Image.context
-  - excel.Excel.Image.format
-  - excel.Excel.Image.id
-  - excel.Excel.Image.load
-  - excel.Excel.Image.load_1
-  - excel.Excel.Image.load_2
-  - excel.Excel.Image.shape
-  - excel.Excel.Image.toJSON
-- uid: excel.Excel.Image.context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
-  isPreview: true
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.Image.format
-  summary: >-
-    Retorna o formato da imagem. Somente leitura.
+          #### <a name="examples"></a>Exemplos
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Shapes");
+              const image = sheet.shapes.getItem("Image").image;
+              image.load("format");
+              await context.sync();
 
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: format
-  fullName: format
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly format: Excel.PictureFormat | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG";'
-    return:
-      type:
-      - Excel.PictureFormat | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const image = sheet.shapes.getItem(\"Image\").image;\n    image.load(\"format\");\n    await context.sync();\n\n    console.log(\"The image's format is: \" + image.format);\n    await context.sync();\n});\n```"
-- uid: excel.Excel.Image.id
-  summary: >-
-    Representa o identificador de forma para o objeto de imagem. Somente leitura.
+              console.log("The image's format is: " + image.format);
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.Image.id
+    summary: |-
+      Representa o identificador de forma para o objeto de imagem. Somente leitura.
 
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.Image.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
 
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: id
-  fullName: id
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly id: string;'
-    return:
-      type:
-      - string
-- uid: excel.Excel.Image.load
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
+      `load(option?: string | string[]): Excel.Image`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
 
+      `load(option?: { select?: string; expand?: string; }): Excel.Image`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
 
-    `load(option?: string | string[]): Excel.Image`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Image`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    isPreview: true
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.ImageLoadOptions): Excel.Image;'
+      return:
+        type:
+          - excel.Excel.Image
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.ImageLoadOptions
+  - uid: excel.Excel.Image.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    isPreview: true
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.Image;'
+      return:
+        type:
+          - excel.Excel.Image
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.Image.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    isPreview: true
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Image;'
+      return:
+        type:
+          - excel.Excel.Image
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.Image.shape
+    summary: |-
+      Retorna o objeto de forma associado à imagem. Somente leitura.
 
-
-    `load(option?: { select?: string; expand?: string; }): Excel.Image`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Image`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-  isPreview: true
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.ImageLoadOptions): Excel.Image;'
-    return:
-      type:
-      - excel.Excel.Image
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.ImageLoadOptions
-- uid: excel.Excel.Image.load_1
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  isPreview: true
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.Image;'
-    return:
-      type:
-      - excel.Excel.Image
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-      type:
-      - string | string[]
-- uid: excel.Excel.Image.load_2
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  isPreview: true
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Image;'
-    return:
-      type:
-      - excel.Excel.Image
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel.Excel.Image.shape
-  summary: >-
-    Retorna o objeto Shape associado à imagem. Somente leitura.
-
-
-    \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  isPreview: true
-  name: shape
-  fullName: shape
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly shape: Excel.Shape;'
-    return:
-      type:
-      - excel.Excel.Shape
-- uid: excel.Excel.Image.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Image original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ImageData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
-  isPreview: true
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.ImageData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.ImageData
-      description: ''
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: shape
+    fullName: shape
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly shape: Excel.Shape;'
+      return:
+        type:
+          - excel.Excel.Shape
+  - uid: excel.Excel.Image.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Image original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ImageData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    isPreview: true
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.ImageData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.ImageData
+        description: ''

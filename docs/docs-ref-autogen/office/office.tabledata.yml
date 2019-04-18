@@ -1,131 +1,106 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d2c3c4e5cd23cd10b207f099ad28eac303336b3d
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30054426"
 items:
-- uid: office.Office.TableData
-  summary: Representa os dados em uma tabela ou em um [Office. TableBinding](xref:office.Office.TableBinding)<!-- -->.
-  remarks: <table> <tr><td>Hosts</td><td>Excel, Word</td></tr> <tr><td>Conjuntos de requisitos</td><td>TableBindings</td></tr> </table>
-  name: Office.TableData
-  fullName: Office.TableData
-  langs:
-  - typeScript
-  type: class
-  package: office
-  children:
-  - office.Office.TableData.(constructor)
-  - office.Office.TableData.(constructor)_1
-  - office.Office.TableData.headers
-  - office.Office.TableData.rows
-- uid: office.Office.TableData.(constructor)
-  name: (constructor)(rows, headers)
-  fullName: (constructor)(rows, headers)
-  langs:
-  - typeScript
-  type: constructor
-  syntax:
-    content: 'constructor(rows: any[][], headers: any[]);'
-    parameters:
-    - id: rows
-      description: ''
-      type:
-      - any[][]
-    - id: headers
-      description: ''
-      type:
-      - any[]
-- uid: office.Office.TableData.(constructor)_1
-  name: (constructor)()
-  fullName: (constructor)()
-  langs:
-  - typeScript
-  type: constructor
-  syntax:
-    content: constructor();
-- uid: office.Office.TableData.headers
-  summary: Obtém ou define os cabeçalhos da tabela.
-  remarks: >-
-    <table> <tr><td>Hosts</td><td>Excel, Word</td></tr> <tr><td>Conjuntos de requisitos</td><td>TableBindings</td></tr> </table>
+  - uid: office.Office.TableData
+    summary: 'Representa os dados em uma tabela ou em um [Office. TableBinding](xref:office.Office.TableBinding)<!-- -->.'
+    name: Office.TableData
+    fullName: Office.TableData
+    langs:
+      - typeScript
+    type: class
+    package: office
+    children:
+      - office.Office.TableData.(constructor)
+      - office.Office.TableData.(constructor)_1
+      - office.Office.TableData.headers
+      - office.Office.TableData.rows
+  - uid: office.Office.TableData.(constructor)
+    summary: Cria uma nova instância da `TableData` classe
+    name: '(constructor)(rows, headers)'
+    fullName: '(constructor)(rows, headers)'
+    langs:
+      - typeScript
+    type: constructor
+    syntax:
+      content: 'constructor(rows: any[][], headers: any[]);'
+      parameters:
+        - id: rows
+          description: ''
+          type:
+            - 'any[][]'
+        - id: headers
+          description: ''
+          type:
+            - 'any[]'
+  - uid: office.Office.TableData.(constructor)_1
+    summary: Cria uma nova instância da `TableData` classe
+    name: (constructor)()
+    fullName: (constructor)()
+    langs:
+      - typeScript
+    type: constructor
+    syntax:
+      content: constructor();
+  - uid: office.Office.TableData.headers
+    summary: Obtém ou define os cabeçalhos da tabela.
+    remarks: |-
+      Para especificar cabeçalhos, você deve especificar uma matriz de matrizes que corresponde à estrutura da tabela. Por exemplo, para especificar cabeçalhos para uma tabela de duas colunas, defina a propriedade Header como \[ \[' header1 ', ' header2 '\]\].
 
+      Se você especificar NULL para a propriedade Headers (ou deixar a propriedade vazia quando construir um objeto TableData), os resultados a seguir ocorrerão quando o código for executado:
 
-    Para especificar cabeçalhos, você deve especificar uma matriz de matrizes que corresponde à estrutura da tabela. Por exemplo, para especificar cabeçalhos para uma tabela de duas colunas, defina a propriedade Header como \[ \[' header1 ', ' header2 '\]\].
+      - Se você inserir uma nova tabela, serão criados os cabeçalhos de coluna padrão para a tabela.
 
+      - Se você substituir ou atualizar uma tabela existente, os cabeçalhos existentes não serão alterados.
 
-    Se você especificar NULL para a propriedade Headers (ou deixar a propriedade vazia quando construir um objeto TableData), os resultados a seguir ocorrerão quando o código for executado:
+      #### <a name="examples"></a>Exemplos
 
+      ```javascript
+      // The following example creates a single-column table with a header and three rows.
+      function createTableData() {
+          var tableData = new Office.TableData();
+          tableData.headers = [['header1']];
+          tableData.rows = [['row1'], ['row2'], ['row3']];
+          return tableData;
+      }
+      ```
+    name: headers
+    fullName: headers
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'headers: any[];'
+      return:
+        type:
+          - 'any[]'
+  - uid: office.Office.TableData.rows
+    summary: Obtém ou define as linhas na tabela. Retorna uma matriz de matrizes que contém os dados na tabela. Retorna uma matriz vazia se não houver linhas.
+    remarks: |-
+      Para especificar linhas, você deve especificar uma matriz de matrizes que corresponde à estrutura da tabela. Por exemplo, para especificar duas linhas de valores de cadeia de caracteres em uma tabela de duas colunas, você definiria \[ \[a propriedade Rows como ' a '\], \[' b ', ' C'\]\], ' d'.
 
-    - Se você inserir uma nova tabela, serão criados os cabeçalhos de coluna padrão para a tabela.
+      Se você especificar NULL para a propriedade Rows (ou deixar a propriedade vazia quando construir um objeto TableData), os resultados a seguir ocorrerão quando o código for executado:
 
+      - Se você inserir uma nova tabela, uma linha em branco será inserida.
 
-    - Se você substituir ou atualizar uma tabela existente, os cabeçalhos existentes não serão alterados.
+      - Se você substituir ou atualizar uma tabela existente, as linhas existentes não serão alteradas.
 
-    #### <a name="examples"></a>Exemplos
+      #### <a name="examples"></a>Exemplos
 
-
-    ```javascript
-
-    // The following example creates a single-column table with a header and three rows.
-
-    function createTableData() {
-        var tableData = new Office.TableData();
-        tableData.headers = [['header1']];
-        tableData.rows = [['row1'], ['row2'], ['row3']];
-        return tableData;
-    }
-
-    ```
-  name: headers
-  fullName: headers
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'headers: any[];'
-    return:
-      type:
-      - any[]
-- uid: office.Office.TableData.rows
-  summary: Obtém ou define as linhas na tabela. Retorna uma matriz de matrizes que contém os dados na tabela. Retorna uma matriz vazia se não houver linhas.
-  remarks: >-
-    <table> <tr><td>Hosts</td><td>Excel, Word</td></tr> <tr><td>Conjuntos de requisitos</td><td>TableBindings</td></tr> </table>
-
-
-    Para especificar linhas, você deve especificar uma matriz de matrizes que corresponde à estrutura da tabela. Por exemplo, para especificar duas linhas de valores de cadeia de caracteres em uma tabela de duas colunas, você definiria \[ \[a propriedade Rows como ' a '\], \[' b ', ' C'\]\], ' d'.
-
-
-    Se você especificar NULL para a propriedade Rows (ou deixar a propriedade vazia quando construir um objeto TableData), os resultados a seguir ocorrerão quando o código for executado:
-
-
-    - Se você inserir uma nova tabela, uma linha em branco será inserida.
-
-
-    - Se você substituir ou atualizar uma tabela existente, as linhas existentes não serão alteradas.
-
-    #### <a name="examples"></a>Examples
-
-
-    ```javascript
-
-    // The following example creates a single-column table with a header and three rows.
-
-    function createTableData() {
-        var tableData = new Office.TableData();
-        tableData.headers = [['header1']];
-        tableData.rows = [['row1'], ['row2'], ['row3']];
-        return tableData;
-    }
-
-    ```
-  name: rows
-  fullName: rows
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rows: any[][];'
-    return:
-      type:
-      - any[][]
+      ```javascript
+      // The following example creates a single-column table with a header and three rows.
+      function createTableData() {
+          var tableData = new Office.TableData();
+          tableData.headers = [['header1']];
+          tableData.rows = [['row1'], ['row2'], ['row3']];
+          return tableData;
+      }
+      ```
+    name: rows
+    fullName: rows
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rows: any[][];'
+      return:
+        type:
+          - 'any[][]'

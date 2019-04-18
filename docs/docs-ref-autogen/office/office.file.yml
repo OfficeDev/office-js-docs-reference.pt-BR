@@ -1,119 +1,94 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e82f2f2061f28e9b3e091f19ca945a4ec36a9b6a
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29980965"
 items:
-- uid: office.Office.File
-  summary: Representa o arquivo de documento associado a um Suplemento do Office.
-  remarks: >-
-    Acesse o objeto de arquivo com a propriedade AsyncResult.value na função de retorno de chamada passada para o método Document.getFileAsync.
+  - uid: office.Office.File
+    summary: Representa o arquivo de documento associado a um Suplemento do Office.
+    remarks: Acessar o objeto File com a Propriedade AsyncResult. Value na função de retorno de chamada passada para o método Document. getFileAsync.
+    name: Office.File
+    fullName: Office.File
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.File.closeAsync
+      - office.Office.File.getSliceAsync
+      - office.Office.File.size
+      - office.Office.File.sliceCount
+  - uid: office.Office.File.closeAsync
+    summary: Fecha o arquivo do documento.
+    remarks: |-
+      **Conjunto de requisitos**: [arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)
 
+      No more than two documents are allowed to be in memory; otherwise the Document.getFileAsync operation will fail. Use the File.closeAsync method to close the file when you are finished working with it.
 
-    **Detalhes do suporte**
+      Na função de retorno de chamada passada para o método closeAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
 
+      <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna undefined porque não há objetos ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
+    name: closeAsync(callback)
+    fullName: closeAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'closeAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.File.getSliceAsync
+    summary: Retorna a fatia especificada.
+    remarks: |-
+      **Conjunto de requisitos**: [arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)
 
-    Um capital Y a matriz a seguir indica que esta interface é suportado no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa interface.
+      Na função de retorno de chamada passada para o método getSliceAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
 
-
-    Para obter mais informações sobre requisitos de aplicativo e servidor de host do Office, consulte [requisitos para a execução de suplementos do Office](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office for Windows desktop </th><th> Office Online (no navegador) </th><th> Office para iPad </th><th> Office para Mac </th></tr> <tr><td><strong>Excel</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>PowerPoint</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> <tr><td><strong>Word</strong></td><td> S </td><td> S </td><td> S </td><td> S </td></tr> </table>
-  name: Office.File
-  fullName: Office.File
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.File.closeAsync
-  - office.Office.File.getSliceAsync
-  - office.Office.File.size
-  - office.Office.File.sliceCount
-- uid: office.Office.File.closeAsync
-  summary: Fecha o arquivo do documento.
-  remarks: >-
-    <table><tr><td>Conjuntos de requisito</td><td>File</td></tr></table>
-
-
-    No máximo dois documentos podem estar na memória. Caso contrário, a operação Document.getFileAsync falhará. Use o método File.closeAsync para fechar o arquivo quando tiver terminado de trabalhar nele.
-
-
-    Na função de retorno de chamada passada para o método closeAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
-
-
-    <table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna indefinido porque não há nenhum objeto ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
-  name: closeAsync(callback)
-  fullName: closeAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'closeAsync(callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->.
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.File.getSliceAsync
-  summary: Retorna a fatia especificada.
-  remarks: >-
-    <table><tr><td>Conjuntos de requisito</td><td>File</td></tr></table>
-
-
-    Na função de retorno de chamada passada para o método getSliceAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
-
-
-    <table> <tr> <th>Use para...</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Slice.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
-  name: getSliceAsync(sliceIndex, callback)
-  fullName: getSliceAsync(sliceIndex, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getSliceAsync(sliceIndex: number, callback?: (result: AsyncResult<Office.Slice>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: sliceIndex
-      description: Especifica o índice com base em zero da fatia a ser recuperada. Obrigatório.
-      type:
-      - number
-    - id: callback
-      description: Opcional. Uma função que é invocado quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office.AsyncResult](xref:office.Office.AsyncResult)<!-- -->. O `value` propriedade do resultado é o objeto [Office.Slice](xref:office.Office.Slice) .
-      type:
-      - '(result: AsyncResult<Office.Slice>) => void'
-- uid: office.Office.File.size
-  summary: Obtém o tamanho do arquivo de documento em bytes.
-  remarks: <table><tr><td>Conjuntos de requisito</td><td>File</td></tr></table>
-  name: size
-  fullName: size
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'size: number;'
-    return:
-      type:
-      - number
-- uid: office.Office.File.sliceCount
-  summary: Obtém o número de fatias em que o arquivo está dividido.
-  name: sliceCount
-  fullName: sliceCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'sliceCount: number;'
-    return:
-      type:
-      - number
+      <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Slice.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
+    name: 'getSliceAsync(sliceIndex, callback)'
+    fullName: 'getSliceAsync(sliceIndex, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSliceAsync(sliceIndex: number, callback?: (result: AsyncResult<Office.Slice>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: sliceIndex
+          description: Especifica o índice com base em zero da fatia a ser recuperada. Obrigatório.
+          type:
+            - number
+        - id: callback
+          description: 'Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->. A `value` Propriedade do resultado é o objeto [Office. Slice](xref:office.Office.Slice) .'
+          type:
+            - '(result: AsyncResult<Office.Slice>) => void'
+  - uid: office.Office.File.size
+    summary: Obtém o tamanho do arquivo de documento em bytes.
+    name: size
+    fullName: size
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'size: number;'
+      return:
+        type:
+          - number
+  - uid: office.Office.File.sliceCount
+    summary: Obtém o número de fatias em que o arquivo está dividido.
+    name: sliceCount
+    fullName: sliceCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'sliceCount: number;'
+      return:
+        type:
+          - number

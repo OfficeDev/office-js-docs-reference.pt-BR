@@ -1,244 +1,304 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 96c0ad9f60239cb1b0da0bd12a80409e10591542
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29976638"
 items:
-- uid: onenote.OneNote.PageCollection
-  summary: >-
-    Representa um conjunto de páginas.
+  - uid: onenote.OneNote.PageCollection
+    summary: |-
+      Representa uma coleção de páginas.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.PageCollection
+    fullName: OneNote.PageCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: onenote
+    children:
+      - onenote.OneNote.PageCollection.context
+      - onenote.OneNote.PageCollection.count
+      - onenote.OneNote.PageCollection.getByTitle
+      - onenote.OneNote.PageCollection.getItem
+      - onenote.OneNote.PageCollection.getItemAt
+      - onenote.OneNote.PageCollection.items
+      - onenote.OneNote.PageCollection.load
+      - onenote.OneNote.PageCollection.load_1
+      - onenote.OneNote.PageCollection.load_2
+      - onenote.OneNote.PageCollection.toJSON
+      - onenote.OneNote.PageCollection.track
+      - onenote.OneNote.PageCollection.untrack
+  - uid: onenote.OneNote.PageCollection.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: onenote.OneNote.PageCollection.count
+    summary: |-
+      Retorna o número de páginas da coleção. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.PageCollection.getByTitle
+    summary: |-
+      Obtém a coleção de páginas com o título especificado.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getByTitle(title)
+    fullName: getByTitle(title)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getByTitle(title: string): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: |-
 
 
-    \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: OneNote.PageCollection
-  fullName: OneNote.PageCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: onenote
-  children:
-  - onenote.OneNote.PageCollection.context
-  - onenote.OneNote.PageCollection.count
-  - onenote.OneNote.PageCollection.getByTitle
-  - onenote.OneNote.PageCollection.getItem
-  - onenote.OneNote.PageCollection.getItemAt
-  - onenote.OneNote.PageCollection.items
-  - onenote.OneNote.PageCollection.load
-  - onenote.OneNote.PageCollection.load_1
-  - onenote.OneNote.PageCollection.load_2
-  - onenote.OneNote.PageCollection.toJSON
-  - onenote.OneNote.PageCollection.track
-  - onenote.OneNote.PageCollection.untrack
-- uid: onenote.OneNote.PageCollection.context
-  summary: O contexto de solicitação associado ao objeto. Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: onenote.OneNote.PageCollection.count
-  summary: >-
-    Retorna o número de páginas da coleção. Somente leitura.
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get all the pages in the current section.
+              var allPages = context.application.getActiveSection().pages;
+
+              // Queue a command to load the pages. 
+              // For best performance, request specific properties.
+              allPages.load("id"); 
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Get the sections with the specified name.
+                      var todoPages = allPages.getByTitle("Todo list");
+
+                      // Queue a command to load the section. 
+                      // For best performance, request specific properties.
+                      todoPages.load("id,title"); 
+
+                      return context.sync()
+                          .then(function () {
+
+                              // Iterate through the collection or access items individually by index.
+                              if (todoPages.items.length > 0) {
+                                  console.log("Page title: " + todoPages.items[0].title);
+                                  console.log("Page ID: " + todoPages.items[0].id);
+                              }
+                          });
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: title
+          description: O título da página.
+          type:
+            - string
+  - uid: onenote.OneNote.PageCollection.getItem
+    summary: |-
+      Obtém uma página pela ID ou pelo índice na coleção. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItem(index)
+    fullName: getItem(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(index: number | string): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: ''
+      parameters:
+        - id: index
+          description: A ID da página ou a localização do índice da página na coleção.
+          type:
+            - number | string
+  - uid: onenote.OneNote.PageCollection.getItemAt
+    summary: |-
+      Obtém uma página na posição dela na coleção.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: ''
+      parameters:
+        - id: index
+          description: Valor de índice do objeto a ser recuperado. Indexados com zero.
+          type:
+            - number
+  - uid: onenote.OneNote.PageCollection.items
+    summary: Obtém os itens filhos carregados nesta coleção.
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: OneNote.Page[];'
+      return:
+        type:
+          - 'OneNote.Page[]'
+  - uid: onenote.OneNote.PageCollection.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): OneNote.PageCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.PageCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
+  - uid: onenote.OneNote.PageCollection.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: |-
 
 
-    \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: count
-  fullName: count
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly count: number;'
-    return:
-      type:
-      - number
-- uid: onenote.OneNote.PageCollection.getByTitle
-  summary: >-
-    Obtém o conjunto de páginas com o título especificado.
+          #### <a name="examples"></a>Exemplos
 
-
-    \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getByTitle(title)
-  fullName: getByTitle(title)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getByTitle(title: string): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get all the pages in the current section.\n    var allPages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages. \n    // For best performance, request specific properties.\n    allPages.load(\"id\"); \n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Get the sections with the specified name.\n            var todoPages = allPages.getByTitle(\"Todo list\");\n\n            // Queue a command to load the section. \n            // For best performance, request specific properties.\n            todoPages.load(\"id,title\"); \n\n            return context.sync()\n                .then(function () {\n\n                    // Iterate through the collection or access items individually by index.\n                    if (todoPages.items.length > 0) {\n                        console.log(\"Page title: \" + todoPages.items[0].title);\n                        console.log(\"Page ID: \" + todoPages.items[0].id);\n                    }\n                });\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: title
-      description: O título da página.
-      type:
-      - string
-- uid: onenote.OneNote.PageCollection.getItem
-  summary: >-
-    Obtém uma página pela ID ou pelo índice na coleção. Somente leitura.
-
-
-    \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getItem(index)
-  fullName: getItem(index)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(index: number | string): OneNote.Page;'
-    return:
-      type:
-      - onenote.OneNote.Page
-      description: ''
-    parameters:
-    - id: index
-      description: A ID da página ou a localização do índice da página na coleção.
-      type:
-      - number | string
-- uid: onenote.OneNote.PageCollection.getItemAt
-  summary: >-
-    Obtém uma página na posição dela na coleção.
-
-
-    \[[Conjunto de APIs: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  name: getItemAt(index)
-  fullName: getItemAt(index)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItemAt(index: number): OneNote.Page;'
-    return:
-      type:
-      - onenote.OneNote.Page
-      description: ''
-    parameters:
-    - id: index
-      description: Valor de índice do objeto a ser recuperado. Indexados com zero.
-      type:
-      - number
-- uid: onenote.OneNote.PageCollection.items
-  summary: Obtém o filho carregado itens nesta coleção.
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: OneNote.Page[];'
-    return:
-      type:
-      - OneNote.Page[]
-- uid: onenote.OneNote.PageCollection.load
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, esse método tem as seguintes assinaturas:
-
-
-    `load(option?: string | string[]): OneNote.PageCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
-
-
-    `load(option?: { select?: string; expand?: string; }): OneNote.PageCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageCollection`-Só está disponível em tipos de coleção. Ele é semelhante à assinatura anterior. Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção. Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado. Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - OneNote.Interfaces.PageCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions
-- uid: onenote.OneNote.PageCollection.load_1
-  summary: Filas de backup de um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n    \n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n    \n    // Queue a command to load the id and title for each page.            \n    pages.load('id,title');\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            // Display the properties.\n            $.each(pages.items, function(index, page) {\n                console.log(page.title);\n                console.log(page.id);\n            });\n        }); \n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.
-      type:
-      - string | string[]
-- uid: onenote.OneNote.PageCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: onenote.OneNote.PageCollection.toJSON
-  summary: Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `OneNote.PageCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `OneNote.Interfaces.PageCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): OneNote.Interfaces.PageCollectionData;'
-    return:
-      type:
-      - onenote.OneNote.Interfaces.PageCollectionData
-      description: ''
-- uid: onenote.OneNote.PageCollection.track
-  summary: Rastrear o objeto para ajuste automático, com base em torno de alterações no documento. Essa chamada é uma forma abreviada de context.trackedObjects.add(thisObject). Se você estiver usando este objeto nas chamadas ". Sync" e fora a execução sequencial de um lote de ".run" e get um erro "InvalidObjectPath" ao definir uma propriedade ou um método no objeto de invocação, você precisava adicionou o objeto ao objeto controlado coleção quando o objeto foi criado pela primeira vez.
-  name: track()
-  fullName: track()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'track(): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: ''
-- uid: onenote.OneNote.PageCollection.untrack
-  summary: Versão a memória associada a este objeto, se tiver sido rastreado anteriormente. Essa chamada é um atalho para context.trackedObjects.remove(thisObject). Ter vários objetos controlados fica mais lenta do aplicativo host, portanto Lembre-se liberar todos os objetos adicionar, depois que terminar usá-los. Você precisará chamar "context.sync()" antes do lançamento de memória entrará em vigor.
-  name: untrack()
-  fullName: untrack()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'untrack(): OneNote.PageCollection;'
-    return:
-      type:
-      - onenote.OneNote.PageCollection
-      description: ''
+          ```javascript
+          OneNote.run(function (context) {
+              
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+              
+              // Queue a command to load the id and title for each page.            
+              pages.load('id,title');
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      
+                      // Display the properties.
+                      $.each(pages.items, function(index, page) {
+                          console.log(page.title);
+                          console.log(page.id);
+                      });
+                  }); 
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.PageCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: onenote.OneNote.PageCollection.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto `OneNote.PageCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.PageCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.PageCollectionData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.PageCollectionData
+        description: ''
+  - uid: onenote.OneNote.PageCollection.track
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: ''
+  - uid: onenote.OneNote.PageCollection.untrack
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.PageCollection;'
+      return:
+        type:
+          - onenote.OneNote.PageCollection
+        description: ''
