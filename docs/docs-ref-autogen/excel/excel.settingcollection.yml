@@ -1,239 +1,272 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 1a8f80148f46248cd4fc130a989910cc008dac44
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981070"
 items:
-- uid: excel.Excel.SettingCollection
-  summary: >-
-    <span data-ttu-id="506e2-101">Representa uma coleção de objetos que fazem parte da pasta de trabalho de configuração de par de chave-valor.</span><span class="sxs-lookup"><span data-stu-id="506e2-101">Represents a collection of key-value pair setting objects that are part of the workbook.</span></span> <span data-ttu-id="506e2-102">O escopo é limitado por arquivo e o suplemento combinação (painel de tarefas ou conteúdo).</span><span class="sxs-lookup"><span data-stu-id="506e2-102">The scope is limited to per file and add-in (task-pane or content) combination.</span></span>
+  - uid: excel.Excel.SettingCollection
+    summary: |-
+      <span data-ttu-id="3dec6-101">Representa uma coleção de objetos de configuração de pares chave-valor que fazem parte da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="3dec6-101">Represents a collection of key-value pair setting objects that are part of the workbook.</span></span> <span data-ttu-id="3dec6-102">O escopo está limitado por arquivo e suplemento (a combinação de painel de tarefas ou conteúdo).</span><span class="sxs-lookup"><span data-stu-id="3dec6-102">The scope is limited to per file and add-in (task-pane or content) combination.</span></span>
+
+      <span data-ttu-id="3dec6-103">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-103">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.SettingCollection
+    fullName: Excel.SettingCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.SettingCollection.add
+      - excel.Excel.SettingCollection.context
+      - excel.Excel.SettingCollection.getCount
+      - excel.Excel.SettingCollection.getItem
+      - excel.Excel.SettingCollection.getItemOrNullObject
+      - excel.Excel.SettingCollection.items
+      - excel.Excel.SettingCollection.load
+      - excel.Excel.SettingCollection.load_1
+      - excel.Excel.SettingCollection.load_2
+      - excel.Excel.SettingCollection.onSettingsChanged
+      - excel.Excel.SettingCollection.toJSON
+  - uid: excel.Excel.SettingCollection.add
+    summary: |-
+      <span data-ttu-id="3dec6-104">Define na pasta de trabalho ou adiciona a ela a configuração especificada.</span><span class="sxs-lookup"><span data-stu-id="3dec6-104">Sets or adds the specified setting to the workbook.</span></span>
+
+      <span data-ttu-id="3dec6-105">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-105">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: 'add(key, value)'
+    fullName: 'add(key, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(key: string, value: string | number | boolean | Date | Array<any> | any): Excel.Setting;'
+      return:
+        type:
+          - excel.Excel.Setting
+        description: |-
 
 
-    <span data-ttu-id="506e2-103">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-103">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: Excel.SettingCollection
-  fullName: Excel.SettingCollection
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.SettingCollection.add
-  - excel.Excel.SettingCollection.context
-  - excel.Excel.SettingCollection.getCount
-  - excel.Excel.SettingCollection.getItem
-  - excel.Excel.SettingCollection.getItemOrNullObject
-  - excel.Excel.SettingCollection.items
-  - excel.Excel.SettingCollection.load
-  - excel.Excel.SettingCollection.load_1
-  - excel.Excel.SettingCollection.load_2
-  - excel.Excel.SettingCollection.onSettingsChanged
-  - excel.Excel.SettingCollection.toJSON
-- uid: excel.Excel.SettingCollection.add
-  summary: >-
-    <span data-ttu-id="506e2-104">Define na pasta de trabalho ou adiciona a ela a configuração especificada.</span><span class="sxs-lookup"><span data-stu-id="506e2-104">Sets or adds the specified setting to the workbook.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="3dec6-106">Exemplos</span><span class="sxs-lookup"><span data-stu-id="3dec6-106">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const settings = context.workbook.settings; 
+              settings.onSettingsChanged.add(onChangedSetting);
+
+              await context.sync();
+              console.log("Settings changed handler registered.");
+          });
+          ```
+      parameters:
+        - id: key
+          description: <span data-ttu-id="3dec6-107">A chave da nova configuração.</span><span class="sxs-lookup"><span data-stu-id="3dec6-107">The Key of the new setting.</span></span>
+          type:
+            - string
+        - id: value
+          description: <span data-ttu-id="3dec6-108">O valor da nova configuração.</span><span class="sxs-lookup"><span data-stu-id="3dec6-108">The Value for the new setting.</span></span>
+          type:
+            - string | number | boolean | Date | Array<any> | any
+  - uid: excel.Excel.SettingCollection.context
+    summary: <span data-ttu-id="3dec6-109">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="3dec6-109">The request context associated with the object.</span></span> <span data-ttu-id="3dec6-110">Isso conecta o processo do suplemento ao processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="3dec6-110">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.SettingCollection.getCount
+    summary: |-
+      <span data-ttu-id="3dec6-111">Obtém o número de Configurações na coleção.</span><span class="sxs-lookup"><span data-stu-id="3dec6-111">Gets the number of Settings in the collection.</span></span>
+
+      <span data-ttu-id="3dec6-112">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-112">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: excel.Excel.SettingCollection.getItem
+    summary: |-
+      <span data-ttu-id="3dec6-113">Obtém uma entrada de configuração por meio da tecla.</span><span class="sxs-lookup"><span data-stu-id="3dec6-113">Gets a Setting entry via the key.</span></span>
+
+      <span data-ttu-id="3dec6-114">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-114">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItem(key)
+    fullName: getItem(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItem(key: string): Excel.Setting;'
+      return:
+        type:
+          - excel.Excel.Setting
+        description: ''
+      parameters:
+        - id: key
+          description: <span data-ttu-id="3dec6-115">Chave da configuração.</span><span class="sxs-lookup"><span data-stu-id="3dec6-115">Key of the setting.</span></span>
+          type:
+            - string
+  - uid: excel.Excel.SettingCollection.getItemOrNullObject
+    summary: |-
+      <span data-ttu-id="3dec6-116">Obtém uma entrada de configuração por meio da tecla.</span><span class="sxs-lookup"><span data-stu-id="3dec6-116">Gets a Setting entry via the key.</span></span> <span data-ttu-id="3dec6-117">Se a Configuração não existir, retornará um objeto null.</span><span class="sxs-lookup"><span data-stu-id="3dec6-117">If the Setting does not exist, will return a null object.</span></span>
+
+      <span data-ttu-id="3dec6-118">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-118">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getItemOrNullObject(key)
+    fullName: getItemOrNullObject(key)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemOrNullObject(key: string): Excel.Setting;'
+      return:
+        type:
+          - excel.Excel.Setting
+        description: |-
 
 
-    <span data-ttu-id="506e2-105">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-105">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: add(key, value)
-  fullName: add(key, value)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'add(key: string, value: string | number | boolean | Date | Array<any> | any): Excel.Setting;'
-    return:
-      type:
-      - excel.Excel.Setting
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"506e2-106\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"506e2-106\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings; \n    settings.onSettingsChanged.add(onChangedSetting);\n\n    await context.sync();\n    console.log(\"Settings changed handler registered.\");\n});\n```"
-    parameters:
-    - id: key
-      description: <span data-ttu-id="506e2-107">A chave da nova configuração.</span><span class="sxs-lookup"><span data-stu-id="506e2-107">The Key of the new setting.</span></span>
-      type:
-      - string
-    - id: value
-      description: <span data-ttu-id="506e2-108">O valor da nova configuração.</span><span class="sxs-lookup"><span data-stu-id="506e2-108">The Value for the new setting.</span></span>
-      type:
-      - string | number | boolean | Date | Array<any> | any
-- uid: excel.Excel.SettingCollection.context
-  summary: <span data-ttu-id="506e2-109">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="506e2-109">The request context associated with the object.</span></span> <span data-ttu-id="506e2-110">Esse procedimento fará processo do suplemento de processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="506e2-110">This connects the add-in's process to the Office host application's process.</span></span>
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.SettingCollection.getCount
-  summary: >-
-    <span data-ttu-id="506e2-111">Obtém o número de Configurações na coleção.</span><span class="sxs-lookup"><span data-stu-id="506e2-111">Gets the number of Settings in the collection.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="3dec6-119">Exemplos</span><span class="sxs-lookup"><span data-stu-id="3dec6-119">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const settings = context.workbook.settings;
+              let needsReview = settings.getItem("NeedsReview");
+              needsReview.delete();
+              needsReview = settings.getItemOrNullObject("NeedsReview");
+
+              await context.sync();
+
+              if (needsReview.isNullObject) {
+                  console.log("The setting has been deleted");
+              } else {
+                  console.log("The setting was not deleted");
+              }
+
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: key
+          description: <span data-ttu-id="3dec6-120">A chave da configuração.</span><span class="sxs-lookup"><span data-stu-id="3dec6-120">The key of the setting.</span></span>
+          type:
+            - string
+  - uid: excel.Excel.SettingCollection.items
+    summary: <span data-ttu-id="3dec6-121">Obtém os itens filhos carregados nesta coleção.</span><span class="sxs-lookup"><span data-stu-id="3dec6-121">Gets the loaded child items in this collection.</span></span>
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.Setting[];'
+      return:
+        type:
+          - 'Excel.Setting[]'
+  - uid: excel.Excel.SettingCollection.load
+    summary: <span data-ttu-id="3dec6-122">Coloca um comando na fila para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="3dec6-122">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="3dec6-123">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="3dec6-123">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="3dec6-124">Além dessa assinatura, este método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="3dec6-124">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="3dec6-125">`load(option?: string | string[]): Excel.SettingCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="3dec6-125">`load(option?: string | string[]): Excel.SettingCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="3dec6-126">`load(option?: { select?: string; expand?: string; }): Excel.SettingCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="3dec6-126">`load(option?: { select?: string; expand?: string; }): Excel.SettingCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="3dec6-127">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SettingCollection`– Disponível somente nos tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="3dec6-127">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SettingCollection` - Only available on collection types.</span></span> <span data-ttu-id="3dec6-128">É semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="3dec6-128">It is similar to the preceding signature.</span></span> <span data-ttu-id="3dec6-129">Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="3dec6-129">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="3dec6-130">Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="3dec6-130">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="3dec6-131">Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="3dec6-131">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.SettingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.SettingCollection;'
+      return:
+        type:
+          - excel.Excel.SettingCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.SettingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel.Excel.SettingCollection.load_1
+    summary: <span data-ttu-id="3dec6-132">Coloca um comando na fila para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="3dec6-132">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="3dec6-133">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="3dec6-133">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.SettingCollection;'
+      return:
+        type:
+          - excel.Excel.SettingCollection
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: <span data-ttu-id="3dec6-134">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="3dec6-134">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.SettingCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.SettingCollection;'
+      return:
+        type:
+          - excel.Excel.SettingCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - office.OfficeExtension.LoadOption
+  - uid: excel.Excel.SettingCollection.onSettingsChanged
+    summary: |-
+      <span data-ttu-id="3dec6-135">Ocorre quando as Configurações no documento são alteradas.</span><span class="sxs-lookup"><span data-stu-id="3dec6-135">Occurs when the Settings in the document are changed.</span></span>
+
+      <span data-ttu-id="3dec6-136">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3dec6-136">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: onSettingsChanged
+    fullName: onSettingsChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSettingsChanged: OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>
+        description: |-
 
 
-    <span data-ttu-id="506e2-112">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-112">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: getCount()
-  fullName: getCount()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getCount(): OfficeExtension.ClientResult<number>;'
-    return:
-      type:
-      - OfficeExtension.ClientResult<number>
-      description: ''
-- uid: excel.Excel.SettingCollection.getItem
-  summary: >-
-    <span data-ttu-id="506e2-113">Obtém uma entrada de configuração por meio da tecla.</span><span class="sxs-lookup"><span data-stu-id="506e2-113">Gets a Setting entry via the key.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="3dec6-137">Exemplos</span><span class="sxs-lookup"><span data-stu-id="3dec6-137">Examples</span></span>
 
+          ```typescript
+          await Excel.run(async (context) => {
+              const settings = context.workbook.settings; 
+              settings.onSettingsChanged.add(onChangedSetting);
 
-    <span data-ttu-id="506e2-114">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-114">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: getItem(key)
-  fullName: getItem(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItem(key: string): Excel.Setting;'
-    return:
-      type:
-      - excel.Excel.Setting
-      description: ''
-    parameters:
-    - id: key
-      description: <span data-ttu-id="506e2-115">Chave da configuração.</span><span class="sxs-lookup"><span data-stu-id="506e2-115">Key of the setting.</span></span>
-      type:
-      - string
-- uid: excel.Excel.SettingCollection.getItemOrNullObject
-  summary: >-
-    <span data-ttu-id="506e2-p103">Obtém uma entrada de configuração por meio da tecla. Se a Configuração não existir, retornará um objeto null.</span><span class="sxs-lookup"><span data-stu-id="506e2-p103">Gets a Setting entry via the key. If the Setting does not exist, will return a null object.</span></span>
-
-
-    <span data-ttu-id="506e2-118">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-118">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: getItemOrNullObject(key)
-  fullName: getItemOrNullObject(key)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getItemOrNullObject(key: string): Excel.Setting;'
-    return:
-      type:
-      - excel.Excel.Setting
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"506e2-119\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"506e2-119\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        console.log(\"The setting has been deleted\");\n    } else {\n        console.log(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
-    parameters:
-    - id: key
-      description: <span data-ttu-id="506e2-120">A chave da configuração.</span><span class="sxs-lookup"><span data-stu-id="506e2-120">The key of the setting.</span></span>
-      type:
-      - string
-- uid: excel.Excel.SettingCollection.items
-  summary: <span data-ttu-id="506e2-121">Obtém o filho carregado itens nesta coleção.</span><span class="sxs-lookup"><span data-stu-id="506e2-121">Gets the loaded child items in this collection.</span></span>
-  name: items
-  fullName: items
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly items: Excel.Setting[];'
-    return:
-      type:
-      - Excel.Setting[]
-- uid: excel.Excel.SettingCollection.load
-  summary: <span data-ttu-id="506e2-122">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="506e2-122">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="506e2-123">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="506e2-123">You must call "context.sync()" before reading the properties.</span></span>
-  remarks: >-
-    <span data-ttu-id="506e2-124">Além dessa assinatura, esse método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="506e2-124">In addition to this signature, this method has the following signatures:</span></span>
-
-
-    <span data-ttu-id="506e2-125">`load(option?: string | string[]): Excel.SettingCollection`-Onde opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="506e2-125">`load(option?: string | string[]): Excel.SettingCollection` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
-
-
-    <span data-ttu-id="506e2-126">`load(option?: { select?: string; expand?: string; }): Excel.SettingCollection`-Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades para carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação para carregar.</span><span class="sxs-lookup"><span data-stu-id="506e2-126">`load(option?: { select?: string; expand?: string; }): Excel.SettingCollection` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-
-
-    <span data-ttu-id="506e2-127">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SettingCollection`-Só está disponível em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="506e2-127">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.SettingCollection` - Only available on collection types.</span></span> <span data-ttu-id="506e2-128">Ele é semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="506e2-128">It is similar to the preceding signature.</span></span> <span data-ttu-id="506e2-129">Option.Top Especifica o número máximo de itens que podem ser incluídos no resultado da coleção.</span><span class="sxs-lookup"><span data-stu-id="506e2-129">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="506e2-130">Option.Skip Especifica o número de itens que devem ser ignorados e não são incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="506e2-130">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="506e2-131">Se option.top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="506e2-131">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.SettingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.SettingCollection;'
-    return:
-      type:
-      - excel.Excel.SettingCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - Excel.Interfaces.SettingCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-- uid: excel.Excel.SettingCollection.load_1
-  summary: <span data-ttu-id="506e2-132">Filas de backup de um comando para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="506e2-132">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="506e2-133">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="506e2-133">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.SettingCollection;'
-    return:
-      type:
-      - excel.Excel.SettingCollection
-      description: ''
-    parameters:
-    - id: propertyNames
-      description: <span data-ttu-id="506e2-134">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades de carga.</span><span class="sxs-lookup"><span data-stu-id="506e2-134">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
-      type:
-      - string | string[]
-- uid: excel.Excel.SettingCollection.load_2
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Excel.SettingCollection;'
-    return:
-      type:
-      - excel.Excel.SettingCollection
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - office.OfficeExtension.LoadOption
-- uid: excel.Excel.SettingCollection.onSettingsChanged
-  summary: >-
-    <span data-ttu-id="506e2-135">Ocorre quando as Configurações no documento são alteradas.</span><span class="sxs-lookup"><span data-stu-id="506e2-135">Occurs when the Settings in the document are changed.</span></span>
-
-
-    <span data-ttu-id="506e2-136">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="506e2-136">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
-  name: onSettingsChanged
-  fullName: onSettingsChanged
-  langs:
-  - typeScript
-  type: event
-  syntax:
-    content: 'readonly onSettingsChanged: OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>;'
-    return:
-      type:
-      - OfficeExtension.EventHandlers<Excel.SettingsChangedEventArgs>
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"506e2-137\">Exemplos</span><span class=\"sxs-lookup\"><span data-stu-id=\"506e2-137\">Examples</span></span>\n\n```typescript\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings; \n    settings.onSettingsChanged.add(onChangedSetting);\n\n    await context.sync();\n    console.log(\"Settings changed handler registered.\");\n});\n```"
-- uid: excel.Excel.SettingCollection.toJSON
-  summary: <span data-ttu-id="506e2-138">Substitui o JavaScript `toJSON()` método para fornecer a saída mais úteis quando um objeto API é passado para `JSON.stringify()` <!-- -->.</span><span class="sxs-lookup"><span data-stu-id="506e2-138">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="506e2-139">(`JSON.stringify`<!-- -->, em seguida, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o original `Excel.SettingCollection` é um objeto de API, o `toJSON` método retorna um objeto de JavaScript sem formatação (digitado como `Excel.Interfaces.SettingCollectionData` <!-- -->) que contém uma matriz de "itens" com superficiais cópias de todas as propriedades de itens da coleção carregadas.</span><span class="sxs-lookup"><span data-stu-id="506e2-139">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.SettingCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.SettingCollectionData`<!-- -->) that contains an "items" array with shallow copies of any loaded properties from the collection's items.</span></span>
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.SettingCollectionData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.SettingCollectionData
-      description: ''
+              await context.sync();
+              console.log("Settings changed handler registered.");
+          });
+          ```
+  - uid: excel.Excel.SettingCollection.toJSON
+    summary: '<span data-ttu-id="3dec6-138">Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="3dec6-138">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="3dec6-139">.</span><span class="sxs-lookup"><span data-stu-id="3dec6-139"></span></span> <span data-ttu-id="3dec6-140">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="3dec6-140"></span></span><!-- --><span data-ttu-id="3dec6-141">, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto `Excel.SettingCollection` original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.SettingCollectionData`</span><span class="sxs-lookup"><span data-stu-id="3dec6-141">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original `Excel.SettingCollection` object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.SettingCollectionData`</span></span><!-- --><span data-ttu-id="3dec6-142">) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.</span><span class="sxs-lookup"><span data-stu-id="3dec6-142">) that contains an "items" array with shallow copies of any loaded properties from the collection''s items.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.SettingCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.SettingCollectionData
+        description: ''
