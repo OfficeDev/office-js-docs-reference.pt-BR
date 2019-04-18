@@ -1,199 +1,221 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3dcbde3992e08cc7a7b68ffd4345fabaf6aecde8
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: pt-BR
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30105269"
 items:
-- uid: excel_release.Excel.ChartGridlines
-  summary: >-
-    Representa linhas de grade principais ou secundárias em um eixo do gráfico.
+  - uid: excel_release.Excel.ChartGridlines
+    summary: |-
+      Representa linhas de grade principais ou secundárias em um eixo do gráfico.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ChartGridlines
+    fullName: Excel.ChartGridlines
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel_release
+    children:
+      - excel_release.Excel.ChartGridlines.context
+      - excel_release.Excel.ChartGridlines.format
+      - excel_release.Excel.ChartGridlines.load
+      - excel_release.Excel.ChartGridlines.load_1
+      - excel_release.Excel.ChartGridlines.load_2
+      - excel_release.Excel.ChartGridlines.set
+      - excel_release.Excel.ChartGridlines.set_1
+      - excel_release.Excel.ChartGridlines.toJSON
+      - excel_release.Excel.ChartGridlines.visible
+  - uid: excel_release.Excel.ChartGridlines.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel_release.Excel.ChartGridlines.format
+    summary: |-
+      Representa a formatação de linhas de grade do gráfico. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly format: Excel.ChartGridlinesFormat;'
+      return:
+        type:
+          - excel.Excel.ChartGridlinesFormat
+  - uid: excel_release.Excel.ChartGridlines.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): Excel.ChartGridlines`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.ChartGridlines`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartGridlines`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.ChartGridlinesLoadOptions): Excel.ChartGridlines;'
+      return:
+        type:
+          - excel.Excel.ChartGridlines
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.ChartGridlinesLoadOptions
+  - uid: excel_release.Excel.ChartGridlines.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.ChartGridlines;'
+      return:
+        type:
+          - excel.Excel.ChartGridlines
+        description: |-
 
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ChartGridlines
-  fullName: Excel.ChartGridlines
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel_release
-  children:
-  - excel_release.Excel.ChartGridlines.context
-  - excel_release.Excel.ChartGridlines.format
-  - excel_release.Excel.ChartGridlines.load
-  - excel_release.Excel.ChartGridlines.load_1
-  - excel_release.Excel.ChartGridlines.load_2
-  - excel_release.Excel.ChartGridlines.set
-  - excel_release.Excel.ChartGridlines.set_1
-  - excel_release.Excel.ChartGridlines.toJSON
-  - excel_release.Excel.ChartGridlines.visible
-- uid: excel_release.Excel.ChartGridlines.context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel_release.Excel.ChartGridlines.format
-  summary: >-
-    Representa a formatação de linhas de grade do gráfico. Somente leitura.
+          #### <a name="examples"></a>Exemplos
 
+          ```javascript
+          // Get the visible of Major Gridlines on value axis of Chart1
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
+              var majGridlines = chart.axes.valueaxis.majorGridlines;
+              majGridlines.load('visible');
+              return ctx.sync().then(function() {
+                      console.log(majGridlines.visible);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Set to show major gridlines on valueAxis of Chart1
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
+              chart.axes.valueAxis.majorGridlines.visible = true;
+              return ctx.sync().then(function() {
+                      console.log("Axis Gridlines Added ");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: excel_release.Excel.ChartGridlines.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartGridlines;'
+      return:
+        type:
+          - excel.Excel.ChartGridlines
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel_release.Excel.ChartGridlines.set
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: |-
+      Este método tem a seguinte assinatura adicional:
 
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: format
-  fullName: format
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly format: Excel.ChartGridlinesFormat;'
-    return:
-      type:
-      - excel.Excel.ChartGridlinesFormat
-- uid: excel_release.Excel.ChartGridlines.load
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar "context. Sync ()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
+      `set(properties: Excel.ChartGridlines): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.ChartGridlinesUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+          type:
+            - Interfaces.ChartGridlinesUpdateData
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: excel_release.Excel.ChartGridlines.set_1
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.ChartGridlines): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.ChartGridlines
+  - uid: excel_release.Excel.ChartGridlines.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartGridlines original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ChartGridlinesData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.ChartGridlinesData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.ChartGridlinesData
+        description: ''
+  - uid: excel_release.Excel.ChartGridlines.visible
+    summary: |-
+      Valor booleano que determina quando as linhas de grade do eixo ficam visível ou não.
 
-
-    `load(option?: string | string[]): Excel.ChartGridlines`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; }): Excel.ChartGridlines`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartGridlines`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: Excel.Interfaces.ChartGridlinesLoadOptions): Excel.ChartGridlines;'
-    return:
-      type:
-      - excel.Excel.ChartGridlines
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - excel.Excel.Interfaces.ChartGridlinesLoadOptions
-- uid: excel_release.Excel.ChartGridlines.load_1
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Excel.ChartGridlines;'
-    return:
-      type:
-      - excel.Excel.ChartGridlines
-      description: "\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get the visible of Major Gridlines on value axis of Chart1\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    var majGridlines = chart.axes.valueaxis.majorGridlines;\n    majGridlines.load('visible');\n    return ctx.sync().then(function() {\n            console.log(majGridlines.visible);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Set to show major gridlines on valueAxis of Chart1\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    chart.axes.valueAxis.majorGridlines.visible = true;\n    return ctx.sync().then(function() {\n            console.log(\"Axis Gridlines Added \");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-      type:
-      - string | string[]
-- uid: excel_release.Excel.ChartGridlines.load_2
-  summary: Enfileira um comando para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartGridlines;'
-    return:
-      type:
-      - excel.Excel.ChartGridlines
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: excel_release.Excel.ChartGridlines.set
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.ChartGridlines): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.ChartGridlinesUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
-      type:
-      - Interfaces.ChartGridlinesUpdateData
-    - id: options
-      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: excel_release.Excel.ChartGridlines.set_1
-  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Excel.ChartGridlines): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - excel.Excel.ChartGridlines
-- uid: excel_release.Excel.ChartGridlines.toJSON
-  summary: Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele). Enquanto o objeto Excel. ChartGridlines original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado `Excel.Interfaces.ChartGridlinesData` <!-- -->como) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): Excel.Interfaces.ChartGridlinesData;'
-    return:
-      type:
-      - excel.Excel.Interfaces.ChartGridlinesData
-      description: ''
-- uid: excel_release.Excel.ChartGridlines.visible
-  summary: >-
-    Valor booliano que determina se as linhas de grade do eixo ficam visíveis ou não.
-
-
-    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: visible
-  fullName: visible
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'visible: boolean;'
-    return:
-      type:
-      - boolean
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: visible
+    fullName: visible
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'visible: boolean;'
+      return:
+        type:
+          - boolean
