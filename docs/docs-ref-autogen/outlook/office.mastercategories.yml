@@ -4,7 +4,7 @@ items:
     summary: |-
       Representa a lista mestra de categorias da caixa de correio.
 
-      No Outlook, um usuário pode agrupar mensagens e compromissos usando uma categoria para codificar as cores. O usuário define categorias em uma lista mestra em suas caixas de correio. Eles podem aplicar uma ou mais categorias a um item.
+      No Outlook, um usuário pode agrupar mensagens e compromissos usando uma categoria para codificá-los por cor. O usuário define as categorias em uma lista mestra em sua caixa de correio. Ele pode, em seguida, aplicar uma ou mais categorias a um item.
 
       \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -77,6 +77,25 @@ items:
       - DuplicateCategory: uma das categorias fornecidas já está na lista mestra de categorias.
 
       - PermissionDenied: o usuário não tem permissão para executar esta ação.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      var masterCategoriesToAdd = [
+          {
+              "displayName": "Urgent!",
+              "color": Office.MailboxEnums.CategoryColor.Preset0
+          }
+      ];
+
+      Office.context.mailbox.masterCategories.addAsync(masterCategoriesToAdd, function (asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              console.log("Successfully added categories to master list");
+          } else {
+              console.log("masterCategories.addAsync call failed with error: " + asyncResult.error.message);
+          }
+      });
+      ```
     isPreview: true
     name: 'addAsync(categories, callback)'
     fullName: 'addAsync(categories, callback)'
@@ -137,6 +156,22 @@ items:
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadMailbox
 
       **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      Office.context.mailbox.masterCategories.getAsync(function (asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+              console.log("Action failed with error: " + asyncResult.error.message);
+          } else {
+              var masterCategories = asyncResult.value;
+              console.log("Master categories:");
+              masterCategories.forEach(function (item) {
+                  console.log("-- " + JSON.stringify(item));
+              });
+          }
+      });
+      ```
     isPreview: true
     name: getAsync(callback)
     fullName: getAsync(callback)
@@ -205,6 +240,20 @@ items:
       **Erros**:
 
       - PermissionDenied: o usuário não tem permissão para executar esta ação.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      var masterCategoriesToRemove = ["Urgent!"];
+
+      Office.context.mailbox.masterCategories.removeAsync(masterCategoriesToRemove, function (asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              console.log("Successfully removed categories from master list");
+          } else {
+              console.log("masterCategories.removeAsync call failed with error: " + asyncResult.error.message);
+          }
+      });
+      ```
     isPreview: true
     name: 'removeAsync(categories, callback)'
     fullName: 'removeAsync(categories, callback)'
