@@ -53,6 +53,7 @@ items:
       - excel.Excel.Worksheet.onFormatChanged
       - excel.Excel.Worksheet.onRowSorted
       - excel.Excel.Worksheet.onSelectionChanged
+      - excel.Excel.Worksheet.onSingleClicked
       - excel.Excel.Worksheet.pageLayout
       - excel.Excel.Worksheet.pivotTables
       - excel.Excel.Worksheet.position
@@ -108,8 +109,7 @@ items:
     summary: |-
       Representa o objeto AutoFilter da planilha. Somente Leitura.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: autoFilter
     fullName: autoFilter
     langs:
@@ -270,7 +270,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel.Excel.Worksheet.delete
     summary: |-
-      Exclui a planilha da pasta de trabalho.
+      Exclui a planilha da pasta de trabalho. Observe que, se a visibilidade da planilha estiver definida como "VeryHidden", a operação de exclusão falhará com uma Generalexception.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -305,8 +305,7 @@ items:
     summary: |-
       Obtém ou define a propriedade enableCalculation da planilha. True se o Excel recalcular a planilha quando necessário. False se o Excel não recalcular a planilha.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: enableCalculation
     fullName: enableCalculation
     langs:
@@ -321,8 +320,7 @@ items:
     summary: |-
       Encontra todas as ocorrências de determinada cadeia de caracteres com base nos critérios especificados e as retorna como um objeto RangeAreas, compreendendo um ou mais intervalos retangulares.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'findAll(text, criteria)'
     fullName: 'findAll(text, criteria)'
     langs:
@@ -347,8 +345,7 @@ items:
     summary: |-
       Encontra todas as ocorrências de determinada cadeia de caracteres com base nos critérios especificados e as retorna como um objeto RangeAreas, compreendendo um ou mais intervalos retangulares.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'findAllOrNullObject(text, criteria)'
     fullName: 'findAllOrNullObject(text, criteria)'
     langs:
@@ -687,8 +684,7 @@ items:
     summary: |-
       Obtém o objeto RangeAreas que representa um ou mais blocos de intervalos retangulares especificados pelo endereço ou nome.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getRanges(address)
     fullName: getRanges(address)
     langs:
@@ -785,8 +781,7 @@ items:
     summary: |-
       Obtém a coleção de quebra de página horizontal da planilha. Esta coleção contém apenas quebras de página manuais.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: horizontalPageBreaks
     fullName: horizontalPageBreaks
     langs:
@@ -1099,8 +1094,7 @@ items:
     summary: |-
       Ocorre quando o formato é alterado em uma planilha específica.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onFormatChanged
     fullName: onFormatChanged
     langs:
@@ -1159,12 +1153,27 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel.Excel.Worksheet.onSingleClicked
+    summary: |-
+      Ocorre quando a operação com o botão esquerdo/tocado acontece na planilha.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onSingleClicked
+    fullName: onSingleClicked
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSingleClicked: OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetSingleClickedEventArgs>
   - uid: excel.Excel.Worksheet.pageLayout
     summary: |-
       Obtém o objeto PageLayout da planilha.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: pageLayout
     fullName: pageLayout
     langs:
@@ -1224,8 +1233,7 @@ items:
     summary: |-
       Localiza e substitui a cadeia de caracteres fornecida com base nos critérios especificados na planilha atual.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'replaceAll(text, replacement, criteria)'
     fullName: 'replaceAll(text, replacement, criteria)'
     langs:
@@ -1298,8 +1306,7 @@ items:
     summary: |-
       Retorna a coleção de todos os objetos Shape na planilha. Somente leitura.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: shapes
     fullName: shapes
     langs:
@@ -1369,6 +1376,22 @@ items:
       return:
         type:
           - excel.Excel.SlicerCollection
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Pivot");
+              const slicer = sheet.slicers.add(
+                  "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+                  "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+              );
+              slicer.name = "Fruit Slicer";
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.Worksheet.standardHeight
     summary: |-
       Retorna a altura padrão de todas as linhas na planilha, em pontos. Somente leitura.
@@ -1459,8 +1482,7 @@ items:
     summary: |-
       Obtém a coleção de quebra de página vertical da planilha. Esta coleção contém apenas quebras de página manuais.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: verticalPageBreaks
     fullName: verticalPageBreaks
     langs:

@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions
     summary: |-
-      Workbook é o objeto de nível superior que inclui os objetos workbook relacionados, como planilhas, tabelas, intervalos, etc.
+      A pasta de trabalho é o objeto de nível superior que inclui os objetos workbook relacionados, como planilhas, tabelas, intervalos, etc.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Interfaces.WorkbookLoadOptions
@@ -14,12 +14,18 @@ items:
     children:
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.$all
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.application
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.autoSave
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.bindings
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.calculationEngineVersion
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.chartDataPointTrack
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.isDirty
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.name
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.previouslySaved
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.properties
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.protection
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.readOnly
       - excel_release.Excel.Interfaces.WorkbookLoadOptions.tables
+      - excel_release.Excel.Interfaces.WorkbookLoadOptions.usePrecisionAsDisplayed
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.$all
     name: $all
     fullName: $all
@@ -46,6 +52,21 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.ApplicationLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.autoSave
+    summary: |-
+      Especifica se a pasta de trabalho está ou não no modo de salvamento automático. Somente Leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoSave
+    fullName: autoSave
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'autoSave?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.bindings
     summary: |-
       Representa uma coleção de ligações que fazem parte da pasta de trabalho.
@@ -61,6 +82,51 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.BindingCollectionLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.calculationEngineVersion
+    summary: |-
+      Retorna um número sobre a versão do Mecanismo de Cálculo do Excel. Somente Leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'calculationEngineVersion?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.chartDataPointTrack
+    summary: |-
+      True se todos os gráficos na pasta de trabalho estiverem rastreando os pontos de dados reais aos quais eles estão anexados. False se os gráficos acompanham o índice dos pontos de dados.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: chartDataPointTrack
+    fullName: chartDataPointTrack
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'chartDataPointTrack?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.isDirty
+    summary: |-
+      Especifica se as alterações foram feitas ou não desde que a pasta de trabalho foi salva pela última vez. Você pode definir essa propriedade como true se quiser fechar uma pasta de trabalho modificada sem salvá-la ou ser solicitado a salvá-la.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isDirty
+    fullName: isDirty
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isDirty?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.name
     summary: |-
       Obtém o nome da pasta de trabalho. Somente leitura.
@@ -73,6 +139,21 @@ items:
     type: property
     syntax:
       content: 'name?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.previouslySaved
+    summary: |-
+      Especifica se a pasta de trabalho já foi salva localmente ou online. Somente Leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: previouslySaved
+    fullName: previouslySaved
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'previouslySaved?: boolean;'
       return:
         type:
           - boolean
@@ -136,3 +217,18 @@ items:
       return:
         type:
           - excel.Excel.Interfaces.TableCollectionLoadOptions
+  - uid: excel_release.Excel.Interfaces.WorkbookLoadOptions.usePrecisionAsDisplayed
+    summary: |-
+      True se os cálculos dessa pasta de trabalho forem efetuados usando apenas a precisão dos números conforme forem exibidos. Os dados perderão permanentemente a precisão ao mudar essa propriedade de false para true.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: usePrecisionAsDisplayed
+    fullName: usePrecisionAsDisplayed
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'usePrecisionAsDisplayed?: boolean;'
+      return:
+        type:
+          - boolean

@@ -9,7 +9,25 @@ items:
     type: interface
     package: excel_release
     children:
+      - excel_release.Excel.Interfaces.ApplicationData.calculationEngineVersion
       - excel_release.Excel.Interfaces.ApplicationData.calculationMode
+      - excel_release.Excel.Interfaces.ApplicationData.calculationState
+      - excel_release.Excel.Interfaces.ApplicationData.iterativeCalculation
+  - uid: excel_release.Excel.Interfaces.ApplicationData.calculationEngineVersion
+    summary: |-
+      Retorna a versão do mecanismo de cálculo do Excel usada para o último recálculo completo. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'calculationEngineVersion?: number;'
+      return:
+        type:
+          - number
   - uid: excel_release.Excel.Interfaces.ApplicationData.calculationMode
     summary: |-
       Retorna o modo de cálculo usado na pasta de trabalho, conforme definido pelas constantes no Excel. Calculation. Os valores possíveis são:`Automatic`<!-- -->, onde o Excel controla o recálculo;`AutomaticExceptTables`<!-- -->, onde o Excel controla o recálculo, mas ignora as alterações nas tabelas;`Manual`<!-- -->, onde o cálculo é feito quando o usuário solicita.
@@ -25,3 +43,33 @@ items:
       return:
         type:
           - Excel.CalculationMode | "Automatic" | "AutomaticExceptTables" | "Manual"
+  - uid: excel_release.Excel.Interfaces.ApplicationData.calculationState
+    summary: |-
+      Retorna o estado de cálculo do aplicativo. Para saber detalhes, confira Excel.CalculationState. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationState
+    fullName: calculationState
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'calculationState?: Excel.CalculationState | "Done" | "Calculating" | "Pending";'
+      return:
+        type:
+          - Excel.CalculationState | "Done" | "Calculating" | "Pending"
+  - uid: excel_release.Excel.Interfaces.ApplicationData.iterativeCalculation
+    summary: |-
+      Retorna as configurações do Cálculo iterativo. No Excel para Windows e no Excel para Mac, as configurações serão aplicadas ao aplicativo Excel. No Excel online e no Excel para outras plataformas, as configurações serão aplicadas à pasta de trabalho ativa.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: iterativeCalculation
+    fullName: iterativeCalculation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'iterativeCalculation?: Excel.Interfaces.IterativeCalculationData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.IterativeCalculationData

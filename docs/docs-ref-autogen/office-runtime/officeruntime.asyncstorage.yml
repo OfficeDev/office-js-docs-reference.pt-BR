@@ -1,14 +1,8 @@
 ### YamlMime:UniversalReference
 items:
   - uid: office-runtime.OfficeRuntime.AsyncStorage
-    summary: 'Armazenamento de valor chave assíncrono, global e persistente que pode ser usado por funções personalizadas do Excel.'
-    remarks: |-
-      Cada instância de suplemento tem sua própria partição de armazenamento, exclusiva para um usuário e seus dispositivos.
-
-      O valor padrão do armazenamento total permitido por suplemento é de 5 MB.
-
-      Cada método listado abaixo retorna um objeto Promise.
-    isPreview: true
+    summary: 'Armazenamento de valor chave assíncrono, global e persistente. O limite de armazenamento é de 10 MB por domínio, que pode ser compartilhado por vários suplementos.'
+    remarks: 'Será preterido no futuro; em vez disso, use o Office. Storage.'
     name: OfficeRuntime.AsyncStorage
     fullName: OfficeRuntime.AsyncStorage
     langs:
@@ -24,8 +18,7 @@ items:
       - office-runtime.OfficeRuntime.AsyncStorage.removeItem
       - office-runtime.OfficeRuntime.AsyncStorage.setItem
   - uid: office-runtime.OfficeRuntime.AsyncStorage.getAllKeys
-    summary: Retorna uma promessa com todas as chaves.
-    isPreview: true
+    summary: Recupera todas as chaves e invoca um retorno de chamada quando terminar. Retorna uma promessa.
     name: getAllKeys(callback)
     fullName: getAllKeys(callback)
     langs:
@@ -43,8 +36,7 @@ items:
           type:
             - '(error?: Error, keys?: string[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.getItem
-    summary: Recupera um objeto com base em uma chave e invoca um retorno de chamada quando terminar. Retorna uma promessa.
-    isPreview: true
+    summary: Recupera um item por chave e emite um retorno de chamada. Retorna uma promessa.
     name: 'getItem(key, callback)'
     fullName: 'getItem(key, callback)'
     langs:
@@ -58,16 +50,15 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: O nome da chave a ser recuperada. Deve ser uma cadeia de caracteres.
           type:
             - string
         - id: callback
-          description: ''
+          description: O resultado retornado é uma cadeia de caracteres.
           type:
             - '(error?: Error, result?: string) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiGet
-    summary: 'Busca um lote de chaves, especificado na `keys` matriz. Quando uma chave não existe, retorna NULL.'
-    isPreview: true
+    summary: Recupera vários itens do armazenamento e invoca um retorno de chamada quando terminar. Retorna uma promessa.
     name: 'multiGet(keys, callback)'
     fullName: 'multiGet(keys, callback)'
     langs:
@@ -81,7 +72,7 @@ items:
         description: ''
       parameters:
         - id: keys
-          description: ''
+          description: Chaves dos itens a serem recuperados. Deve ser uma matriz de cadeias de caracteres.
           type:
             - 'string[]'
         - id: callback
@@ -89,8 +80,7 @@ items:
           type:
             - '(errors?: Error[], result?: string[][]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiRemove
-    summary: 'Exclui um lote de chaves, especificado na `keys` matriz.'
-    isPreview: true
+    summary: Remove vários itens do armazenamento e invoca um retorno de chamada quando terminar. Retorna uma promessa.
     name: 'multiRemove(keys, callback)'
     fullName: 'multiRemove(keys, callback)'
     langs:
@@ -104,7 +94,7 @@ items:
         description: ''
       parameters:
         - id: keys
-          description: ''
+          description: Chaves dos itens a serem removidos. Deve ser uma matriz de cadeias de caracteres.
           type:
             - 'string[]'
         - id: callback
@@ -112,8 +102,7 @@ items:
           type:
             - '(errors?: Error[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiSet
-    summary: 'Armazena vários pares chave-valor em um lote. Retorna uma promessa. Quando uma chave não existe, retorna NULL.'
-    isPreview: true
+    summary: Define vários pares chave-valor e invoca um retorno de chamada quando terminar. Retorna uma promessa.
     name: 'multiSet(keyValuePairs, callback)'
     fullName: 'multiSet(keyValuePairs, callback)'
     langs:
@@ -127,7 +116,7 @@ items:
         description: ''
       parameters:
         - id: keyValuePairs
-          description: ''
+          description: Deve ser matrizes de cadeias de caracteres.
           type:
             - 'string[][]'
         - id: callback
@@ -135,8 +124,7 @@ items:
           type:
             - '(errors?: Error[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.removeItem
-    summary: Remove um item da chave especificada e invoca um retorno de chamada quando concluído. Retorna uma promessa.
-    isPreview: true
+    summary: Remove itens por chave e invoca um retorno de chamada quando terminar. Ele retorna uma promessa que é resolvida para um objeto que contém as chaves e os valores solicitados.
     name: 'removeItem(key, callback)'
     fullName: 'removeItem(key, callback)'
     langs:
@@ -150,7 +138,7 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: A chave do item a ser removido. Deve ser uma cadeia de caracteres.
           type:
             - string
         - id: callback
@@ -158,8 +146,7 @@ items:
           type:
             - '(error?: Error) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.setItem
-    summary: Atribui o valor de um par chave-valor e invoca um retorno de chamada quando terminar. Retorna uma promessa.
-    isPreview: true
+    summary: Cria um novo par chave-valor no armazenamento ou atualiza uma chave existente com um novo valor. Retorna uma promessa.
     name: 'setItem(key, value, callback)'
     fullName: 'setItem(key, value, callback)'
     langs:
@@ -173,11 +160,11 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: O nome da chave para o par chave-valor. Deve ser uma cadeia de caracteres.
           type:
             - string
         - id: value
-          description: ''
+          description: O nome do valor. Deve ser uma cadeia de caracteres.
           type:
             - string
         - id: callback

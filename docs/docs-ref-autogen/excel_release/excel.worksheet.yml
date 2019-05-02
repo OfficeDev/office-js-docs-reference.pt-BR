@@ -15,12 +15,16 @@ items:
     package: excel_release
     children:
       - excel_release.Excel.Worksheet.activate
+      - excel_release.Excel.Worksheet.autoFilter
       - excel_release.Excel.Worksheet.calculate
       - excel_release.Excel.Worksheet.charts
       - excel_release.Excel.Worksheet.context
       - excel_release.Excel.Worksheet.copy
       - excel_release.Excel.Worksheet.copy_1
       - excel_release.Excel.Worksheet.delete
+      - excel_release.Excel.Worksheet.enableCalculation
+      - excel_release.Excel.Worksheet.findAll
+      - excel_release.Excel.Worksheet.findAllOrNullObject
       - excel_release.Excel.Worksheet.freezePanes
       - excel_release.Excel.Worksheet.getCell
       - excel_release.Excel.Worksheet.getNext
@@ -29,8 +33,10 @@ items:
       - excel_release.Excel.Worksheet.getPreviousOrNullObject
       - excel_release.Excel.Worksheet.getRange
       - excel_release.Excel.Worksheet.getRangeByIndexes
+      - excel_release.Excel.Worksheet.getRanges
       - excel_release.Excel.Worksheet.getUsedRange
       - excel_release.Excel.Worksheet.getUsedRangeOrNullObject
+      - excel_release.Excel.Worksheet.horizontalPageBreaks
       - excel_release.Excel.Worksheet.id
       - excel_release.Excel.Worksheet.load
       - excel_release.Excel.Worksheet.load_1
@@ -41,12 +47,16 @@ items:
       - excel_release.Excel.Worksheet.onCalculated
       - excel_release.Excel.Worksheet.onChanged
       - excel_release.Excel.Worksheet.onDeactivated
+      - excel_release.Excel.Worksheet.onFormatChanged
       - excel_release.Excel.Worksheet.onSelectionChanged
+      - excel_release.Excel.Worksheet.pageLayout
       - excel_release.Excel.Worksheet.pivotTables
       - excel_release.Excel.Worksheet.position
       - excel_release.Excel.Worksheet.protection
+      - excel_release.Excel.Worksheet.replaceAll
       - excel_release.Excel.Worksheet.set
       - excel_release.Excel.Worksheet.set_1
+      - excel_release.Excel.Worksheet.shapes
       - excel_release.Excel.Worksheet.showGridlines
       - excel_release.Excel.Worksheet.showHeadings
       - excel_release.Excel.Worksheet.standardHeight
@@ -54,6 +64,7 @@ items:
       - excel_release.Excel.Worksheet.tabColor
       - excel_release.Excel.Worksheet.tables
       - excel_release.Excel.Worksheet.toJSON
+      - excel_release.Excel.Worksheet.verticalPageBreaks
       - excel_release.Excel.Worksheet.visibility
   - uid: excel_release.Excel.Worksheet.activate
     summary: |-
@@ -86,6 +97,36 @@ items:
               if (error instanceof OfficeExtension.Error) {
                   console.log("Debug info: " + JSON.stringify(error.debugInfo));
               }
+          });
+          ```
+  - uid: excel_release.Excel.Worksheet.autoFilter
+    summary: |-
+      Representa o objeto AutoFilter da planilha. Somente Leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoFilter
+    fullName: autoFilter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly autoFilter: Excel.AutoFilter;'
+      return:
+        type:
+          - excel.Excel.AutoFilter
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const farmData = sheet.getUsedRange();
+
+              // This filter will only show the rows with the top 25% of values in column 3.
+              sheet.autoFilter.apply(farmData, 3, { criterion1: "25", filterOn: Excel.FilterOn.topPercent });
+              await context.sync();
           });
           ```
   - uid: excel_release.Excel.Worksheet.calculate
@@ -207,7 +248,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel_release.Excel.Worksheet.delete
     summary: |-
-      Exclui a planilha da pasta de trabalho.
+      Exclui a planilha da pasta de trabalho. Observe que, se a visibilidade da planilha estiver definida como "VeryHidden", a operação de exclusão falhará com uma Generalexception.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -238,6 +279,92 @@ items:
               }
           });
           ```
+  - uid: excel_release.Excel.Worksheet.enableCalculation
+    summary: |-
+      Obtém ou define a propriedade enableCalculation da planilha. True se o Excel recalcular a planilha quando necessário. False se o Excel não recalcular a planilha.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: enableCalculation
+    fullName: enableCalculation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'enableCalculation: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Worksheet.findAll
+    summary: |-
+      Encontra todas as ocorrências de determinada cadeia de caracteres com base nos critérios especificados e as retorna como um objeto RangeAreas, compreendendo um ou mais intervalos retangulares.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findAll(text, criteria)'
+    fullName: 'findAll(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findAll(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: 'Um objeto RangeArea, incluindo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se nenhuma célula atender a esses critérios, um erro ItemNotFound será gerado.'
+      parameters:
+        - id: text
+          description: Cadeia de caracteres a ser localizada.
+          type:
+            - string
+        - id: criteria
+          description: Critérios adicionais.
+          type:
+            - excel.Excel.WorksheetSearchCriteria
+  - uid: excel_release.Excel.Worksheet.findAllOrNullObject
+    summary: |-
+      Encontra todas as ocorrências de determinada cadeia de caracteres com base nos critérios especificados e as retorna como um objeto RangeAreas, compreendendo um ou mais intervalos retangulares.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findAllOrNullObject(text, criteria)'
+    fullName: 'findAllOrNullObject(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+          Um objeto RangeArea, incluindo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se não houver nenhuma correspondência, esta função retornará um objeto NULL.
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const foundRanges = sheet.findAllOrNullObject("Complete", {
+                  completeMatch: true,
+                  matchCase: false
+              });
+
+              await context.sync();
+
+              if (foundRanges.isNullObject) {
+                  console.log("No complete projects");
+              } else {
+                  foundRanges.format.fill.color = "green"
+              }
+          });
+          ```
+      parameters:
+        - id: text
+          description: Cadeia de caracteres a ser localizada.
+          type:
+            - string
+        - id: criteria
+          description: Critérios adicionais.
+          type:
+            - excel.Excel.WorksheetSearchCriteria
   - uid: excel_release.Excel.Worksheet.freezePanes
     summary: |-
       Obtém um objeto que pode ser usado para manipular painéis congelados na planilha. Somente leitura.
@@ -531,6 +658,41 @@ items:
           description: Número de colunas a serem incluídas no intervalo.
           type:
             - number
+  - uid: excel_release.Excel.Worksheet.getRanges
+    summary: |-
+      Obtém o objeto RangeAreas que representa um ou mais blocos de intervalos retangulares especificados pelo endereço ou nome.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRanges(address)
+    fullName: getRanges(address)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRanges(address?: string): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const specifiedRanges = sheet.getRanges("D3:D5, G3:G5");
+              specifiedRanges.format.fill.color = "pink";
+
+              await context.sync();
+          })
+          ```
+      parameters:
+        - id: address
+          description: 'Opcional. Uma cadeia de caracteres que contém os endereços ou nomes separados por vírgulas de intervalos individuais. Por exemplo, "a1: B2, A5: B5". Se não for especificado, será retornado um objeto RangeArea para a planilha inteira.'
+          type:
+            - string
   - uid: excel_release.Excel.Worksheet.getUsedRange
     summary: |-
       O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas. Se a planilha inteira estiver em branco, essa função retornará a célula superior esquerda (ou seja, *não* gerará um erro).
@@ -593,6 +755,21 @@ items:
           description: Opcional. Considera apenas as células com valores como células usadas.
           type:
             - boolean
+  - uid: excel_release.Excel.Worksheet.horizontalPageBreaks
+    summary: |-
+      Obtém a coleção de quebra de página horizontal da planilha. Esta coleção contém apenas quebras de página manuais.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: horizontalPageBreaks
+    fullName: horizontalPageBreaks
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly horizontalPageBreaks: Excel.PageBreakCollection;'
+      return:
+        type:
+          - excel.Excel.PageBreakCollection
   - uid: excel_release.Excel.Worksheet.id
     summary: |-
       Retorna um valor que identifica de forma exclusiva a planilha em uma determinada pasta de trabalho. O valor do identificador permanece o mesmo, ainda que a planilha seja renomeada ou movida. Somente leitura.
@@ -859,6 +1036,21 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel_release.Excel.Worksheet.onFormatChanged
+    summary: |-
+      Ocorre quando o formato é alterado em uma planilha específica.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onFormatChanged
+    fullName: onFormatChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
   - uid: excel_release.Excel.Worksheet.onSelectionChanged
     summary: |-
       Ocorre quando a seleção é alterada em uma planilha específica.
@@ -891,6 +1083,21 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel_release.Excel.Worksheet.pageLayout
+    summary: |-
+      Obtém o objeto PageLayout da planilha.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: pageLayout
+    fullName: pageLayout
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pageLayout: Excel.PageLayout;'
+      return:
+        type:
+          - excel.Excel.PageLayout
   - uid: excel_release.Excel.Worksheet.pivotTables
     summary: |-
       Coleção de Tabelas Dinâmicas que fazem parte da planilha. Somente leitura.
@@ -936,6 +1143,35 @@ items:
       return:
         type:
           - excel.Excel.WorksheetProtection
+  - uid: excel_release.Excel.Worksheet.replaceAll
+    summary: |-
+      Localiza e substitui a cadeia de caracteres fornecida com base nos critérios especificados na planilha atual.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'replaceAll(text, replacement, criteria)'
+    fullName: 'replaceAll(text, replacement, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: O número de substituições realizadas.
+      parameters:
+        - id: text
+          description: Cadeia de caracteres a ser localizada.
+          type:
+            - string
+        - id: replacement
+          description: Cadeia de caracteres para substituir o original por.
+          type:
+            - string
+        - id: criteria
+          description: Critérios adicionais de substituição.
+          type:
+            - excel.Excel.ReplaceCriteria
   - uid: excel_release.Excel.Worksheet.set
     summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
     remarks: |-
@@ -980,6 +1216,21 @@ items:
           description: ''
           type:
             - excel.Excel.Worksheet
+  - uid: excel_release.Excel.Worksheet.shapes
+    summary: |-
+      Retorna a coleção de todos os objetos Shape na planilha. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: shapes
+    fullName: shapes
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly shapes: Excel.ShapeCollection;'
+      return:
+        type:
+          - excel.Excel.ShapeCollection
   - uid: excel_release.Excel.Worksheet.showGridlines
     summary: |-
       Obtém ou define um sinalizador de linhas de grade da planilha. Este sinalizador determina se as linhas de grade são visíveis para o usuário.
@@ -1109,6 +1360,21 @@ items:
         type:
           - excel.Excel.Interfaces.WorksheetData
         description: ''
+  - uid: excel_release.Excel.Worksheet.verticalPageBreaks
+    summary: |-
+      Obtém a coleção de quebra de página vertical da planilha. Esta coleção contém apenas quebras de página manuais.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: verticalPageBreaks
+    fullName: verticalPageBreaks
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly verticalPageBreaks: Excel.PageBreakCollection;'
+      return:
+        type:
+          - excel.Excel.PageBreakCollection
   - uid: excel_release.Excel.Worksheet.visibility
     summary: |-
       A visibilidade da planilha.
