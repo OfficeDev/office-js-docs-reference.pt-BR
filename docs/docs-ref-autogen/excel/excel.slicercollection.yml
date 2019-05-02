@@ -42,7 +42,22 @@ items:
       return:
         type:
           - excel.Excel.Slicer
-        description: 'A nova segmentação de,.'
+        description: |-
+          A nova segmentação de,.
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Pivot");
+              const slicer = sheet.slicers.add(
+                  "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+                  "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+              );
+              slicer.name = "Fruit Slicer";
+              await context.sync();
+          });
+          ```
       parameters:
         - id: slicerSource
           description: 'A fonte de dados na qual o novo slicer será baseado. Pode ser um objeto PivotTable, um objeto Table ou uma cadeia de caracteres. Quando um objeto PivotTable é passado, a fonte de dados é a fonte do objeto PivotTable. Quando um objeto Table é passado, a fonte de dados é o objeto Table. Quando uma cadeia de caracteres é passada, ela é interpretada como o nome/ID de uma tabela dinâmica.'
@@ -102,7 +117,22 @@ items:
       return:
         type:
           - excel.Excel.Slicer
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+              slicer.caption = "Fruit Types";
+              slicer.left = 395;
+              slicer.top = 15;
+              slicer.height = 135;
+              slicer.width = 150;
+              await context.sync();
+          });
+          ```
       parameters:
         - id: key
           description: 'O nome ou a ID da segmentação de,.'

@@ -71,7 +71,18 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+              slicer.clearFilters();
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.Slicer.context
     summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
     isPreview: true
@@ -101,7 +112,18 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              sheet.slicers.getItemAt(0).delete();
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.Slicer.getSelectedItems
     summary: |-
       Retorna uma matriz de chaves de itens selecionados. Somente leitura.
@@ -296,7 +318,18 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+              slicer.selectItems(["Lemon", "Lime", "Orange"]);
+              await context.sync();
+          });
+          ```
       parameters:
         - id: items
           description: Opcional. Os nomes de item de segmentação de itens especificados a serem selecionados.
@@ -396,6 +429,18 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+              slicer.style = "SlicerStyleLight6";
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.Slicer.toJSON
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. slicer original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.SlicerData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     isPreview: true
