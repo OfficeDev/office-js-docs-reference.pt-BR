@@ -22,6 +22,7 @@ items:
       - word.Word.Range.expandTo
       - word.Word.Range.expandToOrNullObject
       - word.Word.Range.font
+      - word.Word.Range.getBookmarks
       - word.Word.Range.getHtml
       - word.Word.Range.getHyperlinkRanges
       - word.Word.Range.getNextTextRange
@@ -32,6 +33,7 @@ items:
       - word.Word.Range.getTextRanges
       - word.Word.Range.hyperlink
       - word.Word.Range.inlinePictures
+      - word.Word.Range.insertBookmark
       - word.Word.Range.insertBreak
       - word.Word.Range.insertBreak_1
       - word.Word.Range.insertContentControl
@@ -270,6 +272,32 @@ items:
       return:
         type:
           - word.Word.Font
+  - uid: word.Word.Range.getBookmarks
+    summary: |-
+      Obtém os nomes de todos os indicadores ou sobrepondo o intervalo. Um indicador será ocultado se o nome começar com o caractere de sublinhado.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'getBookmarks(includeHidden, includeAdjacent)'
+    fullName: 'getBookmarks(includeHidden, includeAdjacent)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarks(includeHidden?: boolean, includeAdjacent?: boolean): OfficeExtension.ClientResult<string[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<string[]>'
+        description: ''
+      parameters:
+        - id: includeHidden
+          description: 'Opcional. Indica se os indicadores ocultos devem ser incluídos. O padrão é false, que indica que os indicadores ocultos estão excluídos.'
+          type:
+            - boolean
+        - id: includeAdjacent
+          description: 'Opcional. Indica se os indicadores que estão adjacentes ao intervalo devem ser incluídos. O padrão é false, que indica que os indicadores adjacentes são excluídos.'
+          type:
+            - boolean
   - uid: word.Word.Range.getHtml
     summary: |-
       Obtém uma representação HTML do objeto Range. Quando renderizado em uma página da Web ou em um visualizador de HTML, a formatação será uma correspondência próxima, mas não exata, da formatação do documento. Este método não retorna o mesmo HTML para o mesmo documento em diferentes plataformas (Windows, Mac, Word online, etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use `Range.getOoxml()` e converta o XML RETORNADO em HTML.
@@ -552,6 +580,28 @@ items:
       return:
         type:
           - word.Word.InlinePictureCollection
+  - uid: word.Word.Range.insertBookmark
+    summary: |-
+      Insere um indicador no intervalo. Se um indicador do mesmo nome existir em algum lugar, ele será excluído primeiro.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: insertBookmark(name)
+    fullName: insertBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: 'Obrigatório. O nome do indicador, que não diferencia maiúsculas de minúsculas. Se o nome começar com um caractere de sublinhado, o indicador é um oculto.'
+          type:
+            - string
   - uid: word.Word.Range.insertBreak
     summary: |-
       Insere uma quebra no local especificado no documento principal. O valor de insertLocation pode ser 'Before' ou 'After'.
@@ -574,7 +624,7 @@ items:
           type:
             - word.Word.BreakType
         - id: insertLocation
-          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
           type:
             - Word.InsertLocation
   - uid: word.Word.Range.insertBreak_1
@@ -627,7 +677,7 @@ items:
           type:
             - '"Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line"'
         - id: insertLocation
-          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: word.Word.Range.insertContentControl
@@ -1127,7 +1177,7 @@ items:
           type:
             - number
         - id: insertLocationString
-          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
         - id: values
@@ -1493,7 +1543,7 @@ items:
         description: ''
       parameters:
         - id: searchText
-          description: Obrigatória. O texto da pesquisa.
+          description: Obrigatório. O texto da pesquisa.
           type:
             - string
         - id: searchOptions

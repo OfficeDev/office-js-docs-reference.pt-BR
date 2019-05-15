@@ -17,16 +17,22 @@ items:
       - word.Word.Document.body
       - word.Word.Document.contentControls
       - word.Word.Document.context
+      - word.Word.Document.customXmlParts
+      - word.Word.Document.deleteBookmark
+      - word.Word.Document.getBookmarkRange
+      - word.Word.Document.getBookmarkRangeOrNullObject
       - word.Word.Document.getSelection
       - word.Word.Document.load
       - word.Word.Document.load_1
       - word.Word.Document.load_2
+      - word.Word.Document.onContentControlAdded
       - word.Word.Document.properties
       - word.Word.Document.save
       - word.Word.Document.saved
       - word.Word.Document.sections
       - word.Word.Document.set
       - word.Word.Document.set_1
+      - word.Word.Document.settings
       - word.Word.Document.toJSON
       - word.Word.Document.track
       - word.Word.Document.untrack
@@ -72,6 +78,88 @@ items:
       return:
         type:
           - RequestContext
+  - uid: word.Word.Document.customXmlParts
+    summary: |-
+      Obtém as partes XML personalizadas no documento. Somente leitura.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: customXmlParts
+    fullName: customXmlParts
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly customXmlParts: Word.CustomXmlPartCollection;'
+      return:
+        type:
+          - Word.CustomXmlPartCollection
+  - uid: word.Word.Document.deleteBookmark
+    summary: |-
+      Exclui um indicador, se houver, do documento.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: deleteBookmark(name)
+    fullName: deleteBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'deleteBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: 'Obrigatório. O nome do indicador, que não diferencia maiúsculas de minúsculas.'
+          type:
+            - string
+  - uid: word.Word.Document.getBookmarkRange
+    summary: |-
+      Obtém o intervalo de um indicador. Lança se o indicador não existe.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRange(name)
+    fullName: getBookmarkRange(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRange(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: 'Obrigatório. O nome do indicador, que não diferencia maiúsculas de minúsculas.'
+          type:
+            - string
+  - uid: word.Word.Document.getBookmarkRangeOrNullObject
+    summary: |-
+      Obtém o intervalo de um indicador. Retorna um objeto NULL se o indicador não existir.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getBookmarkRangeOrNullObject(name)
+    fullName: getBookmarkRangeOrNullObject(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarkRangeOrNullObject(name: string): Word.Range;'
+      return:
+        type:
+          - Word.Range
+        description: ''
+      parameters:
+        - id: name
+          description: 'Obrigatório. O nome do indicador, que não diferencia maiúsculas de minúsculas.'
+          type:
+            - string
   - uid: word.Word.Document.getSelection
     summary: |-
       Obtém a seleção atual do documento. Não há suporte para várias seleções.
@@ -217,6 +305,22 @@ items:
           description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: word.Word.Document.onContentControlAdded
+    summary: |-
+      Ocorre quando um controle de conteúdo é adicionado. Execute Context. Sync () no manipulador para obter as propriedades do novo controle de conteúdo.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: onContentControlAdded
+    fullName: onContentControlAdded
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onContentControlAdded: OfficeExtension.EventHandlers<Word.ContentControlEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Word.ContentControlEventArgs>
   - uid: word.Word.Document.properties
     summary: |-
       Obtém as propriedades do documento. Somente leitura.
@@ -375,6 +479,22 @@ items:
           description: ''
           type:
             - Word.Document
+  - uid: word.Word.Document.settings
+    summary: |-
+      Obtém as configurações do suplemento no documento. Somente leitura.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: settings
+    fullName: settings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly settings: Word.SettingCollection;'
+      return:
+        type:
+          - Word.SettingCollection
   - uid: word.Word.Document.toJSON
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word. Document original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.DocumentData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()

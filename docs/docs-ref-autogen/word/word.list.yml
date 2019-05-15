@@ -15,7 +15,9 @@ items:
     package: word
     children:
       - word.Word.List.context
+      - word.Word.List.getLevelFont
       - word.Word.List.getLevelParagraphs
+      - word.Word.List.getLevelPicture
       - word.Word.List.getLevelString
       - word.Word.List.id
       - word.Word.List.insertParagraph
@@ -26,6 +28,7 @@ items:
       - word.Word.List.load_1
       - word.Word.List.load_2
       - word.Word.List.paragraphs
+      - word.Word.List.resetLevelFont
       - word.Word.List.setLevelAlignment
       - word.Word.List.setLevelAlignment_1
       - word.Word.List.setLevelBullet
@@ -33,6 +36,7 @@ items:
       - word.Word.List.setLevelIndents
       - word.Word.List.setLevelNumbering
       - word.Word.List.setLevelNumbering_1
+      - word.Word.List.setLevelPicture
       - word.Word.List.setLevelStartingNumber
       - word.Word.List.toJSON
       - word.Word.List.track
@@ -49,6 +53,28 @@ items:
       return:
         type:
           - RequestContext
+  - uid: word.Word.List.getLevelFont
+    summary: |-
+      Obtém a fonte do marcador, o número ou a imagem no nível especificado na lista.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getLevelFont(level)
+    fullName: getLevelFont(level)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLevelFont(level: number): Word.Font;'
+      return:
+        type:
+          - word.Word.Font
+        description: ''
+      parameters:
+        - id: level
+          description: Obrigatório. O nível na lista.
+          type:
+            - number
   - uid: word.Word.List.getLevelParagraphs
     summary: |-
       Obtém os parágrafos que ocorrem no nível especificado na lista.
@@ -64,6 +90,28 @@ items:
       return:
         type:
           - Word.ParagraphCollection
+        description: ''
+      parameters:
+        - id: level
+          description: Obrigatório. O nível na lista.
+          type:
+            - number
+  - uid: word.Word.List.getLevelPicture
+    summary: |-
+      Obtém a representação de cadeia de caracteres codificada em base64 da imagem no nível especificado na lista.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getLevelPicture(level)
+    fullName: getLevelPicture(level)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLevelPicture(level: number): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
         description: ''
       parameters:
         - id: level
@@ -263,6 +311,32 @@ items:
       return:
         type:
           - Word.ParagraphCollection
+  - uid: word.Word.List.resetLevelFont
+    summary: |-
+      Redefine a fonte do marcador, o número ou a imagem no nível especificado na lista.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'resetLevelFont(level, resetFontName)'
+    fullName: 'resetLevelFont(level, resetFontName)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'resetLevelFont(level: number, resetFontName?: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: level
+          description: Obrigatório. O nível na lista.
+          type:
+            - number
+        - id: resetFontName
+          description: Opcional. Indica se o nome da fonte deve ser redefinido. O padrão é false que indica que o nome da fonte é mantido inalterado.
+          type:
+            - boolean
   - uid: word.Word.List.setLevelAlignment
     summary: |-
       Define o alinhamento do marcador, o número ou a imagem no nível especificado na lista.
@@ -466,6 +540,32 @@ items:
           description: 'Opcional. O formato da cadeia de caracteres de numeração definido como uma matriz de cadeias de caracteres e/ou inteiros. Cada inteiro é um nível de tipo de número que é maior ou igual a este nível. Por exemplo, uma matriz de \["(", Level-1, ".", Level, ")"\] pode definir o formato de "(2. c)", onde 2 é o número do item do pai e c é o número do item do nível.'
           type:
             - Array<string | number>
+  - uid: word.Word.List.setLevelPicture
+    summary: |-
+      Define a imagem no nível especificado na lista.
+
+      \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'setLevelPicture(level, base64EncodedImage)'
+    fullName: 'setLevelPicture(level, base64EncodedImage)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setLevelPicture(level: number, base64EncodedImage?: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: level
+          description: Obrigatório. O nível na lista.
+          type:
+            - number
+        - id: base64EncodedImage
+          description: 'Opcional. A imagem codificada em base64 a ser definida. Se não for especificado, a imagem padrão será definida.'
+          type:
+            - string
   - uid: word.Word.List.setLevelStartingNumber
     summary: |-
       Define o número inicial no nível especificado na lista. O valor padrão é 1.
