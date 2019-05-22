@@ -293,7 +293,7 @@ items:
 
       Enquanto o nível de permissão mínimo a usar esse método é Restricted, alguns tipos de entidade requerem ReadItem para obter acesso, conforme especificado na tabela a seguir.
 
-      <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>String</td> <td>Restrito</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restrito</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restrito</td> </tr> </table>
+      <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>String</td> <td>Restricted</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restricted</td> </tr> </table>
 
       #### <a name="examples"></a>Exemplos
 
@@ -319,7 +319,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'getEntitiesByType(entityType: MailboxEnums.EntityType): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
+      content: 'getEntitiesByType(entityType: MailboxEnums.EntityType | string): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
       return:
         type:
           - '(string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]'
@@ -328,7 +328,7 @@ items:
         - id: entityType
           description: Um dos valores de enumeração de EntityType.
           type:
-            - MailboxEnums.EntityType
+            - MailboxEnums.EntityType | string
   - uid: Outlook_1_4.Office.AppointmentRead.getFilteredEntitiesByName
     summary: |-
       Retorna entidades bem conhecidas no item selecionado que passam o filtro nomeado definido no arquivo de manifesto XML.
@@ -364,7 +364,7 @@ items:
 
       O método getRegExMatches retorna as cadeias de caracteres que correspondem à expressão regular definida em cada elemento de regra ItemHasRegularExpressionMatch ou ItemHasKnownEntity no arquivo de manifesto XML. Para uma regra ItemHasRegularExpressionMatch, uma cadeia de caracteres correspondente deve ocorrer na Propriedade do item especificado por essa regra. O tipo simples PropertyName define as propriedades com suporte.
 
-      Se você especificar uma regra ItemHasRegularExpressionMatch na Propriedade Body de um item, a expressão regular deverá filtrar mais o corpo e não deverá tentar retornar todo o corpo do item. Usar uma expressão regular como. * para obter o corpo inteiro de um item nem sempre retorna os resultados esperados. Em vez disso, use o método Body. getAsync para recuperar todo o corpo.
+      Se você especificar uma regra ItemHasRegularExpressionMatch na Propriedade Body de um item, a expressão regular deverá filtrar mais o corpo e não deverá tentar retornar todo o corpo do item. Usar uma expressão regular como. * para obter o corpo inteiro de um item nem sempre retorna os resultados esperados. Em vez disso, use o método Body. getasync para recuperar todo o corpo.
 
       **Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.
 
@@ -638,7 +638,7 @@ items:
 
       A propriedade end é um objeto Date, expresso como um valor de data e hora UTC (tempo Universal Coordenado). Você pode usar o método convertToLocalClientTime para converter o valor da propriedade end para a data e hora locais do cliente.
 
-      Ao usar o método time. setAsync para definir a hora de término, você deve usar o método convertToUtcClientTime para converter a hora local no cliente em UTC para o servidor.
+      Ao usar o método time. setasync para definir a hora de término, você deve usar o método convertToUtcClientTime para converter a hora local no cliente em UTC para o servidor.
 
       \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -676,7 +676,7 @@ items:
 
       A propriedade ItemProperty especifica a classe de mensagem do item selecionado. A seguir estão as classes de mensagem padrão para o item de mensagem ou de compromisso.
 
-      <table> <tr> <th>Tipo</th> <th>Descrição</th> <th>Classe de item</th> </tr> <tr> <td>Itens de compromisso</td> <td>Estes são os itens de calendário da classe de item IPM. Compromisso ou IPM. Compromisso. ocorrência.</td> <td>IPM. Compromisso, IPM. Compromisso. ocorrência</td> </tr> <tr> <td>Itens de mensagem</td> <td>Eles incluem mensagens de email que têm a classe de mensagem padrão IPM. Observação e solicitações de reunião, respostas e cancelamentos, que usam IPM. Agendar. Meeting como a classe de mensagem básica.</td> <td>IPM. Nota, IPM. Schedule. Meeting. Request, IPM. Schedule. Meeting. neg, IPM. Schedule. Meeting. pos, IPM. Schedule. Meeting. tenda, IPM. Schedule. Meeting. canCelada</td> </tr> </table>
+      <table> <tr> <th>Tipo</th> <th>Descrição</th> <th>Classe de item</th> </tr> <tr> <td>Itens de compromisso</td> <td>Estes são os itens de calendário da classe de item IPM. Compromisso ou IPM. Compromisso. ocorrência.</td> <td>IPM. Compromisso, IPM. Compromisso. ocorrência</td> </tr> <tr> <td>Itens de mensagem</td> <td>Eles incluem mensagens de email que têm a classe de mensagem padrão IPM. Observação e solicitações de reunião, respostas e cancelamentos, que usam IPM. Agendar. Meeting como a classe de mensagem básica.</td> <td>IPM. Nota, IPM. Schedule. Meeting. Request, IPM. Schedule. Meeting. neg, IPM. Schedule. Meeting. pos, IPM. Schedule. Meeting. tenda, IPM. Schedule. Meeting. cancelada</td> </tr> </table>
 
       #### <a name="examples"></a>Exemplos
 
@@ -759,10 +759,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'itemType: MailboxEnums.ItemType;'
+      content: 'itemType: MailboxEnums.ItemType | string;'
       return:
         type:
-          - MailboxEnums.ItemType
+          - MailboxEnums.ItemType | string
   - uid: Outlook_1_4.Office.AppointmentRead.location
     summary: |-
       Obtém o local de um compromisso.

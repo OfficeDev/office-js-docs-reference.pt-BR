@@ -61,7 +61,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: (type: Office.EventType) => void, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: (type: Office.EventType) => void, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -70,7 +70,7 @@ items:
         - id: eventType
           description: O evento que deve invocar o manipulador.
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: handler
           description: 'A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade Type no parâmetro corresponderá ao parâmetro eventType passado para addHandlerAsync.'
           type:
@@ -119,7 +119,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addHandlerAsync(eventType: Office.EventType, handler: (type: Office.EventType) => void, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'addHandlerAsync(eventType: Office.EventType | string, handler: (type: Office.EventType) => void, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -128,7 +128,7 @@ items:
         - id: eventType
           description: O evento que deve invocar o manipulador.
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: handler
           description: 'A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade Type no parâmetro corresponderá ao parâmetro eventType passado para addHandlerAsync.'
           type:
@@ -166,7 +166,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'convertToEwsId(itemId: string, restVersion: MailboxEnums.RestVersion): string;'
+      content: 'convertToEwsId(itemId: string, restVersion: MailboxEnums.RestVersion | string): string;'
       return:
         type:
           - string
@@ -179,7 +179,7 @@ items:
         - id: restVersion
           description: Um valor que indica a versão da API REST do Outlook usada para recuperar a ID do item.
           type:
-            - MailboxEnums.RestVersion
+            - MailboxEnums.RestVersion | string
   - uid: Outlook_1_5.Office.Mailbox.convertToLocalClientTime
     summary: |-
       Obtém um dicionário contendo informações de hora em tempo local do cliente.
@@ -238,7 +238,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'convertToRestId(itemId: string, restVersion: MailboxEnums.RestVersion): string;'
+      content: 'convertToRestId(itemId: string, restVersion: MailboxEnums.RestVersion | string): string;'
       return:
         type:
           - string
@@ -251,7 +251,7 @@ items:
         - id: restVersion
           description: Um valor que indica a versão da API REST do Outlook com a qual a ID convertida será usada.
           type:
-            - MailboxEnums.RestVersion
+            - MailboxEnums.RestVersion | string
   - uid: Outlook_1_5.Office.Mailbox.convertToUtcClientTime
     summary: |-
       Obtém um objeto Date de um dicionário contendo as informações de hora.
@@ -398,13 +398,13 @@ items:
 
       *Tokens REST*
 
-      Quando um token REST é solicitado (Options. isRest = true), o token resultante não funcionará para autenticar chamadas de serviços Web do Exchange. O token será limitado no escopo para acesso somente leitura ao item atual e seus anexos, a menos que o suplemento tenha especificado a permissão ReadWriteMailbox em seu manifesto. Se a permissão ReadWriteMailbox for especificada, o token resultante concederá acesso de leitura/gravação a emails, calendário e contatos, incluindo a capacidade de enviar emails.
+      Quando um token REST é solicitado (Options. isrest = true), o token resultante não funcionará para autenticar chamadas de serviços Web do Exchange. O token será limitado no escopo para acesso somente leitura ao item atual e seus anexos, a menos que o suplemento tenha especificado a permissão ReadWriteMailbox em seu manifesto. Se a permissão ReadWriteMailbox for especificada, o token resultante concederá acesso de leitura/gravação a emails, calendário e contatos, incluindo a capacidade de enviar emails.
 
       O suplemento deve usar a propriedade restUrl para determinar a URL correta a ser usada ao fazer chamadas da API REST.
 
       *Tokens EWS*
 
-      Quando um token do EWS é solicitado (Options. isRest = false), o token resultante não funcionará para autenticar chamadas à API REST. O token será limitado em escopo para acessar o item atual.
+      Quando um token do EWS é solicitado (Options. isrest = false), o token resultante não funcionará para autenticar chamadas à API REST. O token será limitado em escopo para acessar o item atual.
 
       O suplemento deve usar a propriedade ewsUrl para determinar a URL correta a ser usada ao fazer chamadas de EWS.
 
@@ -445,7 +445,7 @@ items:
         description: ''
       parameters:
         - id: options
-          description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. isRest: determina se o token fornecido será usado para as APIs REST do Outlook ou serviços Web do Exchange. O valor padrão é falso. asyncContext: quaisquer dados de estado que são passados para o método assíncrono.'
+          description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. isrest: determina se o token fornecido será usado para as APIs REST do Outlook ou serviços Web do Exchange. O valor padrão é falso. asyncContext: quaisquer dados de estado que são passados para o método assíncrono.'
           type:
             - 'Office.AsyncContextOptions & { isRest?: boolean }'
         - id: callback
@@ -668,7 +668,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -677,7 +677,7 @@ items:
         - id: eventType
           description: O evento que deve revogar o manipulador.
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: options
           description: 'Opcional. Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterados, para uso em um retorno de chamada.'
           type:
@@ -703,7 +703,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
       return:
         type:
           - void
@@ -712,7 +712,7 @@ items:
         - id: eventType
           description: O evento que deve revogar o manipulador.
           type:
-            - Office.EventType
+            - Office.EventType | string
         - id: callback
           description: 'Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.'
           type:
