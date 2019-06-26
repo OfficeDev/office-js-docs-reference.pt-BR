@@ -736,7 +736,7 @@ items:
           - number
   - uid: excel.Excel.PageLayout.zoom
     summary: |-
-      Obtém ou define as opções de zoom de impressão da planilha.
+      Obtém ou define as opções de zoom de impressão da planilha. O `PageLayoutZoomOptions` objeto deve ser definido como um objeto JSON (use `x.zoom = {...}` em vez de`x.zoom.scale = ...`<!-- -->).
 
       \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: zoom
@@ -749,3 +749,15 @@ items:
       return:
         type:
           - excel.Excel.PageLayoutZoomOptions
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const farmSheet = context.workbook.worksheets.getItem("Print");
+              farmSheet.pageLayout.zoom = { scale: 200 };
+              await context.sync();
+          });
+          ```

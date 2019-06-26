@@ -120,7 +120,7 @@ items:
           - RequestContext
   - uid: excel.Excel.Shape.copyTo
     summary: |-
-      Copia e cola um objeto Shape. A forma colada é copiada para o mesmo local de pixel que esta forma.
+      Copia e cola um objeto Forma. A forma colada é copiada para o mesmo local de pixel que esta forma.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -162,7 +162,9 @@ items:
 
           ```typescript
           await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Shapes");
+              context.workbook.worksheets.getItemOrNullObject("Shapes").delete();
+              const sheet = context.workbook.worksheets.add("Shapes");
+
               const shapes = sheet.shapes;
 
               // load all the shapes in the collection without loading their properties
