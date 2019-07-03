@@ -44,7 +44,7 @@ items:
 
       IDs de itens recuperadas por meio de uma API REST (como a API do Email do Outlook ou o Microsoft Graph) usam um formato diferente daquele usado pelos Serviços Web do Exchange (EWS). O método convertToEwsId converte uma ID formatada em REST no formato adequado para EWS.
 
-      **Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
 
       \[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -85,9 +85,9 @@ items:
     summary: |-
       Obtém um dicionário contendo informações de hora em tempo local do cliente.
 
-      As datas e horas usadas por um aplicativo de email para o Outlook ou o Outlook Web App podem usar fusos horários diferentes. O Outlook usa o fuso horário do computador cliente; o Outlook Web App usa o fuso horário definido na Centro de administração do Exchange (EAC). Você deve lidar com valores de data e hora para que os valores exibidos na interface do usuário sejam sempre consistentes com o fuso horário que o usuário espera.
+      As datas e horas usadas por um aplicativo de email para o Outlook na Web ou clientes da área de trabalho podem usar fusos horários diferentes. O Outlook usa o fuso horário do computador cliente; O Outlook na Web usa o fuso horário definido no centro de administração do Exchange (Eat). Você deve lidar com valores de data e hora para que os valores exibidos na interface do usuário sejam sempre consistentes com o fuso horário que o usuário espera.
 
-      Se o aplicativo de email estiver em execução no Outlook, o método convertToLocalClientTime retornará um objeto Dictionary com os valores definidos para o fuso horário do computador cliente. Se o aplicativo de email estiver em execução no Outlook Web App, o método convertToLocalClientTime retornará um objeto Dictionary com os valores definidos para o fuso horário especificado no Eat.
+      Se o aplicativo de email estiver em execução no Outlook em clientes de desktop, o método convertToLocalClientTime retornará um objeto Dictionary com os valores definidos para o fuso horário do computador cliente. Se o aplicativo de email estiver em execução no Outlook na Web, o método convertToLocalClientTime retornará um objeto Dictionary com os valores definidos para o fuso horário especificado no Eat.
 
       \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -114,7 +114,7 @@ items:
     summary: |-
       Converte uma ID de item formatada para EWS no formato REST.
 
-      **Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
 
       \[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -181,7 +181,20 @@ items:
           type:
             - LocalClientTime
   - uid: Outlook_1_4.Office.Mailbox.displayAppointmentForm
-    summary: "Exibe um compromisso de calendário existente.\n\nO método displayAppointmentForm abre um compromisso de calendário existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.\n\nNo Outlook para Mac, você pode usar esse método para exibir um único compromisso que não faz parte de uma série recorrente, ou o compromisso mestre de uma série recorrente, mas não pode exibir uma instância da série. Isso ocorre porque no Outlook para Mac você não pode acessar as propriedades (incluindo a ID do item) das instâncias de uma série recorrente.\n\nNo Outlook Web App, este método abre o formulário especificado somente se o corpo do formulário for menor que ou igual ao número de caracteres de 32\_KB.\n\nSe o identificador do item especificado não identificar um compromisso existente, um painel em branco abre no dispositivo ou no computador cliente e nenhuma mensagem de erro será exibida.\n\n**Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.\n\n\\[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
+    summary: |-
+      Exibe um compromisso de calendário existente.
+
+      O método displayAppointmentForm abre um compromisso de calendário existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
+
+      No Outlook no Mac, você pode usar esse método para exibir um único compromisso que não faz parte de uma série recorrente ou o compromisso mestre de uma série recorrente, mas não é possível exibir uma instância da série. Isso ocorre porque, no Outlook no Mac, você não pode acessar as propriedades (incluindo a ID do item) de instâncias de uma série recorrente.
+
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual ao número de caracteres 32 KB.
+
+      Se o identificador do item especificado não identificar um compromisso existente, um painel em branco abre no dispositivo ou no computador cliente e nenhuma mensagem de erro será exibida.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
 
@@ -209,7 +222,20 @@ items:
           type:
             - string
   - uid: Outlook_1_4.Office.Mailbox.displayMessageForm
-    summary: "Exibe uma mensagem existente.\n\nO método displayMessageForm abre uma mensagem existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.\n\nNo Outlook Web App, este método abre o formulário especificado somente se o corpo do formulário for menor que ou igual ao número de caracteres de 32\_KB.\n\nSe o identificador do item especificado não identificar uma mensagem existente, não será exibida mensagem no computador cliente e nenhuma mensagem de erro será retornada.\n\nNão use o displayMessageForm com um itemId que represente um compromisso. Use o método displayAppointmentForm para exibir um compromisso existente e displayNewAppointmentForm para exibir um formulário para criar um novo compromisso.\n\n**Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.\n\n\\[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
+    summary: |-
+      Exibe uma mensagem existente.
+
+      O método displayMessageForm abre uma mensagem existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
+
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual ao número de caracteres de 32 KB.
+
+      Se o identificador do item especificado não identificar uma mensagem existente, não será exibida mensagem no computador cliente e nenhuma mensagem de erro será retornada.
+
+      Não use o displayMessageForm com um itemId que represente um compromisso. Use o método displayAppointmentForm para exibir um compromisso existente e displayNewAppointmentForm para exibir um formulário para criar um novo compromisso.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
 
@@ -242,13 +268,13 @@ items:
 
       O método displayNewAppointmentForm abre um formulário que permite ao usuário criar um novo compromisso ou reunião. Se os parâmetros forem especificados, os campos de formulário do compromisso serão preenchidos automaticamente com o conteúdo dos parâmetros.
 
-      No Outlook Web App e no OWA para Dispositivos, este método sempre exibe um formulário com um campo de participantes. Se você não especificar quaisquer participantes como argumentos de entrada, o método exibe um formulário com um botão Salvar. Se você especificar participantes, o formulário inclui os participantes e um botão Enviar.
+      No Outlook na Web, este método sempre exibe um formulário com um campo participantes. Se você não especificar quaisquer participantes como argumentos de entrada, o método exibe um formulário com um botão Salvar. Se você especificar participantes, o formulário inclui os participantes e um botão Enviar.
 
       No cliente avançado do Outlook e no Outlook RT, se você especificar qualquer participante ou recurso no parâmetro requiredAttendees, optionalAttendees ou Resources, este método exibirá um formulário de reunião com um botão enviar. Se você não especificar nenhum destinatário, este método exibirá um formulário de compromisso com &amp; um botão salvar fechar.
 
       Se qualquer dos parâmetros exceder os limites de tamanho especificados, ou se um nome de parâmetro desconhecido for especificado, ocorre uma exceção.
 
-      **Observação**: não há suporte para esse método no Outlook para Ios ou no Outlook para Android.
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
 
       \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -408,7 +434,7 @@ items:
 
       **Observação**: esse método não tem suporte nos seguintes cenários:
 
-      - No Outlook para iOS ou no Outlook para Android.
+      - No Outlook no iOS ou no Android.
 
       - Quando o suplemento é carregado em uma caixa de correio do gmail.
 
@@ -503,9 +529,9 @@ items:
 
       - hostName (cadeia de caracteres): uma cadeia de caracteres que representa o nome do aplicativo host. Ele é um dos seguintes valores: Outlook, Mac Outlook, OutlookIOS ou Protocoloutlookwebapp.
 
-      - hostVersion (cadeia de caracteres): uma cadeia de caracteres que representa a versão do aplicativo host ou do servidor Exchange. Se o suplemento de email estiver em execução no cliente da área de trabalho do Outlook ou no Outlook para iOS, a propriedade hostVersion retornará a versão do aplicativo host, o Outlook. No Outlook Web App, a propriedade retorna a versão do Exchange Server. Um exemplo é a cadeia de caracteres 15.0.468.0.
+      - hostVersion (cadeia de caracteres): uma cadeia de caracteres que representa a versão do aplicativo host ou do servidor Exchange. Se o suplemento de email estiver em execução no Outlook nos clientes de área de trabalho ou iOS, a propriedade hostVersion retornará a versão do aplicativo host, o Outlook. No Outlook na Web, a propriedade retorna a versão do servidor Exchange. Um exemplo é a cadeia de caracteres 15.0.468.0.
 
-      - OWAView (MailboxEnums. OWAView ou cadeia de caracteres): uma enumeração (ou literal de cadeia de caracteres) que representa o modo de exibição atual do Outlook Web App. Se o aplicativo host não for Outlook Web App, acessar essa propriedade resultará em indefinido. O Outlook Web App tem três modos de exibição (OneColumn-exibidos quando a tela é estreita, TwoColumns-exibido quando a tela é mais larga e ThreeColumns-exibido quando a tela é larga) que corresponde à largura da tela e à janela e ao número de colunas que podem ser exibidos.
+      - OWAView (MailboxEnums. OWAView ou cadeia de caracteres): uma enumeração (ou literal de cadeia de caracteres) que representa o modo de exibição atual do Outlook na Web. Se o aplicativo host não for o Outlook na Web, acessar essa propriedade resultará em indefinido. O Outlook na Web tem três modos de exibição (OneColumn-exibidos quando a tela é estreita, TwoColumns-exibido quando a tela é mais larga e ThreeColumns-exibido quando a tela é larga) que corresponde à largura da tela e à janela e ao número de colunas que podem ser exibidos.
 
       Há mais informações em [Office. Diagnostics](xref:Outlook_1_4.Office.Diagnostics)<!-- -->.
 
@@ -540,7 +566,7 @@ items:
 
       O valor ewsUrl pode ser usado por um serviço remoto para fazer chamadas de EWS para a caixa de correio do usuário. Por exemplo, você pode criar um serviço remoto para [obter anexos do item selecionado](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item)<!-- -->.
 
-      **Observação**: não há suporte para esse membro no Outlook para Ios ou no Outlook para Android.
+      **Observação**: não há suporte para esse membro no Outlook no Ios ou no Android.
     name: ewsUrl
     fullName: ewsUrl
     langs:

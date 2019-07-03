@@ -3,7 +3,7 @@ items:
   - uid: office.Office.Settings
     summary: Representa configurações personalizadas para um suplemento de painel de tarefas ou conteúdo que são armazenadas no documento host como pares nome/valor.
     remarks: |-
-      **Hosts**: Access, Excel, PowerPoint, Word
+      **Hosts**: Excel, PowerPoint, Word
 
       As configurações criadas usando os métodos do objeto Settings são salvas por suplemento e por documento. Ou seja, elas estão disponíveis somente para o suplemento que as criou e somente por meio do documento em que elas estão salvas.
 
@@ -33,7 +33,7 @@ items:
     summary: |-
       Adiciona um manipulador de eventos para o evento SettingsChanged.
 
-      **Importante**: o código do suplemento pode registrar um manipulador para o evento SettingsChanged quando o suplemento é executado com qualquer cliente do Excel, mas o evento será acionado somente quando o suplemento for carregado com uma planilha aberta no Excel online e mais de um usuário o está editando a planilha (coautoria). Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+      **Importante**: o código do suplemento pode registrar um manipulador para o evento SettingsChanged quando o suplemento estiver sendo executado com qualquer cliente do Excel, mas o evento será acionado somente quando o suplemento for carregado com uma planilha aberta no Excel na Web e mais de um o usuário está editando a planilha (coautoria). Portanto, efetivamente o evento SettingsChanged só tem suporte no Excel na Web em cenários de coautoria.
     remarks: |-
       **Conjunto de requisitos**: [não está em um conjunto](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
@@ -73,7 +73,7 @@ items:
     summary: |-
       Adiciona um manipulador de eventos para o evento SettingsChanged.
 
-      **Importante**: o código do suplemento pode registrar um manipulador para o evento SettingsChanged quando o suplemento é executado com qualquer cliente do Excel, mas o evento será acionado somente quando o suplemento for carregado com uma planilha aberta no Excel online e mais de um usuário o está editando a planilha (coautoria). Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+      **Importante**: o código do suplemento pode registrar um manipulador para o evento SettingsChanged quando o suplemento estiver sendo executado com qualquer cliente do Excel, mas o evento será acionado somente quando o suplemento for carregado com uma planilha aberta no Excel na Web e mais de um o usuário está editando a planilha (coautoria). Portanto, efetivamente o evento SettingsChanged só tem suporte no Excel na Web em cenários de coautoria.
     remarks: |-
       **Conjunto de requisitos**: [não está em um conjunto](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
@@ -317,7 +317,7 @@ items:
 
       Quaisquer configurações previamente salvas por um suplemento são carregadas quando ele for inicializado, portanto, durante o tempo de vida da sessão, você pode simplesmente usar os métodos set e get para trabalhar com a cópia na memória do recipiente de propriedades de configurações. Quando você desejar manter as configurações para que elas fiquem disponíveis na próxima vez que o suplemento for usado, use o método saveAsync.
 
-      **Observação**: o método saveAsync persiste o conjunto de propriedades de configurações na memória no arquivo de documento. No enTanto, as alterações no próprio arquivo de documento são salvas somente quando o usuário (ou a configuração de autoRecuperação) salva o documento no sistema de arquivos. O método refreshAsync só é útil em cenários de coautoria quando outras instâncias do mesmo suplemento podem alterar as configurações e essas alterações devem ser disponibilizadas para todas as instâncias.
+      **Observação**: o método saveAsync persiste o conjunto de propriedades de configurações na memória no arquivo de documento. No entanto, as alterações no próprio arquivo de documento são salvas somente quando o usuário (ou a configuração de AutoRecuperação) salva o documento no sistema de arquivos. O método refreshAsync só é útil em cenários de coautoria quando outras instâncias do mesmo suplemento podem alterar as configurações e essas alterações devem ser disponibilizadas para todas as instâncias.
 
       <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna undefined porque não há objetos ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
     name: 'saveAsync(options, callback)'
@@ -347,7 +347,7 @@ items:
 
       Quaisquer configurações previamente salvas por um suplemento são carregadas quando ele for inicializado, portanto, durante o tempo de vida da sessão, você pode simplesmente usar os métodos set e get para trabalhar com a cópia na memória do recipiente de propriedades de configurações. Quando você desejar manter as configurações para que elas fiquem disponíveis na próxima vez que o suplemento for usado, use o método saveAsync.
 
-      **Observação**: o método saveAsync persiste o conjunto de propriedades de configurações na memória no arquivo de documento. No enTanto, as alterações no próprio arquivo de documento são salvas somente quando o usuário (ou a configuração de autoRecuperação) salva o documento no sistema de arquivos. O método refreshAsync só é útil em cenários de coautoria quando outras instâncias do mesmo suplemento podem alterar as configurações e essas alterações devem ser disponibilizadas para todas as instâncias.
+      **Observação**: o método saveAsync persiste o conjunto de propriedades de configurações na memória no arquivo de documento. No entanto, as alterações no próprio arquivo de documento são salvas somente quando o usuário (ou a configuração de AutoRecuperação) salva o documento no sistema de arquivos. O método refreshAsync só é útil em cenários de coautoria quando outras instâncias do mesmo suplemento podem alterar as configurações e essas alterações devem ser disponibilizadas para todas as instâncias.
 
       <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna undefined porque não há objetos ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
 

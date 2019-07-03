@@ -2,7 +2,7 @@
 items:
   - uid: office.Office.Document
     summary: Uma classe abstrata que representa o documento com o qual o suplemento está interagindo.
-    remarks: '**Hosts**: Access, Excel, PowerPoint, Project, Word'
+    remarks: '**Hosts**: Excel, PowerPoint, Project, Word'
     name: Office.Document
     fullName: Office.Document
     langs:
@@ -424,7 +424,7 @@ items:
           type:
             - '(result: AsyncResult<"edit" | "read">) => void'
   - uid: office.Office.Document.getFileAsync
-    summary: 'Retorna o arquivo de documento inteiro em fatias de até 4194304 bytes (4 MB). Em suplementos para iOS, a fatia do arquivo tem suporte de até 65536 (64 KB). Observe que a especificação do tamanho da fatia do arquivo acima do limite permitido resultará em uma falha de "Erro interno".'
+    summary: 'Retorna o arquivo de documento inteiro em fatias de até 4194304 bytes (4 MB). Para suplementos no iOS, a fatia do arquivo é suportada até 65536 (64 KB). Observe que a especificação do tamanho de fatia do arquivo acima do limite permitido resultará em uma falha de “Erro interno”.'
     remarks: |-
       **Conjuntos de requisitos**:
 
@@ -434,17 +434,17 @@ items:
 
       - [Textfile](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textfile) (ao usar`Office.FileType.Text`<!-- -->)
 
-      Para suplementos em execução em aplicativos host do Office diferentes do Office para iOS, o método getFileAsync oferece suporte para obter arquivos em fatias de até 4194304 bytes (4 MB). Para suplementos em execução nos aplicativos do Office para iOS, o método getFileAsync dá suporte à obtenção de arquivos em fatias de até 65536 (64 KB).
+      Para suplementos em execução em aplicativos host do Office que não seja o Office no iOS, o método getFileAsync oferece suporte para obter arquivos em fatias de até 4194304 bytes (4 MB). Para suplementos em execução em aplicativos do Office no iOS, o método getFileAsync dá suporte a obter arquivos em fatias de até 65536 (64 KB).
 
       O parâmetro fileType pode ser especificado usando a enumeração [Office. filetype](xref:office.Office.FileType) ou valores de texto. Mas os valores possíveis variam com o host:
 
-      Excel para área de trabalho do Windows e Excel online:`Office.FileType.Compressed`
+      Excel na Web e na área de trabalho do Windows:`Office.FileType.Compressed`
 
-      Excel para Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      Excel no Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      PowerPoint para área de trabalho do Windows, Mac, iPad e PowerPoint online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      PowerPoint na Web, área de trabalho do Windows, Mac e iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      Word para área de trabalho do Windows, Mac, iPad e Word online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
+      Word na Web, área de trabalho do Windows, Mac e iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
 
       #### <a name="examples"></a>Exemplos
 
@@ -557,7 +557,7 @@ items:
           type:
             - '(result: AsyncResult<Office.File>) => void'
   - uid: office.Office.Document.getFileAsync_1
-    summary: 'Retorna o arquivo de documento inteiro em fatias de até 4194304 bytes (4 MB). Em suplementos para iOS, a fatia do arquivo tem suporte de até 65536 (64 KB). Observe que a especificação do tamanho da fatia do arquivo acima do limite permitido resultará em uma falha de "Erro interno".'
+    summary: 'Retorna o arquivo de documento inteiro em fatias de até 4194304 bytes (4 MB). Para suplementos no iOS, a fatia do arquivo é suportada até 65536 (64 KB). Observe que a especificação do tamanho de fatia do arquivo acima do limite permitido resultará em uma falha de “Erro interno”.'
     remarks: |-
       **Conjuntos de requisitos**:
 
@@ -567,17 +567,17 @@ items:
 
       - [Textfile](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textfile) (ao usar`Office.FileType.Text`<!-- -->)
 
-      Para suplementos em execução em aplicativos host do Office diferentes do Office para iOS, o método getFileAsync oferece suporte para obter arquivos em fatias de até 4194304 bytes (4 MB). Para suplementos em execução nos aplicativos do Office para iOS, o método getFileAsync dá suporte à obtenção de arquivos em fatias de até 65536 (64 KB).
+      Para suplementos em execução em aplicativos host do Office que não seja o Office no iOS, o método getFileAsync oferece suporte para obter arquivos em fatias de até 4194304 bytes (4 MB). Para suplementos em execução no Office em aplicativos iOS, o método getFileAsync dá suporte a obter arquivos em fatias de até 65536 (64 KB).
 
       O parâmetro fileType pode ser especificado usando a enumeração [Office. filetype](xref:office.Office.FileType) ou valores de texto. Mas os valores possíveis variam com o host:
 
-      Excel para área de trabalho do Windows e Excel online:`Office.FileType.Compressed`
+      Excel na Web e na área de trabalho do Windows:`Office.FileType.Compressed`
 
-      Excel para Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      Excel no Mac:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      PowerPoint para área de trabalho do Windows, Mac, iPad e PowerPoint online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
+      PowerPoint na Web, área de trabalho do Windows, Mac e iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`
 
-      Word para área de trabalho do Windows, Mac, iPad e Word online:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
+      Word na Web, área de trabalho do Windows, Mac e iPad:`Office.FileType.Compressed`<!-- -->, `Office.FileType.Pdf`<!-- -->, `Office.FileType.Text`
     name: 'getFileAsync(fileType, callback)'
     fullName: 'getFileAsync(fileType, callback)'
     langs:
@@ -1346,7 +1346,7 @@ items:
 
       Os valores possíveis para o parâmetro [Office. CoercionType](xref:office.Office.CoercionType) variam de acordo com o host.
 
-      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Access, Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint e PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint na Web e Windows</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
 
       #### <a name="examples"></a>Exemplos
 
@@ -1490,7 +1490,7 @@ items:
 
       Os valores possíveis para o parâmetro [Office. CoercionType](xref:office.Office.CoercionType) variam de acordo com o host.
 
-      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Access, Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint e PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint na Web e Windows</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
     name: 'getSelectedDataAsync(coercionType, callback)'
     fullName: 'getSelectedDataAsync(coercionType, callback)'
     langs:
@@ -2779,13 +2779,13 @@ items:
 
       <tr> <td>Excel</td> <td>Se uma única célula estiver selecionada</td> <td>Se `data` for uma cadeia de caracteres, o texto especificado será inserido como o valor da célula atual.</td> </tr> <tr> <td></td> <td></td> <td>Se `data` for uma matriz de matrizes ("Matrix"), o conjunto de linhas e colunas especificado será inserido, se nenhum outro dado nas células ao redor serão substituídos.</td> </tr> <tr> <td></td> <td></td> <td>Se `data` for um objeto TableData, uma nova tabela do Excel com o conjunto de linhas e cabeçalhos especificado será inserido, se nenhum outro dado nas células ao redor será substituído.</td> </tr> <tr> <td></td> <td>Se várias células estiverem selecionadas</td> <td>If the shape does not match the shape of `data`<!-- -->, um erro será retornado.</td> </tr> <tr> <td></td> <td></td> <td>If the shape of the selection exactly matches the shape of `data`<!-- -->, os valores das células selecionadas são atualizados com base nos valores em`data`<!-- -->.</td> </tr> <tr> <td></td> <td>Inserir imagens</td> <td>As imagens inseridas são flutuantes. Os parâmetros de posição imageLeft e imageTop são relativos às células selecionadas atualmente. Valores negativos de imageLeft e imageTop são permitidos e podem ser reajustados pelo Excel para posicionar a imagem dentro de uma planilha. A taxa de proporção da imagem fica bloqueada, a menos que ambos os parâmetros imageWidth e imageHeight sejam fornecidos. Se apenas um dos parâmetros imageWidth e imageHeight for fornecido, o outro valor será automaticamente dimensionado para manter a taxa de proporção original.</td> </tr> <tr> <td></td> <td>Todos os outros casos</td> <td>Um erro será retornado.</td> </tr>
 
-      <tr> <td>Excel Online</td> <td>Além dos comportamentos descritos para o Excel acima, estes limites se aplicam ao gravar dados no Excel online</td> <td>O número total de células que você pode gravar em uma planilha com `data` o parâmetro não pode exceder 20.000 em uma única chamada para esse método.</td> </tr> <tr> <td></td> <td></td> <td>O número de grupos de formatação passados para `cellFormat` o parâmetro não pode exceder 100. Um único grupo formatação consiste em um conjunto de formatação aplicado a um intervalo de células especificado.</td> </tr>
+      <tr> <td>Excel na Web</td> <td>Além dos comportamentos descritos para o Excel acima, esses limites se aplicam ao gravar dados no Excel na Web</td> <td>O número total de células que você pode gravar em uma planilha com `data` o parâmetro não pode exceder 20.000 em uma única chamada para esse método.</td> </tr> <tr> <td></td> <td></td> <td>O número de grupos de formatação passados para `cellFormat` o parâmetro não pode exceder 100. Um único grupo formatação consiste em um conjunto de formatação aplicado a um intervalo de células especificado.</td> </tr>
 
       <tr> <td>PowerPoint</td> <td>Inserir imagem</td> <td>As imagens inseridas são flutuantes. Os parâmetros position imageLeft e imageTop são opcionais, mas se forem fornecidos, ambos deverão estar presentes. Se um único valor for fornecido, ele será ignorado. Valores negativos de imageLeft e imageTop são permitidos e podem posicionar uma imagem fora de um slide. Se nenhum parâmetro opcional for fornecido e o slide tiver um espaço reservado, a imagem substituirá o espaço reservado no slide. A taxa de proporção da imagem ficará bloqueada, a menos que ambos os parâmetros imageWidth e imageHeight sejam fornecidos. Se apenas um dos parâmetros imageWidth e imageHeight for fornecido, o outro valor será automaticamente dimensionado para manter a taxa de proporção original.</td> </tr> </table>
 
       Os valores possíveis para o parâmetro [Office. CoercionType](xref:office.Office.CoercionType) variam de acordo com o host.
 
-      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Access, Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint e PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint na Web e Windows</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
 
       #### <a name="examples"></a>Exemplos
 
@@ -2964,13 +2964,13 @@ items:
 
       <tr> <td>Excel</td> <td>Se uma única célula estiver selecionada</td> <td>Se `data` for uma cadeia de caracteres, o texto especificado será inserido como o valor da célula atual.</td> </tr> <tr> <td></td> <td></td> <td>Se `data` for uma matriz de matrizes ("Matrix"), o conjunto de linhas e colunas especificado será inserido, se nenhum outro dado nas células ao redor serão substituídos.</td> </tr> <tr> <td></td> <td></td> <td>Se `data` for um objeto TableData, uma nova tabela do Excel com o conjunto de linhas e cabeçalhos especificado será inserido, se nenhum outro dado nas células ao redor será substituído.</td> </tr> <tr> <td></td> <td>Se várias células estiverem selecionadas</td><td>If the shape does not match the shape of `data`<!-- -->, um erro será retornado.</td> </tr> <tr> <td></td> <td></td> <td>If the shape of the selection exactly matches the shape of `data`<!-- -->, os valores das células selecionadas são atualizados com base nos valores em`data`<!-- -->.</td> </tr> <tr> <td></td> <td>Inserir imagens</td> <td>As imagens inseridas são flutuantes. Os parâmetros de posição imageLeft e imageTop são relativos às células selecionadas atualmente. Valores negativos de imageLeft e imageTop são permitidos e podem ser reajustados pelo Excel para posicionar a imagem dentro de uma planilha. A taxa de proporção da imagem fica bloqueada, a menos que ambos os parâmetros imageWidth e imageHeight sejam fornecidos. Se apenas um dos parâmetros imageWidth e imageHeight for fornecido, o outro valor será automaticamente dimensionado para manter a taxa de proporção original.</td> </tr> <tr> <td></td> <td>Todos os outros casos</td> <td>Um erro será retornado.</td> </tr>
 
-      <tr> <td>Excel Online</td> <td>Além dos comportamentos descritos para o Excel acima, estes limites se aplicam ao gravar dados no Excel online</td> <td>O número total de células que você pode gravar em uma planilha com `data` o parâmetro não pode exceder 20.000 em uma única chamada para esse método.</td> </tr> <tr> <td></td> <td></td> <td>O número de grupos de formatação passados para `cellFormat` o parâmetro não pode exceder 100. Um único grupo formatação consiste em um conjunto de formatação aplicado a um intervalo de células especificado.</td> </tr>
+      <tr> <td>Excel na Web</td> <td>Além dos comportamentos descritos para o Excel acima, esses limites se aplicam ao gravar dados no Excel na Web</td> <td>O número total de células que você pode gravar em uma planilha com `data` o parâmetro não pode exceder 20.000 em uma única chamada para esse método.</td> </tr> <tr> <td></td> <td></td> <td>O número de grupos de formatação passados para `cellFormat` o parâmetro não pode exceder 100. Um único grupo formatação consiste em um conjunto de formatação aplicado a um intervalo de células especificado.</td> </tr>
 
       <tr> <td>PowerPoint</td> <td>Inserir imagem</td> <td>As imagens inseridas são flutuantes. Os parâmetros position imageLeft e imageTop são opcionais, mas se forem fornecidos, ambos deverão estar presentes. Se um único valor for fornecido, ele será ignorado. Valores negativos de imageLeft e imageTop são permitidos e podem posicionar uma imagem fora de um slide. Se nenhum parâmetro opcional for fornecido e o slide tiver um espaço reservado, a imagem substituirá o espaço reservado no slide. A taxa de proporção da imagem ficará bloqueada, a menos que ambos os parâmetros imageWidth e imageHeight sejam fornecidos. Se apenas um dos parâmetros imageWidth e imageHeight for fornecido, o outro valor será automaticamente dimensionado para manter a taxa de proporção original.</td> </tr> </table>
 
       Os valores possíveis para o parâmetro [Office. CoercionType](xref:office.Office.CoercionType) variam de acordo com o host.
 
-      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Access, Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint e PowerPoint Online</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
+      <table> <tr> <th>Host</th> <th>coercionType suportado</th> </tr> <tr> <td>Excel, PowerPoint, Project e Word</td> <td>`Office.CoercionType.Text`sequência</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Matrix`(matriz de matrizes)</td> </tr> <tr> <td>Excel e Word</td> <td>`Office.CoercionType.Table`(Objeto TableData)</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Html`</td> </tr> <tr> <td>Word</td> <td>`Office.CoercionType.Ooxml`(Office Open XML)</td> </tr> <tr> <td>PowerPoint na Web e Windows</td> <td>`Office.CoercionType.SlideRange`</td> </tr> <tr> <td>Excel, PowerPoint e Word</td> <td>`Office.CoercionType.XmlSvg`</td> </tr> </table>
     name: 'setSelectedDataAsync(data, callback)'
     fullName: 'setSelectedDataAsync(data, callback)'
     langs:
