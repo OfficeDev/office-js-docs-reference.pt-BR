@@ -1,0 +1,397 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.NamedItem
+    summary: |-
+      <span data-ttu-id="bac29-101">Representa um nome definido para um intervalo de células ou um valor.</span><span class="sxs-lookup"><span data-stu-id="bac29-101">Represents a defined name for a range of cells or value.</span></span> <span data-ttu-id="bac29-102">Os nomes podem ser objetos com nome primitivo (como visto no tipo abaixo), um objeto Range ou uma referência a um intervalo.</span><span class="sxs-lookup"><span data-stu-id="bac29-102">Names can be primitive named objects (as seen in the type below), range object, or a reference to a range.</span></span> <span data-ttu-id="bac29-103">Use esse objeto para obter um objeto de intervalo associado aos nomes.</span><span class="sxs-lookup"><span data-stu-id="bac29-103">This object can be used to obtain range object associated with names.</span></span>
+
+      <span data-ttu-id="bac29-104">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-104">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.NamedItem
+    fullName: Excel.NamedItem
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.NamedItem.comment
+      - excel.Excel.NamedItem.context
+      - excel.Excel.NamedItem.delete
+      - excel.Excel.NamedItem.getRange
+      - excel.Excel.NamedItem.getRangeOrNullObject
+      - excel.Excel.NamedItem.load
+      - excel.Excel.NamedItem.load_1
+      - excel.Excel.NamedItem.load_2
+      - excel.Excel.NamedItem.name
+      - excel.Excel.NamedItem.scope
+      - excel.Excel.NamedItem.set
+      - excel.Excel.NamedItem.set_1
+      - excel.Excel.NamedItem.toJSON
+      - excel.Excel.NamedItem.type
+      - excel.Excel.NamedItem.value
+      - excel.Excel.NamedItem.visible
+      - excel.Excel.NamedItem.worksheet
+      - excel.Excel.NamedItem.worksheetOrNullObject
+  - uid: excel.Excel.NamedItem.comment
+    summary: |-
+      <span data-ttu-id="bac29-105">Representa o comentário associado a esse nome.</span><span class="sxs-lookup"><span data-stu-id="bac29-105">Represents the comment associated with this name.</span></span>
+
+      <span data-ttu-id="bac29-106">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-106">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: comment
+    fullName: comment
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'comment: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.NamedItem.context
+    summary: <span data-ttu-id="bac29-107">O contexto de solicitação associado ao objeto.</span><span class="sxs-lookup"><span data-stu-id="bac29-107">The request context associated with the object.</span></span> <span data-ttu-id="bac29-108">Isso conecta o processo do suplemento ao processo do aplicativo host do Office.</span><span class="sxs-lookup"><span data-stu-id="bac29-108">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.NamedItem.delete
+    summary: |-
+      <span data-ttu-id="bac29-109">Exclui o nome fornecido.</span><span class="sxs-lookup"><span data-stu-id="bac29-109">Deletes the given name.</span></span>
+
+      <span data-ttu-id="bac29-110">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-110">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="bac29-111">Exemplos</span><span class="sxs-lookup"><span data-stu-id="bac29-111">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const totalName = sheet.names.getItemOrNullObject("TotalAmount");
+              totalName.load();
+              await context.sync();
+
+              if (totalName.value) {
+                  totalName.delete();
+
+                  // Replace the named item (TotalAmount) with the actual formula for TotalAmount to avoid displaying #NAME in the cell.
+                  sheet.getRange("D11").values = [["=SUM(ExpensesTable[AMOUNT])"]];
+              } else {
+                  console.log("No named item created for the formula.");
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.NamedItem.getRange
+    summary: |-
+      <span data-ttu-id="bac29-112">Retorna o objeto Range associado ao nome.</span><span class="sxs-lookup"><span data-stu-id="bac29-112">Returns the range object that is associated with the name.</span></span> <span data-ttu-id="bac29-113">Gerará um erro se o tipo do item nomeado não for um intervalo.</span><span class="sxs-lookup"><span data-stu-id="bac29-113">Throws an error if the named item's type is not a range.</span></span>
+
+      <span data-ttu-id="bac29-114">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-114">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getRange()
+    fullName: getRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRange(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="bac29-115">Exemplos</span><span class="sxs-lookup"><span data-stu-id="bac29-115">Examples</span></span>
+
+          ```javascript
+          // Returns the Range object that is associated with the name. 
+          // null if the name is not of the type Range.
+          // Note: This API currently supports only the Workbook scoped items.
+          Excel.run(function (ctx) { 
+              var names = ctx.workbook.names;
+              var range = names.getItem('MyRange').getRange();
+              range.load('address');
+              return ctx.sync().then(function() {
+                  console.log(range.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.NamedItem.getRangeOrNullObject
+    summary: |-
+      <span data-ttu-id="bac29-116">Retorna o objeto Range associado ao nome.</span><span class="sxs-lookup"><span data-stu-id="bac29-116">Returns the range object that is associated with the name.</span></span> <span data-ttu-id="bac29-117">Retornará um objeto null se o tipo do item nomeado não for um intervalo.</span><span class="sxs-lookup"><span data-stu-id="bac29-117">Returns a null object if the named item's type is not a range.</span></span>
+
+      <span data-ttu-id="bac29-118">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-118">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: getRangeOrNullObject()
+    fullName: getRangeOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRangeOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: ''
+  - uid: excel.Excel.NamedItem.load
+    summary: <span data-ttu-id="bac29-119">Coloca um comando na fila para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="bac29-119">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="bac29-120">Você deve chamar "context.sync()" antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="bac29-120">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="bac29-121">Além dessa assinatura, este método tem as seguintes assinaturas:</span><span class="sxs-lookup"><span data-stu-id="bac29-121">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="bac29-122">`load(option?: string | string[]): Excel.NamedItem`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="bac29-122">`load(option?: string | string[]): Excel.NamedItem` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="bac29-123">`load(option?: { select?: string; expand?: string; }): Excel.NamedItem`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="bac29-123">`load(option?: { select?: string; expand?: string; }): Excel.NamedItem` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="bac29-124">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem`– Disponível somente nos tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="bac29-124">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.NamedItem` - Only available on collection types.</span></span> <span data-ttu-id="bac29-125">É semelhante à assinatura anterior.</span><span class="sxs-lookup"><span data-stu-id="bac29-125">It is similar to the preceding signature.</span></span> <span data-ttu-id="bac29-126">Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="bac29-126">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="bac29-127">Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="bac29-127">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="bac29-128">Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="bac29-128">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.NamedItemLoadOptions): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.NamedItemLoadOptions
+  - uid: excel.Excel.NamedItem.load_1
+    summary: <span data-ttu-id="bac29-129">Coloca um comando na fila para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="bac29-129">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="bac29-130">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="bac29-130">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="bac29-131">Exemplos</span><span class="sxs-lookup"><span data-stu-id="bac29-131">Examples</span></span>
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var names = ctx.workbook.names;
+              var namedItem = names.getItem('MyRange');
+              namedItem.load('type');
+              return ctx.sync().then(function() {
+                      console.log(namedItem.type);
+              });
+          }).catch(function(error) {
+                  console.log("Error: " + error);
+                  if (error instanceof OfficeExtension.Error) {
+                      console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                  }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: <span data-ttu-id="bac29-132">Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="bac29-132">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.NamedItem.load_2
+    summary: <span data-ttu-id="bac29-133">Coloca um comando na fila para carregar as propriedades especificadas do objeto.</span><span class="sxs-lookup"><span data-stu-id="bac29-133">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="bac29-134">Você deve chamar `context.sync()` antes de ler as propriedades.</span><span class="sxs-lookup"><span data-stu-id="bac29-134">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.NamedItem;'
+      return:
+        type:
+          - excel.Excel.NamedItem
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="bac29-135">Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="bac29-135">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.NamedItem.name
+    summary: |-
+      <span data-ttu-id="bac29-136">O nome do objeto.</span><span class="sxs-lookup"><span data-stu-id="bac29-136">The name of the object.</span></span> <span data-ttu-id="bac29-137">Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="bac29-137">Read-only.</span></span>
+
+      <span data-ttu-id="bac29-138">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-138">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly name: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.NamedItem.scope
+    summary: |-
+      <span data-ttu-id="bac29-139">Indica se o nome tem escopo para a pasta de trabalho ou uma planilha específica.</span><span class="sxs-lookup"><span data-stu-id="bac29-139">Indicates whether the name is scoped to the workbook or to a specific worksheet.</span></span> <span data-ttu-id="bac29-140">Os valores possíveis são: planilha, pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="bac29-140">Possible values are: Worksheet, Workbook.</span></span> <span data-ttu-id="bac29-141">Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="bac29-141">Read-only.</span></span>
+
+      <span data-ttu-id="bac29-142">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-142">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: scope
+    fullName: scope
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly scope: Excel.NamedItemScope | "Worksheet" | "Workbook";'
+      return:
+        type:
+          - Excel.NamedItemScope | "Worksheet" | "Workbook"
+  - uid: excel.Excel.NamedItem.set
+    summary: '<span data-ttu-id="bac29-143">Define várias propriedades de um objeto ao mesmo tempo.</span><span class="sxs-lookup"><span data-stu-id="bac29-143">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="bac29-144">Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.</span><span class="sxs-lookup"><span data-stu-id="bac29-144">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="bac29-145">Este método tem a seguinte assinatura adicional:</span><span class="sxs-lookup"><span data-stu-id="bac29-145">This method has the following additional signature:</span></span>
+
+      `set(properties: Excel.NamedItem): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.NamedItemUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: <span data-ttu-id="bac29-146">Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.</span><span class="sxs-lookup"><span data-stu-id="bac29-146">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>
+          type:
+            - Interfaces.NamedItemUpdateData
+        - id: options
+          description: <span data-ttu-id="bac29-147">Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.</span><span class="sxs-lookup"><span data-stu-id="bac29-147">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.NamedItem.set_1
+    summary: '<span data-ttu-id="bac29-148">Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.</span><span class="sxs-lookup"><span data-stu-id="bac29-148">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.NamedItem): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.NamedItem
+  - uid: excel.Excel.NamedItem.toJSON
+    summary: '<span data-ttu-id="bac29-149">Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="bac29-149">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="bac29-150">.</span><span class="sxs-lookup"><span data-stu-id="bac29-150"></span></span> <span data-ttu-id="bac29-151">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="bac29-151"></span></span><!-- --><span data-ttu-id="bac29-152">, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. NamedItem original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.NamedItemData`</span><span class="sxs-lookup"><span data-stu-id="bac29-152">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.NamedItem object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.NamedItemData`</span></span><!-- --><span data-ttu-id="bac29-153">) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.</span><span class="sxs-lookup"><span data-stu-id="bac29-153">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.NamedItemData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.NamedItemData
+        description: ''
+  - uid: excel.Excel.NamedItem.type
+    summary: |-
+      <span data-ttu-id="bac29-154">Indica o tipo do valor retornado pela fórmula do nome.</span><span class="sxs-lookup"><span data-stu-id="bac29-154">Indicates the type of the value returned by the name's formula.</span></span> <span data-ttu-id="bac29-155">Consulte Excel. NamedItemType para obter detalhes.</span><span class="sxs-lookup"><span data-stu-id="bac29-155">See Excel.NamedItemType for details.</span></span> <span data-ttu-id="bac29-156">Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="bac29-156">Read-only.</span></span>
+
+      <span data-ttu-id="bac29-157">\[[Conjunto de APIs: ExcelApi 1,1 para cadeia de caracteres, inteiro, duplo, booliano, intervalo, erro; 1,7 para a matriz](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-157">\[ [API set: ExcelApi 1.1 for String,Integer,Double,Boolean,Range,Error; 1.7 for Array](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly type: Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array";'
+      return:
+        type:
+          - Excel.NamedItemType | "String" | "Integer" | "Double" | "Boolean" | "Range" | "Error" | "Array"
+  - uid: excel.Excel.NamedItem.value
+    summary: |-
+      <span data-ttu-id="bac29-158">Representa o valor calculado pela fórmula do nome.</span><span class="sxs-lookup"><span data-stu-id="bac29-158">Represents the value computed by the name's formula.</span></span> <span data-ttu-id="bac29-159">Para um intervalo nomeado, retornará o endereço do intervalo.</span><span class="sxs-lookup"><span data-stu-id="bac29-159">For a named range, will return the range address.</span></span> <span data-ttu-id="bac29-160">Somente leitura.</span><span class="sxs-lookup"><span data-stu-id="bac29-160">Read-only.</span></span>
+
+      <span data-ttu-id="bac29-161">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-161">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: value
+    fullName: value
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly value: any;'
+      return:
+        type:
+          - any
+  - uid: excel.Excel.NamedItem.visible
+    summary: |-
+      <span data-ttu-id="bac29-162">Determina se o objeto estará visível ou não.</span><span class="sxs-lookup"><span data-stu-id="bac29-162">Specifies whether the object is visible or not.</span></span>
+
+      <span data-ttu-id="bac29-163">\[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-163">\[ [API set: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: visible
+    fullName: visible
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'visible: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.NamedItem.worksheet
+    summary: |-
+      <span data-ttu-id="bac29-164">Retorna a planilha em que o item nomeado tem escopo.</span><span class="sxs-lookup"><span data-stu-id="bac29-164">Returns the worksheet on which the named item is scoped to.</span></span> <span data-ttu-id="bac29-165">Gera um erro se o item estiver no escopo da pasta de trabalho.</span><span class="sxs-lookup"><span data-stu-id="bac29-165">Throws an error if the item is scoped to the workbook instead.</span></span>
+
+      <span data-ttu-id="bac29-166">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-166">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: worksheet
+    fullName: worksheet
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheet: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
+  - uid: excel.Excel.NamedItem.worksheetOrNullObject
+    summary: |-
+      <span data-ttu-id="bac29-167">Retorna a planilha em que o item nomeado tem escopo.</span><span class="sxs-lookup"><span data-stu-id="bac29-167">Returns the worksheet on which the named item is scoped to.</span></span> <span data-ttu-id="bac29-168">Retornará um objeto null se o item tiver escopo para a pasta de trabalho em vez disso.</span><span class="sxs-lookup"><span data-stu-id="bac29-168">Returns a null object if the item is scoped to the workbook instead.</span></span>
+
+      <span data-ttu-id="bac29-169">\[[Conjunto de APIs: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="bac29-169">\[ [API set: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: worksheetOrNullObject
+    fullName: worksheetOrNullObject
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheetOrNullObject: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
