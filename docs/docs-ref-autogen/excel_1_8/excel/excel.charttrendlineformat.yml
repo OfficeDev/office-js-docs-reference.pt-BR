@@ -1,0 +1,208 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.ChartTrendlineFormat
+    summary: |-
+      Representa as propriedades de formato da tendência de gráfico.
+
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ChartTrendlineFormat
+    fullName: Excel.ChartTrendlineFormat
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.ChartTrendlineFormat.context
+      - excel.Excel.ChartTrendlineFormat.line
+      - excel.Excel.ChartTrendlineFormat.load
+      - excel.Excel.ChartTrendlineFormat.load_1
+      - excel.Excel.ChartTrendlineFormat.load_2
+      - excel.Excel.ChartTrendlineFormat.set
+      - excel.Excel.ChartTrendlineFormat.set_1
+      - excel.Excel.ChartTrendlineFormat.toJSON
+  - uid: excel.Excel.ChartTrendlineFormat.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.ChartTrendlineFormat.line
+    summary: |-
+      Representa a formatação de linha do gráfico. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: line
+    fullName: line
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly line: Excel.ChartLineFormat;'
+      return:
+        type:
+          - excel.Excel.ChartLineFormat
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              let seriesCollection = sheet.charts.getItemAt(0).series; 
+
+              // Get the color of the chart trendline. 
+              // In this example, it's #4472c4 which is blue.
+              let trendline = seriesCollection.getItemAt(0).trendlines.getItem(0);
+              let line = trendline.format.line;
+              line.load("color");
+
+              await context.sync();
+
+              console.log("The trendline color is:" + line.color);
+          });
+          ```
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              let seriesCollection = sheet.charts.getItemAt(0).series; 
+              let trendline = seriesCollection.getItemAt(0).trendlines.getItem(0);
+
+              // Set format of the trendline to a solid, red line.
+              let line = trendline.format.line;
+              line.color = '#FF0000';
+
+              await context.sync();
+
+              console.log("The trendline color has been set to:" + line.color);
+          });
+          ```
+  - uid: excel.Excel.ChartTrendlineFormat.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): Excel.ChartTrendlineFormat`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.ChartTrendlineFormat`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartTrendlineFormat`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.ChartTrendlineFormatLoadOptions): Excel.ChartTrendlineFormat;'
+      return:
+        type:
+          - excel.Excel.ChartTrendlineFormat
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.ChartTrendlineFormatLoadOptions
+  - uid: excel.Excel.ChartTrendlineFormat.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.ChartTrendlineFormat;'
+      return:
+        type:
+          - excel.Excel.ChartTrendlineFormat
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.ChartTrendlineFormat.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartTrendlineFormat;'
+      return:
+        type:
+          - excel.Excel.ChartTrendlineFormat
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.ChartTrendlineFormat.set
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: |-
+      Este método tem a seguinte assinatura adicional:
+
+      `set(properties: Excel.ChartTrendlineFormat): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.ChartTrendlineFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+          type:
+            - Interfaces.ChartTrendlineFormatUpdateData
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.ChartTrendlineFormat.set_1
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.ChartTrendlineFormat): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.ChartTrendlineFormat
+  - uid: excel.Excel.ChartTrendlineFormat.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartTrendlineFormat original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ChartTrendlineFormatData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.ChartTrendlineFormatData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.ChartTrendlineFormatData
+        description: ''

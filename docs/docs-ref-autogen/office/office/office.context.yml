@@ -1,0 +1,351 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.Office.Context
+    summary: Representa o ambiente de tempo de execução do suplemento e fornece acesso a objetos de chave da API. O contexto atual existe como uma propriedade do Office. Ele é acessado usando`Office.context`<!-- -->.
+    remarks: '**Hosts**: Excel, Outlook, PowerPoint, Project, Word'
+    name: Office.Context
+    fullName: Office.Context
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Context.auth
+      - office.Office.Context.commerceAllowed
+      - office.Office.Context.contentLanguage
+      - office.Office.Context.diagnostics
+      - office.Office.Context.displayLanguage
+      - office.Office.Context.document
+      - office.Office.Context.host
+      - office.Office.Context.license
+      - office.Office.Context.mailbox
+      - office.Office.Context.officeTheme
+      - office.Office.Context.platform
+      - office.Office.Context.requirements
+      - office.Office.Context.roamingSettings
+      - office.Office.Context.touchEnabled
+      - office.Office.Context.ui
+  - uid: office.Office.Context.auth
+    summary: Fornece informações e acesso ao usuário conectado.
+    isPreview: true
+    name: auth
+    fullName: auth
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'auth: Auth;'
+      return:
+        type:
+          - office.Office.Auth
+  - uid: office.Office.Context.commerceAllowed
+    summary: 'True, se a plataforma atual permitir que o suplemento exiba uma interface do usuário para venda ou atualização; caso contrário, retornará false.'
+    remarks: |-
+      **Hosts**: Excel, Word
+
+      `commerceAllowed`o só é suportado no Office no iPad.
+
+      A App Store do iOS não dá suporte a aplicativos com suplementos que fornecem links para sistemas de pagamento adicionais. No entanto, os suplementos do Office em execução no Office na área de trabalho do Windows ou no navegador permitem esses links. Se você deseja que a interface do usuário do suplemento forneça um link para um sistema de pagamento externo em plataformas diferentes de iOS, você pode usar a propriedade adicionadas commerceallowed para controlar quando esse link é exibido.
+    name: commerceAllowed
+    fullName: commerceAllowed
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'commerceAllowed: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: office.Office.Context.contentLanguage
+    summary: Obtém a localidade (idioma) especificada pelo usuário para editar o documento ou item.
+    remarks: |-
+      O `contentLanguage` valor reflete a configuração de **idioma de edição** especificada com o **idioma opções &gt; &gt; de arquivo** no aplicativo host do Office.
+
+      **Detalhes do suporte**
+
+      Um Y maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa enumeração.
+
+      Para obter mais informações sobre os requisitos de servidor e aplicativo host do Office, consulte [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+      *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office no Windows </th><th> Office no navegador da Web </th><th> Office no iPad </th><th> Outlook em dispositivos móveis </th><th> Office no Mac </th></tr> <tr><td><strong>Ele</strong></td><td> S </td><td> S </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Ele</strong></td><td> S </td><td> S </td><td> </td><td> S </td><td> S </td></tr> <tr><td><strong>Apresentação</strong></td><td> S </td><td> S </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Projecto</strong></td><td> S </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Palavras</strong></td><td> S </td><td> S </td><td> S </td><td> </td><td> </td></tr> </table>
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      function sayHelloWithContentLanguage() {
+          var myContentLanguage = Office.context.contentLanguage;
+          switch (myContentLanguage) {
+              case 'en-US':
+                  write('Hello!');
+                  break;
+              case 'en-NZ':
+                  write('G\'day mate!');
+                  break;
+          }
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: contentLanguage
+    fullName: contentLanguage
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'contentLanguage: string;'
+      return:
+        type:
+          - string
+  - uid: office.Office.Context.diagnostics
+    summary: Obtém informações sobre o ambiente no qual o suplemento está sendo executado.
+    name: diagnostics
+    fullName: diagnostics
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'diagnostics: ContextInformation;'
+      return:
+        type:
+          - office.Office.ContextInformation
+  - uid: office.Office.Context.displayLanguage
+    summary: Obtém a localidade (idioma) especificada pelo usuário para a interface do usuário do aplicativo host do Office.
+    remarks: |-
+      O valor retornado é uma cadeia de caracteres no formato de marca de idioma RFC 1766, como pt-br.
+
+      O `displayLanguage` valor reflete a configuração de **idioma de exibição** atual especificada com o idioma de opções ** &gt; &gt; de arquivo** no aplicativo host do Office.
+
+      Ao usar no Outlook, os modos aplicáveis são de redação ou leitura.
+
+      **Detalhes do suporte**
+
+      Um Y maiúsculo na matriz a seguir indica que essa propriedade tem suporte no aplicativo host do Office correspondente. Uma célula vazia indica que o aplicativo host do Office não dá suporte a essa enumeração.
+
+      Para obter mais informações sobre os requisitos de servidor e aplicativo host do Office, consulte [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+      *Hosts com suporte, por plataforma* <table> <tr><th> </th><th> Office no Windows </th><th> Office no navegador da Web </th><th> Office no iPad </th><th> Outlook em dispositivos móveis </th><th> Office no Mac </th></tr> <tr><td><strong>Ele</strong></td><td> S </td><td> S </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Ele</strong></td><td> S </td><td> S </td><td> </td><td> S </td><td> S </td></tr> <tr><td><strong>Apresentação</strong></td><td> S </td><td> S </td><td> S </td><td> </td><td> </td></tr> <tr><td><strong>Projecto</strong></td><td> S </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Palavras</strong></td><td> S </td><td> </td><td> S </td><td> </td><td> </td></tr> </table>
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      function sayHelloWithDisplayLanguage() {
+          var myDisplayLanguage = Office.context.displayLanguage;
+          switch (myDisplayLanguage) {
+              case 'en-US':
+                  write('Hello!');
+                  break;
+              case 'en-NZ':
+                  write('G\'day mate!');
+                  break;
+          }
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: displayLanguage
+    fullName: displayLanguage
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'displayLanguage: string;'
+      return:
+        type:
+          - string
+  - uid: office.Office.Context.document
+    summary: Obtém um objeto que representa o documento com o qual o suplemento de conteúdo ou painel de tarefas está interagindo.
+    name: document
+    fullName: document
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'document: Office.Document;'
+      return:
+        type:
+          - office.Office.Document
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // Extension initialization code.
+          var _document;
+
+          // The initialize function is required for all add-ins.
+          Office.initialize = function () {
+              // Checks for the DOM to load using the jQuery ready function.
+              $(document).ready(function () {
+              // After the DOM is loaded, code specific to the add-in can run.
+              // Initialize instance variables to access API objects.
+              _document = Office.context.document;
+              });
+          }
+          ```
+  - uid: office.Office.Context.host
+    summary: Contém o host de aplicativos do Office no qual o suplemento está sendo executado.
+    name: host
+    fullName: host
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'host: HostType;'
+      return:
+        type:
+          - office.Office.HostType
+  - uid: office.Office.Context.license
+    summary: Obtém as informações de licença para a instalação do Office do usuário.
+    name: license
+    fullName: license
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'license: string;'
+      return:
+        type:
+          - string
+  - uid: office.Office.Context.mailbox
+    summary: |-
+      Fornece acesso ao modelo de objeto de Suplemento do Outlook para o Microsoft Outlook e o Microsoft Outlook na Web.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: restrito
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      **Namespaces**:
+
+      - `diagnostics`<!-- -->: Fornece informações de diagnóstico para um suplemento do Outlook.
+
+      - `item`<!-- -->: Fornece métodos e propriedades para acessar uma mensagem ou compromisso em um suplemento do Outlook.
+
+      - `userProfile`<!-- -->: Fornece informações sobre o usuário em um suplemento do Outlook.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // The following line of code access the item object of the JavaScript API for Office.
+      var item = Office.context.mailbox.item;
+      ```
+    name: mailbox
+    fullName: mailbox
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'mailbox: Office.Mailbox;'
+      return:
+        type:
+          - Office.Mailbox
+  - uid: office.Office.Context.officeTheme
+    summary: Fornece acesso às propriedades de cores de temas do Office.
+    name: officeTheme
+    fullName: officeTheme
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'officeTheme: OfficeTheme;'
+      return:
+        type:
+          - office.Office.OfficeTheme
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          function applyOfficeTheme(){
+              // Get office theme colors.
+              var bodyBackgroundColor = Office.context.officeTheme.bodyBackgroundColor;
+              var bodyForegroundColor = Office.context.officeTheme.bodyForegroundColor;
+              var controlBackgroundColor = Office.context.officeTheme.controlBackgroundColor;
+              var controlForegroundColor = Office.context.officeTheme.controlForegroundColor;
+
+              // Apply body background color to a CSS class.
+              $('.body').css('background-color', bodyBackgroundColor);
+          }
+          ```
+  - uid: office.Office.Context.platform
+    summary: Fornece a plataforma na qual o suplemento está sendo executado.
+    name: platform
+    fullName: platform
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'platform: PlatformType;'
+      return:
+        type:
+          - office.Office.PlatformType
+  - uid: office.Office.Context.requirements
+    summary: Fornece um método para determinar quais conjuntos de requisitos são compatíveis com o host atual e a plataforma.
+    name: requirements
+    fullName: requirements
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'requirements: RequirementSetSupport;'
+      return:
+        type:
+          - office.Office.RequirementSetSupport
+  - uid: office.Office.Context.roamingSettings
+    summary: |-
+      Obtém um objeto que representa as configurações personalizadas ou o estado de um suplemento de email do Outlook salvos na caixa de correio do usuário.
+
+      O objeto RoamingSettings permite que você armazene e acesse dados de um suplemento de email armazenado na caixa de correio de um usuário, para que esteja disponível para esse suplemento quando ele estiver sendo executado a partir de qualquer aplicativo cliente host usado para acessar essa caixa de correio.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: restrito
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: roamingSettings
+    fullName: roamingSettings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'roamingSettings: Office.RoamingSettings;'
+      return:
+        type:
+          - Office.RoamingSettings
+  - uid: office.Office.Context.touchEnabled
+    summary: 'Especifica se a plataforma e o dispositivo permitem interação de toque. True se o suplemento estiver sendo executado em um dispositivo sensível ao toque, como um iPad; caso contrário, false.'
+    remarks: |-
+      **Hosts**: Excel, PowerPoint, Word
+
+      `touchEnabled`o só é suportado no Office no iPad.
+
+      Use a propriedade touchEnabled para determinar quando o suplemento está sendo executado em um dispositivo de toque e, se necessário, ajustar o tipo de controle e o tamanho e o espaçamento dos elementos na interface do usuário do seu suplemento para acomodar interações de toque.
+    name: touchEnabled
+    fullName: touchEnabled
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'touchEnabled: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: office.Office.Context.ui
+    summary: 'Fornece objetos e métodos que você pode usar para criar e manipular componentes da interface do usuário, como caixas de diálogo.'
+    name: ui
+    fullName: ui
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'ui: UI;'
+      return:
+        type:
+          - office.Office.UI
