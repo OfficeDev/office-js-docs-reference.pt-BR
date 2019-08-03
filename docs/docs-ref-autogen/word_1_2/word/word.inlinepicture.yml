@@ -1,0 +1,787 @@
+### YamlMime:UniversalReference
+items:
+  - uid: word.Word.InlinePicture
+    summary: |-
+      Representa uma imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: Word.InlinePicture
+    fullName: Word.InlinePicture
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: word
+    children:
+      - word.Word.InlinePicture.altTextDescription
+      - word.Word.InlinePicture.altTextTitle
+      - word.Word.InlinePicture.context
+      - word.Word.InlinePicture.delete
+      - word.Word.InlinePicture.getBase64ImageSrc
+      - word.Word.InlinePicture.height
+      - word.Word.InlinePicture.hyperlink
+      - word.Word.InlinePicture.insertBreak
+      - word.Word.InlinePicture.insertBreak_1
+      - word.Word.InlinePicture.insertContentControl
+      - word.Word.InlinePicture.insertFileFromBase64
+      - word.Word.InlinePicture.insertFileFromBase64_1
+      - word.Word.InlinePicture.insertHtml
+      - word.Word.InlinePicture.insertHtml_1
+      - word.Word.InlinePicture.insertInlinePictureFromBase64
+      - word.Word.InlinePicture.insertInlinePictureFromBase64_1
+      - word.Word.InlinePicture.insertOoxml
+      - word.Word.InlinePicture.insertOoxml_1
+      - word.Word.InlinePicture.insertParagraph
+      - word.Word.InlinePicture.insertParagraph_1
+      - word.Word.InlinePicture.insertText
+      - word.Word.InlinePicture.insertText_1
+      - word.Word.InlinePicture.load
+      - word.Word.InlinePicture.load_1
+      - word.Word.InlinePicture.load_2
+      - word.Word.InlinePicture.lockAspectRatio
+      - word.Word.InlinePicture.paragraph
+      - word.Word.InlinePicture.parentContentControl
+      - word.Word.InlinePicture.select
+      - word.Word.InlinePicture.select_1
+      - word.Word.InlinePicture.set
+      - word.Word.InlinePicture.set_1
+      - word.Word.InlinePicture.toJSON
+      - word.Word.InlinePicture.track
+      - word.Word.InlinePicture.untrack
+      - word.Word.InlinePicture.width
+  - uid: word.Word.InlinePicture.altTextDescription
+    summary: |-
+      Obtém ou define uma cadeia de caracteres que representa o texto alternativo associado à imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: altTextDescription
+    fullName: altTextDescription
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextDescription: string;'
+      return:
+        type:
+          - string
+  - uid: word.Word.InlinePicture.altTextTitle
+    summary: |-
+      Obtém ou define uma cadeia de caracteres que inclui o título da imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: altTextTitle
+    fullName: altTextTitle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextTitle: string;'
+      return:
+        type:
+          - string
+  - uid: word.Word.InlinePicture.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - word.Word.RequestContext
+  - uid: word.Word.InlinePicture.delete
+    summary: |-
+      Exclui a imagem embutida do documento.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: word.Word.InlinePicture.getBase64ImageSrc
+    summary: |-
+      Obtém a representação de cadeia de caracteres codificada em base64 da imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: getBase64ImageSrc()
+    fullName: getBase64ImageSrc()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBase64ImageSrc(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Word.run(async (context) => {
+            const firstPicture = context.document.body.inlinePictures.getFirst();
+            firstPicture.load("width, height");
+
+            await context.sync();
+            console.log(`Image dimensions: ${firstPicture.width} x ${firstPicture.height}`);
+            // Get the image encoded as base64.
+            const base64 = firstPicture.getBase64ImageSrc();
+
+            await context.sync();
+            console.log(base64.value);
+          });
+          ```
+  - uid: word.Word.InlinePicture.height
+    summary: |-
+      Obtém ou define um número que descreve a altura da imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: height
+    fullName: height
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'height: number;'
+      return:
+        type:
+          - number
+  - uid: word.Word.InlinePicture.hyperlink
+    summary: |-
+      Obtém ou define um hiperlink na imagem. Use um '\#' para separar a parte de endereço da parte de local opcional.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: hyperlink
+    fullName: hyperlink
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'hyperlink: string;'
+      return:
+        type:
+          - string
+  - uid: word.Word.InlinePicture.insertBreak
+    summary: |-
+      Insere uma quebra no local especificado no documento principal. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertBreak(breakType, insertLocation)'
+    fullName: 'insertBreak(breakType, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakType: Word.BreakType, insertLocation: Word.InsertLocation): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: breakType
+          description: Obrigatório. O tipo de interrupção a ser adicionado.
+          type:
+            - word.Word.BreakType
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertBreak_1
+    summary: |-
+      Insere uma quebra no local especificado no documento principal. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertBreak(breakTypeString, insertLocation)'
+    fullName: 'insertBreak(breakTypeString, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBreak(breakTypeString: "Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line", insertLocation: "Before" | "After" | "Start" | "End" | "Replace"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: breakTypeString
+          description: Obrigatório. O tipo de interrupção a ser adicionado.
+          type:
+            - '"Page" | "Next" | "SectionNext" | "SectionContinuous" | "SectionEven" | "SectionOdd" | "Line"'
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertContentControl
+    summary: |-
+      Quebra a imagem embutida com um controle de conteúdo de rich text.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: insertContentControl()
+    fullName: insertContentControl()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertContentControl(): Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+        description: ''
+  - uid: word.Word.InlinePicture.insertFileFromBase64
+    summary: |-
+      Insere um documento no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertFileFromBase64(base64File, insertLocation)'
+    fullName: 'insertFileFromBase64(base64File, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: base64File
+          description: Obrigatório. O conteúdo codificado em Base64 de um arquivo. docx.
+          type:
+            - string
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertFileFromBase64_1
+    summary: |-
+      Insere um documento no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertFileFromBase64(base64File, insertLocationString)'
+    fullName: 'insertFileFromBase64(base64File, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: base64File
+          description: Obrigatório. O conteúdo codificado em Base64 de um arquivo. docx.
+          type:
+            - string
+        - id: insertLocationString
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertHtml
+    summary: |-
+      Insere HTML no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertHtml(html, insertLocation)'
+    fullName: 'insertHtml(html, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: html
+          description: Obrigatório. O HTML a ser inserido.
+          type:
+            - string
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertHtml_1
+    summary: |-
+      Insere HTML no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertHtml(html, insertLocationString)'
+    fullName: 'insertHtml(html, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtml(html: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: html
+          description: Obrigatório. O HTML a ser inserido.
+          type:
+            - string
+        - id: insertLocationString
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertInlinePictureFromBase64
+    summary: |-
+      Insere uma imagem embutida no local especificado. O valor insertLocation pode ser ' replace ', ' before ' ou ' after '.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocation)'
+    fullName: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertInlinePictureFromBase64(base64EncodedImage: string, insertLocation: Word.InsertLocation): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: base64EncodedImage
+          description: Obrigatório. A imagem codificada em base64 a ser inserida.
+          type:
+            - string
+        - id: insertLocation
+          description: 'Obrigatório. O valor pode ser '' replace '', '' before '' ou '' after ''.'
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertInlinePictureFromBase64_1
+    summary: |-
+      Insere uma imagem embutida no local especificado. O valor insertLocation pode ser ' replace ', ' before ' ou ' after '.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocationString)'
+    fullName: 'insertInlinePictureFromBase64(base64EncodedImage, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertInlinePictureFromBase64(base64EncodedImage: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: base64EncodedImage
+          description: Obrigatório. A imagem codificada em base64 a ser inserida.
+          type:
+            - string
+        - id: insertLocationString
+          description: 'Obrigatório. O valor pode ser '' replace '', '' before '' ou '' after ''.'
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertOoxml
+    summary: |-
+      Insere um formato OOXML no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertOoxml(ooxml, insertLocation)'
+    fullName: 'insertOoxml(ooxml, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: Obrigatória. O formato OOXML a inserir.
+          type:
+            - string
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertOoxml_1
+    summary: |-
+      Insere um formato OOXML no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertOoxml(ooxml, insertLocationString)'
+    fullName: 'insertOoxml(ooxml, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertOoxml(ooxml: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: ooxml
+          description: Obrigatória. O formato OOXML a inserir.
+          type:
+            - string
+        - id: insertLocationString
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertParagraph
+    summary: |-
+      Insere um parágrafo no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertParagraph(paragraphText, insertLocation)'
+    fullName: 'insertParagraph(paragraphText, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocation: Word.InsertLocation): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: paragraphText
+          description: Obrigatório. O texto do parágrafo a ser inserido.
+          type:
+            - string
+        - id: insertLocation
+          description: Obrigatório. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertParagraph_1
+    summary: |-
+      Insere um parágrafo no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertParagraph(paragraphText, insertLocationString)'
+    fullName: 'insertParagraph(paragraphText, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertParagraph(paragraphText: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+        description: ''
+      parameters:
+        - id: paragraphText
+          description: Obrigatório. O texto do parágrafo a ser inserido.
+          type:
+            - string
+        - id: insertLocationString
+          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.insertText
+    summary: |-
+      Insere um texto no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertText(text, insertLocation)'
+    fullName: 'insertText(text, insertLocation)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocation: Word.InsertLocation): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: text
+          description: Obrigatório. Texto a inserir.
+          type:
+            - string
+        - id: insertLocation
+          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
+          type:
+            - word.Word.InsertLocation
+  - uid: word.Word.InlinePicture.insertText_1
+    summary: |-
+      Insere um texto no local especificado. O valor de insertLocation pode ser 'Before' ou 'After'.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: 'insertText(text, insertLocationString)'
+    fullName: 'insertText(text, insertLocationString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertText(text: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
+      return:
+        type:
+          - word.Word.Range
+        description: ''
+      parameters:
+        - id: text
+          description: Obrigatório. Texto a inserir.
+          type:
+            - string
+        - id: insertLocationString
+          description: Obrigatória. O valor pode ser 'Before' ou 'After'.
+          type:
+            - '"Before" | "After" | "Start" | "End" | "Replace"'
+  - uid: word.Word.InlinePicture.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): Word.InlinePicture`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): Word.InlinePicture`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.InlinePicture`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Word.Interfaces.InlinePictureLoadOptions): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - word.Word.Interfaces.InlinePictureLoadOptions
+  - uid: word.Word.InlinePicture.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: word.Word.InlinePicture.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: word.Word.InlinePicture.lockAspectRatio
+    summary: |-
+      Obtém ou define um valor que indica se a imagem embutida mantém as respectivas proporções originais quando você a redimensiona.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: lockAspectRatio
+    fullName: lockAspectRatio
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'lockAspectRatio: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.InlinePicture.paragraph
+    summary: |-
+      Obtém o parágrafo pai que inclui a imagem embutida. Somente leitura.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: paragraph
+    fullName: paragraph
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly paragraph: Word.Paragraph;'
+      return:
+        type:
+          - word.Word.Paragraph
+  - uid: word.Word.InlinePicture.parentContentControl
+    summary: |-
+      Obtém o controle de conteúdo que inclui a imagem embutida. Gera se não há um controle de conteúdo pai. Somente leitura.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: parentContentControl
+    fullName: parentContentControl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentContentControl: Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+  - uid: word.Word.InlinePicture.select
+    summary: |-
+      Seleciona a imagem embutida. Isso faz com que o Word role até a seleção.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: select(selectionMode)
+    fullName: select(selectionMode)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionMode?: Word.SelectionMode): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: selectionMode
+          description: 'Opcional. O modo de seleção pode ser ''Select'', ''Start'' ou ''End''. ''Select'' é o padrão.'
+          type:
+            - word.Word.SelectionMode
+  - uid: word.Word.InlinePicture.select_1
+    summary: |-
+      Seleciona a imagem embutida. Isso faz com que o Word role até a seleção.
+
+      \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: select(selectionModeString)
+    fullName: select(selectionModeString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'select(selectionModeString?: "Select" | "Start" | "End"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: selectionModeString
+          description: 'Opcional. O modo de seleção pode ser ''Select'', ''Start'' ou ''End''. ''Select'' é o padrão.'
+          type:
+            - '"Select" | "Start" | "End"'
+  - uid: word.Word.InlinePicture.set
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: |-
+      Este método tem a seguinte assinatura adicional:
+
+      `set(properties: Word.InlinePicture): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.InlinePictureUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+          type:
+            - Interfaces.InlinePictureUpdateData
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: word.Word.InlinePicture.set_1
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Word.InlinePicture): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - word.Word.InlinePicture
+  - uid: word.Word.InlinePicture.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word. InlinePicture original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.InlinePictureData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Word.Interfaces.InlinePictureData;'
+      return:
+        type:
+          - word.Word.Interfaces.InlinePictureData
+        description: ''
+  - uid: word.Word.InlinePicture.track
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+  - uid: word.Word.InlinePicture.untrack
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): Word.InlinePicture;'
+      return:
+        type:
+          - word.Word.InlinePicture
+        description: ''
+  - uid: word.Word.InlinePicture.width
+    summary: |-
+      Obtém ou define um número que descreve a largura da imagem embutida.
+
+      \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: width
+    fullName: width
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'width: number;'
+      return:
+        type:
+          - number
