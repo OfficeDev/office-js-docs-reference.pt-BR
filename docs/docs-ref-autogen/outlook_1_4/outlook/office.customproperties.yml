@@ -1,0 +1,189 @@
+### YamlMime:UniversalReference
+items:
+  - uid: Outlook.Office.CustomProperties
+    summary: |-
+      O objeto CustomProperties representa propriedades personalizadas que são específicas para um item específico e específicas para um suplemento de email para o Outlook. Por exemplo, um suplemento de email pode precisar salvar alguns dados que são específicos para a mensagem de email atual que ativou o suplemento. Se o usuário revisitar a mesma mensagem no futuro e ativar o suplemento de email novamente, o suplemento poderá recuperar os dados que foram salvos como propriedades personalizadas.
+
+      Como o Outlook no Mac não armazena propriedades personalizadas em cache, se a rede do usuário for desativada, os suplementos de email não poderão acessar suas propriedades personalizadas.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: Office.CustomProperties
+    fullName: Office.CustomProperties
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook
+    children:
+      - Outlook.Office.CustomProperties.get
+      - Outlook.Office.CustomProperties.remove
+      - Outlook.Office.CustomProperties.saveAsync
+      - Outlook.Office.CustomProperties.set
+  - uid: Outlook.Office.CustomProperties.get
+    summary: Retorna o valor da propriedade personalizada especificada.
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: get(name)
+    fullName: get(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'get(name: string): any;'
+      return:
+        type:
+          - any
+        description: |-
+          O valor da propriedade personalizada especificada.
+
+          \[Conjunto de APIs: caixa de correio 1,0\]
+      parameters:
+        - id: name
+          description: O nome da propriedade personalizada a ser retornado.
+          type:
+            - string
+  - uid: Outlook.Office.CustomProperties.remove
+    summary: |-
+      Remove a propriedade especificada do conjunto de propriedades personalizadas.
+
+      Para tornar a remoção da propriedade permanente, você deve chamar o método saveAsync do objeto CustomProperties.
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: remove(name)
+    fullName: remove(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'remove(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: |-
+            O nome da propriedade a ser removida.
+
+            \[Conjunto de APIs: caixa de correio 1,0\]
+          type:
+            - string
+  - uid: Outlook.Office.CustomProperties.saveAsync
+    summary: |-
+      Salva propriedades personalizadas específicas do item no servidor.
+
+      Você deve chamar o método saveAsync para persistir quaisquer alterações feitas com o método set ou o método remove do objeto CustomProperties. A ação de salvar é assíncrona.
+
+      É uma boa prática fazer a verificação de função de retorno de chamada e lidar com erros do saveAsync. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar saveAsync enquanto estiver no estado desconectado, saveAsync retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // The following JavaScript code sample shows how to asynchronously use
+      // the loadCustomPropertiesAsync method to load custom properties that
+      // are specific to the current item, and the saveAsync method to save
+      // these properties back to the server. After loading the custom properties,
+      // the code sample uses the get method to read the custom property myProp,
+      // the set method to write the custom property otherProp, and then finally
+      // calls the saveAsync method to save the custom properties.
+
+      // The initialize function is required for all add-ins.
+      Office.initialize = function () {
+          // Checks for the DOM to load using the jQuery ready function.
+          $(document).ready(function () {
+              // After the DOM is loaded, add-in-specific code can run.
+              var item = Office.context.mailbox.item;
+              item.loadCustomPropertiesAsync(customPropsCallback);
+          });
+      };
+
+      function customPropsCallback(asyncResult) {
+          var customProps = asyncResult.value;
+          var myProp = customProps.get("myProp");
+
+          customProps.set("otherProp", "value");
+          customProps.saveAsync(saveCallback);
+      }
+
+      function saveCallback(asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+              write(asyncResult.error.message);
+          }
+          else {
+              // Async call to save custom properties completed.
+              // Proceed to do the appropriate for your add-in.
+          }
+      }
+
+      // Writes to a div with id='message' on the page.
+      function write(message) {
+          document.getElementById('message').innerText += message;
+      }
+      ```
+    name: 'saveAsync(callback, asyncContext)'
+    fullName: 'saveAsync(callback, asyncContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+        - id: asyncContext
+          description: |-
+            Opcional. Quaisquer dados de estado que são passados ao método de retorno de chamada.
+
+            \[Conjunto de APIs: caixa de correio 1,0\]
+          type:
+            - any
+  - uid: Outlook.Office.CustomProperties.set
+    summary: |-
+      Define a propriedade especificada com o valor especificado.
+
+      O método set define a propriedade especificada com o valor especificado. Você deve usar o método saveAsync para salvar a propriedade no servidor.
+
+      O método Set cria uma nova propriedade se a propriedade especificada ainda não existir; caso contrário, o valor existente será substituído pelo novo valor. O parâmetro value pode ser de qualquer tipo; no entanto, ele sempre é passado para o servidor como uma cadeia de caracteres.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: 'set(name, value)'
+    fullName: 'set(name, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(name: string, value: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: O nome da propriedade a ser definido.
+          type:
+            - string
+        - id: value
+          description: O valor da propriedade a ser definido.
+          type:
+            - string

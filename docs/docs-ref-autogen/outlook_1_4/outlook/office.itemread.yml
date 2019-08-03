@@ -1,0 +1,354 @@
+### YamlMime:UniversalReference
+items:
+  - uid: Outlook.Office.ItemRead
+    summary: |-
+      O modo de leitura do [Office. Context. Mailbox. Item](xref:Outlook.Office.Item)<!-- -->.
+
+      **Importante**: Este é um objeto interno do Outlook, não diretamente exposto por meio de interfaces existentes. Você deve tratá-lo como um modo de Office. Context. Mailbox. Item. Consulte a página [modelo de objeto](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.4/office.context.mailbox.item) para obter mais informações.
+    name: Office.ItemRead
+    fullName: Office.ItemRead
+    langs:
+      - typeScript
+    type: interface
+    extends:
+      - Outlook.Office.Item
+    package: Outlook
+    children:
+      - Outlook.Office.ItemRead.displayReplyAllForm
+      - Outlook.Office.ItemRead.displayReplyForm
+      - Outlook.Office.ItemRead.getEntities
+      - Outlook.Office.ItemRead.getEntitiesByType
+      - Outlook.Office.ItemRead.getFilteredEntitiesByName
+      - Outlook.Office.ItemRead.getRegExMatches
+      - Outlook.Office.ItemRead.getRegExMatchesByName
+      - Outlook.Office.ItemRead.attachments
+      - Outlook.Office.ItemRead.itemClass
+      - Outlook.Office.ItemRead.itemId
+      - Outlook.Office.ItemRead.normalizedSubject
+      - Outlook.Office.ItemRead.subject
+  - uid: Outlook.Office.ItemRead.displayReplyAllForm
+    summary: |-
+      Exibe um formulário de resposta que inclui o remetente e todos os destinatários da mensagem selecionada ou o organizador e todos os participantes do compromisso selecionado.
+
+      No Outlook na Web, o formulário de resposta é exibido como um formulário pop-out no modo de exibição de 3 colunas e um formulário pop-up no modo de exibição de 2 ou 1 colunas.
+
+      Se qualquer um dos parâmetros de cadeia de caracteres exceder seus limites, displayReplyAllForm gera uma exceção.
+
+      Quando os anexos são especificados no parâmetro formData. Attachments, o Outlook na Web e clientes da área de trabalho tentam baixar todos os anexos e anexá-los ao formulário de resposta. Se a adição de anexos falhar, será exibido um erro na interface de usuário do formulário. Se isso não for possível, nenhuma mensagem de erro será apresentada.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: 'displayReplyAllForm(formData, callback)'
+    fullName: 'displayReplyAllForm(formData, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayReplyAllForm(formData: string | ReplyFormData, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: formData
+          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [Office. ReplyFormData](xref:Outlook.Office.ReplyFormData) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
+          type:
+            - string | ReplyFormData
+        - id: callback
+          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.ItemRead.displayReplyForm
+    summary: |-
+      Exibe um formulário de resposta que inclui o remetente da mensagem selecionada ou o organizador do compromisso selecionado.
+
+      No Outlook na Web, o formulário de resposta é exibido como um formulário pop-out no modo de exibição de 3 colunas e um formulário pop-up no modo de exibição de 2 ou 1 colunas.
+
+      Se qualquer um dos parâmetros de cadeia de caracteres exceder seus limites, displayReplyForm gera uma exceção.
+
+      Quando os anexos são especificados no parâmetro formData. Attachments, o Outlook na Web e clientes da área de trabalho tentam baixar todos os anexos e anexá-los ao formulário de resposta. Se a adição de anexos falhar, será exibido um erro na interface de usuário do formulário. Se isso não for possível, nenhuma mensagem de erro será apresentada.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: 'displayReplyForm(formData, callback)'
+    fullName: 'displayReplyForm(formData, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayReplyForm(formData: string | ReplyFormData, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: formData
+          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [Office. ReplyFormData](xref:Outlook.Office.ReplyFormData) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
+          type:
+            - string | ReplyFormData
+        - id: callback
+          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.ItemRead.getEntities
+    summary: |-
+      Obtém as entidades encontradas no corpo do item selecionado.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: getEntities()
+    fullName: getEntities()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getEntities(): Entities;'
+      return:
+        type:
+          - Outlook.Office.Entities
+        description: ''
+  - uid: Outlook.Office.ItemRead.getEntitiesByType
+    summary: |-
+      Obtém uma matriz de todas as entidades do tipo de entidade especificado encontradas no corpo do item selecionado.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: restrito
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+
+      Enquanto o nível de permissão mínimo a usar esse método é Restricted, alguns tipos de entidade requerem ReadItem para obter acesso, conforme especificado na tabela a seguir.
+
+      <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>String</td> <td>Restricted</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restricted</td> </tr> </table>
+    name: getEntitiesByType(entityType)
+    fullName: getEntitiesByType(entityType)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getEntitiesByType(entityType: MailboxEnums.EntityType | string): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
+      return:
+        type:
+          - '(string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]'
+        description: 'Se o valor passado em entityType não for um membro válido da enumeração EntityType, o método retornará NULL. Se nenhuma entidade do tipo especificado estiver presente no corpo do item, o método retorna uma matriz vazia. Caso contrário, o tipo de objetos na matriz retornada depende do tipo de entidade solicitada no parâmetro entityType.'
+      parameters:
+        - id: entityType
+          description: Um dos valores de enumeração de EntityType.
+          type:
+            - MailboxEnums.EntityType | string
+  - uid: Outlook.Office.ItemRead.getFilteredEntitiesByName
+    summary: |-
+      Retorna entidades bem conhecidas no item selecionado que passam o filtro nomeado definido no arquivo de manifesto XML.
+
+      O método getFilteredEntitiesByName retorna as entidades que correspondem à expressão regular definida no elemento de regra ItemHasKnownEntity no arquivo de manifesto XML com o valor do elemento FilterName especificado.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: getFilteredEntitiesByName(name)
+    fullName: getFilteredEntitiesByName(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getFilteredEntitiesByName(name: string): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
+      return:
+        type:
+          - '(string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]'
+        description: 'Se não houver nenhum elemento ItemHasKnownEntity no manifesto com um valor de elemento FilterName que corresponda ao parâmetro Name, o método retornará NULL. Se o parâmetro Name corresponder a um elemento ItemHasKnownEntity no manifesto, mas não houver entidades no item atual correspondente, o método retornará uma matriz vazia.'
+      parameters:
+        - id: name
+          description: O nome do elemento de regra ItemHasKnownEntity que define o filtro a ser correspondido.
+          type:
+            - string
+  - uid: Outlook.Office.ItemRead.getRegExMatches
+    summary: |-
+      Retorna valores de cadeia de caracteres ao item selecionado que correspondem às expressões regulares definidas no arquivo de manifesto XML.
+
+      O método getRegExMatches retorna as cadeias de caracteres que correspondem à expressão regular definida em cada elemento de regra ItemHasRegularExpressionMatch ou ItemHasKnownEntity no arquivo de manifesto XML. Para uma regra ItemHasRegularExpressionMatch, uma cadeia de caracteres correspondente deve ocorrer na Propriedade do item especificado por essa regra. O tipo simples PropertyName define as propriedades com suporte.
+
+      Se você especificar uma regra ItemHasRegularExpressionMatch na Propriedade Body de um item, a expressão regular deverá filtrar mais o corpo e não deverá tentar retornar todo o corpo do item. Usar uma expressão regular como. * para obter o corpo inteiro de um item nem sempre retorna os resultados esperados. Em vez disso, use o método Body. getasync para recuperar todo o corpo.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: getRegExMatches()
+    fullName: getRegExMatches()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRegExMatches(): any;'
+      return:
+        type:
+          - any
+        description: Um objeto que contém matrizes de cadeias de caracteres que correspondem às expressões regulares definidas no arquivo XML do manifesto. O nome de cada matriz é igual ao valor correspondente do atributo RegExname da regra ItemHasRegularExpressionMatch correspondente ou o atributo FilterName da regra ItemHasKnownEntity correspondente.
+  - uid: Outlook.Office.ItemRead.getRegExMatchesByName
+    summary: |-
+      Retorna valores de cadeia de caracteres no item selecionado que correspondem à expressão regular nomeada definida no arquivo de manifesto XML.
+
+      O método getRegExMatchesByName retorna as cadeias de caracteres que correspondem à expressão regular definida no elemento de regra ItemHasRegularExpressionMatch no arquivo de manifesto XML com o valor de elemento RegExname especificado.
+
+      Se você especificar uma regra ItemHasRegularExpressionMatch na Propriedade Body de um item, a expressão regular deverá filtrar mais o corpo e não deverá tentar retornar todo o corpo do item. Usar uma expressão regular como. * para obter o corpo inteiro de um item nem sempre retorna os resultados esperados.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: getRegExMatchesByName(name)
+    fullName: getRegExMatchesByName(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRegExMatchesByName(name: string): string[];'
+      return:
+        type:
+          - 'string[]'
+        description: Uma matriz que contém as cadeias de caracteres que correspondem à expressão regular definida no arquivo de manifesto XML.
+      parameters:
+        - id: name
+          description: O nome do elemento de regra ItemHasRegularExpressionMatch que define o filtro a ser correspondido.
+          type:
+            - string
+  - uid: Outlook.Office.ItemRead.attachments
+    summary: |-
+      Obtém os anexos do item como uma matriz.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+
+      **Observação**: determinados tipos de arquivos são bloqueados pelo Outlook devido a possíveis problemas de segurança e, portanto, não são retornados. Para obter mais informações, consulte [anexos bloqueados no Outlook](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
+    name: attachments
+    fullName: attachments
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'attachments: AttachmentDetails[];'
+      return:
+        type:
+          - 'AttachmentDetails[]'
+  - uid: Outlook.Office.ItemRead.itemClass
+    summary: |-
+      Obtém a classe do item dos Serviços Web do Exchange do item selecionado.
+
+      Você pode criar classes de mensagem personalizadas que estendem uma classe de mensagem padrão, por exemplo, uma classe de mensagem de compromisso personalizada IPM. Compromisso. contoso.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+
+      A propriedade ItemProperty especifica a classe de mensagem do item selecionado. A seguir estão as classes de mensagem padrão para o item de mensagem ou de compromisso.
+
+      <table> <tr> <th>Tipo</th> <th>Descrição</th> <th>Classe de item</th> </tr> <tr> <td>Itens de compromisso</td> <td>Estes são os itens de calendário da classe de item IPM. Compromisso ou IPM. Compromisso. ocorrência.</td> <td>IPM. Compromisso, IPM. Compromisso. ocorrência</td> </tr> <tr> <td>Itens de mensagem</td> <td>Eles incluem mensagens de email que têm a classe de mensagem padrão IPM. Observação e solicitações de reunião, respostas e cancelamentos, que usam IPM. Agendar. Meeting como a classe de mensagem básica.</td> <td>IPM. Nota, IPM. Schedule. Meeting. Request, IPM. Schedule. Meeting. neg, IPM. Schedule. Meeting. pos, IPM. Schedule. Meeting. tenda, IPM. Schedule. Meeting. cancelada</td> </tr> </table>
+    name: itemClass
+    fullName: itemClass
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'itemClass: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook.Office.ItemRead.itemId
+    summary: |-
+      Obtém o identificador do item dos Serviços Web do Exchange para o item atual.
+
+      A propriedade itemId não está disponível no modo de composição. Se for necessário um identificador de item, o método saveAsync poderá ser usado para salvar o item no repositório, que retornará o identificador de item no parâmetro asyncResult. Value na função de retorno de chamada.
+
+      **Observação**: o identificador retornado pela propriedade ItemId é o mesmo que o identificador de item dos serviços Web do Exchange. A propriedade itemId não é idêntica à ID de entrada do Outlook ou à ID usada pela API REST do Outlook. Antes de fazer chamadas API REST usando esse valor, ela deverá ser convertida usando Office.context.mailbox.convertToRestId. Para obter mais detalhes, consulte [usar as APIs REST do Outlook a partir de um suplemento do Outlook](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: itemId
+    fullName: itemId
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'itemId: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook.Office.ItemRead.normalizedSubject
+    summary: |-
+      Obtém o assunto de um item, com todos os prefixos removidos (incluindo RE: e FWD:).
+
+      A propriedade normalizedSubject Obtém o assunto do item, com qualquer prefixo padrão (como RE: e FW:) adicionadas por programas de email. Para obter o assunto do item com os prefixos intactos, use a propriedade Subject.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: normalizedSubject
+    fullName: normalizedSubject
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'normalizedSubject: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook.Office.ItemRead.subject
+    summary: |-
+      Obtém a descrição que aparece no campo de assunto de um item.
+
+      A propriedade Subject Obtém ou define o assunto completo do item, conforme enviado pelo servidor de email.
+
+      A propriedade Subject retorna uma cadeia de caracteres. Use a propriedade normalizedSubject para obter o assunto menos prefixos de entrelinha, como RE: e FW:.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: leitura
+    name: subject
+    fullName: subject
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'subject: string;'
+      return:
+        type:
+          - string

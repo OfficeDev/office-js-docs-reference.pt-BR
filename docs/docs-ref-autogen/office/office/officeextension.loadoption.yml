@@ -1,0 +1,137 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.OfficeExtension.LoadOption
+    summary: Especifica quais propriedades de um objeto devem ser carregadas. Essa carga ocorre quando o método Sync () é executado. Isso sincroniza os Estados entre os objetos do Office e os objetos de proxy JavaScript correspondentes.
+    remarks: |-
+      Para o Word, o método preferido para especificar as informações de propriedades e paginação é usar um literal de cadeia de caracteres. Os dois primeiros exemplos mostram a forma preferencial para solicitar as propriedades de texto e tamanho de fonte dos parágrafos em uma coleção de parágrafos:
+
+      `context.load(paragraphs, 'text, font/size');`
+
+      `paragraphs.load('text, font/size');`
+
+      Veja um exemplo parecido usando notação de objeto (inclui paginação):
+
+      `context.load(paragraphs, {select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      `paragraphs.load({select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      Observe que, quando não determinamos as propriedades específicas do objeto Font na instrução Select, a instrução de expansão em si indica que todas as propriedades da fonte são carregadas.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // This example shows how to get the paragraphs in the Word document
+      // along with their text and font size properties.
+
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          // Create a proxy object for the paragraphs collection.
+          var paragraphs = context.document.body.paragraphs;
+
+          // Queue a commmand to load the text and font properties.
+          // It is best practice to always specify the property set.
+          // Otherwise, all properties are returned on the object.
+          context.load(paragraphs, 'text, font/size');
+
+          // Synchronize the document state by executing the queued commands,
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              // Insert code that works with the paragraphs loaded by context.load().
+          })
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: OfficeExtension.LoadOption
+    fullName: OfficeExtension.LoadOption
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.OfficeExtension.LoadOption.expand
+      - office.OfficeExtension.LoadOption.select
+      - office.OfficeExtension.LoadOption.skip
+      - office.OfficeExtension.LoadOption.top
+  - uid: office.OfficeExtension.LoadOption.expand
+    summary: 'Uma cadeia de caracteres delimitada por vírgulas, ou uma matriz de cadeias de caracteres, que especifica as propriedades de navegação a serem carregadas.'
+    name: expand
+    fullName: expand
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'expand?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.select
+    summary: 'Uma cadeia de caracteres delimitada por vírgulas, ou uma matriz de cadeias de caracteres, que especifica as propriedades a serem carregadas.'
+    name: select
+    fullName: select
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'select?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.skip
+    summary: 'Só pode ser usado em tipos de coleção. Especifica o número de itens na coleção que devem ser ignorados e não incluídos no resultado. Se Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.'
+    name: skip
+    fullName: skip
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'skip?: number;'
+      return:
+        type:
+          - number
+  - uid: office.OfficeExtension.LoadOption.top
+    summary: Só pode ser usado em tipos de coleção. Especifica o número máximo de itens da coleção que podem ser incluídos no resultado.
+    name: top
+    fullName: top
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'top?: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // This OneNote example shows how to get the page title and indentation level
+          // of the top five pages in the current section.
+          OneNote.run(function (context) {
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+
+              // Queue a command to load the pages.           
+              pages.load({ "select":"title,pageLevel", "top":5, "skip":0 });
+              return context.sync()
+                  .then(function() {
+                      // Iterate through the collection of pages.    
+                      $.each(pages.items, function(index, page) {
+                          // Show some properties.
+                          console.log("Page title: " + page.title);
+                          console.log("Indentation level: " + page.pageLevel);
+                      });
+                  }).catch(function(error) {
+                      console.log("Error: " + error);
+                      if (error instanceof OfficeExtension.Error) {
+                          console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                      }
+                  })
+              });
+          ```

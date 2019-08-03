@@ -1,0 +1,556 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.TableCell
+    summary: |-
+      Representa uma célula em uma tabela do OneNote.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.TableCell
+    fullName: OneNote.TableCell
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.TableCell.appendHtml
+      - onenote.OneNote.TableCell.appendImage
+      - onenote.OneNote.TableCell.appendRichText
+      - onenote.OneNote.TableCell.appendTable
+      - onenote.OneNote.TableCell.cellIndex
+      - onenote.OneNote.TableCell.clear
+      - onenote.OneNote.TableCell.context
+      - onenote.OneNote.TableCell.id
+      - onenote.OneNote.TableCell.load
+      - onenote.OneNote.TableCell.load_1
+      - onenote.OneNote.TableCell.load_2
+      - onenote.OneNote.TableCell.paragraphs
+      - onenote.OneNote.TableCell.parentRow
+      - onenote.OneNote.TableCell.rowIndex
+      - onenote.OneNote.TableCell.set
+      - onenote.OneNote.TableCell.set_1
+      - onenote.OneNote.TableCell.shadingColor
+      - onenote.OneNote.TableCell.toJSON
+      - onenote.OneNote.TableCell.track
+      - onenote.OneNote.TableCell.untrack
+  - uid: onenote.OneNote.TableCell.appendHtml
+    summary: |-
+      Adiciona o HTML especificado na parte inferior de TableCell.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: appendHtml(html)
+    fullName: appendHtml(html)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendHtml(html: string): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two and add "Hello".
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          cell.appendHtml("<p>Hello</p>");
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: html
+          description: 'A cadeia de caracteres HTML para acrescentar. Confira [HTML compatível](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) para a API JavaScript de suplementos do OneNote.'
+          type:
+            - string
+  - uid: onenote.OneNote.TableCell.appendImage
+    summary: |-
+      Adiciona a imagem especificada à célula da tabela.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: 'appendImage(base64EncodedImage, width, height)'
+    fullName: 'appendImage(base64EncodedImage, width, height)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendImage(base64EncodedImage: string, width: number, height: number): OneNote.Image;'
+      return:
+        type:
+          - onenote.OneNote.Image
+        description: ''
+      parameters:
+        - id: base64EncodedImage
+          description: Cadeia de caracteres HTML para acrescentar.
+          type:
+            - string
+        - id: width
+          description: 'Opcional. Largura na unidade de pontos. O valor padrão é nulo, e será respeitada a largura da imagem.'
+          type:
+            - number
+        - id: height
+          description: 'Opcional. Altura na unidade de pontos. O valor padrão é nulo, e será respeitada a altura da imagem.'
+          type:
+            - number
+  - uid: onenote.OneNote.TableCell.appendRichText
+    summary: |-
+      Adiciona o texto especificado à célula da tabela.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: appendRichText(paragraphText)
+    fullName: appendRichText(paragraphText)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendRichText(paragraphText: string): OneNote.RichText;'
+      return:
+        type:
+          - onenote.OneNote.RichText
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              var appendedRichText = null;
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two and add "Hello".
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          appendedRichText = cell.appendRichText("Hello");
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: paragraphText
+          description: Cadeia de caracteres HTML para acrescentar.
+          type:
+            - string
+  - uid: onenote.OneNote.TableCell.appendTable
+    summary: |-
+      Adiciona uma tabela com a quantidade especificada de linhas e colunas na célula da tabela.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: 'appendTable(rowCount, columnCount, values)'
+    fullName: 'appendTable(rowCount, columnCount, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendTable(rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
+      return:
+        type:
+          - onenote.OneNote.Table
+        description: ''
+      parameters:
+        - id: rowCount
+          description: Obrigatório. A quantidade de linhas na tabela.
+          type:
+            - number
+        - id: columnCount
+          description: Obrigatório. A quantidade de colunas na tabela.
+          type:
+            - number
+        - id: values
+          description: Matriz 2D opcional. As células serão preenchidas se as cadeias de caracteres correspondentes estiverem especificadas na matriz.
+          type:
+            - 'string[][]'
+  - uid: onenote.OneNote.TableCell.cellIndex
+    summary: |-
+      Obtém o índice da célula em sua linha. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: cellIndex
+    fullName: cellIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly cellIndex: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.TableCell.clear
+    summary: |-
+      Limpa o conteúdo da célula.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: onenote.OneNote.TableCell.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.TableCell.id
+    summary: |-
+      Obtém a ID da célula. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.TableCell.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): OneNote.TableCell`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.TableCellLoadOptions): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.TableCellLoadOptions
+  - uid: onenote.OneNote.TableCell.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          
+                          // Queue a command to load the table cell.
+                          ctx.load(cell);
+                          ctx.sync().then(function() {
+                              console.log("Cell Id: " + cell.id);
+                              console.log("Cell Index: " + cell.cellIndex);
+                              console.log("Cell's Row Index: " + cell.rowIndex);
+                          });
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          ParentTable, ParentRow, Paragraphs
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          
+                          // Queue a command to load parentTable, parentRow and paragraphs of the table cell.
+                          ctx.load(cell, "parentTable, parentRow, paragraphs");
+                          
+                          ctx.sync().then(function() {
+                              console.log("Parent Table Id: " + cell.parentTable.id);
+                              console.log("Parent Row Id: " + cell.parentRow.id);
+                              var paragraphs = cell.paragraphs;
+                              
+                              for (var i = 0; i < paragraphs.items.length; i++) {
+                                  console.log("Paragraph Id: " + paragraphs.items[i].id);
+                              }
+                          });
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.TableCell.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.TableCell.paragraphs
+    summary: |-
+      Obtém o conjunto de objetos Paragraph presentes em TableCell. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: paragraphs
+    fullName: paragraphs
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly paragraphs: OneNote.ParagraphCollection;'
+      return:
+        type:
+          - onenote.OneNote.ParagraphCollection
+  - uid: onenote.OneNote.TableCell.parentRow
+    summary: |-
+      Obtém a linha pai da célula. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: parentRow
+    fullName: parentRow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentRow: OneNote.TableRow;'
+      return:
+        type:
+          - onenote.OneNote.TableRow
+  - uid: onenote.OneNote.TableCell.rowIndex
+    summary: |-
+      Obtém o índice da linha da célula na tabela. Somente leitura.
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: rowIndex
+    fullName: rowIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowIndex: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.TableCell.set
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: |-
+      Este método tem a seguinte assinatura adicional:
+
+      `set(properties: OneNote.TableCell): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.TableCellUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+          type:
+            - Interfaces.TableCellUpdateData
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: onenote.OneNote.TableCell.set_1
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: OneNote.TableCell): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - onenote.OneNote.TableCell
+  - uid: onenote.OneNote.TableCell.shadingColor
+    summary: |-
+      Obtém e define a cor de sombreamento da célula
+
+      \[[Conjunto de APIs: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: shadingColor
+    fullName: shadingColor
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'shadingColor: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.TableCell.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto OneNote. TableCell original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.TableCellData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.TableCellData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.TableCellData
+        description: ''
+  - uid: onenote.OneNote.TableCell.track
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+  - uid: onenote.OneNote.TableCell.untrack
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
