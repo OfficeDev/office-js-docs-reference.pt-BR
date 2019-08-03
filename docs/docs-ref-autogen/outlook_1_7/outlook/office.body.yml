@@ -1,0 +1,471 @@
+### YamlMime:UniversalReference
+items:
+  - uid: Outlook.Office.Body
+    summary: |-
+      <span data-ttu-id="a3d8a-101">O objeto Body fornece métodos para adicionar e atualizar o conteúdo da mensagem ou compromisso.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-101">The body object provides methods for adding and updating the content of the message or appointment.</span></span> <span data-ttu-id="a3d8a-102">Ele é retornado na Propriedade Body do item selecionado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-102">It is returned in the body property of the selected item.</span></span>
+
+      <span data-ttu-id="a3d8a-103">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-103">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-104">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-104">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="a3d8a-105">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura</span><span class="sxs-lookup"><span data-stu-id="a3d8a-105">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+    name: Office.Body
+    fullName: Office.Body
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook
+    children:
+      - Outlook.Office.Body.getAsync
+      - Outlook.Office.Body.getAsync_1
+      - Outlook.Office.Body.getTypeAsync
+      - Outlook.Office.Body.getTypeAsync_1
+      - Outlook.Office.Body.prependAsync
+      - Outlook.Office.Body.prependAsync_1
+      - Outlook.Office.Body.setAsync
+      - Outlook.Office.Body.setAsync_1
+      - Outlook.Office.Body.setSelectedDataAsync
+      - Outlook.Office.Body.setSelectedDataAsync_1
+  - uid: Outlook.Office.Body.getAsync
+    summary: |-
+      <span data-ttu-id="a3d8a-106">Retorna o corpo atual em um formato especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-106">Returns the current body in a specified format.</span></span>
+
+      <span data-ttu-id="a3d8a-107">Este método retorna todo o corpo atual no formato especificado por coercionType.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-107">This method returns the entire current body in the format specified by coercionType.</span></span>
+
+      <span data-ttu-id="a3d8a-108">Ao trabalhar com corpos formatados em HTML, é importante observar que os métodos Body. getasync e Body. setasync não são idempotentes.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-108">When working with HTML-formatted bodies, it is important to note that the Body.getAsync and Body.setAsync methods are not idempotent.</span></span> <span data-ttu-id="a3d8a-109">O valor retornado do método getasync não será necessariamente o mesmo que o valor que foi passado no método setasync anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-109">The value returned from the getAsync method will not necessarily be exactly the same as the value that was passed in the setAsync method previously.</span></span> <span data-ttu-id="a3d8a-110">O cliente pode modificar o valor passado para setasync a fim de fazê-lo renderizar com eficiência com seu mecanismo de renderização.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-110">The client may modify the value passed to setAsync in order to make it render efficiently with its rendering engine.</span></span>
+
+      <span data-ttu-id="a3d8a-111">\[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-111">\[ [API set: Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-112">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-112">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="a3d8a-113">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura</span><span class="sxs-lookup"><span data-stu-id="a3d8a-113">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="a3d8a-114">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a3d8a-114">Examples</span></span>
+
+      ```javascript
+      // This example gets the body of the item as plain text.
+      Office.context.mailbox.item.body.getAsync(
+          "text",
+          { asyncContext: "This is passed to the callback" },
+          function callback(result) {
+              // Do something with the result.
+          });
+
+      // The following is an example of the result parameter passed to the callback function.
+      {
+          "value": "TEXT of whole body (including threads below)",
+          "status": "succeeded",
+          "asyncContext": "This is passed to the callback"
+      }
+      ```
+    name: 'getAsync(coercionType, options, callback)'
+    fullName: 'getAsync(coercionType, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAsync(coercionType: Office.CoercionType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: coercionType
+          description: <span data-ttu-id="a3d8a-115">O formato do corpo retornado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-115">The format for the returned body.</span></span>
+          type:
+            - Office.CoercionType | string
+        - id: options
+          description: '<span data-ttu-id="a3d8a-116">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-116">Optional.</span></span> <span data-ttu-id="a3d8a-117">Um literal de objeto que contém uma ou mais das seguintes propriedades: asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-117">An object literal that contains one or more of the following properties: asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+          type:
+            - Office.AsyncContextOptions
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-118">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-118">Optional.</span></span> <span data-ttu-id="a3d8a-119">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-119">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-120">O corpo é fornecido no formato solicitado na propriedade asyncResult. Value.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-120">The body is provided in the requested format in the asyncResult.value property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+  - uid: Outlook.Office.Body.getAsync_1
+    summary: |-
+      <span data-ttu-id="a3d8a-121">Retorna o corpo atual em um formato especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-121">Returns the current body in a specified format.</span></span>
+
+      <span data-ttu-id="a3d8a-122">Este método retorna todo o corpo atual no formato especificado por coercionType.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-122">This method returns the entire current body in the format specified by coercionType.</span></span>
+
+      <span data-ttu-id="a3d8a-123">Ao trabalhar com corpos formatados em HTML, é importante observar que os métodos Body. getasync e Body. setasync não são idempotentes.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-123">When working with HTML-formatted bodies, it is important to note that the Body.getAsync and Body.setAsync methods are not idempotent.</span></span> <span data-ttu-id="a3d8a-124">O valor retornado do método getasync não será necessariamente o mesmo que o valor que foi passado no método setasync anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-124">The value returned from the getAsync method will not necessarily be exactly the same as the value that was passed in the setAsync method previously.</span></span> <span data-ttu-id="a3d8a-125">O cliente pode modificar o valor passado para setasync a fim de fazê-lo renderizar com eficiência com seu mecanismo de renderização.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-125">The client may modify the value passed to setAsync in order to make it render efficiently with its rendering engine.</span></span>
+
+      <span data-ttu-id="a3d8a-126">\[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-126">\[ [API set: Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-127">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-127">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="a3d8a-128">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura</span><span class="sxs-lookup"><span data-stu-id="a3d8a-128">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+    name: 'getAsync(coercionType, callback)'
+    fullName: 'getAsync(coercionType, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAsync(coercionType: Office.CoercionType | string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: coercionType
+          description: <span data-ttu-id="a3d8a-129">O formato do corpo retornado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-129">The format for the returned body.</span></span>
+          type:
+            - Office.CoercionType | string
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-130">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-130">Optional.</span></span> <span data-ttu-id="a3d8a-131">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-131">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-132">O corpo é fornecido no formato solicitado na propriedade asyncResult. Value.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-132">The body is provided in the requested format in the asyncResult.value property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<string>) => void'
+  - uid: Outlook.Office.Body.getTypeAsync
+    summary: |-
+      <span data-ttu-id="a3d8a-133">Obtém um valor que indica se o conteúdo está em formato HTML ou texto.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-133">Gets a value that indicates whether the content is in HTML or text format.</span></span>
+
+      <span data-ttu-id="a3d8a-134">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-134">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-135">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-135">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="a3d8a-136">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-136">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+    name: 'getTypeAsync(options, callback)'
+    fullName: 'getTypeAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getTypeAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Office.CoercionType>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: '<span data-ttu-id="a3d8a-137">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-137">Optional.</span></span> <span data-ttu-id="a3d8a-138">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-138">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a3d8a-139">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-139">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span>'
+          type:
+            - Office.AsyncContextOptions
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-140">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-140">Optional.</span></span> <span data-ttu-id="a3d8a-141">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-141">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-142">O tipo de conteúdo é retornado como um dos valores CoercionType na propriedade asyncResult. Value.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-142">The content type is returned as one of the CoercionType values in the asyncResult.value property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<Office.CoercionType>) => void'
+  - uid: Outlook.Office.Body.getTypeAsync_1
+    summary: |-
+      <span data-ttu-id="a3d8a-143">Obtém um valor que indica se o conteúdo está em formato HTML ou texto.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-143">Gets a value that indicates whether the content is in HTML or text format.</span></span>
+
+      <span data-ttu-id="a3d8a-144">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-144">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-145">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-145">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+
+      <span data-ttu-id="a3d8a-146">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-146">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="a3d8a-147">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a3d8a-147">Examples</span></span>
+
+      ```javascript
+      Office.context.mailbox.item.body.getTypeAsync(function (asyncResult) {
+          if (asyncResult.status === "failed") {
+              console.log("Action failed with error: " + asyncResult.error.message);
+          } else {
+              console.log("Body type: " + asyncResult.value);
+          }
+      });
+      ```
+    name: getTypeAsync(callback)
+    fullName: getTypeAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getTypeAsync(callback?: (asyncResult: Office.AsyncResult<Office.CoercionType>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-148">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-148">Optional.</span></span> <span data-ttu-id="a3d8a-149">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-149">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-150">O tipo de conteúdo é retornado como um dos valores CoercionType na propriedade asyncResult. Value.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-150">The content type is returned as one of the CoercionType values in the asyncResult.value property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<Office.CoercionType>) => void'
+  - uid: Outlook.Office.Body.prependAsync
+    summary: |-
+      <span data-ttu-id="a3d8a-151">Adiciona o conteúdo especificado ao início do corpo do item.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-151">Adds the specified content to the beginning of the item body.</span></span>
+
+      <span data-ttu-id="a3d8a-152">O método prependAsync insere a cadeia de caracteres especificada no início do corpo do item.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-152">The prependAsync method inserts the specified string at the beginning of the item body.</span></span> <span data-ttu-id="a3d8a-153">Após a inserção, o cursor é retornado para seu local original, em relação ao conteúdo inserido.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-153">After insertion, the cursor is returned to its original place, relative to the inserted content.</span></span>
+
+      <span data-ttu-id="a3d8a-154">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-154">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-155">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-155">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-156">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-156">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-157">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-157">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-158">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-158">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-159">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-159">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-160">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-160">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-161">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-161">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="a3d8a-162">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a3d8a-162">Examples</span></span>
+
+      ```javascript
+      // When including links in HTML markup, you can disable online link preview
+      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+      Office.context.mailbox.item.body.prependAsync(
+          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+          {coercionType: Office.CoercionType.Html},
+          callback);
+      ```
+    name: 'prependAsync(data, options, callback)'
+    fullName: 'prependAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'prependAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-163">A cadeia de caracteres a ser inserida no início do corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-163">The string to be inserted at the beginning of the body.</span></span> <span data-ttu-id="a3d8a-164">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-164">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: options
+          description: '<span data-ttu-id="a3d8a-165">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-165">Optional.</span></span> <span data-ttu-id="a3d8a-166">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-166">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a3d8a-167">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-167">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span> <span data-ttu-id="a3d8a-168">coercionType: o formato desejado para o corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-168">coercionType: The desired format for the body.</span></span> <span data-ttu-id="a3d8a-169">A cadeia de caracteres no parâmetro data será convertida para este formato.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-169">The string in the data parameter will be converted to this format.</span></span>'
+          type:
+            - Office.AsyncContextOptions & CoercionTypeOptions
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-170">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-170">Optional.</span></span> <span data-ttu-id="a3d8a-171">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-171">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-172">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-172">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.Body.prependAsync_1
+    summary: |-
+      <span data-ttu-id="a3d8a-173">Adiciona o conteúdo especificado ao início do corpo do item.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-173">Adds the specified content to the beginning of the item body.</span></span>
+
+      <span data-ttu-id="a3d8a-174">O método prependAsync insere a cadeia de caracteres especificada no início do corpo do item.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-174">The prependAsync method inserts the specified string at the beginning of the item body.</span></span> <span data-ttu-id="a3d8a-175">Após a inserção, o cursor é retornado para seu local original, em relação ao conteúdo inserido.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-175">After insertion, the cursor is returned to its original place, relative to the inserted content.</span></span>
+
+      <span data-ttu-id="a3d8a-176">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-176">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-177">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-177">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-178">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-178">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-179">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-179">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-180">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-180">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-181">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-181">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-182">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-182">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-183">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-183">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+    name: 'prependAsync(data, callback)'
+    fullName: 'prependAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'prependAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-184">A cadeia de caracteres a ser inserida no início do corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-184">The string to be inserted at the beginning of the body.</span></span> <span data-ttu-id="a3d8a-185">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-185">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-186">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-186">Optional.</span></span> <span data-ttu-id="a3d8a-187">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-187">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-188">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-188">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.Body.setAsync
+    summary: |-
+      <span data-ttu-id="a3d8a-189">Substitui todo o corpo com o texto especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-189">Replaces the entire body with the specified text.</span></span>
+
+      <span data-ttu-id="a3d8a-190">Ao trabalhar com corpos formatados em HTML, é importante observar que os métodos Body. getasync e Body. setasync não são idempotentes.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-190">When working with HTML-formatted bodies, it is important to note that the Body.getAsync and Body.setAsync methods are not idempotent.</span></span> <span data-ttu-id="a3d8a-191">O valor retornado do método getasync não será necessariamente o mesmo que o valor que foi passado no método setasync anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-191">The value returned from the getAsync method will not necessarily be exactly the same as the value that was passed in the setAsync method previously.</span></span> <span data-ttu-id="a3d8a-192">O cliente pode modificar o valor passado para setasync a fim de fazê-lo renderizar com eficiência com seu mecanismo de renderização.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-192">The client may modify the value passed to setAsync in order to make it render efficiently with its rendering engine.</span></span>
+
+      <span data-ttu-id="a3d8a-193">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-193">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-194">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-194">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-195">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-195">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-196">\[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-196">\[ [API set: Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-197">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-197">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-198">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-198">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-199">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-199">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-200">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-200">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+
+      - <span data-ttu-id="a3d8a-201">InvalidFormatError: o parâmetro options. coercionType é definido como Office. CoercionType. html e o corpo da mensagem fica em texto sem formatação.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-201">InvalidFormatError: The options.coercionType parameter is set to Office.CoercionType.Html and the message body is in plain text.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="a3d8a-202">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a3d8a-202">Examples</span></span>
+
+      ```javascript
+      // When including links in HTML markup, you can disable online link preview
+      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+      Office.context.mailbox.item.body.setAsync(
+          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+          {coercionType: Office.CoercionType.Html},
+          callback);
+      Office.context.mailbox.item.body.setAsync(
+          "<b>(replaces all body, including threads you are replying to that may be on the bottom)</b>",
+          { coercionType: "html", asyncContext: "This is passed to the callback" },
+          function callback(result) {
+              // Process the result.
+      });
+
+      // The following is an example of the result parameter passed to the callback function.
+      {
+          "value":null,
+          "status": "succeeded",
+          "asyncContext": "This is passed to the callback"
+      }
+      ```
+    name: 'setAsync(data, options, callback)'
+    fullName: 'setAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-203">A cadeia de caracteres que substituirá o corpo existente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-203">The string that will replace the existing body.</span></span> <span data-ttu-id="a3d8a-204">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-204">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: options
+          description: '<span data-ttu-id="a3d8a-205">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-205">Optional.</span></span> <span data-ttu-id="a3d8a-206">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-206">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a3d8a-207">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-207">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span> <span data-ttu-id="a3d8a-208">coercionType: o formato desejado para o corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-208">coercionType: The desired format for the body.</span></span> <span data-ttu-id="a3d8a-209">A cadeia de caracteres no parâmetro data será convertida para este formato.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-209">The string in the data parameter will be converted to this format.</span></span>'
+          type:
+            - Office.AsyncContextOptions & CoercionTypeOptions
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-210">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-210">Optional.</span></span> <span data-ttu-id="a3d8a-211">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-211">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-212">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-212">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.Body.setAsync_1
+    summary: |-
+      <span data-ttu-id="a3d8a-213">Substitui todo o corpo com o texto especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-213">Replaces the entire body with the specified text.</span></span>
+
+      <span data-ttu-id="a3d8a-214">Ao trabalhar com corpos formatados em HTML, é importante observar que os métodos Body. getasync e Body. setasync não são idempotentes.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-214">When working with HTML-formatted bodies, it is important to note that the Body.getAsync and Body.setAsync methods are not idempotent.</span></span> <span data-ttu-id="a3d8a-215">O valor retornado do método getasync não será necessariamente o mesmo que o valor que foi passado no método setasync anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-215">The value returned from the getAsync method will not necessarily be exactly the same as the value that was passed in the setAsync method previously.</span></span> <span data-ttu-id="a3d8a-216">O cliente pode modificar o valor passado para setasync a fim de fazê-lo renderizar com eficiência com seu mecanismo de renderização.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-216">The client may modify the value passed to setAsync in order to make it render efficiently with its rendering engine.</span></span>
+
+      <span data-ttu-id="a3d8a-217">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-217">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-218">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-218">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-219">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-219">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-220">\[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-220">\[ [API set: Mailbox 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-221">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-221">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-222">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-222">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-223">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-223">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-224">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-224">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+
+      - <span data-ttu-id="a3d8a-225">InvalidFormatError: o parâmetro options. coercionType é definido como Office. CoercionType. html e o corpo da mensagem fica em texto sem formatação.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-225">InvalidFormatError: The options.coercionType parameter is set to Office.CoercionType.Html and the message body is in plain text.</span></span>
+    name: 'setAsync(data, callback)'
+    fullName: 'setAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-226">A cadeia de caracteres que substituirá o corpo existente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-226">The string that will replace the existing body.</span></span> <span data-ttu-id="a3d8a-227">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-227">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-228">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-228">Optional.</span></span> <span data-ttu-id="a3d8a-229">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-229">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-230">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-230">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.Body.setSelectedDataAsync
+    summary: |-
+      <span data-ttu-id="a3d8a-231">Substitui a seleção no corpo pelo texto especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-231">Replaces the selection in the body with the specified text.</span></span>
+
+      <span data-ttu-id="a3d8a-232">O método setSelectedDataAsync insere a cadeia de caracteres especificada no local do cursor no corpo do item ou, se o texto estiver selecionado no editor, substitui o texto selecionado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-232">The setSelectedDataAsync method inserts the specified string at the cursor location in the body of the item, or, if text is selected in the editor, it replaces the selected text.</span></span> <span data-ttu-id="a3d8a-233">Se o cursor nunca esteve no corpo do item, ou se o corpo do item perdeu o destaque na interface de usuário, a cadeia de caracteres será inserida na parte superior do conteúdo do corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-233">If the cursor was never in the body of the item, or if the body of the item lost focus in the UI, the string will be inserted at the top of the body content.</span></span> <span data-ttu-id="a3d8a-234">Após a inserção, o cursor é colocado no final do conteúdo inserido.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-234">After insertion, the cursor is placed at the end of the inserted content.</span></span>
+
+      <span data-ttu-id="a3d8a-235">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-235">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-236">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-236">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-237">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-237">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-238">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-238">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-239">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-239">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-240">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-240">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-241">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-241">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-242">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-242">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+
+      - <span data-ttu-id="a3d8a-243">InvalidFormatError: o parâmetro options. coercionType é definido como Office. CoercionType. html e o corpo da mensagem fica em texto sem formatação.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-243">InvalidFormatError: The options.coercionType parameter is set to Office.CoercionType.Html and the message body is in plain text.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="a3d8a-244">Exemplos</span><span class="sxs-lookup"><span data-stu-id="a3d8a-244">Examples</span></span>
+
+      ```javascript
+      // When including links in HTML markup, you can disable online link preview
+      // by setting the id attribute on the anchor (<a>) to "LPNoLP".
+      Office.context.mailbox.item.body.setSelectedDataAsync(
+          '<a id="LPNoLP" href="http://www.contoso.com">Click here!</a>',
+          {coercionType: Office.CoercionType.Html},
+          callback);
+      ```
+    name: 'setSelectedDataAsync(data, options, callback)'
+    fullName: 'setSelectedDataAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-245">A cadeia de caracteres que substituirá o corpo existente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-245">The string that will replace the existing body.</span></span> <span data-ttu-id="a3d8a-246">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-246">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: options
+          description: '<span data-ttu-id="a3d8a-247">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-247">Optional.</span></span> <span data-ttu-id="a3d8a-248">Um objeto literal que contém uma ou mais das propriedades a seguir.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-248">An object literal that contains one or more of the following properties.</span></span> <span data-ttu-id="a3d8a-249">asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-249">asyncContext: Developers can provide any object they wish to access in the callback method.</span></span> <span data-ttu-id="a3d8a-250">coercionType: o formato desejado para o corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-250">coercionType: The desired format for the body.</span></span> <span data-ttu-id="a3d8a-251">A cadeia de caracteres no parâmetro data será convertida para este formato.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-251">The string in the data parameter will be converted to this format.</span></span>'
+          type:
+            - Office.AsyncContextOptions & CoercionTypeOptions
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-252">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-252">Optional.</span></span> <span data-ttu-id="a3d8a-253">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-253">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-254">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-254">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+  - uid: Outlook.Office.Body.setSelectedDataAsync_1
+    summary: |-
+      <span data-ttu-id="a3d8a-255">Substitui a seleção no corpo pelo texto especificado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-255">Replaces the selection in the body with the specified text.</span></span>
+
+      <span data-ttu-id="a3d8a-256">O método setSelectedDataAsync insere a cadeia de caracteres especificada no local do cursor no corpo do item ou, se o texto estiver selecionado no editor, substitui o texto selecionado.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-256">The setSelectedDataAsync method inserts the specified string at the cursor location in the body of the item, or, if text is selected in the editor, it replaces the selected text.</span></span> <span data-ttu-id="a3d8a-257">Se o cursor nunca esteve no corpo do item, ou se o corpo do item perdeu o destaque na interface de usuário, a cadeia de caracteres será inserida na parte superior do conteúdo do corpo.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-257">If the cursor was never in the body of the item, or if the body of the item lost focus in the UI, the string will be inserted at the top of the body content.</span></span> <span data-ttu-id="a3d8a-258">Após a inserção, o cursor é colocado no final do conteúdo inserido.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-258">After insertion, the cursor is placed at the end of the inserted content.</span></span>
+
+      <span data-ttu-id="a3d8a-259">Ao incluir links na marcação HTML, você pode desabilitar a visualização de links online definindo o atributo ID na âncora (</span><span class="sxs-lookup"><span data-stu-id="a3d8a-259">When including links in HTML markup, you can disable online link preview by setting the id attribute on the anchor (</span></span><!-- -->&lt;<!-- --><span data-ttu-id="a3d8a-260">a</span><span class="sxs-lookup"><span data-stu-id="a3d8a-260">a</span></span><!-- -->&gt;<!-- --><span data-ttu-id="a3d8a-261">) para "LPNoLP" (consulte a seção exemplos de um exemplo).</span><span class="sxs-lookup"><span data-stu-id="a3d8a-261">) to "LPNoLP" (please see the Examples section for a sample).</span></span>
+
+      <span data-ttu-id="a3d8a-262">\[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a3d8a-262">\[ [API set: Mailbox 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <span data-ttu-id="a3d8a-263">**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadWriteItem</span><span class="sxs-lookup"><span data-stu-id="a3d8a-263">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadWriteItem</span></span>
+
+      <span data-ttu-id="a3d8a-264">**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redigir</span><span class="sxs-lookup"><span data-stu-id="a3d8a-264">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose</span></span>
+
+      <span data-ttu-id="a3d8a-265">**Erros**:</span><span class="sxs-lookup"><span data-stu-id="a3d8a-265">**Errors**:</span></span>
+
+      - <span data-ttu-id="a3d8a-266">DataExceedsMaximumSize: o parâmetro data é maior que 1 milhão caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-266">DataExceedsMaximumSize: The data parameter is longer than 1,000,000 characters.</span></span>
+
+      - <span data-ttu-id="a3d8a-267">InvalidFormatError: o parâmetro options. coercionType é definido como Office. CoercionType. html e o corpo da mensagem fica em texto sem formatação.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-267">InvalidFormatError: The options.coercionType parameter is set to Office.CoercionType.Html and the message body is in plain text.</span></span>
+    name: 'setSelectedDataAsync(data, callback)'
+    fullName: 'setSelectedDataAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSelectedDataAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: '<span data-ttu-id="a3d8a-268">A cadeia de caracteres que substituirá o corpo existente.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-268">The string that will replace the existing body.</span></span> <span data-ttu-id="a3d8a-269">A cadeia de caracteres está limitada a 1.000.000 de caracteres.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-269">The string is limited to 1,000,000 characters.</span></span>'
+          type:
+            - string
+        - id: callback
+          description: '<span data-ttu-id="a3d8a-270">Opcional.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-270">Optional.</span></span> <span data-ttu-id="a3d8a-271">Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-271">When the method completes, the function passed in the callback parameter is called with a single parameter of type Office.AsyncResult.</span></span> <span data-ttu-id="a3d8a-272">Os erros encontrados serão fornecidos na propriedade asyncResult. Error.</span><span class="sxs-lookup"><span data-stu-id="a3d8a-272">Any errors encountered will be provided in the asyncResult.error property.</span></span>'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'

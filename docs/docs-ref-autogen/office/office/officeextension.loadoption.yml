@@ -1,0 +1,137 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.OfficeExtension.LoadOption
+    summary: <span data-ttu-id="1911b-101">Especifica quais propriedades de um objeto devem ser carregadas.</span><span class="sxs-lookup"><span data-stu-id="1911b-101">Specifies which properties of an object should be loaded.</span></span> <span data-ttu-id="1911b-102">Essa carga ocorre quando o método Sync () é executado.</span><span class="sxs-lookup"><span data-stu-id="1911b-102">This load happens when the sync() method is executed.</span></span> <span data-ttu-id="1911b-103">Isso sincroniza os Estados entre os objetos do Office e os objetos de proxy JavaScript correspondentes.</span><span class="sxs-lookup"><span data-stu-id="1911b-103">This synchronizes the states between Office objects and corresponding JavaScript proxy objects.</span></span>
+    remarks: |-
+      <span data-ttu-id="1911b-104">Para o Word, o método preferido para especificar as informações de propriedades e paginação é usar um literal de cadeia de caracteres.</span><span class="sxs-lookup"><span data-stu-id="1911b-104">For Word, the preferred method for specifying the properties and paging information is by using a string literal.</span></span> <span data-ttu-id="1911b-105">Os dois primeiros exemplos mostram a forma preferencial para solicitar as propriedades de texto e tamanho de fonte dos parágrafos em uma coleção de parágrafos:</span><span class="sxs-lookup"><span data-stu-id="1911b-105">The first two examples show the preferred way to request the text and font size properties for paragraphs in a paragraph collection:</span></span>
+
+      `context.load(paragraphs, 'text, font/size');`
+
+      `paragraphs.load('text, font/size');`
+
+      <span data-ttu-id="1911b-106">Veja um exemplo parecido usando notação de objeto (inclui paginação):</span><span class="sxs-lookup"><span data-stu-id="1911b-106">Here is a similar example using object notation (includes paging):</span></span>
+
+      `context.load(paragraphs, {select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      `paragraphs.load({select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+      <span data-ttu-id="1911b-107">Observe que, quando não determinamos as propriedades específicas do objeto Font na instrução Select, a instrução de expansão em si indica que todas as propriedades da fonte são carregadas.</span><span class="sxs-lookup"><span data-stu-id="1911b-107">Note that if we don't specify the specific properties on the font object in the select statement, the expand statement by itself would indicate that all of the font properties are loaded.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="1911b-108">Exemplos</span><span class="sxs-lookup"><span data-stu-id="1911b-108">Examples</span></span>
+
+      ```javascript
+      // This example shows how to get the paragraphs in the Word document
+      // along with their text and font size properties.
+
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          // Create a proxy object for the paragraphs collection.
+          var paragraphs = context.document.body.paragraphs;
+
+          // Queue a commmand to load the text and font properties.
+          // It is best practice to always specify the property set.
+          // Otherwise, all properties are returned on the object.
+          context.load(paragraphs, 'text, font/size');
+
+          // Synchronize the document state by executing the queued commands,
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              // Insert code that works with the paragraphs loaded by context.load().
+          })
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: OfficeExtension.LoadOption
+    fullName: OfficeExtension.LoadOption
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.OfficeExtension.LoadOption.expand
+      - office.OfficeExtension.LoadOption.select
+      - office.OfficeExtension.LoadOption.skip
+      - office.OfficeExtension.LoadOption.top
+  - uid: office.OfficeExtension.LoadOption.expand
+    summary: '<span data-ttu-id="1911b-109">Uma cadeia de caracteres delimitada por vírgulas, ou uma matriz de cadeias de caracteres, que especifica as propriedades de navegação a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="1911b-109">A comma-delimited string, or array of strings, that specifies the navigation properties to load.</span></span>'
+    name: expand
+    fullName: expand
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'expand?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.select
+    summary: '<span data-ttu-id="1911b-110">Uma cadeia de caracteres delimitada por vírgulas, ou uma matriz de cadeias de caracteres, que especifica as propriedades a serem carregadas.</span><span class="sxs-lookup"><span data-stu-id="1911b-110">A comma-delimited string, or array of strings, that specifies the properties to load.</span></span>'
+    name: select
+    fullName: select
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'select?: string | string[];'
+      return:
+        type:
+          - 'string | string[]'
+  - uid: office.OfficeExtension.LoadOption.skip
+    summary: '<span data-ttu-id="1911b-111">Só pode ser usado em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="1911b-111">Only usable on collection types.</span></span> <span data-ttu-id="1911b-112">Especifica o número de itens na coleção que devem ser ignorados e não incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="1911b-112">Specifies the number of items in the collection that are to be skipped and not included in the result.</span></span> <span data-ttu-id="1911b-113">Se Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.</span><span class="sxs-lookup"><span data-stu-id="1911b-113">If top is specified, the result set will start after skipping the specified number of items.</span></span>'
+    name: skip
+    fullName: skip
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'skip?: number;'
+      return:
+        type:
+          - number
+  - uid: office.OfficeExtension.LoadOption.top
+    summary: <span data-ttu-id="1911b-114">Só pode ser usado em tipos de coleção.</span><span class="sxs-lookup"><span data-stu-id="1911b-114">Only usable on collection types.</span></span> <span data-ttu-id="1911b-115">Especifica o número máximo de itens da coleção que podem ser incluídos no resultado.</span><span class="sxs-lookup"><span data-stu-id="1911b-115">Specifies the maximum number of collection items that can be included in the result.</span></span>
+    name: top
+    fullName: top
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'top?: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="1911b-116">Exemplos</span><span class="sxs-lookup"><span data-stu-id="1911b-116">Examples</span></span>
+
+          ```javascript
+          // This OneNote example shows how to get the page title and indentation level
+          // of the top five pages in the current section.
+          OneNote.run(function (context) {
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+
+              // Queue a command to load the pages.           
+              pages.load({ "select":"title,pageLevel", "top":5, "skip":0 });
+              return context.sync()
+                  .then(function() {
+                      // Iterate through the collection of pages.    
+                      $.each(pages.items, function(index, page) {
+                          // Show some properties.
+                          console.log("Page title: " + page.title);
+                          console.log("Indentation level: " + page.pageLevel);
+                      });
+                  }).catch(function(error) {
+                      console.log("Error: " + error);
+                      if (error instanceof OfficeExtension.Error) {
+                          console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                      }
+                  })
+              });
+          ```
