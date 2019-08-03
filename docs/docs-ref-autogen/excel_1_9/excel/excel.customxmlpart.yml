@@ -1,0 +1,305 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.CustomXmlPart
+    summary: |-
+      Representa um objeto de parte XML personalizado em uma pasta de trabalho.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.CustomXmlPart
+    fullName: Excel.CustomXmlPart
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.CustomXmlPart.context
+      - excel.Excel.CustomXmlPart.delete
+      - excel.Excel.CustomXmlPart.getXml
+      - excel.Excel.CustomXmlPart.id
+      - excel.Excel.CustomXmlPart.load
+      - excel.Excel.CustomXmlPart.load_1
+      - excel.Excel.CustomXmlPart.load_2
+      - excel.Excel.CustomXmlPart.namespaceUri
+      - excel.Excel.CustomXmlPart.setXml
+      - excel.Excel.CustomXmlPart.toJSON
+  - uid: excel.Excel.CustomXmlPart.context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.CustomXmlPart.delete
+    summary: |-
+      Exclui a parte XML personalizada.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const settings = context.workbook.settings;
+              const xmlPartIDSetting = settings.getItemOrNullObject("ContosoReviewXmlPartId").load("value");
+              await context.sync();
+
+              if (xmlPartIDSetting.value) {   
+                  let customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);
+                  const xmlBlob = customXmlPart.getXml();
+                  customXmlPart.delete();
+                  customXmlPart = context.workbook.customXmlParts.getItemOrNullObject(xmlPartIDSetting.value);
+
+                  await context.sync();
+
+                  if (customXmlPart.isNullObject) {
+                      $("#display-xml").text(`The XML part with the id ${xmlPartIDSetting.value} has been deleted.`);
+
+                      // Delete the unneeded setting too.
+                      xmlPartIDSetting.delete();            
+                  } else {
+                      const readableXml = addLineBreaksToXML(xmlBlob.value);
+                      const strangeMessage = `This is strange. The XML part with the id ${xmlPartIDSetting.value} has not been deleted:\n${readableXml}`
+                      $("#display-xml").text(strangeMessage);
+                  }
+
+                  await context.sync();
+              }
+          });
+          ```
+  - uid: excel.Excel.CustomXmlPart.getXml
+    summary: |-
+      Obtém o conteúdo XML completo da parte XML personalizada.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getXml()
+    fullName: getXml()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getXml(): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              // You must have the xmlns attribute to populate the 
+              // CustomXml.namespaceUri property.
+              const originalXml = "<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>";
+              const customXmlPart = context.workbook.customXmlParts.add(originalXml);
+              customXmlPart.load("id");
+              const xmlBlob = customXmlPart.getXml();
+
+              await context.sync();
+
+              const readableXml = addLineBreaksToXML(xmlBlob.value);
+              $("#display-xml").text(readableXml);
+
+              // Store the XML part's ID in a setting.
+              const settings = context.workbook.settings;
+              settings.add("ContosoReviewXmlPartId", customXmlPart.id);
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.CustomXmlPart.id
+    summary: |-
+      A ID da parte XML personalizada. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              // You must have the xmlns attribute to populate the 
+              // CustomXml.namespaceUri property.
+              const originalXml = "<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>";
+              const customXmlPart = context.workbook.customXmlParts.add(originalXml);
+              customXmlPart.load("id");
+              const xmlBlob = customXmlPart.getXml();
+
+              await context.sync();
+
+              const readableXml = addLineBreaksToXML(xmlBlob.value);
+              $("#display-xml").text(readableXml);
+
+              // Store the XML part's ID in a setting.
+              const settings = context.workbook.settings;
+              settings.add("ContosoReviewXmlPartId", customXmlPart.id);
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.CustomXmlPart.load
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
+    remarks: |-
+      Além dessa assinatura, este método tem as seguintes assinaturas:
+
+      `load(option?: string | string[]): Excel.CustomXmlPart`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPart`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPart`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.CustomXmlPartLoadOptions): Excel.CustomXmlPart;'
+      return:
+        type:
+          - excel.Excel.CustomXmlPart
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.CustomXmlPartLoadOptions
+  - uid: excel.Excel.CustomXmlPart.load_1
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPart;'
+      return:
+        type:
+          - excel.Excel.CustomXmlPart
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.CustomXmlPart.load_2
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.CustomXmlPart;'
+      return:
+        type:
+          - excel.Excel.CustomXmlPart
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.CustomXmlPart.namespaceUri
+    summary: |-
+      O URI do namespace da parte XML personalizada. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: namespaceUri
+    fullName: namespaceUri
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly namespaceUri: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.CustomXmlPart.setXml
+    summary: |-
+      Define o conteúdo XML completo da parte XML personalizada.
+
+      \[[Conjunto de APIs: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setXml(xml)
+    fullName: setXml(xml)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setXml(xml: string): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const settings = context.workbook.settings;
+              const xmlPartIDSetting = settings.getItemOrNullObject("ContosoReviewXmlPartId").load("value");
+              await context.sync();
+
+              if (xmlPartIDSetting.value) {   
+                  const customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);
+
+                  // The setXml method does a whole-for-whole replacement 
+                  // of the entire XML.
+                  customXmlPart.setXml("<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>John</Reviewer><Reviewer>Hitomi</Reviewer></Reviewers>");
+                  const xmlBlob = customXmlPart.getXml();
+                  await context.sync();
+
+                  const readableXml = addLineBreaksToXML(xmlBlob.value);
+                  $("#display-xml").text(readableXml);
+                  await context.sync();
+              }
+          });
+          ```
+      parameters:
+        - id: xml
+          description: Conteúdo XML da parte.
+          type:
+            - string
+  - uid: excel.Excel.CustomXmlPart.toJSON
+    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. CustomXmlPart original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CustomXmlPartData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.CustomXmlPartData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.CustomXmlPartData
+        description: ''
