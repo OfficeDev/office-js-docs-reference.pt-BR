@@ -10,6 +10,7 @@ items:
     package: office
     children:
       - office.Office.RequirementSetSupport.isSetSupported
+      - office.Office.RequirementSetSupport.isSetSupported_1
   - uid: office.Office.RequirementSetSupport.isSetSupported
     summary: Verifique se o conjunto de requisitos especificado é compatível com o aplicativo host do Office.
     name: 'isSetSupported(name, minVersion)'
@@ -18,17 +19,41 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'isSetSupported(name: string, minVersion?: string | number): boolean;'
+      content: 'isSetSupported(name: string, minVersion?: string): boolean;'
       return:
         type:
           - boolean
         description: ''
       parameters:
         - id: name
-          description: 'Nome do conjunto; por exemplo, "MatrixBindings".'
+          description: 'O nome do conjunto de requisitos (por exemplo, "ExcelApi").'
           type:
             - string
         - id: minVersion
-          description: 'A versão mínima necessária; por exemplo, "1,4". Observação: o tipo de cadeia de caracteres é o tipo de dados recomendado para esse parâmetro. O uso do tipo de número é preterido e não será compatível com conjuntos de requisitos recentes.'
+          description: 'A versão mínima necessária (por exemplo, "1,4").'
           type:
-            - string | number
+            - string
+  - uid: office.Office.RequirementSetSupport.isSetSupported_1
+    summary: Verifique se o conjunto de requisitos especificado é compatível com o aplicativo host do Office.
+    deprecated:
+      content: Use the string overload of `isSetSupported` instead.
+    name: 'isSetSupported(name, minVersionNumber)'
+    fullName: 'isSetSupported(name, minVersionNumber)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isSetSupported(name: string, minVersionNumber?: number): boolean;'
+      return:
+        type:
+          - boolean
+        description: ''
+      parameters:
+        - id: name
+          description: 'O nome do conjunto de requisitos (por exemplo, "ExcelApi").'
+          type:
+            - string
+        - id: minVersionNumber
+          description: 'A versão mínima necessária (por exemplo, 1,4). Aviso: essa sobrecarga de `isSetSupported` (onde `minVersionNumber` um número) é preterida. Use a sobrecarga de cadeia `isSetSupported` de caracteres de em vez disso.'
+          type:
+            - number
