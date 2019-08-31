@@ -19,11 +19,13 @@ items:
       - office.Office.AddinCommands.Event.source
   - uid: office.Office.AddinCommands.Event.completed
     summary: |-
-      Indica que o suplemento concluiu o processamento que foi acionado por um botão de comando do suplemento ou manipulador de eventos.
+      Indica que o suplemento concluiu o processamento e será fechado automaticamente.
 
-      Este método deve ser chamado no final de uma função que foi invocado por um comando de suplemento definido com um elemento Action com um atributo xsi: type definido como ExecuteFunction. Chamar esse método sinaliza o cliente host de que a função está concluída e que ele pode limpar qualquer estado envolvido com chamar a função. Por exemplo, se o usuário fechar o Outlook antes de este método ser chamado, o Outlook o avisará de que uma função ainda está em execução.
+      Este método deve ser chamado no final de uma função que foi invocado pelo seguinte.
 
-      Este método deve ser chamado em um manipulador de eventos adicionado por meio de Office.context.mailbox.addHandlerAsync depois de concluir o processamento do evento.
+      - Um botão sem interface do usuário (ou seja, um comando do suplemento definido com um elemento Action onde o atributo xsi: Type é definido como ExecuteFunction)
+
+      - Um [evento](https://docs.microsoft.com/office/dev/add-ins/reference/manifest/event) definido no [ponto de extensão de eventos](https://docs.microsoft.com/office/dev/add-ins/reference/manifest/extensionpoint#events)<!-- -->, por exemplo, um `ItemSend` evento
 
       \[[Conjunto de APIs: caixa de correio 1,3](/office/dev/add-ins/reference/javascript-api-for-office)\]
     remarks: |-
@@ -36,28 +38,29 @@ items:
       #### <a name="examples"></a>Exemplos
 
       ```javascript
-      function processItem (event) {
+      // For the following example, the processItem function is
+      // defined in the FunctionFile referenced from the add-in manifest,
+      // and maps to the FunctionName of the action in the associated button control.
+      function processItem(event) {
           // Do some processing
 
           event.completed();
       }
-
-      // In the following example, the checkMessage function has
-      // been registered as an event handler for ItemSend.
+      ```
+      ```javascript
+      // For the following example, the checkMessage function was
+      // registered as an event handler for ItemSend.
       function checkMessage(event) {
-          // Get the item being sent
+          // Get the item being sent.
           var outgoingMsg = Office.context.mailbox.item;
 
-          // Check if subject contains "BLOCK"
+          // Check if subject contains "BLOCK".
           outgoingMsg.subject.getAsync(function (result) {
-              // Subject is in result.value
-              if (result.value.indexOf('BLOCK') != -1) {
-                  // Value is found, stop send
-                  event.completed({allowEvent = false});
-              } else {
-                  // Value wasn't found, allow send
-                  event.completed({allowEvent = true});
-              }
+              // Subject is in `result.value`.
+              // If search term "BLOCK" is found, don't send message.
+              const notFound = -1;
+              var allowEvent = (result.value.indexOf('BLOCK') === notFound);
+              event.completed({allowEvent: allowEvent});
           });
       }
       ```
