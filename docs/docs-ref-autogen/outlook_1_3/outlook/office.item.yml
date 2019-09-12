@@ -1,6 +1,6 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: outlook.Office.Item
+  - uid: 'outlook!Office.Item:interface'
     summary: |-
       O namespace do item é usado para acessar a mensagem, solicitação de reunião ou compromisso atualmente selecionado. Você pode determinar o tipo do item usando a `itemType` propriedade.
 
@@ -14,13 +14,82 @@ items:
     langs:
       - typeScript
     type: interface
-    package: outlook
+    package: outlook!
     children:
-      - outlook.Office.Item.loadCustomPropertiesAsync
-      - outlook.Office.Item.body
-      - outlook.Office.Item.itemType
-      - outlook.Office.Item.notificationMessages
-  - uid: outlook.Office.Item.loadCustomPropertiesAsync
+      - 'outlook!Office.Item#body:member'
+      - 'outlook!Office.Item#itemType:member'
+      - 'outlook!Office.Item#loadCustomPropertiesAsync:member(1)'
+      - 'outlook!Office.Item#notificationMessages:member'
+  - uid: 'outlook!Office.Item#body:member'
+    summary: |-
+      Obtém um objeto que fornece métodos para manipular o corpo de um item.
+
+      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // This example gets the body of the item as plain text.
+      Office.context.mailbox.item.body.getAsync(
+          "text",
+          { asyncContext: "This is passed to the callback" },
+          function callback(result) {
+              // Do something with the result.
+          });
+
+      // The following is an example of the result parameter passed to the callback function.
+      {
+          "value": "TEXT of whole body (including threads below)",
+          "status": "succeeded",
+          "asyncContext": "This is passed to the callback"
+      }
+      ```
+    name: body
+    fullName: body
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'body: Body;'
+      return:
+        type:
+          - 'outlook!Office.Body:interface'
+  - uid: 'outlook!Office.Item#itemType:member'
+    summary: |-
+      Obtém o tipo de item que representa uma instância.
+
+      A propriedade itemType retorna um dos valores de enumeração ItemType, indicando se a instância do objeto item é uma mensagem ou um compromisso.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
+          // Do something.
+      } else {
+          // Do something else.
+      }
+      ```
+    name: itemType
+    fullName: itemType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'itemType: MailboxEnums.ItemType | string;'
+      return:
+        type:
+          - 'outlook!Office.Item#itemType~0:complex'
+  - uid: 'outlook!Office.Item#loadCustomPropertiesAsync:member(1)'
     summary: |-
       Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.
 
@@ -79,81 +148,12 @@ items:
         - id: callback
           description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.'
           type:
-            - '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
+            - 'outlook!Office.Item#loadCustomPropertiesAsync~0:complex'
         - id: userContext
           description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Esse objeto pode ser acessado pela propriedade asyncResult. asyncContext na função de retorno de chamada.
           type:
             - any
-  - uid: outlook.Office.Item.body
-    summary: |-
-      Obtém um objeto que fornece métodos para manipular o corpo de um item.
-
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // This example gets the body of the item as plain text.
-      Office.context.mailbox.item.body.getAsync(
-          "text",
-          { asyncContext: "This is passed to the callback" },
-          function callback(result) {
-              // Do something with the result.
-          });
-
-      // The following is an example of the result parameter passed to the callback function.
-      {
-          "value": "TEXT of whole body (including threads below)",
-          "status": "succeeded",
-          "asyncContext": "This is passed to the callback"
-      }
-      ```
-    name: body
-    fullName: body
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'body: Body;'
-      return:
-        type:
-          - outlook.Office.Body
-  - uid: outlook.Office.Item.itemType
-    summary: |-
-      Obtém o tipo de item que representa uma instância.
-
-      A propriedade itemType retorna um dos valores de enumeração ItemType, indicando se a instância do objeto item é uma mensagem ou um compromisso.
-
-      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
-          // Do something.
-      } else {
-          // Do something else.
-      }
-      ```
-    name: itemType
-    fullName: itemType
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'itemType: MailboxEnums.ItemType | string;'
-      return:
-        type:
-          - MailboxEnums.ItemType | string
-  - uid: outlook.Office.Item.notificationMessages
+  - uid: 'outlook!Office.Item#notificationMessages:member'
     summary: |-
       Obtém as mensagens de notificação de um item.
 
@@ -182,4 +182,34 @@ items:
       content: 'notificationMessages: NotificationMessages;'
       return:
         type:
-          - outlook.Office.NotificationMessages
+          - 'outlook!Office.NotificationMessages:interface'
+references:
+  - uid: 'outlook!Office.Body:interface'
+    name: Body
+  - uid: 'outlook!Office.Item#itemType~0:complex'
+    name: MailboxEnums.ItemType | string
+    fullName: Office.MailboxEnums.ItemType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.MailboxEnums.ItemType:enum'
+        name: MailboxEnums.ItemType
+        fullName: Office.MailboxEnums.ItemType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.Item#loadCustomPropertiesAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.CustomProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.CustomProperties:interface'
+        name: CustomProperties
+        fullName: Office.CustomProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.NotificationMessages:interface'
+    name: NotificationMessages

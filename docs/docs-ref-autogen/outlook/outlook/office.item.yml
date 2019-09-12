@@ -1,6 +1,6 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: outlook.Office.Item
+  - uid: 'outlook!Office.Item:interface'
     summary: |-
       O namespace do item é usado para acessar a mensagem, solicitação de reunião ou compromisso atualmente selecionado. Você pode determinar o tipo do item usando a `itemType` propriedade.
 
@@ -14,25 +14,25 @@ items:
     langs:
       - typeScript
     type: interface
-    package: outlook
+    package: outlook!
     children:
-      - outlook.Office.Item.addHandlerAsync
-      - outlook.Office.Item.addHandlerAsync_1
-      - outlook.Office.Item.getAttachmentContentAsync
-      - outlook.Office.Item.getAttachmentContentAsync_1
-      - outlook.Office.Item.getInitializationContextAsync
-      - outlook.Office.Item.getInitializationContextAsync_1
-      - outlook.Office.Item.getSharedPropertiesAsync
-      - outlook.Office.Item.getSharedPropertiesAsync_1
-      - outlook.Office.Item.loadCustomPropertiesAsync
-      - outlook.Office.Item.removeHandlerAsync
-      - outlook.Office.Item.removeHandlerAsync_1
-      - outlook.Office.Item.body
-      - outlook.Office.Item.categories
-      - outlook.Office.Item.itemType
-      - outlook.Office.Item.notificationMessages
-      - outlook.Office.Item.seriesId
-  - uid: outlook.Office.Item.addHandlerAsync
+      - 'outlook!Office.Item#addHandlerAsync:member(1)'
+      - 'outlook!Office.Item#addHandlerAsync:member(2)'
+      - 'outlook!Office.Item#body:member'
+      - 'outlook!Office.Item#categories:member'
+      - 'outlook!Office.Item#getAttachmentContentAsync:member(1)'
+      - 'outlook!Office.Item#getAttachmentContentAsync:member(2)'
+      - 'outlook!Office.Item#getInitializationContextAsync:member(1)'
+      - 'outlook!Office.Item#getInitializationContextAsync:member(2)'
+      - 'outlook!Office.Item#getSharedPropertiesAsync:member(1)'
+      - 'outlook!Office.Item#getSharedPropertiesAsync:member(2)'
+      - 'outlook!Office.Item#itemType:member'
+      - 'outlook!Office.Item#loadCustomPropertiesAsync:member(1)'
+      - 'outlook!Office.Item#notificationMessages:member'
+      - 'outlook!Office.Item#removeHandlerAsync:member(1)'
+      - 'outlook!Office.Item#removeHandlerAsync:member(2)'
+      - 'outlook!Office.Item#seriesId:member'
+  - uid: 'outlook!Office.Item#addHandlerAsync:member(1)'
     summary: |-
       Adiciona um manipulador de eventos a um evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
@@ -58,7 +58,7 @@ items:
         - id: eventType
           description: O evento que deve invocar o manipulador.
           type:
-            - Office.EventType | string
+            - 'outlook!Office.Item#addHandlerAsync~0:complex'
         - id: handler
           description: 'A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade Type no parâmetro corresponderá ao parâmetro eventType passado para addHandlerAsync.'
           type:
@@ -66,12 +66,12 @@ items:
         - id: options
           description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
           type:
-            - Office.AsyncContextOptions
+            - 'outlook!Office.AsyncContextOptions:interface'
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
           type:
-            - '(asyncResult: Office.AsyncResult<void>) => void'
-  - uid: outlook.Office.Item.addHandlerAsync_1
+            - 'outlook!Office.Item#addHandlerAsync~1:complex'
+  - uid: 'outlook!Office.Item#addHandlerAsync:member(2)'
     summary: |-
       Adiciona um manipulador de eventos a um evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
@@ -111,7 +111,7 @@ items:
         - id: eventType
           description: O evento que deve invocar o manipulador.
           type:
-            - Office.EventType | string
+            - 'outlook!Office.Item#addHandlerAsync~2:complex'
         - id: handler
           description: 'A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade Type no parâmetro corresponderá ao parâmetro eventType passado para addHandlerAsync.'
           type:
@@ -119,8 +119,82 @@ items:
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
           type:
-            - '(asyncResult: Office.AsyncResult<void>) => void'
-  - uid: outlook.Office.Item.getAttachmentContentAsync
+            - 'outlook!Office.Item#addHandlerAsync~3:complex'
+  - uid: 'outlook!Office.Item#body:member'
+    summary: |-
+      Obtém um objeto que fornece métodos para manipular o corpo de um item.
+
+      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // This example gets the body of the item as plain text.
+      Office.context.mailbox.item.body.getAsync(
+          "text",
+          { asyncContext: "This is passed to the callback" },
+          function callback(result) {
+              // Do something with the result.
+          });
+
+      // The following is an example of the result parameter passed to the callback function.
+      {
+          "value": "TEXT of whole body (including threads below)",
+          "status": "succeeded",
+          "asyncContext": "This is passed to the callback"
+      }
+      ```
+    name: body
+    fullName: body
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'body: Body;'
+      return:
+        type:
+          - 'outlook!Office.Body:interface'
+  - uid: 'outlook!Office.Item#categories:member'
+    summary: |-
+      Obtém um objeto que fornece métodos para gerenciar as categorias do item.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      Office.context.mailbox.item.categories.getAsync(function (asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+              console.log("Action failed with error: " + asyncResult.error.message);
+          } else {
+              var categories = asyncResult.value;
+              console.log("Categories:");
+              categories.forEach(function (item) {
+                  console.log("-- " + JSON.stringify(item));
+              });
+          }
+      });
+      ```
+    isPreview: true
+    name: categories
+    fullName: categories
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'categories: Categories;'
+      return:
+        type:
+          - 'outlook!Office.Categories:interface'
+  - uid: 'outlook!Office.Item#getAttachmentContentAsync:member(1)'
     summary: |-
       Obtém um anexo de uma mensagem ou de um compromisso e o retorna como um objeto **AttachmentContent** .
 
@@ -192,12 +266,12 @@ items:
         - id: options
           description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
           type:
-            - Office.AsyncContextOptions
+            - 'outlook!Office.AsyncContextOptions:interface'
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Se a chamada falhar, a propriedade asyncResult. Error conterá e o código de erro com o motivo da falha.'
           type:
-            - '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
-  - uid: outlook.Office.Item.getAttachmentContentAsync_1
+            - 'outlook!Office.Item#getAttachmentContentAsync~0:complex'
+  - uid: 'outlook!Office.Item#getAttachmentContentAsync:member(2)'
     summary: |-
       Obtém um anexo de uma mensagem ou de um compromisso e o retorna como um objeto **AttachmentContent** .
 
@@ -232,8 +306,8 @@ items:
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Se a chamada falhar, a propriedade asyncResult. Error conterá e o código de erro com o motivo da falha.'
           type:
-            - '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
-  - uid: outlook.Office.Item.getInitializationContextAsync
+            - 'outlook!Office.Item#getAttachmentContentAsync~1:complex'
+  - uid: 'outlook!Office.Item#getInitializationContextAsync:member(1)'
     summary: |-
       Obtém dados de inicialização passados quando o suplemento é [ativado por uma mensagem acionável](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)<!-- -->.
 
@@ -260,12 +334,12 @@ items:
         - id: options
           description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
           type:
-            - Office.AsyncContextOptions
+            - 'outlook!Office.AsyncContextOptions:interface'
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Em caso de êxito, os dados de inicialização são fornecidos na propriedade asyncResult. Value como uma cadeia de caracteres. Se não houver nenhum contexto de inicialização, o objeto asyncResult conterá um objeto Error com sua propriedade Code definida como 9020 e sua propriedade Name definida como GenericResponseError.'
           type:
-            - '(asyncResult: Office.AsyncResult<string>) => void'
-  - uid: outlook.Office.Item.getInitializationContextAsync_1
+            - 'outlook!Office.Item#getInitializationContextAsync~0:complex'
+  - uid: 'outlook!Office.Item#getInitializationContextAsync:member(2)'
     summary: |-
       Obtém dados de inicialização passados quando o suplemento é [ativado por uma mensagem acionável](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)<!-- -->.
 
@@ -318,8 +392,8 @@ items:
         - id: callback
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Em caso de êxito, os dados de inicialização são fornecidos na propriedade asyncResult. Value como uma cadeia de caracteres. Se não houver nenhum contexto de inicialização, o objeto asyncResult conterá um objeto Error com sua propriedade Code definida como 9020 e sua propriedade Name definida como GenericResponseError.'
           type:
-            - '(asyncResult: Office.AsyncResult<string>) => void'
-  - uid: outlook.Office.Item.getSharedPropertiesAsync
+            - 'outlook!Office.Item#getInitializationContextAsync~1:complex'
+  - uid: 'outlook!Office.Item#getSharedPropertiesAsync:member(1)'
     summary: |-
       Obtém as propriedades de um compromisso ou uma mensagem em uma pasta compartilhada, calendário ou caixa de correio.
 
@@ -344,12 +418,12 @@ items:
         - id: options
           description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
           type:
-            - Office.AsyncContextOptions
+            - 'outlook!Office.AsyncContextOptions:interface'
         - id: callback
           description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult. A `value` Propriedade do resultado é as propriedades do item compartilhado.'
           type:
-            - '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
-  - uid: outlook.Office.Item.getSharedPropertiesAsync_1
+            - 'outlook!Office.Item#getSharedPropertiesAsync~0:complex'
+  - uid: 'outlook!Office.Item#getSharedPropertiesAsync:member(2)'
     summary: |-
       Obtém as propriedades de um compromisso ou uma mensagem em uma pasta compartilhada, calendário ou caixa de correio.
 
@@ -385,8 +459,39 @@ items:
         - id: callback
           description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult. A `value` Propriedade do resultado é as propriedades do item compartilhado.'
           type:
-            - '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
-  - uid: outlook.Office.Item.loadCustomPropertiesAsync
+            - 'outlook!Office.Item#getSharedPropertiesAsync~1:complex'
+  - uid: 'outlook!Office.Item#itemType:member'
+    summary: |-
+      Obtém o tipo de item que representa uma instância.
+
+      A propriedade itemType retorna um dos valores de enumeração ItemType, indicando se a instância do objeto item é uma mensagem ou um compromisso.
+
+      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
+          // Do something.
+      } else {
+          // Do something else.
+      }
+      ```
+    name: itemType
+    fullName: itemType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'itemType: MailboxEnums.ItemType | string;'
+      return:
+        type:
+          - 'outlook!Office.Item#itemType~0:complex'
+  - uid: 'outlook!Office.Item#loadCustomPropertiesAsync:member(1)'
     summary: |-
       Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.
 
@@ -445,183 +550,12 @@ items:
         - id: callback
           description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.'
           type:
-            - '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
+            - 'outlook!Office.Item#loadCustomPropertiesAsync~0:complex'
         - id: userContext
           description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Esse objeto pode ser acessado pela propriedade asyncResult. asyncContext na função de retorno de chamada.
           type:
             - any
-  - uid: outlook.Office.Item.removeHandlerAsync
-    summary: |-
-      Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
-
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
-
-      \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-    name: 'removeHandlerAsync(eventType, options, callback)'
-    fullName: 'removeHandlerAsync(eventType, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: O evento que deve revogar o manipulador.
-          type:
-            - Office.EventType | string
-        - id: options
-          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
-          type:
-            - Office.AsyncContextOptions
-        - id: callback
-          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
-          type:
-            - '(asyncResult: Office.AsyncResult<void>) => void'
-  - uid: outlook.Office.Item.removeHandlerAsync_1
-    summary: |-
-      Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
-
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
-
-      \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-    name: 'removeHandlerAsync(eventType, callback)'
-    fullName: 'removeHandlerAsync(eventType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: eventType
-          description: O evento que deve revogar o manipulador.
-          type:
-            - Office.EventType | string
-        - id: callback
-          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
-          type:
-            - '(asyncResult: Office.AsyncResult<void>) => void'
-  - uid: outlook.Office.Item.body
-    summary: |-
-      Obtém um objeto que fornece métodos para manipular o corpo de um item.
-
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // This example gets the body of the item as plain text.
-      Office.context.mailbox.item.body.getAsync(
-          "text",
-          { asyncContext: "This is passed to the callback" },
-          function callback(result) {
-              // Do something with the result.
-          });
-
-      // The following is an example of the result parameter passed to the callback function.
-      {
-          "value": "TEXT of whole body (including threads below)",
-          "status": "succeeded",
-          "asyncContext": "This is passed to the callback"
-      }
-      ```
-    name: body
-    fullName: body
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'body: Body;'
-      return:
-        type:
-          - outlook.Office.Body
-  - uid: outlook.Office.Item.categories
-    summary: |-
-      Obtém um objeto que fornece métodos para gerenciar as categorias do item.
-
-      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      Office.context.mailbox.item.categories.getAsync(function (asyncResult) {
-          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-              console.log("Action failed with error: " + asyncResult.error.message);
-          } else {
-              var categories = asyncResult.value;
-              console.log("Categories:");
-              categories.forEach(function (item) {
-                  console.log("-- " + JSON.stringify(item));
-              });
-          }
-      });
-      ```
-    isPreview: true
-    name: categories
-    fullName: categories
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'categories: Categories;'
-      return:
-        type:
-          - outlook.Office.Categories
-  - uid: outlook.Office.Item.itemType
-    summary: |-
-      Obtém o tipo de item que representa uma instância.
-
-      A propriedade itemType retorna um dos valores de enumeração ItemType, indicando se a instância do objeto item é uma mensagem ou um compromisso.
-
-      \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
-          // Do something.
-      } else {
-          // Do something else.
-      }
-      ```
-    name: itemType
-    fullName: itemType
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'itemType: MailboxEnums.ItemType | string;'
-      return:
-        type:
-          - MailboxEnums.ItemType | string
-  - uid: outlook.Office.Item.notificationMessages
+  - uid: 'outlook!Office.Item#notificationMessages:member'
     summary: |-
       Obtém as mensagens de notificação de um item.
 
@@ -650,8 +584,74 @@ items:
       content: 'notificationMessages: NotificationMessages;'
       return:
         type:
-          - outlook.Office.NotificationMessages
-  - uid: outlook.Office.Item.seriesId
+          - 'outlook!Office.NotificationMessages:interface'
+  - uid: 'outlook!Office.Item#removeHandlerAsync:member(1)'
+    summary: |-
+      Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
+
+      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+
+      \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: 'removeHandlerAsync(eventType, options, callback)'
+    fullName: 'removeHandlerAsync(eventType, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: O evento que deve revogar o manipulador.
+          type:
+            - 'outlook!Office.Item#removeHandlerAsync~0:complex'
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. asyncContext: os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
+          type:
+            - 'outlook!Office.Item#removeHandlerAsync~1:complex'
+  - uid: 'outlook!Office.Item#removeHandlerAsync:member(2)'
+    summary: |-
+      Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
+
+      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+
+      \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+    name: 'removeHandlerAsync(eventType, callback)'
+    fullName: 'removeHandlerAsync(eventType, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: O evento que deve revogar o manipulador.
+          type:
+            - 'outlook!Office.Item#removeHandlerAsync~2:complex'
+        - id: callback
+          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult.'
+          type:
+            - 'outlook!Office.Item#removeHandlerAsync~3:complex'
+  - uid: 'outlook!Office.Item#seriesId:member'
     summary: |-
       Obtém a ID da série à qual uma instância pertence.
 
@@ -690,3 +690,203 @@ items:
       return:
         type:
           - string
+references:
+  - uid: 'outlook!Office.Item#addHandlerAsync~0:complex'
+    name: Office.EventType | string
+    fullName: Office.EventType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.EventType:enum'
+        name: Office.EventType
+        fullName: Office.EventType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.AsyncContextOptions:interface'
+    name: Office.AsyncContextOptions
+  - uid: 'outlook!Office.Item#addHandlerAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Item#addHandlerAsync~2:complex'
+    name: Office.EventType | string
+    fullName: Office.EventType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.EventType:enum'
+        name: Office.EventType
+        fullName: Office.EventType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.Item#addHandlerAsync~3:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body:interface'
+    name: Body
+  - uid: 'outlook!Office.Categories:interface'
+    name: Categories
+  - uid: 'outlook!Office.Item#getAttachmentContentAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.Item#getAttachmentContentAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.Item#getInitializationContextAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<string>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <string>) => void
+        fullName: <string>) => void
+  - uid: 'outlook!Office.Item#getInitializationContextAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<string>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <string>) => void
+        fullName: <string>) => void
+  - uid: 'outlook!Office.Item#getSharedPropertiesAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.Item#getSharedPropertiesAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.Item#itemType~0:complex'
+    name: MailboxEnums.ItemType | string
+    fullName: Office.MailboxEnums.ItemType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.MailboxEnums.ItemType:enum'
+        name: MailboxEnums.ItemType
+        fullName: Office.MailboxEnums.ItemType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.Item#loadCustomPropertiesAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.CustomProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.CustomProperties:interface'
+        name: CustomProperties
+        fullName: Office.CustomProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.NotificationMessages:interface'
+    name: NotificationMessages
+  - uid: 'outlook!Office.Item#removeHandlerAsync~0:complex'
+    name: Office.EventType | string
+    fullName: Office.EventType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.EventType:enum'
+        name: Office.EventType
+        fullName: Office.EventType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.Item#removeHandlerAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Item#removeHandlerAsync~2:complex'
+    name: Office.EventType | string
+    fullName: Office.EventType | string
+    spec.typeScript:
+      - uid: 'outlook!Office.EventType:enum'
+        name: Office.EventType
+        fullName: Office.EventType
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.Item#removeHandlerAsync~3:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
