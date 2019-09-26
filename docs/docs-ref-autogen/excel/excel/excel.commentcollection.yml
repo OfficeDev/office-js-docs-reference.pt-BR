@@ -30,17 +30,17 @@ items:
       - 'excel!Excel.CommentCollection#toJSON:member(1)'
   - uid: 'excel!Excel.CommentCollection#add:member(1)'
     summary: |-
-      Cria um novo comentário (thread de comentário) com o conteúdo fornecido na célula especificada. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.
+      Cria um novo comentário com o conteúdo fornecido na célula especificada. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
-    name: 'add(content, cellAddress, contentType)'
-    fullName: 'add(content, cellAddress, contentType)'
+    name: 'add(cellAddress, content, contentType)'
+    fullName: 'add(cellAddress, content, contentType)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'add(content: string, cellAddress: Range | string, contentType?: Excel.ContentType): Excel.Comment;'
+      content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentType?: Excel.ContentType): Excel.Comment;'
       return:
         type:
           - 'excel!Excel.Comment:class'
@@ -59,48 +59,48 @@ items:
           });
           ```
       parameters:
-        - id: content
-          description: O conteúdo do comentário.
-          type:
-            - string
         - id: cellAddress
           description: 'A célula à qual o comentário é adicionado. Pode ser um objeto Range ou uma cadeia de caracteres. Se for uma cadeia de caracteres, ela deve conter o endereço completo, incluindo o nome da planilha. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.'
           type:
             - 'excel!Excel.CommentCollection#add~0:complex'
+        - id: content
+          description: 'O conteúdo do comentário. Pode ser um objeto String ou CommentRichContent. As cadeias de caracteres são usadas para texto sem formatação. Os objetos CommentRichContent permitem outros recursos de comentários, como menção. \[Conjunto de APIs: ExcelApi BETA (somente visualização) para a cadeia de caracteres, ExcelApi visualização para o objeto CommentRichContent\]'
+          type:
+            - 'excel!Excel.CommentCollection#add~1:complex'
         - id: contentType
-          description: Opcional. O tipo de conteúdo de comentário
+          description: Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.plain`<!-- -->.
           type:
             - 'excel!Excel.ContentType:enum'
   - uid: 'excel!Excel.CommentCollection#add:member(2)'
     summary: |-
-      Cria um novo comentário (thread de comentário) com o conteúdo fornecido na célula especificada. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.
+      Cria um novo comentário com o conteúdo fornecido na célula especificada. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
-    name: 'add(content, cellAddress, contentTypeString)'
-    fullName: 'add(content, cellAddress, contentTypeString)'
+    name: 'add(cellAddress, content, contentTypeString)'
+    fullName: 'add(cellAddress, content, contentTypeString)'
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'add(content: string, cellAddress: Range | string, contentTypeString?: "Plain"): Excel.Comment;'
+      content: 'add(cellAddress: Range | string, content: CommentRichContent | string, contentTypeString?: "Plain" | "Mention"): Excel.Comment;'
       return:
         type:
           - 'excel!Excel.Comment:class'
         description: ''
       parameters:
-        - id: content
-          description: O conteúdo do comentário.
-          type:
-            - string
         - id: cellAddress
           description: 'A célula à qual o comentário é adicionado. Pode ser um objeto Range ou uma cadeia de caracteres. Se for uma cadeia de caracteres, ela deve conter o endereço completo, incluindo o nome da planilha. Um `InvalidArgument` erro será acionado se o intervalo fornecido for maior que uma célula.'
           type:
-            - 'excel!Excel.CommentCollection#add~1:complex'
-        - id: contentTypeString
-          description: Opcional. O tipo de conteúdo de comentário
+            - 'excel!Excel.CommentCollection#add~2:complex'
+        - id: content
+          description: 'O conteúdo do comentário. Pode ser um objeto String ou CommentRichContent. As cadeias de caracteres são usadas para texto sem formatação. Os objetos CommentRichContent permitem outros recursos de comentários, como menção. \[Conjunto de APIs: ExcelApi BETA (somente visualização) para a cadeia de caracteres, ExcelApi visualização para o objeto CommentRichContent\]'
           type:
-            - '"Plain"'
+            - 'excel!Excel.CommentCollection#add~3:complex'
+        - id: contentTypeString
+          description: Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.plain`<!-- -->.
+          type:
+            - '"Plain" | "Mention"'
   - uid: 'excel!Excel.CommentCollection#context:member'
     summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
     isPreview: true
@@ -199,7 +199,7 @@ items:
             - 'excel!Excel.CommentCollection#getItemByCell~0:complex'
   - uid: 'excel!Excel.CommentCollection#getItemByReplyId:member(1)'
     summary: |-
-      Obtém um comentário relacionado à respectiva ID de resposta na coleção.
+      Obtém o comentário ao qual a resposta fornecida está conectada.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -233,30 +233,22 @@ items:
         type:
           - 'excel!Excel.CommentCollection#items~0:complex'
   - uid: 'excel!Excel.CommentCollection#load:member(1)'
-    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-    remarks: |-
-      Além dessa assinatura, este método tem as seguintes assinaturas:
-
-      `load(option?: string | string[]): Excel.CommentCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; }): Excel.CommentCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CommentCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.CommentCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CommentCollection;'
+      content: 'load(options?: Excel.Interfaces.CommentCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CommentCollection;'
       return:
         type:
           - 'excel!Excel.CommentCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
           type:
             - 'excel!Excel.CommentCollection#load~0:complex'
   - uid: 'excel!Excel.CommentCollection#load:member(2)'
@@ -279,21 +271,22 @@ items:
           type:
             - 'string | string[]'
   - uid: 'excel!Excel.CommentCollection#load:member(3)'
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: OfficeExtension.LoadOption): Excel.CommentCollection;'
+      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.CommentCollection;'
       return:
         type:
           - 'excel!Excel.CommentCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem `propertyNamesAndPaths.expand` carregadas e é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
             - 'excel!OfficeExtension.LoadOption:interface'
   - uid: 'excel!Excel.CommentCollection#toJSON:member(1)'
@@ -324,15 +317,33 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.CommentCollection#add~1:complex'
+    name: CommentRichContent | string
+    fullName: Excel.CommentRichContent | string
+    spec.typeScript:
+      - uid: 'excel!Excel.CommentRichContent:interface'
+        name: CommentRichContent
+        fullName: Excel.CommentRichContent
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'excel!Excel.ContentType:enum'
     name: Excel.ContentType
-  - uid: 'excel!Excel.CommentCollection#add~1:complex'
+  - uid: 'excel!Excel.CommentCollection#add~2:complex'
     name: Range | string
     fullName: Excel.Range | string
     spec.typeScript:
       - uid: 'excel!Excel.Range:class'
         name: Range
         fullName: Excel.Range
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'excel!Excel.CommentCollection#add~3:complex'
+    name: CommentRichContent | string
+    fullName: Excel.CommentRichContent | string
+    spec.typeScript:
+      - uid: 'excel!Excel.CommentRichContent:interface'
+        name: CommentRichContent
+        fullName: Excel.CommentRichContent
       - name: ' | string'
         fullName: ' | string'
   - uid: 'excel!Excel.RequestContext:class'
