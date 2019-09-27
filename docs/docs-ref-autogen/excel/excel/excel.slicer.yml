@@ -143,7 +143,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Slicer#height:member'
     summary: |-
-      Representa a altura, em pontos, da segmentação de dados. Gera uma exceção de argumento inválida quando definida com valor negativo ou como zero como entrada.
+      Representa a altura, em pontos, da segmentação de dados. Gera um "o argumento é inválido ou está ausente ou tem um formato incorreto." exceção quando definida com valor negativo ou zero como entrada.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -191,7 +191,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Slicer#left:member'
     summary: |-
-      Representa a distância, em pontos, da lateral esquerda da segmentação de dados à esquerda da planilha. Gera uma exceção de argumento inválida quando definida com valor negativo como entrada.
+      Representa a distância, em pontos, da lateral esquerda da segmentação de dados à esquerda da planilha. Gera um "o argumento é inválido ou está ausente ou tem um formato incorreto." exceção quando definida com valor negativo como entrada.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -206,30 +206,22 @@ items:
         type:
           - number
   - uid: 'excel!Excel.Slicer#load:member(1)'
-    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-    remarks: |-
-      Além dessa assinatura, este método tem as seguintes assinaturas:
-
-      `load(option?: string | string[]): Excel.Slicer`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; }): Excel.Slicer`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Slicer`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
     isPreview: true
-    name: load(option)
-    fullName: load(option)
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Excel.Interfaces.SlicerLoadOptions): Excel.Slicer;'
+      content: 'load(options?: Excel.Interfaces.SlicerLoadOptions): Excel.Slicer;'
       return:
         type:
           - 'excel!Excel.Slicer:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
           type:
             - 'excel!Excel.Interfaces.SlicerLoadOptions:interface'
   - uid: 'excel!Excel.Slicer#load:member(2)'
@@ -260,16 +252,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Slicer;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.Slicer;
       return:
         type:
           - 'excel!Excel.Slicer:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem `propertyNamesAndPaths.expand` carregadas e é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'excel!Excel.Slicer#name:member'
     summary: |-
       Representa o nome da segmentação de dados.
@@ -304,7 +304,7 @@ items:
           - string
   - uid: 'excel!Excel.Slicer#selectItems:member(1)'
     summary: |-
-      Seleciona os itens da segmentação de dados com base em suas chaves. A seleção anterior será limpa. Todos os itens serão selecionados por padrão se a matriz estiver vazia.
+      Seleciona itens de segmentação de itens com base em suas chaves. As seleções anteriores estão desmarcadas. Todos os itens serão selecionados por padrão se a matriz estiver vazia.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -399,7 +399,7 @@ items:
           - 'excel!Excel.SlicerItemCollection:class'
   - uid: 'excel!Excel.Slicer#sortBy:member'
     summary: |-
-      Representa a ordem de classificação dos itens na segmentação de dados. Valores possíveis são: DataSourceOrder, Ordem crescente, Ordem decrescente.
+      Representa a ordem de classificação dos itens na segmentação de dados. Os valores possíveis são: "DataSourceOrder", "crescente", "decrescente".
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -457,7 +457,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Slicer#top:member'
     summary: |-
-      Representa a distância, em pontos, da borda superior da segmentação de dados na parte superior da planilha. Gera uma exceção de argumento inválida quando definida com valor negativo como entrada.
+      Representa a distância, em pontos, da borda superior da segmentação de dados na parte superior da planilha. Gera um "o argumento é inválido ou está ausente ou tem um formato incorreto." exceção quando definida com valor negativo como entrada.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -473,7 +473,7 @@ items:
           - number
   - uid: 'excel!Excel.Slicer#width:member'
     summary: |-
-      Representa a largura, em pontos, da segmentação de dados. Gera uma exceção de argumento inválida quando definida com valor negativo ou como zero como entrada.
+      Representa a largura, em pontos, da segmentação de dados. Gera um "o argumento é inválido ou está ausente ou tem um formato incorreto." exceção quando definida com valor negativo ou zero como entrada.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
