@@ -203,7 +203,7 @@ items:
           - 'excel!Excel.RequestContext:class'
   - uid: 'excel!Excel.Worksheet#copy:member(1)'
     summary: |-
-      Copia uma planilha e a coloca na posição especificada. Retorna à planilha copiada.
+      Copia uma planilha e a coloca na posição especificada.
 
       \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'copy(positionType, relativeTo)'
@@ -217,7 +217,7 @@ items:
         type:
           - 'excel!Excel.Worksheet:class'
         description: |-
-
+          A planilha recém-criada.
 
           #### <a name="examples"></a>Exemplos
 
@@ -238,16 +238,16 @@ items:
           ```
       parameters:
         - id: positionType
-          description: Opcional.
+          description: 'O local na pasta de trabalho para colocar a planilha recém-criada. O valor padrão é "nenhum", que insere a planilha no início da planilha.'
           type:
             - 'excel!Excel.WorksheetPositionType:enum'
         - id: relativeTo
-          description: Opcional.
+          description: A planilha existente que determina a posição da planilha recém-criada. Isso só será necessário se `positionType` for "antes" ou "depois".
           type:
             - 'excel!Excel.Worksheet:class'
   - uid: 'excel!Excel.Worksheet#copy:member(2)'
     summary: |-
-      Copia uma planilha e a coloca na posição especificada. Retorna à planilha copiada.
+      Copia uma planilha e a coloca na posição especificada.
 
       \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'copy(positionTypeString, relativeTo)'
@@ -260,14 +260,14 @@ items:
       return:
         type:
           - 'excel!Excel.Worksheet:class'
-        description: ''
+        description: A planilha recém-criada.
       parameters:
         - id: positionTypeString
-          description: Opcional.
+          description: 'O local na pasta de trabalho para colocar a planilha recém-criada. O valor padrão é "nenhum", que insere a planilha no início da planilha.'
           type:
             - '"None" | "Before" | "After" | "Beginning" | "End"'
         - id: relativeTo
-          description: Opcional.
+          description: A planilha existente que determina a posição da planilha recém-criada. Isso só será necessário se `positionType` for "antes" ou "depois".
           type:
             - 'excel!Excel.Worksheet:class'
   - uid: 'excel!Excel.Worksheet#delete:member(1)'
@@ -1030,7 +1030,7 @@ items:
           ```
   - uid: 'excel!Excel.Worksheet#onColumnSorted:member'
     summary: |-
-      Ocorre quando uma ou mais colunas foram classificadas. Isso acontece como resultado de uma operação de classificação da esquerda para a direita.
+      Ocorre quando uma ou mais colunas são classificadas. Isso acontece como resultado de uma operação de classificação da esquerda para a direita.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -1152,7 +1152,7 @@ items:
           - 'excel!Excel.Worksheet#onRowHiddenChanged~0:complex'
   - uid: 'excel!Excel.Worksheet#onRowSorted:member'
     summary: |-
-      Ocorre quando uma ou mais linhas foram classificadas. Isso acontece como resultado de uma operação de classificação de cima para baixo.
+      Ocorre quando uma ou mais linhas são classificadas. Isso ocorre como resultado de uma operação de classificação de cima para baixo.
 
       \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -1472,7 +1472,29 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+              // This collapses the entire outline.
+              sheet.showOutlineLevels(1, 1);
+              await context.sync();
+          });
+          ```
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+              // This shows the top 3 outline levels; collapsing any additional sublevels.
+              sheet.showOutlineLevels(3, 3);
+              await context.sync();
+          });
+          ```
       parameters:
         - id: rowLevels
           description: O número de níveis de linha de uma estrutura de tópicos a ser exibido.
