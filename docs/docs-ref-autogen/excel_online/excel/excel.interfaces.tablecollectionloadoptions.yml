@@ -1,33 +1,35 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions:interface'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions:interface'
     summary: |-
-      Representa uma tabela do Excel. Para saber mais sobre o modelo de objeto de tabela, leia [trabalhar com tabelas usando a API JavaScript do Excel](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-tables)<!-- -->.
+      Representa uma coleção de todas as tabelas que fazem parte da pasta de trabalho ou planilha, dependendo de como ela foi atingida.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.Interfaces.TableLoadOptions
-    fullName: Excel.Interfaces.TableLoadOptions
+    name: Excel.Interfaces.TableCollectionLoadOptions
+    fullName: Excel.Interfaces.TableCollectionLoadOptions
     langs:
       - typeScript
     type: interface
     package: excel!
     children:
-      - 'excel!Excel.Interfaces.TableLoadOptions#$all:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#columns:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#highlightFirstColumn:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#highlightLastColumn:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#id:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#name:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#rows:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#showBandedColumns:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#showBandedRows:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#showFilterButton:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#showHeaders:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#showTotals:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#sort:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#style:member'
-      - 'excel!Excel.Interfaces.TableLoadOptions#worksheet:member'
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#$all:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#$all:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#autoFilter:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#columns:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#highlightFirstColumn:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#highlightLastColumn:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#id:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#legacyId:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#name:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#rows:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#showBandedColumns:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#showBandedRows:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#showFilterButton:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#showHeaders:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#showTotals:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#sort:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#style:member'
+      - 'excel!Excel.Interfaces.TableCollectionLoadOptions#worksheet:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#$all:member'
     summary: 'A `$all` especificação de LoadOptions carrega todas as propriedades escalares (por exemplo:`Range.address`<!-- -->), mas não as propriedades de navegação (por exemplo:`Range.format.fill.color`<!-- -->).'
     name: $all
     fullName: $all
@@ -39,9 +41,24 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#columns:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#autoFilter:member'
     summary: |-
-      Representa uma coleção de todas as colunas na tabela.
+      Para cada ITEM na coleção: representa o objeto AutoFilter da tabela.
+
+      \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoFilter
+    fullName: autoFilter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'autoFilter?: Excel.Interfaces.AutoFilterLoadOptions;'
+      return:
+        type:
+          - 'excel!Excel.Interfaces.AutoFilterLoadOptions:interface'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#columns:member'
+    summary: |-
+      Para cada ITEM na coleção: representa uma coleção de todas as colunas da tabela.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columns
@@ -54,9 +71,9 @@ items:
       return:
         type:
           - 'excel!Excel.Interfaces.TableColumnCollectionLoadOptions:interface'
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#highlightFirstColumn:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#highlightFirstColumn:member'
     summary: |-
-      Indica se a primeira coluna contém uma formatação especial.
+      Para cada ITEM na coleção: indica se a primeira coluna contém formatação especial.
 
       \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: highlightFirstColumn
@@ -69,9 +86,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#highlightLastColumn:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#highlightLastColumn:member'
     summary: |-
-      Indica se a última coluna contém uma formatação especial.
+      Para cada ITEM na coleção: indica se a última coluna contém formatação especial.
 
       \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: highlightLastColumn
@@ -84,9 +101,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#id:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#id:member'
     summary: |-
-      Retorna um valor que identifica de forma exclusiva a tabela em uma determinada pasta de trabalho. O valor do identificador permanece o mesmo, ainda que a tabela seja renomeada. Somente leitura.
+      Para cada ITEM na coleção: retorna um valor que identifica exclusivamente a tabela em uma determinada pasta de trabalho. O valor do identificador permanece o mesmo, ainda que a tabela seja renomeada. Somente leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
@@ -99,9 +116,24 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#name:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#legacyId:member'
     summary: |-
-      Nome da tabela.
+      Para cada ITEM na coleção: retorna uma ID numérica.
+
+      \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: legacyId
+    fullName: legacyId
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'legacyId?: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#name:member'
+    summary: |-
+      Para cada ITEM na coleção: o nome da tabela.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
@@ -114,9 +146,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#rows:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#rows:member'
     summary: |-
-      Representa uma coleção de todas as linhas na tabela.
+      Para cada ITEM na coleção: representa uma coleção de todas as linhas da tabela.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rows
@@ -129,9 +161,9 @@ items:
       return:
         type:
           - 'excel!Excel.Interfaces.TableRowCollectionLoadOptions:interface'
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#showBandedColumns:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#showBandedColumns:member'
     summary: |-
-      Indica se as colunas mostram formatação em faixas nas quais as colunas ímpares são realçadas de modo diferente das colunas pares, tornando a leitura da tabela mais fácil.
+      Para cada ITEM na coleção: indica se as colunas mostram a formatação em tiras nas quais as colunas ímpares são realçadas de forma diferente de mesmo para tornar a leitura da tabela mais fácil.
 
       \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showBandedColumns
@@ -144,9 +176,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#showBandedRows:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#showBandedRows:member'
     summary: |-
-      Indica se as linhas mostram formatação em faixas nas quais as linhas ímpares são realçadas de modo diferente das colunas pares, tornando a leitura da tabela mais fácil.
+      Para cada ITEM na coleção: indica se as linhas mostram a formatação em tiras nas quais as linhas ímpares são realçadas de forma diferente de mesmo para tornar a leitura da tabela mais fácil.
 
       \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showBandedRows
@@ -159,9 +191,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#showFilterButton:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#showFilterButton:member'
     summary: |-
-      Indica se os botões de filtro estão visíveis na parte superior de cada cabeçalho da coluna. Essa configuração só será permitida se a tabela tiver uma linha de cabeçalho.
+      Para cada ITEM na coleção: indica se os botões de filtro estão visíveis na parte superior de cada cabeçalho de coluna. Essa configuração só será permitida se a tabela tiver uma linha de cabeçalho.
 
       \[[Conjunto de APIs: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showFilterButton
@@ -174,9 +206,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#showHeaders:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#showHeaders:member'
     summary: |-
-      Indica se a linha do cabeçalho está visível ou não. Esse valor pode ser definido para mostrar ou remover a linha do cabeçalho.
+      Para cada ITEM na coleção: indica se a linha de cabeçalho está visível ou não. Esse valor pode ser definido para mostrar ou remover a linha do cabeçalho.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showHeaders
@@ -189,9 +221,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#showTotals:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#showTotals:member'
     summary: |-
-      Indica se a linha do total está visível ou não. Esse valor pode ser definido para mostrar ou remover a linha do total.
+      Para cada ITEM na coleção: indica se a linha de total está visível ou não. Esse valor pode ser definido para mostrar ou remover a linha do total.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: showTotals
@@ -204,9 +236,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#sort:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#sort:member'
     summary: |-
-      Representa a classificação da tabela.
+      Para cada ITEM na coleção: representa a classificação para a tabela.
 
       \[[Conjunto de APIs: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: sort
@@ -219,9 +251,9 @@ items:
       return:
         type:
           - 'excel!Excel.Interfaces.TableSortLoadOptions:interface'
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#style:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#style:member'
     summary: |-
-      Valor da constante que representa o estilo de Tabela. Os valores possíveis são: "TableStyleLight1" por meio de "TableStyleLight21", "TableStyleMedium1" até "TableStyleMedium28", "TableStyleDark1" até "TableStyleDark11". Também é possível usar um estilo definido pelo usuário que esteja presente na planilha.
+      Para cada ITEM da coleção: valor constante que representa o estilo de tabela. Os valores possíveis são: "TableStyleLight1" por meio de "TableStyleLight21", "TableStyleMedium1" até "TableStyleMedium28", "TableStyleDark1" até "TableStyleDark11". Também é possível usar um estilo definido pelo usuário que esteja presente na planilha.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: style
@@ -234,9 +266,9 @@ items:
       return:
         type:
           - boolean
-  - uid: 'excel!Excel.Interfaces.TableLoadOptions#worksheet:member'
+  - uid: 'excel!Excel.Interfaces.TableCollectionLoadOptions#worksheet:member'
     summary: |-
-      A planilha que contém a tabela atual.
+      Para cada ITEM na coleção: a planilha que contém a tabela atual.
 
       \[[Conjunto de APIs: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: worksheet
@@ -250,6 +282,8 @@ items:
         type:
           - 'excel!Excel.Interfaces.WorksheetLoadOptions:interface'
 references:
+  - uid: 'excel!Excel.Interfaces.AutoFilterLoadOptions:interface'
+    name: Excel.Interfaces.AutoFilterLoadOptions
   - uid: 'excel!Excel.Interfaces.TableColumnCollectionLoadOptions:interface'
     name: Excel.Interfaces.TableColumnCollectionLoadOptions
   - uid: 'excel!Excel.Interfaces.TableRowCollectionLoadOptions:interface'

@@ -72,12 +72,18 @@ items:
       - 'excel!Excel.Range#getUsedRange:member(1)'
       - 'excel!Excel.Range#getUsedRangeOrNullObject:member(1)'
       - 'excel!Excel.Range#getVisibleView:member(1)'
+      - 'excel!Excel.Range#group:member(1)'
+      - 'excel!Excel.Range#group:member(2)'
+      - 'excel!Excel.Range#height:member'
       - 'excel!Excel.Range#hidden:member'
+      - 'excel!Excel.Range#hideGroupDetails:member(1)'
+      - 'excel!Excel.Range#hideGroupDetails:member(2)'
       - 'excel!Excel.Range#hyperlink:member'
       - 'excel!Excel.Range#insert:member(1)'
       - 'excel!Excel.Range#insert:member(2)'
       - 'excel!Excel.Range#isEntireColumn:member'
       - 'excel!Excel.Range#isEntireRow:member'
+      - 'excel!Excel.Range#left:member'
       - 'excel!Excel.Range#linkedDataTypeState:member'
       - 'excel!Excel.Range#load:member(1)'
       - 'excel!Excel.Range#load:member(2)'
@@ -98,15 +104,21 @@ items:
       - 'excel!Excel.Range#setDirty:member(1)'
       - 'excel!Excel.Range#setRowProperties:member(1)'
       - 'excel!Excel.Range#showCard:member(1)'
+      - 'excel!Excel.Range#showGroupDetails:member(1)'
+      - 'excel!Excel.Range#showGroupDetails:member(2)'
       - 'excel!Excel.Range#sort:member'
       - 'excel!Excel.Range#style:member'
       - 'excel!Excel.Range#text:member'
       - 'excel!Excel.Range#toJSON:member(1)'
+      - 'excel!Excel.Range#top:member'
       - 'excel!Excel.Range#track:member(1)'
+      - 'excel!Excel.Range#ungroup:member(1)'
+      - 'excel!Excel.Range#ungroup:member(2)'
       - 'excel!Excel.Range#unmerge:member(1)'
       - 'excel!Excel.Range#untrack:member(1)'
       - 'excel!Excel.Range#values:member'
       - 'excel!Excel.Range#valueTypes:member'
+      - 'excel!Excel.Range#width:member'
       - 'excel!Excel.Range#worksheet:member'
   - uid: 'excel!Excel.Range#address:member'
     summary: |-
@@ -1841,6 +1853,82 @@ items:
         type:
           - 'excel!Excel.RangeView:class'
         description: ''
+  - uid: 'excel!Excel.Range#group:member(1)'
+    summary: |-
+      Agrupa colunas e linhas de uma estrutura de tópicos.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: group(groupOption)
+    fullName: group(groupOption)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'group(groupOption: Excel.GroupOption): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              
+              // Group the larger, main level. Note that the outline controls
+              // will be on row 10, meaning 4-9 will collapse and expand.
+              sheet.getRange("4:9").group(Excel.GroupOption.byRows);
+
+              // Group the smaller, sublevels. Note that the outline controls
+              // will be on rows 6 and 9, meaning 4-5 and 7-8 will collapse and expand.
+              sheet.getRange("4:5").group(Excel.GroupOption.byRows);
+              sheet.getRange("7:8").group(Excel.GroupOption.byRows);
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: groupOption
+          description: 'Especifica como o intervalo pode ser agrupado por linhas ou colunas. Um `InvalidArgument` erro é acionado quando a opção de grupo difere da propriedade `isEntireRow` ou `isEntireColumn` do intervalo (ou seja `range.isEntireRow` , é true `groupOption` e é "ByColumns" `range.isEntireColumn` ou true e `groupOption` é "ByRows").'
+          type:
+            - 'excel!Excel.GroupOption:enum'
+  - uid: 'excel!Excel.Range#group:member(2)'
+    summary: |-
+      Agrupa colunas e linhas de uma estrutura de tópicos.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: group(groupOptionString)
+    fullName: group(groupOptionString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'group(groupOptionString: "ByRows" | "ByColumns"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOptionString
+          description: 'Especifica como o intervalo pode ser agrupado por linhas ou colunas. Um `InvalidArgument` erro é acionado quando a opção de grupo difere da propriedade `isEntireRow` ou `isEntireColumn` do intervalo (ou seja `range.isEntireRow` , é true `groupOption` e é "ByColumns" `range.isEntireColumn` ou true e `groupOption` é "ByRows").'
+          type:
+            - '"ByRows" | "ByColumns"'
+  - uid: 'excel!Excel.Range#height:member'
+    summary: |-
+      Retorna a distância em pontos, para zoom de 100%, da borda superior do intervalo até a borda inferior do intervalo. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: height
+    fullName: height
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly height: number;'
+      return:
+        type:
+          - number
   - uid: 'excel!Excel.Range#hidden:member'
     summary: |-
       Representa se todas as células do intervalo atual estão ocultas. Somente leitura.
@@ -1856,6 +1944,48 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.Range#hideGroupDetails:member(1)'
+    summary: |-
+      Ocultar detalhes do grupo de linhas ou colunas.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hideGroupDetails(groupOption)
+    fullName: hideGroupDetails(groupOption)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'hideGroupDetails(groupOption: Excel.GroupOption): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOption
+          description: Especifica se é para ocultar detalhes de linhas agrupadas ou colunas agrupadas.
+          type:
+            - 'excel!Excel.GroupOption:enum'
+  - uid: 'excel!Excel.Range#hideGroupDetails:member(2)'
+    summary: |-
+      Ocultar detalhes do grupo de linhas ou colunas.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hideGroupDetails(groupOptionString)
+    fullName: hideGroupDetails(groupOptionString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'hideGroupDetails(groupOptionString: "ByRows" | "ByColumns"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOptionString
+          description: Especifica se é para ocultar detalhes de linhas agrupadas ou colunas agrupadas.
+          type:
+            - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#hyperlink:member'
     summary: |-
       Representa o hiperlink do intervalo atual.
@@ -1993,6 +2123,21 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.Range#left:member'
+    summary: |-
+      Retorna a distância em pontos, para zoom de 100%, da borda esquerda da planilha para a borda esquerda do intervalo. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: left
+    fullName: left
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly left: number;'
+      return:
+        type:
+          - number
   - uid: 'excel!Excel.Range#linkedDataTypeState:member'
     summary: |-
       Representa o estado do tipo de dados de cada célula. Somente leitura.
@@ -2619,6 +2764,48 @@ items:
         type:
           - void
         description: ''
+  - uid: 'excel!Excel.Range#showGroupDetails:member(1)'
+    summary: |-
+      Mostrar detalhes do grupo de linhas ou colunas.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: showGroupDetails(groupOption)
+    fullName: showGroupDetails(groupOption)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'showGroupDetails(groupOption: Excel.GroupOption): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOption
+          description: Especifica se é para mostrar detalhes de linhas agrupadas ou colunas agrupadas.
+          type:
+            - 'excel!Excel.GroupOption:enum'
+  - uid: 'excel!Excel.Range#showGroupDetails:member(2)'
+    summary: |-
+      Mostrar detalhes do grupo de linhas ou colunas.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: showGroupDetails(groupOptionString)
+    fullName: showGroupDetails(groupOptionString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'showGroupDetails(groupOptionString: "ByRows" | "ByColumns"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOptionString
+          description: Especifica se é para mostrar detalhes de linhas agrupadas ou colunas agrupadas.
+          type:
+            - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#sort:member'
     summary: |-
       Representa a classificação de intervalo do intervalo atual. Somente leitura.
@@ -2726,6 +2913,21 @@ items:
         type:
           - 'excel!Excel.Interfaces.RangeData:interface'
         description: ''
+  - uid: 'excel!Excel.Range#top:member'
+    summary: |-
+      Retorna a distância em pontos, para zoom de 100%, da borda superior da planilha até a borda superior do intervalo. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: top
+    fullName: top
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly top: number;'
+      return:
+        type:
+          - number
   - uid: 'excel!Excel.Range#track:member(1)'
     summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para`context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto ao objeto rastreado coleção quando o objeto foi criado pela primeira vez.'
     name: track()
@@ -2739,6 +2941,65 @@ items:
         type:
           - 'excel!Excel.Range:class'
         description: ''
+  - uid: 'excel!Excel.Range#ungroup:member(1)'
+    summary: |-
+      Desagrupa colunas e linhas de uma estrutura de tópicos.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: ungroup(groupOption)
+    fullName: ungroup(groupOption)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'ungroup(groupOption: Excel.GroupOption): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              
+              // This removes two levels of groups from the "A1-R10" range.
+              // Any groups at the same level on the same dimension will be removed by a single call.
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byRows);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byRows);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byColumns);
+              sheet.getRange("A1:R10").ungroup(Excel.GroupOption.byColumns);
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: groupOption
+          description: Especifica como o intervalo pode ser desagrupado por linhas ou colunas.
+          type:
+            - 'excel!Excel.GroupOption:enum'
+  - uid: 'excel!Excel.Range#ungroup:member(2)'
+    summary: |-
+      Desagrupa colunas e linhas de uma estrutura de tópicos.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: ungroup(groupOptionString)
+    fullName: ungroup(groupOptionString)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'ungroup(groupOptionString: "ByRows" | "ByColumns"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: groupOptionString
+          description: Especifica como o intervalo pode ser desagrupado por linhas ou colunas.
+          type:
+            - '"ByRows" | "ByColumns"'
   - uid: 'excel!Excel.Range#unmerge:member(1)'
     summary: |-
       Desfaz a mesclagem das células do intervalo em células separadas.
@@ -2839,6 +3100,21 @@ items:
       return:
         type:
           - 'excel!Excel.Range#valueTypes~0:complex'
+  - uid: 'excel!Excel.Range#width:member'
+    summary: |-
+      Retorna a distância em pontos, para zoom de 100%, da borda esquerda do intervalo até a borda direita do intervalo. Somente leitura.
+
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: width
+    fullName: width
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly width: number;'
+      return:
+        type:
+          - number
   - uid: 'excel!Excel.Range#worksheet:member'
     summary: |-
       A planilha que contém o intervalo atual. Somente leitura.
@@ -3017,6 +3293,8 @@ references:
     name: Excel.TableScopedCollection
   - uid: 'excel!Excel.RangeView:class'
     name: Excel.RangeView
+  - uid: 'excel!Excel.GroupOption:enum'
+    name: Excel.GroupOption
   - uid: 'excel!Excel.RangeHyperlink:interface'
     name: Excel.RangeHyperlink
   - uid: 'excel!Excel.InsertShiftDirection:enum'
