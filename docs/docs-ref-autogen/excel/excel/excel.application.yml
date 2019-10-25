@@ -20,6 +20,8 @@ items:
       - 'excel!Excel.Application#calculationMode:member'
       - 'excel!Excel.Application#calculationState:member'
       - 'excel!Excel.Application#context:member'
+      - 'excel!Excel.Application#cultureInfo:member'
+      - 'excel!Excel.Application#decimalSeparator:member'
       - 'excel!Excel.Application#iterativeCalculation:member'
       - 'excel!Excel.Application#load:member(1)'
       - 'excel!Excel.Application#load:member(2)'
@@ -28,7 +30,9 @@ items:
       - 'excel!Excel.Application#set:member(2)'
       - 'excel!Excel.Application#suspendApiCalculationUntilNextSync:member(1)'
       - 'excel!Excel.Application#suspendScreenUpdatingUntilNextSync:member(1)'
+      - 'excel!Excel.Application#thousandsSeparator:member'
       - 'excel!Excel.Application#toJSON:member(1)'
+      - 'excel!Excel.Application#useSystemSeparators:member'
   - uid: 'excel!Excel.Application#calculate:member(1)'
     summary: |-
       Recalcula todas as pastas de trabalho abertas no Excel no momento.
@@ -143,6 +147,38 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.Application#cultureInfo:member'
+    summary: |-
+      Fornece informações com base nas configurações de cultura do sistema atual. Isso inclui os nomes de cultura, a formatação de números e outras configurações dependentes de cultura.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: cultureInfo
+    fullName: cultureInfo
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly cultureInfo: Excel.CultureInfo;'
+      return:
+        type:
+          - 'excel!Excel.CultureInfo:class'
+  - uid: 'excel!Excel.Application#decimalSeparator:member'
+    summary: |-
+      Obtém a cadeia de caracteres usada como o separador decimal para valores numéricos. Isso é baseado nas configurações locais do Excel.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: decimalSeparator
+    fullName: decimalSeparator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly decimalSeparator: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.Application#iterativeCalculation:member'
     summary: |-
       Retorna as configurações do Cálculo iterativo. No Excel em Windows e Mac, as configurações serão aplicadas ao aplicativo Excel. No Excel na Web e em outras plataformas, as configurações serão aplicadas à pasta de trabalho ativa.
@@ -346,6 +382,22 @@ items:
               console.log(`Ending. Adding ${rowCount * columnCount} cells took ${Date.now() - startTime} milliseconds`);
           });
           ```
+  - uid: 'excel!Excel.Application#thousandsSeparator:member'
+    summary: |-
+      Obtém a cadeia de caracteres usada para separar grupos de dígitos à esquerda do decimal para valores numéricos. Isso é baseado nas configurações locais do Excel.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: thousandsSeparator
+    fullName: thousandsSeparator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly thousandsSeparator: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.Application#toJSON:member(1)'
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Application original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ApplicationData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
@@ -359,6 +411,22 @@ items:
         type:
           - 'excel!Excel.Interfaces.ApplicationData:interface'
         description: ''
+  - uid: 'excel!Excel.Application#useSystemSeparators:member'
+    summary: |-
+      Especifica se os separadores de sistema do Microsoft Excel estão habilitados. Os separadores de sistema incluem separador decimal e separador de milhar.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: useSystemSeparators
+    fullName: useSystemSeparators
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly useSystemSeparators: boolean;'
+      return:
+        type:
+          - boolean
 references:
   - uid: 'excel!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
@@ -384,6 +452,8 @@ references:
         fullName: ' | "Done" | "Calculating" | "Pending"'
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
+  - uid: 'excel!Excel.CultureInfo:class'
+    name: Excel.CultureInfo
   - uid: 'excel!Excel.IterativeCalculation:class'
     name: Excel.IterativeCalculation
   - uid: 'excel!Excel.Application:class'
