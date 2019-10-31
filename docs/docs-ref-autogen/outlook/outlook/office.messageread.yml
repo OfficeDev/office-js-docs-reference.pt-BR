@@ -28,6 +28,7 @@ items:
       - 'outlook!Office.MessageRead#displayReplyForm:member(1)'
       - 'outlook!Office.MessageRead#from:member'
       - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
+      - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(2)'
       - 'outlook!Office.MessageRead#getEntities:member(1)'
       - 'outlook!Office.MessageRead#getEntitiesByType:member(1)'
       - 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -55,7 +56,7 @@ items:
     summary: |-
       Adiciona um manipulador de eventos a um evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+      Para ver quais tipos de evento são suportados, `Office.EventType` consulte para obter detalhes.
 
       \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -94,7 +95,7 @@ items:
     summary: |-
       Adiciona um manipulador de eventos a um evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+      Para ver quais tipos de evento são suportados, `Office.EventType` consulte para obter detalhes.
 
       \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -211,7 +212,7 @@ items:
     summary: |-
       Obtém um objeto que fornece métodos para gerenciar as categorias do item.
 
-      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
 
@@ -228,7 +229,6 @@ items:
           }
       });
       ```
-    isPreview: true
     name: categories
     fullName: categories
     langs:
@@ -243,7 +243,7 @@ items:
     summary: |-
       Fornece acesso aos destinatários na linha Cc (com cópia) de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
-      A propriedade CC retorna uma matriz que contém um objeto EmailAddressDetails para cada destinatário listado na linha CC da mensagem. Por padrão, a coleção é limitada a um máximo de 100 membros. No entanto, no Windows e no Mac, é possível obter o máximo de 500 membros.
+      A propriedade CC retorna uma matriz que contém um objeto EmailAddressDetails para cada destinatário listado na linha CC da mensagem. Por padrão, o conjunto está limitado a um máximo de 100 membros. No entanto, no Windows e Mac, você pode ter o máximo de 500 membros.
 
       \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -448,7 +448,7 @@ items:
         description: ''
       parameters:
         - id: formData
-          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [Office. ReplyFormData](xref:outlook!Office.ReplyFormData:interface) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
+          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
           type:
             - 'outlook!Office.MessageRead#displayReplyAllForm~0:complex'
         - id: callback
@@ -553,7 +553,7 @@ items:
         description: ''
       parameters:
         - id: formData
-          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [Office. ReplyFormData](xref:outlook!Office.ReplyFormData:interface) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
+          description: 'Uma cadeia de caracteres que contém texto e HTML e que representa o corpo do formulário de resposta. A cadeia de caracteres está limitada a 32 KB ou um objeto [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) que contém dados de corpo ou de anexo e uma função de retorno de chamada.'
           type:
             - 'outlook!Office.MessageRead#displayReplyForm~0:complex'
         - id: callback
@@ -596,7 +596,7 @@ items:
     summary: |-
       Obtém todos os cabeçalhos de Internet da mensagem como uma cadeia de caracteres.
 
-      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
 
@@ -621,7 +621,6 @@ items:
           }
       );
       ```
-    isPreview: true
     name: 'getAllInternetHeadersAsync(options, callback)'
     fullName: 'getAllInternetHeadersAsync(options, callback)'
     langs:
@@ -642,6 +641,31 @@ items:
           description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Com êxito, os dados de cabeçalhos de Internet são fornecidos na propriedade asyncResult. Value como uma cadeia de caracteres. Consulte [RFC 2183](https://tools.ietf.org/html/rfc2183) para obter as informações de formatação do valor de cadeia de caracteres retornado. Se a chamada falhar, a propriedade asyncResult. Error conterá um código de erro com o motivo da falha.'
           type:
             - 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(2)'
+    summary: |-
+      Obtém todos os cabeçalhos de Internet da mensagem como uma cadeia de caracteres.
+
+      \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: mensagem lida
+    name: getAllInternetHeadersAsync(callback)
+    fullName: getAllInternetHeadersAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAllInternetHeadersAsync(callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Opcional. Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro, asyncResult, que é um objeto Office. AsyncResult. Com êxito, os dados de cabeçalhos de Internet são fornecidos na propriedade asyncResult. Value como uma cadeia de caracteres. Consulte [RFC 2183](https://tools.ietf.org/html/rfc2183) para obter as informações de formatação do valor de cadeia de caracteres retornado. Se a chamada falhar, a propriedade asyncResult. Error conterá um código de erro com o motivo da falha.'
+          type:
+            - 'outlook!Office.MessageRead#getAllInternetHeadersAsync~1:complex'
   - uid: 'outlook!Office.MessageRead#getEntities:member(1)'
     summary: |-
       Obtém as entidades encontradas no corpo do item selecionado.
@@ -686,7 +710,7 @@ items:
 
       Enquanto o nível de permissão mínimo a usar esse método é Restricted, alguns tipos de entidade requerem ReadItem para obter acesso, conforme especificado na tabela a seguir.
 
-      <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>Cadeia de Caracteres</td> <td>Restrito</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>Cadeia de Caracteres</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restrito</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>Cadeia de Caracteres</td> <td>Restrito</td> </tr> </table>
+      <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>String</td> <td>Restrito</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restrito</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restrito</td> </tr> </table>
 
       #### <a name="examples"></a>Exemplos
 
@@ -1252,7 +1276,7 @@ items:
     summary: |-
       Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+      Para ver quais tipos de evento são suportados, `Office.EventType` consulte para obter detalhes.
 
       \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1287,7 +1311,7 @@ items:
     summary: |-
       Remove um manipulador de eventos para um tipo de evento com suporte. **Observação**: os eventos estão disponíveis somente com o painel de tarefas.
 
-      Atualmente, os tipos de eventos com suporte são`Office.EventType.AppointmentTimeChanged`<!-- -->, `Office.EventType.RecipientsChanged`<!-- -->, e`Office.EventType.RecurrenceChanged`<!-- -->. Em visualização `Office.EventType.AttachmentsChanged` e `Office.EventType.EnhancedLocationsChanged` também são compatíveis.
+      Para ver quais tipos de evento são suportados, `Office.EventType` consulte para obter detalhes.
 
       \[[Conjunto de APIs: caixa de correio 1,7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1430,7 +1454,7 @@ items:
     summary: |-
       Fornece acesso aos destinatários na linha Para de uma mensagem. O tipo de objeto e o nível de acesso dependem do modo do item atual.
 
-      A propriedade to retorna uma matriz que contém um objeto EmailAddressDetails para cada destinatário listado na linha para da mensagem. Por padrão, a coleção é limitada a um máximo de 100 membros. No entanto, no Windows e no Mac, é possível obter o máximo de 500 membros.
+      A propriedade to retorna uma matriz que contém um objeto EmailAddressDetails para cada destinatário listado na linha para da mensagem. Por padrão, o conjunto está limitado a um máximo de 100 membros. No entanto, no Windows e Mac, você pode ter o máximo de 500 membros.
 
       \[[Conjunto de APIs: caixa de correio 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1567,6 +1591,17 @@ references:
   - uid: 'outlook!Office.EmailAddressDetails:interface'
     name: EmailAddressDetails
   - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<string>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <string>) => void
+        fullName: <string>) => void
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
     spec.typeScript:

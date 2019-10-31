@@ -1,13 +1,13 @@
 ---
 title: Referência da API JavaScript do Office
 description: As APIs JavaScript do Office por conjunto de requisitos de host
-ms.date: 07/25/2019
-ms.openlocfilehash: e4b45370dcaf82a60d39264a97f1e28c0dab543d
-ms.sourcegitcommit: ceb67bed1111b63e75e3a69a9a42a27ccc4d5749
+ms.date: 10/24/2019
+ms.openlocfilehash: fb6f228306c6fc5840c2f8b9c9bc46d56b43f50c
+ms.sourcegitcommit: dc57153a05b103a8493370c8aa1bd936f4d5f7c4
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 08/02/2019
-ms.locfileid: "36136396"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "37908923"
 ---
 # <a name="office-javascript-api-reference"></a>Referência da API JavaScript do Office
 
@@ -21,6 +21,7 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 ## <a name="excel"></a>Excel
 
 - [Visualização do ExcelApi](/javascript/api/excel?view=excel-js-preview)
+- [ExcelApi 1.10](/javascript/api/excel?view=excel-js-1.10)
 - [ExcelApi 1.9](/javascript/api/excel?view=excel-js-1.9)
 - [ExcelApi 1.8](/javascript/api/excel?view=excel-js-1.8)
 - [ExcelApi 1.7](/javascript/api/excel?view=excel-js-1.7)
@@ -38,6 +39,7 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 ## <a name="outlook"></a>Outlook
 
 - [Visualização da caixa de correio](/javascript/api/outlook?view=outlook-js-preview)
+- [Caixa de correio 1,8](/javascript/api/outlook?view=outlook-js-1.8)
 - [Caixa de correio 1.7](/javascript/api/outlook?view=outlook-js-1.7)
 - [Caixa de correio 1.6](/javascript/api/outlook?view=outlook-js-1.6)
 - [Caixa de correio 1.5](/javascript/api/outlook?view=outlook-js-1.5)
@@ -48,7 +50,7 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 
 ## <a name="powerpoint"></a>PowerPoint
 
-- [PowerPointApi 1,1](/javascript/api/powerpoint?view=powerpoint-js-1.1)
+- [PowerPointApi 1.1](/javascript/api/powerpoint?view=powerpoint-js-1.1)
 
 ## <a name="visio"></a>Visio
 
@@ -67,6 +69,6 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 
 ## <a name="see-also"></a>Confira também
 
-- [Sobre os suplementos do Office](/office/dev/add-ins/overview)
+- [Sobre os Suplementos do Office](/office/dev/add-ins/overview)
 - [Disponibilidade de host e plataforma para suplementos do Office](/office/dev/add-ins/overview/office-add-in-availability)
 - [Versões do Office e conjuntos de requisitos](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
