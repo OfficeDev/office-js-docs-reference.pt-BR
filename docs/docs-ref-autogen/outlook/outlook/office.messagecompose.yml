@@ -941,9 +941,11 @@ items:
     summary: |-
       Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
 
-      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna nulo para os dados selecionados. Se um campo que não seja o corpo ou o assunto for selecionado, o método retornará o erro InvalidSelection.
+      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retornará uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto for selecionado, o método retornará o erro InvalidSelection.
 
       Para acessar os dados selecionados do método de retorno de chamada, chame asyncResult. Value. Data. Para acessar a propriedade de origem proveniente da seleção, chame asyncResult. Value. SourceProperty, que será o corpo ou o assunto.
+
+      **Observação**: no Outlook na Web, o método retorna a cadeia de caracteres "NULL" se nenhum texto está selecionado, mas o cursor está no corpo.
 
       \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -963,11 +965,13 @@ items:
           var text = asyncResult.value.data;
           var prop = asyncResult.value.sourceProperty;
 
-          Office.context.mailbox.item.setSelectedDataAsync('Setting ' + prop + ': ' + text, {}, setCallback);
-      }
+          // Handle where Outlook on the web erroneously returns "null" instead of empty string.
+          if (Office.context.mailbox.diagnostics.hostName === 'OutlookWebApp'
+              && asyncResult.value.endPosition === asyncResult.value.startPosition) {
+              text = "";
+          }
 
-      function setCallback(asyncResult) {
-          // Check for errors.
+          console.log("Selected text in " + prop + ": " + text);
       }
       ```
     name: 'getSelectedDataAsync(coercionType, options, callback)'
@@ -998,9 +1002,11 @@ items:
     summary: |-
       Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
 
-      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna nulo para os dados selecionados. Se um campo que não seja o corpo ou o assunto for selecionado, o método retornará o erro InvalidSelection.
+      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retornará uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto for selecionado, o método retornará o erro InvalidSelection.
 
       Para acessar os dados selecionados do método de retorno de chamada, chame asyncResult. Value. Data. Para acessar a propriedade de origem proveniente da seleção, chame asyncResult. Value. SourceProperty, que será o corpo ou o assunto.
+
+      **Observação**: no Outlook na Web, o método retorna a cadeia de caracteres "NULL" se nenhum texto está selecionado, mas o cursor está no corpo.
 
       \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
