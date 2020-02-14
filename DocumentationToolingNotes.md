@@ -24,12 +24,18 @@ Há quatro arquivos d. TS relevantes que fornecem conteúdo de origem para subse
   - [Outlook (versão prévia)](https://docs.microsoft.com/javascript/api/outlook)
   - [Word (visualização)](https://docs.microsoft.com/javascript/api/word)
   - [API Comum](https://docs.microsoft.com/javascript/api/office)
-- [Custom-Functions-Runtime](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts)(as definições de tempo de execução de funções personalizadas do Excel)
+- [Custom-Functions-Runtime/index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts) (as definições de tempo de execução de funções personalizadas do Excel.)
   - [Funções personalizadas](https://docs.microsoft.com/javascript/api/custom-functions-runtime)
-- [Office-Runtime](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts)(as definições de tempo de execução do Office para a plataforma de funções personalizadas.)
+- [Office-Runtime/index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts) (as definições de tempo de execução do Office para a plataforma de funções personalizadas.)
   - [Tempo de execução do Office](https://docs.microsoft.com/javascript/api/office-runtime)
 
 Versões mais antigas das APIs têm seus próprios arquivos d. TS. Eles são preservados quando um novo conjunto de requisitos de API é lançado. Elas também podem ser geradas usando a [ferramenta removedor de versão](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/tools/VersionRemover.ts). Esses arquivos d. TS antigos são mantidos de forma que as APIs de eventos sejam corrigidas ou alteradas, o comportamento original ainda está documentado. Isso será útil se você tiver que direcionar uma versão mais antiga da API.
+
+#### <a name="testing-type-definition-file-changes"></a>Alterações de arquivo de definição de tipo de teste
+
+Qualquer alteração de documentação para a API JavaScript do Office é feita com a edição dos quatro arquivos d. TS mencionados acima. No entanto, você pode testar uma alteração antes de enviar um PR para DefinitelyTyped (se precisar, por exemplo, testar como sua formatação será traduzida para redução) editando o arquivo correspondente em [Generate-docs/script-inputs](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs) e executando o [GenerateDocs. cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd). Quando solicitado, selecione a opção "arquivos locais".
+
+Enviar alterações a uma filial remota desse repositório faz com que a plataforma docs.microsoft.com Construa uma ramificação de teste. Essa ramificação é renderizada no review.docs.microsoft.com, que só é acessível pela equipe interna da Microsoft. Qualquer pessoa que estiver examinando o seu PR verificará a precisão do site de análise.
 
 ### <a name="code-snippets"></a>Trechos de código
 
