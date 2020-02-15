@@ -236,7 +236,7 @@ items:
           ```
   - uid: 'excel!Excel.TableColumn#id:member'
     summary: |-
-      Retorna uma chave exclusiva que identifica a coluna na tabela. Somente leitura.
+      Retorna uma chave exclusiva que identifica a coluna na tabela. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
@@ -251,7 +251,7 @@ items:
           - number
   - uid: 'excel!Excel.TableColumn#index:member'
     summary: |-
-      Retorna o número de índice da coluna na coleção de colunas da tabela. Indexado com zero. Somente leitura.
+      Retorna o número de índice da coluna na coleção de colunas da tabela. Indexado com zero. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: index
@@ -306,24 +306,6 @@ items:
               column.load('index');
               return ctx.sync().then(function() {
                   console.log(column.index);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          Excel.run(function (ctx) { 
-              var tableName = 'Table1';
-              var tables = ctx.workbook.tables;
-              var newValues = [["New"], ["Values"], ["For"], ["New"], ["Column"]];
-              var column = ctx.workbook.tables.getItem(tableName).columns.getItemAt(2);
-              column.values = newValues;
-              column.load('values');
-              return ctx.sync().then(function() {
-                  console.log(column.values);
               });
           }).catch(function(error) {
               console.log("Error: " + error);
