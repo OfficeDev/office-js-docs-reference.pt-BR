@@ -56,7 +56,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Table#columns:member'
     summary: |-
-      Representa uma coleção de todas as colunas na tabela. Somente leitura.
+      Representa uma coleção de todas as colunas na tabela. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columns
@@ -373,25 +373,6 @@ items:
               }
           });
           ```
-          ```javascript
-          // Set table style. 
-          Excel.run(function (ctx) { 
-              var tableName = 'Table1';
-              var table = ctx.workbook.tables.getItem(tableName);
-              table.name = 'Table1-Renamed';
-              table.showTotals = false;
-              table.style = 'TableStyleMedium2';
-              table.load('tableStyle');
-              return ctx.sync().then(function() {
-                      console.log(table.style);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
       parameters:
         - id: propertyNames
           description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
@@ -458,7 +439,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Table#rows:member'
     summary: |-
-      Representa uma coleção de todas as linhas na tabela. Somente leitura.
+      Representa uma coleção de todas as linhas na tabela. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rows
@@ -575,6 +556,30 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // Set table style. 
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var table = ctx.workbook.tables.getItem(tableName);
+              table.name = 'Table1-Renamed';
+              table.showTotals = false;
+              table.style = 'TableStyleMedium2';
+              table.load('tableStyle');
+              return ctx.sync().then(function() {
+                      console.log(table.style);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
   - uid: 'excel!Excel.Table#toJSON:member(1)'
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Table original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.TableData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
