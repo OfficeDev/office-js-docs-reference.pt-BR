@@ -111,7 +111,7 @@ items:
       - 'excel!Excel.Range#worksheet:member'
   - uid: 'excel!Excel.Range#address:member'
     summary: |-
-      Representa a referência do intervalo no estilo A1. O valor de endereço conterá a referência de planilha (por exemplo, "Planilha1! A1: B4 "). Somente leitura.
+      Representa a referência do intervalo no estilo A1. O valor de endereço conterá a referência de planilha (por exemplo, "Planilha1! A1: B4 "). Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: address
@@ -126,7 +126,7 @@ items:
           - string
   - uid: 'excel!Excel.Range#addressLocal:member'
     summary: |-
-      Representa a referência de intervalo para o intervalo especificado no idioma do usuário. Somente leitura.
+      Representa a referência de intervalo para o intervalo especificado no idioma do usuário. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: addressLocal
@@ -302,7 +302,7 @@ items:
             - '"All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"'
   - uid: 'excel!Excel.Range#columnCount:member'
     summary: |-
-      Representa o número total de colunas no intervalo. Somente leitura.
+      Representa o número total de colunas no intervalo. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnCount
@@ -332,7 +332,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#columnIndex:member'
     summary: |-
-      Representa o número de colunas da primeira célula no intervalo. Indexados com zero. Somente leitura.
+      Representa o número de colunas da primeira célula no intervalo. Indexados com zero. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columnIndex
@@ -347,7 +347,7 @@ items:
           - number
   - uid: 'excel!Excel.Range#conditionalFormats:member'
     summary: |-
-      Conjunto de ConditionalFormats que interseccionam o intervalo. Somente leitura.
+      Conjunto de ConditionalFormats que interseccionam o intervalo. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: conditionalFormats
@@ -1097,6 +1097,8 @@ items:
     summary: |-
       Renderiza o intervalo como uma imagem png codificada em base64.
 
+      **Importante**: esta API não é suportada atualmente no Excel para Mac. Visite \[OfficeDev/Office-js problema \#235\](https://github.com/OfficeDev/office-js/issues/235) para o status atual.
+
       \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getImage()
     fullName: getImage()
@@ -1689,23 +1691,6 @@ items:
 
           #### <a name="examples"></a>Exemplos
 
-          ```javascript
-          Excel.run(function (ctx) { 
-              var sheetName = "Sheet1";
-              var rangeAddress = "D:F";
-              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
-              var rangeUR = range.getUsedRange();
-              rangeUR.load('address');
-              return ctx.sync().then(function() {
-                  console.log(rangeUR.address);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
           ```typescript
           await Excel.run(async (context) => {
               const sheet = context.workbook.worksheets.getItem("Sample");
@@ -1996,7 +1981,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#linkedDataTypeState:member'
     summary: |-
-      Representa o estado do tipo de dados de cada célula. Somente leitura.
+      Representa o estado do tipo de dados de cada célula. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: linkedDataTypeState
@@ -2054,45 +2039,6 @@ items:
               range.load('cellCount');
               return ctx.sync().then(function() {
                   console.log(range.cellCount);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Below example uses a named-range to get the range object.
-          Excel.run(function (ctx) { 
-              var rangeName = 'MyRange';
-              var range = ctx.workbook.names.getItem(rangeName).range;
-              range.load('cellCount');
-              return ctx.sync().then(function() {
-                  console.log(range.cellCount);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // The example below sets number-format, values and formulas on a grid that contains 2x3 grid.
-          Excel.run(function (ctx) { 
-              var sheetName = "Sheet1";
-              var rangeAddress = "F5:G7";
-              var numberFormat = [[null, "d-mmm"], [null, "d-mmm"], [null, null]]
-              var values = [["Today", 42147], ["Tomorrow", "5/24"], ["Difference in days", null]];
-              var formulas = [[null,null], [null,null], [null,"=G6-G5"]];
-              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
-              range.numberFormat = numberFormat;
-              range.values = values;
-              range.formulas= formulas;
-              range.load('text');
-              return ctx.sync().then(function() {
-                  console.log(range.text);
               });
           }).catch(function(error) {
               console.log("Error: " + error);
@@ -2166,20 +2112,6 @@ items:
               }
           });
           ```
-          ```javascript
-          Excel.run(function (ctx) { 
-              var sheetName = "Sheet1";
-              var rangeAddress = "A1:C3";
-              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
-              range.unmerge();
-              return ctx.sync(); 
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
       parameters:
         - id: across
           description: Opcional. Defina true para mesclar células em todas as linhas do intervalo especificado como células mescladas separadamente. O valor padrão é false.
@@ -2236,6 +2168,34 @@ items:
       return:
         type:
           - 'any[][]'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // The example below sets number-format, values and formulas on a grid that contains 2x3 grid.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "F5:G7";
+              var numberFormat = [[null, "d-mmm"], [null, "d-mmm"], [null, null]]
+              var values = [["Today", 42147], ["Tomorrow", "5/24"], ["Difference in days", null]];
+              var formulas = [[null,null], [null,null], [null,"=G6-G5"]];
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.numberFormat = numberFormat;
+              range.values = values;
+              range.formulas= formulas;
+              range.load('text');
+              return ctx.sync().then(function() {
+                  console.log(range.text);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
   - uid: 'excel!Excel.Range#numberFormatLocal:member'
     summary: |-
       Representa o código de formato de número do Excel para o intervalo determinado, com base nas configurações de idioma do usuário. O Excel não realiza qualquer coerção de idioma ou formatação ao obter ou definir a `numberFormatLocal` propriedade. Qualquer texto retornado usa as cadeias de caracteres formatadas localmente com base no idioma especificado nas configurações do sistema.
@@ -2324,7 +2284,7 @@ items:
             - 'excel!Excel.ReplaceCriteria:interface'
   - uid: 'excel!Excel.Range#rowCount:member'
     summary: |-
-      Retorna o número total de linhas no intervalo. Somente leitura.
+      Retorna o número total de linhas no intervalo. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowCount
@@ -2354,7 +2314,7 @@ items:
           - boolean
   - uid: 'excel!Excel.Range#rowIndex:member'
     summary: |-
-      Representa o número de linhas da primeira célula no intervalo. Indexados com zero. Somente leitura.
+      Representa o número de linhas da primeira célula no intervalo. Indexados com zero. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rowIndex
@@ -2737,7 +2697,7 @@ items:
           ```
   - uid: 'excel!Excel.Range#text:member'
     summary: |-
-      Valores de texto do intervalo especificado. O valor de texto não depende da largura da célula. A \# substituição de sinal que acontece na IU do Excel não afetará o valor de texto RETORNADO pela API. Somente leitura.
+      Valores de texto do intervalo especificado. O valor de texto não depende da largura da célula. A \# substituição de sinal que acontece na IU do Excel não afetará o valor de texto RETORNADO pela API. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: text
@@ -2863,7 +2823,7 @@ items:
           - 'any[][]'
   - uid: 'excel!Excel.Range#valueTypes:member'
     summary: |-
-      Representa o tipo de dados de cada célula. Somente leitura.
+      Representa o tipo de dados de cada célula. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: valueTypes
