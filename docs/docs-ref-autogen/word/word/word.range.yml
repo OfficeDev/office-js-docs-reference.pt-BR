@@ -146,7 +146,7 @@ items:
             - 'word!Word.Range:class'
   - uid: 'word!Word.Range#contentControls:member'
     summary: |-
-      Obtém a coleção de objetos de controle de conteúdo no intervalo. Somente leitura.
+      Obtém a coleção de objetos de controle de conteúdo no intervalo. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: contentControls
@@ -259,7 +259,7 @@ items:
             - 'word!Word.Range:class'
   - uid: 'word!Word.Range#font:member'
     summary: |-
-      Obtém o formato de texto do intervalo. Use isto para obter e definir o nome, o tamanho e a cor da fonte, além de outras propriedades. Somente leitura.
+      Obtém o formato de texto do intervalo. Use isto para obter e definir o nome, o tamanho e a cor da fonte, além de outras propriedades. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: font
@@ -700,37 +700,6 @@ items:
 
           #### <a name="examples"></a>Exemplos
 
-          ```javascript
-          // Run a batch operation against the Word object model.
-          Word.run(function (context) {
-
-              // Queue a command to get the current selection and then
-              // create a proxy range object with the results.
-              var range = context.document.getSelection();
-
-              // Queue a command to insert a content control around the selected text,
-              // and create a proxy content control object. We'll update the properties
-              // on the content control.
-              var myContentControl = range.insertContentControl();
-              myContentControl.tag = "Customer-Address";
-              myContentControl.title = "Enter Customer Address Here:";
-              myContentControl.style = "Normal";
-              myContentControl.insertText("One Microsoft Way, Redmond, WA 98052", 'Replace');
-              myContentControl.cannotEdit = true;
-
-              // Synchronize the document state by executing the queued commands,
-              // and return a promise to indicate task completion.
-              return context.sync().then(function () {
-                  console.log('Wrapped a content control around the selected text.');
-              });
-          })
-          .catch(function (error) {
-              console.log('Error: ' + JSON.stringify(error));
-              if (error instanceof OfficeExtension.Error) {
-                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
           ```typescript
           await Word.run(async (context) => {
               let results = context.document.body.search("Contractor");
@@ -1306,7 +1275,7 @@ items:
             - 'word!Word.Range:class'
   - uid: 'word!Word.Range#isEmpty:member'
     summary: |-
-      Verifica se o comprimento do intervalo é zero. Somente leitura.
+      Verifica se o comprimento do intervalo é zero. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: isEmpty
@@ -1398,7 +1367,7 @@ items:
             - '{ select?: string; expand?: string; }'
   - uid: 'word!Word.Range#paragraphs:member'
     summary: |-
-      Obtém a coleção de objetos Paragraph no intervalo. Somente leitura.
+      Obtém a coleção de objetos Paragraph no intervalo. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: paragraphs
@@ -1428,7 +1397,7 @@ items:
           - 'word!Word.Body:class'
   - uid: 'word!Word.Range#parentContentControl:member'
     summary: |-
-      Obtém o controle de conteúdo que inclui o intervalo. Gera um erro se não houver um controle de conteúdo pai. Somente leitura.
+      Obtém o controle de conteúdo que inclui o intervalo. Gera um erro se não houver um controle de conteúdo pai. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentContentControl
@@ -1443,7 +1412,7 @@ items:
           - 'word!Word.ContentControl:class'
   - uid: 'word!Word.Range#parentContentControlOrNullObject:member'
     summary: |-
-      Obtém o controle de conteúdo que inclui o intervalo. Retorna um objeto NULL se não houver um controle de conteúdo pai. Somente leitura.
+      Obtém o controle de conteúdo que inclui o intervalo. Retorna um objeto NULL se não houver um controle de conteúdo pai. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentContentControlOrNullObject
@@ -1458,7 +1427,7 @@ items:
           - 'word!Word.ContentControl:class'
   - uid: 'word!Word.Range#parentTable:member'
     summary: |-
-      Obtém a tabela que contém o intervalo. Gera um erro se ele não estiver contido em uma tabela. Somente leitura.
+      Obtém a tabela que contém o intervalo. Gera um erro se ele não estiver contido em uma tabela. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentTable
@@ -1473,7 +1442,7 @@ items:
           - 'word!Word.Table:class'
   - uid: 'word!Word.Range#parentTableCell:member'
     summary: |-
-      Obtém a célula de tabela que contém o intervalo. Gera um erro se ele não estiver contido em uma célula de tabela. Somente leitura.
+      Obtém a célula de tabela que contém o intervalo. Gera um erro se ele não estiver contido em uma célula de tabela. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentTableCell
@@ -1488,7 +1457,7 @@ items:
           - 'word!Word.TableCell:class'
   - uid: 'word!Word.Range#parentTableCellOrNullObject:member'
     summary: |-
-      Obtém a célula de tabela que contém o intervalo. Retorna um objeto nulo se não estiver contido em uma célula de tabela. Somente leitura.
+      Obtém a célula de tabela que contém o intervalo. Retorna um objeto nulo se não estiver contido em uma célula de tabela. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentTableCellOrNullObject
@@ -1503,7 +1472,7 @@ items:
           - 'word!Word.TableCell:class'
   - uid: 'word!Word.Range#parentTableOrNullObject:member'
     summary: |-
-      Obtém a tabela que contém o intervalo. Retorna um objeto nulo se não estiver contido em uma tabela. Somente leitura.
+      Obtém a tabela que contém o intervalo. Retorna um objeto nulo se não estiver contido em uma tabela. Apenas leitura.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: parentTableOrNullObject

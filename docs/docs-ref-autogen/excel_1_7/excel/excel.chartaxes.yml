@@ -28,7 +28,7 @@ items:
       - 'excel!Excel.ChartAxes#valueAxis:member'
   - uid: 'excel!Excel.ChartAxes#categoryAxis:member'
     summary: |-
-      Representa o eixo de categoria em um gráfico. Somente leitura.
+      Representa o eixo de categoria em um gráfico. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: categoryAxis
@@ -167,7 +167,7 @@ items:
                       }
   - uid: 'excel!Excel.ChartAxes#seriesAxis:member'
     summary: |-
-      Representa o eixo das séries de um gráfico 3D. Somente leitura.
+      Representa o eixo das séries de um gráfico 3D. Apenas leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: seriesAxis
@@ -252,6 +252,29 @@ items:
       return:
         type:
           - 'excel!Excel.ChartAxis:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // Set the maximum, minimum, majorUnit, minorUnit of valueAxis. 
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
+              chart.axes.valueAxis.maximum = 5;
+              chart.axes.valueAxis.minimum = 0;
+              chart.axes.valueAxis.majorUnit = 1;
+              chart.axes.valueAxis.minorUnit = 0.2;
+              return ctx.sync().then(function() {
+                      console.log("Axis Settings Changed");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
 references:
   - uid: 'excel!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
