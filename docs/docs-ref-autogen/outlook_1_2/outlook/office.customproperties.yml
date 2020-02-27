@@ -2,13 +2,13 @@
 items:
   - uid: 'outlook!Office.CustomProperties:interface'
     summary: |-
-      O objeto CustomProperties representa propriedades personalizadas que são específicas para um item específico e específicas para um suplemento de email para o Outlook. Por exemplo, um suplemento de email pode precisar salvar alguns dados que são específicos para a mensagem de email atual que ativou o suplemento. Se o usuário revisitar a mesma mensagem no futuro e ativar o suplemento de email novamente, o suplemento poderá recuperar os dados que foram salvos como propriedades personalizadas. **Importante**: o comprimento máximo de um objeto JSON personalizadoproperties é de 2500 caracteres.
+      O objeto `CustomProperties` representa as propriedades personalizadas que são específicas de determinado item e de um suplemento de email do Outlook. Por exemplo, um suplemento de email pode precisar salvar alguns dados que são específicos para a mensagem de email atual que ativou o suplemento. Se o usuário revisitar a mesma mensagem no futuro e ativar o suplemento de email novamente, o suplemento poderá recuperar os dados que foram salvos como propriedades personalizadas. **Importante**: o comprimento máximo de um `CustomProperties` objeto JSON é de 2500 caracteres.
 
       Como o Outlook no Mac não armazena propriedades personalizadas em cache, se a rede do usuário for desativada, os suplementos de email não poderão acessar suas propriedades personalizadas.
     remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
     name: Office.CustomProperties
     fullName: Office.CustomProperties
     langs:
@@ -23,9 +23,9 @@ items:
   - uid: 'outlook!Office.CustomProperties#get:member(1)'
     summary: Retorna o valor da propriedade personalizada especificada.
     remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
 
       #### <a name="examples"></a>Exemplos
 
@@ -55,11 +55,11 @@ items:
     summary: |-
       Remove a propriedade especificada do conjunto de propriedades personalizadas.
 
-      Para tornar a remoção da propriedade permanente, você deve chamar o método saveAsync do objeto CustomProperties.
+      Para tornar a remoção da propriedade permanente, você precisa chamar o método `saveAsync` do objeto `CustomProperties`
     remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
 
       #### <a name="examples"></a>Exemplos
 
@@ -81,20 +81,20 @@ items:
         description: ''
       parameters:
         - id: name
-          description: O nome da propriedade a ser removida.
+          description: A `name` Propriedade a ser removida.
           type:
             - string
   - uid: 'outlook!Office.CustomProperties#saveAsync:member(1)'
     summary: |-
       Salva propriedades personalizadas específicas do item no servidor.
 
-      Você deve chamar o método saveAsync para persistir quaisquer alterações feitas com o método set ou o método remove do objeto CustomProperties. A ação de salvar é assíncrona.
+      Você precisa chamar o método `saveAsync` para manter as alterações feitas com o método `set` ou o método `remove` do objeto `CustomProperties`. A ação de salvar é assíncrona.
 
-      É uma boa prática fazer a verificação de função de retorno de chamada e lidar com erros do saveAsync. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar saveAsync enquanto estiver no estado desconectado, saveAsync retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
+      É uma boa prática fazer com que sua função de retorno de chamada Verifique e manipule erros de`saveAsync`<!-- -->. Em particular, um suplemento de leitura pode ser ativado enquanto o usuário estiver em um estado conectado em um formulário de leitura e, posteriormente, o usuário for desconectado. Se o suplemento chamar `saveAsync` enquanto estiver no estado desconectado, `saveAsync` retornará um erro. Seu método de retorno de chamada deve lidar com esse erro.
     remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
 
       #### <a name="examples"></a>Exemplos
 
@@ -150,7 +150,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo Office. AsyncResult.'
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->.'
           type:
             - 'outlook!Office.CustomProperties#saveAsync~0:complex'
         - id: asyncContext
@@ -161,13 +161,13 @@ items:
     summary: |-
       Define a propriedade especificada com o valor especificado.
 
-      O método set define a propriedade especificada com o valor especificado. Você deve usar o método saveAsync para salvar a propriedade no servidor.
+      O método `set` define a propriedade especificada com o valor especificado. Você deve usar o método `saveAsync` para salvar a propriedade no servidor.
 
-      O método Set cria uma nova propriedade se a propriedade especificada ainda não existir; caso contrário, o valor existente será substituído pelo novo valor. O parâmetro value pode ser de qualquer tipo; no entanto, ele sempre é passado para o servidor como uma cadeia de caracteres.
+      O método `set` cria uma nova propriedade se a propriedade especificada não existir; caso contrário, o valor existente será substituído pelo novo valor. O parâmetro `value` pode ser de qualquer tipo; no entanto, sempre é passado ao servidor como uma cadeia de caracteres.
     remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)**: ReadItem
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/outlook/add-ins/#extension-points)**: redação ou leitura
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
 
       #### <a name="examples"></a>Exemplos
 
