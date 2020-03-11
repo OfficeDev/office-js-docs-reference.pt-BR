@@ -40,6 +40,7 @@ items:
       - 'excel!Excel.Table#rows:member'
       - 'excel!Excel.Table#set:member(1)'
       - 'excel!Excel.Table#set:member(2)'
+      - 'excel!Excel.Table#setStyle:member(1)'
       - 'excel!Excel.Table#showBandedColumns:member'
       - 'excel!Excel.Table#showBandedRows:member'
       - 'excel!Excel.Table#showFilterButton:member'
@@ -47,6 +48,7 @@ items:
       - 'excel!Excel.Table#showTotals:member'
       - 'excel!Excel.Table#sort:member'
       - 'excel!Excel.Table#style:member'
+      - 'excel!Excel.Table#tableStyle:member'
       - 'excel!Excel.Table#toJSON:member(1)'
       - 'excel!Excel.Table#worksheet:member'
   - uid: 'excel!Excel.Table#autoFilter:member'
@@ -99,7 +101,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Table#columns:member'
     summary: |-
-      Representa uma coleção de todas as colunas na tabela. Apenas leitura.
+      Representa uma coleção de todas as colunas na tabela. Somente leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: columns
@@ -494,7 +496,9 @@ items:
                       }
   - uid: 'excel!Excel.Table#name:member'
     summary: |-
-      O nome da tabela. Ao definir o nome da tabela, você deve seguir as diretrizes especificadas no artigo [renomear uma tabela do Excel](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114) .
+      Nome da tabela.
+
+      O nome do conjunto da tabela deve seguir as diretrizes especificadas no artigo [renomear uma tabela do Excel](https://support.office.com/article/Rename-an-Excel-table-FBF49A4F-82A3-43EB-8BA2-44D21233B114) .
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
@@ -599,7 +603,7 @@ items:
         description: ''
   - uid: 'excel!Excel.Table#rows:member'
     summary: |-
-      Representa uma coleção de todas as linhas na tabela. Apenas leitura.
+      Representa uma coleção de todas as linhas na tabela. Somente leitura.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rows
@@ -656,6 +660,28 @@ items:
           description: ''
           type:
             - 'excel!Excel.Table:class'
+  - uid: 'excel!Excel.Table#setStyle:member(1)'
+    summary: |-
+      Define o estilo aplicado à segmentação de,.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: setStyle(style)
+    fullName: setStyle(style)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setStyle(style: string | PivotTableStyle | BuiltInTableStyle): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: style
+          description: O estilo a ser aplicado à tabela dinâmica. Um `InvalidArgumentException` é acionado se uma cadeia de caracteres é fornecida que não corresponde ao nome de qualquer estilo.
+          type:
+            - 'excel!Excel.Table#setStyle~0:complex'
   - uid: 'excel!Excel.Table#showBandedColumns:member'
     summary: |-
       Indica se as colunas mostram formatação em faixas nas quais as colunas ímpares são realçadas de modo diferente das colunas pares, tornando a leitura da tabela mais fácil.
@@ -785,6 +811,22 @@ items:
               }
           });
           ```
+  - uid: 'excel!Excel.Table#tableStyle:member'
+    summary: |-
+      O estilo aplicado à tabela.
+
+      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: tableStyle
+    fullName: tableStyle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly tableStyle: Excel.TableStyle;'
+      return:
+        type:
+          - 'excel!Excel.TableStyle:class'
   - uid: 'excel!Excel.Table#toJSON:member(1)'
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. Table original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.TableData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
@@ -876,8 +918,24 @@ references:
     name: Interfaces.TableUpdateData
   - uid: 'excel!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
+  - uid: 'excel!Excel.Table#setStyle~0:complex'
+    name: string | PivotTableStyle | BuiltInTableStyle
+    fullName: string | Excel.PivotTableStyle | Excel.BuiltInTableStyle
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'excel!Excel.PivotTableStyle:class'
+        name: PivotTableStyle
+        fullName: Excel.PivotTableStyle
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.BuiltInTableStyle:enum'
+        name: BuiltInTableStyle
+        fullName: Excel.BuiltInTableStyle
   - uid: 'excel!Excel.TableSort:class'
     name: Excel.TableSort
+  - uid: 'excel!Excel.TableStyle:class'
+    name: Excel.TableStyle
   - uid: 'excel!Excel.Interfaces.TableData:interface'
     name: Excel.Interfaces.TableData
   - uid: 'excel!Excel.Worksheet:class'
