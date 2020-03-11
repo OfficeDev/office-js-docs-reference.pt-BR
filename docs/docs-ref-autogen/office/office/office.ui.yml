@@ -12,10 +12,46 @@ items:
     type: interface
     package: office!
     children:
+      - 'office!Office.UI#addHandlerAsync:member(1)'
       - 'office!Office.UI#closeContainer:member(1)'
       - 'office!Office.UI#displayDialogAsync:member(1)'
       - 'office!Office.UI#displayDialogAsync:member(2)'
       - 'office!Office.UI#messageParent:member(1)'
+  - uid: 'office!Office.UI#addHandlerAsync:member(1)'
+    summary: Adiciona um manipulador de eventos ao objeto usando o tipo de evento especificado.
+    remarks: |-
+      **Conjunto de requisitos**: TBD
+
+      Você pode adicionar vários manipuladores de eventos para o tipo de evento especificado, desde que o nome de cada função do manipulador de eventos seja exclusivo.
+    isPreview: true
+    name: 'addHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: any) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: Especifica o tipo de evento a ser adicionado. Isso deve ser`Office.EventType.DialogParentMessageReceived`<!-- -->.
+          type:
+            - 'office!Office.EventType:enum'
+        - id: handler
+          description: 'A função de manipulador de eventos a ser adicionada, cujo único parâmetro é do tipo.'
+          type:
+            - '(result: any) => void'
+        - id: options
+          description: 'Opcional. Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterados, para uso em um retorno de chamada.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Uma função que é invocada quando o registro do manipulador retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.'
+          type:
+            - 'office!Office.UI#addHandlerAsync~0:complex'
   - uid: 'office!Office.UI#closeContainer:member(1)'
     summary: Fecha o contêiner de interface de usuário onde o JavaScript está sendo executado.
     remarks: |-
@@ -201,6 +237,21 @@ items:
           type:
             - boolean | string
 references:
+  - uid: 'office!Office.EventType:enum'
+    name: Office.EventType
+  - uid: 'office!Office.AsyncContextOptions:interface'
+    name: Office.AsyncContextOptions
+  - uid: 'office!Office.UI#addHandlerAsync~0:complex'
+    name: '(result: AsyncResult<void>) => void'
+    fullName: '(result: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(result: '
+        fullName: '(result: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'office!Office.DialogOptions:interface'
     name: DialogOptions
   - uid: 'office!Office.UI#displayDialogAsync~0:complex'
