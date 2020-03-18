@@ -28,6 +28,8 @@ items:
       - 'outlook!Office.Body#setAsync:member(2)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(1)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(2)'
+      - 'outlook!Office.Body#setSignatureAsync:member(1)'
+      - 'outlook!Office.Body#setSignatureAsync:member(2)'
   - uid: 'outlook!Office.Body#appendOnSendAsync:member(1)'
     summary: |-
       Anexa em enviar o conteúdo especificado para o final do corpo do item, após qualquer assinatura.
@@ -573,6 +575,95 @@ items:
           description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->. Quaisquer erros encontrados serão fornecidos na propriedade `asyncResult.error`.'
           type:
             - 'outlook!Office.Body#setSelectedDataAsync~2:complex'
+  - uid: 'outlook!Office.Body#setSignatureAsync:member(1)'
+    summary: |-
+      Adiciona ou substitui a assinatura do corpo do email.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)**: redigir
+
+      **Erros**:
+
+      - `DataExceedsMaximumSize`<!-- -->: O `data` parâmetro é maior que 30.000 caracteres.
+
+      - `InvalidFormatError`<!-- -->: O `options.coercionType` parâmetro é definido como `Office.CoercionType.Html` e o corpo da mensagem fica em texto sem formatação.
+    name: 'setSignatureAsync(data, options, callback)'
+    fullName: 'setSignatureAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSignatureAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: A cadeia de caracteres que representa a assinatura a ser definida no corpo do email. Esta cadeia de caracteres está limitada a 30.000 caracteres.
+          type:
+            - string
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada. `coercionType`<!-- -->: O formato em que a assinatura deve ser definida. Se Text, o método define a assinatura como texto sem formatação, removendo todas as marcas HTML presentes. Se HTML, o método define a assinatura como HTML.'
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~0:complex'
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->.'
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~1:complex'
+  - uid: 'outlook!Office.Body#setSignatureAsync:member(2)'
+    summary: |-
+      Adiciona ou substitui a assinatura do corpo do email.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)**: redigir
+
+      **Erros**:
+
+      - `DataExceedsMaximumSize`<!-- -->: O `data` parâmetro é maior que 30.000 caracteres.
+
+      - `InvalidFormatError`<!-- -->: O `options.coercionType` parâmetro é definido como `Office.CoercionType.Html` e o corpo da mensagem fica em texto sem formatação.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // Set the signature for the current item.
+      var signature = $("#signature").val();
+      console.log(`Setting signature to "${signature}".`);
+      Office.context.mailbox.item.body.setSignatureAsync(signature, function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("setSignatureAsync succeeded");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: 'setSignatureAsync(data, callback)'
+    fullName: 'setSignatureAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSignatureAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: A cadeia de caracteres que representa a assinatura a ser definida no corpo do email. Esta cadeia de caracteres está limitada a 30.000 caracteres.
+          type:
+            - string
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->.'
+          type:
+            - 'outlook!Office.Body#setSignatureAsync~2:complex'
 references:
   - uid: 'outlook!Office.Body#appendOnSendAsync~0:complex'
     name: Office.AsyncContextOptions & CoercionTypeOptions
@@ -774,6 +865,40 @@ references:
       - name: <void>) => void
         fullName: <void>) => void
   - uid: 'outlook!Office.Body#setSelectedDataAsync~2:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#setSignatureAsync~0:complex'
+    name: Office.AsyncContextOptions & CoercionTypeOptions
+    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
+    spec.typeScript:
+      - uid: 'outlook!Office.AsyncContextOptions:interface'
+        name: Office.AsyncContextOptions
+        fullName: Office.AsyncContextOptions
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.CoercionTypeOptions:interface'
+        name: CoercionTypeOptions
+        fullName: Office.CoercionTypeOptions
+  - uid: 'outlook!Office.Body#setSignatureAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#setSignatureAsync~2:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
