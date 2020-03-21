@@ -116,6 +116,33 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          // This will convert a number like "14,37" to "14.37"
+          // (assuming the system decimal separator is ".").
+            await Excel.run(async (context) => {
+          const sheet = context.workbook.worksheets.getItem("Sample");
+          const decimalSource = sheet.getRange("B2");
+          decimalSource.load("values");
+          context.application.cultureInfo.numberFormat.load("numberDecimalSeparator");
+          await context.sync();
+
+          const systemDecimalSeparator = context.application.cultureInfo.numberFormat.numberDecimalSeparator;
+          const oldDecimalString: string = decimalSource.values[0][0];
+
+          // This assumes the input column is standardized to use "," as the decimal separator. 
+          const newDecimalString = oldDecimalString.replace(",", systemDecimalSeparator);
+
+          const resultRange = sheet.getRange("C2");
+          resultRange.values = [[newDecimalString]];
+          resultRange.format.autofitColumns();
+          await context.sync();
+            });
+          ```
   - uid: 'excel!Excel.NumberFormatInfo#numberGroupSeparator:member'
     summary: |-
       Obtém a cadeia de caracteres usada para separar grupos de dígitos à esquerda do decimal para valores numéricos. Isso é baseado nas configurações atuais do sistema.
@@ -132,6 +159,33 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+            // This will convert a number like "123-456-789" to "123,456,789"
+            // (assuming the system thousands separator is ",").
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            const bigNumberSource = sheet.getRange("B3");
+            bigNumberSource.load("values");
+            context.application.cultureInfo.numberFormat.load("numberGroupSeparator");
+            await context.sync();
+
+            const systemThousandsSeparator = context.application.cultureInfo.numberFormat.numberGroupSeparator;
+            const oldBigNumberString: string = bigNumberSource.values[0][0];
+            
+            // This assumes the input column is standardized to use "-" as the number group separator. 
+            const newBigNumberString = oldBigNumberString.replace(/-/g, systemThousandsSeparator);
+
+            const resultRange = sheet.getRange("C3");
+            resultRange.values = [[newBigNumberString]];
+            resultRange.format.autofitColumns();
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.NumberFormatInfo#toJSON:member(1)'
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. NumberFormatInfo original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.NumberFormatInfoData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     isPreview: true
