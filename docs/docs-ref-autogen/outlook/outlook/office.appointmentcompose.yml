@@ -653,10 +653,11 @@ items:
       Para clientes avançados do Windows e Mac, essa API define a assinatura sob as seções "nova mensagem" e "respostas/encaminhamentos" da conta de envio para "(nenhum)", desabilitando efetivamente a assinatura. Para o Outlook na Web, a API deve desabilitar a opção de assinatura para novos emails, respostas e encaminhamentos. Se a assinatura for selecionada, esta chamada de API deverá desabilitá-la.
 
       \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-
+    remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
 
       **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)**: organizador de compromisso
+    isPreview: true
     name: 'disableClientSignatureAsync(options, callback)'
     fullName: 'disableClientSignatureAsync(options, callback)'
     langs:
@@ -684,10 +685,24 @@ items:
       Para clientes avançados do Windows e Mac, essa API define a assinatura sob as seções "nova mensagem" e "respostas/encaminhamentos" da conta de envio para "(nenhum)", desabilitando efetivamente a assinatura. Para o Outlook na Web, a API deve desabilitar a opção de assinatura para novos emails, respostas e encaminhamentos. Se a assinatura for selecionada, esta chamada de API deverá desabilitá-la.
 
       \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-
+    remarks: |-
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
 
       **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)**: organizador de compromisso
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      // Disable the client signature.
+      Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("disableClientSignatureAsync succeeded");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    isPreview: true
     name: disableClientSignatureAsync(callback)
     fullName: disableClientSignatureAsync(callback)
     langs:
@@ -698,21 +713,7 @@ items:
       return:
         type:
           - void
-        description: |-
-
-
-          #### <a name="examples"></a>Exemplos
-
-          ```javascript
-          // Disable the client signature.
-          Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
-            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-              console.log("disableClientSignatureAsync succeeded");
-            } else {
-              console.error(asyncResult.error);
-            }
-          });
-          ```
+        description: ''
       parameters:
         - id: callback
           description: 'Opcional. Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro,`asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.'
@@ -1465,6 +1466,7 @@ items:
       **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
       **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)**: organizador de compromisso
+    isPreview: true
     name: 'isClientSignatureEnabledAsync(options, callback)'
     fullName: 'isClientSignatureEnabledAsync(options, callback)'
     langs:
@@ -1509,6 +1511,7 @@ items:
         }
       });
       ```
+    isPreview: true
     name: isClientSignatureEnabledAsync(callback)
     fullName: isClientSignatureEnabledAsync(callback)
     langs:
