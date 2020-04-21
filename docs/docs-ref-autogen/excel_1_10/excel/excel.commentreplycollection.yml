@@ -16,7 +16,6 @@ items:
     children:
       - 'excel!Excel.CommentReplyCollection#add:member(1)'
       - 'excel!Excel.CommentReplyCollection#add:member(2)'
-      - 'excel!Excel.CommentReplyCollection#add:member(3)'
       - 'excel!Excel.CommentReplyCollection#context:member'
       - 'excel!Excel.CommentReplyCollection#getCount:member(1)'
       - 'excel!Excel.CommentReplyCollection#getItem:member(1)'
@@ -30,7 +29,7 @@ items:
     summary: |-
       Cria uma resposta de comentário para o comentário.
 
-      \[[Conjunto de APIs: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'add(content, contentType)'
     fullName: 'add(content, contentType)'
     langs:
@@ -47,6 +46,7 @@ items:
           #### <a name="examples"></a>Exemplos
 
           ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/12-comment/comment-replies.yaml
           await Excel.run(async (context) => {
               // Adds a reply to the first comment in this worksheet.
               const sheet = context.workbook.worksheets.getItem("Comments");
@@ -57,18 +57,18 @@ items:
           ```
       parameters:
         - id: content
-          description: 'O conteúdo do comentário. Pode ser uma cadeia de caracteres ou uma interface CommentRichContent (por exemplo, para comentários com mençãos).'
+          description: 'O conteúdo do comentário. Pode ser uma cadeia de caracteres ou uma interface CommentRichContent (por exemplo, para comentários com mençãos). \[Conjunto de APIs: ExcelApi 1,10 para String, ExcelApiOnline 1,1 para o objeto CommentRichContent\]'
           type:
             - 'excel!Excel.CommentReplyCollection#add~0:complex'
         - id: contentType
-          description: Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.Plain`<!-- -->.
+          description: 'Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.Plain`<!-- -->. \[Conjunto de APIs: ExcelApi 1,10 para enum ContentType. Plain, ExcelApiOnline 1,1 para enum ContentType. menção\]'
           type:
             - 'excel!Excel.ContentType:enum'
   - uid: 'excel!Excel.CommentReplyCollection#add:member(2)'
     summary: |-
       Cria uma resposta de comentário para o comentário.
 
-      \[[Conjunto de APIs: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'add(content, contentTypeString)'
     fullName: 'add(content, contentTypeString)'
     langs:
@@ -82,34 +82,13 @@ items:
         description: ''
       parameters:
         - id: content
-          description: 'O conteúdo do comentário. Pode ser uma cadeia de caracteres ou uma interface CommentRichContent (por exemplo, para comentários com mençãos).'
+          description: 'O conteúdo do comentário. Pode ser uma cadeia de caracteres ou uma interface CommentRichContent (por exemplo, para comentários com mençãos). \[Conjunto de APIs: ExcelApi 1,10 para String, ExcelApiOnline 1,1 para o objeto CommentRichContent\]'
           type:
             - 'excel!Excel.CommentReplyCollection#add~1:complex'
         - id: contentTypeString
-          description: Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.Plain`<!-- -->.
+          description: 'Opcional. O tipo de conteúdo contido no comentário. O valor padrão é enum`ContentType.Plain`<!-- -->. \[Conjunto de APIs: ExcelApi 1,10 para enum ContentType. Plain, ExcelApiOnline 1,1 para enum ContentType. menção\]'
           type:
             - '"Plain" | "Mention"'
-  - uid: 'excel!Excel.CommentReplyCollection#add:member(3)'
-    summary: |-
-      Cria uma resposta de comentário para o comentário.
-
-      \[[Conjunto de APIs: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: add(content)
-    fullName: add(content)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'add(content: string): Excel.CommentReply;'
-      return:
-        type:
-          - 'excel!Excel.CommentReply:class'
-        description: ''
-      parameters:
-        - id: content
-          description: O conteúdo de texto sem formatação do comentário.
-          type:
-            - string
   - uid: 'excel!Excel.CommentReplyCollection#context:member'
     summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
     name: context

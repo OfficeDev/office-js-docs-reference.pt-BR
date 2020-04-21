@@ -46,7 +46,7 @@ Trechos de código de exemplo são adicionados às páginas de referência de du
 
 Os trechos de código locais estão em arquivos YAML específicos do host. O conteúdo é organizado por classe e campo, para que possa ser mapeado para o local apropriado em uma página de referência. O idioma do trecho de código (JavaScript ou TypeScript) é inferido pelo uso de instruções Await.
 
-Os trechos de laboratório de script são retirados de exemplos de trabalho. Atualmente, as amostras do Excel e do Word são mapeadas para seções de documento de referência por meio [de um par de arquivos de mapeamento](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata). Eles correspondem a métodos de amostra individuais para propriedades ou métodos na API. Quando o repositório Office-js-Snippets é `yarn start` executado, [um arquivo YAML](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) contendo todos os trechos de código mapeados é criado. Este arquivo do YAML é a entrada para a ferramenta de documentação de referência.
+Os trechos de laboratório de script são retirados de exemplos de trabalho. Atualmente, as amostras do Excel, Outlook e do Word são mapeadas para consultar seções de documento através de [arquivos de mapeamento](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata). Eles correspondem a métodos de amostra individuais para propriedades ou métodos na API. Quando o repositório Office-js-Snippets é `yarn start` executado, [um arquivo YAML](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) contendo todos os trechos de código mapeados é criado. Este arquivo do YAML é a entrada para a ferramenta de documentação de referência.
 
 ## <a name="tooling-pipeline"></a>Pipeline de ferramentas
 
@@ -64,7 +64,7 @@ O pré-processador usa os arquivos d. TS e os divide em seções específicas do
 
 O extrator de API converte os arquivos d. TS em dados JSON. Isso tokenizes todos os dados de tipo, permitindo uma análise mais fácil.
 
-O midprocessor recupera os trechos de código e os emparelha com os hosts adequados.
+O midprocessor recupera os trechos de código e os emparelha com os hosts adequados e limpa o crosslinking entre os objetos do Outlook e da API comum.
 
 O Documentador de API converte os dados JSON em arquivos. yml. Os arquivos. yml são convertidos para redução pelo sistema de publicação aberto que publica nossos documentos para o docs.microsoft.com. O Documentador de API também contém uma extensão específica do Office que insere nossos trechos de código.
 
