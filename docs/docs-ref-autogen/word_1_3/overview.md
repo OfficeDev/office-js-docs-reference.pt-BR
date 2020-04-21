@@ -1,13 +1,13 @@
 ---
 title: Referência da API JavaScript do Office
-description: As APIs JavaScript do Office por conjunto de requisitos de host
-ms.date: 11/19/2019
-ms.openlocfilehash: f4072c23cb0d6e0d5375cf79d92b4f6dd9b35f0f
-ms.sourcegitcommit: d37268ff5254061632a886b196ec28f2f4087377
+description: Os conjuntos de requisitos de APIs JavaScript do Office por host.
+ms.date: 04/17/2020
+ms.openlocfilehash: 765b2ee6108f6433ffe17d3ca15ba9c68fbd9617
+ms.sourcegitcommit: 6dd770ff4893a67c625e1e4fd06ee197a3992ae0
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 11/21/2019
-ms.locfileid: "38758047"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "43602036"
 ---
 # <a name="office-javascript-api-reference"></a>Referência da API JavaScript do Office
 
@@ -45,7 +45,7 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 - [Caixa de correio 1.8](/javascript/api/outlook?view=outlook-js-1.8)
 - [Caixa de correio 1.7](/javascript/api/outlook?view=outlook-js-1.7)
 - [Caixa de correio 1.6](/javascript/api/outlook?view=outlook-js-1.6)
-- [Caixa de correio 1.5](/javascript/api/outlook?view=outlook-js-1.5)
+- [ Caixa de correio 1.5](/javascript/api/outlook?view=outlook-js-1.5)
 - [ Caixa de correio 1.4](/javascript/api/outlook?view=outlook-js-1.4)
 - [ Caixa de correio 1.3](/javascript/api/outlook?view=outlook-js-1.3)
 - [Caixa de correio 1.2](/javascript/api/outlook?view=outlook-js-1.2)
@@ -75,3 +75,4 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 - [Sobre os Suplementos do Office](/office/dev/add-ins/overview)
 - [Disponibilidade de host e plataforma para suplementos do Office](/office/dev/add-ins/overview/office-add-in-availability)
 - [Versões do Office e conjuntos de requisitos](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
+- [Explore a API JavaScript do Office usando o Script Lab](/office/dev/add-ins/overview/explore-with-script-lab).
