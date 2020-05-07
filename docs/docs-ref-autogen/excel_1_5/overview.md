@@ -1,13 +1,13 @@
 ---
 title: Referência da API JavaScript do Office
 description: Os conjuntos de requisitos de APIs JavaScript do Office por host.
-ms.date: 04/17/2020
-ms.openlocfilehash: 765b2ee6108f6433ffe17d3ca15ba9c68fbd9617
-ms.sourcegitcommit: 6dd770ff4893a67c625e1e4fd06ee197a3992ae0
+ms.date: 05/05/2020
+ms.openlocfilehash: 3a32c47b23fd6635c4c2b44b58ee9b351fffd8d5
+ms.sourcegitcommit: c38b0b4cf446e10aed0f7de4401cf7060020d260
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "43603941"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "44111403"
 ---
 # <a name="office-javascript-api-reference"></a>Referência da API JavaScript do Office
 
@@ -24,6 +24,7 @@ Veja a seguir uma lista de conjuntos de requisitos específicos do host (e as AP
 
 - [Visualização do ExcelApi](/javascript/api/excel?view=excel-js-preview)
 - [ExcelApiOnline 1,1](/javascript/api/excel?view=excel-js-online)
+- [ExcelApi 1,11](/javascript/api/excel?view=excel-js-1.11)
 - [ExcelApi 1.10](/javascript/api/excel?view=excel-js-1.10)
 - [ExcelApi 1.9](/javascript/api/excel?view=excel-js-1.9)
 - [ExcelApi 1.8](/javascript/api/excel?view=excel-js-1.8)
