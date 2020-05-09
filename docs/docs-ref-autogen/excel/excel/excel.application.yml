@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.Application#calculate:member(1)'
@@ -92,7 +92,7 @@ items:
             - '"Recalculate" | "Full" | "FullRebuild"'
   - uid: 'excel!Excel.Application#calculationEngineVersion:member'
     summary: |-
-      Retorna a versão do mecanismo de cálculo do Excel usada para o último recálculo completo. Somente leitura.
+      Retorna a versão do mecanismo de cálculo do Excel usada para o último recálculo completo.
 
       \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationEngineVersion
@@ -122,7 +122,7 @@ items:
           - 'excel!Excel.Application#calculationMode~0:complex'
   - uid: 'excel!Excel.Application#calculationState:member'
     summary: |-
-      Retorna o estado de cálculo do aplicativo. Para saber detalhes, confira Excel.CalculationState. Somente leitura.
+      Retorna o estado de cálculo do aplicativo. Para saber detalhes, confira Excel.CalculationState.
 
       \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: calculationState
@@ -151,8 +151,7 @@ items:
     summary: |-
       Fornece informações com base nas configurações de cultura do sistema atual. Isso inclui os nomes de cultura, a formatação de números e outras configurações dependentes de cultura.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: cultureInfo
     fullName: cultureInfo
     langs:
@@ -167,8 +166,7 @@ items:
     summary: |-
       Obtém a cadeia de caracteres usada como o separador decimal para valores numéricos. Isso é baseado nas configurações locais do Excel.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: decimalSeparator
     fullName: decimalSeparator
     langs:
@@ -185,7 +183,7 @@ items:
           #### <a name="examples"></a>Exemplos
 
           ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/culture-info.yaml
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/culture-info.yaml
           await Excel.run(async (context) => {
             context.application.load("decimalSeparator,thousandsSeparator");
             context.application.cultureInfo.numberFormat.load("numberDecimalSeparator,numberGroupSeparator");
@@ -330,7 +328,7 @@ items:
         - id: options
           description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.Application#set:member(2)'
     summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
     name: set(properties)
@@ -369,7 +367,7 @@ items:
     summary: |-
       Suspende a atualização da tela até que `context.sync()` o próximo seja chamado.
 
-      **Observação**: não chame `suspendScreenUpdatingUntilNextSync` repetidamente (como em um loop). As chamadas repetidas farão com que a janela do Excel fique de piscar.
+      * Observação * *: não chamar `suspendScreenUpdatingUntilNextSync` repetidamente (como em um loop). As chamadas repetidas farão com que a janela do Excel fique de piscar.
 
       \[[Conjunto de APIs: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: suspendScreenUpdatingUntilNextSync()
@@ -422,8 +420,7 @@ items:
     summary: |-
       Obtém a cadeia de caracteres usada para separar grupos de dígitos à esquerda do decimal para valores numéricos. Isso é baseado nas configurações locais do Excel.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: thousandsSeparator
     fullName: thousandsSeparator
     langs:
@@ -449,10 +446,9 @@ items:
         description: ''
   - uid: 'excel!Excel.Application#useSystemSeparators:member'
     summary: |-
-      Especifica se os separadores de sistema do Microsoft Excel estão habilitados. Os separadores de sistema incluem separador decimal e separador de milhar.
+      Especifica se os separadores de sistema do Excel estão habilitados. Os separadores de sistema incluem separador decimal e separador de milhar.
 
-      \[[Conjunto de APIs: EXCELAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
+      \[[Conjunto de APIs: ExcelApi 1,11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: useSystemSeparators
     fullName: useSystemSeparators
     langs:
@@ -464,7 +460,7 @@ items:
         type:
           - boolean
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.CalculationType:enum'
     name: Excel.CalculationType
@@ -498,7 +494,7 @@ references:
     name: Excel.Interfaces.ApplicationLoadOptions
   - uid: 'excel!Excel.Interfaces.ApplicationUpdateData:interface'
     name: Interfaces.ApplicationUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.ApplicationData:interface'
     name: Excel.Interfaces.ApplicationData
