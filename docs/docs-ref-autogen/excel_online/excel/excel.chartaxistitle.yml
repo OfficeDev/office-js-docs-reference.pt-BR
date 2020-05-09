@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.ChartAxisTitle#context:member'
@@ -23,6 +23,7 @@ items:
       - 'excel!Excel.ChartAxisTitle#set:member(2)'
       - 'excel!Excel.ChartAxisTitle#setFormula:member(1)'
       - 'excel!Excel.ChartAxisTitle#text:member'
+      - 'excel!Excel.ChartAxisTitle#textOrientation:member'
       - 'excel!Excel.ChartAxisTitle#toJSON:member(1)'
       - 'excel!Excel.ChartAxisTitle#visible:member'
   - uid: 'excel!Excel.ChartAxisTitle#context:member'
@@ -39,7 +40,7 @@ items:
           - 'excel!Excel.RequestContext:class'
   - uid: 'excel!Excel.ChartAxisTitle#format:member'
     summary: |-
-      Representa a formatação do título do eixo do gráfico. Somente leitura.
+      Especifica a formatação do título do eixo do gráfico.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: format
@@ -158,7 +159,7 @@ items:
         - id: options
           description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.ChartAxisTitle#set:member(2)'
     summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
     name: set(properties)
@@ -200,7 +201,7 @@ items:
             - string
   - uid: 'excel!Excel.ChartAxisTitle#text:member'
     summary: |-
-      Representa o título do eixo.
+      Especifica o título do eixo.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: text
@@ -213,6 +214,21 @@ items:
       return:
         type:
           - string
+  - uid: 'excel!Excel.ChartAxisTitle#textOrientation:member'
+    summary: |-
+      Especifica o ângulo no qual o texto é orientado para o título do eixo do gráfico. O valor deve ser um inteiro de-90 a 90 ou o inteiro 180 para texto orientado verticalmente.
+
+      \[[Conjunto de APIs: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: textOrientation
+    fullName: textOrientation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textOrientation: number;'
+      return:
+        type:
+          - number
   - uid: 'excel!Excel.ChartAxisTitle#toJSON:member(1)'
     summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartAxisTitle original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ChartAxisTitleData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
@@ -228,7 +244,7 @@ items:
         description: ''
   - uid: 'excel!Excel.ChartAxisTitle#visible:member'
     summary: |-
-      Um booliano que especifica a visibilidade de um título do eixo.
+      Especifica se o título do eixo é visibile.
 
       \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: visible
@@ -242,7 +258,7 @@ items:
         type:
           - boolean
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
@@ -254,7 +270,7 @@ references:
     name: Excel.Interfaces.ChartAxisTitleLoadOptions
   - uid: 'excel!Excel.Interfaces.ChartAxisTitleUpdateData:interface'
     name: Interfaces.ChartAxisTitleUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.ChartAxisTitleData:interface'
     name: Excel.Interfaces.ChartAxisTitleData
