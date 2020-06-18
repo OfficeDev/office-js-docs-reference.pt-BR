@@ -30,9 +30,13 @@ items:
       - 'outlook!Office.Mailbox#convertToUtcClientTime:member(1)'
       - 'outlook!Office.Mailbox#diagnostics:member'
       - 'outlook!Office.Mailbox#displayAppointmentForm:member(1)'
+      - 'outlook!Office.Mailbox#displayAppointmentFormAsync:member(1)'
       - 'outlook!Office.Mailbox#displayMessageForm:member(1)'
+      - 'outlook!Office.Mailbox#displayMessageFormAsync:member(1)'
       - 'outlook!Office.Mailbox#displayNewAppointmentForm:member(1)'
+      - 'outlook!Office.Mailbox#displayNewAppointmentFormAsync:member(1)'
       - 'outlook!Office.Mailbox#displayNewMessageForm:member(1)'
+      - 'outlook!Office.Mailbox#displayNewMessageFormAsync:member(1)'
       - 'outlook!Office.Mailbox#ewsUrl:member'
       - 'outlook!Office.Mailbox#getCallbackTokenAsync:member(1)'
       - 'outlook!Office.Mailbox#getCallbackTokenAsync:member(2)'
@@ -359,11 +363,11 @@ items:
 
       O método `displayAppointmentForm` abre um compromisso de calendário existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
 
-      No Outlook no Mac, você pode usar esse método para exibir um único compromisso que não faz parte de uma série recorrente, ou o compromisso mestre de uma série recorrente, mas não pode exibir um instância da série. Isso ocorre porque no Outlook no Mac você não pode acessar as propriedades (incluindo a ID do item) das instâncias de uma série recorrente.
+      No Outlook no Mac, você pode usar esse método para exibir um único compromisso que não faz parte de uma série recorrente ou o compromisso mestre de uma série recorrente. No entanto, você não pode exibir uma instância da série porque não é possível acessar as propriedades (incluindo a ID do item) de instâncias de uma série recorrente.
 
-      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual ao número de caracteres de 32KB.
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual a 32K caracteres.
 
-      Se o identificador do item especificado não identificar um compromisso existente, um painel em branco abre no dispositivo ou no computador cliente e nenhuma mensagem de erro será exibida.
+      Se o identificador de item especificado não identificar um compromisso existente, um painel em branco será aberto no dispositivo ou computador cliente e nenhuma mensagem de erro será retornada.
 
       **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
     remarks: |-
@@ -394,15 +398,59 @@ items:
           description: O identificador dos Serviços Web do Exchange (EWS) para um compromisso de calendário existente.
           type:
             - string
+  - uid: 'outlook!Office.Mailbox#displayAppointmentFormAsync:member(1)'
+    summary: |-
+      Exibe um compromisso de calendário existente.
+
+      O método `displayAppointmentFormAsync` abre um compromisso de calendário existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
+
+      No Outlook no Mac, você pode usar esse método para exibir um único compromisso que não faz parte de uma série recorrente ou o compromisso mestre de uma série recorrente. No entanto, você não pode exibir uma instância da série porque não é possível acessar as propriedades (incluindo a ID do item) de instâncias de uma série recorrente.
+
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual a 32K caracteres.
+
+      Se o identificador de item especificado não identificar um compromisso existente, um painel em branco será aberto no dispositivo ou computador cliente e nenhuma mensagem de erro será retornada.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
+    isPreview: true
+    name: 'displayAppointmentFormAsync(itemId, options, callback)'
+    fullName: 'displayAppointmentFormAsync(itemId, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayAppointmentFormAsync(itemId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: itemId
+          description: O identificador dos Serviços Web do Exchange (EWS) para um compromisso de calendário existente.
+          type:
+            - string
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro,`asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.'
+          type:
+            - 'outlook!Office.Mailbox#displayAppointmentFormAsync~0:complex'
   - uid: 'outlook!Office.Mailbox#displayMessageForm:member(1)'
     summary: |-
       Exibe uma mensagem existente.
 
       O método `displayMessageForm` abre uma mensagem existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
 
-      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual ao número de caracteres de 32 KB.
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual a 32K caracteres.
 
-      Se o identificador do item especificado não identificar uma mensagem existente, não será exibida mensagem no computador cliente e nenhuma mensagem de erro será retornada.
+      Se o identificador do item especificado não identificar uma mensagem existente, nenhuma mensagem será exibida no computador cliente e nenhuma mensagem de erro será retornada.
 
       Não use o `displayMessageForm` com um ItemId que representa um compromisso. Use o método `displayAppointmentForm` para exibir um compromisso existente e `displayNewAppointmentForm` para exibir um formulário e criar um novo compromisso.
 
@@ -435,11 +483,55 @@ items:
           description: O identificador dos Serviços Web do Exchange (EWS) para uma mensagem existente.
           type:
             - string
+  - uid: 'outlook!Office.Mailbox#displayMessageFormAsync:member(1)'
+    summary: |-
+      Exibe uma mensagem existente.
+
+      O método `displayMessageFormAsync` abre uma mensagem existente em uma nova janela na área de trabalho ou em uma caixa de diálogo em dispositivos móveis.
+
+      No Outlook na Web, este método abre o formulário especificado somente se o corpo do formulário for menor ou igual a 32K caracteres.
+
+      Se o identificador do item especificado não identificar uma mensagem existente, nenhuma mensagem será exibida no computador cliente e nenhuma mensagem de erro será retornada.
+
+      Não use o `displayMessageForm` método ou `displayMessageFormAsync` com um ItemId que representa um compromisso. Use o `displayAppointmentForm` `displayAppointmentFormAsync` método ou para exibir um compromisso existente e `displayNewAppointmentForm` `displayNewAppointmentFormAsync` para exibir um formulário para criar um novo compromisso.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redação ou leitura
+    isPreview: true
+    name: 'displayMessageFormAsync(itemId, options, callback)'
+    fullName: 'displayMessageFormAsync(itemId, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayMessageFormAsync(itemId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: itemId
+          description: O identificador dos Serviços Web do Exchange (EWS) para uma mensagem existente.
+          type:
+            - string
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro,`asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.'
+          type:
+            - 'outlook!Office.Mailbox#displayMessageFormAsync~0:complex'
   - uid: 'outlook!Office.Mailbox#displayNewAppointmentForm:member(1)'
     summary: |-
       Exibe um formulário para criar um novo compromisso no calendário.
 
-      O método `displayNewAppointmentForm` abre um formulário que permite ao usuário criar um novo compromisso ou reunião. Se os parâmetros forem especificados, os campos de formulário do compromisso serão preenchidos automaticamente com o conteúdo dos parâmetros.
+      The `displayNewAppointmentForm` method opens a form that enables the user to create a new appointment or meeting. If parameters are specified, the appointment form fields are automatically populated with the contents of the parameters.
 
       No Outlook na Web, este método sempre exibe um formulário com um campo participantes. Se você não especificar quaisquer participantes como argumentos de entrada, o método exibe um formulário com um botão **Salvar**. Se você especificar participantes, o formulário inclui os participantes e um botão **Enviar**.
 
@@ -489,6 +581,50 @@ items:
           description: Um `AppointmentForm` descrevendo o novo compromisso. Todas as propriedades são opcionais.
           type:
             - 'outlook!Office.AppointmentForm:interface'
+  - uid: 'outlook!Office.Mailbox#displayNewAppointmentFormAsync:member(1)'
+    summary: |-
+      Exibe um formulário para criar um novo compromisso no calendário.
+
+      The `displayNewAppointmentFormAsync` method opens a form that enables the user to create a new appointment or meeting. If parameters are specified, the appointment form fields are automatically populated with the contents of the parameters.
+
+      No Outlook na Web, este método sempre exibe um formulário com um campo participantes. Se você não especificar quaisquer participantes como argumentos de entrada, o método exibe um formulário com um botão **Salvar**. Se você especificar participantes, o formulário inclui os participantes e um botão **Enviar**.
+
+      No cliente avançado do Outlook e no Outlook RT, se você especificar qualquer participante ou recurso no`requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->, ou `resources` parâmetro, este método exibe um formulário de reunião com um botão **Enviar** . Se você não especificar nenhum destinatário, este método exibirá um formulário de compromisso com um botão **Salvar &amp; fechar** .
+
+      Se qualquer dos parâmetros exceder os limites de tamanho especificados, ou se um nome de parâmetro desconhecido for especificado, ocorre uma exceção.
+
+      **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: leitura
+    isPreview: true
+    name: 'displayNewAppointmentFormAsync(parameters, options, callback)'
+    fullName: 'displayNewAppointmentFormAsync(parameters, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayNewAppointmentFormAsync(parameters: AppointmentForm, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: parameters
+          description: Um `AppointmentForm` descrevendo o novo compromisso. Todas as propriedades são opcionais.
+          type:
+            - 'outlook!Office.AppointmentForm:interface'
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro,`asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.'
+          type:
+            - 'outlook!Office.Mailbox#displayNewAppointmentFormAsync~0:complex'
   - uid: 'outlook!Office.Mailbox#displayNewMessageForm:member(1)'
     summary: |-
       Exibe um formulário para criar uma nova mensagem.
@@ -563,6 +699,67 @@ items:
             `attachments.itemId`<!-- -->: Usado somente se Type for definido como item. A ID do item do EWS do email existente que você deseja anexar à nova mensagem. Isso é uma cadeia de até 100 caracteres.
           type:
             - any
+  - uid: 'outlook!Office.Mailbox#displayNewMessageFormAsync:member(1)'
+    summary: |-
+      Exibe um formulário para criar uma nova mensagem.
+
+      O `displayNewMessageFormAsync` método abre um formulário que permite ao usuário criar uma nova mensagem. Se os parâmetros forem especificados, os campos de formulário da mensagem serão preenchidos automaticamente com o conteúdo dos parâmetros.
+
+      Se qualquer dos parâmetros exceder os limites de tamanho especificados, ou se um nome de parâmetro desconhecido for especificado, ocorre uma exceção.
+
+      \[[Conjunto de APIs: visualização de caixa de correio](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: leitura
+    isPreview: true
+    name: 'displayNewMessageFormAsync(parameters, options, callback)'
+    fullName: 'displayNewMessageFormAsync(parameters, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayNewMessageFormAsync(parameters: any, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: parameters
+          description: |-
+            Um dicionário contendo todos os valores a serem preenchidos para o usuário no novo formulário. Todos os parâmetros são opcionais.
+
+            `toRecipients`<!-- -->: Uma matriz de cadeias de caracteres que contém os endereços de email ou uma matriz que contém um objeto [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) para cada um dos destinatários na linha para. A matriz está limitada a um máximo de 100 entradas.
+
+            `ccRecipients`<!-- -->: Uma matriz de cadeias de caracteres que contém os endereços de email ou uma matriz que contém um objeto [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) para cada um dos destinatários na linha CC. A matriz está limitada a um máximo de 100 entradas.
+
+            `bccRecipients`<!-- -->: Uma matriz de cadeias de caracteres que contém os endereços de email ou uma matriz que contém um objeto [EmailAddressDetails](xref:outlook!Office.EmailAddressDetails:interface) para cada um dos destinatários na linha Cco. A matriz está limitada a um máximo de 100 entradas.
+
+            `subject`<!-- -->: Uma cadeia de caracteres que contém o assunto da mensagem. A cadeia de caracteres está limitada a um máximo de 255 caracteres.
+
+            `htmlBody`<!-- -->: O corpo HTML da mensagem. O conteúdo do corpo está limitado a um tamanho máximo de 32 KB.
+
+            `attachments`<!-- -->: Uma matriz de objetos JSON que são anexos de arquivo ou item.
+
+            `attachments.type`<!-- -->: Indica o tipo de anexo. Deve ser um arquivo para um anexo de arquivo ou item para um anexo de item.
+
+            `attachments.name`<!-- -->: Uma cadeia de caracteres que contém o nome do anexo, até 255 caracteres de comprimento.
+
+            `attachments.url`<!-- -->: Usado somente se Type for definido como File. O URI do local para o arquivo.
+
+            `attachments.isInline`<!-- -->: Usado somente se Type for definido como File. Se true, indica que o anexo será mostrado embutido no corpo da mensagem e não deverá ser exibido na lista de anexos.
+
+            `attachments.itemId`<!-- -->: Usado somente se Type for definido como item. A ID do item do EWS do email existente que você deseja anexar à nova mensagem. Isso é uma cadeia de até 100 caracteres.
+          type:
+            - any
+        - id: options
+          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro,`asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.'
+          type:
+            - 'outlook!Office.Mailbox#displayNewMessageFormAsync~0:complex'
   - uid: 'outlook!Office.Mailbox#ewsUrl:member'
     summary: |-
       Obtém a URL do ponto de extremidade dos Serviços Web do Exchange (EWS) para esta conta de email. Somente modo de leitura.
@@ -608,7 +805,7 @@ items:
     summary: |-
       Obtém uma cadeia de caracteres que contém um token usado para chamar APIs REST ou Serviços Web do Exchange.
 
-      O método `getCallbackTokenAsync` faz uma chamada assíncrona para obter um token opaco do Exchange Server que hospeda a caixa de correio do usuário. A vida útil do token de retorno de chamada é de 5 minutos.
+      The `getCallbackTokenAsync` method makes an asynchronous call to get an opaque token from the Exchange Server that hosts the user's mailbox. The lifetime of the callback token is 5 minutes.
 
       O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade.
 
@@ -699,7 +896,7 @@ items:
     summary: |-
       Obtém uma cadeia de caracteres que contém um token usado para obter um anexo ou um item de um Exchange Server.
 
-      O método `getCallbackTokenAsync` faz uma chamada assíncrona para obter um token opaco do Exchange Server que hospeda a caixa de correio do usuário. A vida útil do token de retorno de chamada é de 5 minutos.
+      The `getCallbackTokenAsync` method makes an asynchronous call to get an opaque token from the Exchange Server that hosts the user's mailbox. The lifetime of the callback token is 5 minutes.
 
       O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade.
 
@@ -1267,8 +1464,52 @@ references:
         fullName: ' | string'
   - uid: 'outlook!Office.Diagnostics:interface'
     name: Diagnostics
+  - uid: 'outlook!Office.Mailbox#displayAppointmentFormAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Mailbox#displayMessageFormAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.AppointmentForm:interface'
     name: AppointmentForm
+  - uid: 'outlook!Office.Mailbox#displayNewAppointmentFormAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Mailbox#displayNewMessageFormAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.Mailbox#getCallbackTokenAsync~0:complex'
     name: 'Office.AsyncContextOptions & { isRest?: boolean }'
     fullName: 'Office.AsyncContextOptions & { isRest?: boolean }'
