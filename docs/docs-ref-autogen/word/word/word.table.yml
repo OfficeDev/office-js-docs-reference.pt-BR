@@ -87,7 +87,7 @@ items:
       - 'word!Word.Table#width:member'
   - uid: 'word!Word.Table#addColumns:member(1)'
     summary: |-
-      Adiciona colunas ao início ou no final da tabela, usando a primeira ou última coluna existente como um modelo. Isto é aplicável às tabelas uniformes. Os valores de cadeia de caracteres, se especificado, são definidos nas linhas recém-inseridas.
+      Adds columns to the start or end of the table, using the first or last existing column as a template. This is applicable to uniform tables. The string values, if specified, are set in the newly inserted rows.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'addColumns(insertLocation, columnCount, values)'
@@ -116,7 +116,7 @@ items:
             - 'string[][]'
   - uid: 'word!Word.Table#addColumns:member(2)'
     summary: |-
-      Adiciona colunas ao início ou no final da tabela, usando a primeira ou última coluna existente como um modelo. Isto é aplicável às tabelas uniformes. Os valores de cadeia de caracteres, se especificado, são definidos nas linhas recém-inseridas.
+      Adds columns to the start or end of the table, using the first or last existing column as a template. This is applicable to uniform tables. The string values, if specified, are set in the newly inserted rows.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'addColumns(insertLocationString, columnCount, values)'
@@ -145,7 +145,7 @@ items:
             - 'string[][]'
   - uid: 'word!Word.Table#addRows:member(1)'
     summary: |-
-      Adiciona linhas ao início ou no final da tabela, usando a primeira ou última linha existente como um modelo. Os valores de cadeia de caracteres, se especificado, são definidos nas linhas recém-inseridas.
+      Adds rows to the start or end of the table, using the first or last existing row as a template. The string values, if specified, are set in the newly inserted rows.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'addRows(insertLocation, rowCount, values)'
@@ -174,7 +174,7 @@ items:
             - 'string[][]'
   - uid: 'word!Word.Table#addRows:member(2)'
     summary: |-
-      Adiciona linhas ao início ou no final da tabela, usando a primeira ou última linha existente como um modelo. Os valores de cadeia de caracteres, se especificado, são definidos nas linhas recém-inseridas.
+      Adds rows to the start or end of the table, using the first or last existing row as a template. The string values, if specified, are set in the newly inserted rows.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'addRows(insertLocationString, rowCount, values)'
@@ -821,29 +821,21 @@ items:
         type:
           - boolean
   - uid: 'word!Word.Table#load:member(1)'
-    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-    remarks: |-
-      Além dessa assinatura, este método tem as seguintes assinaturas:
-
-      `load(option?: string | string[]): Word.Table`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; }): Word.Table`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Table`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-    name: load(option)
-    fullName: load(option)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.TableLoadOptions): Word.Table;'
+      content: 'load(options?: Word.Interfaces.TableLoadOptions): Word.Table;'
       return:
         type:
           - 'word!Word.Table:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
           type:
             - 'word!Word.Interfaces.TableLoadOptions:interface'
   - uid: 'word!Word.Table#load:member(2)'
@@ -872,16 +864,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Table;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Word.Table;
       return:
         type:
           - 'word!Word.Table:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'word!Word.Table#mergeCells:member(1)'
     summary: |-
       Mescla as células delimitadas por inclusivo pela primeira e última célula.
@@ -1238,7 +1238,7 @@ items:
             - number
   - uid: 'word!Word.Table#shadingColor:member'
     summary: |-
-      Obtém e define a cor de sombreamento. A cor é especificada no\#formato "rrggbb" ou usando o nome da cor.
+      Obtém e define a cor de sombreamento. A cor é especificada no \# formato "rrggbb" ou usando o nome da cor.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: shadingColor
@@ -1253,7 +1253,7 @@ items:
           - string
   - uid: 'word!Word.Table#style:member'
     summary: |-
-      Obtém ou define o nome do estilo usado para a tabela. Use esta propriedade de estilos personalizados e nomes de estilo localizados. Para usar os estilos internos que são portáteis entre localidades, confira a propriedade "styleBuiltIn".
+      Gets or sets the style name for the table. Use this property for custom styles and localized style names. To use the built-in styles that are portable between locales, see the "styleBuiltIn" property.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: style
@@ -1298,7 +1298,7 @@ items:
           - boolean
   - uid: 'word!Word.Table#styleBuiltIn:member'
     summary: |-
-      Obtém ou define o nome do estilo interno para a tabela. Use esta propriedade para estilos internos que são portáteis entre localidades. Para usar estilos personalizados ou nomes de estilo localizados, confira a propriedade "estilo".
+      Gets or sets the built-in style name for the table. Use this property for built-in styles that are portable between locales. To use custom styles or localized style names, see the "style" property.
 
       \[[Conjunto de APIs: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: styleBuiltIn
@@ -1372,7 +1372,7 @@ items:
         type:
           - 'word!Word.TableCollection:class'
   - uid: 'word!Word.Table#toJSON:member(1)'
-    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word. Table original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.TableData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Word. Table original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.TableData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -1385,7 +1385,7 @@ items:
           - 'word!Word.Interfaces.TableData:interface'
         description: ''
   - uid: 'word!Word.Table#track:member(1)'
-    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para`context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
     name: track()
     fullName: track()
     langs:
@@ -1398,7 +1398,7 @@ items:
           - 'word!Word.Table:class'
         description: ''
   - uid: 'word!Word.Table#untrack:member(1)'
-    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é abreviada para`context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar `context.sync()` antes que o lançamento da memória entre em vigor.'
     name: untrack()
     fullName: untrack()
     langs:
