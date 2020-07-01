@@ -80,7 +80,7 @@ items:
           ```
   - uid: 'word!Word.Font#color:member'
     summary: |-
-      Obtém ou define a cor da fonte especificada. Você pode fornecer o valor no formato '\#RRGGBB ' ou o nome da cor.
+      Obtém ou define a cor da fonte especificada. Você pode fornecer o valor no formato ' \# RRGGBB ' ou o nome da cor.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: color
@@ -151,7 +151,7 @@ items:
           - boolean
   - uid: 'word!Word.Font#highlightColor:member'
     summary: |-
-      Obtém ou define a cor de realce. Para defini-lo, use um valor no formato '\#RRGGBB ' ou o nome da cor. Para remover a cor de realce, defina-a como NULL. A cor de realce retornada pode estar no\#formato ' RRGGBB ', uma cadeia de caracteres vazia para cores de realce mistas ou NULL para nenhuma cor de realce. * Observação * *: somente as cores de realce padrão estão disponíveis na área de trabalho do Office para Windows. Eles são "amarelo", "verde-limão", "turquesa", "rosa", "azul", "vermelho", "DarkBlue", "azul-petróleo", "verde", "roxo", "DarkRed", "Oliva", "cinza", "LightGray" e "preto". Quando o suplemento é executado no Office para área de trabalho do Windows, qualquer outra cor é convertida para a cor mais próxima quando aplicada à fonte.
+      Obtém ou define a cor de realce. Para defini-lo, use um valor no formato ' \# RRGGBB ' ou o nome da cor. Para remover a cor de realce, defina-a como NULL. A cor de realce retornada pode estar no \# formato ' RRGGBB ', uma cadeia de caracteres vazia para cores de realce mistas ou NULL para nenhuma cor de realce. * Observação * *: somente as cores de realce padrão estão disponíveis na área de trabalho do Office para Windows. Eles são "amarelo", "verde-limão", "turquesa", "rosa", "azul", "vermelho", "DarkBlue", "azul-petróleo", "verde", "roxo", "DarkRed", "Oliva", "cinza", "LightGray" e "preto". Quando o suplemento é executado no Office para área de trabalho do Windows, qualquer outra cor é convertida para a cor mais próxima quando aplicada à fonte.
 
       \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: highlightColor
@@ -209,29 +209,21 @@ items:
         type:
           - boolean
   - uid: 'word!Word.Font#load:member(1)'
-    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-    remarks: |-
-      Além dessa assinatura, este método tem as seguintes assinaturas:
-
-      `load(option?: string | string[]): Word.Font`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; }): Word.Font`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Font`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-    name: load(option)
-    fullName: load(option)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.FontLoadOptions): Word.Font;'
+      content: 'load(options?: Word.Interfaces.FontLoadOptions): Word.Font;'
       return:
         type:
           - 'word!Word.Font:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
           type:
             - 'word!Word.Interfaces.FontLoadOptions:interface'
   - uid: 'word!Word.Font#load:member(2)'
@@ -260,16 +252,24 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Font;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Word.Font;
       return:
         type:
           - 'word!Word.Font:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: Onde propertyNamesAndPaths. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e propertyNamesAndPaths. Expand é uma sequência de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
+          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'word!Word.Font#name:member'
     summary: |-
       Obtém ou define um valor que representa o nome da fonte.
@@ -477,7 +477,7 @@ items:
         type:
           - boolean
   - uid: 'word!Word.Font#toJSON:member(1)'
-    summary: 'Substitui o método `toJSON()` JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word. Font original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.FontData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Word. Font original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Word.Interfaces.FontData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -490,7 +490,7 @@ items:
           - 'word!Word.Interfaces.FontData:interface'
         description: ''
   - uid: 'word!Word.Font#track:member(1)'
-    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para`context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
     name: track()
     fullName: track()
     langs:
@@ -547,7 +547,7 @@ items:
           });
           ```
   - uid: 'word!Word.Font#untrack:member(1)'
-    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é abreviada para`context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar `context.sync()` antes que o lançamento da memória entre em vigor.'
     name: untrack()
     fullName: untrack()
     langs:
