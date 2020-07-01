@@ -359,101 +359,94 @@ items:
         type:
           - 'word!Word.ContentControlCollection#items~0:complex'
   - uid: 'word!Word.ContentControlCollection#load:member(1)'
-    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-    remarks: |-
-      Além dessa assinatura, este método tem as seguintes assinaturas:
-
-      `load(option?: string | string[]): Word.ContentControlCollection`-Where Option é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; }): Word.ContentControlCollection`-Onde Option. Select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas, e Options. Expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.ContentControlCollection`– Disponível somente nos tipos de coleção. É semelhante à assinatura anterior. Option. Top especifica o número máximo de itens de coleta que podem ser incluídos no resultado. Option. Skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se Option. Top for especificado, o conjunto de resultados será iniciado depois de ignorar o número de itens especificado.
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-
-          // Create a proxy object for the content controls collection.
-          var contentControls = context.document.contentControls;
-
-          // Queue a command to load the id property for all of the content controls.
-          context.load(contentControls, 'id');
-
-          // Synchronize the document state by executing the queued commands,
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-              if (contentControls.items.length === 0) {
-                  console.log('No content control found.');
-              }
-              else {
-                  // Queue a command to load the properties on the first content control.
-                  contentControls.items[0].load(  'appearance,' +
-                                                  'cannotDelete,' +
-                                                  'cannotEdit,' +
-                                                  'color,' +
-                                                  'id,' +
-                                                  'placeHolderText,' +
-                                                  'removeWhenEdited,' +
-                                                  'title,' +
-                                                  'text,' +
-                                                  'type,' +
-                                                  'style,' +
-                                                  'tag,' +
-                                                  'font/size,' +
-                                                  'font/name,' +
-                                                  'font/color');
-
-                  // Synchronize the document state by executing the queued commands,
-                  // and return a promise to indicate task completion.
-                  return context.sync()
-                      .then(function () {
-                          console.log('Property values of the first content control:' +
-                              '   ----- appearance: ' + contentControls.items[0].appearance +
-                              '   ----- cannotDelete: ' + contentControls.items[0].cannotDelete +
-                              '   ----- cannotEdit: ' + contentControls.items[0].cannotEdit +
-                              '   ----- color: ' + contentControls.items[0].color +
-                              '   ----- id: ' + contentControls.items[0].id +
-                              '   ----- placeHolderText: ' + contentControls.items[0].placeholderText +
-                              '   ----- removeWhenEdited: ' + contentControls.items[0].removeWhenEdited +
-                              '   ----- title: ' + contentControls.items[0].title +
-                              '   ----- text: ' + contentControls.items[0].text +
-                              '   ----- type: ' + contentControls.items[0].type +
-                              '   ----- style: ' + contentControls.items[0].style +
-                              '   ----- tag: ' + contentControls.items[0].tag +
-                              '   ----- font size: ' + contentControls.items[0].font.size +
-                              '   ----- font name: ' + contentControls.items[0].font.name +
-                              '   ----- font color: ' + contentControls.items[0].font.color);
-                  });
-              }
-          });
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-
-      // The Silly stories add-in sample shows how the load method is used
-      // to load the content control collection with the tag and title properties.
-      // https://aka.ms/sillystorywordaddin
-      ```
-    name: load(option)
-    fullName: load(option)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ContentControlCollection;'
+      content: 'load(options?: Word.Interfaces.ContentControlCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ContentControlCollection;'
       return:
         type:
           - 'word!Word.ContentControlCollection:class'
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Create a proxy object for the content controls collection.
+              var contentControls = context.document.contentControls;
+
+              // Queue a command to load the id property for all of the content controls.
+              context.load(contentControls, 'id');
+
+              // Synchronize the document state by executing the queued commands,
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  if (contentControls.items.length === 0) {
+                      console.log('No content control found.');
+                  }
+                  else {
+                      // Queue a command to load the properties on the first content control.
+                      contentControls.items[0].load(  'appearance,' +
+                                                      'cannotDelete,' +
+                                                      'cannotEdit,' +
+                                                      'color,' +
+                                                      'id,' +
+                                                      'placeHolderText,' +
+                                                      'removeWhenEdited,' +
+                                                      'title,' +
+                                                      'text,' +
+                                                      'type,' +
+                                                      'style,' +
+                                                      'tag,' +
+                                                      'font/size,' +
+                                                      'font/name,' +
+                                                      'font/color');
+
+                      // Synchronize the document state by executing the queued commands,
+                      // and return a promise to indicate task completion.
+                      return context.sync()
+                          .then(function () {
+                              console.log('Property values of the first content control:' +
+                                  '   ----- appearance: ' + contentControls.items[0].appearance +
+                                  '   ----- cannotDelete: ' + contentControls.items[0].cannotDelete +
+                                  '   ----- cannotEdit: ' + contentControls.items[0].cannotEdit +
+                                  '   ----- color: ' + contentControls.items[0].color +
+                                  '   ----- id: ' + contentControls.items[0].id +
+                                  '   ----- placeHolderText: ' + contentControls.items[0].placeholderText +
+                                  '   ----- removeWhenEdited: ' + contentControls.items[0].removeWhenEdited +
+                                  '   ----- title: ' + contentControls.items[0].title +
+                                  '   ----- text: ' + contentControls.items[0].text +
+                                  '   ----- type: ' + contentControls.items[0].type +
+                                  '   ----- style: ' + contentControls.items[0].style +
+                                  '   ----- tag: ' + contentControls.items[0].tag +
+                                  '   ----- font size: ' + contentControls.items[0].font.size +
+                                  '   ----- font name: ' + contentControls.items[0].font.name +
+                                  '   ----- font color: ' + contentControls.items[0].font.color);
+                      });
+                  }
+              });
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+
+          // The Silly stories add-in sample shows how the load method is used
+          // to load the content control collection with the tag and title properties.
+          // https://aka.ms/sillystorywordaddin
+          ```
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
           type:
             - 'word!Word.ContentControlCollection#load~0:complex'
   - uid: 'word!Word.ContentControlCollection#load:member(2)'
@@ -475,20 +468,21 @@ items:
           type:
             - 'string | string[]'
   - uid: 'word!Word.ContentControlCollection#load:member(3)'
-    name: load(option)
-    fullName: load(option)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
+      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Word.ContentControlCollection;'
       return:
         type:
           - 'word!Word.ContentControlCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
             - 'office!OfficeExtension.LoadOption:interface'
   - uid: 'word!Word.ContentControlCollection#toJSON:member(1)'
@@ -505,7 +499,7 @@ items:
           - 'word!Word.Interfaces.ContentControlCollectionData:interface'
         description: ''
   - uid: 'word!Word.ContentControlCollection#track:member(1)'
-    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para`context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
     name: track()
     fullName: track()
     langs:
@@ -518,7 +512,7 @@ items:
           - 'word!Word.ContentControlCollection:class'
         description: ''
   - uid: 'word!Word.ContentControlCollection#untrack:member(1)'
-    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.'
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é abreviada para`context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar `context.sync()` antes que o lançamento da memória entre em vigor.'
     name: untrack()
     fullName: untrack()
     langs:
