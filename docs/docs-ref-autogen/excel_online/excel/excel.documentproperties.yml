@@ -135,6 +135,26 @@ items:
       return:
         type:
           - 'excel!Excel.CustomPropertyCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/custom-properties.yaml
+          await Excel.run(async (context) => {
+            // Load the keys and values of all custom properties.
+            const customDocProperties = context.workbook.properties.custom;
+            customDocProperties.load(["key", "value"]);
+            await context.sync();
+
+            // Log each custom property to the console.
+            // Note that your document may have more properties than those you have set using this snippet.
+            customDocProperties.items.forEach((property) => {
+              console.log(`${property.key}:${property.value}`);
+            });
+          });
+          ```
   - uid: 'excel!Excel.DocumentProperties#keywords:member'
     summary: |-
       As palavras-chave da pasta de trabalho.
@@ -220,7 +240,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+          description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
             - |-
               {
@@ -332,7 +352,7 @@ items:
         type:
           - string
   - uid: 'excel!Excel.DocumentProperties#toJSON:member(1)'
-    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.DocumentProperties original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.DocumentPropertiesData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel.DocumentProperties original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.DocumentPropertiesData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
     fullName: toJSON()
     langs:
