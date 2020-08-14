@@ -1,8 +1,7 @@
 ### YamlMime:UniversalReference
 items:
   - uid: 'office-runtime!OfficeRuntime.AuthOptions:interface'
-    summary: 'Fornece opções para a experiência do usuário quando o Office Obtém um token de acesso para o suplemento do AAD v. 2,0 com o método getAccessToken.'
-    isPreview: true
+    summary: Fornece opções para a experiência do usuário quando o Office Obtém um token de acesso para o suplemento do AAD v. 2.0 com o método`getAccessToken`.
     name: OfficeRuntime.AuthOptions
     fullName: OfficeRuntime.AuthOptions
     langs:
@@ -15,10 +14,10 @@ items:
       - 'office-runtime!OfficeRuntime.AuthOptions#asyncContext:member'
       - 'office-runtime!OfficeRuntime.AuthOptions#authChallenge:member'
       - 'office-runtime!OfficeRuntime.AuthOptions#forceAddAccount:member'
+      - 'office-runtime!OfficeRuntime.AuthOptions#forceConsent:member'
       - 'office-runtime!OfficeRuntime.AuthOptions#forMSGraphAccess:member'
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#allowConsentPrompt:member'
-    summary: 'Permite que o Office obtenha um token de acesso silectly ou por meio de um consentimento interativo, se necessário. Se for definido como false, o Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como true, o Office mostrará uma interface do usuário de consentimento interativo depois de falhar para obter um token de acesso de forma silenciosa. O prompt só permitirá o consentimento para o escopo do perfil do AAD, não para os escopos do Microsoft Graph.'
-    isPreview: true
+    summary: 'Permite que o Office obtenha um token de acesso silenciosamente ou por meio de um consentimento interativo, se necessário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, O Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, O Office mostrará uma interface do usuário de consentimento interativo depois de falhar para obter um token de acesso silenciosamente. O prompt só permitirá o consentimento para o escopo do perfil do AAD, não para os escopos do Microsoft Graph.'
     name: allowConsentPrompt
     fullName: allowConsentPrompt
     langs:
@@ -30,8 +29,7 @@ items:
         type:
           - boolean
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#allowSignInPrompt:member'
-    summary: 'Permite que o Office obtenha um token de acesso fornecido de forma silenciosa e que mostre a interface de usuário interativa para entrar no usuário. Se for definido como false, o Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como true, o Office mostrará uma interface do usuário de entrada interativa depois de falhar para obter um token de acesso de forma silenciosa.'
-    isPreview: true
+    summary: 'Permite que o Office obtenha um token de acesso fornecido de forma silenciosa e que mostre a interface de usuário interativa para entrar no usuário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, O Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, O Office mostrará uma interface do usuário de entrada interativa depois de falhar para obter um token de acesso silenciosamente.'
     name: allowSignInPrompt
     fullName: allowSignInPrompt
     langs:
@@ -43,8 +41,7 @@ items:
         type:
           - boolean
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#asyncContext:member'
-    summary: 'Um item definido pelo usuário de qualquer tipo que é retornado, inalterado, na propriedade asyncContext do objeto AsyncResult que é passado para um retorno de chamada.'
-    isPreview: true
+    summary: 'Um item definido pelo usuário de qualquer tipo que é retornado, inalterado, na `asyncContext` Propriedade do `AsyncResult` objeto que é passado para um retorno de chamada.'
     name: asyncContext
     fullName: asyncContext
     langs:
@@ -56,8 +53,7 @@ items:
         type:
           - any
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#authChallenge:member'
-    summary: 'Faz o Office solicitar que o usuário forneça o fator adicional quando o locatário que está sendo direcionado pelo Microsoft Graph requer autenticação multifator. O valor da cadeia de caracteres identifica o tipo de fator adicional necessário. Na maioria dos casos, você não saberá em tempo de desenvolvimento se o locatário do usuário requer um fator adicional ou o que deve ser a cadeia de caracteres. Portanto, essa opção seria usada em uma chamada de "segunda tentativa" do getAccessToken após o Microsoft Graph ter enviado um erro solicitando o fator adicional e contendo a cadeia de caracteres que deve ser usada com a opção authChallenge.'
-    isPreview: true
+    summary: 'Faz o Office solicitar que o usuário forneça o fator adicional quando o locatário que está sendo direcionado pelo Microsoft Graph requer autenticação multifator. O valor da cadeia de caracteres identifica o tipo de fator adicional necessário. Na maioria dos casos, você não saberá em tempo de desenvolvimento se o locatário do usuário requer um fator adicional ou o que deve ser a cadeia de caracteres. Portanto, essa opção seria usada em uma chamada "segunda tentativa" `getAccessToken` após o Microsoft Graph ter enviado um erro solicitando o fator adicional e contendo a cadeia de caracteres que deve ser usada com a `authChallenge` opção.'
     name: authChallenge
     fullName: authChallenge
     langs:
@@ -69,8 +65,9 @@ items:
         type:
           - string
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#forceAddAccount:member'
-    summary: 'Preterido solicita que o usuário adicione sua conta do Office (ou alterne para ele, se ele já estiver adicionado).'
-    isPreview: true
+    summary: 'Solicita que o usuário adicione sua conta do Office (ou alterne para ela, caso já tenha sido adicionada). O valor padrão é `false`<!-- -->.'
+    deprecated:
+      content: Use `allowSignInPrompt` instead.
     name: forceAddAccount
     fullName: forceAddAccount
     langs:
@@ -81,9 +78,22 @@ items:
       return:
         type:
           - boolean
+  - uid: 'office-runtime!OfficeRuntime.AuthOptions#forceConsent:member'
+    summary: Faz com que o Office exiba a experiência de consentimento do suplemento. Será útil se as permissões do Azure do suplemento tiverem sido alteradas ou se o consentimento do usuário tiver sido revogado. O valor padrão é `false`<!-- -->.
+    deprecated:
+      content: Use `allowConsentPrompt` instead.
+    name: forceConsent
+    fullName: forceConsent
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'forceConsent?: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'office-runtime!OfficeRuntime.AuthOptions#forMSGraphAccess:member'
-    summary: 'Faz com que o Office retorne um erro descritivo quando o suplemento deseja acessar o MS Graph e o usuário/administrador não tiver concedido consentimento aos escopos do MS Graph. O Office só oferece suporte a escopos de gráfico quando o suplemento tiver sido implantado por um administrador de locatários. Essas informações não estarão disponíveis durante o desenvolvimento. A configuração dessa opção como true permitirá que o Office informe o suplemento por antecipação se o acesso ao MS Graph falhar, retornando um erro descritivo.'
-    isPreview: true
+    summary: Faz com que o Office retorne um erro descritivo quando o suplemento quiser acessar o Microsoft Graph e o usuário/administrador não tiver concedido o consentimento aos escopos de gráfico. O valor padrão é `false`<!-- -->. O Office só oferece suporte a escopos de gráfico quando o suplemento tiver sido implantado por um administrador de locatários. Essas informações não estarão disponíveis durante o desenvolvimento. Configurar essa opção para `true` fazer com que o Office informe o suplemento por antecipadamente (retornando um erro descritivo) se o acesso ao gráfico falhar.
     name: forMSGraphAccess
     fullName: forMSGraphAccess
     langs:
