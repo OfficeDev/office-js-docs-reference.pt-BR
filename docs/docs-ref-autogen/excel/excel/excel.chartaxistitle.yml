@@ -127,7 +127,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+          description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
           type:
             - |-
               {
@@ -229,8 +229,30 @@ items:
       return:
         type:
           - number
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          await Excel.run(async (context) => {
+            // Get a chart named "Sales Chart" from the "Sample" worksheet.
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            let chart = sheet.charts.getItem("Sales Chart");
+
+            // Set the value axis title to "Profits".
+            chart.axes.valueAxis.title.text = "Profits";
+
+            /* Set the value axis text orientation to 0.
+              For charts with a y-axis, this makes the label on the y-axis horizontal, 
+              instead of the default look of rotated-vertically.
+              */ 
+            chart.axes.valueAxis.title.textOrientation = 0;
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.ChartAxisTitle#toJSON:member(1)'
-    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartAxisTitle original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ChartAxisTitleData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartAxisTitle original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.ChartAxisTitleData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
     name: toJSON()
     fullName: toJSON()
     langs:
