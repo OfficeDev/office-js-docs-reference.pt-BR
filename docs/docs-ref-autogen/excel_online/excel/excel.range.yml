@@ -49,6 +49,7 @@ items:
       - 'excel!Excel.Range#getColumnProperties:member(1)'
       - 'excel!Excel.Range#getColumnsAfter:member(1)'
       - 'excel!Excel.Range#getColumnsBefore:member(1)'
+      - 'excel!Excel.Range#getDirectPrecedents:member(1)'
       - 'excel!Excel.Range#getEntireColumn:member(1)'
       - 'excel!Excel.Range#getEntireRow:member(1)'
       - 'excel!Excel.Range#getImage:member(1)'
@@ -68,6 +69,10 @@ items:
       - 'excel!Excel.Range#getSpecialCells:member(2)'
       - 'excel!Excel.Range#getSpecialCellsOrNullObject:member(1)'
       - 'excel!Excel.Range#getSpecialCellsOrNullObject:member(2)'
+      - 'excel!Excel.Range#getSpillingToRange:member(1)'
+      - 'excel!Excel.Range#getSpillingToRangeOrNullObject:member(1)'
+      - 'excel!Excel.Range#getSpillParent:member(1)'
+      - 'excel!Excel.Range#getSpillParentOrNullObject:member(1)'
       - 'excel!Excel.Range#getSurroundingRegion:member(1)'
       - 'excel!Excel.Range#getTables:member(1)'
       - 'excel!Excel.Range#getUsedRange:member(1)'
@@ -75,6 +80,7 @@ items:
       - 'excel!Excel.Range#getVisibleView:member(1)'
       - 'excel!Excel.Range#group:member(1)'
       - 'excel!Excel.Range#group:member(2)'
+      - 'excel!Excel.Range#hasSpill:member'
       - 'excel!Excel.Range#height:member'
       - 'excel!Excel.Range#hidden:member'
       - 'excel!Excel.Range#hideGroupDetails:member(1)'
@@ -92,12 +98,14 @@ items:
       - 'excel!Excel.Range#merge:member(1)'
       - 'excel!Excel.Range#moveTo:member(1)'
       - 'excel!Excel.Range#numberFormat:member'
+      - 'excel!Excel.Range#numberFormatCategories:member'
       - 'excel!Excel.Range#numberFormatLocal:member'
       - 'excel!Excel.Range#removeDuplicates:member(1)'
       - 'excel!Excel.Range#replaceAll:member(1)'
       - 'excel!Excel.Range#rowCount:member'
       - 'excel!Excel.Range#rowHidden:member'
       - 'excel!Excel.Range#rowIndex:member'
+      - 'excel!Excel.Range#savedAsArray:member'
       - 'excel!Excel.Range#select:member(1)'
       - 'excel!Excel.Range#set:member(1)'
       - 'excel!Excel.Range#set:member(2)'
@@ -1032,6 +1040,47 @@ items:
           description: 'Opcional. O número de colunas a serem incluídas no intervalo resultante. Em geral, use um número positivo para criar um intervalo fora do intervalo atual. Você também pode usar um número negativo para criar um intervalo dentro do intervalo atual. O valor padrão é 1.'
           type:
             - number
+  - uid: 'excel!Excel.Range#getDirectPrecedents:member(1)'
+    summary: |-
+      Retorna um objeto WorkbookRangeAreas que representa o intervalo que contém todos os precedentes diretos de uma célula na mesma planilha ou em várias planilhas.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getDirectPrecedents()
+    fullName: getDirectPrecedents()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getDirectPrecedents(): Excel.WorkbookRangeAreas;'
+      return:
+        type:
+          - 'excel!Excel.WorkbookRangeAreas:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/direct-precedents.yaml
+          await Excel.run(async (context) => {
+            // Precedents are cells referenced by the formula in a cell.
+            let range = context.workbook.getActiveCell();
+            let directPrecedents = range.getDirectPrecedents();
+            range.load("address");
+            directPrecedents.areas.load("address");
+            await context.sync();
+
+            console.log(`Direct precedent cells of ${range.address}:`);
+
+            // Use the direct precedents API to loop through precedents of the active cell. 
+            for (var i = 0; i < directPrecedents.areas.items.length; i++) {
+              // Highlight and console the address of each precedent cell.
+              directPrecedents.areas.items[i].format.fill.color = "Yellow";
+              console.log(`  ${directPrecedents.areas.items[i].address}`);
+            }
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.Range#getEntireColumn:member(1)'
     summary: |-
       Obtém um objeto que representa a coluna inteira do intervalo (por exemplo, se o intervalo atual representa as células "B4: E11", seu `getEntireColumn` é um intervalo que representa as colunas "B:E").
@@ -1411,7 +1460,7 @@ items:
     summary: |-
       Obtém uma coleção com escopo de tabelas dinâmicas que se sobrepõe ao intervalo.
 
-      \[[Conjunto de APIs: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getPivotTables(fullyContained)
     fullName: getPivotTables(fullyContained)
     langs:
@@ -1704,6 +1753,94 @@ items:
           description: 'Se CellType for Constants ou formulas, esse argumento será usado para determinar quais tipos de células incluir no resultado. Esses valores podem ser combinados em conjunto para retornar mais de um tipo. O padrão é selecionar todas as constantes ou as fórmulas, independente do tipo.'
           type:
             - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
+  - uid: 'excel!Excel.Range#getSpillingToRange:member(1)'
+    summary: |-
+      Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Falha se aplicado a um intervalo com mais de uma célula.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillingToRange()
+    fullName: getSpillingToRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillingToRange(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/dynamic-arrays.yaml
+          await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItem("Sample");
+
+            // Set G4 to a formula that returns a dynamic array.
+            const targetCell = sheet.getRange("G4");
+            targetCell.formulas = [["=A4:D4"]];
+
+            // Get the address of the cells that the dynamic array spilled into.
+            const spillRange = targetCell.getSpillingToRange();
+            spillRange.load("address");
+
+            // Fit the columns for readability.
+            sheet.getUsedRange().format.autofitColumns();
+            await context.sync();
+
+            console.log(`Copying the table headers spilled into ${spillRange.address}.`);
+          });
+          ```
+  - uid: 'excel!Excel.Range#getSpillingToRangeOrNullObject:member(1)'
+    summary: |-
+      Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Se o intervalo não for uma célula de âncora ou um intervalo de despejo não puder ser encontrado, um objeto NULL será retornado.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillingToRangeOrNullObject()
+    fullName: getSpillingToRangeOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillingToRangeOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
+  - uid: 'excel!Excel.Range#getSpillParent:member(1)'
+    summary: |-
+      Obtém o objeto range que contém a célula âncora para uma célula que recebe o despejo. Falha se aplicado a um intervalo com mais de uma célula.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillParent()
+    fullName: getSpillParent()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillParent(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
+  - uid: 'excel!Excel.Range#getSpillParentOrNullObject:member(1)'
+    summary: |-
+      Obtém o objeto range que contém a célula âncora para uma célula que recebe o despejo. Se não for uma célula de despejo ou mais de uma vez, as células serão retornadas.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillParentOrNullObject()
+    fullName: getSpillParentOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillParentOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
   - uid: 'excel!Excel.Range#getSurroundingRegion:member(1)'
     summary: |-
       Retorna um objeto Range que representa a região circundante da célula superior esquerda nesse intervalo. Uma região ao redor é um intervalo limitado por qualquer combinação de linhas e colunas em branco em relação a esse intervalo.
@@ -1961,6 +2098,21 @@ items:
           description: 'Especifica como o intervalo pode ser agrupado por linhas ou colunas. Um `InvalidArgument` erro é acionado quando a opção de grupo difere da `isEntireRow` propriedade ou do intervalo `isEntireColumn` (ou seja, `range.isEntireRow` é true e `groupOption` é "ByColumns" ou `range.isEntireColumn` true e `groupOption` é "ByRows").'
           type:
             - '"ByRows" | "ByColumns"'
+  - uid: 'excel!Excel.Range#hasSpill:member'
+    summary: |-
+      Representa se todas as células têm uma borda de despejo. Retorna true se todas as células têm uma borda de despejo ou false se todas as células não têm uma borda de despejo. Retorna NULL se houver células com e sem bordas de despejo dentro do intervalo.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hasSpill
+    fullName: hasSpill
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly hasSpill: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Range#height:member'
     summary: |-
       Retorna a distância em pontos, para zoom de 100%, da borda superior do intervalo até a borda inferior do intervalo.
@@ -2404,6 +2556,21 @@ items:
               }
           });
           ```
+  - uid: 'excel!Excel.Range#numberFormatCategories:member'
+    summary: |-
+      Representa a categoria do formato de número de cada célula.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: numberFormatCategories
+    fullName: numberFormatCategories
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly numberFormatCategories: Excel.NumberFormatCategory[][];'
+      return:
+        type:
+          - 'excel!Excel.Range#numberFormatCategories~0:complex'
   - uid: 'excel!Excel.Range#numberFormatLocal:member'
     summary: |-
       Representa o código de formato de número do Excel para o intervalo determinado, com base nas configurações de idioma do usuário. O Excel não realiza qualquer coerção de idioma ou formatação ao obter ou definir a `numberFormatLocal` propriedade. Qualquer texto retornado usa as cadeias de caracteres formatadas localmente com base no idioma especificado nas configurações do sistema.
@@ -2536,6 +2703,21 @@ items:
       return:
         type:
           - number
+  - uid: 'excel!Excel.Range#savedAsArray:member'
+    summary: |-
+      Representa se todas as células seriam salvas como uma fórmula de matriz. Retorna true se todas as células forem salvas como uma fórmula de matriz ou false se todas as células não seriam salvas como uma fórmula de matriz. Retorna NULL se algumas células forem salvas como uma fórmula de matriz e algumas não seriam.
+
+      \[[Conjunto de APIs: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: savedAsArray
+    fullName: savedAsArray
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly savedAsArray: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Range#select:member(1)'
     summary: |-
       Seleciona o intervalo especificado na interface do usuário do Excel.
@@ -3307,6 +3489,8 @@ references:
         fullName: '[]>'
   - uid: 'excel!Excel.ColumnPropertiesLoadOptions:interface'
     name: ColumnPropertiesLoadOptions
+  - uid: 'excel!Excel.WorkbookRangeAreas:class'
+    name: Excel.WorkbookRangeAreas
   - uid: 'excel!Excel.Range#getImage~0:complex'
     name: OfficeExtension.ClientResult<string>
     fullName: OfficeExtension.ClientResult<string>
@@ -3388,6 +3572,15 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.Range#numberFormatCategories~0:complex'
+    name: 'Excel.NumberFormatCategory[][]'
+    fullName: 'Excel.NumberFormatCategory[][]'
+    spec.typeScript:
+      - uid: 'excel!Excel.NumberFormatCategory:enum'
+        name: Excel.NumberFormatCategory
+        fullName: Excel.NumberFormatCategory
+      - name: '[][]'
+        fullName: '[][]'
   - uid: 'excel!Excel.RemoveDuplicatesResult:class'
     name: Excel.RemoveDuplicatesResult
   - uid: 'excel!Excel.Range#replaceAll~0:complex'
