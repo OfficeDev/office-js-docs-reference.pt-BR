@@ -1,0 +1,295 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'excel!Excel.TableRow:class'
+    summary: |-
+      Representa uma linha em uma tabela.
+
+      Observe que, ao contrário de intervalos ou colunas, que serão ajustados se novas linhas/colunas forem adicionadas antes delas, um objeto TableRow representará o local físico da linha da tabela, mas não os dados. Ou seja, se os dados forem classificados ou se novas linhas forem adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criada.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.TableRow
+    fullName: Excel.TableRow
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'office!OfficeExtension.ClientObject:class'
+    package: excel!
+    children:
+      - 'excel!Excel.TableRow#context:member'
+      - 'excel!Excel.TableRow#delete:member(1)'
+      - 'excel!Excel.TableRow#getRange:member(1)'
+      - 'excel!Excel.TableRow#index:member'
+      - 'excel!Excel.TableRow#load:member(1)'
+      - 'excel!Excel.TableRow#load:member(2)'
+      - 'excel!Excel.TableRow#load:member(3)'
+      - 'excel!Excel.TableRow#set:member(1)'
+      - 'excel!Excel.TableRow#set:member(2)'
+      - 'excel!Excel.TableRow#toJSON:member(1)'
+      - 'excel!Excel.TableRow#values:member'
+  - uid: 'excel!Excel.TableRow#context:member'
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.TableRow#delete:member(1)'
+    summary: |-
+      Exclui a linha da tabela.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(2);
+              row.delete();
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: 'excel!Excel.TableRow#getRange:member(1)'
+    summary: |-
+      Retorna o objeto de intervalo associado a toda a linha.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRange()
+    fullName: getRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRange(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(0);
+              var rowRange = row.getRange();
+              rowRange.load('address');
+              return ctx.sync().then(function() {
+                  console.log(rowRange.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: 'excel!Excel.TableRow#index:member'
+    summary: |-
+      Retorna o número de índice da linha na coleção de linhas da tabela. Indexados com zero.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: index
+    fullName: index
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly index: number;'
+      return:
+        type:
+          - number
+  - uid: 'excel!Excel.TableRow#load:member(1)'
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(options)
+    fullName: load(options)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(options?: Excel.Interfaces.TableRowLoadOptions): Excel.TableRow;'
+      return:
+        type:
+          - 'excel!Excel.TableRow:class'
+        description: ''
+      parameters:
+        - id: options
+          description: Fornece opções para as propriedades do objeto a ser carregado.
+          type:
+            - 'excel!Excel.Interfaces.TableRowLoadOptions:interface'
+  - uid: 'excel!Excel.TableRow#load:member(2)'
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TableRow;'
+      return:
+        type:
+          - 'excel!Excel.TableRow:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Exemplos
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var row = ctx.workbook.tables.getItem(tableName).rows.getItem(0);
+              row.load('index');
+              return ctx.sync().then(function() {
+                  console.log(row.index);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+          type:
+            - 'string | string[]'
+  - uid: 'excel!Excel.TableRow#load:member(3)'
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Excel.TableRow;
+      return:
+        type:
+          - 'excel!Excel.TableRow:class'
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+          type:
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
+  - uid: 'excel!Excel.TableRow#set:member(1)'
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: |-
+      Este método tem a seguinte assinatura adicional:
+
+      `set(properties: Excel.TableRow): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.TableRowUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+          type:
+            - 'excel!Excel.Interfaces.TableRowUpdateData:interface'
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+          type:
+            - 'office!OfficeExtension.UpdateOptions:interface'
+  - uid: 'excel!Excel.TableRow#set:member(2)'
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.TableRow): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - 'excel!Excel.TableRow:class'
+  - uid: 'excel!Excel.TableRow#toJSON:member(1)'
+    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. TableRow original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.TableRowData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TableRowData;'
+      return:
+        type:
+          - 'excel!Excel.Interfaces.TableRowData:interface'
+        description: ''
+  - uid: 'excel!Excel.TableRow#values:member'
+    summary: |-
+      Representa os valores brutos do intervalo especificado. Os dados retornados podem ser dos tipos: cadeia de caracteres, número ou booliano. Células que contêm um erro retornarão a cadeia de caracteres de erro.
+
+      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: values
+    fullName: values
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'values: any[][];'
+      return:
+        type:
+          - 'any[][]'
+references:
+  - uid: 'office!OfficeExtension.ClientObject:class'
+    name: OfficeExtension.ClientObject
+  - uid: 'excel!Excel.RequestContext:class'
+    name: RequestContext
+  - uid: 'excel!Excel.Range:class'
+    name: Excel.Range
+  - uid: 'excel!Excel.TableRow:class'
+    name: Excel.TableRow
+  - uid: 'excel!Excel.Interfaces.TableRowLoadOptions:interface'
+    name: Excel.Interfaces.TableRowLoadOptions
+  - uid: 'excel!Excel.Interfaces.TableRowUpdateData:interface'
+    name: Interfaces.TableRowUpdateData
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
+    name: OfficeExtension.UpdateOptions
+  - uid: 'excel!Excel.Interfaces.TableRowData:interface'
+    name: Excel.Interfaces.TableRowData
