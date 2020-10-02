@@ -10,7 +10,7 @@ items:
 
       - [Itens lidos](xref:outlook!Office.ItemRead:interface)
 
-      - [Message](xref:outlook!Office.Message:interface)
+      - [Mensagem](xref:outlook!Office.Message:interface)
     name: Office.MessageRead
     fullName: Office.MessageRead
     langs:
@@ -1012,7 +1012,7 @@ items:
 
             Enquanto o nível de permissão mínimo para usar esse método é `Restricted`<!-- -->, alguns tipos de entidade exigem `ReadItem` o acesso, conforme especificado na tabela a seguir.
 
-            <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>String</td> <td>Restricted</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restricted</td> </tr> </table>
+            <table> <tr> <th>Valor de entityType</th> <th>Tipo de objetos na matriz retornada</th> <th>Nível de permissão exigido</th> </tr> <tr> <td>Endereço</td> <td>Cadeia de caracteres</td> <td>Restricted</td> </tr> <tr> <td>Contato</td> <td>Contato</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>Cadeia de caracteres</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>Cadeia de caracteres</td> <td>Restricted</td> </tr> </table>
           type:
             - 'outlook!Office.MessageRead#getEntitiesByType~1:complex'
   - uid: 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -1326,7 +1326,7 @@ items:
               let sharedProperties = result2.value;
               let delegatePermissions = sharedProperties.delegatePermissions;
 
-              // Determine if user can do the expected operation, e.g., do they have Write permission?
+              // Determine if user has the appropriate permission to do the operation.
               if ((delegatePermissions & Office.MailboxEnums.DelegatePermissions.Read) != 0) {
                 var ewsId = Office.context.mailbox.item.itemId;
                 var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
@@ -1389,7 +1389,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an item from a shared folder.");
         return;
       }
 
