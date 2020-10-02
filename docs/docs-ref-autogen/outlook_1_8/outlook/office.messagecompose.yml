@@ -10,7 +10,7 @@ items:
 
       - [Compor](xref:outlook!Office.ItemCompose:interface)
 
-      - [Message](xref:outlook!Office.Message:interface)
+      - [Mensagem](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -1280,6 +1280,14 @@ items:
     summary: |-
       Obtém as propriedades de um compromisso ou uma mensagem em uma pasta compartilhada, calendário ou caixa de correio.
 
+      **Importante**: no modo de redação da mensagem, essa API não é suportada no Outlook na Web ou no Windows, a menos que as seguintes condições sejam atendidas.
+
+      1. O proprietário compartilha pelo menos uma pasta de caixa de correio com o representante.
+
+      2. O representante esboça uma mensagem na pasta compartilhada.
+
+      Depois que a mensagem foi enviada, ela geralmente é encontrada na pasta **itens enviados** do representante.
+
       Para obter mais informações sobre como usar essa API, consulte o artigo de [acesso de representante](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) .
 
       **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
@@ -1310,7 +1318,7 @@ items:
               let sharedProperties = result2.value;
               let delegatePermissions = sharedProperties.delegatePermissions;
 
-              // Determine if user can do the expected operation, e.g., do they have Write permission?
+              // Determine if user has the appropriate permission to do the operation.
               if ((delegatePermissions & Office.MailboxEnums.DelegatePermissions.Read) != 0) {
                 var ewsId = Office.context.mailbox.item.itemId;
                 var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
@@ -1358,6 +1366,14 @@ items:
     summary: |-
       Obtém as propriedades de um compromisso ou uma mensagem em uma pasta compartilhada, calendário ou caixa de correio.
 
+      **Importante**: no modo de redação da mensagem, essa API não é suportada no Outlook na Web ou no Windows, a menos que as seguintes condições sejam atendidas.
+
+      1. O proprietário compartilha pelo menos uma pasta de caixa de correio com o representante.
+
+      2. O representante esboça uma mensagem na pasta compartilhada.
+
+      Depois que a mensagem foi enviada, ela geralmente é encontrada na pasta **itens enviados** do representante.
+
       Para obter mais informações sobre como usar essa API, consulte o artigo de [acesso de representante](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) .
 
       **Observação**: esse método não tem suporte no Outlook no Ios ou no Android.
@@ -1373,7 +1389,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an item from a shared folder.");
         return;
       }
 
