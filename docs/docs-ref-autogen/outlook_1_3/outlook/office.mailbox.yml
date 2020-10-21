@@ -231,11 +231,11 @@ items:
 
       Contém os seguintes membros:
 
-      - `hostName`(cadeia de caracteres): uma cadeia de caracteres que representa o nome do aplicativo host. Deve ser um dos seguintes valores:`Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->, ou`OutlookAndroid`<!-- -->. **Observação**: o valor "Outlook" é retornado para o Outlook em clientes de área de trabalho (por exemplo, Windows e Mac).
+      - `hostName` (cadeia de caracteres): uma cadeia de caracteres que representa o nome do aplicativo host. Deve ser um dos seguintes valores: `Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->, ou `OutlookAndroid`<!-- -->. **Observação**: o valor "Outlook" é retornado para o Outlook em clientes de área de trabalho (por exemplo, Windows e Mac).
 
-      - `hostVersion`(cadeia de caracteres): uma cadeia de caracteres que representa a versão do aplicativo host ou do servidor Exchange (por exemplo, "15.0.468.0"). Se o suplemento de email estiver sendo executado no Outlook na área de trabalho ou clientes móveis, a `hostVersion` propriedade retornará a versão do aplicativo host, Outlook. No Outlook na Web, a propriedade retorna a versão do servidor Exchange.
+      - `hostVersion` (cadeia de caracteres): uma cadeia de caracteres que representa a versão do aplicativo host ou do servidor Exchange (por exemplo, "15.0.468.0"). Se o suplemento de email estiver sendo executado no Outlook na área de trabalho ou clientes móveis, a `hostVersion` propriedade retornará a versão do aplicativo host, Outlook. No Outlook na Web, a propriedade retorna a versão do servidor Exchange.
 
-      - `OWAView`( `MailboxEnums.OWAView` ou cadeia de caracteres): uma enumeração (ou literal de cadeia de caracteres) que representa o modo de exibição atual do Outlook na Web. Se o aplicativo host não for o Outlook na Web, acessar essa propriedade resultará em indefinido. O Outlook na Web tem três modos de exibição ( `OneColumn` -exibidos quando a tela é reduzida, `TwoColumns` exibida quando a tela é mais larga e `ThreeColumns` -exibida quando a tela é larga) que corresponde à largura da tela e à janela e ao número de colunas que podem ser exibidas.
+      - `OWAView` ( `MailboxEnums.OWAView` ou cadeia de caracteres): uma enumeração (ou literal de cadeia de caracteres) que representa o modo de exibição atual do Outlook na Web. Se o aplicativo host não for o Outlook na Web, acessar essa propriedade resultará em indefinido. O Outlook na Web tem três modos de exibição ( `OneColumn` -exibidos quando a tela é reduzida, `TwoColumns` exibida quando a tela é mais larga e `ThreeColumns` -exibida quando a tela é larga) que corresponde à largura da tela e à janela e ao número de colunas que podem ser exibidas.
 
       Há mais informações em [Office. Diagnostics](xref:outlook!Office.Diagnostics:interface)<!-- -->.
     remarks: |-
@@ -273,7 +273,7 @@ items:
       #### <a name="examples"></a>Exemplos
 
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-existing-appointment.yaml
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-existing-appointment.yaml
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayAppointmentForm(itemId);
       ```
@@ -314,7 +314,7 @@ items:
       #### <a name="examples"></a>Exemplos
 
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-existing-message.yaml
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-existing-message.yaml
       var itemId = $("#itemId").val();
       Office.context.mailbox.displayMessageForm(itemId);
       ```
@@ -342,7 +342,7 @@ items:
 
       No Outlook na Web, este método sempre exibe um formulário com um campo participantes. Se você não especificar quaisquer participantes como argumentos de entrada, o método exibe um formulário com um botão **Salvar**. Se você especificar participantes, o formulário inclui os participantes e um botão **Enviar**.
 
-      No cliente avançado do Outlook e no Outlook RT, se você especificar qualquer participante ou recurso no`requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->, ou `resources` parâmetro, este método exibe um formulário de reunião com um botão **Enviar** . Se você não especificar nenhum destinatário, este método exibirá um formulário de compromisso com um botão **Salvar &amp; fechar** .
+      No cliente avançado do Outlook e no Outlook RT, se você especificar qualquer participante ou recurso no `requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->, ou `resources` parâmetro, este método exibe um formulário de reunião com um botão **Enviar** . Se você não especificar nenhum destinatário, este método exibirá um formulário de compromisso com um botão **Salvar &amp; fechar** .
 
       Se qualquer dos parâmetros exceder os limites de tamanho especificados, ou se um nome de parâmetro desconhecido for especificado, ocorre uma exceção.
 
@@ -355,7 +355,7 @@ items:
       #### <a name="examples"></a>Exemplos
 
       ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/display-new-appointment.yaml
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/55-display-items/display-new-appointment.yaml
       var start = new Date();
       var end = new Date();
       end.setHours(start.getHours() + 1);
@@ -438,9 +438,9 @@ items:
 
       Você pode passar o token e também um identificador de anexo ou um identificador de item a um sistema de terceiros. O sistema de terceiros usa o token como portador da autorização para chamar as operações [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) ou [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) dos Serviços Web do Exchange (EWS) para retornar um anexo ou item. Por exemplo, você pode criar um serviço remoto para [obter anexos do item selecionado](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
-      Chamar o `getCallbackTokenAsync` método no modo de leitura requer um nível mínimo de permissão de`ReadItem`<!-- -->.
+      Chamar o `getCallbackTokenAsync` método no modo de leitura requer um nível mínimo de permissão de `ReadItem`<!-- -->.
 
-      Chamar o `getCallbackTokenAsync` método no modo de composição exige que você tenha salvo o item. O `saveAsync` método requer um nível de permissão mínimo de`ReadWriteItem`<!-- -->.
+      Chamar o `getCallbackTokenAsync` método no modo de composição exige que você tenha salvo o item. O `saveAsync` método requer um nível de permissão mínimo de `ReadWriteItem`<!-- -->.
 
       **Importante**: para obter orientação sobre os cenários de representante ou compartilhado, consulte o artigo de [acesso de representante](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) .
 
@@ -490,7 +490,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->. O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade. Se ocorreu um erro, as propriedades`asyncResult.error` e `asyncResult.diagnostics` podem fornecer informações adicionais.'
+          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade. Se ocorreu um erro, as propriedades`asyncResult.error` e `asyncResult.diagnostics` podem fornecer informações adicionais.'
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~0:complex'
         - id: userContext
@@ -542,7 +542,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->. O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade. Se ocorreu um erro, as propriedades`asyncResult.error` e `asyncResult.diagnostics` podem fornecer informações adicionais.'
+          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. O token é retornado como uma cadeia de caracteres na `asyncResult.value` propriedade. Se ocorreu um erro, as propriedades`asyncResult.error` e `asyncResult.diagnostics` podem fornecer informações adicionais.'
           type:
             - 'outlook!Office.Mailbox#getUserIdentityTokenAsync~0:complex'
         - id: userContext
@@ -574,7 +574,7 @@ items:
 
       Não é possível solicitar os itens associados da pasta com o método `makeEwsRequestAsync`.
 
-      A solicitação XML deve especificar a codificação UTF-8:`\<?xml version="1.0" encoding="utf-8"?\>`<!-- -->.
+      A solicitação XML deve especificar a codificação UTF-8: `\<?xml version="1.0" encoding="utf-8"?\>`<!-- -->.
 
       O suplemento deve ter a `ReadWriteMailbox` permissão para usar o `makeEwsRequestAsync` método. Para obter informações sobre como usar as `ReadWriteMailbox` operações de permissão e EWS que você pode chamar com o `makeEwsRequestAsync` método, consulte [especificar permissões para acesso de suplemento de email à caixa de correio do usuário](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->.
 
@@ -705,7 +705,7 @@ items:
           type:
             - any
         - id: callback
-          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo`Office.AsyncResult`<!-- -->. A `value` Propriedade do resultado é o XML da solicitação EWS fornecido como uma cadeia de caracteres. Se o resultado exceder 1 MB de tamanho, será exibida uma mensagem de erro.'
+          description: 'Quando o método for concluído, a função passada ao parâmetro callback será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. A `value` Propriedade do resultado é o XML da solicitação EWS fornecido como uma cadeia de caracteres. Se o resultado exceder 1 MB de tamanho, será exibida uma mensagem de erro.'
           type:
             - 'outlook!Office.Mailbox#makeEwsRequestAsync~0:complex'
         - id: userContext

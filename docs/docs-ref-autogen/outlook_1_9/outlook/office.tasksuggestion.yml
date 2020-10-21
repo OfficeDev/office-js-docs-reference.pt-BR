@@ -1,0 +1,67 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'outlook!Office.TaskSuggestion:interface'
+    summary: |-
+      Representa uma tarefa sugerida identificada em um item. Somente modo de leitura.
+
+      A lista de tarefas sugeridas em uma mensagem de email é retornada na `taskSuggestions` Propriedade do objeto [Entities](xref:outlook!Office.Entities:interface) que é retornado quando o `getEntities` `getEntitiesByType` método or é chamado no item ativo.
+    remarks: |-
+      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: leitura
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      var item = Office.context.mailbox.item;
+      // Get an array of strings that represent task suggestions in the current item's body.
+      var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
+      console.log("There are " + taskSuggestions.length + " task suggestions.")
+      taskSuggestions.forEach(function (taskSuggestion) {
+          console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
+          console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
+      });
+      ```
+    name: Office.TaskSuggestion
+    fullName: Office.TaskSuggestion
+    langs:
+      - typeScript
+    type: interface
+    package: outlook!
+    children:
+      - 'outlook!Office.TaskSuggestion#assignees:member'
+      - 'outlook!Office.TaskSuggestion#taskString:member'
+  - uid: 'outlook!Office.TaskSuggestion#assignees:member'
+    summary: Obtém os usuários que devem ter uma tarefa sugerida atribuída a eles.
+    name: assignees
+    fullName: assignees
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'assignees: EmailUser[];'
+      return:
+        type:
+          - 'outlook!Office.TaskSuggestion#assignees~0:complex'
+  - uid: 'outlook!Office.TaskSuggestion#taskString:member'
+    summary: Obtém o texto de um item que foi identificado como uma sugestão de tarefa.
+    name: taskString
+    fullName: taskString
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'taskString: string;'
+      return:
+        type:
+          - string
+references:
+  - uid: 'outlook!Office.TaskSuggestion#assignees~0:complex'
+    name: 'EmailUser[]'
+    fullName: 'Office.EmailUser[]'
+    spec.typeScript:
+      - uid: 'outlook!Office.EmailUser:interface'
+        name: EmailUser
+        fullName: Office.EmailUser
+      - name: '[]'
+        fullName: '[]'
