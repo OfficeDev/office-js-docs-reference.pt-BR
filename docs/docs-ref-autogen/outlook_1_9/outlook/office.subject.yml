@@ -6,9 +6,9 @@ items:
 
       \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : redigir
     name: Office.Subject
     fullName: Office.Subject
     langs:
@@ -19,7 +19,6 @@ items:
       - 'outlook!Office.Subject#getAsync:member(1)'
       - 'outlook!Office.Subject#getAsync:member(2)'
       - 'outlook!Office.Subject#setAsync:member(1)'
-      - 'outlook!Office.Subject#setAsync:member(2)'
   - uid: 'outlook!Office.Subject#getAsync:member(1)'
     summary: |-
       Obtém o assunto de um compromisso ou uma mensagem.
@@ -28,9 +27,9 @@ items:
 
       \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : redigir
     name: 'getAsync(options, callback)'
     fullName: 'getAsync(options, callback)'
     langs:
@@ -59,9 +58,9 @@ items:
 
       \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : redigir
 
       #### <a name="examples"></a>Exemplos
 
@@ -96,13 +95,23 @@ items:
 
       \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : redigir
 
-      **Erros**:
+      **Erros** :
 
       - `DataExceedsMaximumSize`<!-- -->: O parâmetro Subject é maior que 255 caracteres.
+
+      #### <a name="examples"></a>Exemplos
+
+      ```javascript
+      Office.context.mailbox.item.subject.setAsync("New subject!", function (asyncResult) {
+          if (asyncResult.status === "failed") {
+              console.log("Action failed with error: " + asyncResult.error.message);
+          }
+      });
+      ```
     name: 'setAsync(subject, options, callback)'
     fullName: 'setAsync(subject, options, callback)'
     langs:
@@ -127,51 +136,6 @@ items:
           description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Se a configuração do assunto falhar, a propriedade `asyncResult.error` conterá um código de erro.'
           type:
             - 'outlook!Office.Subject#setAsync~0:complex'
-  - uid: 'outlook!Office.Subject#setAsync:member(2)'
-    summary: |-
-      Define o assunto de um compromisso ou uma mensagem.
-
-      O método `setAsync` inicia uma chamada assíncrona para o Exchange Server para definir o assunto de um compromisso ou uma mensagem. Definir o assunto substitui o assunto atual, mas mantém quaisquer prefixos, tais como "Enc:" ou "Res:".
-
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
-
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
-
-      **Erros**:
-
-      - `DataExceedsMaximumSize`<!-- -->: O parâmetro Subject é maior que 255 caracteres.
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      Office.context.mailbox.item.subject.setAsync("New subject!", function (asyncResult) {
-          if (asyncResult.status === "failed") {
-              console.log("Action failed with error: " + asyncResult.error.message);
-          }
-      });
-      ```
-    name: 'setAsync(data, callback)'
-    fullName: 'setAsync(data, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: ''
-          type:
-            - string
-        - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Se a configuração do assunto falhar, a propriedade `asyncResult.error` conterá um código de erro.'
-          type:
-            - 'outlook!Office.Subject#setAsync~1:complex'
 references:
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
@@ -198,17 +162,6 @@ references:
       - name: <string>) => void
         fullName: <string>) => void
   - uid: 'outlook!Office.Subject#setAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Subject#setAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
