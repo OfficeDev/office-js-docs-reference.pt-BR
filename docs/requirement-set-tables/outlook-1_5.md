@@ -1,0 +1,7 @@
+| Classe | Campos | Descrição |
+|:---|:---|:---|
+|[Caixa de Correio](/javascript/api/outlook/outlook.mailbox)|[addHandlerAsync (eventType: cadeia de caracteres do Office. EventType \| , manipulador: (tipo: Office. EventType) => void, opções?: Office. AsyncContextOptions, retorno de chamada?: (AsyncResult: Office. AsyncResult <void> ) => void)](/javascript/api/outlook/outlook.mailbox#addhandlerasync-eventtype--handler--type-)|Adiciona um manipulador de eventos a um evento com suporte.|
+||[getCallbackTokenAsync (opções: Office. AsyncContextOptions & {isrest?: Boolean}, retorno de chamada: (asyncResult: Office. AsyncResult <string> ) => void)](/javascript/api/outlook/outlook.mailbox#getcallbacktokenasync-options--isrest--callback--asyncresult-)|Obtém uma cadeia de caracteres que contém um token usado para chamar APIs REST ou serviços Web do Exchange (EWS).|
+||[isrest](/javascript/api/outlook/outlook.mailbox#isrest)||
+||[removeHandlerAsync (eventType: cadeia de caracteres do Office. EventType \| , opções?: Office. AsyncContextOptions, retorno de chamada?: (AsyncResult: Office. AsyncResult <void> ) => void)](/javascript/api/outlook/outlook.mailbox#removehandlerasync-eventtype--options--callback--asyncresult-)|Remove um manipulador de eventos para um tipo de evento com suporte.|
+||[restUrl](/javascript/api/outlook/outlook.mailbox#resturl)|Obtém a URL do ponto de extremidade de REST para esta conta de email.|
