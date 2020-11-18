@@ -2,8 +2,8 @@
 |:---|:---|:---|
 |[Associação](/javascript/api/excel/excel.binding)|[onDataChanged](/javascript/api/excel/excel.binding#ondatachanged)|Ocorre quando os dados ou a formatação dentro da associação são alterados.|
 ||[onSelectionChanged](/javascript/api/excel/excel.binding#onselectionchanged)|Ocorre quando o conteúdo selecionado na associação é alterado.|
-|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|Obtém um `Binding` objeto temporário que contém a ID do `Binding` objeto que disparou o evento.|
-|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|Obtém um `Binding` objeto temporário que contém a ID do `Binding` objeto que disparou o evento.|
+|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|Obtém um  `Binding`   objeto temporário que contém a ID do  `Binding`   objeto que disparou o evento.Use essa ID com `BindingCollection.getItem(id)`   para obter a associação.|
+|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|Obtém um  `Binding`   objeto temporário que contém a ID do  `Binding`   objeto que disparou o evento.Use essa ID com `BindingCollection.getItem(id)`   para obter a associação.|
 ||[columnCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#columncount)|Obtém o número de colunas selecionadas.|
 ||[Validação](/javascript/api/excel/excel.bindingselectionchangedeventargs#rowcount)|Obtém o número de linhas selecionadas.|
 ||[startColumn](/javascript/api/excel/excel.bindingselectionchangedeventargs#startcolumn)|Obtém o índice da primeira coluna da seleção (com base em zero).|
