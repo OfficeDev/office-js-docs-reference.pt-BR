@@ -105,8 +105,8 @@
 ||[norma](/javascript/api/excel/excel.presetcriteriaconditionalformat#rule)|A regra da formatação condicional.|
 |[Range](/javascript/api/excel/excel.range)|[calculate()](/javascript/api/excel/excel.range#calculate--)|Calcula um intervalo de células em uma planilha.|
 ||[conditionalFormats](/javascript/api/excel/excel.range#conditionalformats)|O conjunto de ConditionalFormats que interseccionam o intervalo.|
-|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|Retorna um objeto Format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades de formatos condicionais.|
+|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|Retorna um objeto Format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades do formato condicional.|
 ||[norma](/javascript/api/excel/excel.textconditionalformat#rule)|A regra da formatação condicional.|
-|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|Retorna um objeto Format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades de formatos condicionais.|
+|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|Retorna um objeto Format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades do formato condicional.|
 ||[norma](/javascript/api/excel/excel.topbottomconditionalformat#rule)|Os critérios do formato condicional superior/inferior.|
 |[Worksheet](/javascript/api/excel/excel.worksheet)|[calcular (markAllDirty: booliano)](/javascript/api/excel/excel.worksheet#calculate-markalldirty-)|Calcula todas as células em uma planilha.|
