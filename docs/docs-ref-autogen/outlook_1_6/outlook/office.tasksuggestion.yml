@@ -1,67 +1,71 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.TaskSuggestion:interface'
-    summary: |-
-      Representa uma tarefa sugerida identificada em um item. Somente modo de leitura.
+### YamlMime:TSType
+name: Office.TaskSuggestion
+uid: outlook!Office.TaskSuggestion:interface
+package: outlook!
+fullName: Office.TaskSuggestion
+summary: >-
+  Representa uma tarefa sugerida identificada em um item. Somente modo de leitura.
 
-      A lista de tarefas sugeridas em uma mensagem de email é retornada na `taskSuggestions` Propriedade do objeto [Entities](xref:outlook!Office.Entities:interface) que é retornado quando o `getEntities` `getEntitiesByType` método or é chamado no item ativo.
-    remarks: |-
-      ** <!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      ** <!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: leitura
+  A lista de tarefas sugeridas em uma mensagem de email é retornada na `taskSuggestions` Propriedade do objeto [Entities](xref:outlook!Office.Entities:interface) que é retornado quando o `getEntities` `getEntitiesByType` método or é chamado no item ativo.
+remarks: >-
+  **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      #### <a name="examples"></a>Exemplos
 
-      ```javascript
-      var item = Office.context.mailbox.item;
-      // Get an array of strings that represent task suggestions in the current item's body.
-      var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
-      console.log("There are " + taskSuggestions.length + " task suggestions.")
-      taskSuggestions.forEach(function (taskSuggestion) {
-          console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
-          console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
-      });
-      ```
-    name: Office.TaskSuggestion
-    fullName: Office.TaskSuggestion
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.TaskSuggestion#assignees:member'
-      - 'outlook!Office.TaskSuggestion#taskString:member'
-  - uid: 'outlook!Office.TaskSuggestion#assignees:member'
-    summary: Obtém os usuários que devem ter uma tarefa sugerida atribuída a eles.
-    name: assignees
-    fullName: assignees
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'assignees: EmailUser[];'
-      return:
-        type:
-          - 'outlook!Office.TaskSuggestion#assignees~0:complex'
-  - uid: 'outlook!Office.TaskSuggestion#taskString:member'
-    summary: Obtém o texto de um item que foi identificado como uma sugestão de tarefa.
-    name: taskString
-    fullName: taskString
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'taskString: string;'
-      return:
-        type:
-          - string
-references:
-  - uid: 'outlook!Office.TaskSuggestion#assignees~0:complex'
-    name: 'EmailUser[]'
-    fullName: 'Office.EmailUser[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.EmailUser:interface'
-        name: EmailUser
-        fullName: Office.EmailUser
-      - name: '[]'
-        fullName: '[]'
+  **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: leitura
+
+
+  #### <a name="examples"></a>Exemplos
+
+
+  ```javascript
+
+  var item = Office.context.mailbox.item;
+
+  // Get an array of strings that represent task suggestions in the current item's body.
+
+  var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
+
+  console.log("There are " + taskSuggestions.length + " task suggestions.")
+
+  taskSuggestions.forEach(function (taskSuggestion) {
+      console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
+      console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
+  });
+
+  ```
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: assignees
+  uid: outlook!Office.TaskSuggestion#assignees:member
+  package: outlook!
+  fullName: assignees
+  summary: Obtém os usuários que devem ter uma tarefa sugerida atribuída a eles.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'assignees: EmailUser[];'
+    return:
+      type: <xref uid="outlook!Office.EmailUser:interface" />[]
+- name: taskString
+  uid: outlook!Office.TaskSuggestion#taskString:member
+  package: outlook!
+  fullName: taskString
+  summary: Obtém o texto de um item que foi identificado como uma sugestão de tarefa.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'taskString: string;'
+    return:
+      type: string
+metadata:
+  ms.openlocfilehash: 361842eedd1c5de102119195dec05d79fd2bbbce
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49264748"
