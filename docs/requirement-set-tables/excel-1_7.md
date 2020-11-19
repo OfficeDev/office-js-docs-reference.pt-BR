@@ -223,8 +223,8 @@
 ||[tipo](/javascript/api/excel/excel.worksheetdeletedeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetdeletedeventargs#worksheetid)|Obtém o id do gráfico que é excluído da pasta de trabalho.|
 |[WorksheetFreezePanes](/javascript/api/excel/excel.worksheetfreezepanes)|[freezeAt (frozenRange: cadeia de caracteres de intervalo \| )](/javascript/api/excel/excel.worksheetfreezepanes#freezeat-frozenrange-)|Define as células congeladas no modo de exibição da planilha ativa.|
-||[freezeColumns (contagem?: número)](/javascript/api/excel/excel.worksheetfreezepanes#freezecolumns-count-)|Congela a primeira colunas da planilha no local.|
-||[freezeRows (contagem?: número)](/javascript/api/excel/excel.worksheetfreezepanes#freezerows-count-)|Congela as linhas superiores da planilha no local.|
+||[freezeColumns (contagem?: número)](/javascript/api/excel/excel.worksheetfreezepanes#freezecolumns-count-)|Congele a primeira coluna ou colunas da planilha em vigor.|
+||[freezeRows (contagem?: número)](/javascript/api/excel/excel.worksheetfreezepanes#freezerows-count-)|Congele a linha superior ou as linhas da planilha em vigor.|
 ||[getLocation()](/javascript/api/excel/excel.worksheetfreezepanes#getlocation--)|Obtém um intervalo que descreve as células congeladas no modo de exibição da planilha ativa.|
 ||[getLocationOrNullObject()](/javascript/api/excel/excel.worksheetfreezepanes#getlocationornullobject--)|Obtém um intervalo que descreve as células congeladas no modo de exibição da planilha ativa.|
 ||[descongelar ()](/javascript/api/excel/excel.worksheetfreezepanes#unfreeze--)|Remove todos os painéis congelados na planilha.|
