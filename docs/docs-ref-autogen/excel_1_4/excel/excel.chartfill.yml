@@ -1,130 +1,93 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.ChartFill:class'
-    summary: |-
-      Representa a formatação de preenchimento de um elemento do gráfico.
-
-      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.ChartFill
-    fullName: Excel.ChartFill
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.ChartFill#clear:member(1)'
-      - 'excel!Excel.ChartFill#context:member'
-      - 'excel!Excel.ChartFill#setSolidColor:member(1)'
-      - 'excel!Excel.ChartFill#toJSON:member(1)'
-  - uid: 'excel!Excel.ChartFill#clear:member(1)'
-    summary: |-
-      Limpa a cor de preenchimento de um elemento do gráfico.
-
-      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: clear()
-    fullName: clear()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'clear(): void;'
-      return:
-        type:
-          - void
-        description: |-
+### YamlMime:TSType
+name: Excel.ChartFill
+uid: excel!Excel.ChartFill:class
+package: excel!
+fullName: Excel.ChartFill
+summary: >-
+  Representa a formatação de preenchimento de um elemento do gráfico.
 
 
-          #### <a name="examples"></a>Exemplos
-
-          ```javascript
-          // Clear the line format of the major Gridlines on value axis of the Chart named "Chart1"
-          Excel.run(function (ctx) { 
-              var gridlines = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").axes.valueAxis.majorGridlines;
-              gridlines.format.line.clear();
-              return ctx.sync().then(function() {
-                      console.log("Chart Major Gridlines Format Cleared");
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-  - uid: 'excel!Excel.ChartFill#context:member'
-    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.ChartFill#setSolidColor:member(1)'
-    summary: |-
-      Define a formatação de preenchimento de um elemento do gráfico com uma cor uniforme.
-
-      \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: setSolidColor(color)
-    fullName: setSolidColor(color)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSolidColor(color: string): void;'
-      return:
-        type:
-          - void
-        description: |-
+  \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.ChartFill#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+methods:
+- name: clear()
+  uid: excel!Excel.ChartFill#clear:member(1)
+  package: excel!
+  fullName: clear()
+  summary: >-
+    Limpa a cor de preenchimento de um elemento do gráfico.
 
 
-          #### <a name="examples"></a>Exemplos
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Clear the line format of the major Gridlines on value axis of the Chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.clear();\n    return ctx.sync().then(function() {\n            console.log(\"Chart Major Gridlines Format Cleared\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: setSolidColor(color)
+  uid: excel!Excel.ChartFill#setSolidColor:member(1)
+  package: excel!
+  fullName: setSolidColor(color)
+  summary: >-
+    Define a formatação de preenchimento de um elemento do gráfico com uma cor uniforme.
 
-          ```typescript
-          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/10-chart/chart-point.yaml
-          await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Sample");
 
-              let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;
-              let point = pointsCollection.getItemAt(2);
-
-              // Set color for chart point.
-              point.format.fill.setSolidColor('red');
-
-              await context.sync();        
-          });
-          ```
-      parameters:
-        - id: color
-          description: 'Código de cor HTML que representa a cor do plano de fundo, da forma \# RRGGBB (por exemplo, "FFA500") ou como uma cor HTML nomeada (por exemplo, "laranja").'
-          type:
-            - string
-  - uid: 'excel!Excel.ChartFill#toJSON:member(1)'
-    summary: 'Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartFill original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ChartFillData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.'
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: |-
-        toJSON(): {
+    \[[Conjunto de APIs: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setSolidColor(color: string): void;'
+    parameters:
+    - id: color
+      description: Código de cor HTML que representa a cor do plano de fundo, da forma \# RRGGBB (por exemplo, "FFA500") ou como uma cor HTML nomeada (por exemplo, "laranja").
+      type: string
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/10-chart/chart-point.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;\n    let point = pointsCollection.getItemAt(2);\n\n    // Set color for chart point.\n    point.format.fill.setSolidColor('red');\n\n    await context.sync();        \n});\n```"
+- name: toJSON()
+  uid: excel!Excel.ChartFill#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. ChartFill original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.ChartFillData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      toJSON(): {
+                  [key: string]: string;
+              };
+    return:
+      type: >-
+        {
                     [key: string]: string;
-                };
-      return:
-        type:
-          - |-
-            {
-                        [key: string]: string;
-                    }
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
+                }
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 8d3eebbda5f96733a2b17bf0945553585d1e65a8
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49322988"
