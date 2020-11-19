@@ -1,984 +1,931 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.MessageCompose:interface'
-    summary: |-
-      O modo de redação de mensagem de [Office. Context. Mailbox. Item](xref:outlook!Office.Item:interface)<!-- -->.
+### YamlMime:TSType
+name: Office.MessageCompose
+uid: outlook!Office.MessageCompose:interface
+package: outlook!
+fullName: Office.MessageCompose
+summary: >-
+  O modo de redação de mensagem de [Office. Context. Mailbox. Item](xref:outlook!Office.Item:interface)<!-- -->.
 
-      **Importante** : Este é um objeto interno do Outlook, não diretamente exposto por meio de interfaces existentes. Você deve tratá-lo como um modo de `Office.context.mailbox.item`<!-- -->. Consulte a página [modelo de objeto](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) para obter mais informações.
 
-      Interfaces pai:
+  **Importante**: Este é um objeto interno do Outlook, não diretamente exposto por meio de interfaces existentes. Você deve tratá-lo como um modo de `Office.context.mailbox.item`<!-- -->. Consulte a página [modelo de objeto](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) para obter mais informações.
 
-      - [Compor](xref:outlook!Office.ItemCompose:interface)
 
-      - [Message](xref:outlook!Office.Message:interface)
-    name: Office.MessageCompose
-    fullName: Office.MessageCompose
-    langs:
-      - typeScript
-    type: interface
-    extends:
-      - 'outlook!Office.Message:interface'
-      - 'outlook!Office.ItemCompose:interface'
-    package: outlook!
-    children:
-      - 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#bcc:member'
-      - 'outlook!Office.MessageCompose#body:member'
-      - 'outlook!Office.MessageCompose#cc:member'
-      - 'outlook!Office.MessageCompose#conversationId:member'
-      - 'outlook!Office.MessageCompose#getSelectedDataAsync:member(1)'
-      - 'outlook!Office.MessageCompose#getSelectedDataAsync:member(2)'
-      - 'outlook!Office.MessageCompose#itemType:member'
-      - 'outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)'
-      - 'outlook!Office.MessageCompose#removeAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#setSelectedDataAsync:member(1)'
-      - 'outlook!Office.MessageCompose#subject:member'
-      - 'outlook!Office.MessageCompose#to:member'
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
-    summary: |-
-      Adiciona um arquivo a uma mensagem ou um compromisso como um anexo.
+  Interfaces pai:
 
-      O método `addFileAttachmentAsync` carrega o arquivo no URI especificado e anexa-o ao item no formulário de composição.
 
-      Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+  - [Compor](xref:outlook!Office.ItemCompose:interface)
 
-      **Importante** : em versões recentes do Outlook no Windows, foi introduzido um bug que anexa incorretamente um `Authorization: Bearer` cabeçalho a essa ação (seja usando essa API ou a interface do usuário do Outlook). Para contornar esse problema, você pode tentar usar a `addFileAttachmentFromBase64` API introduzida com o conjunto de requisitos 1,8.
 
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadWriteItem`
+  - [Mensagem](xref:outlook!Office.Message:interface)
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: bcc
+  uid: outlook!Office.MessageCompose#bcc:member
+  package: outlook!
+  fullName: bcc
+  summary: >-
+    Obtém um objeto que fornece métodos para obter ou atualizar os destinatários na linha **Cco** (com cópia oculta) de uma mensagem.
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
 
-      **Erros** :
+    Dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados a quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
 
-      - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
 
-      - `FileTypeNotSupported`<!-- -->: O anexo tem uma extensão que não é permitida.
+    \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
 
-      #### <a name="examples"></a>Exemplos
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
 
-      ```javascript
-      function callback(result) {
-          if (result.error) {
-              console.log(result.error);
-          } else {
-              console.log("Attachment added");
-          }
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Office.context.mailbox.item.bcc.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
+
+    Office.context.mailbox.item.bcc.addAsync( ['jason@contoso.com'] );
+
+    Office.context.mailbox.item.bcc.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var arrayOfBccRecipients = asyncResult.value;
+    }
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
+
+    Office.context.mailbox.item.bcc.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var msgBcc = asyncResult.value;
+        console.log("Message being blind-copied to:");
+        for (var i = 0; i < msgBcc.length; i++) {
+          console.log(msgBcc[i].displayName + " (" + msgBcc[i].emailAddress + ")");
+        }
+      } else {
+        console.error(asyncResult.error);
       }
+    });
 
-      function addAttachment() {
-          // The values in asyncContext can be accessed in the callback.
-          var options = { 'asyncContext': { var1: 1, var2: 2 } };
+    ```
 
-          var attachmentURL = "https://contoso.com/rtm/icon.png";
-          Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
+
+    var email = $("#emailBcc")
+      .val()
+      .toString();
+    var emailArray = [email];
+
+    Office.context.mailbox.item.bcc.setAsync(emailArray, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Succeeded in setting Bcc field.");
+      } else {
+        console.error(asyncResult.error);
       }
-      ```
-      ```javascript
-      // The following example adds an image file as an inline attachment and
-      // references the attachment in the message body.
-      Office.context.mailbox.item.addFileAttachmentAsync(
-          "http://i.imgur.com/WJXklif.png",
-          "cute_bird.png",
-          {
-              isInline: true
-          },
-          function (asyncResult) {
-              Office.context.mailbox.item.body.setAsync(
-                  "<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>",
-                  {
-                      "coercionType": "html"
-                  },
-                  function (asyncResult) {
-                      // Do something here.
-                  });
-          });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
-      var attachmentUrl = $("#attachmentUrl").val();
-      Office.context.mailbox.item.addFileAttachmentAsync(
-          attachmentUrl,
-          getFileName(attachmentUrl),
-          { "asyncContext" : { var1: 1, var2: true } },
-          function(result) { console.log(result); });
-      ```
-    name: 'addFileAttachmentAsync(uri, attachmentName, options, callback)'
-    fullName: 'addFileAttachmentAsync(uri, attachmentName, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: uri
-          description: O URI que fornece o local do arquivo anexado à mensagem ou compromisso. O comprimento máximo é de 2048 caracteres.
-          type:
-            - string
-        - id: attachmentName
-          description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
-          type:
-            - string
-        - id: options
-          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada. `isInline`<!-- -->: Se true, indica que o anexo será mostrado embutido no corpo da mensagem e não deverá ser exibido na lista de anexos.'
-          type:
-            - 'outlook!Office.MessageCompose#addFileAttachmentAsync~0:complex'
-        - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.'
-          type:
-            - 'outlook!Office.MessageCompose#addFileAttachmentAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
-    summary: |-
-      Adiciona um item do Exchange, como uma mensagem, como anexo na mensagem ou no compromisso.
+    });
 
-      O método `addItemAttachmentAsync` anexa o item com o identificador do Exchange especificado ao item no formulário de composição. Se você especificar um método de retorno de chamada, o método será chamado com um parâmetro, `asyncResult`<!-- -->, que contém o identificador de anexo ou um código que indica qualquer erro que ocorreu ao anexar o item. Você pode usar o parâmetro options para passar informações de estado para o método de retorno de chamada, se necessário.
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'bcc: Recipients;'
+    return:
+      type: <xref uid="outlook!Office.Recipients:interface" />
+- name: body
+  uid: outlook!Office.MessageCompose#body:member
+  package: outlook!
+  fullName: body
+  summary: >-
+    Obtém um objeto que fornece métodos para manipular o corpo de um item.
 
-      Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
 
-      Se o Suplemento do Office estiver em execução no Outlook na Web, o método `addItemAttachmentAsync` pode anexar itens que não sejam aquele que você está editando; no entanto, isso não tem suporte e não é recomendado.
+    \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadWriteItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
 
-      **Erros** :
 
-      - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+    #### <a name="examples"></a>Exemplos
 
-      #### <a name="examples"></a>Exemplos
 
-      ```javascript
-      // The following example adds an existing Outlook item as an attachment
-      // with the name `My Attachment`.
-      function callback(result) {
-          if (result.error) {
-              console.log(result.error);
-          } else {
-              console.log("Attachment added");
-          }
+    ```javascript
+
+    // This example gets the body of the item as plain text.
+
+    Office.context.mailbox.item.body.getAsync(
+        "text",
+        { asyncContext: "This is passed to the callback" },
+        function callback(result) {
+            // Do something with the result.
+        });
+
+    // The following is an example of the result parameter passed to the callback function.
+
+    {
+        "value": "TEXT of whole body (including threads below)",
+        "status": "succeeded",
+        "asyncContext": "This is passed to the callback"
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'body: Body;'
+    return:
+      type: <xref uid="outlook!Office.Body:interface" />
+- name: cc
+  uid: outlook!Office.MessageCompose#cc:member
+  package: outlook!
+  fullName: cc
+  summary: >-
+    Fornece acesso aos destinatários na linha Cc (com cópia) de uma mensagem. O tipo de objeto e nível de acesso dependem do modo do item atual.
+
+
+    A propriedade `cc` retorna um objeto `Recipients` que fornece métodos para obter ou atualizar os destinatários na linha **Cc** da mensagem. No entanto, dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados em quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Office.context.mailbox.item.cc.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
+
+    Office.context.mailbox.item.cc.addAsync( ['jason@contoso.com'] );
+
+    Office.context.mailbox.item.cc.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var arrayOfCcRecipients = asyncResult.value;
+    }
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
+
+    Office.context.mailbox.item.cc.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var msgCc = asyncResult.value;
+        console.log("Message being copied to:");
+        for (var i = 0; i < msgCc.length; i++) {
+          console.log(msgCc[i].displayName + " (" + msgCc[i].emailAddress + ")");
+        }
+      } else {
+        console.error(asyncResult.error);
       }
+    });
 
-      function addAttachment() {
-          // EWS ID of item to attach (shortened for readability).
-          var itemId = "AAMkADI1...AAA=";
+    ```
 
-          // The values in asyncContext can be accessed in the callback.
-          var options = { 'asyncContext': { var1: 1, var2: 2 } };
+    ```javascript
 
-          Office.context.mailbox.item.addItemAttachmentAsync(itemId, "My Attachment", options, callback);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
+
+    var email = $("#emailCc")
+      .val()
+      .toString();
+    var emailArray = [email];
+
+    Office.context.mailbox.item.cc.setAsync(emailArray, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Succeeded in setting Cc field.");
+      } else {
+        console.error(asyncResult.error);
       }
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
-      var attachmentItemId = $("#attachmentItemId").val();
-      Office.context.mailbox.item.addItemAttachmentAsync(
-          attachmentItemId,
-          "My attachment",
-          { "asyncContext" : { var3: 3, var4: false } },
-          function(result) { console.log(result); });
-      ```
-    name: 'addItemAttachmentAsync(itemId, attachmentName, options, callback)'
-    fullName: 'addItemAttachmentAsync(itemId, attachmentName, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: itemId
-          description: O identificador do Exchange do item a anexar. O comprimento máximo é de 100 caracteres.
-          type:
-            - any
-        - id: attachmentName
-          description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
-          type:
-            - string
-        - id: options
-          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao adicionar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.'
-          type:
-            - 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#bcc:member'
-    summary: |-
-      Obtém um objeto que fornece métodos para obter ou atualizar os destinatários na linha **Cco** (com cópia oculta) de uma mensagem.
+    });
 
-      Dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados a quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'cc: Recipients;'
+    return:
+      type: <xref uid="outlook!Office.Recipients:interface" />
+- name: conversationId
+  uid: outlook!Office.MessageCompose#conversationId:member
+  package: outlook!
+  fullName: conversationId
+  summary: >-
+    Obtém um identificador da conversa de email que contém uma mensagem específica.
 
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
+    Você pode obter um número inteiro para esta propriedade se o aplicativo de email estiver ativado nos formulários de leitura ou nas respostas em formulários de composição. Se, posteriormente, o usuário alterar o assunto da mensagem de resposta, ao enviar a resposta, a ID da conversa daquela mensagem será alterada e o valor obtido anteriormente não mais se aplicará.
 
-      #### <a name="examples"></a>Exemplos
 
-      ```javascript
-      Office.context.mailbox.item.bcc.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
-      Office.context.mailbox.item.bcc.addAsync( ['jason@contoso.com'] );
-      Office.context.mailbox.item.bcc.getAsync(callback);
+    Você obtém nulo para esta propriedade para um novo item em um formulário de composição. Se o usuário definir um assunto e salvar o item, a propriedade `conversationId` retornará um valor.
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
 
-      function callback(asyncResult) {
-          var arrayOfBccRecipients = asyncResult.value;
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-conversation-id-message.yaml
+
+    console.log(`Conversation ID: ${Office.context.mailbox.item.conversationId}`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'conversationId: string;'
+    return:
+      type: string
+- name: itemType
+  uid: outlook!Office.MessageCompose#itemType:member
+  package: outlook!
+  fullName: itemType
+  summary: >-
+    Obtém o tipo de item que representa uma instância.
+
+
+    A `itemType` propriedade retorna um dos `ItemType` valores de enumeração, indicando se a instância do objeto item é uma mensagem ou um compromisso.
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-item-type.yaml
+
+    console.log(`Item type: ${Office.context.mailbox.item.itemType}`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'itemType: MailboxEnums.ItemType | string;'
+    return:
+      type: <xref uid="outlook!Office.MailboxEnums.ItemType:enum" /> | string
+- name: subject
+  uid: outlook!Office.MessageCompose#subject:member
+  package: outlook!
+  fullName: subject
+  summary: >-
+    Obtém ou define a descrição que aparece no campo de assunto de um item.
+
+
+    A propriedade `subject` obtém ou define o assunto completo do item, conforme enviado pelo servidor de email.
+
+
+    A propriedade `subject` retorna um objeto `Subject` que fornece métodos para obter e definir o assunto.
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-subject-compose.yaml
+
+    Office.context.mailbox.item.subject.getAsync((result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+        return;
       }
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
-      Office.context.mailbox.item.bcc.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var msgBcc = asyncResult.value;
-          console.log("Message being blind-copied to:");
-          for (var i = 0; i < msgBcc.length; i++) {
-            console.log(msgBcc[i].displayName + " (" + msgBcc[i].emailAddress + ")");
-          }
+      console.log(`Subject: ${result.value}`);
+    });
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-subject-compose.yaml
+
+    let subject = "Hello World!";
+
+    Office.context.mailbox.item.subject.setAsync(subject, (result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+        return;
+      }
+      console.log(`Successfully set subject to ${subject}`);
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'subject: Subject;'
+    return:
+      type: <xref uid="outlook!Office.Subject:interface" />
+- name: to
+  uid: outlook!Office.MessageCompose#to:member
+  package: outlook!
+  fullName: to
+  summary: >-
+    Fornece acesso aos destinatários na linha **Para** de uma mensagem. O tipo de objeto e nível de acesso dependem do modo do item atual.
+
+
+    A propriedade `to` retorna um objeto `Recipients` que fornece métodos para obter ou atualizar os destinatários na linha **Para** da mensagem. No entanto, dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados em quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Office.context.mailbox.item.to.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
+
+    Office.context.mailbox.item.to.addAsync( ['jason@contoso.com'] );
+
+    Office.context.mailbox.item.to.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var arrayOfToRecipients = asyncResult.value;
+    }
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
+
+    Office.context.mailbox.item.to.getAsync(function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var msgTo = asyncResult.value;
+        console.log("Message being sent to:");
+        for (var i = 0; i < msgTo.length; i++) {
+          console.log(msgTo[i].displayName + " (" + msgTo[i].emailAddress + ")");
+        }
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
+
+    var email = $("#emailTo")
+      .val()
+      .toString();
+    var emailArray = [email];
+
+    Office.context.mailbox.item.to.setAsync(emailArray, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Succeeded in setting To field.");
+      } else {
+        console.error(asyncResult.error);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'to: Recipients;'
+    return:
+      type: <xref uid="outlook!Office.Recipients:interface" />
+methods:
+- name: addFileAttachmentAsync(uri, attachmentName, options, callback)
+  uid: outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)
+  package: outlook!
+  fullName: addFileAttachmentAsync(uri, attachmentName, options, callback)
+  summary: >-
+    Adiciona um arquivo a uma mensagem ou um compromisso como um anexo.
+
+
+    O método `addFileAttachmentAsync` carrega o arquivo no URI especificado e anexa-o ao item no formulário de composição.
+
+
+    Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+
+
+    **Importante**: em versões recentes do Outlook no Windows, foi introduzido um bug que anexa incorretamente um `Authorization: Bearer` cabeçalho a essa ação (seja usando essa API ou a interface do usuário do Outlook). Para contornar esse problema, você pode tentar usar a `addFileAttachmentFromBase64` API introduzida com o conjunto de requisitos 1,8.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    **Erros**:
+
+
+    - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
+
+
+    - `FileTypeNotSupported`<!-- -->: O anexo tem uma extensão que não é permitida.
+
+
+    - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    function callback(result) {
+        if (result.error) {
+            console.log(result.error);
         } else {
-          console.error(asyncResult.error);
+            console.log("Attachment added");
         }
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-bcc-message-compose.yaml
-      var email = $("#emailBcc")
-        .val()
-        .toString();
-      var emailArray = [email];
-      Office.context.mailbox.item.bcc.setAsync(emailArray, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Succeeded in setting Bcc field.");
+    }
+
+
+    function addAttachment() {
+        // The values in asyncContext can be accessed in the callback.
+        var options = { 'asyncContext': { var1: 1, var2: 2 } };
+
+        var attachmentURL = "https://contoso.com/rtm/icon.png";
+        Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);
+    }
+
+    ```
+
+    ```javascript
+
+    // The following example adds an image file as an inline attachment and
+
+    // references the attachment in the message body.
+
+    Office.context.mailbox.item.addFileAttachmentAsync(
+        "http://i.imgur.com/WJXklif.png",
+        "cute_bird.png",
+        {
+            isInline: true
+        },
+        function (asyncResult) {
+            Office.context.mailbox.item.body.setAsync(
+                "<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>",
+                {
+                    "coercionType": "html"
+                },
+                function (asyncResult) {
+                    // Do something here.
+                });
+        });
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
+
+    var attachmentUrl = $("#attachmentUrl").val();
+
+    Office.context.mailbox.item.addFileAttachmentAsync(
+        attachmentUrl,
+        getFileName(attachmentUrl),
+        { "asyncContext" : { var1: 1, var2: true } },
+        function(result) { console.log(result); });
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: uri
+      description: O URI que fornece o local do arquivo anexado à mensagem ou compromisso. O comprimento máximo é de 2048 caracteres.
+      type: string
+    - id: attachmentName
+      description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
+      type: string
+    - id: options
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada. `isInline`<!-- -->: Se true, indica que o anexo será mostrado embutido no corpo da mensagem e não deverá ser exibido na lista de anexos.'
+      type: '<xref uid="office!Office.AsyncContextOptions:interface" /> & { isInline: boolean }'
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addItemAttachmentAsync(itemId, attachmentName, options, callback)
+  uid: outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)
+  package: outlook!
+  fullName: addItemAttachmentAsync(itemId, attachmentName, options, callback)
+  summary: >-
+    Adiciona um item do Exchange, como uma mensagem, como anexo na mensagem ou no compromisso.
+
+
+    O método `addItemAttachmentAsync` anexa o item com o identificador do Exchange especificado ao item no formulário de composição. Se você especificar um método de retorno de chamada, o método será chamado com um parâmetro, `asyncResult`<!-- -->, que contém o identificador de anexo ou um código que indica qualquer erro que ocorreu ao anexar o item. Você pode usar o parâmetro options para passar informações de estado para o método de retorno de chamada, se necessário.
+
+
+    Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+
+
+    Se o Suplemento do Office estiver em execução no Outlook na Web, o método `addItemAttachmentAsync` pode anexar itens que não sejam aquele que você está editando; no entanto, isso não tem suporte e não é recomendado.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    **Erros**:
+
+
+    - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // The following example adds an existing Outlook item as an attachment
+
+    // with the name `My Attachment`.
+
+    function callback(result) {
+        if (result.error) {
+            console.log(result.error);
         } else {
-          console.error(asyncResult.error);
+            console.log("Attachment added");
         }
-      });
-      ```
-    name: bcc
-    fullName: bcc
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'bcc: Recipients;'
-      return:
-        type:
-          - 'outlook!Office.Recipients:interface'
-  - uid: 'outlook!Office.MessageCompose#body:member'
-    summary: |-
-      Obtém um objeto que fornece métodos para manipular o corpo de um item.
+    }
 
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
+    function addAttachment() {
+        // EWS ID of item to attach (shortened for readability).
+        var itemId = "AAMkADI1...AAA=";
 
-      #### <a name="examples"></a>Exemplos
+        // The values in asyncContext can be accessed in the callback.
+        var options = { 'asyncContext': { var1: 1, var2: 2 } };
 
-      ```javascript
-      // This example gets the body of the item as plain text.
-      Office.context.mailbox.item.body.getAsync(
-          "text",
-          { asyncContext: "This is passed to the callback" },
-          function callback(result) {
-              // Do something with the result.
-          });
+        Office.context.mailbox.item.addItemAttachmentAsync(itemId, "My Attachment", options, callback);
+    }
 
-      // The following is an example of the result parameter passed to the callback function.
-      {
-          "value": "TEXT of whole body (including threads below)",
-          "status": "succeeded",
-          "asyncContext": "This is passed to the callback"
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
+
+    var attachmentItemId = $("#attachmentItemId").val();
+
+    Office.context.mailbox.item.addItemAttachmentAsync(
+        attachmentItemId,
+        "My attachment",
+        { "asyncContext" : { var3: 3, var4: false } },
+        function(result) { console.log(result); });
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: itemId
+      description: O identificador do Exchange do item a anexar. O comprimento máximo é de 100 caracteres.
+      type: any
+    - id: attachmentName
+      description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
+      type: string
+    - id: options
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao adicionar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getSelectedDataAsync(coercionType, options, callback)
+  uid: outlook!Office.MessageCompose#getSelectedDataAsync:member(1)
+  package: outlook!
+  fullName: getSelectedDataAsync(coercionType, options, callback)
+  summary: >-
+    Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
+
+
+    Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto estiver selecionado, o método retorna o erro `InvalidSelection`.
+
+
+    Para acessar os dados selecionados do método de retorno de chamada, chame `asyncResult.value.data`<!-- -->. Para acessar a propriedade de origem proveniente da seleção, chame `asyncResult.value.sourceProperty`<!-- -->, que será `body` ou `subject`<!-- -->.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Get selected data.
+
+    Office.initialize = function () {
+        Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, {}, getCallback);
+    };
+
+
+    function getCallback(asyncResult) {
+        var text = asyncResult.value.data;
+        var prop = asyncResult.value.sourceProperty;
+
+        console.log("Selected text in " + prop + ": " + text);
+    }
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getSelectedDataAsync(coercionType: Office.CoercionType | string, options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
+    parameters:
+    - id: coercionType
+      description: Solicita um formato para os dados. Se `Text`<!-- -->, o método retorna o texto sem formatação como uma cadeia de caracteres, removendo todas as marcas HTML presentes. Se `Html`<!-- -->, o método retorna o texto selecionado, seja ele texto não criptografado ou HTML.
+      type: <xref uid="office!Office.CoercionType:enum" /> | string
+    - id: options
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;any&gt;) =&gt; void'
+    return:
+      type: void
+      description: Os dados selecionados como uma cadeia de caracteres com formato determinado por `coercionType`<!-- -->.
+- name: getSelectedDataAsync(coercionType, callback)
+  uid: outlook!Office.MessageCompose#getSelectedDataAsync:member(2)
+  package: outlook!
+  fullName: getSelectedDataAsync(coercionType, callback)
+  summary: >-
+    Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
+
+
+    Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto estiver selecionado, o método retorna o erro `InvalidSelection`.
+
+
+    Para acessar os dados selecionados do método de retorno de chamada, chame `asyncResult.value.data`<!-- -->. Para acessar a propriedade de origem proveniente da seleção, chame `asyncResult.value.sourceProperty`<!-- -->, que será `body` ou `subject`<!-- -->.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/get-selected-data.yaml
+
+    Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        var text = asyncResult.value.data;
+        var prop = asyncResult.value.sourceProperty;
+        console.log("Selected text in " + prop + ": " + text);
+      } else {
+        console.error(asyncResult.error);
       }
-      ```
-    name: body
-    fullName: body
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'body: Body;'
-      return:
-        type:
-          - 'outlook!Office.Body:interface'
-  - uid: 'outlook!Office.MessageCompose#cc:member'
-    summary: |-
-      Fornece acesso aos destinatários na linha Cc (com cópia) de uma mensagem. O tipo de objeto e nível de acesso dependem do modo do item atual.
+    });
 
-      A propriedade `cc` retorna um objeto `Recipients` que fornece métodos para obter ou atualizar os destinatários na linha **Cc** da mensagem. No entanto, dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados em quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getSelectedDataAsync(coercionType: Office.CoercionType | string, callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
+    parameters:
+    - id: coercionType
+      description: Solicita um formato para os dados. Se `Text`<!-- -->, o método retorna o texto sem formatação como uma cadeia de caracteres, removendo todas as marcas HTML presentes. Se `Html`<!-- -->, o método retorna o texto selecionado, seja ele texto não criptografado ou HTML.
+      type: <xref uid="office!Office.CoercionType:enum" /> | string
+    - id: callback
+      description: Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;any&gt;) =&gt; void'
+    return:
+      type: void
+      description: Os dados selecionados como uma cadeia de caracteres com formato determinado por `coercionType`<!-- -->.
+- name: loadCustomPropertiesAsync(callback, userContext)
+  uid: outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)
+  package: outlook!
+  fullName: loadCustomPropertiesAsync(callback, userContext)
+  summary: >-
+    Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.
 
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
 
-      #### <a name="examples"></a>Exemplos
+    Propriedades personalizadas são armazenadas como pares chave/valor de acordo com o aplicativo e o item. Este método retorna um objeto `CustomProperties` no retorno de chamada, que oferece métodos para acessar as propriedades personalizadas específicas para o item atual e o suplemento atual. Propriedades personalizadas não são criptografadas no item, portanto não devem ser usadas como armazenamento seguro.
 
-      ```javascript
-      Office.context.mailbox.item.cc.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
-      Office.context.mailbox.item.cc.addAsync( ['jason@contoso.com'] );
-      Office.context.mailbox.item.cc.getAsync(callback);
 
-      function callback(asyncResult) {
-          var arrayOfCcRecipients = asyncResult.value;
+    As propriedades personalizadas são fornecidas como um `CustomProperties` objeto na Propriedade AsyncResult. Value. Esse objeto pode ser usado para obter, definir e remover as propriedades personalizadas do item e salvar as alterações na propriedade personalizada definida de volta no servidor.
+  remarks: "**<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`\n\n**<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// The following example shows how to use the loadCustomPropertiesAsync method\n// to asynchronously load custom properties that are specific to the current item.\n// The example also shows how to use the saveAsync method to save these properties\n// back to the server. After loading the custom properties, the example uses the\n// get method to read the custom property myProp, the set method to write the\n// custom property otherProp, and then finally calls the saveAsync method to save\n// the custom properties.\nOffice.initialize = function () {\n    // Checks for the DOM to load using the jQuery ready function.\n    $(document).ready(function () {\n        // After the DOM is loaded, add-in-specific code can run.\n        var mailbox = Office.context.mailbox;\n        mailbox.item.loadCustomPropertiesAsync(customPropsCallback);\n    });\n};\n\nfunction customPropsCallback(asyncResult) {\n    var customProps = asyncResult.value;\n    var myProp = customProps.get(\"myProp\");\n\n    customProps.set(\"otherProp\", \"value\");\n    customProps.saveAsync(saveCallback);\n}\n\nfunction saveCallback(asyncResult) {\n}\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml\nOffice.context.mailbox.item.loadCustomPropertiesAsync(function (result) {\n  if (result.status === Office.AsyncResultStatus.Succeeded) {\n    console.log(\"Loaded following custom properties:\");\n    customProps = result.value;\n    var dataKey = Object.keys(customProps)[0];\n    var data = customProps[dataKey];\n    for (var propertyName in data)\n    {\n      var propertyValue = data[propertyName];\n      console.log(`${propertyName}: ${propertyValue}`);\n    }              \n  }\n  else {\n    console.error(`loadCustomPropertiesAsync failed with message ${result.error.message}`);\n  }\n});\n```"
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'loadCustomPropertiesAsync(callback: (asyncResult: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    parameters:
+    - id: callback
+      description: Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.CustomProperties:interface" />&gt;) =&gt; void'
+    - id: userContext
+      description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Esse objeto pode ser acessado pela propriedade `asyncResult.asyncContext` na função de retorno de chamada.
+      type: any
+    return:
+      type: void
+      description: ''
+- name: removeAttachmentAsync(attachmentId, options, callback)
+  uid: outlook!Office.MessageCompose#removeAttachmentAsync:member(1)
+  package: outlook!
+  fullName: removeAttachmentAsync(attachmentId, options, callback)
+  summary: >-
+    Remove um anexo de uma mensagem ou de um compromisso.
+
+
+    O método `removeAttachmentAsync` remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook na Web e em dispositivos móveis, a identificador do anexo é válido apenas durante a mesma sessão. Uma sessão termina quando o usuário fecha o aplicativo, ou se o usuário começa a redigir um formulário embutido e, em seguida, abre o formulário para continuar em uma janela separada.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    **Erros**:
+
+
+    - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // The following code removes an attachment with an identifier of '0'.
+
+    Office.context.mailbox.item.removeAttachmentAsync(
+        '0',
+        { asyncContext : null },
+        function (asyncResult)
+        {
+            console.log(asyncResult.status);
+        }
+    );
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
+
+    Office.context.mailbox.item.removeAttachmentAsync(
+        $("#attachmentId").val(),
+        { asyncContext : null },
+        function(result)
+        {
+            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+                console.error(`${result.error.message}`);
+            } else {
+                console.log(`Attachment removed successfully.`);
+            }
+        }
+    );
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: attachmentId
+      description: O identificador do anexo a remover.
+      type: string
+    - id: options
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Se a remoção do anexo falhar, a propriedade `asyncResult.error` conterá um código de erro com o motivo da falha.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setSelectedDataAsync(data, options, callback)
+  uid: outlook!Office.MessageCompose#setSelectedDataAsync:member(1)
+  package: outlook!
+  fullName: setSelectedDataAsync(data, options, callback)
+  summary: >-
+    Insere de forma assíncrona os dados no corpo ou no assunto de uma mensagem.
+
+
+    O método `setSelectedDataAsync` insere a cadeia de caracteres especificada no local do cursor no corpo ou assunto do item ou, se o texto estiver selecionado no editor, substitui o texto selecionado. Se o cursor não estiver no campo do corpo ou assunto, um erro será retornado. Após a inserção, o cursor é colocado no final do conteúdo inserido.
+
+
+    \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+
+
+    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: composição de mensagem
+
+
+    **Erros**:
+
+
+    - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    Office.context.mailbox.item.setSelectedDataAsync("<b>Hello World!</b>", { coercionType : "html" });
+
+    ```
+
+    ```javascript
+
+    Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
+
+    Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
+      if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+        console.log("Selected text has been updated successfully.");
+      } else {
+        console.error(asyncResult.error);
       }
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
-      Office.context.mailbox.item.cc.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var msgCc = asyncResult.value;
-          console.log("Message being copied to:");
-          for (var i = 0; i < msgCc.length; i++) {
-            console.log(msgCc[i].displayName + " (" + msgCc[i].emailAddress + ")");
-          }
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-cc-message-compose.yaml
-      var email = $("#emailCc")
-        .val()
-        .toString();
-      var emailArray = [email];
-      Office.context.mailbox.item.cc.setAsync(emailArray, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Succeeded in setting Cc field.");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: cc
-    fullName: cc
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'cc: Recipients;'
-      return:
-        type:
-          - 'outlook!Office.Recipients:interface'
-  - uid: 'outlook!Office.MessageCompose#conversationId:member'
-    summary: |-
-      Obtém um identificador da conversa de email que contém uma mensagem específica.
+    });
 
-      Você pode obter um número inteiro para esta propriedade se o aplicativo de email estiver ativado nos formulários de leitura ou nas respostas em formulários de composição. Se, posteriormente, o usuário alterar o assunto da mensagem de resposta, ao enviar a resposta, a ID da conversa daquela mensagem será alterada e o valor obtido anteriormente não mais se aplicará.
-
-      Você obtém nulo para esta propriedade para um novo item em um formulário de composição. Se o usuário definir um assunto e salvar o item, a propriedade `conversationId` retornará um valor.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-conversation-id-message.yaml
-      console.log(`Conversation ID: ${Office.context.mailbox.item.conversationId}`);
-      ```
-    name: conversationId
-    fullName: conversationId
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'conversationId: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync:member(1)'
-    summary: |-
-      Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
-
-      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto estiver selecionado, o método retorna o erro `InvalidSelection`.
-
-      Para acessar os dados selecionados do método de retorno de chamada, chame `asyncResult.value.data`<!-- -->. Para acessar a propriedade de origem proveniente da seleção, chame `asyncResult.value.sourceProperty`<!-- -->, que será `body` ou `subject`<!-- -->.
-
-      \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Get selected data.
-      Office.initialize = function () {
-          Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, {}, getCallback);
-      };
-
-      function getCallback(asyncResult) {
-          var text = asyncResult.value.data;
-          var prop = asyncResult.value.sourceProperty;
-
-          console.log("Selected text in " + prop + ": " + text);
-      }
-      ```
-    name: 'getSelectedDataAsync(coercionType, options, callback)'
-    fullName: 'getSelectedDataAsync(coercionType, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getSelectedDataAsync(coercionType: Office.CoercionType | string, options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
-      return:
-        type:
-          - void
-        description: Os dados selecionados como uma cadeia de caracteres com formato determinado por `coercionType`<!-- -->.
-      parameters:
-        - id: coercionType
-          description: 'Solicita um formato para os dados. Se `Text`<!-- -->, o método retorna o texto sem formatação como uma cadeia de caracteres, removendo todas as marcas HTML presentes. Se `Html`<!-- -->, o método retorna o texto selecionado, seja ele texto não criptografado ou HTML.'
-          type:
-            - 'outlook!Office.MessageCompose#getSelectedDataAsync~0:complex'
-        - id: options
-          description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 'Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.'
-          type:
-            - 'outlook!Office.MessageCompose#getSelectedDataAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync:member(2)'
-    summary: |-
-      Retorna de forma assíncrona os dados selecionados do assunto ou do corpo de uma mensagem.
-
-      Se não houver seleção, mas o cursor estiver no corpo ou no assunto, o método retorna uma cadeia de caracteres vazia para os dados selecionados. Se um campo que não seja o corpo ou o assunto estiver selecionado, o método retorna o erro `InvalidSelection`.
-
-      Para acessar os dados selecionados do método de retorno de chamada, chame `asyncResult.value.data`<!-- -->. Para acessar a propriedade de origem proveniente da seleção, chame `asyncResult.value.sourceProperty`<!-- -->, que será `body` ou `subject`<!-- -->.
-
-      \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/get-selected-data.yaml
-      Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var text = asyncResult.value.data;
-          var prop = asyncResult.value.sourceProperty;
-          console.log("Selected text in " + prop + ": " + text);
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: 'getSelectedDataAsync(coercionType, callback)'
-    fullName: 'getSelectedDataAsync(coercionType, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getSelectedDataAsync(coercionType: Office.CoercionType | string, callback: (asyncResult: Office.AsyncResult<any>) => void): void;'
-      return:
-        type:
-          - void
-        description: Os dados selecionados como uma cadeia de caracteres com formato determinado por `coercionType`<!-- -->.
-      parameters:
-        - id: coercionType
-          description: 'Solicita um formato para os dados. Se `Text`<!-- -->, o método retorna o texto sem formatação como uma cadeia de caracteres, removendo todas as marcas HTML presentes. Se `Html`<!-- -->, o método retorna o texto selecionado, seja ele texto não criptografado ou HTML.'
-          type:
-            - 'outlook!Office.MessageCompose#getSelectedDataAsync~2:complex'
-        - id: callback
-          description: 'Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.'
-          type:
-            - 'outlook!Office.MessageCompose#getSelectedDataAsync~3:complex'
-  - uid: 'outlook!Office.MessageCompose#itemType:member'
-    summary: |-
-      Obtém o tipo de item que representa uma instância.
-
-      A `itemType` propriedade retorna um dos `ItemType` valores de enumeração, indicando se a instância do objeto item é uma mensagem ou um compromisso.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-item-type.yaml
-      console.log(`Item type: ${Office.context.mailbox.item.itemType}`);
-      ```
-    name: itemType
-    fullName: itemType
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'itemType: MailboxEnums.ItemType | string;'
-      return:
-        type:
-          - 'outlook!Office.MessageCompose#itemType~0:complex'
-  - uid: 'outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)'
-    summary: |-
-      Carrega de forma assíncrona as propriedades personalizadas para esse suplemento no item selecionado.
-
-      Propriedades personalizadas são armazenadas como pares chave/valor de acordo com o aplicativo e o item. Este método retorna um objeto `CustomProperties` no retorno de chamada, que oferece métodos para acessar as propriedades personalizadas específicas para o item atual e o suplemento atual. Propriedades personalizadas não são criptografadas no item, portanto não devem ser usadas como armazenamento seguro.
-
-      As propriedades personalizadas são fornecidas como um `CustomProperties` objeto na Propriedade AsyncResult. Value. Esse objeto pode ser usado para obter, definir e remover as propriedades personalizadas do item e salvar as alterações na propriedade personalizada definida de volta no servidor.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // The following example shows how to use the loadCustomPropertiesAsync method
-      // to asynchronously load custom properties that are specific to the current item.
-      // The example also shows how to use the saveAsync method to save these properties
-      // back to the server. After loading the custom properties, the example uses the
-      // get method to read the custom property myProp, the set method to write the
-      // custom property otherProp, and then finally calls the saveAsync method to save
-      // the custom properties.
-      Office.initialize = function () {
-          // Checks for the DOM to load using the jQuery ready function.
-          $(document).ready(function () {
-              // After the DOM is loaded, add-in-specific code can run.
-              var mailbox = Office.context.mailbox;
-              mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
-          });
-      };
-
-      function customPropsCallback(asyncResult) {
-          var customProps = asyncResult.value;
-          var myProp = customProps.get("myProp");
-
-          customProps.set("otherProp", "value");
-          customProps.saveAsync(saveCallback);
-      }
-
-      function saveCallback(asyncResult) {
-      }
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/15-item-custom-properties/load-set-get-save.yaml
-      Office.context.mailbox.item.loadCustomPropertiesAsync(function (result) {
-        if (result.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Loaded following custom properties:");
-          customProps = result.value;
-          var dataKey = Object.keys(customProps)[0];
-          var data = customProps[dataKey];
-          for (var propertyName in data)
-          {
-            var propertyValue = data[propertyName];
-            console.log(`${propertyName}: ${propertyValue}`);
-          }              
-        }
-        else {
-          console.error(`loadCustomPropertiesAsync failed with message ${result.error.message}`);
-        }
-      });
-      ```
-    name: 'loadCustomPropertiesAsync(callback, userContext)'
-    fullName: 'loadCustomPropertiesAsync(callback, userContext)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'loadCustomPropertiesAsync(callback: (asyncResult: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: callback
-          description: 'Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.'
-          type:
-            - 'outlook!Office.MessageCompose#loadCustomPropertiesAsync~0:complex'
-        - id: userContext
-          description: Opcional. Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar na função de retorno de chamada. Esse objeto pode ser acessado pela propriedade `asyncResult.asyncContext` na função de retorno de chamada.
-          type:
-            - any
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync:member(1)'
-    summary: |-
-      Remove um anexo de uma mensagem ou de um compromisso.
-
-      O método `removeAttachmentAsync` remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook na Web e em dispositivos móveis, a identificador do anexo é válido apenas durante a mesma sessão. Uma sessão termina quando o usuário fecha o aplicativo, ou se o usuário começa a redigir um formulário embutido e, em seguida, abre o formulário para continuar em uma janela separada.
-
-      \[[Conjunto de APIs: caixa de correio 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadWriteItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      **Erros** :
-
-      - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // The following code removes an attachment with an identifier of '0'.
-      Office.context.mailbox.item.removeAttachmentAsync(
-          '0',
-          { asyncContext : null },
-          function (asyncResult)
-          {
-              console.log(asyncResult.status);
-          }
-      );
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/40-attachments/attachments-compose.yaml
-      Office.context.mailbox.item.removeAttachmentAsync(
-          $("#attachmentId").val(),
-          { asyncContext : null },
-          function(result)
-          {
-              if (result.status !== Office.AsyncResultStatus.Succeeded) {
-                  console.error(`${result.error.message}`);
-              } else {
-                  console.log(`Attachment removed successfully.`);
-              }
-          }
-      );
-      ```
-    name: 'removeAttachmentAsync(attachmentId, options, callback)'
-    fullName: 'removeAttachmentAsync(attachmentId, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: attachmentId
-          description: O identificador do anexo a remover.
-          type:
-            - string
-        - id: options
-          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
-          type:
-            - 'office!Office.AsyncContextOptions:interface'
-        - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Se a remoção do anexo falhar, a propriedade `asyncResult.error` conterá um código de erro com o motivo da falha.'
-          type:
-            - 'outlook!Office.MessageCompose#removeAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync:member(1)'
-    summary: |-
-      Insere de forma assíncrona os dados no corpo ou no assunto de uma mensagem.
-
-      O método `setSelectedDataAsync` insere a cadeia de caracteres especificada no local do cursor no corpo ou assunto do item ou, se o texto estiver selecionado no editor, substitui o texto selecionado. Se o cursor não estiver no campo do corpo ou assunto, um erro será retornado. Após a inserção, o cursor é colocado no final do conteúdo inserido.
-
-      \[[Conjunto de APIs: caixa de correio 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadWriteItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      **Erros** :
-
-      - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      Office.context.mailbox.item.setSelectedDataAsync("<b>Hello World!</b>", { coercionType : "html" });
-      ```
-      ```javascript
-      Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/20-item-body/set-selected-data.yaml
-      Office.context.mailbox.item.setSelectedDataAsync("Replaced", function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Selected text has been updated successfully.");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: 'setSelectedDataAsync(data, options, callback)'
-    fullName: 'setSelectedDataAsync(data, options, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: data
-          description: 'Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.'
-          type:
-            - string
-        - id: options
-          description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada. `coercionType`<!-- -->: Se o texto, o estilo atual é aplicado no Outlook na Web e nos clientes da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se HTML e o campo oferecer suporte a HTML (o assunto não), o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado no Outlook em clientes de área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
-          type:
-            - 'outlook!Office.MessageCompose#setSelectedDataAsync~0:complex'
-        - id: callback
-          description: 'Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.'
-          type:
-            - 'outlook!Office.MessageCompose#setSelectedDataAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#subject:member'
-    summary: |-
-      Obtém ou define a descrição que aparece no campo de assunto de um item.
-
-      A propriedade `subject` obtém ou define o assunto completo do item, conforme enviado pelo servidor de email.
-
-      A propriedade `subject` retorna um objeto `Subject` que fornece métodos para obter e definir o assunto.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-subject-compose.yaml
-      Office.context.mailbox.item.subject.getAsync((result) => {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Action failed with message ${result.error.message}`);
-          return;
-        }
-        console.log(`Subject: ${result.value}`);
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/90-other-item-apis/get-set-subject-compose.yaml
-      let subject = "Hello World!";
-      Office.context.mailbox.item.subject.setAsync(subject, (result) => {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Action failed with message ${result.error.message}`);
-          return;
-        }
-        console.log(`Successfully set subject to ${subject}`);
-      });
-      ```
-    name: subject
-    fullName: subject
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'subject: Subject;'
-      return:
-        type:
-          - 'outlook!Office.Subject:interface'
-  - uid: 'outlook!Office.MessageCompose#to:member'
-    summary: |-
-      Fornece acesso aos destinatários na linha **Para** de uma mensagem. O tipo de objeto e nível de acesso dependem do modo do item atual.
-
-      A propriedade `to` retorna um objeto `Recipients` que fornece métodos para obter ou atualizar os destinatários na linha **Para** da mensagem. No entanto, dependendo do cliente/plataforma (ou seja, Windows, Mac, etc.), os limites podem ser aplicados em quantos destinatários você pode obter ou atualizar. Consulte o objeto [Recipients](xref:outlook!Office.Recipients:interface) para obter mais detalhes.
-    remarks: |-
-      **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)** :`ReadItem`
-
-      **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)** : composição de mensagem
-
-      #### <a name="examples"></a>Exemplos
-
-      ```javascript
-      Office.context.mailbox.item.to.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
-      Office.context.mailbox.item.to.addAsync( ['jason@contoso.com'] );
-      Office.context.mailbox.item.to.getAsync(callback);
-
-      function callback(asyncResult) {
-          var arrayOfToRecipients = asyncResult.value;
-      }
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
-      Office.context.mailbox.item.to.getAsync(function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          var msgTo = asyncResult.value;
-          console.log("Message being sent to:");
-          for (var i = 0; i < msgTo.length; i++) {
-            console.log(msgTo[i].displayName + " (" + msgTo[i].emailAddress + ")");
-          }
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-      ```javascript
-      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/30-recipients-and-attendees/get-set-to-message-compose.yaml
-      var email = $("#emailTo")
-        .val()
-        .toString();
-      var emailArray = [email];
-      Office.context.mailbox.item.to.setAsync(emailArray, function(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-          console.log("Succeeded in setting To field.");
-        } else {
-          console.error(asyncResult.error);
-        }
-      });
-      ```
-    name: to
-    fullName: to
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'to: Recipients;'
-      return:
-        type:
-          - 'outlook!Office.Recipients:interface'
-references:
-  - uid: 'outlook!Office.Message:interface'
-    name: Message
-  - uid: 'outlook!Office.ItemCompose:interface'
-    name: ItemCompose
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync~0:complex'
-    name: 'Office.AsyncContextOptions & { isInline: boolean }'
-    fullName: 'Office.AsyncContextOptions & { isInline: boolean }'
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & { isInline: boolean }'
-        fullName: ' & { isInline: boolean }'
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'office!Office.AsyncContextOptions:interface'
-    name: Office.AsyncContextOptions
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.Recipients:interface'
-    name: Recipients
-  - uid: 'outlook!Office.Body:interface'
-    name: Body
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync~0:complex'
-    name: Office.CoercionType | string
-    fullName: Office.CoercionType | string
-    spec.typeScript:
-      - uid: 'office!Office.CoercionType:enum'
-        name: Office.CoercionType
-        fullName: Office.CoercionType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<any>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<any>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <any>) => void
-        fullName: <any>) => void
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync~2:complex'
-    name: Office.CoercionType | string
-    fullName: Office.CoercionType | string
-    spec.typeScript:
-      - uid: 'office!Office.CoercionType:enum'
-        name: Office.CoercionType
-        fullName: Office.CoercionType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.MessageCompose#getSelectedDataAsync~3:complex'
-    name: '(asyncResult: Office.AsyncResult<any>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<any>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <any>) => void
-        fullName: <any>) => void
-  - uid: 'outlook!Office.MessageCompose#itemType~0:complex'
-    name: MailboxEnums.ItemType | string
-    fullName: Office.MailboxEnums.ItemType | string
-    spec.typeScript:
-      - uid: 'outlook!Office.MailboxEnums.ItemType:enum'
-        name: MailboxEnums.ItemType
-        fullName: Office.MailboxEnums.ItemType
-      - name: ' | string'
-        fullName: ' | string'
-  - uid: 'outlook!Office.MessageCompose#loadCustomPropertiesAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<Office.CustomProperties>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <
-        fullName: <
-      - uid: 'outlook!Office.CustomProperties:interface'
-        name: CustomProperties
-        fullName: Office.CustomProperties
-      - name: '>) => void'
-        fullName: '>) => void'
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync~0:complex'
-    name: Office.AsyncContextOptions & CoercionTypeOptions
-    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
-    spec.typeScript:
-      - uid: 'office!Office.AsyncContextOptions:interface'
-        name: Office.AsyncContextOptions
-        fullName: Office.AsyncContextOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'outlook!Office.CoercionTypeOptions:interface'
-        name: CoercionTypeOptions
-        fullName: Office.CoercionTypeOptions
-  - uid: 'outlook!Office.MessageCompose#setSelectedDataAsync~1:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.Subject:interface'
-    name: Subject
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.
+      type: string
+    - id: options
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada. `coercionType`<!-- -->: Se o texto, o estilo atual é aplicado no Outlook na Web e nos clientes da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se HTML e o campo oferecer suporte a HTML (o assunto não), o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado no Outlook em clientes de área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+extends: <xref uid="outlook!Office.Message:interface" />
+metadata:
+  ms.openlocfilehash: aa4091a2e3c90e563af03eb315f5774af81448c9
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49265217"
