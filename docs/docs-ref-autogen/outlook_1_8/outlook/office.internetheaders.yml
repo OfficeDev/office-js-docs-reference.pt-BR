@@ -4,36 +4,36 @@ uid: outlook!Office.InternetHeaders:interface
 package: outlook!
 fullName: Office.InternetHeaders
 summary: >-
-  O `InternetHeaders` objeto representa cabeçalhos de Internet personalizados que são preservados depois que o item de mensagem deixa o Exchange e é convertido em uma mensagem MIME. Esses cabeçalhos são armazenados como cabeçalhos x na mensagem MIME.
+  O objeto representa os headers personalizados da Internet que são preservados depois que o item de mensagem deixa o Exchange e `InternetHeaders` é convertido em uma mensagem MIME. Esses headers são armazenados como x-headers na mensagem MIME.
 
 
-  Cabeçalhos de Internet são armazenados como pares chave/valor por item.
+  Os headers da Internet são armazenados como pares chave/valor por item.
 
 
-  **Observação**: este objeto destina-se a você definir e obter cabeçalhos personalizados em um item de mensagem.
+  **Observação:** este objeto destina-se a você definir e obter seus headers personalizados em um item de mensagem. Para saber mais, confira [Obter e definir os headers da Internet em uma mensagem em um complemento do Outlook](https://docs.microsoft.com/office/dev/add-ins/outlook/internet-headers)<!-- -->.
 
 
-  \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[Conjunto de APIs: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **Práticas recomendadas**
 
 
-  No momento, os cabeçalhos da Internet são um recurso finito da caixa de correio de um usuário. Quando a cota estiver esgotada, você não poderá criar mais cabeçalhos de Internet nessa caixa de correio, o que pode resultar em um comportamento inesperado dos clientes que dependem disso para funcionar.
+  Atualmente, os headers da Internet são um recurso finito na caixa de correio de um usuário. Quando a cota estiver esgotada, você não poderá criar mais nenhum headers de Internet nessa caixa de correio, o que pode resultar em um comportamento inesperado dos clientes que dependem disso para funcionar.
 
 
-  Aplique as seguintes diretrizes ao criar cabeçalhos de Internet no suplemento.
+  Aplique as diretrizes a seguir ao criar os headers da Internet no seu complemento.
 
 
-  - Crie o número mínimo de cabeçalhos necessários.
+  - Crie o número mínimo de headers necessários.
 
 
-  - Cabeçalhos de nome para que você possa reutilizar e atualizar seus valores posteriormente. Como tal, evite nomes de cabeçalhos de forma variável (por exemplo, com base na entrada do usuário, carimbo de data/hora, etc.).
+  - Name headers so that you can reuse and update their values later. Dessa forma, evite nomear os headers de maneira variável (por exemplo, com base na entrada do usuário, no timestamp etc.).
 
 
-  **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+  **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-  **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+  **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação
 isPreview: false
 isDeprecated: false
 type: interface
@@ -43,18 +43,18 @@ methods:
   package: outlook!
   fullName: getAsync(names, options, callback)
   summary: >-
-    Dada uma matriz de nomes de cabeçalho da Internet, este método retorna um dicionário contendo esses cabeçalhos de Internet e seus valores. Se o suplemento solicitar um cabeçalho x que não esteja disponível, o cabeçalho x não será retornado nos resultados.
+    Dado uma matriz de nomes de header da Internet, esse método retorna um dicionário que contém esses headers da Internet e seus valores. Se o complemento solicitar um header x que não está disponível, esse x-header não será retornado nos resultados.
 
 
-    **Observação**: esse método destina-se a retornar os valores dos cabeçalhos personalizados que você definiu usando o `setAsync` método.
+    **Observação:** esse método destina-se a retornar os valores dos headers personalizados definidos usando o `setAsync` método.
 
 
-    \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadItem`
+    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação
 
 
     #### <a name="examples"></a>Exemplos
@@ -62,13 +62,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
 
-
-    function callback(asyncResult) {
-        var dictionary = asyncResult.value;
-        var header1_value = dictionary["header1"];
-    }
+    Office.context.mailbox.item.internetHeaders.getAsync(
+      ["x-preferred-fruit", "x-preferred-vegetable", "x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected headers: " + JSON.stringify(asyncResult.value));
+        } else {
+          console.log("Error getting selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -77,13 +82,13 @@ methods:
     content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: Os nomes dos cabeçalhos da Internet a serem retornados.
+      description: Os nomes dos headers da Internet a serem retornados.
       type: string[]
     - id: options
-      description: 'Opcional. Um literal de objeto que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -93,18 +98,18 @@ methods:
   package: outlook!
   fullName: removeAsync(names, options, callback)
   summary: >-
-    Dada uma matriz de nomes de cabeçalho da Internet, este método remove os cabeçalhos especificados da coleção de cabeçalhos de Internet.
+    Dado uma matriz de nomes de header da Internet, esse método remove os headers especificados da coleção de headers da Internet.
 
 
-    **Observação**: esse método destina-se a remover os cabeçalhos personalizados que você definiu usando o `setAsync` método.
+    **Observação:** esse método destina-se a remover os headers personalizados definidos usando o `setAsync` método.
 
 
-    \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
 
 
-    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação
 
 
     #### <a name="examples"></a>Exemplos
@@ -112,7 +117,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.removeAsync(["header1", "header2"]);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.removeAsync(
+      ["x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully removed selected headers");
+        } else {
+          console.log("Error removing selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -121,13 +137,13 @@ methods:
     content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: Os nomes dos cabeçalhos da Internet a serem removidos.
+      description: Os nomes dos headers da Internet a serem removidos.
       type: string[]
     - id: options
-      description: 'Opcional. Um literal de objeto que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -137,21 +153,21 @@ methods:
   package: outlook!
   fullName: setAsync(headers, options, callback)
   summary: >-
-    Define os cabeçalhos da Internet especificados para os valores especificados.
+    Define os headers de Internet especificados para os valores especificados.
 
 
-    O `setAsync` método cria um novo cabeçalho se o cabeçalho especificado ainda não existir; caso contrário, o valor existente será substituído pelo novo valor.
+    O método cria um novo header se o header especificado ainda não existir; caso contrário, o valor existente será substituído `setAsync` pelo novo valor.
 
 
-    **Observação**: esse método é destinado a definir os valores de seus cabeçalhos personalizados.
+    **Observação:** esse método destina-se a definir os valores dos seus headers personalizados.
 
 
-    \[[Conjunto de APIs: caixa de correio 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de APIs: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **<!-- --> [Nível de permissão mínimo](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)**:`ReadWriteItem`
+    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
 
 
-    **<!-- --> [Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)**: redigir
+    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação
 
 
     #### <a name="examples"></a>Exemplos
@@ -159,7 +175,19 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.setAsync({"header1": "value1", "header2": "value2"});
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.setAsync(
+      { "x-preferred-fruit": "orange", "x-preferred-vegetable": "broccoli", "x-best-vegetable": "spinach" },
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully set headers");
+        } else {
+          console.log("Error setting headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+
+    );
 
     ```
   isPreview: false
@@ -168,21 +196,21 @@ methods:
     content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: headers
-      description: Os nomes e os valores correspondentes dos cabeçalhos a serem definidos. Deve ser um objeto Dictionary com chaves que são os nomes dos cabeçalhos da Internet e os valores que são os valores dos cabeçalhos de Internet.
+      description: Os nomes e valores correspondentes dos headers a serem definidos. Deve ser um objeto de dicionário com chaves sendo os nomes dos headers da Internet e os valores sendo os valores dos headers da Internet.
       type: Object
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejarem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método for concluído, a função passada ao `callback` parâmetro será chamada com um único parâmetro do tipo Office. AsyncResult. Quaisquer erros encontrados serão fornecidos na propriedade `asyncResult.error`.
+      description: Opcional. Quando o método é concluído, a função passada no parâmetro é chamada com um único parâmetro do tipo `callback` Office.AsyncResult. Quaisquer erros encontrados serão fornecidos na propriedade `asyncResult.error`.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c26c15caa645c162148936a6906c64a22903a0b7
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: e666b64587a4509d9d2d850231902c4d8b9ebca4
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49328771"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857315"
