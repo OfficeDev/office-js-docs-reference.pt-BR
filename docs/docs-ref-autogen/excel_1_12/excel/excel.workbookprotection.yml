@@ -4,10 +4,10 @@ uid: excel!Excel.WorkbookProtection:class
 package: excel!
 fullName: Excel.WorkbookProtection
 summary: >-
-  Representa a proteção de um objeto Workbook.
+  Representa a proteção de um objeto workbook.
 
 
-  \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.WorkbookProtection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -30,10 +30,10 @@ properties:
   package: excel!
   fullName: protected
   summary: >-
-    Especifica se a pasta de trabalho está protegida.
+    Especifica se a área de trabalho está protegida.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -54,7 +54,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.WorkbookProtectionLoadOptions): Excel.WorkbookProtection;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="excel!Excel.Interfaces.WorkbookProtectionLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.WorkbookProtection:class" />
@@ -71,7 +71,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.WorkbookProtection;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.WorkbookProtection:class" />
@@ -92,7 +92,7 @@ methods:
               }): Excel.WorkbookProtection;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: >-
         {
                     select?: string;
@@ -109,7 +109,7 @@ methods:
     Protege uma pasta de trabalho. Falhará se a pasta de trabalho estiver protegida.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -117,16 +117,16 @@ methods:
     content: 'protect(password?: string): void;'
     parameters:
     - id: password
-      description: senha de proteção da pasta de trabalho.
+      description: senha de proteção da área de trabalho.
       type: string
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect();\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect(password);\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect();\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!workbook.protection.protected) {\n        workbook.protection.protect(password);\n    }\n});\n```"
 - name: toJSON()
   uid: excel!Excel.WorkbookProtection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Excel. WorkbookProtection original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.WorkbookProtectionData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel.WorkbookProtection original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `Excel.Interfaces.WorkbookProtectionData`<!-- -->) que contém cópias rasas de qualquer propriedade filho carregada do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -143,7 +143,7 @@ methods:
     Desprotege uma pasta de trabalho.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -151,16 +151,16 @@ methods:
     content: 'unprotect(password?: string): void;'
     parameters:
     - id: password
-      description: senha de proteção da pasta de trabalho.
+      description: senha de proteção da área de trabalho.
       type: string
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect(password);\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let workbook = context.workbook;\n    workbook.protection.unprotect(password);\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 75ac0d9a76db9ee7b0a67dbbbca83a15085fb380
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 8dc212ee6b6942eb956dd473977909457bf12cce
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49190192"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857141"
