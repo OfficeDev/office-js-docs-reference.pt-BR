@@ -7,7 +7,7 @@ summary: >-
   Representa o corpo de um documento ou de uma seção.
 
 
-  \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -18,10 +18,10 @@ properties:
   package: word!
   fullName: contentControls
   summary: >-
-    Obtém a coleção de objetos de controle de conteúdo de Rich Text no corpo. Somente leitura.
+    Obtém a coleção de objetos de controle de conteúdo de rich text no corpo. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
   uid: word!Word.Body#context:member
   package: word!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -46,10 +46,10 @@ properties:
   package: word!
   fullName: font
   summary: >-
-    Obtém o formato de texto do corpo. Use isso para obter e definir o nome, tamanho, cor e outras propriedades da fonte. Somente leitura.
+    Obtém o formato de texto do corpo. Use isso para obter e definir o nome, o tamanho, a cor e outras propriedades da fonte. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -66,7 +66,7 @@ properties:
     Obtém a coleção de objetos InlinePicture no corpo. A coleção não inclui imagens flutuantes. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -82,7 +82,7 @@ properties:
     Obtém a coleção de objetos Paragraph no corpo. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -90,16 +90,16 @@ properties:
     content: 'readonly paragraphs: Word.ParagraphCollection;'
     return:
       type: <xref uid="word!Word.ParagraphCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
 - name: parentContentControl
   uid: word!Word.Body#parentContentControl:member
   package: word!
   fullName: parentContentControl
   summary: >-
-    Obtém o controle de conteúdo que inclui o corpo. Gera um erro se não houver um controle de conteúdo pai. Somente leitura.
+    Obtém o controle de conteúdo que inclui o corpo. Lançará um erro se não houver um controle de conteúdo pai. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -115,7 +115,7 @@ properties:
     Obtém ou define o nome do estilo usado para o corpo. Use esta propriedade de estilos personalizados e nomes de estilo localizados. Para usar os estilos internos que são portáteis entre localidades, confira a propriedade "styleBuiltIn".
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -131,7 +131,7 @@ properties:
     Obtém o texto do corpo. Usa o método insertText para inserir texto. Somente leitura.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -149,7 +149,7 @@ methods:
     Limpa o conteúdo do objeto Body. O usuário pode executar a operação de desfazer no conteúdo limpo.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -163,10 +163,10 @@ methods:
   package: word!
   fullName: getHtml()
   summary: >-
-    Obtém uma representação HTML do objeto Body. Quando renderizado em uma página da Web ou em um visualizador de HTML, a formatação será uma correspondência próxima, mas não exata, da formatação do documento. Este método não retorna o mesmo HTML para o mesmo documento em diferentes plataformas (Windows, Mac, Word na Web, etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use `Body.getOoxml()` e converta o XML retornado em HTML.
+    Obtém uma representação HTML do objeto body. Quando renderizada em uma página da Web ou em um visualizador HTML, a formatação será uma combinação próxima, mas não exata, da formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web, etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use e converta o `Body.getOoxml()` XML retornado em HTML.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -183,7 +183,7 @@ methods:
     Obtém a representação OOXML (Office Open XML) do objeto Body.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -200,7 +200,7 @@ methods:
     Insere uma quebra no local especificado no documento principal.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -224,7 +224,7 @@ methods:
     Insere uma quebra no local especificado no documento principal.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -248,7 +248,7 @@ methods:
     Quebra o objeto Body com um controle de conteúdo de rich text.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -265,7 +265,7 @@ methods:
     Insere um documento no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -273,7 +273,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocation: Word.InsertLocation): Word.Range;'
     parameters:
     - id: base64File
-      description: Obrigatório. O conteúdo codificado em Base64 de um arquivo. docx.
+      description: Obrigatório. O conteúdo codificado em base64 de um arquivo .docx.
       type: string
     - id: insertLocation
       description: Obrigatório. O valor pode ser 'Replace', 'Start' ou 'End'.
@@ -289,7 +289,7 @@ methods:
     Insere um documento no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -297,7 +297,7 @@ methods:
     content: 'insertFileFromBase64(base64File: string, insertLocationString: "Before" | "After" | "Start" | "End" | "Replace"): Word.Range;'
     parameters:
     - id: base64File
-      description: Obrigatório. O conteúdo codificado em Base64 de um arquivo. docx.
+      description: Obrigatório. O conteúdo codificado em base64 de um arquivo .docx.
       type: string
     - id: insertLocationString
       description: Obrigatório. O valor pode ser 'Replace', 'Start' ou 'End'.
@@ -313,7 +313,7 @@ methods:
     Insere HTML no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -337,7 +337,7 @@ methods:
     Insere HTML no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -361,7 +361,7 @@ methods:
     Insere uma imagem no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -385,7 +385,7 @@ methods:
     Insere uma imagem no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.2](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -409,7 +409,7 @@ methods:
     Insere um formato OOXML no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -433,7 +433,7 @@ methods:
     Insere um formato OOXML no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -457,7 +457,7 @@ methods:
     Insere um parágrafo no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -481,7 +481,7 @@ methods:
     Insere um parágrafo no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -505,7 +505,7 @@ methods:
     Insere texto no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -529,7 +529,7 @@ methods:
     Insere texto no corpo, no local especificado.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -557,7 +557,7 @@ methods:
     content: 'load(options?: Word.Interfaces.BodyLoadOptions): Word.Body;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="word!Word.Interfaces.BodyLoadOptions:interface" />
     return:
       type: <xref uid="word!Word.Body:class" />
@@ -574,7 +574,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Word.Body;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="word!Word.Body:class" />
@@ -595,7 +595,7 @@ methods:
               }): Word.Body;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: >-
         {
                     select?: string;
@@ -609,10 +609,10 @@ methods:
   package: word!
   fullName: search(searchText, searchOptions)
   summary: >-
-    Realiza uma pesquisa com o Searchoptions especificado no escopo do objeto Body. Os resultados da pesquisa são uma coleção de objetos Range.
+    Executa uma pesquisa com os SearchOptions especificados no escopo do objeto body. Os resultados da pesquisa são uma coleção de objetos Range.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -645,7 +645,7 @@ methods:
                 }
     return:
       type: <xref uid="word!Word.RangeCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  let results = context.document.body.search(\"Online\");\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"yellow\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes\n  // (i.e. use wildcards).\n  let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"red\";\n    results.items[i].font.color = \"white\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  let results = context.document.body.search(\"Online\");\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"yellow\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/search.yaml\nawait Word.run(async (context) => {\n  // Check out how wildcard expression are built, also use the second parameter of the search method to include search modes\n  // (i.e. use wildcards).\n  let results = context.document.body.search(\"$*.[0-9][0-9]\", { matchWildcards: true });\n  results.load(\"length\");\n\n  await context.sync();\n\n  // Let's traverse the search results... and highlight...\n  for (let i = 0; i < results.items.length; i++) {\n    results.items[i].font.highlightColor = \"red\";\n    results.items[i].font.color = \"white\";\n  }\n\n  await context.sync();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/get-word-count.yaml\nawait Word.run(async (context) => {\n  let paragraphs = context.document.body.paragraphs;\n  paragraphs.load(\"text\");\n  await context.sync();\n\n  let text = [];\n  paragraphs.items.forEach((item) => {\n    let paragraph = item.text.trim();\n    if (paragraph) {\n      paragraph.split(\" \").forEach((term) => {\n        let currentTerm = term.trim();\n        if (currentTerm) {\n          text.push(currentTerm);\n        }\n      });\n    }\n  });\n\n  let makeTextDistinct = new Set(text);\n  let distinctText = Array.from(makeTextDistinct);\n  let allSearchResults = [];\n\n  for (let i = 0; i < distinctText.length; i++) {\n    let results = context.document.body.search(distinctText[i], { matchCase: true, matchWholeWord: true });\n    results.load(\"text\");\n\n    // Map search term with its results.\n    let correlatedResults = {\n      searchTerm: distinctText[i],\n      hits: results\n    };\n\n    allSearchResults.push(correlatedResults);\n  }\n\n  await context.sync();\n\n  // Display counts.\n  allSearchResults.forEach((result) => {\n    let length = result.hits.items.length;\n\n    console.log(\"Search term: \" + result.searchTerm + \" => Count: \" + length);\n  });\n});\n```"
 - name: select(selectionMode)
   uid: word!Word.Body#select:member(1)
   package: word!
@@ -654,7 +654,7 @@ methods:
     Seleciona o corpo e navega na interface do usuário do Word até ele.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -675,7 +675,7 @@ methods:
     Seleciona o corpo e navega na interface do usuário do Word até ele.
 
 
-    \[[Conjunto de APIs: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -692,9 +692,9 @@ methods:
   uid: word!Word.Body#set:member(1)
   package: word!
   fullName: set(properties, options)
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto de API do mesmo tipo.
   remarks: >-
-    Este método tem a seguinte assinatura adicional:
+    Esse método tem a seguinte assinatura adicional:
 
 
     `set(properties: Word.Body): void`
@@ -704,10 +704,10 @@ methods:
     content: 'set(properties: Interfaces.BodyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: Um objeto JavaScript com propriedades que são estruturadas isomorphically para as propriedades do objeto no qual o método é chamado.
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
       type: <xref uid="word!Word.Interfaces.BodyUpdateData:interface" />
     - id: options
-      description: Fornece uma opção para suprimir erros se o objeto Properties tentar definir qualquer propriedade somente leitura.
+      description: Fornece uma opção para suprimir erros se o objeto de propriedades tentar definir qualquer propriedade somente leitura.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -733,7 +733,7 @@ methods:
   uid: word!Word.Body#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Word. Body original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word.Body original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias rasas de qualquer propriedade filho carregada do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -746,7 +746,7 @@ methods:
   uid: word!Word.Body#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma curta de `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -759,7 +759,7 @@ methods:
   uid: word!Word.Body#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é abreviada para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar `context.sync()` antes que o lançamento da memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é a forma curta para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -770,9 +770,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e62eca917be3824d185121816d5344450ce3bbc7
-  ms.sourcegitcommit: 551d760f6b9e7ff22afdaf6ce8e0b2863946596d
+  ms.openlocfilehash: bd5022e1c2e607d5ab5a066a5258dbce06e06212
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/04/2020
-  ms.locfileid: "49570575"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49855530"
