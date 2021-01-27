@@ -7,9 +7,9 @@ summary: >-
   Representa um único slide de uma apresentação.
 
 
-  \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
 remarks: ''
-isPreview: true
+isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -17,9 +17,9 @@ properties:
   uid: powerpoint!PowerPoint.Slide#context:member
   package: powerpoint!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'context: RequestContext;'
@@ -33,26 +33,74 @@ properties:
     Obtém a ID exclusiva do slide.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly id: string;'
     return:
       type: string
+- name: layout
+  uid: powerpoint!PowerPoint.Slide#layout:member
+  package: powerpoint!
+  fullName: layout
+  summary: >-
+    Obtém o layout do slide.
+
+
+    \[[Conjunto de APIs: PowerPointApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly layout: PowerPoint.SlideLayout;'
+    return:
+      type: <xref uid="powerpoint!PowerPoint.SlideLayout:class" />
+- name: shapes
+  uid: powerpoint!PowerPoint.Slide#shapes:member
+  package: powerpoint!
+  fullName: shapes
+  summary: >-
+    Retorna uma coleção de formas no slide.
+
+
+    \[[Conjunto de APIs: PowerPointApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly shapes: PowerPoint.ShapeCollection;'
+    return:
+      type: <xref uid="powerpoint!PowerPoint.ShapeCollection:class" />
+- name: slideMaster
+  uid: powerpoint!PowerPoint.Slide#slideMaster:member
+  package: powerpoint!
+  fullName: slideMaster
+  summary: >-
+    Obtém `SlideMaster` o objeto que representa o conteúdo padrão do slide.
+
+
+    \[[Conjunto de APIs: PowerPointApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly slideMaster: PowerPoint.SlideMaster;'
+    return:
+      type: <xref uid="powerpoint!PowerPoint.SlideMaster:class" />
 methods:
 - name: delete()
   uid: powerpoint!PowerPoint.Slide#delete:member(1)
   package: powerpoint!
   fullName: delete()
   summary: >-
-    Exclui o slide da apresentação. Não fará nada se o slide não existir.
+    Exclui o slide da apresentação. Não faz nada se o slide não existir.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'delete(): void;'
@@ -65,13 +113,13 @@ methods:
   fullName: load(options)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'load(options?: PowerPoint.Interfaces.SlideLoadOptions): PowerPoint.Slide;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="powerpoint!PowerPoint.Interfaces.SlideLoadOptions:interface" />
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
@@ -82,13 +130,13 @@ methods:
   fullName: load(propertyNames)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'load(propertyNames?: string | string[]): PowerPoint.Slide;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
@@ -99,7 +147,7 @@ methods:
   fullName: load(propertyNamesAndPaths)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: >-
@@ -109,7 +157,7 @@ methods:
               }): PowerPoint.Slide;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: >-
         {
                     select?: string;
@@ -122,9 +170,9 @@ methods:
   uid: powerpoint!PowerPoint.Slide#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto PowerPoint. slide original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `PowerPoint.Interfaces.SlideData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto PowerPoint.Slide original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `PowerPoint.Interfaces.SlideData`<!-- -->) que contém cópias rasas de qualquer propriedade filho carregada do objeto original.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'toJSON(): PowerPoint.Interfaces.SlideData;'
@@ -133,9 +181,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: b2ccd6398353f67a48ee5a27341d7138b32865c1
-  ms.sourcegitcommit: 1f0f9464639feee4f4751fda7c2a14aa0d2f8967
+  ms.openlocfilehash: 81c6345b0f3ba58f16c1bfc7cbf33887584083af
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/12/2020
-  ms.locfileid: "49663781"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49992405"

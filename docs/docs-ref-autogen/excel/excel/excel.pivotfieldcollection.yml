@@ -4,10 +4,10 @@ uid: excel!Excel.PivotFieldCollection:class
 package: excel!
 fullName: Excel.PivotFieldCollection
 summary: >-
-  Representa uma coleção de todos os campos PivotFields que fazem parte de uma hierarquia de tabela dinâmica.
+  Representa uma coleção de todos os PivotFields que fazem parte da hierarquia de uma tabela dinâmica.
 
 
-  \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[Conjunto de APIs: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.PivotFieldCollection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -43,10 +43,10 @@ methods:
   package: excel!
   fullName: getCount()
   summary: >-
-    Obtém o número de campos de tabela dinâmica na coleção.
+    Obtém o número de campos de pivô na coleção.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -60,10 +60,10 @@ methods:
   package: excel!
   fullName: getItem(name)
   summary: >-
-    Obtém um PivotField por nome ou ID.
+    Obtém um PivotField pelo nome ou id.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -81,10 +81,10 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(name)
   summary: >-
-    Obtém um PivotField pelo nome. Se PivotField não existir, retornará um objeto NULL.
+    Obtém um PivotField por nome. Se PivotField não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
-    \[[Conjunto de APIs: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de APIs: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -109,7 +109,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.PivotFieldCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.PivotFieldCollection;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="excel!Excel.Interfaces.PivotFieldCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.PivotFieldCollection:class" />
@@ -126,7 +126,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.PivotFieldCollection;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.PivotFieldCollection:class" />
@@ -143,7 +143,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.PivotFieldCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.PivotFieldCollection:class" />
@@ -152,7 +152,7 @@ methods:
   uid: excel!Excel.PivotFieldCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o `Excel.PivotFieldCollection` objeto original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.PivotFieldCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto original é um objeto API, o método retorna um objeto `Excel.PivotFieldCollection` `toJSON` JavaScript simples (digitado como `Excel.Interfaces.PivotFieldCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -163,9 +163,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: fad7343aa6485db34da8c027e48d27958ad2c357
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 9a97d8070ebaa926e23544bf7bb73be5898808f8
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49294953"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991426"

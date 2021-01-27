@@ -320,6 +320,22 @@ properties:
     content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormatChangedEventArgs:interface" />&gt;
+- name: onFormulaChanged
+  uid: excel!Excel.Worksheet#onFormulaChanged:member
+  package: excel!
+  fullName: onFormulaChanged
+  summary: >-
+    Ocorre quando uma ou mais fórmulas são alteradas nesta planilha. Esse evento é para quando a própria fórmula é muda, não o valor dos dados resultante do cálculo da fórmula.
+
+
+    \[[Conjunto de APIs: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onFormulaChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormulaChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormulaChangedEventArgs:interface" />&gt;
 - name: onRowHiddenChanged
   uid: excel!Excel.Worksheet#onRowHiddenChanged:member
   package: excel!
@@ -597,7 +613,7 @@ properties:
   package: excel!
   fullName: tasks
   summary: >-
-    Retorna uma coleção de tarefas presentes na planilha.
+    Retorna uma coleção de tarefas que estão presentes na planilha.
 
 
     \[[Conjunto de APIs: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -817,7 +833,7 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        Um objeto RangeArea, compreendendo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se não houver nenhuma coincideção, essa função retornará um objeto null.
+        Um objeto RangeArea, compreendendo um ou mais intervalos retangulares, que corresponde aos critérios de pesquisa. Se não houver nenhuma corresponde, esta função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte métodos e propriedades [ \* de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
         #### <a name="examples"></a>Exemplos
@@ -894,7 +910,7 @@ methods:
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    Obtém a planilha que segue esta. Se não houver planilhas após esta, esse método retornará um objeto null.
+    Obtém a planilha que segue esta. Se não houver planilhas após esta, esse método retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -905,7 +921,7 @@ methods:
     content: 'getNextOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer ocultas.
+      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer planilhas ocultas.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -1050,7 +1066,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas. Se a planilha inteira estiver em branco, esta função retornará um objeto null.
+    O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas. Se a planilha inteira estiver em branco, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1232,9 +1248,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a97fdcf6e4247d09689f105aec02889963a125f9
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: b7f3b4e06e50b3a7d27b2010a07cc6b888de7506
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852205"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991671"

@@ -7,9 +7,9 @@ summary: >-
   Representa a coleção de slides da apresentação.
 
 
-  \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
 remarks: ''
-isPreview: true
+isPreview: false
 isDeprecated: false
 type: class
 properties:
@@ -17,9 +17,9 @@ properties:
   uid: powerpoint!PowerPoint.SlideCollection#context:member
   package: powerpoint!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'context: RequestContext;'
@@ -31,13 +31,34 @@ properties:
   fullName: items
   summary: Obtém os itens filhos carregados nesta coleção.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly items: PowerPoint.Slide[];'
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />[]
 methods:
+- name: add(options)
+  uid: powerpoint!PowerPoint.SlideCollection#add:member(1)
+  package: powerpoint!
+  fullName: add(options)
+  summary: >-
+    Adiciona um novo slide no final da coleção.
+
+
+    \[[Conjunto de APIs: PowerPointApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'add(options?: PowerPoint.AddSlideOptions): void;'
+    parameters:
+    - id: options
+      description: As opções que definem o tema do novo slide.
+      type: <xref uid="powerpoint!PowerPoint.AddSlideOptions:interface" />
+    return:
+      type: void
+      description: ''
 - name: getCount()
   uid: powerpoint!PowerPoint.SlideCollection#getCount:member(1)
   package: powerpoint!
@@ -46,9 +67,9 @@ methods:
     Obtém o número de slides na coleção.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'getCount(): OfficeExtension.ClientResult<number>;'
@@ -60,12 +81,12 @@ methods:
   package: powerpoint!
   fullName: getItem(key)
   summary: >-
-    Obtém um slide usando sua ID exclusiva. Uma exceção é lançada se o slide não existir.
+    Obtém um slide usando sua ID exclusiva.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'getItem(key: string): PowerPoint.Slide;'
@@ -75,18 +96,18 @@ methods:
       type: string
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
-      description: O slide com a ID exclusiva. Se esse slide não existir, uma exceção será lançada.
+      description: O slide com a ID exclusiva. Se esse slide não existir, será lançado um erro.
 - name: getItemAt(index)
   uid: powerpoint!PowerPoint.SlideCollection#getItemAt:member(1)
   package: powerpoint!
   fullName: getItemAt(index)
   summary: >-
-    Obtém um slide usando seu índice baseado em zero na coleção. Os slides são armazenados na mesma ordem em que são mostrados na apresentação. Uma exceção é lançada se index estiver fora do intervalo.
+    Obtém um slide usando seu índice baseado em zero na coleção. Os slides são armazenados na mesma ordem em que são mostrados na apresentação.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'getItemAt(index: number): PowerPoint.Slide;'
@@ -96,18 +117,18 @@ methods:
       type: number
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
-      description: O slide no índice fornecido. Uma exceção é lançada se index estiver fora do intervalo.
+      description: O slide no índice determinado. Um erro será lançado se o índice estiver fora do intervalo.
 - name: getItemOrNullObject(id)
   uid: powerpoint!PowerPoint.SlideCollection#getItemOrNullObject:member(1)
   package: powerpoint!
   fullName: getItemOrNullObject(id)
   summary: >-
-    Obtém um slide usando sua ID exclusiva. Retorna um objeto cuja `isNullObject` propriedade é definida como `true` se o slide não existir.
+    Obtém um slide usando sua ID exclusiva. Se tal slide não existir, um objeto com uma `isNullObject` propriedade definida como true será retornado. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
-    \[[Conjunto de APIs: POWERPOINTAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'getItemOrNullObject(id: string): PowerPoint.Slide;'
@@ -117,20 +138,20 @@ methods:
       type: string
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
-      description: O slide com a ID exclusiva. Se esse slide não existir, um objeto cuja `isNullObject` propriedade é definida como `true` será retornado.
+      description: O slide com a ID exclusiva.
 - name: load(options)
   uid: powerpoint!PowerPoint.SlideCollection#load:member(1)
   package: powerpoint!
   fullName: load(options)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'load(options?: PowerPoint.Interfaces.SlideCollectionLoadOptions & PowerPoint.Interfaces.CollectionLoadOptions): PowerPoint.SlideCollection;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="powerpoint!PowerPoint.Interfaces.SlideCollectionLoadOptions:interface" /> & <xref uid="powerpoint!PowerPoint.Interfaces.CollectionLoadOptions:interface" />
     return:
       type: <xref uid="powerpoint!PowerPoint.SlideCollection:class" />
@@ -141,13 +162,13 @@ methods:
   fullName: load(propertyNames)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'load(propertyNames?: string | string[]): PowerPoint.SlideCollection;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="powerpoint!PowerPoint.SlideCollection:class" />
@@ -158,13 +179,13 @@ methods:
   fullName: load(propertyNamesAndPaths)
   summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): PowerPoint.SlideCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="powerpoint!PowerPoint.SlideCollection:class" />
@@ -173,9 +194,9 @@ methods:
   uid: powerpoint!PowerPoint.SlideCollection#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o `PowerPoint.SlideCollection` objeto original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `PowerPoint.Interfaces.SlideCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias superficiais de qualquer propriedade carregada dos itens da coleção.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto original é um objeto API, o método retorna um objeto `PowerPoint.SlideCollection` `toJSON` JavaScript simples (digitado como `PowerPoint.Interfaces.SlideCollectionData`<!-- -->) que contém uma matriz de "itens" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
   remarks: ''
-  isPreview: true
+  isPreview: false
   isDeprecated: false
   syntax:
     content: 'toJSON(): PowerPoint.Interfaces.SlideCollectionData;'
@@ -184,9 +205,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 3ab70c6d3c345eb9f286dfbdac15c47cd1f1a3bb
-  ms.sourcegitcommit: 1f0f9464639feee4f4751fda7c2a14aa0d2f8967
+  ms.openlocfilehash: 6ffa34673d190204091c6128f8b8cfd40ea6fdd1
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/12/2020
-  ms.locfileid: "49663732"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49992301"
