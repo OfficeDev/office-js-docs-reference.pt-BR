@@ -3,34 +3,56 @@ uid: powerpoint!
 name: powerpoint
 type: package
 summary: ''
-classes:
-- powerpoint!PowerPoint.Application:class
-- powerpoint!PowerPoint.Presentation:class
-- powerpoint!PowerPoint.RequestContext:class
-- powerpoint!PowerPoint.Slide:class
-- powerpoint!PowerPoint.SlideCollection:class
-enums:
-- powerpoint!PowerPoint.ErrorCodes:enum
-- powerpoint!PowerPoint.InsertSlideFormatting:enum
 interfaces:
+- powerpoint!PowerPoint.AddSlideOptions:interface
 - powerpoint!PowerPoint.InsertSlideOptions:interface
 - powerpoint!PowerPoint.Interfaces.CollectionLoadOptions:interface
 - powerpoint!PowerPoint.Interfaces.PresentationData:interface
 - powerpoint!PowerPoint.Interfaces.PresentationLoadOptions:interface
+- powerpoint!PowerPoint.Interfaces.ShapeCollectionData:interface
+- powerpoint!PowerPoint.Interfaces.ShapeCollectionLoadOptions:interface
+- powerpoint!PowerPoint.Interfaces.ShapeCollectionUpdateData:interface
+- powerpoint!PowerPoint.Interfaces.ShapeData:interface
+- powerpoint!PowerPoint.Interfaces.ShapeLoadOptions:interface
 - powerpoint!PowerPoint.Interfaces.SlideCollectionData:interface
 - powerpoint!PowerPoint.Interfaces.SlideCollectionLoadOptions:interface
 - powerpoint!PowerPoint.Interfaces.SlideCollectionUpdateData:interface
 - powerpoint!PowerPoint.Interfaces.SlideData:interface
+- powerpoint!PowerPoint.Interfaces.SlideLayoutCollectionData:interface
+- powerpoint!PowerPoint.Interfaces.SlideLayoutCollectionLoadOptions:interface
+- powerpoint!PowerPoint.Interfaces.SlideLayoutCollectionUpdateData:interface
+- powerpoint!PowerPoint.Interfaces.SlideLayoutData:interface
+- powerpoint!PowerPoint.Interfaces.SlideLayoutLoadOptions:interface
 - powerpoint!PowerPoint.Interfaces.SlideLoadOptions:interface
+- powerpoint!PowerPoint.Interfaces.SlideMasterCollectionData:interface
+- powerpoint!PowerPoint.Interfaces.SlideMasterCollectionLoadOptions:interface
+- powerpoint!PowerPoint.Interfaces.SlideMasterCollectionUpdateData:interface
+- powerpoint!PowerPoint.Interfaces.SlideMasterData:interface
+- powerpoint!PowerPoint.Interfaces.SlideMasterLoadOptions:interface
+classes:
+- powerpoint!PowerPoint.Application:class
+- powerpoint!PowerPoint.Presentation:class
+- powerpoint!PowerPoint.RequestContext:class
+- powerpoint!PowerPoint.Shape:class
+- powerpoint!PowerPoint.ShapeCollection:class
+- powerpoint!PowerPoint.Slide:class
+- powerpoint!PowerPoint.SlideCollection:class
+- powerpoint!PowerPoint.SlideLayout:class
+- powerpoint!PowerPoint.SlideLayoutCollection:class
+- powerpoint!PowerPoint.SlideMaster:class
+- powerpoint!PowerPoint.SlideMasterCollection:class
+enums:
+- powerpoint!PowerPoint.ErrorCodes:enum
+- powerpoint!PowerPoint.InsertSlideFormatting:enum
 functions:
 - name: PowerPoint.createPresentation(base64File)
   uid: powerpoint!PowerPoint.createPresentation:function(1)
   package: powerpoint!
   summary: >-
-    Cria e abre uma nova apresentação. Opcionalmente, a apresentação pode ser preenchida previamente com um arquivo. pptx codificado em base64.
+    Cria e abre uma nova apresentação. Opcionalmente, a apresentação pode ser preenchida previamente com um arquivo .pptx codificado em base64.
 
 
-    \[[Conjunto de APIs: PowerPointApi 1,1](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
+    \[[Conjunto de APIs: PowerPointApi 1.1](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -38,7 +60,7 @@ functions:
     content: 'export function createPresentation(base64File?: string): Promise<void>;'
     parameters:
     - id: base64File
-      description: Opcional. O arquivo. pptx codificado em base64. O valor padrão é nulo.
+      description: Opcional. O arquivo .pptx codificado em base64. O valor padrão é nulo.
       type: string
     return:
       type: Promise&lt;void&gt;
@@ -46,7 +68,7 @@ functions:
 - name: PowerPoint.run(batch)
   uid: powerpoint!PowerPoint.run:function(1)
   package: powerpoint!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando um novo RequestContext. Quando a promessa é resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando um novo RequestContext. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -54,7 +76,7 @@ functions:
     content: 'export function run<T>(batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo PowerPoint. Como o suplemento do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro de contexto facilita as solicitações para o aplicativo PowerPoint. Como o complemento do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint por meio do complemento.
       type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
       type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
@@ -62,7 +84,7 @@ functions:
 - name: PowerPoint.run(object, batch)
   uid: powerpoint!PowerPoint.run:function(2)
   package: powerpoint!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando RequestContext de um objeto API criado anteriormente. Quando a promessa é resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando o RequestContext de um objeto de API criado anteriormente. Quando a promessa é resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -70,10 +92,10 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: object
-      description: Um objeto API criado anteriormente. O lote usará o mesmo RequestContext que o objeto Passed-in, o que significa que qualquer alteração aplicada ao objeto será selecionada por "context. Sync ()".
+      description: Um objeto de API criado anteriormente. O lote usará o mesmo RequestContext que o objeto passado, o que significa que todas as alterações aplicadas ao objeto serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo PowerPoint. Como o suplemento do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro de contexto facilita as solicitações para o aplicativo PowerPoint. Como o complemento do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint por meio do complemento.
       type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
       type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
@@ -81,7 +103,7 @@ functions:
 - name: PowerPoint.run(objects, batch)
   uid: powerpoint!PowerPoint.run:function(3)
   package: powerpoint!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando RequestContext de objetos API criados anteriormente.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do PowerPoint, usando o RequestContext de objetos de API criados anteriormente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -89,18 +111,18 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: PowerPoint.RequestContext) => OfficeExtension.IPromise<T>): OfficeExtension.IPromise<T>;'
     parameters:
     - id: objects
-      description: Uma matriz de objetos API criados anteriormente. A matriz será validada para garantir que todos os objetos compartilhem o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que qualquer alteração aplicada a esses objetos será selecionada por "context. Sync ()".
+      description: Uma matriz de objetos de API criados anteriormente. A matriz será validada para garantir que todos os objetos compartilhem o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que todas as alterações aplicadas a esses objetos serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo PowerPoint. Como o suplemento do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro de contexto facilita as solicitações para o aplicativo PowerPoint. Como o aplicativo do Office e o aplicativo do PowerPoint são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do PowerPoint por meio do complemento.
       type: '(context: <xref uid="powerpoint!PowerPoint.RequestContext:class" />) =&gt; <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;'
     return:
       type: <xref uid="office!OfficeExtension.IPromise:type" />&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 0700c655698446028a80c15e5e6c7a1d8a728c72
-  ms.sourcegitcommit: 1f0f9464639feee4f4751fda7c2a14aa0d2f8967
+  ms.openlocfilehash: 744b2e63b6d1717dc6a5dba09a4789742c2f7ad9
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/12/2020
-  ms.locfileid: "49663767"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991916"

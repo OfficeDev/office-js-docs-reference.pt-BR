@@ -629,7 +629,7 @@ methods:
     content: 'clear(applyTo?: Excel.ClearApplyTo): void;'
     parameters:
     - id: applyTo
-      description: Opcional. Determina o tipo de ação clara. Confira Excel.ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Para saber detalhes, confira Excel.ClearApplyTo.
       type: <xref uid="excel!Excel.ClearApplyTo:enum" />
     return:
       type: void
@@ -650,7 +650,7 @@ methods:
     content: 'clear(applyToString?: "All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"): void;'
     parameters:
     - id: applyToString
-      description: Opcional. Determina o tipo de ação clara. Confira Excel.ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Para saber detalhes, confira Excel.ClearApplyTo.
       type: "\"All\" | \"Formats\" | \"Contents\" | \"Hyperlinks\" | \"RemoveHyperlinks\""
     return:
       type: void
@@ -718,10 +718,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: <xref uid="excel!Excel.RangeCopyType:enum" />
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no intervalo de destino. O padrão é falso.
+      description: True se para transpor as células no intervalo de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -748,10 +748,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: "\"All\" | \"Formulas\" | \"Values\" | \"Formats\""
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no intervalo de destino. O padrão é falso.
+      description: True se para transpor as células no intervalo de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -803,7 +803,7 @@ methods:
   package: excel!
   fullName: find(text, criteria)
   summary: >-
-    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo; caso mais, a pesquisa cobrirá toda a planilha começando após essa célula.
+    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo, caso mais a pesquisa cobrirá toda a planilha começando após essa célula.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -827,7 +827,7 @@ methods:
   package: excel!
   fullName: findOrNullObject(text, criteria)
   summary: >-
-    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo; caso mais, a pesquisa cobrirá toda a planilha começando após essa célula. Se não houver nenhuma coincideção, essa função retornará um objeto null.
+    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo, caso mais a pesquisa cobrirá toda a planilha começando após essa célula. Se não houver nenhuma coincideção, essa função retornará um objeto null.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1111,7 +1111,7 @@ methods:
   package: excel!
   fullName: getImage()
   summary: >-
-    Renderiza o intervalo como uma imagem png codificada em base64. *Important**: This API is currently unsupported in Excel for Mac. Visite [o OfficeDev/office-js Problema \# 235](https://github.com/OfficeDev/office-js/issues/235) para o status atual.
+    Renderiza o intervalo como uma imagem png codificada em base64. **Importante:** no momento, essa API não tem suporte no Excel para Mac. Visite [o OfficeDev/office-js Problema \# 235](https://github.com/OfficeDev/office-js/issues/235) para o status atual.
 
 
     \[[Conjunto de APIs: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1477,7 +1477,7 @@ methods:
     content: 'getTables(fullyContained?: boolean): Excel.TableScopedCollection;'
     parameters:
     - id: fullyContained
-      description: Se verdadeiro, retorna apenas tabelas que estão totalmente contidas dentro dos limites do intervalo. O valor padrão é falso.
+      description: Se verdadeiro, retorna somente tabelas que estão totalmente contidas dentro dos limites do intervalo. O valor padrão é falso.
       type: boolean
     return:
       type: <xref uid="excel!Excel.TableScopedCollection:class" />
@@ -1766,7 +1766,7 @@ methods:
       description: As colunas dentro do intervalo que podem conter duplicatas. Pelo menos uma coluna precisa ser especificada. Indexados com zero.
       type: number[]
     - id: includesHeader
-      description: True se os dados de entrada contiver o header. O padrão é falso.
+      description: True se os dados de entrada contiver o header. O padrão é false.
       type: boolean
     return:
       type: <xref uid="excel!Excel.RemoveDuplicatesResult:class" />
@@ -2008,7 +2008,7 @@ methods:
   uid: excel!Excel.Range#track:member(1)
   package: excel!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma curta de `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é um atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -2091,9 +2091,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 959503214524734e02b0bb88ba498fa0e4a751f0
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 9ab6b0a0d4ba1946919b555ec768b17476c3987e
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49853969"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991391"

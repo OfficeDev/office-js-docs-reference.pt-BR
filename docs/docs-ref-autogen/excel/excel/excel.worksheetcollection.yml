@@ -184,6 +184,22 @@ properties:
     content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormatChangedEventArgs:interface" />&gt;
+- name: onFormulaChanged
+  uid: excel!Excel.WorksheetCollection#onFormulaChanged:member
+  package: excel!
+  fullName: onFormulaChanged
+  summary: >-
+    Ocorre quando uma ou mais fórmulas são alteradas em qualquer planilha dessa coleção. Esse evento é para quando a própria fórmula é muda, não o valor dos dados resultante do cálculo da fórmula.
+
+
+    \[[Conjunto de APIs: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onFormulaChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormulaChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormulaChangedEventArgs:interface" />&gt;
 - name: onRowHiddenChanged
   uid: excel!Excel.WorksheetCollection#onRowHiddenChanged:member
   package: excel!
@@ -295,7 +311,7 @@ methods:
       description: Opcional. Os nomes das planilhas individuais a inserir. Por padrão, todas as planilhas da pasta de trabalho de origem são inseridas.
       type: string[]
     - id: positionType
-      description: Opcional. Onde na pasta de trabalho atual as novas planilhas serão inseridas. Consulte Excel.WorksheetPositionType para obter detalhes. O padrão é "Start".
+      description: Opcional. Onde na pasta de trabalho atual as novas planilhas serão inseridas. Para saber detalhes, confira Excel.WorksheetPositionType. O padrão é "Start".
       type: <xref uid="excel!Excel.WorksheetPositionType:enum" />
     - id: relativeTo
       description: Opcional. A planilha na pasta de trabalho atual que é referenciada para o parâmetro positionType. O padrão é nulo e, com base em positionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
@@ -328,7 +344,7 @@ methods:
       description: Opcional. Os nomes das planilhas individuais a inserir. Por padrão, todas as planilhas da pasta de trabalho de origem são inseridas.
       type: string[]
     - id: positionTypeString
-      description: Opcional. Onde na pasta de trabalho atual as novas planilhas serão inseridas. Consulte Excel.WorksheetPositionType para obter detalhes. O padrão é "Start".
+      description: Opcional. Onde na pasta de trabalho atual as novas planilhas serão inseridas. Para saber detalhes, confira Excel.WorksheetPositionType. O padrão é "Start".
       type: "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
       description: Opcional. A planilha na pasta de trabalho atual que é referenciada para o parâmetro positionType. O padrão é nulo e, com base em positionType, ele inserirá planilhas no início ou no final da pasta de trabalho atual.
@@ -369,7 +385,7 @@ methods:
     content: 'getCount(visibleOnly?: boolean): OfficeExtension.ClientResult<number>;'
     parameters:
     - id: visibleOnly
-      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer ocultas.
+      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer planilhas ocultas.
       type: boolean
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
@@ -390,7 +406,7 @@ methods:
     content: 'getFirst(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer ocultas.
+      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer planilhas ocultas.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -421,7 +437,7 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(key)
   summary: >-
-    Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, retornará um objeto null.
+    Obtém um objeto worksheet usando o Nome ou ID dele. Se a planilha não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -453,7 +469,7 @@ methods:
     content: 'getLast(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer ocultas.
+      description: Opcional. Se verdadeiro, considera apenas planilhas visíveis, ignorando quaisquer planilhas ocultas.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -524,9 +540,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6e173b5561f5a7449831e945832092c47b89e98a
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 217115c6457c6b3150849309c2eff8be4d1cfe79
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852219"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991643"

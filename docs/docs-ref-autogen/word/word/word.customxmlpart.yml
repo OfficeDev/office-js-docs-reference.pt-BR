@@ -7,7 +7,7 @@ summary: >-
   Representa uma parte XML personalizada.
 
 
-  \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
 remarks: ''
 isPreview: true
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: word!Word.CustomXmlPart#context:member
   package: word!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do suplemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     Obtém a ID da parte XML personalizada. Somente leitura.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     Obtém o URI do namespace da parte XML personalizada. Somente leitura.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -66,7 +66,7 @@ methods:
     Exclui a parte XML personalizada.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -80,21 +80,21 @@ methods:
   package: word!
   fullName: deleteAttribute(xpath, namespaceMappings, name)
   summary: >-
-    Exclui um atributo com o nome fornecido do elemento identificado por XPath.
+    Exclui um atributo com o nome dado do elemento identificado por xpath.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'deleteAttribute(xpath: string, namespaceMappings: any, name: string): void;'
     parameters:
     - id: xpath
-      description: Obrigatório. Caminho absoluto para o elemento único na notação XPath.
+      description: Obrigatório. Caminho absoluto para o único elemento na notação XPath.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     - id: name
       description: Obrigatório. Nome do atributo.
@@ -107,21 +107,21 @@ methods:
   package: word!
   fullName: deleteElement(xpath, namespaceMappings)
   summary: >-
-    Exclui o elemento identificado por XPath.
+    Exclui o elemento identificado por xpath.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'deleteElement(xpath: string, namespaceMappings: any): void;'
     parameters:
     - id: xpath
-      description: Obrigatório. Caminho absoluto para o elemento único na notação XPath.
+      description: Obrigatório. Caminho absoluto para o único elemento na notação XPath.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     return:
       type: void
@@ -134,7 +134,7 @@ methods:
     Obtém o conteúdo XML completo da parte XML personalizada.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -148,21 +148,21 @@ methods:
   package: word!
   fullName: insertAttribute(xpath, namespaceMappings, name, value)
   summary: >-
-    Insere um atributo com o nome e o valor fornecidos para o elemento identificado por XPath.
+    Insere um atributo com o nome e o valor determinados para o elemento identificado por xpath.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'insertAttribute(xpath: string, namespaceMappings: any, name: string, value: string): void;'
     parameters:
     - id: xpath
-      description: Obrigatório. Caminho absoluto para o elemento único na notação XPath.
+      description: Obrigatório. Caminho absoluto para o único elemento na notação XPath.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     - id: name
       description: Obrigatório. Nome do atributo.
@@ -178,11 +178,11 @@ methods:
   package: word!
   fullName: insertElement(xpath, xml, namespaceMappings, index)
   summary: >-
-    Insere o XML especificado no elemento pai identificado pelo XPath no índice de posição de filho.
+    Insere o XML determinado sob o elemento pai identificado por xpath no índice de posição filha.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
@@ -195,10 +195,10 @@ methods:
       description: Obrigatório. Conteúdo XML a ser inserido.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     - id: index
-      description: Opcional. Posição com base em zero na qual o novo XML deve ser inserido. Se for omitido, o XML será acrescentado como o último filho desse pai.
+      description: Opcional. Posição baseada em zero na qual o novo XML a ser inserido. Se omitido, o XML será anexado como o último filho desse pai.
       type: number
     return:
       type: void
@@ -215,7 +215,7 @@ methods:
     content: 'load(options?: Word.Interfaces.CustomXmlPartLoadOptions): Word.CustomXmlPart;'
     parameters:
     - id: options
-      description: Fornece opções para as propriedades do objeto a ser carregado.
+      description: Fornece opções para quais propriedades do objeto carregar.
       type: <xref uid="word!Word.Interfaces.CustomXmlPartLoadOptions:interface" />
     return:
       type: <xref uid="word!Word.CustomXmlPart:class" />
@@ -232,7 +232,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Word.CustomXmlPart;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a serem carregadas.
+      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
       type: string | string[]
     return:
       type: <xref uid="word!Word.CustomXmlPart:class" />
@@ -253,7 +253,7 @@ methods:
               }): Word.CustomXmlPart;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a serem carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a serem carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
       type: >-
         {
                     select?: string;
@@ -270,8 +270,8 @@ methods:
     Consulta o conteúdo XML da parte XML personalizada.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
@@ -281,11 +281,11 @@ methods:
       description: Obrigatório. Uma consulta XPath.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: Uma matriz em que cada item representa uma entrada correspondente à consulta XPath.
+      description: Uma matriz em que cada item representa uma entrada corresponde à consulta XPath.
 - name: setXml(xml)
   uid: word!Word.CustomXmlPart#setXml:member(1)
   package: word!
@@ -294,7 +294,7 @@ methods:
     Define o conteúdo XML completo da parte XML personalizada.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -311,7 +311,7 @@ methods:
   uid: word!Word.CustomXmlPart#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o `toJSON()` método JavaScript para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado para ele.) Enquanto o objeto Word. CustomXmlPart original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.CustomXmlPartData`<!-- -->) que contém cópias superficiais de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Word.CustomXmlPart original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `Word.Interfaces.CustomXmlPartData`<!-- -->) que contém cópias rasas de qualquer propriedade filho carregada do objeto original.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -324,7 +324,7 @@ methods:
   uid: word!Word.CustomXmlPart#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto nas `.sync` chamadas e fora da execução seqüencial de um lote ". Run" e obter um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisa ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma curta de `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -337,7 +337,7 @@ methods:
   uid: word!Word.CustomXmlPart#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é abreviada para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar `context.sync()` antes que o lançamento da memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é a forma curta para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -351,21 +351,21 @@ methods:
   package: word!
   fullName: updateAttribute(xpath, namespaceMappings, name, value)
   summary: >-
-    Atualiza o valor de um atributo com o nome fornecido do elemento identificado por XPath.
+    Atualiza o valor de um atributo com o nome determinado do elemento identificado por xpath.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'updateAttribute(xpath: string, namespaceMappings: any, name: string, value: string): void;'
     parameters:
     - id: xpath
-      description: Obrigatório. Caminho absoluto para o elemento único na notação XPath.
+      description: Obrigatório. Caminho absoluto para o único elemento na notação XPath.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     - id: name
       description: Obrigatório. Nome do atributo.
@@ -381,33 +381,33 @@ methods:
   package: word!
   fullName: updateElement(xpath, xml, namespaceMappings)
   summary: >-
-    Atualiza o XML do elemento identificado pelo XPath.
+    Atualiza o XML do elemento identificado pelo xpath.
 
 
-    \[[Conjunto de APIs: WORDAPI beta (apenas para visualização)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    \[[Conjunto de APIs: WordApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+  remarks: 'Se algum elemento na árvore tiver um atributo xmlns (cujo valor é normalmente, mas nem sempre, um URI), um alias para esse valor de atributo deverá prefixar o nome do elemento no parâmetro xpath. Por exemplo, suponha que a árvore seja a seguinte: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>algo</Week> </Month> </Day> que o xpath <Week> deve ser /<!-- -->Day<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Semana, em que greg é um alias mapeado para "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" no parâmetro namespaceMappings.'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'updateElement(xpath: string, xml: string, namespaceMappings: any): void;'
     parameters:
     - id: xpath
-      description: Obrigatório. Caminho absoluto para o elemento único na notação XPath.
+      description: Obrigatório. Caminho absoluto para o único elemento na notação XPath.
       type: string
     - id: xml
       description: Obrigatório. Novo conteúdo XML a ser armazenado.
       type: string
     - id: namespaceMappings
-      description: Obrigatório. Um objeto cujas propriedades representam aliases de namespace e os valores são os URIs de namespace reais.
+      description: 'Obrigatório. Um objeto cujos valores de propriedade são nomes de namespace e cujos nomes de propriedade são aliases para os namespaces correspondentes. Por exemplo, `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Os nomes de propriedade (como "greg") podem ser qualquer cadeia de caracteres que não utiliza caracteres XPath reservados, como a barra "/".'
       type: any
     return:
       type: void
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 23d2584d5f61c9c373b012eb85202578797f9750
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: b6d0a86c68a4c9fe5c8876bef881283f306aff90
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49193003"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49992252"

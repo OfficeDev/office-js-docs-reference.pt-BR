@@ -677,7 +677,7 @@ methods:
     content: 'clear(applyTo?: Excel.ClearApplyTo): void;'
     parameters:
     - id: applyTo
-      description: Opcional. Determina o tipo de ação clara. Confira Excel.ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Para saber detalhes, confira Excel.ClearApplyTo.
       type: <xref uid="excel!Excel.ClearApplyTo:enum" />
     return:
       type: void
@@ -766,10 +766,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: <xref uid="excel!Excel.RangeCopyType:enum" />
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no intervalo de destino. O padrão é falso.
+      description: True se para transpor as células no intervalo de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -796,10 +796,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: "\"All\" | \"Formulas\" | \"Values\" | \"Formats\""
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no intervalo de destino. O padrão é falso.
+      description: True se para transpor as células no intervalo de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -875,7 +875,7 @@ methods:
   package: excel!
   fullName: findOrNullObject(text, criteria)
   summary: >-
-    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo; caso mais, a pesquisa cobrirá toda a planilha começando após essa célula. Se não houver nenhuma coincideção, essa função retornará um objeto null.
+    Localiza certa cadeia de caracteres com base em critérios especificados. Se o intervalo atual for maior do que uma única célula, a pesquisa será limitada a esse intervalo, caso mais a pesquisa cobrirá toda a planilha começando após essa célula. Se não houver nenhuma relação, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1214,7 +1214,7 @@ methods:
   package: excel!
   fullName: getIntersectionOrNullObject(anotherRange)
   summary: >-
-    Obtém o objeto de intervalo que representa a interseção retangular dos intervalos determinados. Se nenhuma interseção for encontrada, retornará um objeto null.
+    Obtém o objeto de intervalo que representa a interseção retangular dos intervalos determinados. Se nenhuma interseção for encontrada, esta função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1521,7 +1521,7 @@ methods:
   package: excel!
   fullName: getSpecialCellsOrNullObject(cellType, cellValueType)
   summary: >-
-    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um objeto nulo será retornado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1545,7 +1545,7 @@ methods:
   package: excel!
   fullName: getSpecialCellsOrNullObject(cellTypeString, cellValueType)
   summary: >-
-    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, um objeto nulo será retornado.
+    Obtém o objeto RangeAreas, compreendendo um ou mais intervalos, que representa todas as células que correspondem ao tipo e valor especificado. Se nenhuma célula especial for encontrada, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1586,7 +1586,7 @@ methods:
   package: excel!
   fullName: getSpillingToRangeOrNullObject()
   summary: >-
-    Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Se o intervalo não for uma célula âncora ou um intervalo de vazamento não puder ser encontrado, um objeto nulo será retornado.
+    Obtém objeto range que contém o intervalo de despejo quando chamado em uma célula âncora. Se o intervalo não for uma célula âncora ou o intervalo de derramamento não puder ser localizado, essa função retornará um objeto com sua propriedade `isNullObject` definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1620,7 +1620,7 @@ methods:
   package: excel!
   fullName: getSpillParentOrNullObject()
   summary: >-
-    Obtém o objeto range que contém a célula âncora para uma célula que recebe o despejo. Se não for uma célula de vazamento ou mais de uma vez as células são fornecidas, um objeto nulo será retornado.
+    Obtém o objeto range que contém a célula âncora para a célula que está sendo se preparando. Se não for uma célula de ressução ou mais de uma célula for determinada, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1696,7 +1696,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    Retorna o intervalo usado do objeto range determinado. Se não houver nenhuma célula usada no intervalo, esta função retornará um objeto null.
+    Retorna o intervalo usado do objeto de intervalo determinado. Se não houver células usadas dentro do intervalo, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1975,7 +1975,7 @@ methods:
       description: As colunas dentro do intervalo que podem conter duplicatas. Pelo menos uma coluna precisa ser especificada. Indexados com zero.
       type: number[]
     - id: includesHeader
-      description: True se os dados de entrada contiver o header. O padrão é falso.
+      description: True se os dados de entrada contiver o header. O padrão é false.
       type: boolean
     return:
       type: <xref uid="excel!Excel.RemoveDuplicatesResult:class" />
@@ -2300,9 +2300,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: c818bbad52319cb4bdc2c25504763ebf6f21707a
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: a0f95db6649eb00a46f3d7ce692c6e895c0c3e28
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49851169"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991986"

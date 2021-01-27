@@ -142,7 +142,7 @@ properties:
   package: excel!
   fullName: format
   summary: >-
-    Retorna um objeto RangeFormat encapsulando a fonte, o preenchimento, as bordas, o alinhamento e outras propriedades de todos os intervalos no objeto RangeAreas.
+    Retorna um objeto RangeFormat encapsulando a fonte, o preenchimento, as bordas, o alinhamento e outras propriedades para todos os intervalos no objeto RangeAreas.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -252,7 +252,7 @@ methods:
     content: 'clear(applyTo?: Excel.ClearApplyTo): void;'
     parameters:
     - id: applyTo
-      description: Opcional. Determina o tipo de ação clara. Confira Excel.ClearApplyTo para obter detalhes. O padrão é "All".
+      description: Opcional. Determina o tipo de ação clara. Para saber detalhes, confira Excel.ClearApplyTo. O padrão é "All".
       type: <xref uid="excel!Excel.ClearApplyTo:enum" />
     return:
       type: void
@@ -273,7 +273,7 @@ methods:
     content: 'clear(applyToString?: "All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"): void;'
     parameters:
     - id: applyToString
-      description: Opcional. Determina o tipo de ação clara. Confira Excel.ClearApplyTo para obter detalhes. O padrão é "All".
+      description: Opcional. Determina o tipo de ação clara. Para saber detalhes, confira Excel.ClearApplyTo. O padrão é "All".
       type: "\"All\" | \"Formats\" | \"Contents\" | \"Hyperlinks\" | \"RemoveHyperlinks\""
     return:
       type: void
@@ -341,10 +341,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: <xref uid="excel!Excel.RangeCopyType:enum" />
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem ou RangeAreas. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem ou RangeAreas. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no RangeAreas de destino. O padrão é falso.
+      description: True se para transpor as células no RangeAreas de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -371,10 +371,10 @@ methods:
       description: O tipo de dados de célula ou formatação a ser copiado. O padrão é "All".
       type: "\"All\" | \"Formulas\" | \"Values\" | \"Formats\""
     - id: skipBlanks
-      description: True se ignorar células em branco no intervalo de origem ou RangeAreas. O padrão é falso.
+      description: True se ignorar células em branco no intervalo de origem ou RangeAreas. O padrão é false.
       type: boolean
     - id: transpose
-      description: True se para transpor as células no RangeAreas de destino. O padrão é falso.
+      description: True se para transpor as células no RangeAreas de destino. O padrão é false.
       type: boolean
     return:
       type: void
@@ -439,7 +439,7 @@ methods:
   package: excel!
   fullName: getIntersectionOrNullObject(anotherRange)
   summary: >-
-    Retorna o objeto RangeAreas que representa a interseção dos intervalos fornecidos ou RangeAreas. Se nenhuma interseção for encontrada, um objeto null será retornado.
+    Retorna o objeto RangeAreas que representa a interseção dos intervalos fornecidos ou RangeAreas. Se nenhuma interseção for encontrada, esta função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -591,7 +591,7 @@ methods:
     content: 'getTables(fullyContained?: boolean): Excel.TableScopedCollection;'
     parameters:
     - id: fullyContained
-      description: Se verdadeiro, retorna apenas tabelas que estão totalmente contidas dentro dos limites do intervalo. O padrão é falso.
+      description: Se verdadeiro, retorna somente tabelas que estão totalmente contidas dentro dos limites do intervalo. O padrão é false.
       type: boolean
     return:
       type: <xref uid="excel!Excel.TableScopedCollection:class" />
@@ -612,7 +612,7 @@ methods:
     content: 'getUsedRangeAreas(valuesOnly?: boolean): Excel.RangeAreas;'
     parameters:
     - id: valuesOnly
-      description: Se serão consideradas apenas células com valores como células usadas. O padrão é falso.
+      description: Se serão consideradas apenas células com valores como células usadas. O padrão é false.
       type: boolean
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -622,7 +622,7 @@ methods:
   package: excel!
   fullName: getUsedRangeAreasOrNullObject(valuesOnly)
   summary: >-
-    Retorna o RangeAreas usado que compreende todas as áreas utilizadas de intervalos retangulares individuais no objeto RangeAreas. Se não houver células usadas dentro de RangeAreas, um objeto nulo será retornado.
+    Retorna o RangeAreas usado que compreende todas as áreas utilizadas de intervalos retangulares individuais no objeto RangeAreas. Se não houver células usadas no RangeAreas, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, consulte *Métodos e propriedades [de OrNullObject](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de APIs: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -772,7 +772,7 @@ methods:
   uid: excel!Excel.RangeAreas#track:member(1)
   package: excel!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma curta de `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é um atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -796,9 +796,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 2f0a114f19f3ff6621bbb19a92901a42ee81f722
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: d348ca04a29eb6dbbe8b815462c7384bd83172d4
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852303"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991510"
