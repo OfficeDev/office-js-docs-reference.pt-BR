@@ -3,7 +3,7 @@ name: Office.AuthOptions
 uid: office!Office.AuthOptions:interface
 package: office!
 fullName: Office.AuthOptions
-summary: Fornece opções para a experiência do usuário quando o Office Obtém um token de acesso para o suplemento do AAD v. 2.0 com o método`getAccessToken`.
+summary: Fornece opções para a experiência do usuário quando o Office obtém um token de acesso para o complemento do AAD v. 2.0 com o método`getAccessToken`.
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,7 +13,7 @@ properties:
   uid: office!Office.AuthOptions#allowConsentPrompt:member
   package: office!
   fullName: allowConsentPrompt
-  summary: Permite que o Office obtenha um token de acesso silenciosamente ou por meio de um consentimento interativo, se necessário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, O Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, O Office mostrará uma interface do usuário de consentimento interativo depois de falhar para obter um token de acesso silenciosamente. O prompt só permitirá o consentimento para o escopo do perfil do AAD, não para os escopos do Microsoft Graph.
+  summary: Permite que o Office receba um token de acesso silenciosamente ou por meio do consentimento interativo, se necessário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, o Office tentará obter um token de acesso silenciosamente. Se isso falhar, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, o Office mostrará uma interface do usuário de consentimento interativo depois que ele não conseguir obter silenciosamente um token de acesso. A solicitação permitirá apenas o consentimento para o escopo de perfil do AAD, não para escopos do Microsoft Graph.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -25,7 +25,7 @@ properties:
   uid: office!Office.AuthOptions#allowSignInPrompt:member
   package: office!
   fullName: allowSignInPrompt
-  summary: Permite que o Office obtenha um token de acesso fornecido de forma silenciosa e que mostre a interface de usuário interativa para entrar no usuário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, O Office tentará executar silenciosamente um token de acesso. Se ele não fizer isso, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, O Office mostrará uma interface do usuário de entrada interativa depois de falhar para obter um token de acesso silenciosamente.
+  summary: Permite que o Office receba um token de acesso fornecido silenciosamente que está presente ou mostre a interface do usuário interativa para entrar no usuário. O valor padrão é `false`<!-- -->. Se definido como `false`<!-- -->, o Office tentará obter um token de acesso silenciosamente. Se isso falhar, o Office retornará um erro descritivo. Se definido como `true`<!-- -->, o Office mostrará uma interface do usuário de entrada interativa após não conseguir obter um token de acesso silenciosamente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
   uid: office!Office.AuthOptions#asyncContext:member
   package: office!
   fullName: asyncContext
-  summary: Um item definido pelo usuário de qualquer tipo que é retornado, inalterado, na `asyncContext` Propriedade do `AsyncResult` objeto que é passado para um retorno de chamada.
+  summary: Um item definido pelo usuário de qualquer tipo que é retornado, inalterado, na propriedade do objeto que é `asyncContext` passado para um retorno de `AsyncResult` chamada.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
   uid: office!Office.AuthOptions#authChallenge:member
   package: office!
   fullName: authChallenge
-  summary: Faz o Office solicitar que o usuário forneça o fator adicional quando o locatário que está sendo direcionado pelo Microsoft Graph requer autenticação multifator. O valor da cadeia de caracteres identifica o tipo de fator adicional necessário. Na maioria dos casos, você não saberá em tempo de desenvolvimento se o locatário do usuário requer um fator adicional ou o que deve ser a cadeia de caracteres. Portanto, essa opção seria usada em uma chamada "segunda tentativa" `getAccessToken` após o Microsoft Graph ter enviado um erro solicitando o fator adicional e contendo a cadeia de caracteres que deve ser usada com a `authChallenge` opção.
+  summary: Faz com que o Office solicita que o usuário forneça o fator adicional quando a adoção do Microsoft Graph exigir autenticação multifator. O valor da cadeia de caracteres identifica o tipo de fator adicional necessário. Na maioria dos casos, você não sabe no momento do desenvolvimento se o locatário do usuário requer um fator adicional ou qual deve ser a cadeia de caracteres. Portanto, essa opção seria usada em uma chamada de "segunda tentativa" após o Microsoft Graph ter enviado um erro solicitando o fator adicional e contendo a cadeia de caracteres que deve ser usada com `getAccessToken` a `authChallenge` opção.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -61,7 +61,11 @@ properties:
   uid: office!Office.AuthOptions#forceAddAccount:member
   package: office!
   fullName: forceAddAccount
-  summary: Solicita que o usuário adicione sua conta do Office (ou alterne para ela, caso já tenha sido adicionada). O valor padrão é `false`<!-- -->.
+  summary: >-
+    Solicita que o usuário adicione sua conta do Office (ou alternar para ela, se ela já tiver sido adicionada). O valor padrão é `false`<!-- -->.
+
+
+    **Aviso:** `forceAddAccount` foi preterido. Use `allowSignInPrompt` em vez disso.
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -74,7 +78,11 @@ properties:
   uid: office!Office.AuthOptions#forceConsent:member
   package: office!
   fullName: forceConsent
-  summary: Faz com que o Office exiba a experiência de consentimento do suplemento. Será útil se as permissões do Azure do suplemento tiverem sido alteradas ou se o consentimento do usuário tiver sido revogado. O valor padrão é `false`<!-- -->.
+  summary: >-
+    Faz com que o Office exiba a experiência de consentimento do suplemento. Será útil se as permissões do Azure do suplemento tiverem sido alteradas ou se o consentimento do usuário tiver sido revogado. O valor padrão é `false`<!-- -->.
+
+
+    **Aviso:** `forceConsent` foi preterido. Use `allowConsentPrompt` em vez disso.
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -87,7 +95,7 @@ properties:
   uid: office!Office.AuthOptions#forMSGraphAccess:member
   package: office!
   fullName: forMSGraphAccess
-  summary: Faz com que o Office retorne um erro descritivo quando o suplemento quiser acessar o Microsoft Graph e o usuário/administrador não tiver concedido o consentimento aos escopos de gráfico. O valor padrão é `false`<!-- -->. O Office só oferece suporte a escopos de gráfico quando o suplemento tiver sido implantado por um administrador de locatários. Essas informações não estarão disponíveis durante o desenvolvimento. Configurar essa opção para `true` fazer com que o Office informe o suplemento por antecipadamente (retornando um erro descritivo) se o acesso ao gráfico falhar.
+  summary: Faz com que o Office retorne um erro descritivo quando o complemento deseja acessar o Microsoft Graph e o usuário/administrador não concedeu consentimento aos escopos do Graph. O valor padrão é `false`<!-- -->. O Office só dá suporte ao consentimento para escopos do Graph quando o complemento foi implantado por um administrador de locatários. Essas informações não estarão disponíveis durante o desenvolvimento. Definir essa opção fará com que o Office informe seu complemento com antecedência (retornando um erro descritivo) se o `true` acesso ao Graph falhar.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -96,9 +104,9 @@ properties:
     return:
       type: boolean
 metadata:
-  ms.openlocfilehash: 622e5b5d59481a8d6984208677307dc21a4de56f
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: c9a42edfa3f6fe0a2873389520ac6e6bdb093ca8
+  ms.sourcegitcommit: 94ed3108858c111541f7430d7482ea329ad21dbd
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49251629"
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "50092015"
