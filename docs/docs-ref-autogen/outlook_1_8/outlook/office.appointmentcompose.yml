@@ -178,7 +178,7 @@ properties:
     Obtém ou define a data e a hora em que o compromisso deve terminar.
 
 
-    A propriedade é um objeto Time expresso como um valor de data e hora do Tempo `end` Universal Coordenado [](xref:outlook!Office.Time:interface) (UTC). Você pode usar o `convertToLocalClientTime` método para converter o valor da propriedade em data e hora locais do `end` cliente.
+    A propriedade é um objeto Time expresso como um valor de data e hora do Tempo `end` Universal Coordenado [](xref:outlook!Office.Time:interface) (UTC). Você pode usar o `convertToLocalClientTime` método para converter o valor da propriedade na data e hora locais do `end` cliente.
 
 
     Ao usar o método `Time.setAsync` para definir a hora de término, deve-se usar o método `convertToUtcClientTime` para converter a hora local no cliente para UTC para o servidor.
@@ -606,7 +606,7 @@ properties:
     A propriedade retorna um objeto de recorrência para compromissos recorrentes ou solicitações de reuniões se um item for uma série ou uma `recurrence` instância em uma série. `null` é retornado para compromissos individuais e solicitações de reunião de compromissos individuais.
 
 
-    **Observação:** as solicitações de reunião `itemClass` têm um valor de `IPM.Schedule.Meeting.Request`<!-- -->.
+    **Observação:** as solicitações de reunião têm `itemClass` um valor de `IPM.Schedule.Meeting.Request`<!-- -->.
 
 
     **Observação:** se o objeto de recorrência for nulo, isso indica que o objeto é um compromisso único ou uma solicitação de reunião de um único compromisso e NÃO é parte de uma série.
@@ -979,7 +979,7 @@ methods:
     **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Organizador de Compromissos
 
 
-    **Erros**:
+    **Erros:**
 
 
     - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
@@ -1072,7 +1072,7 @@ methods:
     **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Organizador de Compromissos
 
 
-    **Erros**:
+    **Erros:**
 
 
     - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
@@ -1143,7 +1143,7 @@ methods:
       description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada. `isInline`<!-- -->: Se verdadeiro, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada. `isInline`<!-- -->: Se for verdadeiro, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
       type: '<xref uid="office!Office.AsyncContextOptions:interface" /> &  { isInline: boolean }'
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
@@ -1927,7 +1927,7 @@ methods:
     content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: attachmentId
-      description: O identificador do anexo a remover. O comprimento máximo da cadeia de caracteres é de 200 caracteres no Outlook na Web e `attachmentId` de 100 caracteres no Outlook no Windows.
+      description: O identificador do anexo a remover. O comprimento máximo da cadeia de `attachmentId` caracteres é de 200 caracteres no Outlook na Web e no Windows.
       type: string
     - id: options
       description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
@@ -1986,7 +1986,7 @@ methods:
     Como compromissos não têm um estado de rascunho, se `saveAsync` for chamado em um compromisso no modo Redigir, o item será salvo como um compromisso normal no calendário do usuário. Para novos compromissos que não foram salvos antes, nenhum convite será enviado. Salvar um compromisso existente enviará uma atualização aos participantes adicionados ou removidos.
 
 
-    **Observação:** se o seu complemento chama um item no modo de redação para obter uma ID de item a ser usada com o EWS ou a API REST, lembre-se de que quando o Outlook está no modo cache, pode levar algum tempo até que o item seja realmente sincronizado com o `saveAsync` servidor. Até que o item seja sincronizado, o uso da ID do item retornará um erro.
+    **Observação:** se o seu complemento chama um item no modo de composição para obter uma ID de item a ser usada com o EWS ou a API REST, lembre-se de que quando o Outlook está no modo cache, pode levar algum tempo até que o item seja realmente sincronizado com o `saveAsync` servidor. Até que o item seja sincronizado, o uso da ID do item retornará um erro.
 
 
     **Observação:** no Outlook para Mac, apenas o build 16.35.308 ou posterior oferece suporte ao salvar uma reunião. Caso contrário, `saveAsync` o método falhará quando chamado de uma reunião no modo de redação. Para uma solução alternativa, confira Não é possível salvar uma [reunião como um rascunho no Outlook para Mac usando a API JS do Office](https://support.microsoft.com/help/4505745)<!-- -->.
@@ -2051,7 +2051,7 @@ methods:
     Como compromissos não têm um estado de rascunho, se `saveAsync` for chamado em um compromisso no modo Redigir, o item será salvo como um compromisso normal no calendário do usuário. Para novos compromissos que não foram salvos antes, nenhum convite será enviado. Salvar um compromisso existente enviará uma atualização aos participantes adicionados ou removidos.
 
 
-    **Observação:** se o seu complemento chama um item no modo de redação para obter uma ID de item a ser usada com o EWS ou a API REST, lembre-se de que quando o Outlook está no modo cache, pode levar algum tempo até que o item seja realmente sincronizado com o `saveAsync` servidor. Até que o item seja sincronizado, o uso da ID do item retornará um erro.
+    **Observação:** se o seu complemento chama um item no modo de composição para obter uma ID de item a ser usada com o EWS ou a API REST, lembre-se de que quando o Outlook está no modo cache, pode levar algum tempo até que o item seja realmente sincronizado com o `saveAsync` servidor. Até que o item seja sincronizado, o uso da ID do item retornará um erro.
 
 
     **Observação:** no Outlook para Mac, apenas o build 16.35.308 ou posterior oferece suporte ao salvar uma reunião. Caso contrário, `saveAsync` o método falhará quando chamado de uma reunião no modo de redação. Para uma solução alternativa, confira Não é possível salvar uma [reunião como um rascunho no Outlook para Mac usando a API JS do Office](https://support.microsoft.com/help/4505745)<!-- -->.
@@ -2180,9 +2180,9 @@ methods:
       description: ''
 extends: <xref uid="outlook!Office.Appointment:interface" />
 metadata:
-  ms.openlocfilehash: bf6a00b2ec1fa6ed66d9f840c94cdaf080a46c46
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: dee1e1cd2868b1fdb2f6e2cafa4cc2e24a588d5c
+  ms.sourcegitcommit: 9dba9247601805ad821e7a7260ac418e566786b7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49849979"
+  ms.lasthandoff: 02/10/2021
+  ms.locfileid: "50173325"
