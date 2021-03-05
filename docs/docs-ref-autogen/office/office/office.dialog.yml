@@ -3,7 +3,7 @@ name: Office.Dialog
 uid: office!Office.Dialog:interface
 package: office!
 fullName: Office.Dialog
-summary: O objeto que é retornado quando `UI.displayDialogAsync` é chamado. Ele expõe métodos para registrar manipuladores de eventos e fechar a caixa de diálogo.
+summary: O objeto retornado quando `UI.displayDialogAsync` é chamado. Ele expõe métodos para registrar manipuladores de eventos e fechar a caixa de diálogo.
 remarks: '**Conjunto de requisitos**: [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
 isPreview: false
 isDeprecated: false
@@ -31,7 +31,7 @@ methods:
       description: Deve ser DialogMessageReceived ou DialogEventReceived.
       type: <xref uid="office!Office.EventType:enum" />
     - id: handler
-      description: Uma função que aceita um objeto com uma `message` propriedade, se EventType for DialogMessageReceived ou um objeto com uma `error` propriedade, se EventType for DialogEventReceived.
+      description: Uma função que aceita um objeto com uma propriedade, se eventType for DialogMessageReceived ou um objeto com uma propriedade, se eventType for `message` `error` DialogEventReceived.
       type: '(args: {message: string | boolean} | {error: number}) =&gt; void'
     return:
       type: void
@@ -40,7 +40,11 @@ methods:
   uid: office!Office.Dialog#close:member(1)
   package: office!
   fullName: close()
-  summary: Chamado de uma página pai para fechar a caixa de diálogo correspondente.
+  summary: >-
+    Chamado de uma página pai para fechar a caixa de diálogo correspondente.
+
+
+    Esse método é assíncrono. Ele não tem um parâmetro de retorno de chamada e não retorna um objeto Promise, portanto, ele não pode ser aguardado com a palavra-chave `await` ou a `then` função. Confira esta prática prática para obter mais informações: Abrir outra caixa de [diálogo imediatamente após o fechamento de uma](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-best-practices#opening-another-dialog-immediately-after-closing-one)
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,15 +57,15 @@ methods:
   uid: office!Office.Dialog#messageChild:member(1)
   package: office!
   fullName: messageChild(message)
-  summary: Entrega uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, a uma caixa de diálogo que foi aberta na página.
+  summary: Entrega uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, para uma caixa de diálogo aberta na página.
   remarks: >-
-    **Hosts**: Excel, Outlook (conjunto de requisitos mínimo: caixa de correio 1,9), PowerPoint, Word
+    **Hosts**: Excel, Outlook (Conjunto de requisitos mínimos: Caixa de Correio 1.9), PowerPoint, Word
 
 
     **Conjuntos de requisitos**:
 
 
-    - [DialogAPI 1,2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+    - [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
 
 
     - [Caixa de correio 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
@@ -94,9 +98,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c007533112e45e4ffec29b45883add8161532d6c
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: f328302115888d80b8d95f5b7d97d4331e0cc2b1
+  ms.sourcegitcommit: f55d2bbeba2a20abb522cbf742e727b82bcf73ee
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183360"
+  ms.lasthandoff: 03/05/2021
+  ms.locfileid: "50463382"
