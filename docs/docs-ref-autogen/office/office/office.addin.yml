@@ -3,7 +3,7 @@ name: Office.Addin
 uid: office!Office.Addin:interface
 package: office!
 fullName: Office.Addin
-summary: Representa a funcionalidade de nível de suplemento para operação ou configuração de vários aspectos do suplemento.
+summary: Representa a funcionalidade de nível de complemento para operar ou configurar vários aspectos do complemento.
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,7 +13,7 @@ methods:
   uid: office!Office.Addin#getStartupBehavior:member(1)
   package: office!
   fullName: getStartupBehavior()
-  summary: Obtém o comportamento de inicialização atual para o suplemento.
+  summary: Obtém o comportamento de inicialização atual do complemento.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -34,7 +34,7 @@ methods:
     content: 'hide(): Promise<void>;'
     return:
       type: Promise&lt;void&gt;
-      description: Uma promessa resolvida quando a interface do usuário está oculta.
+      description: Uma promessa que é resolvida quando a interface do usuário está oculta.
 - name: onVisibilityModeChanged(listener)
   uid: office!Office.Addin#onVisibilityModeChanged:member(1)
   package: office!
@@ -47,19 +47,19 @@ methods:
     content: >-
       onVisibilityModeChanged(
                   listener: (message: VisibilityModeChangedMessage) => void,
-              ): Promise<RemoveEventListener>;
+              ): Promise<() => Promise<void>>;
     parameters:
     - id: listener
-      description: A função de ouvinte que é chamada quando o evento é emitido. Essa função assume uma mensagem para o componente de recebimento.
+      description: A função ouvinte que é chamada quando o evento é emitido. Essa função recebe uma mensagem para o componente de recebimento.
       type: '(message: <xref uid="office!Office.VisibilityModeChangedMessage:interface" />) =&gt; void'
     return:
-      type: Promise&lt;<xref uid="office!Office.RemoveEventListener:type" />&gt;
-      description: Uma promessa que é resolvida para uma função quando o ouvinte é adicionado. O `RemoveEventListener` tipo é definido com `type RemoveEventListener = () => Promise<void>`<!-- -->. Chamá-lo remove o ouvinte.
+      type: Promise&lt;() =&gt; Promise&lt;void&gt;&gt;
+      description: Uma promessa que resolve uma função quando o ouvinte é adicionado. Chamá-lo remove o ouvinte.
 - name: setStartupBehavior(behavior)
   uid: office!Office.Addin#setStartupBehavior:member(1)
   package: office!
   fullName: setStartupBehavior(behavior)
-  summary: Define o comportamento de inicialização para o suplemento para quando o documento é aberto na próxima vez.
+  summary: Define o comportamento de inicialização do complemento para quando o documento for aberto na próxima vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -67,7 +67,7 @@ methods:
     content: 'setStartupBehavior(behavior: Office.StartupBehavior): Promise<void>;'
     parameters:
     - id: behavior
-      description: Especifica o comportamento de inicialização do suplemento.
+      description: Especifica o comportamento de inicialização do complemento.
       type: <xref uid="office!Office.StartupBehavior:enum" />
     return:
       type: Promise&lt;void&gt;
@@ -76,7 +76,7 @@ methods:
   uid: office!Office.Addin#showAsTaskpane:member(1)
   package: office!
   fullName: showAsTaskpane()
-  summary: Mostra o painel de tarefas associado ao suplemento.
+  summary: Mostra o painel de tarefas associado ao complemento.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -84,11 +84,11 @@ methods:
     content: 'showAsTaskpane(): Promise<void>;'
     return:
       type: Promise&lt;void&gt;
-      description: Uma promessa resolvida quando a interface do usuário é exibida.
+      description: Uma promessa que é resolvida quando a interface do usuário é mostrada.
 metadata:
-  ms.openlocfilehash: 05d535750f27d0923865f6a3aae0938c7e7edc39
-  ms.sourcegitcommit: 50d278a47f7095ea4453a3564f739eb5ad499a76
+  ms.openlocfilehash: 94ff2bcc2fd5938657d80d2f13601318027016bc
+  ms.sourcegitcommit: 0649842a034c42b1c1ec0b56c5ac3144ff51a849
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/25/2020
-  ms.locfileid: "49420738"
+  ms.lasthandoff: 03/12/2021
+  ms.locfileid: "50756400"
