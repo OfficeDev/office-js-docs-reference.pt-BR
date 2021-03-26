@@ -169,7 +169,7 @@ functions:
 - name: Word.run(objects, batch)
   uid: word!Word.run:function(1)
   package: word!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando RequestContext de objetos API criados anteriormente.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando o RequestContext de objetos API criados anteriormente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -177,10 +177,10 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: Word.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: objects
-      description: Uma matriz de objetos API criados anteriormente. A matriz será validada para garantir que todos os objetos compartilhem o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que qualquer alteração aplicada a esses objetos será selecionada por "context. Sync ()".
+      description: Uma matriz de objetos API criados anteriormente. A matriz será validada para garantir que todos os objetos compartilhem o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que quaisquer alterações aplicadas a esses objetos serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o suplemento do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o add-in do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do complemento.
       type: '(context: <xref uid="word!Word.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -188,7 +188,7 @@ functions:
 - name: Word.run(object, batch)
   uid: word!Word.run:function(2)
   package: word!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando RequestContext de um objeto API criado anteriormente. Quando a promessa é resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando o RequestContext de um objeto API criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -196,10 +196,10 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: Word.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: object
-      description: Um objeto API criado anteriormente. O lote usará o mesmo RequestContext que o objeto Passed-in, o que significa que qualquer alteração aplicada ao objeto será selecionada por "context. Sync ()".
+      description: Um objeto API criado anteriormente. O lote usará o mesmo RequestContext do objeto passado, o que significa que quaisquer alterações aplicadas ao objeto serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o suplemento do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o add-in do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do complemento.
       type: '(context: <xref uid="word!Word.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -207,30 +207,30 @@ functions:
 - name: Word.run(batch)
   uid: word!Word.run:function(3)
   package: word!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando um novo RequestContext. Quando a promessa é resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto do Word, usando um novo RequestContext. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: >-
-    Além dessa assinatura, o método também tem as seguintes assinaturas, que permitem que você retome usando o contexto de solicitação de objetos criados anteriormente:
+    Além dessa assinatura, o método também tem as seguintes assinaturas, que permitem que você retome o uso do contexto de solicitação de objetos criados anteriormente:
 
 
-    Run <T> (objeto: OfficeExtension. clientobject, Batch: (Context: Word. RequestContext) =<!-- -->&gt; Promessa <T> ): promessa <T> ;
+    run <T> (object: OfficeExtension.ClientObject, batch: (context: Word.RequestContext) =<!-- -->&gt; Promessa <T> ): Promessa <T> ;
 
 
-    Run <T> (objetos: OfficeExtension. clientobject \[ \] , Batch: (Context: Word. RequestContext) =<!-- -->&gt; Promessa <T> ): promessa <T> ;
+    run <T> (objects: OfficeExtension.ClientObject \[ \] , batch: (context: Word.RequestContext) =<!-- -->&gt; Promessa <T> ): Promessa <T> ;
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'export function run<T>(batch: (context: Word.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: Uma função que usa RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context. Sync ()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o suplemento do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do suplemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Word. Como o add-in do Office e o aplicativo Word são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Word a partir do complemento.
       type: '(context: <xref uid="word!Word.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 1164085d6a966b85c97b5513991e3f7557117175
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 433c0f786bae396513eed4b525589a2b668b2a02
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49339599"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51224254"
