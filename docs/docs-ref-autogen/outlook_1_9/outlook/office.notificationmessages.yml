@@ -7,12 +7,12 @@ summary: >-
   O objeto `NotificationMessages` é retornado como a propriedade `notificationMessages` de um item.
 
 
-  \[[Conjunto de APIs: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
-  **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+  **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-  **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação ou Leitura
+  **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
 isPreview: false
 isDeprecated: false
 type: interface
@@ -28,12 +28,12 @@ methods:
     Há um máximo de 5 notificações por mensagem. Definir mais retornará um erro `NumberOfNotificationMessagesExceeded`.
 
 
-    \[[Conjunto de APIs: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação ou Leitura
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
 
 
     #### <a name="examples"></a>Exemplos
@@ -114,10 +114,10 @@ methods:
       description: Um objeto JSON que contém a mensagem de notificação a ser adicionada ao item. Ele contém um `NotificationMessageDetails` objeto.
       type: <xref uid="outlook!Office.NotificationMessageDetails:interface" />
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -130,18 +130,18 @@ methods:
     Retorna todas as chaves e mensagens de um item.
 
 
-    \[[Conjunto de APIs: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`\n\n**[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação ou Leitura\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get all notifications.\nOffice.context.mailbox.item.notificationMessages.getAllAsync(function (asyncResult) {\n    if (asyncResult.status != \"failed\") {\n        Office.context.mailbox.item.notificationMessages.replaceAsync( \"notifications\", {\n            type: \"informationalMessage\",\n            message : \"Found \" + asyncResult.value.length + \" notifications.\",\n            icon : \"iconid\",\n            persistent: false\n        });\n    }\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nOffice.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          \n```"
+    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Get all notifications.\nOffice.context.mailbox.item.notificationMessages.getAllAsync(function (asyncResult) {\n    if (asyncResult.status != \"failed\") {\n        Office.context.mailbox.item.notificationMessages.replaceAsync( \"notifications\", {\n            type: \"informationalMessage\",\n            message : \"Found \" + asyncResult.value.length + \" notifications.\",\n            icon : \"iconid\",\n            persistent: false\n        });\n    }\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/35-notifications/add-getall-remove.yaml\nOffice.context.mailbox.item.notificationMessages.getAllAsync(handleResult);          \n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getAllAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<NotificationMessageDetails[]>) => void): void;'
     parameters:
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->. A `value` propriedade do resultado é uma matriz de `NotificationMessageDetails` objetos.
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. A `value` propriedade do resultado é uma matriz de `NotificationMessageDetails` objetos.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.NotificationMessageDetails:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -154,12 +154,12 @@ methods:
     Obtém uma mensagem de notificação de um item.
 
 
-    \[[Conjunto de APIs: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação ou Leitura
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
 
 
     #### <a name="examples"></a>Exemplos
@@ -183,10 +183,10 @@ methods:
       description: A chave para a mensagem de notificação a remover.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -202,12 +202,12 @@ methods:
     Se uma mensagem de notificação com a chave especificada não existir, `replaceAsync` adicionará a notificação.
 
 
-    \[[Conjunto de APIs: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Nível de permissão mínimo:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Modo aplicável do](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> Outlook:** Redação ou Leitura
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
 
 
     #### <a name="examples"></a>Exemplos
@@ -254,18 +254,18 @@ methods:
       description: Um objeto JSON que contém a nova mensagem de notificação para substituir a mensagem existente. Ele contém um `NotificationMessageDetails` objeto.
       type: <xref uid="outlook!Office.NotificationMessageDetails:interface" />
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejem acessar no método de retorno de chamada.'
+      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no parâmetro `callback` é chamada com um único parâmetro do tipo `Office.AsyncResult`<!-- -->.
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 4e2c39b27f8fe89f7c027c1ea78e6ff9490d81a8
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 1d2c3e73fba6c317f0bcf10fd880e8e9b0663ee2
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49857259"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51224597"
