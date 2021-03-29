@@ -3,7 +3,7 @@ name: Office.Auth
 uid: office!Office.Auth:interface
 package: office!
 fullName: Office.Auth
-summary: O namespace de Auth do Office, `Office.context.auth`<!-- -->, fornece um método que permite que o aplicativo cliente do Office obtenha um token de acesso ao aplicativo Web do complemento. Indiretamente, isso também habilita o suplemento para acessar os dados do Microsoft Graph do usuário sem exigir que o usuário se conecte uma segunda vez.
+summary: O namespace do Office Auth, `Office.context.auth`<!-- -->, fornece um método que permite que o aplicativo cliente do Office obtenha um token de acesso ao aplicativo Web do complemento. Indiretamente, isso também habilita o suplemento para acessar os dados do Microsoft Graph do usuário sem exigir que o usuário se conecte uma segunda vez.
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,12 +13,12 @@ methods:
   uid: office!Office.Auth#getAccessToken:member(1)
   package: office!
   fullName: getAccessToken(options)
-  summary: Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o fluxo [OAuth "on behalf of"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->. Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office podem entrar com contas organizacionais e contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
+  summary: Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem os usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o [fluxo "on behalf of" OAuth](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->. Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office se ins signatam com Contas Organizacionais e Contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
   remarks: >-
     **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
 
-    **Importante:** no Outlook, não há suporte para essa API se o complemento for carregado em uma caixa de correio do Outlook.com ou do Gmail.
+    **Importante**: no Outlook, essa API não será suportada se o complemento for carregado em uma caixa de correio Outlook.com ou Gmail.
 
 
     **Conjunto de requisitos**: [IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
@@ -32,19 +32,19 @@ methods:
       type: <xref uid="office!Office.AuthOptions:interface" />
     return:
       type: Promise&lt;string&gt;
-      description: Promessa para o token de acesso.
+      description: Promessa ao token de acesso.
 - name: getAccessTokenAsync(options, callback)
   uid: office!Office.Auth#getAccessTokenAsync:member(1)
   package: office!
   fullName: getAccessTokenAsync(options, callback)
   summary: >-
-    Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o fluxo [OAuth "on behalf of"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->.
+    Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem os usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o [fluxo "on behalf of" OAuth](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->.
 
 
-    **Importante:** no Outlook, não há suporte para essa API se o complemento for carregado em uma caixa de correio do Outlook.com ou do Gmail.
+    **Importante**: no Outlook, essa API não será suportada se o complemento for carregado em uma caixa de correio Outlook.com ou Gmail.
 
 
-    **Aviso:** `getAccessTokenAsync` foi preterido. Use `Office.auth.getAccessToken` em vez disso.
+    **Aviso**: `getAccessTokenAsync` foi preterido. Use `Office.auth.getAccessToken` em vez disso.
   remarks: >-
     **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
@@ -52,7 +52,7 @@ methods:
     **Conjunto de requisitos**: [IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
 
 
-    Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office podem entrar com contas organizacionais e contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
+    Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office se ins signatam com Contas Organizacionais e Contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
 
 
     #### <a name="examples"></a>Exemplos
@@ -80,7 +80,7 @@ methods:
       description: Opcional. Aceita um `AuthOptions` objeto para definir comportamentos de login.
       type: <xref uid="office!Office.AuthOptions:interface" />
     - id: callback
-      description: Opcional. Aceita um método de retorno que possa analisar o token de ID de usuário ou usar o token fluxo "em nome de" para obter acesso ao Microsoft Graph. Se `AsyncResult.status` for "bem-sucedido", então `AsyncResult.value` será o AAD v bruto. token de acesso 2.0 formatado.
+      description: Opcional. Aceita um método de retorno que possa analisar o token de ID de usuário ou usar o token fluxo "em nome de" para obter acesso ao Microsoft Graph. Se `AsyncResult.status` for "bem-sucedido", `AsyncResult.value` será o AAD v bruto. token de acesso 2.0 formatado.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -90,13 +90,13 @@ methods:
   package: office!
   fullName: getAccessTokenAsync(callback)
   summary: >-
-    Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o fluxo [OAuth "on behalf of"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->.
+    Chama o ponto de extremidade do Azure Active Directory V 2.0 para obter um token de acesso para o aplicativo Web do seu suplemento. Permite que os complementos identifiquem os usuários. O código do lado do servidor pode usar esse token para acessar o Microsoft Graph para o aplicativo Web do complemento usando o [fluxo "on behalf of" OAuth](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)<!-- -->.
 
 
-    **Importante:** no Outlook, não há suporte para essa API se o complemento for carregado em uma caixa de correio do Outlook.com ou do Gmail.
+    **Importante**: no Outlook, essa API não será suportada se o complemento for carregado em uma caixa de correio Outlook.com ou Gmail.
 
 
-    **Aviso:** `getAccessTokenAsync` foi preterido. Use `Office.auth.getAccessToken` em vez disso.
+    **Aviso**: `getAccessTokenAsync` foi preterido. Use `Office.auth.getAccessToken` em vez disso.
   remarks: >-
     **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
@@ -104,7 +104,7 @@ methods:
     **Conjunto de requisitos**: [IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
 
 
-    Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office podem entrar com contas organizacionais e contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
+    Essa API exige uma configuração de logon única que preencha o suplemento para um aplicativo do Azure. Os usuários do Office se ins signatam com Contas Organizacionais e Contas da Microsoft. O Microsoft Azure retorna tokens destinados a ambos os tipos de conta de usuário para acessar recursos no Microsoft Graph.
   isPreview: false
   isDeprecated: true
   customDeprecatedMessage: Use `Office.auth.getAccessToken` instead.
@@ -112,15 +112,15 @@ methods:
     content: 'getAccessTokenAsync(callback?: (result: AsyncResult<string>) => void): void;'
     parameters:
     - id: callback
-      description: Opcional. Aceita um método de retorno que possa analisar o token de ID de usuário ou usar o token fluxo "em nome de" para obter acesso ao Microsoft Graph. Se `AsyncResult.status` for "bem-sucedido", então `AsyncResult.value` será o AAD v bruto. token de acesso 2.0 formatado.
+      description: Opcional. Aceita um método de retorno que possa analisar o token de ID de usuário ou usar o token fluxo "em nome de" para obter acesso ao Microsoft Graph. Se `AsyncResult.status` for "bem-sucedido", `AsyncResult.value` será o AAD v bruto. token de acesso 2.0 formatado.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 559034659f298495ce3604e5775b30ebd8457272
-  ms.sourcegitcommit: 94ed3108858c111541f7430d7482ea329ad21dbd
+  ms.openlocfilehash: 061fdbf3ebc16abeabcda82deb61d890dd2aa251
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 02/03/2021
-  ms.locfileid: "50092008"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51320535"
