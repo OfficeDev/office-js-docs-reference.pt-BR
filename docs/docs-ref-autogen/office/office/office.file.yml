@@ -4,7 +4,7 @@ uid: office!Office.File:interface
 package: office!
 fullName: Office.File
 summary: Representa o arquivo de documento associado a um Suplemento do Office.
-remarks: Acessar o objeto File com a Propriedade AsyncResult. Value na função de retorno de chamada passada para o método Document. getFileAsync.
+remarks: Acesse o objeto File com a propriedade AsyncResult.value na função de retorno de chamada passada para o método Document.getFileAsync.
 isPreview: false
 isDeprecated: false
 type: interface
@@ -40,7 +40,7 @@ methods:
   fullName: closeAsync(callback)
   summary: Fecha o arquivo do documento.
   remarks: >-
-    **Conjunto de requisitos**: [arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)
+    **Conjunto de requisitos**: [Arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)
 
 
     No more than two documents are allowed to be in memory; otherwise the Document.getFileAsync operation will fail. Use the File.closeAsync method to close the file when you are finished working with it.
@@ -49,14 +49,14 @@ methods:
     Na função de retorno de chamada passada para o método closeAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
 
 
-    <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna undefined porque não há objetos ou dados a serem recuperados.</td> </tr> <tr> <td>AsyncResult. status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
+    <table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Sempre retorna indefinido porque não há nenhum objeto ou dados a ser recuperado.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'closeAsync(callback?: (result: AsyncResult<void>) => void): void;'
     parameters:
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do [tipo Office.AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -66,7 +66,7 @@ methods:
   package: office!
   fullName: getSliceAsync(sliceIndex, callback)
   summary: Retorna a fatia especificada.
-  remarks: "**Conjunto de requisitos**: [arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)\n\nNa função de retorno de chamada passada para o método getSliceAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.\n\n<table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Slice.</td> </tr> <tr> <td>AsyncResult. status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// This sample shows how to get all the slices of a file. \n// The asynchronous operation returns a Promise so it can be awaited.\nprivate getAllSlices(file: any): Promise<any> {\n    var self = this;\n    var isError = false;\n\n    return new Promise(async (resolve, reject) => {\n        var documentFileData = [];\n        for (var sliceIndex = 0; (sliceIndex < file.sliceCount) && !isError; sliceIndex++) {\n            var sliceReadPromise = new Promise((sliceResolve, sliceReject) => {\n                file.getSliceAsync(sliceIndex, (asyncResult) => {\n                    if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {\n                        documentFileData = documentFileData.concat(asyncResult.value.data);\n                        sliceResolve({\n                            IsSuccess: true,\n                            Data: documentFileData\n                        });\n                    } else {\n                        file.closeAsync();\n                        sliceReject({\n                            IsSuccess: false,\n                            ErrorMessage: `Error in reading the slice: ${sliceIndex} of the document`\n                        });\n                    }\n                });\n            });\n            await sliceReadPromise.catch((error) => {\n                isError = true;\n            });\n        }\n\n        if (isError || !documentFileData.length) {\n            reject('Error while reading document. Please try it again.');\n            return;\n        }\n\n        file.closeAsync();\n\n        resolve({\n            IsSuccess: true,\n            Data: documentFileData\n        });\n    });\n}\n```"
+  remarks: "**Conjunto de requisitos**: [Arquivo](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#file)\n\nNa função de retorno de chamada passada para o método getSliceAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.\n\n<table> <tr> <th>Propriedade</th> <th>Use para...</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Slice.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Um item definido pelo usuário de qualquer tipo que é retornado no objeto AsyncResult sem ser alterado.</td> </tr> </table>\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// This sample shows how to get all the slices of a file. \n// The asynchronous operation returns a Promise so it can be awaited.\nprivate getAllSlices(file: any): Promise<any> {\n    var self = this;\n    var isError = false;\n\n    return new Promise(async (resolve, reject) => {\n        var documentFileData = [];\n        for (var sliceIndex = 0; (sliceIndex < file.sliceCount) && !isError; sliceIndex++) {\n            var sliceReadPromise = new Promise((sliceResolve, sliceReject) => {\n                file.getSliceAsync(sliceIndex, (asyncResult) => {\n                    if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {\n                        documentFileData = documentFileData.concat(asyncResult.value.data);\n                        sliceResolve({\n                            IsSuccess: true,\n                            Data: documentFileData\n                        });\n                    } else {\n                        file.closeAsync();\n                        sliceReject({\n                            IsSuccess: false,\n                            ErrorMessage: `Error in reading the slice: ${sliceIndex} of the document`\n                        });\n                    }\n                });\n            });\n            await sliceReadPromise.catch((error) => {\n                isError = true;\n            });\n        }\n\n        if (isError || !documentFileData.length) {\n            reject('Error while reading document. Please try it again.');\n            return;\n        }\n\n        file.closeAsync();\n\n        resolve({\n            IsSuccess: true,\n            Data: documentFileData\n        });\n    });\n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -76,15 +76,15 @@ methods:
       description: Especifica o índice com base em zero da fatia a ser recuperada. Obrigatório.
       type: number
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` Propriedade do resultado é o objeto [Office. Slice](xref:office!Office.Slice:interface) .
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do [tipo Office.AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é o objeto [Office.Slice.](xref:office!Office.Slice:interface)
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Slice:interface" />&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 6508cf6d257d02c6f8015d204bbc6e4fe94cf16d
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 86beb27ff140734a445272a2236e141c12e34263
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183318"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51307255"
