@@ -4,10 +4,10 @@ uid: excel!Excel.Setting:class
 package: excel!
 fullName: Excel.Setting
 summary: >-
-  A configuração representa um par chave-valor de uma configuração persistente para o documento (por arquivo por add-in). Esse par chave-valor personalizado pode ser usado para armazenar informações de estado ou ciclo de vida necessárias para o conteúdo ou o complemento do painel de tarefas. Observe que as configurações são persistentes no documento e, portanto, não é um lugar para armazenar informações confidenciais ou protegidas, como informações do usuário e senha.
+  A configuração representa um par de valores-chave de uma configuração persistente para o documento (por arquivo por complemento). Esse par personalizado de valores de chave pode ser usado para armazenar as informações de estado ou ciclo de vida necessárias pelo conteúdo ou pelo complemento do painel de tarefas. Observe que as configurações são persistentes no documento e, portanto, não é um local para armazenar informações confidenciais ou protegidas, como informações do usuário e senha.
 
 
-  \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     A chave que representa a id da configuração.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     Representa o valor armazenado para esta configuração.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -66,7 +66,7 @@ methods:
     Exclui a configuração.
 
 
-    \[[Conjunto de APIs: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -87,7 +87,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.SettingLoadOptions): Excel.Setting;'
     parameters:
     - id: options
-      description: Fornece opções para quais propriedades do objeto carregar.
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
       type: <xref uid="excel!Excel.Interfaces.SettingLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.Setting:class" />
@@ -104,7 +104,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Setting;'
     parameters:
     - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a carregar.
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Setting:class" />
@@ -125,7 +125,7 @@ methods:
               }): Excel.Setting;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a carregar e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação `propertyNamesAndPaths.expand` a carregar.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -138,9 +138,9 @@ methods:
   uid: excel!Excel.Setting#set:member(1)
   package: excel!
   fullName: set(properties, options)
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto de API do mesmo tipo.
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
   remarks: >-
-    Esse método tem a seguinte assinatura adicional:
+    Este método tem a seguinte assinatura adicional:
 
 
     `set(properties: Excel.Setting): void`
@@ -153,7 +153,7 @@ methods:
       description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
       type: <xref uid="excel!Excel.Interfaces.SettingUpdateData:interface" />
     - id: options
-      description: Fornece uma opção para suprimir erros se o objeto de propriedades tentar definir qualquer propriedade somente leitura.
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -179,7 +179,7 @@ methods:
   uid: excel!Excel.Setting#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript para fornecer uma saída mais útil quando um objeto `toJSON()` de API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado para ele.) Enquanto o objeto Excel.Setting original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `Excel.Interfaces.SettingData`<!-- -->) que contém cópias rasas de qualquer propriedade filho carregada do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.Setting original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.SettingData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -190,9 +190,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 022c46b71118a8b53112bb1ba48f2db0b76bf0c2
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 332683c7ad8ac1e9c09e75441d660b3d2d21d18c
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49857423"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51342825"
