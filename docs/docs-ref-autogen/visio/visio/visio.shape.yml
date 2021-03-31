@@ -231,28 +231,20 @@ methods:
     return:
       type: <xref uid="visio!Visio.Shape:class" />
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var activePage = ctx.document.getActivePage();\n    var shapeName = \"Sample Name\";\n    var shape = activePage.shapes.getItem(shapeName);\n    shape.load([\"name\", \"id\", \"text\", \"select\"]);\n    return ctx.sync().then(function () {\n        console.log(shape.name);\n        console.log(shape.id);\n        console.log(shape.text);\n        console.log(shape.select);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nVisio.run(session, function (ctx) {\n    var activePage = ctx.document.getActivePage();\n    var shape = activePage.shapes.getItem(0);\n    shape.view.highlight = { color: \"#E7E7E7\", width: 100 };\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: visio!Visio.Shape#load:member(3)
   package: visio!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: >-
-      load(option?: {
-                  select?: string;
-                  expand?: string;
-              }): Visio.Shape;
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Shape;'
     parameters:
-    - id: option
-      description: ''
-      type: >-
-        {
-                    select?: string;
-                    expand?: string;
-                }
+    - id: propertyNamesAndPaths
+      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a ser carregadas, e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a ser carregadas.
+      type: '{ select?: string; expand?: string; }'
     return:
       type: <xref uid="visio!Visio.Shape:class" />
       description: ''
@@ -312,9 +304,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 4996f66b2ef34833d16affed0939f08f24163536
-  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
+  ms.openlocfilehash: 2ae337630aa8a8cbd8c71b845e4d3436538b5a1c
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/08/2021
-  ms.locfileid: "50542017"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51357994"
