@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: address
   summary: >-
-    Especifica a referência de intervalo no estilo A1. O valor de endereço conterá a referência Sheet (por exemplo, "Sheet1! A1:B4").
+    Especifica a referência de intervalo no estilo A1. O valor do endereço contém a referência da planilha (por exemplo, "Sheet1! A1:B4").
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -34,7 +34,7 @@ properties:
   package: excel!
   fullName: addressLocal
   summary: >-
-    Especifica a referência de intervalo para o intervalo especificado no idioma do usuário.
+    Representa a referência de intervalo para o intervalo especificado no idioma do usuário.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -114,7 +114,7 @@ properties:
   package: excel!
   fullName: conditionalFormats
   summary: >-
-    A coleção de ConditionalFormats que intercepta o intervalo.
+    A coleção de `ConditionalFormats` que intercepta o intervalo.
 
 
     \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -385,7 +385,7 @@ properties:
   package: excel!
   fullName: style
   summary: >-
-    Representa o estilo de intervalo atual. Se os estilos das células são inconsistentes, null será retornado. Para estilos personalizados, o nome do estilo será retornado. Para estilos integrados, uma cadeia de caracteres que representa um valor no número BuiltInStyle será retornada.
+    Representa o estilo de intervalo atual. Se os estilos das células são inconsistentes, `null` serão retornados. Para estilos personalizados, o nome do estilo será retornado. Para estilos integrados, uma cadeia de caracteres que representa um valor `BuiltInStyle` no número será retornada.
 
 
     \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -402,7 +402,7 @@ properties:
   package: excel!
   fullName: text
   summary: >-
-    Valores de texto do intervalo especificado. O valor de texto não depende da largura da célula. A substituição de sinal que acontece na interface do usuário \# do Excel não afetará o valor de texto retornado pela API.
+    Valores de texto do intervalo especificado. O valor de texto não depende da largura da célula. A substituição de sinal de número ( ) que acontece na interface do usuário do Excel não afetará o valor de texto \# retornado pela API.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -418,7 +418,7 @@ properties:
   package: excel!
   fullName: values
   summary: >-
-    Representa os valores brutos do intervalo especificado. Os dados retornados podem ser dos tipos: cadeia de caracteres, número ou booliano. Células que contêm um erro retornarão a cadeia de caracteres de erro.
+    Representa os valores brutos do intervalo especificado. Os dados retornados podem ser uma cadeia de caracteres, número ou booleano. Células que contêm um erro retornarão a cadeia de caracteres de erro. Se o valor retornado começar com um sinal de mais ("+"), menos ("-"), ou sinal de igual ("="), o Excel interpretará esse valor como uma fórmula.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -495,7 +495,7 @@ methods:
     content: 'clear(applyTo?: Excel.ClearApplyTo): void;'
     parameters:
     - id: applyTo
-      description: Opcional. Determina o tipo de ação clara. Consulte Excel.ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Consulte `Excel.ClearApplyTo` para obter detalhes.
       type: <xref uid="excel!Excel.ClearApplyTo:enum" />
     return:
       type: void
@@ -516,7 +516,7 @@ methods:
     content: 'clear(applyToString?: "All" | "Formats" | "Contents" | "Hyperlinks" | "RemoveHyperlinks"): void;'
     parameters:
     - id: applyToString
-      description: Opcional. Determina o tipo de ação clara. Consulte Excel.ClearApplyTo para obter detalhes.
+      description: Opcional. Determina o tipo de ação clara. Consulte `Excel.ClearApplyTo` para obter detalhes.
       type: "\"All\" | \"Formats\" | \"Contents\" | \"Hyperlinks\" | \"RemoveHyperlinks\""
     return:
       type: void
@@ -537,7 +537,7 @@ methods:
     content: 'delete(shift: Excel.DeleteShiftDirection): void;'
     parameters:
     - id: shift
-      description: Especifica como deslocar as células. Consulte Excel.DeleteShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte `Excel.DeleteShiftDirection` para obter detalhes.
       type: <xref uid="excel!Excel.DeleteShiftDirection:enum" />
     return:
       type: void
@@ -558,7 +558,7 @@ methods:
     content: 'delete(shiftString: "Up" | "Left"): void;'
     parameters:
     - id: shiftString
-      description: Especifica como deslocar as células. Consulte Excel.DeleteShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte `Excel.DeleteShiftDirection` para obter detalhes.
       type: "\"Up\" | \"Left\""
     return:
       type: void
@@ -568,7 +568,7 @@ methods:
   package: excel!
   fullName: getAbsoluteResizedRange(numRows, numColumns)
   summary: >-
-    Obtém um objeto Range com a mesma célula superior esquerda do objeto Range atual, mas com os números especificados de linhas e colunas.
+    Obtém um objeto com a mesma célula superior esquerda que o objeto atual, mas com os números especificados de `Range` `Range` linhas e colunas.
 
 
     \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -592,7 +592,7 @@ methods:
   package: excel!
   fullName: getBoundingRect(anotherRange)
   summary: >-
-    Obtém o menor objeto Range que engloba os intervalos determinados. Por exemplo, o GetBoundingRect de "B2:C5" e "D10:E15" é "B2:E15".
+    Obtém o menor objeto de intervalo que abrange os intervalos determinados. Por exemplo, o `GetBoundingRect` de "B2:C5" e "D10:E15" é "B2:E15".
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -603,7 +603,7 @@ methods:
     content: 'getBoundingRect(anotherRange: Range | string): Excel.Range;'
     parameters:
     - id: anotherRange
-      description: O nome ou endereço do intervalo ou o objeto Range.
+      description: O objeto range, o endereço ou o nome do intervalo.
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -658,7 +658,7 @@ methods:
   package: excel!
   fullName: getColumnsAfter(count)
   summary: >-
-    Obtém um determinado número de colunas à direita do objeto Range atual.
+    Obtém um determinado número de colunas à direita do objeto `Range` atual.
 
 
     \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -679,7 +679,7 @@ methods:
   package: excel!
   fullName: getColumnsBefore(count)
   summary: >-
-    Obtém um determinado número de colunas à esquerda do objeto Range atual.
+    Obtém um determinado número de colunas à esquerda do objeto `Range` atual.
 
 
     \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -734,7 +734,7 @@ methods:
   package: excel!
   fullName: getImage()
   summary: >-
-    Renderiza o intervalo como uma imagem png codificada com base64. **Importante**: no momento, essa API não tem suporte no Excel para Mac. Visite [OfficeDev/office-js Problema \# 235](https://github.com/OfficeDev/office-js/issues/235) para o status atual.
+    Renderiza o intervalo como uma imagem png codificada com base64. *Importante**: no momento, essa API não tem suporte no Excel para Mac. Visite [OfficeDev/office-js Problema \# 235](https://github.com/OfficeDev/office-js/issues/235) para o status atual.
 
 
     \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -772,7 +772,7 @@ methods:
   package: excel!
   fullName: getIntersectionOrNullObject(anotherRange)
   summary: >-
-    Obtém o objeto de intervalo que representa a interseção retangular dos intervalos determinados. Se nenhuma interseção for encontrada, retornará um objeto null.
+    Obtém o objeto de intervalo que representa a interseção retangular dos intervalos determinados. Se nenhuma interseção for encontrada, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -868,7 +868,7 @@ methods:
   package: excel!
   fullName: getResizedRange(deltaRows, deltaColumns)
   summary: >-
-    Obtém um objeto Range semelhante ao objeto Range atual, mas com seu canto inferior direito expandido (ou recolhido) por um determinado número de linhas e colunas.
+    Obtém um objeto semelhante ao objeto atual, mas com seu canto inferior direito expandido (ou contratado) por algum número de linhas `Range` `Range` e colunas.
 
 
     \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -913,7 +913,7 @@ methods:
   package: excel!
   fullName: getRowsAbove(count)
   summary: >-
-    Obtém um determinado número de linhas acima do objeto Range atual.
+    Obtém um determinado número de linhas acima do objeto `Range` atual.
 
 
     \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -934,7 +934,7 @@ methods:
   package: excel!
   fullName: getRowsBelow(count)
   summary: >-
-    Obtém um determinado número de linhas abaixo do objeto Range atual.
+    Obtém um determinado número de linhas abaixo do objeto `Range` atual.
 
 
     \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -955,7 +955,7 @@ methods:
   package: excel!
   fullName: getSurroundingRegion()
   summary: >-
-    Retorna um objeto Range que representa a região circundante da célula superior esquerda nesse intervalo. Uma região ao redor é um intervalo limitado por qualquer combinação de linhas e colunas em branco em relação a esse intervalo.
+    Retorna um `Range` objeto que representa a região ao redor da célula superior esquerda neste intervalo. Uma região ao redor é um intervalo limitado por qualquer combinação de linhas e colunas em branco em relação a esse intervalo.
 
 
     \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -972,7 +972,7 @@ methods:
   package: excel!
   fullName: getUsedRange(valuesOnly)
   summary: >-
-    Retorna o intervalo usado do objeto range determinado. Se não houver nenhuma célula usada dentro do intervalo, essa função gerará um erro ItemNotFound.
+    Retorna o intervalo usado do objeto de intervalo determinado. Se não houver células usadas dentro do intervalo, essa função lançará um `ItemNotFound` erro.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -993,7 +993,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    Retorna o intervalo usado do objeto range determinado. Se não houver nenhuma célula usada no intervalo, esta função retornará um objeto null.
+    Retorna o intervalo usado do objeto de intervalo determinado. Se não houver células usadas dentro do intervalo, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1031,7 +1031,7 @@ methods:
   package: excel!
   fullName: insert(shift)
   summary: >-
-    Insere uma célula ou um intervalo de células na planilha, no lugar desse intervalo, e desloca as outras células para liberar espaço. Retorna um novo objeto Range no espaço em branco atual.
+    Insere uma célula ou um intervalo de células na planilha, no lugar desse intervalo, e desloca as outras células para liberar espaço. Retorna um novo `Range` objeto no espaço agora em branco.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1042,7 +1042,7 @@ methods:
     content: 'insert(shift: Excel.InsertShiftDirection): Excel.Range;'
     parameters:
     - id: shift
-      description: Especifica como deslocar as células. Consulte Excel.InsertShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte `Excel.InsertShiftDirection` para obter detalhes.
       type: <xref uid="excel!Excel.InsertShiftDirection:enum" />
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1052,7 +1052,7 @@ methods:
   package: excel!
   fullName: insert(shiftString)
   summary: >-
-    Insere uma célula ou um intervalo de células na planilha, no lugar desse intervalo, e desloca as outras células para liberar espaço. Retorna um novo objeto Range no espaço em branco atual.
+    Insere uma célula ou um intervalo de células na planilha, no lugar desse intervalo, e desloca as outras células para liberar espaço. Retorna um novo `Range` objeto no espaço agora em branco.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1063,7 +1063,7 @@ methods:
     content: 'insert(shiftString: "Down" | "Right"): Excel.Range;'
     parameters:
     - id: shiftString
-      description: Especifica como deslocar as células. Consulte Excel.InsertShiftDirection para obter detalhes.
+      description: Especifica como deslocar as células. Consulte `Excel.InsertShiftDirection` para obter detalhes.
       type: "\"Down\" | \"Right\""
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1143,7 +1143,7 @@ methods:
     content: 'merge(across?: boolean): void;'
     parameters:
     - id: across
-      description: Opcional. Defina true para mesclar células em todas as linhas do intervalo especificado como células mescladas separadamente. O valor padrão é false.
+      description: Opcional. Definir `true` como mesclar células em cada linha do intervalo especificado como células mescladas separadas. O valor padrão é `false`<!-- -->.
       type: boolean
     return:
       type: void
@@ -1277,9 +1277,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6465eb90e48acef61fd77910fe0e03c491f44fb9
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 27bc1aa49f6299b315178e08838494c09c5bbc75
+  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51322320"
+  ms.lasthandoff: 04/02/2021
+  ms.locfileid: "51527386"
