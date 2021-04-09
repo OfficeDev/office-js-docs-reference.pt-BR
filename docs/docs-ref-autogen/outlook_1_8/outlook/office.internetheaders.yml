@@ -79,14 +79,45 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
+    content: 'getAsync(names: string[], options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
       description: Os nomes dos headers da Internet a serem retornados.
       type: string[]
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(names, callback)
+  uid: outlook!Office.InternetHeaders#getAsync:member(2)
+  package: outlook!
+  fullName: getAsync(names, callback)
+  summary: >-
+    Devido a uma matriz de nomes de header da Internet, este método retorna um dicionário contendo esses headers da Internet e seus valores. Se o complemento solicitar um header x que não está disponível, esse header x não será retornado nos resultados.
+
+
+    **Observação**: este método destina-se a retornar os valores dos headers personalizados que você definiu usando o `setAsync` método.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(names: string[], callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
+    parameters:
+    - id: names
+      description: Os nomes dos headers da Internet a serem retornados.
+      type: string[]
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
@@ -134,14 +165,45 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
+    content: 'removeAsync(names: string[], options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
       description: Os nomes dos headers da Internet a serem removidos.
       type: string[]
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das seguintes propriedades: `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(names, callback)
+  uid: outlook!Office.InternetHeaders#removeAsync:member(2)
+  package: outlook!
+  fullName: removeAsync(names, callback)
+  summary: >-
+    Devido a uma matriz de nomes de header da Internet, esse método remove os headers especificados da coleção de header da Internet.
+
+
+    **Observação**: este método destina-se a remover os headers personalizados que você definiu usando o `setAsync` método.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(names: string[], callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
+    parameters:
+    - id: names
+      description: Os nomes dos headers da Internet a serem removidos.
+      type: string[]
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
@@ -193,13 +255,13 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(headers: Object, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: headers
       description: Os nomes e os valores correspondentes dos headers a serem definidos. Deve ser um objeto de dicionário com chaves sendo os nomes dos headers da Internet e valores sendo os valores dos headers da Internet.
       type: Object
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no parâmetro é chamada com `callback` um único parâmetro do tipo Office.AsyncResult. Quaisquer erros encontrados serão fornecidos na propriedade `asyncResult.error`.
@@ -207,10 +269,44 @@ methods:
     return:
       type: void
       description: ''
+- name: setAsync(headers, callback)
+  uid: outlook!Office.InternetHeaders#setAsync:member(2)
+  package: outlook!
+  fullName: setAsync(headers, callback)
+  summary: >-
+    Define os headers da Internet especificados como os valores especificados.
+
+
+    O método cria um novo header se o header especificado ainda não existir; caso contrário, o valor existente será substituído `setAsync` pelo novo valor.
+
+
+    **Observação**: este método destina-se a definir os valores de seus headers personalizados.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(headers: Object, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: headers
+      description: Os nomes e os valores correspondentes dos headers a serem definidos. Deve ser um objeto de dicionário com chaves sendo os nomes dos headers da Internet e valores sendo os valores dos headers da Internet.
+      type: Object
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no parâmetro é chamada com `callback` um único parâmetro do tipo Office.AsyncResult. Quaisquer erros encontrados serão fornecidos na propriedade `asyncResult.error`.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
 metadata:
-  ms.openlocfilehash: ea3ea93bb176663c086c4478e98984430c6c47a7
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 6ba238f66d05b6745bab14bb17211773ca9d46b7
+  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51339001"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "51659378"
