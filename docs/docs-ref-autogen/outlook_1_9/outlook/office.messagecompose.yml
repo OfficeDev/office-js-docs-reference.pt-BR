@@ -784,7 +784,7 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: uri
       description: O URI que fornece o local do arquivo anexado à mensagem ou compromisso. O comprimento máximo é de 2048 caracteres.
@@ -793,8 +793,60 @@ methods:
       description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `isInline`<!-- -->: Se for true, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `isInline`<!-- -->: Se for true, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
       type: '<xref uid="office!Office.AsyncContextOptions:interface" /> & { isInline: boolean }'
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addFileAttachmentAsync(uri, attachmentName, callback)
+  uid: outlook!Office.MessageCompose#addFileAttachmentAsync:member(2)
+  package: outlook!
+  fullName: addFileAttachmentAsync(uri, attachmentName, callback)
+  summary: >-
+    Adiciona um arquivo a uma mensagem ou um compromisso como um anexo.
+
+
+    O método `addFileAttachmentAsync` carrega o arquivo no URI especificado e anexa-o ao item no formulário de composição.
+
+
+    Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+
+
+    **Importante**: Em versões recentes do Outlook no Windows, foi introduzido um bug que acrescenta incorretamente um header a essa ação (seja usando essa API ou a interface do usuário do `Authorization: Bearer` Outlook). Para resolver esse problema, você pode tentar usar a `addFileAttachmentFromBase64` API introduzida com o conjunto de requisitos 1.8.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
+
+
+    - `FileTypeNotSupported`<!-- -->: O anexo tem uma extensão que não é permitida.
+
+
+    - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: uri
+      description: O URI que fornece o local do arquivo anexado à mensagem ou compromisso. O comprimento máximo é de 2048 caracteres.
+      type: string
+    - id: attachmentName
+      description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
@@ -888,7 +940,7 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options: Office.AsyncContextOptions & { isInline: boolean }, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: base64File
       description: O conteúdo codificado em base64 de uma imagem ou arquivo a ser adicionado a um email ou evento.
@@ -897,8 +949,60 @@ methods:
       description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `isInline`<!-- -->: Se true, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `isInline`<!-- -->: Se true, indica que o anexo será mostrado em linha no corpo da mensagem e não deve ser exibido na lista de anexos.'
       type: '<xref uid="office!Office.AsyncContextOptions:interface" /> & { isInline: boolean }'
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no parâmetro é chamada com `callback` um único parâmetro do tipo Office.AsyncResult. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addFileAttachmentFromBase64Async(base64File, attachmentName, callback)
+  uid: outlook!Office.MessageCompose#addFileAttachmentFromBase64Async:member(2)
+  package: outlook!
+  fullName: addFileAttachmentFromBase64Async(base64File, attachmentName, callback)
+  summary: >-
+    Adiciona um arquivo a uma mensagem ou um compromisso como um anexo.
+
+
+    O método carrega o arquivo da codificação base64 e o anexa ao `addFileAttachmentFromBase64Async` item no formulário de composição. Este método retorna o identificador de anexo no `asyncResult.value` objeto.
+
+
+    Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+
+
+    **Observação**: se você estiver usando uma API de URL de dados (por exemplo, `readAsDataURL`<!-- -->), você precisa retirar o prefixo da URL de dados e enviar o restante da cadeia de caracteres para essa API. Por exemplo, se a cadeia de caracteres completa for representada por `data:image/svg+xml;base64,<rest of base64 string>`<!-- -->, remover `data:image/svg+xml;base64,`<!-- -->.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `AttachmentSizeExceeded`<!-- -->: O anexo é maior do que o permitido.
+
+
+    - `FileTypeNotSupported`<!-- -->: O anexo tem uma extensão que não é permitida.
+
+
+    - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: base64File
+      description: O conteúdo codificado em base64 de uma imagem ou arquivo a ser adicionado a um email ou evento.
+      type: string
+    - id: attachmentName
+      description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no parâmetro é chamada com `callback` um único parâmetro do tipo Office.AsyncResult. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao carregar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
@@ -944,7 +1048,7 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: eventType
       description: O evento que deve invocar o manipulador.
@@ -953,8 +1057,42 @@ methods:
       description: A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade type no parâmetro corresponderá ao `eventType` parâmetro passado para `addHandlerAsync`<!-- -->.
       type: any
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addHandlerAsync(eventType, handler, callback)
+  uid: outlook!Office.MessageCompose#addHandlerAsync:member(2)
+  package: outlook!
+  fullName: addHandlerAsync(eventType, handler, callback)
+  summary: >-
+    Adiciona um manipulador de eventos a um evento com suporte. **Observação:** os eventos estão disponíveis somente com o painel de tarefas.
+
+
+    Consulte a seção Eventos do modelo de objeto [item](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) para eventos com suporte.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: O evento que deve invocar o manipulador.
+      type: <xref uid="office!Office.EventType:enum" /> | string
+    - id: handler
+      description: A função para manipular o evento. A função deve aceitar um parâmetro exclusivo, que é um objeto literal. A propriedade type no parâmetro corresponderá ao `eventType` parâmetro passado para `addHandlerAsync`<!-- -->.
+      type: any
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
@@ -1037,7 +1175,7 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: itemId
       description: O identificador do Exchange do item a anexar. O comprimento máximo é de 100 caracteres.
@@ -1046,8 +1184,54 @@ methods:
       description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao adicionar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addItemAttachmentAsync(itemId, attachmentName, callback)
+  uid: outlook!Office.MessageCompose#addItemAttachmentAsync:member(2)
+  package: outlook!
+  fullName: addItemAttachmentAsync(itemId, attachmentName, callback)
+  summary: >-
+    Adiciona um item do Exchange, como uma mensagem, como anexo na mensagem ou no compromisso.
+
+
+    O método `addItemAttachmentAsync` anexa o item com o identificador do Exchange especificado ao item no formulário de composição. Se você especificar um método de retorno de chamada, o método será chamado com um parâmetro, `asyncResult`<!-- -->, que contém o identificador de anexo ou um código que indica qualquer erro que ocorreu ao anexar o item. Você pode usar o parâmetro options para passar informações de estado para o método de retorno de chamada, se necessário.
+
+
+    Posteriormente, você poderá usar o identificador com o método `removeAttachmentAsync` para remover o anexo na mesma sessão.
+
+
+    Se o Suplemento do Office estiver em execução no Outlook na Web, o método `addItemAttachmentAsync` pode anexar itens que não sejam aquele que você está editando; no entanto, isso não tem suporte e não é recomendado.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `NumberOfAttachmentsExceeded`<!-- -->: A mensagem ou o compromisso tem muitos anexos.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+    parameters:
+    - id: itemId
+      description: O identificador do Exchange do item a anexar. O comprimento máximo é de 100 caracteres.
+      type: any
+    - id: attachmentName
+      description: O nome do anexo que é mostrado enquanto o anexo está sendo carregado. O tamanho máximo é de 255 caracteres.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Em caso de êxito, o identificador do anexo será fornecido na propriedade `asyncResult.value`. Se houver falha ao adicionar o anexo, o objeto `asyncResult` conterá um objeto `Error` que fornece uma descrição do erro.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
@@ -1175,14 +1359,54 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'getAttachmentContentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+    content: 'getAttachmentContentAsync(attachmentId: string, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
     parameters:
     - id: attachmentId
       description: O identificador do anexo que você deseja obter.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto. Se a chamada falhar, `asyncResult.error` a propriedade conterá um código de erro com o motivo da falha.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.AttachmentContent:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAttachmentContentAsync(attachmentId, callback)
+  uid: outlook!Office.MessageCompose#getAttachmentContentAsync:member(2)
+  package: outlook!
+  fullName: getAttachmentContentAsync(attachmentId, callback)
+  summary: >-
+    Obtém um anexo de uma mensagem ou compromisso e o retorna como um `AttachmentContent` objeto.
+
+
+    O `getAttachmentContentAsync` método obtém o anexo com o identificador especificado do item. Como prática prática prática, você deve usar o identificador para recuperar um anexo na mesma sessão em que as IDs de anexo foram recuperadas com `getAttachmentsAsync` a chamada `item.attachments` ou. No Outlook na Web e em dispositivos móveis, a identificador do anexo é válido apenas durante a mesma sessão. Uma sessão é final quando o usuário fecha o aplicativo ou se o usuário começa a compor um formulário em linha, então, subsequentemente, sai o formulário para continuar em uma janela separada.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `AttachmentTypeNotSupported`<!-- -->: Não há suporte para o tipo de anexo. Tipos sem suporte incluem imagens incorporadas no Formato rich text ou tipos de anexos de item diferentes de itens de email ou calendário (como um contato ou item de tarefa).
+
+
+    - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAttachmentContentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+    parameters:
+    - id: attachmentId
+      description: O identificador do anexo que você deseja obter.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto. Se a chamada falhar, `asyncResult.error` a propriedade conterá um código de erro com o motivo da falha.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.AttachmentContent:interface" />&gt;) =&gt; void'
@@ -1232,11 +1456,36 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
+    content: 'getAttachmentsAsync(options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
     parameters:
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a chamada falhar, `asyncResult.error` a propriedade conterá um código de erro com o motivo da falha.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.AttachmentDetailsCompose:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAttachmentsAsync(callback)
+  uid: outlook!Office.MessageCompose#getAttachmentsAsync:member(2)
+  package: outlook!
+  fullName: getAttachmentsAsync(callback)
+  summary: >-
+    Obtém os anexos do item como uma matriz.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAttachmentsAsync(callback?: (asyncResult: Office.AsyncResult<AttachmentDetailsCompose[]>) => void): void;'
+    parameters:
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a chamada falhar, `asyncResult.error` a propriedade conterá um código de erro com o motivo da falha.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.AttachmentDetailsCompose:interface" />[]&gt;) =&gt; void'
@@ -1702,14 +1951,51 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'removeAttachmentAsync(attachmentId: string, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: attachmentId
       description: O identificador do anexo a remover. O comprimento máximo da cadeia de `attachmentId` caracteres é de 200 caracteres no Outlook na Web e no Windows.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a remoção do anexo falhar, a propriedade `asyncResult.error` conterá um código de erro com o motivo da falha.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAttachmentAsync(attachmentId, callback)
+  uid: outlook!Office.MessageCompose#removeAttachmentAsync:member(2)
+  package: outlook!
+  fullName: removeAttachmentAsync(attachmentId, callback)
+  summary: >-
+    Remove um anexo de uma mensagem ou de um compromisso.
+
+
+    O método `removeAttachmentAsync` remove o anexo com o identificador especificado do item. Como prática recomendada, deve-se usar o identificador do anexo para remover um anexo somente se o mesmo aplicativo de email tiver adicionado esse anexo na mesma sessão. No Outlook na Web e em dispositivos móveis, a identificador do anexo é válido apenas durante a mesma sessão. Uma sessão é final quando o usuário fecha o aplicativo ou se o usuário começa a compor um formulário em linha, então, subsequentemente, sai o formulário para continuar em uma janela separada.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAttachmentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: attachmentId
+      description: O identificador do anexo a remover. O comprimento máximo da cadeia de `attachmentId` caracteres é de 200 caracteres no Outlook na Web e no Windows.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a remoção do anexo falhar, a propriedade `asyncResult.error` conterá um código de erro com o motivo da falha.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
@@ -1736,14 +2022,45 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'removeHandlerAsync(eventType: Office.EventType | string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'removeHandlerAsync(eventType: Office.EventType | string, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: eventType
       description: O evento que deve revogar o manipulador.
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeHandlerAsync(eventType, callback)
+  uid: outlook!Office.MessageCompose#removeHandlerAsync:member(2)
+  package: outlook!
+  fullName: removeHandlerAsync(eventType, callback)
+  summary: >-
+    Remove um manipulador de eventos para um tipo de evento com suporte. **Observação:** os eventos estão disponíveis somente com o painel de tarefas.
+
+
+    Consulte a seção Eventos do modelo de objeto [item](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.8/office.context.mailbox.item#events) para eventos com suporte.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeHandlerAsync(eventType: Office.EventType | string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: O evento que deve revogar o manipulador.
+      type: <xref uid="office!Office.EventType:enum" /> | string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro, `asyncResult`<!-- -->, que é um `Office.AsyncResult` objeto.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
@@ -1917,14 +2234,51 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'setSelectedDataAsync(data: string, options: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: data
       description: Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.
       type: string
     - id: options
-      description: 'Opcional. Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se texto, o estilo atual será aplicado no Outlook na Web e em clientes da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado no Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se texto, o estilo atual será aplicado no Outlook na Web e em clientes da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado no Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setSelectedDataAsync(data, callback)
+  uid: outlook!Office.MessageCompose#setSelectedDataAsync:member(2)
+  package: outlook!
+  fullName: setSelectedDataAsync(data, callback)
+  summary: >-
+    Insere de forma assíncrona os dados no corpo ou no assunto de uma mensagem.
+
+
+    O método `setSelectedDataAsync` insere a cadeia de caracteres especificada no local do cursor no corpo ou assunto do item ou, se o texto estiver selecionado no editor, substitui o texto selecionado. Se o cursor não estiver no campo do corpo ou assunto, um erro será retornado. Após a inserção, o cursor é colocado no final do conteúdo inserido.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo do Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação de Mensagens
+
+
+    **Erros**:
+
+
+    - `InvalidAttachmentId`<!-- -->: O identificador de anexo não existe.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setSelectedDataAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: data
+      description: Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.
+      type: string
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
@@ -1933,9 +2287,9 @@ methods:
       description: ''
 extends: <xref uid="outlook!Office.Message:interface" />
 metadata:
-  ms.openlocfilehash: 78a32f23a343f1897fb44fc778370a86986421b3
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: e1d61f141301512c2b6dd78c942d9588596daffd
+  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51291208"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "51658542"
