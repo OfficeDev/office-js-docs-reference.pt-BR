@@ -14,7 +14,7 @@ Seus comentários são importantes para nós.
 
     > **IMPORTANTE**: Não modifique arquivos na [pasta /docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) deste repositório. Todos os arquivos nessa pasta são gerados automaticamente, portanto, não é possível atualizá-los por meio de solicitação pull. Para solicitar uma alteração em qualquer um dos arquivos na [pasta /docs/docs-ref-autogen,](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) envie um [problema](https://github.com/OfficeDev/office-js-docs-reference/issues) neste repositório. Você pode ler mais sobre como a ferramenta neste repositório [aqui](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md).
 
-* Para nos informar sobre sua experiência de programação, o que você gostaria de ver em versões futuras, exemplos de código e assim por diante, insira suas sugestões e ideias no [Microsoft 365 em Q&A](https://docs.microsoft.com/answers/products/m365).
+* Para enviar uma solicitação de recurso para a API ou plataforma Office.js, poste sua ideia na Comunidade Técnica da Plataforma de Desenvolvedores do [Microsoft 365](https://techcommunity.microsoft.com/t5/microsoft-365-developer-platform/idb-p/Microsoft365DeveloperPlatform)ou, se a solicitação de recurso já existir, adicione seu voto a favor.
 
 ## <a name="join-the-microsoft-365-developer-program"></a>Participe do Programa para Desenvolvedores do Microsoft 365
 
@@ -24,7 +24,6 @@ Obter uma área de segurança gratuita, ferramentas e outros recursos que você 
 * [Exemplo de pacotes de dados](https://developer.microsoft.com/microsoft-365/dev-program#Sample) Configure automaticamente sua área de segurança instalando dados e conteúdo do usuário para ajudá-lo a criar suas soluções.
 * [Acesso a especialistas](https://developer.microsoft.com/microsoft-365/dev-program#Experts) Acesse eventos da comunidade para aprender com especialistas do Microsoft 365.
 * [Recomendações personalizadas](https://developer.microsoft.com/microsoft-365/dev-program#Recommendations) Encontre os recursos do desenvolvedor rapidamente a partir do painel personalizado.
-
 
 ## <a name="microsoft-open-source-code-of-conduct"></a>Código de Conduta de software livre da Microsoft
 
