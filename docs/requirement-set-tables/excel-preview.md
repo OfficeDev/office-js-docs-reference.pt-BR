@@ -55,7 +55,11 @@
 ||[clear()](/javascript/api/excel/excel.identitycollection#clear--)|Remove todas as identidades de usuário da coleção.|
 ||[getCount()](/javascript/api/excel/excel.identitycollection#getcount--)|Obtém o número de itens na coleção.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.identitycollection#getitemat-index-)|Obtém uma identidade de usuário de documento usando seu índice na coleção.|
+||[items](/javascript/api/excel/excel.identitycollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[remove(assignee: Identity)](/javascript/api/excel/excel.identitycollection#remove-assignee-)|Remove uma identidade de usuário da coleção.|
+|[IdentityEntity](/javascript/api/excel/excel.identityentity)|[displayName](/javascript/api/excel/excel.identityentity#displayname)|Representa o nome para exibição do usuário.|
+||[email](/javascript/api/excel/excel.identityentity#email)|Representa o endereço de email do usuário.|
+||[id](/javascript/api/excel/excel.identityentity#id)|Representa a ID exclusiva do usuário.|
 |[InsertWorksheetOptions](/javascript/api/excel/excel.insertworksheetoptions)|[positionType](/javascript/api/excel/excel.insertworksheetoptions#positiontype)|A posição de inserção, na pasta de trabalho atual, das novas planilhas.|
 ||[relativeTo](/javascript/api/excel/excel.insertworksheetoptions#relativeto)|A planilha na pasta de trabalho atual que é referenciada para o `WorksheetPositionType` parâmetro.|
 ||[sheetNamesToInsert](/javascript/api/excel/excel.insertworksheetoptions#sheetnamestoinsert)|Os nomes de planilhas individuais a inserir.|
@@ -129,6 +133,7 @@
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheet#onformulachanged)|Ocorre quando uma ou mais fórmulas são alteradas nesta planilha.|
 ||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Retorna um valor que representa essa planilha que pode ser lido pelo Open Office XML.|
 ||[tasks](/javascript/api/excel/excel.worksheet#tasks)|Retorna uma coleção de tarefas presentes na planilha.|
+|[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[triggerSource](/javascript/api/excel/excel.worksheetchangedeventargs#triggersource)|Representa a origem do gatilho do evento.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet \| string)](/javascript/api/excel/excel.worksheetcollection#addfrombase64-base64file--sheetnamestoinsert--positiontype--relativeto-)|Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.|
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onfiltered)|Ocorre quando filtro de uma planilha é aplicado na pasta de trabalho.|
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheetcollection#onformulachanged)|Ocorre quando uma ou mais fórmulas são alteradas em qualquer planilha dessa coleção.|
