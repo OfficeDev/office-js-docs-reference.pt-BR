@@ -4,7 +4,7 @@ uid: excel!Excel.Workbook:class
 package: excel!
 fullName: Excel.Workbook
 summary: >-
-  A pasta de trabalho é o objeto de nível superior que contém objetos de pasta de trabalho relacionados, como planilhas, tabelas e intervalos. Para saber mais sobre o modelo de objeto da planilha, leia [Trabalhar com planilhas usando](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks) a API JavaScript do Excel<!-- -->.
+  A pasta de trabalho é o objeto de nível superior que contém objetos de pasta de trabalho relacionados, como planilhas, tabelas e intervalos. Para saber mais sobre o modelo de objeto da workbook, leia Trabalhar com as guias de trabalho usando a [API JavaScript](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks) Excel JavaScript<!-- -->.
 
 
   \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: application
   summary: >-
-    Representa a instância de aplicativo do Excel que contém essa planilha.
+    Representa a Excel de aplicativo que contém essa workbook.
 
 
     \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -113,7 +113,7 @@ properties:
   uid: excel!Excel.Workbook#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -711,7 +711,7 @@ methods:
     Insere as planilhas especificadas de uma pasta de trabalho de origem na pasta de trabalho atual.
 
 
-    *Observação**: atualmente, essa API só tem suporte para Office no Windows, Mac e Online.
+    *Observação**: atualmente, essa API só tem suporte para Office em Windows, Mac e Online.
 
 
     \[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -876,7 +876,7 @@ methods:
   uid: excel!Excel.Workbook#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.Workbook original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.WorkbookData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto Workbook é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorkbookData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -902,6 +902,7 @@ events:
     content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorkbookActivatedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorkbookActivatedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-workbook-activated.yaml\nasync function workbookActivated(event: Excel.WorkbookActivatedEventArgs) {\n  await Excel.run(async (context) => {\n    // Callback function for when the workbook is activated.\n    console.log(\"The workbook was activated.\");\n  });\n}\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-workbook-activated.yaml\nawait Excel.run(async (context) => {\n  const workbook = context.workbook;\n\n  // Register the workbook activated event handler.\n  workbook.onActivated.add(workbookActivated);\n\n  await context.sync();\n  console.log(\"Added event handler for workbook activated.\");\n});\n```"
 - name: onAutoSaveSettingChanged
   uid: excel!Excel.Workbook#onAutoSaveSettingChanged:member
   package: excel!
@@ -936,9 +937,9 @@ events:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.SelectionChangedEventArgs:interface" />&gt;
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 0eb7d649c5067f9e25992a26dedaeff7d13b1fe2
-  ms.sourcegitcommit: 3b6cd632df196ae7bf2a1d192e2b60edc82b9e9c
+  ms.openlocfilehash: 01791d7d0ee124a817afa55fd69d3957401e9cab
+  ms.sourcegitcommit: 56a0dffed6427e832d8f047f6815dd511e55e1f4
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/14/2021
-  ms.locfileid: "51754085"
+  ms.lasthandoff: 05/19/2021
+  ms.locfileid: "52529431"
