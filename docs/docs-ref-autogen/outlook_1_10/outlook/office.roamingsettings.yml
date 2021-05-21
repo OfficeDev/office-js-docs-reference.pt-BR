@@ -1,0 +1,198 @@
+### YamlMime:TSType
+name: Office.RoamingSettings
+uid: outlook!Office.RoamingSettings:interface
+package: outlook!
+fullName: Office.RoamingSettings
+summary: >-
+  As configurações criadas com os métodos do objeto `RoamingSettings` são salvas de acordo de acordo com o suplemento e o usuário. Ou seja, eles estão disponíveis apenas para o complemento que os criou e somente na caixa de correio do usuário na qual são salvos.
+
+
+  Embora Outlook API de complemento limite o acesso a essas configurações apenas para o complemento que as criou, essas configurações não devem ser consideradas armazenamento seguro. Elas podem ser acessadas pelos Serviços Web do Exchange ou por MAPI estendido. Elas não devem ser usadas para armazenar informações confidenciais, como credenciais de usuário ou tokens de segurança.
+
+
+  O nome de uma configuração é uma String, enquanto o valor pode ser uma String, um Number, um Boolean, nulo, um Object ou uma Array.
+
+
+  O objeto `RoamingSettings` pode ser acessado por meio da propriedade `roamingSettings` no namespace `Office.context`.
+
+
+  **Importante**:
+
+
+  - O `RoamingSettings` objeto é inicializado do armazenamento persistente somente quando o complemento é carregado pela primeira vez. Para painéis de tarefas, isso significa que ele só é inicializado quando o painel de tarefas é aberto pela primeira vez. Se o painel de tarefas navegar para outra página ou recarregar a página atual, o objeto na memória será redefinido para seus valores iniciais, mesmo que o seu complemento tenha persistido alterações. As alterações persistentes não estarão disponíveis até que o painel de tarefas (ou item no caso de complementos sem interface do usuário) seja fechado e reaberto.
+
+
+  - Quando definidas e salvas por Outlook no Windows ou Mac, essas configurações são refletidas no Outlook na Web somente após uma atualização do navegador.
+remarks: >-
+  **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+
+
+  **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: get(name)
+  uid: outlook!Office.RoamingSettings#get:member(1)
+  package: outlook!
+  fullName: get(name)
+  summary: Recupera a configuração especificada.
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
+
+    var settingName = $("#settingName").val();
+
+    var settingValue = Office.context.roamingSettings.get(settingName);
+
+    $("#settingValue").val(settingValue);
+
+    console.log(`The value of setting "${settingName}" is "${settingValue}".`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'get(name: string): any;'
+    parameters:
+    - id: name
+      description: O nome da configuração a ser recuperado diferencia maiúsculas de minúsculas.
+      type: string
+    return:
+      type: any
+      description: 'Tipo: Matriz \| de objeto Boolean de número \| de cadeia de \| \| caracteres'
+- name: remove(name)
+  uid: outlook!Office.RoamingSettings#remove:member(1)
+  package: outlook!
+  fullName: remove(name)
+  summary: Remove a configuração especificada
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'remove(name: string): void;'
+    parameters:
+    - id: name
+      description: O nome da configuração a ser removida diferencia maiúsculas de minúsculas.
+      type: string
+    return:
+      type: void
+      description: ''
+- name: saveAsync(callback)
+  uid: outlook!Office.RoamingSettings#saveAsync:member(1)
+  package: outlook!
+  fullName: saveAsync(callback)
+  summary: >-
+    Salva as configurações.
+
+
+    Quaisquer configurações previamente salvas por um suplemento são carregadas quando ele for inicializado, portanto, durante o tempo de vida da sessão, você pode simplesmente usar os métodos set e get para trabalhar com a cópia na memória do recipiente de propriedades de configurações. Quando você desejar manter as configurações para que elas fiquem disponíveis na próxima vez que o suplemento for usado, use o método saveAsync.
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
+
+    // Save settings in the mailbox to make it available in future sessions.
+
+    Office.context.roamingSettings.saveAsync(function(result) {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+      } else {
+        console.log(`Settings saved with status: ${result.status}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: set(name, value)
+  uid: outlook!Office.RoamingSettings#set:member(1)
+  package: outlook!
+  fullName: set(name, value)
+  summary: >-
+    Define ou cria a configuração especificada.
+
+
+    O método cria uma nova configuração do nome especificado se ainda não existir ou define uma configuração existente `set` do nome especificado. O valor é armazenado no documento como a representação JSON serializada do seu tipo de dados.
+
+
+    Um máximo de 32KB está disponível para as configurações de cada complemento.
+
+
+    Quaisquer alterações feitas nas configurações usando a função set não serão salvas no servidor até que `saveAsync` a função seja chamada.
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/10-roaming-settings/roaming-settings.yaml
+
+    var settingName = $("#settingName").val();
+
+    var settingValue = $("#settingValue").val();
+
+    Office.context.roamingSettings.set(settingName, settingValue);
+
+    console.log(`Setting "${settingName}" set to value "${settingValue}".`);
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(name: string, value: any): void;'
+    parameters:
+    - id: name
+      description: O nome da configuração a ser definido ou criado; diferencia maiúsculas de minúsculas.
+      type: string
+    - id: value
+      description: Specifies the value to be stored.
+      type: any
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 988cefdfe1d01f2fa4b6f345b70014b3f31fd344
+  ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 05/21/2021
+  ms.locfileid: "52591087"

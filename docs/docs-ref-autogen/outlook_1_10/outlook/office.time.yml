@@ -1,0 +1,257 @@
+### YamlMime:TSType
+name: Office.Time
+uid: outlook!Office.Time:interface
+package: outlook!
+fullName: Office.Time
+summary: >-
+  O `Time` objeto é retornado como a propriedade inicial ou final de um compromisso no modo de redação.
+
+
+  \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+  **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: getAsync(options, callback)
+  uid: outlook!Office.Time#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    Obtém a hora de início ou de término de um compromisso.
+
+
+    A data e a hora são fornecidas como `Date` um objeto na `asyncResult.value` propriedade. O valor está no Tempo Universal Coordenado (UTC). Você pode converter a hora UTC para a hora do cliente local usando o `convertToLocalClientTime` método.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
+    parameters:
+    - id: options
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. A `value` propriedade do resultado é um `Date` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;Date&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(callback)
+  uid: outlook!Office.Time#getAsync:member(2)
+  package: outlook!
+  fullName: getAsync(callback)
+  summary: >-
+    Obtém a hora de início ou de término de um compromisso.
+
+
+    A data e a hora são fornecidas como `Date` um objeto na `asyncResult.value` propriedade. O valor está no Tempo Universal Coordenado (UTC). Você pode converter a hora UTC para a hora do cliente local usando o `convertToLocalClientTime` método.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
+
+    Office.context.mailbox.item.start.getAsync((result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+        return;
+      }
+      console.log(`Appointment starts: ${result.value}`);
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(callback: (asyncResult: Office.AsyncResult<Date>) => void): void;'
+    parameters:
+    - id: callback
+      description: Quando o método é concluído, a função passada no parâmetro callback é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. A `value` propriedade do resultado é um `Date` objeto.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;Date&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setAsync(dateTime, options, callback)
+  uid: outlook!Office.Time#setAsync:member(1)
+  package: outlook!
+  fullName: setAsync(dateTime, options, callback)
+  summary: >-
+    Define a hora de início ou de término de um compromisso.
+
+
+    Se o método for chamado na propriedade start, a propriedade será ajustada para manter a duração do `setAsync` `end` compromisso conforme definido anteriormente. Se o método `setAsync` for chamado na propriedade `end`, a duração do compromisso será ampliada para a nova hora de término.
+
+
+    A hora deve estar em UTC; você pode obter o horário UTC correto usando o método `convertToUtcClientTime`.
+
+
+    **Importante**: no Windows cliente, você não pode usar essa função para atualizar o início ou o fim de uma recorrência.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+
+
+    **Erros**:
+
+
+    - `InvalidEndTime`<!-- -->: A hora de término do compromisso é antes da hora de início do compromisso.
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    var startTime = new Date("3/14/2015");
+
+    var options = {
+        // Pass information that can be used in the callback.
+        asyncContext: {verb: "Set"}
+    };
+
+    Office.context.mailbox.item.start.setAsync(startTime, options, function(result) {
+        if (result.error) {
+            console.debug(result.error);
+        } else {
+            // Access the asyncContext that was passed to the setAsync function.
+            console.debug("Start Time " + result.asyncContext.verb);
+        }
+    });
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-start-appointment-organizer.yaml
+
+    var start = new Date(); // Represents current date and time.
+
+    start.setDate(start.getDate() + 2); // Add 2 days to current date.
+
+    Office.context.mailbox.item.start.setAsync(start, (result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Action failed with message ${result.error.message}`);
+        return;
+      }
+      console.log(`Successfully set start date and time to ${start}`);
+    });
+
+    ```
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-set-end-appointment-organizer.yaml
+
+    Office.context.mailbox.item.start.getAsync((result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Get start date failed with message ${result.error.message}`);
+        return;
+      }
+
+      var end = result.value; // Set end to current start date and time.
+      end.setDate(end.getDate() + 1); // Set end as 1 day later than start date.
+      Office.context.mailbox.item.end.setAsync(end, (result) => {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Set end date failed with message ${result.error.message}`);
+          return;
+        }
+        console.log(`Successfully set end date and time to ${end}`);
+      });
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(dateTime: Date, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: dateTime
+      description: Um objeto date-time em Tempo Universal Coordenado (UTC).
+      type: Date
+    - id: options
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a configuração de data e hora falhar, a propriedade `asyncResult.error` conterá um código de erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: setAsync(dateTime, callback)
+  uid: outlook!Office.Time#setAsync:member(2)
+  package: outlook!
+  fullName: setAsync(dateTime, callback)
+  summary: >-
+    Define a hora de início ou de término de um compromisso.
+
+
+    Se o método for chamado na propriedade start, a propriedade será ajustada para manter a duração do `setAsync` `end` compromisso conforme definido anteriormente. Se o método `setAsync` for chamado na propriedade `end`, a duração do compromisso será ampliada para a nova hora de término.
+
+
+    A hora deve estar em UTC; você pode obter o horário UTC correto usando o método `convertToUtcClientTime`.
+
+
+    **Importante**: no Windows cliente, você não pode usar essa função para atualizar o início ou o fim de uma recorrência.
+
+
+    \[[Conjunto de API: Caixa de Correio 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
+
+
+    **Erros**:
+
+
+    - `InvalidEndTime`<!-- -->: A hora de término do compromisso é antes da hora de início do compromisso.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(dateTime: Date, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: dateTime
+      description: Um objeto date-time em Tempo Universal Coordenado (UTC).
+      type: Date
+    - id: callback
+      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->. Se a configuração de data e hora falhar, a propriedade `asyncResult.error` conterá um código de erro.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 5e283e8dabe220dacaeebb63e68fe9ecc627f27a
+  ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 05/21/2021
+  ms.locfileid: "52591180"
