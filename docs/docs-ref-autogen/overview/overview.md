@@ -7,13 +7,13 @@ author: o365devx
 ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
-ms.date: 03/17/2021
-ms.openlocfilehash: 63d2efa4d4b9406208f3227ec96df467ea0d8877
-ms.sourcegitcommit: a5c179dc927ce89d1ada071d388d582191d3fa1e
+ms.date: 05/10/2021
+ms.openlocfilehash: 809b6378e33eca682005396ff07e79cb37f9ff2c
+ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/24/2021
-ms.locfileid: "51183537"
+ms.lasthandoff: 05/21/2021
+ms.locfileid: "52589680"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Referência da API JavaScript para suplementos do Office
 
@@ -66,6 +66,7 @@ Veja a seguir uma lista de APIs com os [Aplicativos de host do Office som suport
             <h3>APIs do Outlook</h3>
             <ul>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">Visualização de caixa de correio</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.10">Caixa de correio 1.10</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.9">Caixa de correio 1.9</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Caixa de correio 1.8</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Caixa de correio 1.7</a></li>
