@@ -4,7 +4,7 @@ uid: excel!Excel.Worksheet:class
 package: excel!
 fullName: Excel.Worksheet
 summary: >-
-  Uma planilha do Excel é uma grade de células. Ele pode conter dados, tabelas, gráficos, etc. Para saber mais sobre o modelo de objeto de planilha, leia [Trabalhar com planilhas usando](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets) a API JavaScript do Excel<!-- -->.
+  Uma planilha do Excel é uma grade de células. Ele pode conter dados, tabelas, gráficos, etc. Para saber mais sobre o modelo de objeto de planilha, leia Trabalhar com planilhas usando Excel [API JavaScript](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-worksheets)<!-- -->.
 
 
   \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -66,7 +66,7 @@ properties:
   uid: excel!Excel.Worksheet#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -96,7 +96,7 @@ properties:
   package: excel!
   fullName: enableCalculation
   summary: >-
-    Determina se o Excel deve recalcular a planilha quando necessário. True se o Excel recalcular a planilha quando necessário. False se o Excel não recalcular a planilha.
+    Determina se Excel deve recalcular a planilha quando necessário. True se Excel recalcular a planilha quando necessário. False se o Excel não recalcular a planilha.
 
 
     \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -390,7 +390,7 @@ properties:
   package: excel!
   fullName: tabId
   summary: >-
-    Retorna um valor que representa essa planilha que pode ser lido pelo Open Office XML. Este é o valor inteiro, que é diferente `worksheet.id` de `worksheet.name` (GUID), (por exemplo: "Sheet1").
+    Retorna um valor que representa essa planilha que pode ser lido por Open Office XML. Este é o valor inteiro, que é diferente `worksheet.id` de `worksheet.name` (GUID), (por exemplo: "Sheet1").
 
 
     \[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -698,7 +698,7 @@ methods:
   package: excel!
   fullName: getNext(visibleOnly)
   summary: >-
-    Obtém a planilha que segue esta. Se não houver planilhas seguindo essa, este método lançará um erro.
+    Obtém a planilha posterior a esta. Se não houver nenhuma planilha após esta, este método gerará um erro.
 
 
     \[[Conjunto de API: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -740,7 +740,7 @@ methods:
   package: excel!
   fullName: getPrevious(visibleOnly)
   summary: >-
-    Obtém a planilha que precede essa. Se não houver planilhas anteriores, este método lançará um erro.
+    Obtém a planilha anterior a esta. Se não houver nenhuma planilha anterior, esse método lançará um erro.
 
 
     \[[Conjunto de API: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1046,7 +1046,7 @@ methods:
   uid: excel!Excel.Worksheet#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.Worksheet original é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.WorksheetData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. O objeto Worksheet é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorksheetData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1190,6 +1190,22 @@ events:
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormulaChangedEventArgs:interface" />&gt;
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-formula-changed.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet named \"Sample\".\n  let sheet = context.workbook.worksheets.getItem(\"Sample\");\n  \n  // Register the formula changed event handler for this worksheet.\n  sheet.onFormulaChanged.add(formulaChangeHandler);\n  await context.sync();\n  \n  console.log(\"Registered a formula changed event handler for this worksheet.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-formula-changed.yaml\nasync function formulaChangeHandler(event: Excel.WorksheetFormulaChangedEventArgs) {\n  await Excel.run(async (context) => {\n    // Retrieve details about the formula change event.\n    const cellAddress = event.formulaDetails[0].cellAddress;\n    const previousFormula = event.formulaDetails[0].previousFormula;\n    const source = event.source;\n    \n    // Print out the change event details.\n    console.log(\n      `The formula in cell ${cellAddress} changed. \n      The previous formula was: ${previousFormula}. \n      The source of the change was: ${source}.`\n    );\n  });\n}\n```"
+- name: onProtectionChanged
+  uid: excel!Excel.Worksheet#onProtectionChanged:member
+  package: excel!
+  fullName: onProtectionChanged
+  summary: >-
+    Ocorre quando o estado de proteção da planilha é alterado.
+
+
+    \[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onProtectionChanged: OfficeExtension.EventHandlers<Excel.WorksheetProtectionChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetProtectionChangedEventArgs:interface" />&gt;
 - name: onRowHiddenChanged
   uid: excel!Excel.Worksheet#onRowHiddenChanged:member
   package: excel!
@@ -1266,9 +1282,9 @@ events:
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/event-worksheet-single-click.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    sheet.onSingleClicked.add((event) => {\n        return Excel.run((context) => {\n            console.log(`Click detected at ${event.address} (pixel offset from upper-left cell corner: ${event.offsetX}, ${event.offsetY})`);\n            return context.sync();\n        });\n    });\n\n    console.log(\"The worksheet click handler is registered.\");\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 5d97e20ff1bff2aad1e79498d42a23e42d92ea0a
-  ms.sourcegitcommit: f7c5207ef96c4f6034fcb1b48e1b0036abf4fccc
+  ms.openlocfilehash: 09fceeb0c67014ca01fa4f71da709bc20a3220c1
+  ms.sourcegitcommit: c9b22faea92300a0c7600a7054be68285697c6af
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/16/2021
-  ms.locfileid: "51877196"
+  ms.lasthandoff: 06/09/2021
+  ms.locfileid: "52852523"
