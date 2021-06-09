@@ -71,7 +71,7 @@
 ||[serviceId](/javascript/api/excel/excel.linkeddatatype#serviceid)|A ID exclusiva do tipo de dados vinculado.|
 ||[supportedRefreshModes](/javascript/api/excel/excel.linkeddatatype#supportedrefreshmodes)|Retorna uma matriz com todos os modos de atualização suportados pelo tipo de dados vinculado.|
 ||[requestRefresh()](/javascript/api/excel/excel.linkeddatatype#requestrefresh--)|Faz uma solicitação para atualizar o tipo de dados vinculado.|
-||[requestSetRefreshMode(refreshMode: Excel.LinkedDataTypeRefreshMode)](/javascript/api/excel/excel.linkeddatatype#requestsetrefreshmode-refreshmode-)|Faz uma solicitação para alterar o modo de atualização para esse tipo de dados vinculado.|
+||[requestSetRefreshMode(refreshMode: Excel. LinkedDataTypeRefreshMode)](/javascript/api/excel/excel.linkeddatatype#requestsetrefreshmode-refreshmode-)|Faz uma solicitação para alterar o modo de atualização para esse tipo de dados vinculado.|
 |[LinkedDataTypeAddedEventArgs](/javascript/api/excel/excel.linkeddatatypeaddedeventargs)|[serviceId](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#serviceid)|A ID exclusiva do novo tipo de dados vinculado.|
 ||[source](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#source)|Obtém a origem do evento.|
 ||[tipo](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#type)|Obtém o tipo do evento.|
@@ -122,7 +122,7 @@
 ||[tipo](/javascript/api/excel/excel.tablefilteredeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.tablefilteredeventargs#worksheetid)|Obtém a ID da planilha que contém a tabela.|
 |[TableScopedCollection](/javascript/api/excel/excel.tablescopedcollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.tablescopedcollection#getitemornullobject-key-)|Obtém uma tabela pelo nome ou ID.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[insertWorksheetsFromBase64(base64File: string, options?: Excel.InsertWorksheetOptions)](/javascript/api/excel/excel.workbook#insertworksheetsfrombase64-base64file--options-)|Insere as planilhas especificadas de uma pasta de trabalho de origem na pasta de trabalho atual.|
+|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[insertWorksheetsFromBase64(base64File: string, options?: Excel. InsertWorksheetOptions)](/javascript/api/excel/excel.workbook#insertworksheetsfrombase64-base64file--options-)|Insere as planilhas especificadas de uma pasta de trabalho de origem na pasta de trabalho atual.|
 ||[linkedDataTypes](/javascript/api/excel/excel.workbook#linkeddatatypes)|Retorna uma coleção de tipos de dados vinculados que fazem parte da lista de trabalho.|
 ||[onActivated](/javascript/api/excel/excel.workbook#onactivated)|Ocorre quando a guia de trabalho é ativada.|
 ||[tasks](/javascript/api/excel/excel.workbook#tasks)|Retorna uma coleção de tarefas que estão presentes na workbook.|
@@ -131,15 +131,21 @@
 |[WorkbookActivatedEventArgs](/javascript/api/excel/excel.workbookactivatedeventargs)|[tipo](/javascript/api/excel/excel.workbookactivatedeventargs#type)|Obtém o tipo do evento.|
 |[Planilha](/javascript/api/excel/excel.worksheet)|[onFiltered](/javascript/api/excel/excel.worksheet#onfiltered)|Ocorre quando um filtro é aplicado em uma planilha específica.|
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheet#onformulachanged)|Ocorre quando uma ou mais fórmulas são alteradas nesta planilha.|
-||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Retorna um valor que representa essa planilha que pode ser lido pelo Open Office XML.|
+||[onProtectionChanged](/javascript/api/excel/excel.worksheet#onprotectionchanged)|Ocorre quando o estado de proteção da planilha é alterado.|
+||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Retorna um valor que representa essa planilha que pode ser lido por Open Office XML.|
 ||[tasks](/javascript/api/excel/excel.worksheet#tasks)|Retorna uma coleção de tarefas presentes na planilha.|
 |[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[triggerSource](/javascript/api/excel/excel.worksheetchangedeventargs#triggersource)|Representa a origem do gatilho do evento.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet \| string)](/javascript/api/excel/excel.worksheetcollection#addfrombase64-base64file--sheetnamestoinsert--positiontype--relativeto-)|Insere as planilhas especificadas de uma pasta de trabalho na pasta de trabalho atual.|
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onfiltered)|Ocorre quando filtro de uma planilha é aplicado na pasta de trabalho.|
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheetcollection#onformulachanged)|Ocorre quando uma ou mais fórmulas são alteradas em qualquer planilha dessa coleção.|
+||[onProtectionChanged](/javascript/api/excel/excel.worksheetcollection#onprotectionchanged)|Ocorre quando o estado de proteção da planilha é alterado.|
 |[WorksheetFilteredEventArgs](/javascript/api/excel/excel.worksheetfilteredeventargs)|[tipo](/javascript/api/excel/excel.worksheetfilteredeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetfilteredeventargs#worksheetid)|Obtém a ID da planilha na qual o filtro é aplicado.|
 |[WorksheetFormulaChangedEventArgs](/javascript/api/excel/excel.worksheetformulachangedeventargs)|[formulaDetails](/javascript/api/excel/excel.worksheetformulachangedeventargs#formuladetails)|Obtém uma matriz `FormulaChangedEventDetail` de objetos, que contém os detalhes sobre todas as fórmulas alteradas.|
 ||[source](/javascript/api/excel/excel.worksheetformulachangedeventargs#source)|A origem do evento.|
 ||[tipo](/javascript/api/excel/excel.worksheetformulachangedeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetformulachangedeventargs#worksheetid)|Obtém a ID da planilha na qual a fórmula foi alterada.|
+|[WorksheetProtectionChangedEventArgs](/javascript/api/excel/excel.worksheetprotectionchangedeventargs)|[isProtected](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#isprotected)|Obtém o status de proteção atual da planilha.|
+||[source](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#source)|A origem do evento.|
+||[tipo](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#type)|Obtém o tipo do evento.|
+||[worksheetId](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#worksheetid)|Obtém a ID da planilha na qual o status da proteção é alterado.|
