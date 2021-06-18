@@ -508,7 +508,7 @@ properties:
     Obtém a ID da série à que uma instância pertence.
 
 
-    Em Outlook clientes da Web e da área de trabalho, a ID Exchange Web Services (EWS) do item pai (série) ao que esse `seriesId` item pertence. No entanto, no iOS e no Android, a seriesId retorna a ID REST do item pai.
+    Em Outlook na Web e clientes de área de trabalho, a ID Exchange Web Services (EWS) do item pai (série) ao que este `seriesId` item pertence. No entanto, no iOS e no Android, a seriesId retorna a ID REST do item pai.
 
 
     **Observação**: o identificador retornado pela propriedade é o mesmo que o identificador de item `seriesId` Exchange Web Services. A `seriesId` propriedade não é idêntica às Outlook IDs usadas pela OUTLOOK REST. Antes de fazer chamadas de API REST usando esse valor, ela deve ser convertida usando `Office.context.mailbox.convertToRestId`<!-- -->. Para obter mais detalhes, consulte Usar as OUTLOOK REST de um [Outlook de um Outlook de usuário](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
@@ -1995,22 +1995,10 @@ methods:
   package: outlook!
   fullName: getSharedPropertiesAsync(options, callback)
   summary: >-
-    Obtém as propriedades de um compromisso ou mensagem em uma pasta compartilhada.
+    Obtém as propriedades de um compromisso ou mensagem em uma pasta compartilhada ou caixa de correio compartilhada (agora na visualização).
 
 
-    **Importante**: no modo Redação de Mensagens, essa API não é suportada Outlook na Web ou Windows a menos que as seguintes condições sejam atendidas.
-
-
-    1. O proprietário compartilha pelo menos uma pasta de caixa de correio com o representante.
-
-
-    2. O representante esboça uma mensagem na pasta compartilhada.
-
-
-    Depois que a mensagem é enviada, ela geralmente é encontrada na pasta Itens **Enviados do** representante.
-
-
-    Para obter mais informações sobre como usar essa API, consulte o [artigo de acesso do](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) representante.
+    Para obter mais informações sobre como usar essa API, consulte o [artigo pastas compartilhadas e caixa de correio](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) compartilhada.
 
 
     **Observação**: este método não é suportado em Outlook iOS ou Android.
@@ -2018,6 +2006,36 @@ methods:
 
     \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    **Importante**: no modo Redação de Mensagens, essa API não é suportada no Outlook na Web ou no Windows a menos que as seguintes condições sejam atendidas.
+
+
+    a. **Delegar acesso/pastas compartilhadas**
+
+
+    1. O proprietário da caixa de correio inicia uma mensagem. Pode ser uma nova mensagem, uma resposta ou um encaminhamento.
+
+
+    2. Eles salvam a mensagem e a movem de sua própria pasta **Rascunhos** para uma pasta compartilhada com o representante.
+
+
+    3. O representante abre o rascunho da pasta compartilhada e continua compondo.
+
+
+    b. **Caixa de correio compartilhada**
+
+
+    1. O usuário da caixa de correio compartilhada inicia uma mensagem. Pode ser uma nova mensagem, uma resposta ou um encaminhamento.
+
+
+    2. Eles salvam a mensagem e a movem de sua própria pasta **Rascunhos** para uma pasta na caixa de correio compartilhada.
+
+
+    3. Outro usuário de caixa de correio compartilhada abre o rascunho da caixa de correio compartilhada e continua compondo.
+
+
+    A mensagem agora está em um contexto compartilhado e os complementos que suportam esses cenários compartilhados podem obter as propriedades compartilhadas do item. Depois que a mensagem é enviada, ela geralmente é encontrada na pasta Itens **Enviados do** remetente.
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -2092,22 +2110,10 @@ methods:
   package: outlook!
   fullName: getSharedPropertiesAsync(callback)
   summary: >-
-    Obtém as propriedades de um compromisso ou mensagem em uma pasta compartilhada.
+    Obtém as propriedades de um compromisso ou mensagem em uma pasta compartilhada ou caixa de correio compartilhada (agora na visualização).
 
 
-    **Importante**: no modo Redação de Mensagens, essa API não é suportada Outlook na Web ou Windows a menos que as seguintes condições sejam atendidas.
-
-
-    1. O proprietário compartilha pelo menos uma pasta de caixa de correio com o representante.
-
-
-    2. O representante esboça uma mensagem na pasta compartilhada.
-
-
-    Depois que a mensagem é enviada, ela geralmente é encontrada na pasta Itens **Enviados do** representante.
-
-
-    Para obter mais informações sobre como usar essa API, consulte o [artigo de acesso do](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) representante.
+    Para obter mais informações sobre como usar essa API, consulte o [artigo pastas compartilhadas e caixa de correio](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) compartilhada.
 
 
     **Observação**: este método não é suportado em Outlook iOS ou Android.
@@ -2115,6 +2121,36 @@ methods:
 
     \[[Conjunto de API: Caixa de Correio 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    **Importante**: no modo Redação de Mensagens, essa API não é suportada no Outlook na Web ou no Windows a menos que as seguintes condições sejam atendidas.
+
+
+    a. **Delegar acesso/pastas compartilhadas**
+
+
+    1. O proprietário da caixa de correio inicia uma mensagem. Pode ser uma nova mensagem, uma resposta ou um encaminhamento.
+
+
+    2. Eles salvam a mensagem e a movem de sua própria pasta **Rascunhos** para uma pasta compartilhada com o representante.
+
+
+    3. O representante abre o rascunho da pasta compartilhada e continua compondo.
+
+
+    b. **Caixa de correio compartilhada**
+
+
+    1. O usuário da caixa de correio compartilhada inicia uma mensagem. Pode ser uma nova mensagem, uma resposta ou um encaminhamento.
+
+
+    2. Eles salvam a mensagem e a movem de sua própria pasta **Rascunhos** para uma pasta na caixa de correio compartilhada.
+
+
+    3. Outro usuário de caixa de correio compartilhada abre o rascunho da caixa de correio compartilhada e continua compondo.
+
+
+    A mensagem agora está em um contexto compartilhado e os complementos que suportam esses cenários compartilhados podem obter as propriedades compartilhadas do item. Depois que a mensagem é enviada, ela geralmente é encontrada na pasta Itens **Enviados do** remetente.
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -2158,7 +2194,7 @@ methods:
     Obtém se a assinatura do cliente estiver habilitada.
 
 
-    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar se a `true` assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
+    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar `true` se a assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
 
 
     \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2209,7 +2245,7 @@ methods:
     Obtém se a assinatura do cliente estiver habilitada.
 
 
-    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar se a `true` assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
+    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar `true` se a assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
 
 
     \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2609,7 +2645,7 @@ methods:
       description: Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.
       type: string
     - id: options
-      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se texto, o estilo atual é aplicado Outlook clientes da Web e da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado Outlook na Web e o estilo padrão será aplicado em Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se o texto for aplicado, o estilo atual será aplicado Outlook na Web clientes da área de trabalho. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado em Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
@@ -2656,9 +2692,9 @@ methods:
       description: ''
 extends: <xref uid="outlook!Office.Message:interface" />
 metadata:
-  ms.openlocfilehash: 295469f6e272c6af5d975b7920c84ef258ea8bfb
-  ms.sourcegitcommit: 1e0143ae4add09dbe22b0080d22fb25101757fba
+  ms.openlocfilehash: 21e9d03222ce1be79dbbd155dc29690410cdc1f0
+  ms.sourcegitcommit: 319b8cca7d91e51669407633dacc02ea6e4f4338
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 06/11/2021
-  ms.locfileid: "52895571"
+  ms.lasthandoff: 06/18/2021
+  ms.locfileid: "53009817"
