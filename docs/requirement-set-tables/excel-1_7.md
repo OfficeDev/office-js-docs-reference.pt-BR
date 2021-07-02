@@ -1,10 +1,10 @@
 | Classe | Campos | Descrição |
 |:---|:---|:---|
-|[Gráfico](/javascript/api/excel/excel.chart)|[chartType](/javascript/api/excel/excel.chart#charttype)|Especifica o tipo do gráfico.|
+|[Chart](/javascript/api/excel/excel.chart)|[chartType](/javascript/api/excel/excel.chart#charttype)|Especifica o tipo do gráfico.|
 ||[id](/javascript/api/excel/excel.chart#id)|A ID exclusiva do gráfico.|
-||[showAllFieldButtons](/javascript/api/excel/excel.chart#showallfieldbuttons)|Especifica se todos os botões de campo serão exibidos em um Gráfico Dinâmica.|
+||[showAllFieldButtons](/javascript/api/excel/excel.chart#showallfieldbuttons)|Especifica se todos os botões de campo serão exibidos em um Gráfico Dinâmico.|
 |[ChartAreaFormat](/javascript/api/excel/excel.chartareaformat)|[border](/javascript/api/excel/excel.chartareaformat#border)|Representa o formato de borda da área do gráfico, que inclui cor, estilo de linha e peso.|
-|[ChartAxes](/javascript/api/excel/excel.chartaxes)|[getItem(type: Excel.ChartAxisType, group?: Excel.ChartAxisGroup)](/javascript/api/excel/excel.chartaxes#getitem-type--group-)|Retorna o eixo específico identificado por tipo e grupo.|
+|[ChartAxes](/javascript/api/excel/excel.chartaxes)|[getItem(type: Excel. ChartAxisType, group?: Excel. ChartAxisGroup)](/javascript/api/excel/excel.chartaxes#getitem-type--group-)|Retorna o eixo específico identificado por tipo e grupo.|
 |[ChartAxis](/javascript/api/excel/excel.chartaxis)|[baseTimeUnit](/javascript/api/excel/excel.chartaxis#basetimeunit)|Especifica a unidade base do eixo de categoria especificado.|
 ||[categoryType](/javascript/api/excel/excel.chartaxis#categorytype)|Especifica o tipo de eixo de categoria.|
 ||[displayUnit](/javascript/api/excel/excel.chartaxis#displayunit)|Representa a unidade de exibição de eixo.|
@@ -20,7 +20,7 @@
 ||[top](/javascript/api/excel/excel.chartaxis#top)|Especifica a distância, em pontos, da borda superior do eixo até a parte superior da área do gráfico.|
 ||[type](/javascript/api/excel/excel.chartaxis#type)|Especifica o tipo de eixo.|
 ||[width](/javascript/api/excel/excel.chartaxis#width)|Especifica a largura, em pontos, do eixo do gráfico.|
-||[reversePlotOrder](/javascript/api/excel/excel.chartaxis#reverseplotorder)|Especifica se o Excel plota pontos de dados do último para o primeiro.|
+||[reversePlotOrder](/javascript/api/excel/excel.chartaxis#reverseplotorder)|Especifica se Excel plota pontos de dados do último para o primeiro.|
 ||[scaleType](/javascript/api/excel/excel.chartaxis#scaletype)|Especifica o tipo de escala do eixo do valor.|
 ||[setCategoryNames(sourceData: Range)](/javascript/api/excel/excel.chartaxis#setcategorynames-sourcedata-)|Define todos os nomes de categoria para o eixo especificado.|
 ||[setCustomDisplayUnit(value: number)](/javascript/api/excel/excel.chartaxis#setcustomdisplayunit-value-)|Definirá a unidade de exibição de eixo a um valor personalizado.|
@@ -97,7 +97,7 @@
 ||[polynomialOrder](/javascript/api/excel/excel.charttrendline#polynomialorder)|Representa a ordem de uma linha de tendência de gráfico.|
 ||[format](/javascript/api/excel/excel.charttrendline#format)|Representa a formatação de uma linha de tendência do gráfico.|
 ||[type](/javascript/api/excel/excel.charttrendline#type)|Representa o tipo da linha de tendência de um gráfico.|
-|[ChartTrendlineCollection](/javascript/api/excel/excel.charttrendlinecollection)|[add(type?: Excel.ChartTrendlineType)](/javascript/api/excel/excel.charttrendlinecollection#add-type-)|Adiciona uma nova linha de tendência ao conjunto de linha de tendência.|
+|[ChartTrendlineCollection](/javascript/api/excel/excel.charttrendlinecollection)|[add(type?: Excel. ChartTrendlineType)](/javascript/api/excel/excel.charttrendlinecollection#add-type-)|Adiciona uma nova linha de tendência ao conjunto de linha de tendência.|
 ||[getCount()](/javascript/api/excel/excel.charttrendlinecollection#getcount--)|Retorna o número de linha de tendência na coleção.|
 ||[getItem(index: number)](/javascript/api/excel/excel.charttrendlinecollection#getitem-index-)|Obtém um objeto trendline por índice, que é a ordem de inserção na matriz de itens.|
 ||[items](/javascript/api/excel/excel.charttrendlinecollection#items)|Obtém os itens filhos carregados nesta coleção.|
@@ -133,7 +133,7 @@
 ||[getImage()](/javascript/api/excel/excel.range#getimage--)|Renderiza o intervalo como uma imagem png codificada com base64.|
 ||[getSurroundingRegion()](/javascript/api/excel/excel.range#getsurroundingregion--)|Retorna um `Range` objeto que representa a região ao redor da célula superior esquerda neste intervalo.|
 ||[hiperlink](/javascript/api/excel/excel.range#hyperlink)|Representa o hiperlink do intervalo atual.|
-||[numberFormatLocal](/javascript/api/excel/excel.range#numberformatlocal)|Representa o código de formato de número do Excel para o intervalo determinado, com base nas configurações de idioma do usuário.|
+||[numberFormatLocal](/javascript/api/excel/excel.range#numberformatlocal)|Representa Excel código de formato de número do usuário para o intervalo determinado, com base nas configurações de idioma do usuário.|
 ||[isEntireColumn](/javascript/api/excel/excel.range#isentirecolumn)|Representa se o intervalo atual está em uma coluna inteira.|
 ||[isEntireRow](/javascript/api/excel/excel.range#isentirerow)|Representa se o intervalo atual está em uma linha inteira.|
 ||[showCard()](/javascript/api/excel/excel.range#showcard--)|Exibe o cartão para uma célula ativa se ele tiver um conteúdo valioso.|
@@ -166,7 +166,7 @@
 ||[name](/javascript/api/excel/excel.style#name)|O nome do estilo.|
 ||[shrinkToFit](/javascript/api/excel/excel.style#shrinktofit)|Especifica se o texto reduz automaticamente para caber na largura da coluna disponível.|
 ||[verticalAlignment](/javascript/api/excel/excel.style#verticalalignment)|Especifica o alinhamento vertical do estilo.|
-||[wrapText](/javascript/api/excel/excel.style#wraptext)|Especifica se o Excel quebra o texto no objeto.|
+||[wrapText](/javascript/api/excel/excel.style#wraptext)|Especifica se Excel quebra o texto no objeto.|
 |[StyleCollection](/javascript/api/excel/excel.stylecollection)|[add(name: string)](/javascript/api/excel/excel.stylecollection#add-name-)|Adiciona um novo estilo para o conjunto.|
 ||[getItem(name: string)](/javascript/api/excel/excel.stylecollection#getitem-name-)|Obtém `Style` um pelo nome.|
 ||[items](/javascript/api/excel/excel.stylecollection#items)|Obtém os itens filhos carregados nesta coleção.|
@@ -184,7 +184,7 @@
 ||[tableId](/javascript/api/excel/excel.tableselectionchangedeventargs#tableid)|Obtém a ID da tabela na qual a seleção foi alterada.|
 ||[tipo](/javascript/api/excel/excel.tableselectionchangedeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.tableselectionchangedeventargs#worksheetid)|Obtém a ID da planilha na qual a seleção foi alterada.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[getActiveCell()](/javascript/api/excel/excel.workbook#getactivecell--)|Obtém a célula ativa no momento da pasta de trabalho.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[getActiveCell()](/javascript/api/excel/excel.workbook#getactivecell--)|Obtém a célula ativa no momento da pasta de trabalho.|
 ||[dataConnections](/javascript/api/excel/excel.workbook#dataconnections)|Representa todas as conexões de dados na workbook.|
 ||[name](/javascript/api/excel/excel.workbook#name)|Obtém o nome da pasta de trabalho.|
 ||[properties](/javascript/api/excel/excel.workbook#properties)|Obtém as propriedades da pasta de trabalho.|
@@ -193,7 +193,7 @@
 |[WorkbookProtection](/javascript/api/excel/excel.workbookprotection)|[protect(password?: string)](/javascript/api/excel/excel.workbookprotection#protect-password-)|Protege uma pasta de trabalho.|
 ||[protegido](/javascript/api/excel/excel.workbookprotection#protected)|Especifica se a workbook está protegida.|
 ||[unprotect(password?: string)](/javascript/api/excel/excel.workbookprotection#unprotect-password-)|Desprotege uma pasta de trabalho.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[copy(positionType?: Excel.WorksheetPositionType, relativeTo?: Excel.Worksheet)](/javascript/api/excel/excel.worksheet#copy-positiontype--relativeto-)|Copia uma planilha e a coloca na posição especificada.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[copy(positionType?: Excel. WorksheetPositionType, relativeTo?: Excel. Planilha)](/javascript/api/excel/excel.worksheet#copy-positiontype--relativeto-)|Copia uma planilha e a coloca na posição especificada.|
 ||[getRangeByIndexes(startRow: number, startColumn: number, rowCount: number, columnCount: number)](/javascript/api/excel/excel.worksheet#getrangebyindexes-startrow--startcolumn--rowcount--columncount-)|Obtém o objeto começando em um índice de linha específico e índice de coluna e abrangendo um determinado número de `Range` linhas e colunas.|
 ||[freezePanes](/javascript/api/excel/excel.worksheet#freezepanes)|Obtém um objeto que pode ser usado para manipular painéis congelados na planilha.|
 ||[onActivated](/javascript/api/excel/excel.worksheet#onactivated)|Ocorre quando a planilha é ativada.|

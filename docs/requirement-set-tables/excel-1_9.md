@@ -91,10 +91,10 @@
 |[ChartMapOptions](/javascript/api/excel/excel.chartmapoptions)|[labelStrategy](/javascript/api/excel/excel.chartmapoptions#labelstrategy)|Especifica a estratégia de rótulos de mapa de série de um gráfico de mapa de região.|
 ||[level](/javascript/api/excel/excel.chartmapoptions#level)|Especifica o nível de mapeamento de série de um gráfico de mapa de região.|
 ||[projectionType](/javascript/api/excel/excel.chartmapoptions#projectiontype)|Especifica o tipo de projeção de série de um gráfico de mapa de região.|
-|[ChartPivotOptions](/javascript/api/excel/excel.chartpivotoptions)|[showAxisFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showaxisfieldbuttons)|Especifica se os botões do campo de eixo serão exibidos em um Gráfico Gráfico Dinâmica.|
-||[showLegendFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showlegendfieldbuttons)|Especifica se os botões do campo de legenda serão exibidos em um Gráfico Dinâmica.|
-||[showReportFilterFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showreportfilterfieldbuttons)|Especifica se os botões do campo de filtro de relatório serão exibidos em um Gráfico Dinâmica.|
-||[showValueFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showvaluefieldbuttons)|Especifica se os botões do campo mostrar valor serão exibidos em um Gráfico Dinâmica.|
+|[ChartPivotOptions](/javascript/api/excel/excel.chartpivotoptions)|[showAxisFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showaxisfieldbuttons)|Especifica se os botões do campo de eixo serão exibidos em um Gráfico Dinâmico.|
+||[showLegendFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showlegendfieldbuttons)|Especifica se os botões do campo de legenda serão exibidos em um Gráfico Dinâmico.|
+||[showReportFilterFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showreportfilterfieldbuttons)|Especifica se os botões do campo de filtro de relatório serão exibidos em um Gráfico Dinâmico.|
+||[showValueFieldButtons](/javascript/api/excel/excel.chartpivotoptions#showvaluefieldbuttons)|Especifica se os botões do campo mostrar valor serão exibidos em um Gráfico Dinâmico.|
 |[ChartSeries](/javascript/api/excel/excel.chartseries)|[bubbleScale](/javascript/api/excel/excel.chartseries#bubblescale)|Este pode ser um valor inteiro de 0 (zero) a 300, representando a porcentagem do tamanho padrão.|
 ||[gradientMaximumColor](/javascript/api/excel/excel.chartseries#gradientmaximumcolor)|Especifica a cor para o valor máximo de uma série de gráficos de mapa de região.|
 ||[gradientMaximumType](/javascript/api/excel/excel.chartseries#gradientmaximumtype)|Especifica o tipo para o valor máximo de uma série de gráficos de mapa de região.|
@@ -147,8 +147,8 @@
 ||[id](/javascript/api/excel/excel.image#id)|Especifica o identificador de forma do objeto image.|
 ||[shape](/javascript/api/excel/excel.image#shape)|Retorna o `Shape` objeto associado à imagem.|
 |[IterativeCalculation](/javascript/api/excel/excel.iterativecalculation)|[enabled](/javascript/api/excel/excel.iterativecalculation#enabled)|True se o Excel usará a interação para resolver referências circulares.|
-||[maxChange](/javascript/api/excel/excel.iterativecalculation#maxchange)|Especifica a quantidade máxima de alteração entre cada iteração à medida que o Excel resolve referências circulares.|
-||[maxIteration](/javascript/api/excel/excel.iterativecalculation#maxiteration)|Especifica o número máximo de iterações que o Excel pode usar para resolver uma referência circular.|
+||[maxChange](/javascript/api/excel/excel.iterativecalculation#maxchange)|Especifica a quantidade máxima de alteração entre cada iteração à medida que Excel resolve referências circulares.|
+||[maxIteration](/javascript/api/excel/excel.iterativecalculation#maxiteration)|Especifica o número máximo de iterações que Excel pode usar para resolver uma referência circular.|
 |[Line](/javascript/api/excel/excel.line)|[beginArrowheadLength](/javascript/api/excel/excel.line#beginarrowheadlength)|Representa o comprimento da ponta da seta no início da linha especificada.|
 ||[beginArrowheadStyle](/javascript/api/excel/excel.line#beginarrowheadstyle)|Representa o estilo da ponta de seta no início da linha especificada.|
 ||[BeginArrowheadWidth](/javascript/api/excel/excel.line#beginarrowheadwidth)|Representa a largura da ponta da seta no início da linha especificada.|
@@ -224,7 +224,7 @@
 ||[setAutoSortOnCell(cell: Range \| string, sortBy: Excel.SortBy)](/javascript/api/excel/excel.pivotlayout#setautosortoncell-cell--sortby-)|Define a Tabela Dinâmica para classificar automaticamente usando a célula especificada para selecionar automaticamente todos os critérios e contextos necessários.|
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[enableDataValueEditing](/javascript/api/excel/excel.pivottable#enabledatavalueediting)|Especifica se a Tabela Dinâmica permite que os valores no corpo dos dados sejam editados pelo usuário.|
 ||[useCustomSortLists](/javascript/api/excel/excel.pivottable#usecustomsortlists)|Especifica se a Tabela Dinâmica usa listas personalizadas ao classificar.|
-|[Range](/javascript/api/excel/excel.range)|[autoFill(destinationRange?: Cadeia \| de caracteres de intervalo, autoFillType?: Excel.AutoFillType)](/javascript/api/excel/excel.range#autofill-destinationrange--autofilltype-)|Preenche o intervalo do intervalo atual até o intervalo de destino usando a lógica AutoFill especificada.|
+|[Range](/javascript/api/excel/excel.range)|[autoFill(destinationRange?: Cadeia \| de caracteres de intervalo, autoFillType?: Excel. AutoFillType)](/javascript/api/excel/excel.range#autofill-destinationrange--autofilltype-)|Preenche o intervalo do intervalo atual até o intervalo de destino usando a lógica AutoFill especificada.|
 ||[convertDataTypeToText()](/javascript/api/excel/excel.range#convertdatatypetotext--)|Converte as células de intervalo com tipos de dados em texto.|
 ||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.range#converttolinkeddatatype-serviceid--languageculture-)|Converte as células de intervalo em tipos de dados vinculados na planilha.|
 ||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.range#copyfrom-sourcerange--copytype--skipblanks--transpose-)|Copia dados da célula ou formatação do intervalo de origem ou `RangeAreas` do intervalo atual.|
@@ -304,8 +304,8 @@
 ||[style](/javascript/api/excel/excel.settablecellproperties#style)|Representa a propriedade `style`.|
 |[SettableColumnProperties](/javascript/api/excel/excel.settablecolumnproperties)|[columnHidden](/javascript/api/excel/excel.settablecolumnproperties#columnhidden)|Representa a propriedade `columnHidden`.|
 ||[columnWidth](/javascript/api/excel/excel.settablecolumnproperties#columnwidth)||
-||[formato: Excel.CellPropertiesFormat & { columnWidth?](/javascript/api/excel/excel.settablecolumnproperties#format)|Representa a propriedade `format`.|
-|[SettableRowProperties](/javascript/api/excel/excel.settablerowproperties)|[format: Excel.CellPropertiesFormat & { rowHeight?](/javascript/api/excel/excel.settablerowproperties#format)|Representa a propriedade `format`.|
+||[format: Excel. CellPropertiesFormat & { columnWidth?](/javascript/api/excel/excel.settablecolumnproperties#format)|Representa a propriedade `format`.|
+|[SettableRowProperties](/javascript/api/excel/excel.settablerowproperties)|[format: Excel. CellPropertiesFormat & { rowHeight?](/javascript/api/excel/excel.settablerowproperties#format)|Representa a propriedade `format`.|
 ||[rowHeight](/javascript/api/excel/excel.settablerowproperties#rowheight)||
 ||[rowHidden](/javascript/api/excel/excel.settablerowproperties#rowhidden)|Representa a propriedade `rowHidden`.|
 |[Shape](/javascript/api/excel/excel.shape)|[altTextDescription](/javascript/api/excel/excel.shape#alttextdescription)|Especifica o texto de descrição alternativo para um `Shape` objeto.|
@@ -427,7 +427,7 @@
 ||[previouslySaved](/javascript/api/excel/excel.workbook#previouslysaved)|Especifica se a workbook já foi salva localmente ou online.|
 ||[usePrecisionAsDisplayed](/javascript/api/excel/excel.workbook#useprecisionasdisplayed)|True se os cálculos dessa pasta de trabalho forem efetuados usando apenas a precisão dos números conforme forem exibidos.|
 |[WorkbookAutoSaveSettingChangedEventArgs](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs)|[tipo](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs#type)|Obtém o tipo do evento.|
-|[Worksheet](/javascript/api/excel/excel.worksheet)|[enableCalculation](/javascript/api/excel/excel.worksheet#enablecalculation)|Determina se o Excel deve recalcular a planilha quando necessário.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[enableCalculation](/javascript/api/excel/excel.worksheet#enablecalculation)|Determina se Excel deve recalcular a planilha quando necessário.|
 ||[findAll(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findall-text--criteria-)|Localiza todas as ocorrências da cadeia de caracteres determinada com base nos critérios especificados e retorna-as como um objeto, compreendendo um ou mais `RangeAreas` intervalos retangulares.|
 ||[findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findallornullobject-text--criteria-)|Localiza todas as ocorrências da cadeia de caracteres determinada com base nos critérios especificados e retorna-as como um objeto, compreendendo um ou mais `RangeAreas` intervalos retangulares.|
 ||[getRanges(address?: string)](/javascript/api/excel/excel.worksheet#getranges-address-)|Obtém `RangeAreas` o objeto, representando um ou mais blocos de intervalos retangulares, especificados pelo endereço ou nome.|
