@@ -1,0 +1,299 @@
+### YamlMime:TSType
+name: Excel.DataValidation
+uid: excel!Excel.DataValidation:class
+package: excel!
+fullName: Excel.DataValidation
+summary: >-
+  Representa a validação de dados aplicada ao intervalo atual. Para saber mais sobre o modelo de objeto de validação de dados, leia [Adicionar validação de dados Excel intervalos](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation)<!-- -->.
+
+
+  \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.DataValidation#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: errorAlert
+  uid: excel!Excel.DataValidation#errorAlert:member
+  package: excel!
+  fullName: errorAlert
+  summary: >-
+    Alerta de erro quando o usuário insere dados inválidos.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'errorAlert: Excel.DataValidationErrorAlert;'
+    return:
+      type: <xref uid="excel!Excel.DataValidationErrorAlert:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
+- name: ignoreBlanks
+  uid: excel!Excel.DataValidation#ignoreBlanks:member
+  package: excel!
+  fullName: ignoreBlanks
+  summary: >-
+    Especifica se a validação de dados será realizada em células em branco. O padrão é `true`<!-- -->.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'ignoreBlanks: boolean;'
+    return:
+      type: boolean
+- name: prompt
+  uid: excel!Excel.DataValidation#prompt:member
+  package: excel!
+  fullName: prompt
+  summary: >-
+    Prompt when users select a cell.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'prompt: Excel.DataValidationPrompt;'
+    return:
+      type: <xref uid="excel!Excel.DataValidationPrompt:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const rankingRange = sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Ranking\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    rankingRange.dataValidation.clear();\n\n    let greaterThanZeroRule = {\n        wholeNumber: {\n            formula1: 0,\n            operator: Excel.DataValidationOperator.greaterThan\n        }\n    };\n    rankingRange.dataValidation.rule = greaterThanZeroRule;\n\n    rankingRange.dataValidation.prompt = {\n        message: \"Please enter a positive number.\",\n        showPrompt: true,\n        title: \"Positive numbers only.\"\n    };\n\n    rankingRange.dataValidation.errorAlert = {\n        message: \"Sorry, only positive numbers are allowed\",\n        showAlert: true,\n        style: \"Stop\",\n        title: \"Negative Number Entered\"\n    };\n\n    await context.sync();\n});\n```"
+- name: rule
+  uid: excel!Excel.DataValidation#rule:member
+  package: excel!
+  fullName: rule
+  summary: >-
+    Regra de validação de dados que contém diferentes tipos de critérios de validação de dados.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'rule: Excel.DataValidationRule;'
+    return:
+      type: <xref uid="excel!Excel.DataValidationRule:interface" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/22-data-validation/data-validation.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const nameRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Baby Name\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    nameRange.dataValidation.clear();\n\n    const nameSourceRange = context.workbook.worksheets.getItem(\"Names\").getRange(\"A1:A3\");\n\n    let approvedListRule = {\n        list: {\n            inCellDropDown: true,\n            source: nameSourceRange\n        }\n    };\n    nameRange.dataValidation.rule = approvedListRule;\n\n    await context.sync();\n});\n```"
+- name: type
+  uid: excel!Excel.DataValidation#type:member
+  package: excel!
+  fullName: type
+  summary: >-
+    Tipo de validação de dados, consulte `Excel.DataValidationType` para obter detalhes.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly type: Excel.DataValidationType | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria";'
+    return:
+      type: <xref uid="excel!Excel.DataValidationType:enum" /> | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria"
+- name: valid
+  uid: excel!Excel.DataValidation#valid:member
+  package: excel!
+  fullName: valid
+  summary: >-
+    Representa se todos os valores de célula são válidos de acordo com as regras de validação de dados. Retorna `true` se todos os valores de célula são válidos ou se todos os valores de célula são `false` inválidos. Retorna `null` se houver valores de célula válidos e inválidos dentro do intervalo.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly valid: boolean;'
+    return:
+      type: boolean
+methods:
+- name: clear()
+  uid: excel!Excel.DataValidation#clear:member(1)
+  package: excel!
+  fullName: clear()
+  summary: >-
+    Desfazer a validação de dados do intervalo atual.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type: void
+      description: ''
+- name: getInvalidCells()
+  uid: excel!Excel.DataValidation#getInvalidCells:member(1)
+  package: excel!
+  fullName: getInvalidCells()
+  summary: >-
+    Retorna um `RangeAreas` objeto, compreendendo um ou mais intervalos retangulares, com valores de célula inválidos. Se todos os valores de célula são válidos, essa função lançará um `ItemNotFound` erro.
+
+
+    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getInvalidCells(): Excel.RangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: getInvalidCellsOrNullObject()
+  uid: excel!Excel.DataValidation#getInvalidCellsOrNullObject:member(1)
+  package: excel!
+  fullName: getInvalidCellsOrNullObject()
+  summary: >-
+    Retorna um `RangeAreas` objeto, compreendendo um ou mais intervalos retangulares, com valores de célula inválidos. Se todos os valores de célula são válidos, essa função retornará `null`<!-- -->.
+
+
+    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getInvalidCellsOrNullObject(): Excel.RangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.DataValidation#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.DataValidationLoadOptions): Excel.DataValidation;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.DataValidationLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.DataValidation:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.DataValidation#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.DataValidation;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.DataValidation:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.DataValidation#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.DataValidation;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.DataValidation:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.DataValidation#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.DataValidation): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.DataValidationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+      type: <xref uid="excel!Excel.Interfaces.DataValidationUpdateData:interface" />
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.DataValidation#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.DataValidation): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.DataValidation:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.DataValidation#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto DataValidation é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.DataValidationData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.DataValidationData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.DataValidationData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 43ef3f661fab1e5bf42b00a2f9b17b65c7a39dda
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266808"
