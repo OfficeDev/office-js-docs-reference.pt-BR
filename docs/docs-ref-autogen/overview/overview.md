@@ -7,13 +7,13 @@ author: o365devx
 ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
-ms.date: 05/10/2021
-ms.openlocfilehash: 809b6378e33eca682005396ff07e79cb37f9ff2c
-ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
+ms.date: 06/30/2021
+ms.openlocfilehash: 67d3d05a4264d8d698f755238c60bff36259b672
+ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 05/21/2021
-ms.locfileid: "52589680"
+ms.lasthandoff: 07/02/2021
+ms.locfileid: "53265626"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Referência da API JavaScript para suplementos do Office
 
@@ -40,6 +40,7 @@ Veja a seguir uma lista de APIs com os [Aplicativos de host do Office som suport
             <ul>
                 <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">Visualização do ExcelApi</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-online">ExcelApiOnline 1.1</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.13">ExcelApi 1.13</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.12">ExcelApi 1.12</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.11">ExcelApi 1.11</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.10">ExcelApi 1.10</a></li>

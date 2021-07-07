@@ -1,0 +1,225 @@
+### YamlMime:TSType
+name: Excel.WorkbookRangeAreas
+uid: excel!Excel.WorkbookRangeAreas:class
+package: excel!
+fullName: Excel.WorkbookRangeAreas
+summary: >-
+  Representa uma coleção de um ou mais intervalos retangulares em várias planilhas.
+
+
+  \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: addresses
+  uid: excel!Excel.WorkbookRangeAreas#addresses:member
+  package: excel!
+  fullName: addresses
+  summary: >-
+    Retorna uma matriz de endereços no estilo A1. Os valores de endereço contêm o nome da planilha para cada bloco retangular de células (por exemplo, "Sheet1! A1:B4, Sheet1! D1:D4"). Somente leitura.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly addresses: string[];'
+    return:
+      type: string[]
+- name: areas
+  uid: excel!Excel.WorkbookRangeAreas#areas:member
+  package: excel!
+  fullName: areas
+  summary: >-
+    Retorna o `RangeAreasCollection` objeto. Cada `RangeAreas` um na coleção representa um ou mais intervalos de retângulos em uma planilha.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly areas: Excel.RangeAreasCollection;'
+    return:
+      type: <xref uid="excel!Excel.RangeAreasCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/direct-precedents.yaml\nawait Excel.run(async (context) => {\n  // Precedents are cells referenced by the formula in a cell.\n  let range = context.workbook.getActiveCell();\n  let directPrecedents = range.getDirectPrecedents();\n  range.load(\"address\");\n  directPrecedents.areas.load(\"address\");\n  await context.sync();\n\n  console.log(`Direct precedent cells of ${range.address}:`);\n\n  // Use the direct precedents API to loop through precedents of the active cell. \n  for (var i = 0; i < directPrecedents.areas.items.length; i++) {\n    // Highlight and console the address of each precedent cell.\n    directPrecedents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directPrecedents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
+- name: context
+  uid: excel!Excel.WorkbookRangeAreas#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: ranges
+  uid: excel!Excel.WorkbookRangeAreas#ranges:member
+  package: excel!
+  fullName: ranges
+  summary: >-
+    Retorna intervalos que compõem esse objeto em um `RangeCollection` objeto.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly ranges: Excel.RangeCollection;'
+    return:
+      type: <xref uid="excel!Excel.RangeCollection:class" />
+methods:
+- name: getRangeAreasBySheet(key)
+  uid: excel!Excel.WorkbookRangeAreas#getRangeAreasBySheet:member(1)
+  package: excel!
+  fullName: getRangeAreasBySheet(key)
+  summary: >-
+    Retorna o objeto com base na ID da `RangeAreas` planilha ou no nome da coleção.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRangeAreasBySheet(key: string): Excel.RangeAreas;'
+    parameters:
+    - id: key
+      description: O nome ou a ID da planilha.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: getRangeAreasOrNullObjectBySheet(key)
+  uid: excel!Excel.WorkbookRangeAreas#getRangeAreasOrNullObjectBySheet:member(1)
+  package: excel!
+  fullName: getRangeAreasOrNullObjectBySheet(key)
+  summary: >-
+    Retorna o objeto com base no nome `RangeAreas` da planilha ou na ID da coleção. Se a planilha não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRangeAreasOrNullObjectBySheet(key: string): Excel.RangeAreas;'
+    parameters:
+    - id: key
+      description: O nome ou a ID da planilha.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.RangeAreas:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.WorkbookRangeAreasLoadOptions): Excel.WorkbookRangeAreas;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.WorkbookRangeAreasLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.WorkbookRangeAreas;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.WorkbookRangeAreas#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.WorkbookRangeAreas;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.WorkbookRangeAreas#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto WorkbookRangeAreas é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorkbookRangeAreasData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.WorkbookRangeAreasData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.WorkbookRangeAreasData:interface" />
+      description: ''
+- name: track()
+  uid: excel!Excel.WorkbookRangeAreas#track:member(1)
+  package: excel!
+  fullName: track()
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'track(): Excel.WorkbookRangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+- name: untrack()
+  uid: excel!Excel.WorkbookRangeAreas#untrack:member(1)
+  package: excel!
+  fullName: untrack()
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'untrack(): Excel.WorkbookRangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: bfc39377aa89700c653de4e91d5e9e58b5040b19
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266192"
