@@ -1,0 +1,214 @@
+### YamlMime:TSType
+name: Excel.CustomProperty
+uid: excel!Excel.CustomProperty:class
+package: excel!
+fullName: Excel.CustomProperty
+summary: >-
+  Representa uma propriedade personalizada.
+
+
+  \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.CustomProperty#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: key
+  uid: excel!Excel.CustomProperty#key:member
+  package: excel!
+  fullName: key
+  summary: >-
+    A chave da propriedade personalizada. A chave é limitada a 255 caracteres fora do Excel na Web (chaves maiores são automaticamente cortadas para 255 caracteres em outras plataformas).
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly key: string;'
+    return:
+      type: string
+- name: type
+  uid: excel!Excel.CustomProperty#type:member
+  package: excel!
+  fullName: type
+  summary: >-
+    O tipo do valor usado para a propriedade personalizada.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly type: Excel.DocumentPropertyType | "Number" | "Boolean" | "Date" | "String" | "Float";'
+    return:
+      type: <xref uid="excel!Excel.DocumentPropertyType:enum" /> | "Number" | "Boolean" | "Date" | "String" | "Float"
+- name: value
+  uid: excel!Excel.CustomProperty#value:member
+  package: excel!
+  fullName: value
+  summary: >-
+    O valor da propriedade personalizada. O valor é limitado a 255 caracteres fora do Excel na Web (valores maiores são automaticamente cortados para 255 caracteres em outras plataformas).
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'value: any;'
+    return:
+      type: any
+methods:
+- name: delete()
+  uid: excel!Excel.CustomProperty#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    Exclui a propriedade personalizada.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: ''
+- name: load(options)
+  uid: excel!Excel.CustomProperty#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.CustomPropertyLoadOptions): Excel.CustomProperty;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.CustomPropertyLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.CustomProperty#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomProperty;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.CustomProperty#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.CustomProperty;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.CustomProperty#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.CustomProperty): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.CustomPropertyUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+      type: <xref uid="excel!Excel.Interfaces.CustomPropertyUpdateData:interface" />
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.CustomProperty#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.CustomProperty): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.CustomProperty#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto CustomProperty é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CustomPropertyData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.CustomPropertyData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.CustomPropertyData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: d5a36b15749fdaaa57c1c50f79b7e97f2ed6d2ee
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266683"
