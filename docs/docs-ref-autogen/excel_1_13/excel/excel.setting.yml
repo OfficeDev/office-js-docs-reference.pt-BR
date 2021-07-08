@@ -1,0 +1,198 @@
+### YamlMime:TSType
+name: Excel.Setting
+uid: excel!Excel.Setting:class
+package: excel!
+fullName: Excel.Setting
+summary: >-
+  A configuração representa um par de valores-chave de uma configuração persistente para o documento (por arquivo, por complemento). Esse par personalizado de valores de chave pode ser usado para armazenar as informações de estado ou ciclo de vida necessárias pelo conteúdo ou pelo complemento do painel de tarefas. Observe que as configurações são persistentes no documento e, portanto, não é um local para armazenar informações confidenciais ou protegidas, como informações do usuário e senha.
+
+
+  \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.Setting#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: key
+  uid: excel!Excel.Setting#key:member
+  package: excel!
+  fullName: key
+  summary: >-
+    A chave que representa a ID da configuração.
+
+
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly key: string;'
+    return:
+      type: string
+- name: value
+  uid: excel!Excel.Setting#value:member
+  package: excel!
+  fullName: value
+  summary: >-
+    Representa o valor armazenado para esta configuração.
+
+
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'value: any;'
+    return:
+      type: any
+methods:
+- name: delete()
+  uid: excel!Excel.Setting#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    Exclui a configuração.
+
+
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/create-get-change-delete-settings.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        console.log(\"The setting has been deleted\");\n    } else {\n        console.log(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
+- name: load(options)
+  uid: excel!Excel.Setting#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.SettingLoadOptions): Excel.Setting;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.SettingLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.Setting#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Setting;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.Setting#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.Setting;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.Setting:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.Setting#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.Setting): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.SettingUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+      type: <xref uid="excel!Excel.Interfaces.SettingUpdateData:interface" />
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.Setting#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.Setting): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.Setting:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.Setting#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. O objeto Setting é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.SettingData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.SettingData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.SettingData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: e8b8c87fc328bd24c6823b2548265ccee69d411a
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53261443"
