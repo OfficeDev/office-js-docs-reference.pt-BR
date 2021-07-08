@@ -1,0 +1,165 @@
+### YamlMime:TSType
+name: Excel.WorksheetFreezePanes
+uid: excel!Excel.WorksheetFreezePanes:class
+package: excel!
+fullName: Excel.WorksheetFreezePanes
+summary: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.WorksheetFreezePanes#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+methods:
+- name: freezeAt(frozenRange)
+  uid: excel!Excel.WorksheetFreezePanes#freezeAt:member(1)
+  package: excel!
+  fullName: freezeAt(frozenRange)
+  summary: >-
+    Define as células congeladas no modo de exibição da planilha ativa. O intervalo fornecido corresponde às células que serão congeladas no painel superior e esquerdo.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'freezeAt(frozenRange: Range | string): void;'
+    parameters:
+    - id: frozenRange
+      description: Um intervalo que representa as células a serem congeladas ou `null` para remover todos os painéis congelados.
+      type: <xref uid="excel!Excel.Range:class" /> | string
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the specified range in top-and-left-most pane of the worksheet.\n    sheet.freezePanes.freezeAt(sheet.getRange(\"H2:K5\"));\n\n    await context.sync();\n});\n```"
+- name: freezeColumns(count)
+  uid: excel!Excel.WorksheetFreezePanes#freezeColumns:member(1)
+  package: excel!
+  fullName: freezeColumns(count)
+  summary: >-
+    Congelar a primeira coluna ou colunas da planilha no local.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'freezeColumns(count?: number): void;'
+    parameters:
+    - id: count
+      description: Número opcional de colunas a congelar ou zero para descongelar todas as colunas
+      type: number
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the first two columns in the worksheet.\n    sheet.freezePanes.freezeColumns(2);\n\n    await context.sync();\n});\n```"
+- name: freezeRows(count)
+  uid: excel!Excel.WorksheetFreezePanes#freezeRows:member(1)
+  package: excel!
+  fullName: freezeRows(count)
+  summary: >-
+    Congelar a linha superior ou as linhas da planilha no local.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'freezeRows(count?: number): void;'
+    parameters:
+    - id: count
+      description: Número opcional de linhas a congelar ou zero para descongelar todas as linhas
+      type: number
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Freeze the top two rows in the worksheet.\n    sheet.freezePanes.freezeRows(2);\n\n    await context.sync();\n});\n```"
+- name: getLocation()
+  uid: excel!Excel.WorksheetFreezePanes#getLocation:member(1)
+  package: excel!
+  fullName: getLocation()
+  summary: >-
+    Obtém um intervalo que descreve as células congeladas no modo de exibição da planilha ativa. O intervalo congelado corresponde às células congeladas no painel superior e esquerdo.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getLocation(): Excel.Range;'
+    return:
+      type: <xref uid="excel!Excel.Range:class" />
+      description: ''
+- name: getLocationOrNullObject()
+  uid: excel!Excel.WorksheetFreezePanes#getLocationOrNullObject:member(1)
+  package: excel!
+  fullName: getLocationOrNullObject()
+  summary: >-
+    Obtém um intervalo que descreve as células congeladas no modo de exibição da planilha ativa. O intervalo congelado corresponde às células congeladas no painel superior e esquerdo. Se não houver painel congelado, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getLocationOrNullObject(): Excel.Range;'
+    return:
+      type: <xref uid="excel!Excel.Range:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const frozenRange = sheet.freezePanes.getLocationOrNullObject();\n    frozenRange.load(\"address\");\n\n    await context.sync();\n\n    if (frozenRange.isNullObject) {\n        console.log(`The worksheet does not contain a frozen pane.`);\n    } else {\n        console.log(`The address of the frozen range (cells that are frozen in the top-and-left-most pane) is \"${frozenRange.address}\"`);\n    }\n});\n```"
+- name: toJSON()
+  uid: excel!Excel.WorksheetFreezePanes#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. O objeto WorksheetFreezePanes é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorksheetFreezePanesData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      toJSON(): {
+                  [key: string]: string;
+              };
+    return:
+      type: >-
+        {
+                    [key: string]: string;
+                }
+      description: ''
+- name: unfreeze()
+  uid: excel!Excel.WorksheetFreezePanes#unfreeze:member(1)
+  package: excel!
+  fullName: unfreeze()
+  summary: >-
+    Remove todos os painéis congelados na planilha.
+
+
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'unfreeze(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-freeze-panes.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.freezePanes.unfreeze();\n\n    await context.sync();\n});\n```"
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 497b588e3f39a5f266fd8d27c156e5239b339bca
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266763"
