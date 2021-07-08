@@ -1,0 +1,395 @@
+### YamlMime:TSType
+name: Excel.PivotTable
+uid: excel!Excel.PivotTable:class
+package: excel!
+fullName: Excel.PivotTable
+summary: >-
+  Representa uma Tabela Dinâmica do Excel. Para saber mais sobre o modelo de objeto de tabela dinâmica, leia Trabalhar com [tabelas dinâmicas usando](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables) Excel API JavaScript<!-- -->.
+
+
+  \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: allowMultipleFiltersPerField
+  uid: excel!Excel.PivotTable#allowMultipleFiltersPerField:member
+  package: excel!
+  fullName: allowMultipleFiltersPerField
+  summary: >-
+    Especifica se a Tabela Dinâmica permite a aplicação de vários PivotFilters em um dado PivotField na tabela.
+
+
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'allowMultipleFiltersPerField: boolean;'
+    return:
+      type: boolean
+- name: columnHierarchies
+  uid: excel!Excel.PivotTable#columnHierarchies:member
+  package: excel!
+  fullName: columnHierarchies
+  summary: >-
+    As hierarquias de pivô da coluna da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly columnHierarchies: Excel.RowColumnPivotHierarchyCollection;'
+    return:
+      type: <xref uid="excel!Excel.RowColumnPivotHierarchyCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");       \n\n    // check if the PivotTable already has a column\n    const column = pivotTable.columnHierarchies.getItemOrNullObject(\"Farm\");\n    column.load(\"id\");\n    await context.sync();\n\n    if (column.isNullObject) {\n        // adding the farm column to the column hierarchy automatically removes it from the row hierarchy\n        pivotTable.columnHierarchies.add(pivotTable.hierarchies.getItem(\"Farm\"));\n    } else {\n        pivotTable.columnHierarchies.remove(column);\n    }\n\n    await context.sync();\n});\n```"
+- name: context
+  uid: excel!Excel.PivotTable#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: dataHierarchies
+  uid: excel!Excel.PivotTable#dataHierarchies:member
+  package: excel!
+  fullName: dataHierarchies
+  summary: >-
+    As hierarquias dinâmicas de dados da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly dataHierarchies: Excel.DataPivotHierarchyCollection;'
+    return:
+      type: <xref uid="excel!Excel.DataPivotHierarchyCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold at Farm\"));\n    pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem(\"Crates Sold Wholesale\"));\n\n    await context.sync();\n});\n```"
+- name: enableDataValueEditing
+  uid: excel!Excel.PivotTable#enableDataValueEditing:member
+  package: excel!
+  fullName: enableDataValueEditing
+  summary: >-
+    Especifica se a Tabela Dinâmica permite que os valores no corpo dos dados sejam editados pelo usuário.
+
+
+    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'enableDataValueEditing: boolean;'
+    return:
+      type: boolean
+- name: filterHierarchies
+  uid: excel!Excel.PivotTable#filterHierarchies:member
+  package: excel!
+  fullName: filterHierarchies
+  summary: >-
+    As hierarquias de pivô do filtro da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly filterHierarchies: Excel.FilterPivotHierarchyCollection;'
+    return:
+      type: <xref uid="excel!Excel.FilterPivotHierarchyCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-filters-and-summaries.yaml\nasync function filter(functionType: Excel.AggregationFunction) {\n    await Excel.run(async (context) => {\n        const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n        const filters = pivotTable.filterHierarchies;\n        const filter = filters.getItemOrNullObject(\"Classification\");\n        filter.load();\n        await context.sync();\n\n        // add the Classification hierarchy to the filter, if it's not already there\n        if (filter.isNullObject) {\n            filters.add(pivotTable.hierarchies.getItem(\"Classification\"));\n            await context.sync();\n        }\n    });\n}\n```"
+- name: hierarchies
+  uid: excel!Excel.PivotTable#hierarchies:member
+  package: excel!
+  fullName: hierarchies
+  summary: >-
+    Hierarquias pivô da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly hierarchies: Excel.PivotHierarchyCollection;'
+    return:
+      type: <xref uid="excel!Excel.PivotHierarchyCollection:class" />
+- name: id
+  uid: excel!Excel.PivotTable#id:member
+  package: excel!
+  fullName: id
+  summary: >-
+    ID da tabela dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type: string
+- name: layout
+  uid: excel!Excel.PivotTable#layout:member
+  package: excel!
+  fullName: layout
+  summary: >-
+    O PivotLayout descreve o layout e estrutura visual da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly layout: Excel.PivotLayout;'
+    return:
+      type: <xref uid="excel!Excel.PivotLayout:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n    pivotTable.layout.load(\"layoutType\");\n    await context.sync();\n\n    // cycle between the three layout types\n    if (pivotTable.layout.layoutType === \"Compact\") {\n        pivotTable.layout.layoutType = \"Outline\";\n    } else if (pivotTable.layout.layoutType === \"Outline\") {\n        pivotTable.layout.layoutType = \"Tabular\";\n    } else {\n        pivotTable.layout.layoutType = \"Compact\";\n    }\n    await context.sync();\n    console.log(\"Pivot layout is now \" + pivotTable.layout.layoutType);\n});\n```"
+- name: name
+  uid: excel!Excel.PivotTable#name:member
+  package: excel!
+  fullName: name
+  summary: >-
+    Nome da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'name: string;'
+    return:
+      type: string
+- name: refreshOnOpen
+  uid: excel!Excel.PivotTable#refreshOnOpen:member
+  package: excel!
+  fullName: refreshOnOpen
+  summary: >-
+    Especifica se a Tabela Dinâmica é atualizada quando a workbook é aberta. Corresponde à configuração "Atualizar na carga" na interface do usuário.
+
+
+    \[[Conjunto de API: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'refreshOnOpen: boolean;'
+    return:
+      type: boolean
+- name: rowHierarchies
+  uid: excel!Excel.PivotTable#rowHierarchies:member
+  package: excel!
+  fullName: rowHierarchies
+  summary: >-
+    As hierarquias de pivô de linha da Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly rowHierarchies: Excel.RowColumnPivotHierarchyCollection;'
+    return:
+      type: <xref uid="excel!Excel.RowColumnPivotHierarchyCollection:class" />
+- name: useCustomSortLists
+  uid: excel!Excel.PivotTable#useCustomSortLists:member
+  package: excel!
+  fullName: useCustomSortLists
+  summary: >-
+    Especifica se a Tabela Dinâmica usa listas personalizadas ao classificar.
+
+
+    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'useCustomSortLists: boolean;'
+    return:
+      type: boolean
+- name: worksheet
+  uid: excel!Excel.PivotTable#worksheet:member
+  package: excel!
+  fullName: worksheet
+  summary: >-
+    A planilha que contém a Tabela Dinâmica atual.
+
+
+    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly worksheet: Excel.Worksheet;'
+    return:
+      type: <xref uid="excel!Excel.Worksheet:class" />
+methods:
+- name: delete()
+  uid: excel!Excel.PivotTable#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    Exclui a Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml\nawait Excel.run(async (context) => {\n    context.workbook.worksheets.getItem(\"Pivot\").pivotTables.getItem(\"Farm Sales\").delete();\n\n    await context.sync();\n});\n```"
+- name: load(options)
+  uid: excel!Excel.PivotTable#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.PivotTableLoadOptions): Excel.PivotTable;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.PivotTableLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.PivotTable#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.PivotTable;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.PivotTable#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.PivotTable;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: refresh()
+  uid: excel!Excel.PivotTable#refresh:member(1)
+  package: excel!
+  fullName: refresh()
+  summary: >-
+    Atualiza a Tabela Dinâmica.
+
+
+    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'refresh(): void;'
+    return:
+      type: void
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.PivotTable#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Excel.PivotTable): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.PivotTableUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+      type: <xref uid="excel!Excel.Interfaces.PivotTableUpdateData:interface" />
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.PivotTable#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.PivotTable): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.PivotTable:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.PivotTable#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto PivotTable é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.PivotTableData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.PivotTableData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.PivotTableData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 34d37616b4a9d0408b2086d1e222d5c70427be56
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266548"

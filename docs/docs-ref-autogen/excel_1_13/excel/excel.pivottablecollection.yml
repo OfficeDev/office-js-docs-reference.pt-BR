@@ -1,0 +1,234 @@
+### YamlMime:TSType
+name: Excel.PivotTableCollection
+uid: excel!Excel.PivotTableCollection:class
+package: excel!
+fullName: Excel.PivotTableCollection
+summary: >-
+  Representa uma coleção de todas as Tabelas Dinâmicas que fazem parte da pasta de trabalho ou planilha.
+
+
+  \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.PivotTableCollection#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: items
+  uid: excel!Excel.PivotTableCollection#items:member
+  package: excel!
+  fullName: items
+  summary: Obtém os itens filhos carregados nesta coleção.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.PivotTable[];'
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />[]
+methods:
+- name: add(name, source, destination)
+  uid: excel!Excel.PivotTableCollection#add:member(1)
+  package: excel!
+  fullName: add(name, source, destination)
+  summary: >-
+    Adicione uma Tabela Dinâmica com base nos dados de origem especificados e insira-a na célula superior esquerda do intervalo de destino.
+
+
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(name: string, source: Range | string | Table, destination: Range | string): Excel.PivotTable;'
+    parameters:
+    - id: name
+      description: O nome da nova tabela dinâmica.
+      type: string
+    - id: source
+      description: Os dados de origem da nova Tabela Dinâmica, isso pode ser um intervalo (ou endereço de cadeia de caracteres, incluindo o nome da planilha) ou uma tabela.
+      type: <xref uid="excel!Excel.Range:class" /> | string | <xref uid="excel!Excel.Table:class" />
+    - id: destination
+      description: A célula no canto superior esquerdo do intervalo de destino do relatório de tabela dinâmica (o intervalo na planilha em que o relatório resultante será inserido).
+      type: <xref uid="excel!Excel.Range:class" /> | string
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: >-
+        Retorna a tabela dinâmica recém-inserida.
+
+
+        #### <a name="examples"></a>Exemplos
+
+
+        ```typescript
+
+        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml
+
+        await Excel.run(async (context) => {
+            const rangeToAnalyze = context.workbook.worksheets.getItem("Data").getRange("A1:E21");
+            const rangeToPlacePivot = context.workbook.worksheets.getItem("Pivot").getRange("A2");
+            context.workbook.worksheets.getItem("Pivot").pivotTables.add("Farm Sales", rangeToAnalyze, rangeToPlacePivot);
+
+            await context.sync();
+        });
+
+        ```
+- name: getCount()
+  uid: excel!Excel.PivotTableCollection#getCount:member(1)
+  package: excel!
+  fullName: getCount()
+  summary: >-
+    Obtém o número de tabelas dinâmicas na coleção.
+
+
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
+      description: ''
+- name: getItem(name)
+  uid: excel!Excel.PivotTableCollection#getItem:member(1)
+  package: excel!
+  fullName: getItem(name)
+  summary: >-
+    Obtém uma Tabela Dinâmica por nome.
+
+
+    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(name: string): Excel.PivotTable;'
+    parameters:
+    - id: name
+      description: Nome da Tabela Dinâmica a ser recuperada.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: getItemOrNullObject(name)
+  uid: excel!Excel.PivotTableCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(name)
+  summary: >-
+    Obtém uma Tabela Dinâmica por nome. Se a Tabela Dinâmica não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(name: string): Excel.PivotTable;'
+    parameters:
+    - id: name
+      description: Nome da Tabela Dinâmica a ser recuperada.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.PivotTable:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.PivotTableCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.PivotTableCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.PivotTableCollection;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.PivotTableCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.PivotTableCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.PivotTableCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.PivotTableCollection;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.PivotTableCollection:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.PivotTableCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.PivotTableCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.PivotTableCollection:class" />
+      description: ''
+- name: refreshAll()
+  uid: excel!Excel.PivotTableCollection#refreshAll:member(1)
+  package: excel!
+  fullName: refreshAll()
+  summary: >-
+    Atualiza todas as tabelas dinâmicas da coleção.
+
+
+    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'refreshAll(): void;'
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.PivotTableCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto original `Excel.PivotTableCollection` é um objeto API, o método retorna `toJSON` um objeto JavaScript simples (digitado como `Excel.Interfaces.PivotTableCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.PivotTableCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.PivotTableCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 1b6b5626e11e185cec3a2d87feb97ee52e76b35d
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53266708"
