@@ -25,14 +25,14 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string | boolean} | {error: number}) => void): void;'
+    content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string, origin: string | undefined} | {error: number}) => void): void;'
     parameters:
     - id: eventType
       description: Deve ser DialogMessageReceived ou DialogEventReceived.
       type: <xref uid="office!Office.EventType:enum" />
     - id: handler
-      description: Uma função que aceita um objeto com uma propriedade, se eventType for DialogMessageReceived ou um objeto com uma propriedade, se eventType for `message` `error` DialogEventReceived.
-      type: '(args: {message: string | boolean} | {error: number}) =&gt; void'
+      description: Uma função que aceita um objeto com uma `message` propriedade `origin` e, `eventType` se for `DialogMessageReceived`<!-- -->, ou um objeto com uma `error` propriedade, `eventType` se for `DialogEventReceived`<!-- -->. Observe que a `origin` propriedade está em clientes que não `undefined` suportam [DialogOrigin 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-origin-requirement-sets)<!-- -->.
+      type: '(args: {message: string, origin: string | undefined} | {error: number}) =&gt; void'
     return:
       type: void
       description: ''
@@ -53,10 +53,10 @@ methods:
     return:
       type: void
       description: ''
-- name: messageChild(message)
+- name: messageChild(message, messageOptions)
   uid: office!Office.Dialog#messageChild:member(1)
   package: office!
-  fullName: messageChild(message)
+  fullName: messageChild(message, messageOptions)
   summary: Entrega uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, para uma caixa de diálogo aberta na página.
   remarks: >-
     **Hosts**: Excel, Outlook (Conjunto de requisitos mínimos: Caixa de Correio 1.9), PowerPoint, Word
@@ -69,14 +69,20 @@ methods:
 
 
     - [Caixa de correio 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+
+
+    - Se o `messageOptions` parâmetro for usado, [DialogOrigin 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-origin-requirement-sets) também será necessário.
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'messageChild(message: string): void;'
+    content: 'messageChild(message: string, messageOptions?: DialogMessageOptions): void;'
     parameters:
     - id: message
       description: Aceita uma mensagem da página host para entregar à caixa de diálogo. Qualquer coisa que possa ser serializada para uma cadeia de caracteres, incluindo JSON e XML, pode ser enviada.
       type: string
+    - id: messageOptions
+      description: Opcional. Fornece opções de como enviar a mensagem.
+      type: <xref uid="office!Office.DialogMessageOptions:interface" />
     return:
       type: void
       description: ''
@@ -98,9 +104,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 52178447972fb3aa4048c0a8f2c72b3d8b17f779
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 283d8bf0325236380c4797756901aaba80b4141a
+  ms.sourcegitcommit: 299ab01d75899a5547557dd4a40728b385dc16f1
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51320479"
+  ms.lasthandoff: 07/22/2021
+  ms.locfileid: "53532743"
