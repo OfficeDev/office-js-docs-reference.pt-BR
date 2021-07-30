@@ -792,7 +792,7 @@ properties:
     Obtém a id da série à que uma instância pertence.
 
 
-    Em Outlook clientes da Web e da área de trabalho, a propriedade retorna a ID Exchange Web Services (EWS) do item pai (série) a que este `seriesId` item pertence. No entanto, no iOS e no Android, a seriesId retorna a ID REST do item pai.
+    Em Outlook na Web clientes da área de trabalho e da área de trabalho, a propriedade retorna a ID Exchange Web Services (EWS) do item pai (série) ao que este `seriesId` item pertence. No entanto, no iOS e no Android, a seriesId retorna a ID REST do item pai.
 
 
     **Observação**: o identificador retornado pela propriedade é o mesmo que o identificador de item `seriesId` Exchange Web Services. A `seriesId` propriedade não é idêntica às Outlook IDs usadas pela OUTLOOK REST. Antes de fazer chamadas de API REST usando esse valor, ela deve ser convertida usando `Office.context.mailbox.convertToRestId`<!-- -->. Para obter mais detalhes, consulte Usar as OUTLOOK REST de um [Outlook de um Outlook de usuário](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
@@ -2168,7 +2168,7 @@ methods:
     Obtém se a assinatura do cliente estiver habilitada.
 
 
-    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar se a `true` assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
+    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar `true` se a assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
 
 
     \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2219,7 +2219,7 @@ methods:
     Obtém se a assinatura do cliente estiver habilitada.
 
 
-    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar se a `true` assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
+    Para clientes Windows e Mac rich, a chamada da API deve retornar se a assinatura padrão para novas mensagens, respostas ou encaminhamentos estiver definida como um modelo para a conta de Outlook `true` de envio. Para Outlook na Web, a chamada da API deve retornar `true` se a assinatura estiver habilitada para tipos de composição`newMail`<!-- -->, `reply`<!-- -->, ou `forward`<!-- -->. Se as configurações são definidas como "(nenhuma)" no Mac ou Windows clientes ricos ou desabilitados no Outlook na Web, a chamada da API deve retornar`false`<!-- -->.
 
 
     \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -2644,7 +2644,7 @@ methods:
       description: Os dados a serem inseridos. Os dados não devem exceder 1.000.000 de caracteres. Se forem passados mais de 1.000.000 de caracteres, ocorrerá uma exceção `ArgumentOutOfRange`.
       type: string
     - id: options
-      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se texto, o estilo atual é aplicado Outlook na Web e Windows. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado Outlook na Web e o estilo padrão será aplicado em Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
+      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: Se texto, o estilo atual será aplicado em Outlook na Web e Windows. Se o campo for um editor de HTML, apenas os dados de texto são inseridos, mesmo se os dados forem HTML. Se html e o campo for compatível com HTML (o assunto não, o estilo atual será aplicado no Outlook na Web e o estilo padrão será aplicado em Outlook em clientes da área de trabalho. Se o campo for um campo de texto, retorna um erro `InvalidDataFormat`. Se `coercionType` não estiver definido, o resultado depende do campo: se o campo for HTML, HTML será usado; se o campo for texto, texto sem formatação será usado.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
       description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
@@ -2689,106 +2689,11 @@ methods:
     return:
       type: void
       description: ''
-- name: setSignatureAsync(data, options, callback)
-  uid: outlook!Office.AppointmentCompose#setSignatureAsync:member(1)
-  package: outlook!
-  fullName: setSignatureAsync(data, options, callback)
-  summary: >-
-    Adiciona ou substitui a assinatura do corpo do item.
-
-
-    **Importante**: Outlook na Web, `setSignatureAsync` só funciona em mensagens.
-
-
-    **Importante**: se o seu complemento implementar o recurso de ativação baseada em [evento usando \` LaunchEvent \` no manifesto](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->e chamadas `setSignatureAsync` no manipulador de eventos, o comportamento a seguir se aplica.
-
-
-    - Quando o usuário compõe um novo item (incluindo resposta ou encaminhamento), a assinatura é definida, mas não modifica o formulário. Isso significa que se o usuário fechar o formulário sem fazer outras edições, ele não será solicitado a salvar alterações.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
-
-
-    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
-
-
-    **Erros**:
-
-
-    - `DataExceedsMaximumSize`<!-- -->: O `data` parâmetro tem mais de 30.000 caracteres.
-
-
-    - `InvalidFormatError`<!-- -->: O `options.coercionType` parâmetro é definido como e o corpo da mensagem está em texto sem `Office.CoercionType.Html` texto.
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'setSignatureAsync(data: string, options: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    parameters:
-    - id: data
-      description: A cadeia de caracteres que representa a assinatura a ser definida no corpo do email. Essa cadeia de caracteres é limitada a 30.000 caracteres.
-      type: string
-    - id: options
-      description: 'Um objeto literal que contém uma ou mais das propriedades a seguir. `asyncContext`<!-- -->: Os desenvolvedores podem fornecer qualquer objeto que desejam acessar no método de retorno de chamada. `coercionType`<!-- -->: O formato em que a assinatura deve ser definida. Se Text, o método define a assinatura como texto sem formatação, removendo todas as marcas HTML presentes. Se Html, o método define a assinatura como HTML.'
-      type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
-    - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
-      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
-    return:
-      type: void
-      description: ''
-- name: setSignatureAsync(data, callback)
-  uid: outlook!Office.AppointmentCompose#setSignatureAsync:member(2)
-  package: outlook!
-  fullName: setSignatureAsync(data, callback)
-  summary: >-
-    Adiciona ou substitui a assinatura do corpo do item.
-
-
-    **Importante**: Outlook na Web, `setSignatureAsync` só funciona em mensagens.
-
-
-    **Importante**: se o seu complemento implementar o recurso de ativação baseada em [evento usando \` LaunchEvent \` no manifesto](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->e chamadas `setSignatureAsync` no manipulador de eventos, o comportamento a seguir se aplica.
-
-
-    - Quando o usuário compõe um novo item (incluindo resposta ou encaminhamento), a assinatura é definida, mas não modifica o formulário. Isso significa que se o usuário fechar o formulário sem fazer outras edições, ele não será solicitado a salvar alterações.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.10](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
-
-
-    **[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação
-
-
-    **Erros**:
-
-
-    - `DataExceedsMaximumSize`<!-- -->: O `data` parâmetro tem mais de 30.000 caracteres.
-
-
-    - `InvalidFormatError`<!-- -->: O `options.coercionType` parâmetro é definido como e o corpo da mensagem está em texto sem `Office.CoercionType.Html` texto.
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'setSignatureAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-    parameters:
-    - id: data
-      description: A cadeia de caracteres que representa a assinatura a ser definida no corpo do email. Essa cadeia de caracteres é limitada a 30.000 caracteres.
-      type: string
-    - id: callback
-      description: Opcional. Quando o método é concluído, a função passada no `callback` parâmetro é chamada com um único parâmetro de tipo `Office.AsyncResult`<!-- -->.
-      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
-    return:
-      type: void
-      description: ''
 extends: <xref uid="outlook!Office.Appointment:interface" />
 metadata:
-  ms.openlocfilehash: b08cb25f9607ea90c6426bef3e7b7bccb7896ad6
-  ms.sourcegitcommit: 1e0143ae4add09dbe22b0080d22fb25101757fba
+  ms.openlocfilehash: 7a2872aa152944b31169b45f2fe502c376d6b6fb
+  ms.sourcegitcommit: 8c40d5dc2b06d5c0c8ab8edc98d6853c947eab00
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 06/11/2021
-  ms.locfileid: "52895319"
+  ms.lasthandoff: 07/30/2021
+  ms.locfileid: "53662895"
