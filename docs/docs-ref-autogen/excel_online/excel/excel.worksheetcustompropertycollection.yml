@@ -3,12 +3,8 @@ name: Excel.WorksheetCustomPropertyCollection
 uid: excel!Excel.WorksheetCustomPropertyCollection:class
 package: excel!
 fullName: Excel.WorksheetCustomPropertyCollection
-summary: >-
-  Contém a coleção de propriedades personalizadas no nível da planilha.
-
-
-  \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Contém a coleção de propriedades personalizadas no nível da planilha.
+remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.WorksheetCustomPropertyCollection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -42,12 +38,33 @@ methods:
   uid: excel!Excel.WorksheetCustomPropertyCollection#add:member(1)
   package: excel!
   fullName: add(key, value)
-  summary: >-
-    Adiciona uma nova propriedade personalizada que mapeia para a chave fornecida. Isso substitui as propriedades personalizadas existentes com essa chave.
+  summary: Adiciona uma nova propriedade personalizada que mapeia para a chave fornecida. Isso substitui as propriedades personalizadas existentes com essa chave.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/26-document/custom-properties.yaml
+
+    await Excel.run(async (context) => {
+      // Get the key/value pair from the task pane.
+      const userKey = $("#key").text();
+      const userValue = $("#value").text();
+
+      // Add the custom property.
+      const customWorksheetProperties = context.workbook.worksheets.getActiveWorksheet().customProperties;
+      customWorksheetProperties.add(userKey, userValue);
+
+      await context.sync();
+
+      console.log(`Successfully set custom worksheet property ${userKey}:${userValue}.`);
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -61,17 +78,13 @@ methods:
       type: string
     return:
       type: <xref uid="excel!Excel.WorksheetCustomProperty:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/26-document/custom-properties.yaml\nawait Excel.run(async (context) => {\n  // Get the key/value pair from the task pane.\n  const userKey = $(\"#key\").text();\n  const userValue = $(\"#value\").text();\n\n  // Add the custom property.\n  const customWorksheetProperties = context.workbook.worksheets.getActiveWorksheet().customProperties;\n  customWorksheetProperties.add(userKey, userValue);\n\n  await context.sync();\n\n  console.log(`Successfully set custom worksheet property ${userKey}:${userValue}.`);\n});\n```"
+      description: ''
 - name: getCount()
   uid: excel!Excel.WorksheetCustomPropertyCollection#getCount:member(1)
   package: excel!
   fullName: getCount()
-  summary: >-
-    Obtém o número de propriedades personalizadas nesta planilha.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o número de propriedades personalizadas nesta planilha.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -83,12 +96,8 @@ methods:
   uid: excel!Excel.WorksheetCustomPropertyCollection#getItem:member(1)
   package: excel!
   fullName: getItem(key)
-  summary: >-
-    Obtém um objeto de propriedade personalizada por sua chave, que diferencia maiúsculas de minúsculas. Ocorre um erro se a propriedade personalizada não existir.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém um objeto de propriedade personalizada por sua chave, que diferencia maiúsculas de minúsculas. Ocorre um erro se a propriedade personalizada não existir.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -104,12 +113,8 @@ methods:
   uid: excel!Excel.WorksheetCustomPropertyCollection#getItemOrNullObject:member(1)
   package: excel!
   fullName: getItemOrNullObject(key)
-  summary: >-
-    Obtém um objeto de propriedade personalizada por sua chave, que diferencia maiúsculas de minúsculas. Se a propriedade personalizada não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém um objeto de propriedade personalizada por sua chave, que diferencia maiúsculas de minúsculas. Se a propriedade personalizada não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -187,9 +192,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 97f9fa1ec3841ea91c4e8aae239227843b0df3d5
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 6d9b6a166707f771272bcb6c825c25bdbc5c56e7
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51520051"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59643288"

@@ -3,12 +3,8 @@ name: Excel.Image
 uid: excel!Excel.Image:class
 package: excel!
 fullName: Excel.Image
-summary: >-
-  Representa uma imagem na planilha. Para obter o objeto `Shape` correspondente, use `Image.shape`<!-- -->.
-
-
-  \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa uma imagem na planilha. Para obter o objeto `Shape` correspondente, use `Image.shape`<!-- -->.
+remarks: '\[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.Image#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,29 +25,41 @@ properties:
   uid: excel!Excel.Image#format:member
   package: excel!
   fullName: format
-  summary: >-
-    Retorna o formato da imagem.
+  summary: Retorna o formato da imagem.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/44-shape/shape-images.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Shapes");
+        const image = sheet.shapes.getItem("Image").image;
+        image.load("format");
+        await context.sync();
+
+        console.log("The image's format is: " + image.format);
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly format: Excel.PictureFormat | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG";'
     return:
       type: <xref uid="excel!Excel.PictureFormat:enum" /> | "UNKNOWN" | "BMP" | "JPEG" | "GIF" | "PNG" | "SVG"
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/44-shape/shape-images.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const image = sheet.shapes.getItem(\"Image\").image;\n    image.load(\"format\");\n    await context.sync();\n\n    console.log(\"The image's format is: \" + image.format);\n    await context.sync();\n});\n```"
 - name: id
   uid: excel!Excel.Image#id:member
   package: excel!
   fullName: id
-  summary: >-
-    Especifica o identificador de forma do objeto image.
-
-
-    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Especifica o identificador de forma do objeto image.
+  remarks: '\[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -62,12 +70,8 @@ properties:
   uid: excel!Excel.Image#shape:member
   package: excel!
   fullName: shape
-  summary: >-
-    Retorna o `Shape` objeto associado à imagem.
-
-
-    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna o `Shape` objeto associado à imagem.
+  remarks: '\[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -138,7 +142,7 @@ methods:
   uid: excel!Excel.Image#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.Image original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.ImageData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto Image é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.ImageData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -149,9 +153,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: dd5f24bf4a6c6b09756f5b991bc16f2d9dcf0cbb
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 8de12d68527add328f21900fd5814dd44e16f7e0
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51545019"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59646732"
