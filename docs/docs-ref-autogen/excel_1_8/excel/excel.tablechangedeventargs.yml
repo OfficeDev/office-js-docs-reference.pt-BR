@@ -3,12 +3,8 @@ name: Excel.TableChangedEventArgs
 uid: excel!Excel.TableChangedEventArgs:interface
 package: excel!
 fullName: Excel.TableChangedEventArgs
-summary: >-
-  Fornece informações sobre a tabela que gerou o evento alterado.
-
-
-  \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Fornece informações sobre a tabela que gerou o evento alterado.
+remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: interface
@@ -17,12 +13,8 @@ properties:
   uid: excel!Excel.TableChangedEventArgs#address:member
   package: excel!
   fullName: address
-  summary: >-
-    Obtém o endereço que representa a área alterada de uma tabela em uma planilha específica.
-
-
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o endereço que representa a área alterada de uma tabela em uma planilha específica.
+  remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -33,12 +25,8 @@ properties:
   uid: excel!Excel.TableChangedEventArgs#changeType:member
   package: excel!
   fullName: changeType
-  summary: >-
-    Obtém o tipo de alteração que representa como o evento alterado é disparado. Consulte `Excel.DataChangeType` para obter detalhes.
-
-
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o tipo de alteração que representa como o evento alterado é disparado. Consulte `Excel.DataChangeType` para obter detalhes.
+  remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -49,12 +37,8 @@ properties:
   uid: excel!Excel.TableChangedEventArgs#source:member
   package: excel!
   fullName: source
-  summary: >-
-    Obtém a origem do evento. Consulte `Excel.EventSource` para obter detalhes.
-
-
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a origem do evento. Consulte `Excel.EventSource` para obter detalhes.
+  remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -65,29 +49,45 @@ properties:
   uid: excel!Excel.TableChangedEventArgs#tableId:member
   package: excel!
   fullName: tableId
-  summary: >-
-    Obtém a ID da tabela na qual os dados foram alterados.
+  summary: Obtém a ID da tabela na qual os dados foram alterados.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-tablecollection-changed.yaml
+
+    async function onChange(event) {
+        await Excel.run(async (context) => {
+            let table = context.workbook.tables.getItem(event.tableId);
+            let worksheet = context.workbook.worksheets.getItem(event.worksheetId);
+            worksheet.load("name");
+
+            await context.sync();
+
+            console.log("Handler for table collection onChanged event has been triggered. Data changed address: " + event.address);
+            console.log("Table Id : " + event.tableId);
+            console.log("Worksheet Id : " + worksheet.name);
+        });
+    }
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'tableId: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-tablecollection-changed.yaml\nasync function onChange(event) {\n    await Excel.run(async (context) => {\n        let table = context.workbook.tables.getItem(event.tableId);\n        let worksheet = context.workbook.worksheets.getItem(event.worksheetId);\n        worksheet.load(\"name\");\n\n        await context.sync();\n\n        console.log(\"Handler for table collection onChanged event has been triggered. Data changed address: \" + event.address);\n        console.log(\"Table Id : \" + event.tableId);\n        console.log(\"Worksheet Id : \" + worksheet.name);\n    });\n}\n```"
 - name: type
   uid: excel!Excel.TableChangedEventArgs#type:member
   package: excel!
   fullName: type
-  summary: >-
-    Obtém o tipo do evento. Consulte `Excel.EventType` para obter detalhes.
-
-
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o tipo do evento. Consulte `Excel.EventType` para obter detalhes.
+  remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -98,19 +98,39 @@ properties:
   uid: excel!Excel.TableChangedEventArgs#worksheetId:member
   package: excel!
   fullName: worksheetId
-  summary: >-
-    Obtém a ID da planilha na qual os dados foram alterados.
+  summary: Obtém a ID da planilha na qual os dados foram alterados.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-tablecollection-changed.yaml
+
+    async function onChange(event) {
+        await Excel.run(async (context) => {
+            let table = context.workbook.tables.getItem(event.tableId);
+            let worksheet = context.workbook.worksheets.getItem(event.worksheetId);
+            worksheet.load("name");
+
+            await context.sync();
+
+            console.log("Handler for table collection onChanged event has been triggered. Data changed address: " + event.address);
+            console.log("Table Id : " + event.tableId);
+            console.log("Worksheet Id : " + worksheet.name);
+        });
+    }
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'worksheetId: string;'
     return:
       type: string
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-tablecollection-changed.yaml\nasync function onChange(event) {\n    await Excel.run(async (context) => {\n        let table = context.workbook.tables.getItem(event.tableId);\n        let worksheet = context.workbook.worksheets.getItem(event.worksheetId);\n        worksheet.load(\"name\");\n\n        await context.sync();\n\n        console.log(\"Handler for table collection onChanged event has been triggered. Data changed address: \" + event.address);\n        console.log(\"Table Id : \" + event.tableId);\n        console.log(\"Worksheet Id : \" + worksheet.name);\n    });\n}\n```"
 methods:
 - name: getRange(ctx)
   uid: excel!Excel.TableChangedEventArgs#getRange:member(1)
@@ -120,7 +140,7 @@ methods:
     Obtém o intervalo que representa a área alterada de uma tabela em uma planilha específica.
 
 
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -141,7 +161,7 @@ methods:
     Obtém o intervalo que representa a área alterada de uma tabela em uma planilha específica. Pode retornar o objeto null.
 
 
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -155,9 +175,9 @@ methods:
       type: <xref uid="excel!Excel.Range:class" />
       description: ''
 metadata:
-  ms.openlocfilehash: 308a33ecf7e1d30d61fe101ec1b5cd3660ab697a
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 43045bd394f4ab68e45281ee1ebc3b528551f4ba
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51568902"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59651499"
