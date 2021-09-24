@@ -5,7 +5,7 @@
 ||[iterativeCalculation](/javascript/api/excel/excel.application#iterativeCalculation)|Retorna as configurações de cálculo iterativo.|
 ||[suspendScreenUpdatingUntilNextSync()](/javascript/api/excel/excel.application#suspendScreenUpdatingUntilNextSync__)|Suspende a atualização de tela até que a próxima `context.sync()` seja chamada.|
 |[AutoFilter](/javascript/api/excel/excel.autofilter)|[apply(range: Range \| string, columnIndex?: number, criteria?: Excel.FilterCriteria)](/javascript/api/excel/excel.autofilter#apply_range__columnIndex__criteria_)|Aplica o AutoFiltro a um intervalo.|
-||[clearCriteria()](/javascript/api/excel/excel.autofilter#clearCriteria__)|Limpa os critérios de filtro do AutoFiltro.|
+||[clearCriteria()](/javascript/api/excel/excel.autofilter#clearCriteria__)|Limpa os critérios de filtro e o estado de classificação do AutoFilter.|
 ||[getRange()](/javascript/api/excel/excel.autofilter#getRange__)|Retorna o `Range` objeto que representa o intervalo ao qual o AutoFilter se aplica.|
 ||[getRangeOrNullObject()](/javascript/api/excel/excel.autofilter#getRangeOrNullObject__)|Retorna o `Range` objeto que representa o intervalo ao qual o AutoFilter se aplica.|
 ||[criteria](/javascript/api/excel/excel.autofilter#criteria)|Uma matriz que contém todos os critérios de filtro no intervalo de autofiltro.|
