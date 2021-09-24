@@ -149,10 +149,7 @@ properties:
 
 
     No entanto, em cenários delegados ou compartilhados, você deve usar a propriedade do objeto `targetRestUrl` [SharedProperties](https://docs.microsoft.com/javascript/api/outlook/office.sharedproperties?view=outlook-js-1.8) (introduzido no conjunto de requisitos 1.8). Para obter mais informações, consulte o [artigo de acesso do](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) representante.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\nO valor `restUrl` pode ser usado para fazer chamadas da [API REST](https://docs.microsoft.com/outlook/rest/) para a caixa de correio do usuário.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
+  remarks: "\\[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \\]\n\n**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\nO valor `restUrl` pode ser usado para fazer chamadas da [API REST](https://docs.microsoft.com/outlook/rest/) para a caixa de correio do usuário.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -185,10 +182,10 @@ methods:
 
 
     Para eventos com suporte, consulte a seção Eventos do modelo de objeto de Caixa de [Correio](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/office.context.mailbox#events)<!-- -->.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -255,10 +252,10 @@ methods:
 
 
     Para eventos com suporte, consulte a seção Eventos do modelo de objeto de Caixa de [Correio](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/office.context.mailbox#events)<!-- -->.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -292,10 +289,10 @@ methods:
 
 
     **Observação**: este método não é suportado em Outlook iOS ou Android.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
 
 
@@ -379,10 +376,7 @@ methods:
 
 
     **Observação**: este método não é suportado em Outlook iOS ou Android.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\nAs IDs de item recuperadas por meio do EWS ou por meio da propriedade usam um formato diferente do formato usado pelas `itemId` APIs REST (como [a API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations) de Email Outlook ou o [Microsoft Graph](https://graph.microsoft.io/)<!-- -->. O método `convertToRestId` converte uma ID formatada como EWS para o formato adequado para REST.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
+  remarks: "\\[[Conjunto de API: Caixa de Correio 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \\]\n\n**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\nAs IDs de item recuperadas por meio do EWS ou por meio da propriedade usam um formato diferente do formato usado pelas `itemId` APIs REST (como [a API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations) de Email Outlook ou o [Microsoft Graph](https://graph.microsoft.io/)<!-- -->. O método `convertToRestId` converte uma ID formatada como EWS para o formato adequado para REST.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -680,10 +674,7 @@ methods:
 
 
     **Observação**: é recomendável que os complementos usem as APIs REST em vez de Exchange Web Sempre que possível.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\n**Erros**:\n\n- `HTTPRequestFailure`<!-- -->: A solicitação falhou. Examine o objeto de diagnóstico para o código de erro HTTP.\n\n- `InternalServerError`<!-- -->: O Exchange servidor retornou um erro. Para saber mais, confira o objeto de diagnóstico.\n\n- `NetworkError`<!-- -->: O usuário não está mais conectado à rede. Verifique sua conexão de rede e tente novamente.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```"
+  remarks: "\\[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \\]\n\n**[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Modo Outlook aplicável](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Redação ou Leitura\n\n**Erros**:\n\n- `HTTPRequestFailure`<!-- -->: A solicitação falhou. Examine o objeto de diagnóstico para o código de erro HTTP.\n\n- `InternalServerError`<!-- -->: O Exchange servidor retornou um erro. Para saber mais, confira o objeto de diagnóstico.\n\n- `NetworkError`<!-- -->: O usuário não está mais conectado à rede. Verifique sua conexão de rede e tente novamente.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -722,10 +713,10 @@ methods:
 
 
     **Importante**: Para obter orientações sobre cenários delegados ou compartilhados, consulte o [artigo de acesso do](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) representante.
-
-
-    \[[Conjunto de API: todos suportam o modo de leitura; A Caixa de Correio 1.3 introduziu o suporte ao modo Redação](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: todos suportam o modo de leitura; A Caixa de Correio 1.3 introduziu o suporte ao modo Redação](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -1018,10 +1009,10 @@ methods:
 
 
     Para eventos com suporte, consulte a seção Eventos do modelo de objeto de Caixa de [Correio](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/office.context.mailbox#events)<!-- -->.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -1052,10 +1043,10 @@ methods:
 
 
     Para eventos com suporte, consulte a seção Eventos do modelo de objeto de Caixa de [Correio](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/office.context.mailbox#events)<!-- -->.
-
-
-    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
+    \[[Conjunto de API: Caixa de Correio 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]
+
+
     **[Nível mínimo de permissão](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
@@ -1075,9 +1066,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 8c539a8b9544427005978c7eab3fbc08679d1e52
-  ms.sourcegitcommit: 319b8cca7d91e51669407633dacc02ea6e4f4338
+  ms.openlocfilehash: c9402d5ff995b9659d5a0d4f5d869a4e4e752383
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 06/18/2021
-  ms.locfileid: "53009873"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59650295"
