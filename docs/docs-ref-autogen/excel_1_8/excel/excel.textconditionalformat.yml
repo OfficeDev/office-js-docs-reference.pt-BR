@@ -3,12 +3,8 @@ name: Excel.TextConditionalFormat
 uid: excel!Excel.TextConditionalFormat:class
 package: excel!
 fullName: Excel.TextConditionalFormat
-summary: >-
-  Representa um formato condicional de texto específico.
-
-
-  \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa um formato condicional de texto específico.
+remarks: '\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.TextConditionalFormat#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,36 +25,70 @@ properties:
   uid: excel!Excel.TextConditionalFormat#format:member
   package: excel!
   fullName: format
-  summary: >-
-    Retorna um objeto format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades do formato condicional.
+  summary: Retorna um objeto format, encapsulando a fonte, o preenchimento, as bordas e outras propriedades do formato condicional.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Sample");
+        const range = sheet.getRange("B16:D18");
+        const conditionalFormat = range.conditionalFormats
+            .add(Excel.ConditionalFormatType.containsText);
+        conditionalFormat.textComparison.format.font.color = "red";
+        conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: "Delayed" };
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly format: Excel.ConditionalRangeFormat;'
     return:
       type: <xref uid="excel!Excel.ConditionalRangeFormat:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B16:D18\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.containsText);\n    conditionalFormat.textComparison.format.font.color = \"red\";\n    conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: \"Delayed\" };\n\n    await context.sync();\n});\n```"
 - name: rule
   uid: excel!Excel.TextConditionalFormat#rule:member
   package: excel!
   fullName: rule
-  summary: >-
-    A regra da formatação condicional.
+  summary: A regra da formatação condicional.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Sample");
+        const range = sheet.getRange("B16:D18");
+        const conditionalFormat = range.conditionalFormats
+            .add(Excel.ConditionalFormatType.containsText);
+        conditionalFormat.textComparison.format.font.color = "red";
+        conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: "Delayed" };
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'rule: Excel.ConditionalTextComparisonRule;'
     return:
       type: <xref uid="excel!Excel.ConditionalTextComparisonRule:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B16:D18\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.containsText);\n    conditionalFormat.textComparison.format.font.color = \"red\";\n    conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: \"Delayed\" };\n\n    await context.sync();\n});\n```"
 methods:
 - name: load(options)
   uid: excel!Excel.TextConditionalFormat#load:member(1)
@@ -124,11 +154,7 @@ methods:
   package: excel!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.TextConditionalFormat): void`
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
@@ -164,7 +190,7 @@ methods:
   uid: excel!Excel.TextConditionalFormat#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.TextConditionalFormat original é um objeto API, o método retorna um `toJSON` objeto JavaScript simples (digitado como `Excel.Interfaces.TextConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto TextConditionalFormat é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.TextConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -175,9 +201,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 4cd0c9baca43470447db558a90de5b3854fc46fe
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 1723032e35d8a5f436e5488c3b598a5ec6bec64a
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51331203"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59691696"
