@@ -3,12 +3,8 @@ name: Excel.IconSetConditionalFormat
 uid: excel!Excel.IconSetConditionalFormat:class
 package: excel!
 fullName: Excel.IconSetConditionalFormat
-summary: >-
-  Representa um critério de conjunto de ícones para formatação condicional.
-
-
-  \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa um critério de conjunto de ícones para formatação condicional.
+remarks: '\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.IconSetConditionalFormat#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,29 +25,20 @@ properties:
   uid: excel!Excel.IconSetConditionalFormat#criteria:member
   package: excel!
   fullName: criteria
-  summary: >-
-    Uma matriz de critérios e conjuntos de ícones para as regras e ícones personalizados potenciais para ícones condicionais. Observe que, para o primeiro critério, somente o ícone personalizado pode ser modificado, enquanto o tipo, a fórmula e o operador serão ignorados quando definido.
-
-
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Uma matriz de critérios e conjuntos de ícones para as regras e ícones personalizados potenciais para ícones condicionais. Observe que, para o primeiro critério, somente o ícone personalizado pode ser modificado, enquanto o tipo, a fórmula e o operador serão ignorados quando definido.
+  remarks: "\\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'criteria: Excel.ConditionalIconCriterion[];'
     return:
       type: <xref uid="excel!Excel.ConditionalIconCriterion:interface" />[]
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
 - name: reverseIconOrder
   uid: excel!Excel.IconSetConditionalFormat#reverseIconOrder:member
   package: excel!
   fullName: reverseIconOrder
-  summary: >-
-    Se `true`<!-- -->, inverte as ordens de ícone para o conjunto de ícones. Observe que isso não pode ser definido se ícones personalizados são usados.
-
-
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Se `true`<!-- -->, inverte as ordens de ícone para o conjunto de ícones. Observe que isso não pode ser definido se ícones personalizados são usados.
+  remarks: '\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -62,12 +49,8 @@ properties:
   uid: excel!Excel.IconSetConditionalFormat#showIconOnly:member
   package: excel!
   fullName: showIconOnly
-  summary: >-
-    Se `true`<!-- -->, oculta os valores e mostra apenas ícones.
-
-
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Se `true`<!-- -->, oculta os valores e mostra apenas ícones.
+  remarks: '\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -78,19 +61,14 @@ properties:
   uid: excel!Excel.IconSetConditionalFormat#style:member
   package: excel!
   fullName: style
-  summary: >-
-    Se definido, exibe a opção de conjunto de ícones para o formato condicional.
-
-
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Se definido, exibe a opção de conjunto de ícones para o formato condicional.
+  remarks: "\\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'style: Excel.IconSet | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes";'
     return:
       type: <xref uid="excel!Excel.IconSet:enum" /> | "Invalid" | "ThreeArrows" | "ThreeArrowsGray" | "ThreeFlags" | "ThreeTrafficLights1" | "ThreeTrafficLights2" | "ThreeSigns" | "ThreeSymbols" | "ThreeSymbols2" | "FourArrows" | "FourArrowsGray" | "FourRedToBlack" | "FourRating" | "FourTrafficLights" | "FiveArrows" | "FiveArrowsGray" | "FiveRating" | "FiveQuarters" | "ThreeStars" | "ThreeTriangles" | "FiveBoxes"
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B8:E13\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.iconSet);\n    const iconSetCF = conditionalFormat.iconSet;\n    iconSetCF.style = Excel.IconSet.threeTriangles;\n\n    /*\n        The iconSetCF.criteria array is automatically prepopulated with\n        criterion elements whose properties have been given default settings.\n        You can't write to each property of a criterion directly. Instead,\n        replace the whole criteria object.\n\n        With a \"three*\" icon set style, such as \"threeTriangles\", the third\n        element in the criteria array (criteria[2]) defines the \"top\" icon;\n        e.g., a green triangle. The second (criteria[1]) defines the \"middle\"\n        icon, The first (criteria[0]) defines the \"low\" icon, but it\n        can often be left empty as this method does below, because every\n        cell that does not match the other two criteria always gets the low\n        icon.            \n    */\n    iconSetCF.criteria = [\n        {} as any,\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=700\"\n        },\n        {\n            type: Excel.ConditionalFormatIconRuleType.number,\n            operator: Excel.ConditionalIconCriterionOperator.greaterThanOrEqual,\n            formula: \"=1000\",\n        }\n    ];\n\n    await context.sync();\n});\n```"
 methods:
 - name: load(options)
   uid: excel!Excel.IconSetConditionalFormat#load:member(1)
@@ -156,11 +134,7 @@ methods:
   package: excel!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.IconSetConditionalFormat): void`
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
@@ -196,7 +170,7 @@ methods:
   uid: excel!Excel.IconSetConditionalFormat#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.IconSetConditionalFormat original é um objeto API, o método retorna um `toJSON` objeto JavaScript simples (digitado como `Excel.Interfaces.IconSetConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto IconSetConditionalFormat é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.IconSetConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -207,9 +181,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a151a1160a9e1d6f88d0330f4d5da0fd25bd5451
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 29bcaff29070b412162930651419fc3f10ba9dd9
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51275415"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59677205"

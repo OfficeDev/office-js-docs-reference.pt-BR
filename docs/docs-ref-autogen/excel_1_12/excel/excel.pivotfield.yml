@@ -3,12 +3,8 @@ name: Excel.PivotField
 uid: excel!Excel.PivotField:class
 package: excel!
 fullName: Excel.PivotField
-summary: >-
-  Representa o Excel PivotField.
-
-
-  \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa o Excel PivotField.
+remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.PivotField#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,12 +25,8 @@ properties:
   uid: excel!Excel.PivotField#id:member
   package: excel!
   fullName: id
-  summary: >-
-    ID do PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: ID do PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -45,12 +37,8 @@ properties:
   uid: excel!Excel.PivotField#items:member
   package: excel!
   fullName: items
-  summary: >-
-    Retorna PivotFields associados ao PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna os PivotItems associados ao PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -61,12 +49,8 @@ properties:
   uid: excel!Excel.PivotField#name:member
   package: excel!
   fullName: name
-  summary: >-
-    Nome do PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Nome do PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -77,12 +61,8 @@ properties:
   uid: excel!Excel.PivotField#showAllItems:member
   package: excel!
   fullName: showAllItems
-  summary: >-
-    Determina se deseja mostrar todos os itens de PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Determina se deseja mostrar todos os itens de PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -93,12 +73,8 @@ properties:
   uid: excel!Excel.PivotField#subtotals:member
   package: excel!
   fullName: subtotals
-  summary: >-
-    Subtotais de PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Subtotais de PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -110,12 +86,8 @@ methods:
   uid: excel!Excel.PivotField#applyFilter:member(1)
   package: excel!
   fullName: applyFilter(filter)
-  summary: >-
-    Define um ou mais dos PivotFilters atuais do campo e os aplica ao campo. Se os filtros fornecidos são inválidos ou não podem ser aplicados, uma exceção é lançada.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Define um ou mais dos PivotFilters atuais do campo e os aplica ao campo. Se os filtros fornecidos são inválidos ou não podem ser aplicados, uma exceção é lançada.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -131,29 +103,47 @@ methods:
   uid: excel!Excel.PivotField#clearAllFilters:member(1)
   package: excel!
   fullName: clearAllFilters()
-  summary: >-
-    Limpa todos os critérios de todos os filtros do campo. Isso remove qualquer filtragem ativa no campo.
+  summary: Limpa todos os critérios de todos os filtros do campo. Isso remove qualquer filtragem ativa no campo.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotfilters.yaml
+
+    await Excel.run(async (context) => {
+      // Clear all the PivotFilters.
+
+      // Get the PivotTable.
+      const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");
+      pivotTable.hierarchies.load("name");
+      await context.sync();
+
+      // Clear the filters on each PivotField.
+      pivotTable.hierarchies.items.forEach((hierarchy) => {
+        hierarchy.fields.getItem(hierarchy.name).clearAllFilters();
+      });
+      await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'clearAllFilters(): void;'
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotfilters.yaml\nawait Excel.run(async (context) => {\n  // Clear all the PivotFilters.\n\n  // Get the PivotTable.\n  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n  pivotTable.hierarchies.load(\"name\");\n  await context.sync();\n\n  // Clear the filters on each PivotField.\n  pivotTable.hierarchies.items.forEach((hierarchy) => {\n    hierarchy.fields.getItem(hierarchy.name).clearAllFilters();\n  });\n  await context.sync();\n});\n```"
+      description: ''
 - name: clearFilter(filterType)
   uid: excel!Excel.PivotField#clearFilter:member(1)
   package: excel!
   fullName: clearFilter(filterType)
-  summary: >-
-    Limpa todos os critérios existentes do filtro do campo do tipo determinado (se um estiver aplicado no momento).
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Limpa todos os critérios existentes do filtro do campo do tipo determinado (se um estiver aplicado no momento).
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -169,12 +159,8 @@ methods:
   uid: excel!Excel.PivotField#clearFilter:member(2)
   package: excel!
   fullName: clearFilter(filterTypeString)
-  summary: >-
-    Limpa todos os critérios existentes do filtro do campo do tipo determinado (se um estiver aplicado no momento).
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Limpa todos os critérios existentes do filtro do campo do tipo determinado (se um estiver aplicado no momento).
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -190,12 +176,8 @@ methods:
   uid: excel!Excel.PivotField#getFilters:member(1)
   package: excel!
   fullName: getFilters()
-  summary: >-
-    Obtém todos os filtros atualmente aplicados no campo.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém todos os filtros atualmente aplicados no campo.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -207,12 +189,8 @@ methods:
   uid: excel!Excel.PivotField#isFiltered:member(1)
   package: excel!
   fullName: isFiltered(filterType)
-  summary: >-
-    Verifica se há filtros aplicados no campo.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Verifica se há filtros aplicados no campo.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -228,12 +206,8 @@ methods:
   uid: excel!Excel.PivotField#isFiltered:member(2)
   package: excel!
   fullName: isFiltered(filterTypeString)
-  summary: >-
-    Verifica se há filtros aplicados no campo.
-
-
-    \[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Verifica se há filtros aplicados no campo.
+  remarks: '\[[Conjunto de API: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -309,11 +283,7 @@ methods:
   package: excel!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.PivotField): void`
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
@@ -349,12 +319,8 @@ methods:
   uid: excel!Excel.PivotField#sortByLabels:member(1)
   package: excel!
   fullName: sortByLabels(sortBy)
-  summary: >-
-    Classifica o PivotField. Se um DataPivotHierarchy for especificado, a classificação será aplicada com base nele, se a classificação não for baseada no campo PivotField.
-
-
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Classifica o PivotField. Se um DataPivotHierarchy for especificado, a classificação será aplicada com base nele, se a classificação não for baseada no campo PivotField.
+  remarks: '\[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -370,12 +336,8 @@ methods:
   uid: excel!Excel.PivotField#sortByValues:member(1)
   package: excel!
   fullName: sortByValues(sortBy, valuesHierarchy, pivotItemScope)
-  summary: >-
-    Classifica o Campo dinâmico por valores especificados em um determinado escopo. O escopo define quais valores específicos serão usados para classificar quando houver vários valores do mesmo DataPivotHierarchy.
-
-
-    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Classifica o Campo dinâmico por valores especificados em um determinado escopo. O escopo define quais valores específicos serão usados para classificar quando houver vários valores do mesmo DataPivotHierarchy.
+  remarks: '\[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -397,12 +359,8 @@ methods:
   uid: excel!Excel.PivotField#sortByValues:member(2)
   package: excel!
   fullName: sortByValues(sortByString, valuesHierarchy, pivotItemScope)
-  summary: >-
-    Classifica o Campo dinâmico por valores especificados em um determinado escopo. O escopo define quais valores específicos serão usados para classificar quando houver vários valores do mesmo DataPivotHierarchy.
-
-
-    \[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Classifica o Campo dinâmico por valores especificados em um determinado escopo. O escopo define quais valores específicos serão usados para classificar quando houver vários valores do mesmo DataPivotHierarchy.
+  remarks: '\[[Conjunto de API: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -424,7 +382,7 @@ methods:
   uid: excel!Excel.PivotField#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.PivotField original é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.PivotFieldData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto PivotField é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.PivotFieldData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -435,9 +393,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 8e53b5351cad0bc1bf3bdadb8c75d8d93afd79ae
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 6be6fda1077274425ddd3d187399c3d6b1f3d577
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51558297"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59679060"
