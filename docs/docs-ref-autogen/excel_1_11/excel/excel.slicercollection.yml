@@ -3,12 +3,8 @@ name: Excel.SlicerCollection
 uid: excel!Excel.SlicerCollection:class
 package: excel!
 fullName: Excel.SlicerCollection
-summary: >-
-  Representa uma coleção de todos os objetos slicer na pasta de trabalho ou em uma planilha.
-
-
-  \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa uma coleção de todos os objetos slicer na pasta de trabalho ou em uma planilha.
+remarks: '\[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.SlicerCollection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -42,12 +38,29 @@ methods:
   uid: excel!Excel.SlicerCollection#add:member(1)
   package: excel!
   fullName: add(slicerSource, sourceField, slicerDestination)
-  summary: >-
-    Adiciona uma nova segmentação de dados à pasta de trabalho.
+  summary: Adiciona uma nova segmentação de dados à pasta de trabalho.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Pivot");
+        const slicer = sheet.slicers.add(
+            "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+            "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+        );
+        slicer.name = "Fruit Slicer";
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -64,38 +77,13 @@ methods:
       type: string | <xref uid="excel!Excel.Worksheet:class" />
     return:
       type: <xref uid="excel!Excel.Slicer:class" />
-      description: >-
-        A nova slicer.
-
-
-        #### <a name="examples"></a>Exemplos
-
-
-        ```typescript
-
-        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml
-
-        await Excel.run(async (context) => {
-            const sheet = context.workbook.worksheets.getItem("Pivot");
-            const slicer = sheet.slicers.add(
-                "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
-                "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
-            );
-            slicer.name = "Fruit Slicer";
-            await context.sync();
-        });
-
-        ```
+      description: A nova slicer.
 - name: getCount()
   uid: excel!Excel.SlicerCollection#getCount:member(1)
   package: excel!
   fullName: getCount()
-  summary: >-
-    Retorna o número de segmentações de dados na coleção.
-
-
-    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna o número de segmentações de dados na coleção.
+  remarks: '\[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -107,12 +95,29 @@ methods:
   uid: excel!Excel.SlicerCollection#getItem:member(1)
   package: excel!
   fullName: getItem(key)
-  summary: >-
-    Obtém um objeto slicer usando seu nome ou ID.
+  summary: Obtém um objeto slicer usando seu nome ou ID.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml
+
+    await Excel.run(async (context) => {
+        const slicer = context.workbook.slicers.getItem("Fruit Slicer");
+        slicer.caption = "Fruit Types";
+        slicer.left = 395;
+        slicer.top = 15;
+        slicer.height = 135;
+        slicer.width = 150;
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -123,17 +128,13 @@ methods:
       type: string
     return:
       type: <xref uid="excel!Excel.Slicer:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml\nawait Excel.run(async (context) => {\n    const slicer = context.workbook.slicers.getItem(\"Fruit Slicer\");\n    slicer.caption = \"Fruit Types\";\n    slicer.left = 395;\n    slicer.top = 15;\n    slicer.height = 135;\n    slicer.width = 150;\n    await context.sync();\n});\n```"
+      description: ''
 - name: getItemAt(index)
   uid: excel!Excel.SlicerCollection#getItemAt:member(1)
   package: excel!
   fullName: getItemAt(index)
-  summary: >-
-    Obtém uma segmentação de dados com base em sua posição na coleção.
-
-
-    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém uma segmentação de dados com base em sua posição na coleção.
+  remarks: '\[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -149,12 +150,8 @@ methods:
   uid: excel!Excel.SlicerCollection#getItemOrNullObject:member(1)
   package: excel!
   fullName: getItemOrNullObject(key)
-  summary: >-
-    Obtém uma slicer usando seu nome ou ID. Se a slicer não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
-
-
-    \[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém uma slicer usando seu nome ou ID. Se a slicer não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+  remarks: '\[[Conjunto de API: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -232,9 +229,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 1227f20e294aca20796d3adb3cc0a66fe202d3ee
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: f548ab8aa2c27b4f8329f1db4d5f2a1f8e9505f7
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51556299"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59697073"
