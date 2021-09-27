@@ -268,6 +268,9 @@ interfaces:
 - excel!Excel.Interfaces.IterativeCalculationUpdateData:interface
 - excel!Excel.Interfaces.LineData:interface
 - excel!Excel.Interfaces.LineUpdateData:interface
+- excel!Excel.Interfaces.LinkedWorkbookCollectionData:interface
+- excel!Excel.Interfaces.LinkedWorkbookCollectionUpdateData:interface
+- excel!Excel.Interfaces.LinkedWorkbookData:interface
 - excel!Excel.Interfaces.NamedItemArrayValuesData:interface
 - excel!Excel.Interfaces.NamedItemCollectionData:interface
 - excel!Excel.Interfaces.NamedItemCollectionLoadOptions:interface
@@ -472,7 +475,7 @@ functions:
 - name: Excel.run(batch)
   uid: excel!Excel.run:function(1)
   package: excel!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Excel, usando um novo RequestContext. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto Excel, usando um novo RequestContext. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -480,7 +483,7 @@ functions:
     content: 'export function run<T>(batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Excel. Como o complemento do Office e o aplicativo excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Excel a partir do complemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o Excel aplicativo. Como o Office e o aplicativo Excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto Excel do add-in.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -488,7 +491,7 @@ functions:
 - name: Excel.run(object, batch)
   uid: excel!Excel.run:function(2)
   package: excel!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Excel, usando o RequestContext de um objeto API criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto Excel, usando o RequestContext de um objeto API criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -499,7 +502,7 @@ functions:
       description: Um objeto API criado anteriormente. O lote usará o mesmo RequestContext do objeto passado, o que significa que quaisquer alterações aplicadas ao objeto serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Excel. Como o complemento do Office e o aplicativo excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Excel a partir do complemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o Excel aplicativo. Como o Office e o aplicativo Excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto Excel do add-in.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -507,7 +510,7 @@ functions:
 - name: Excel.run(objects, batch)
   uid: excel!Excel.run:function(3)
   package: excel!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Excel, usando o RequestContext de objetos API criados anteriormente.
+  summary: Executa um script em lotes que executa ações no modelo de objeto Excel, usando o RequestContext de objetos API criados anteriormente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -518,7 +521,7 @@ functions:
       description: Uma matriz de objetos API criados anteriormente. A matriz será validada para garantir que todos os objetos compartilhem o mesmo contexto. O lote usará esse RequestContext compartilhado, o que significa que quaisquer alterações aplicadas a esses objetos serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Excel. Como o complemento do Office e o aplicativo excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Excel a partir do complemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o Excel aplicativo. Como o Office e o aplicativo Excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto Excel do add-in.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -526,7 +529,7 @@ functions:
 - name: Excel.run(options, batch)
   uid: excel!Excel.run:function(4)
   package: excel!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Excel, usando o RequestContext de um objeto API criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto Excel, usando o RequestContext de um objeto API criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -537,7 +540,7 @@ functions:
       description: As opções adicionais para este Excel.run que especificam objetos anteriores, se a solicitação de edição de célula, informações de sessão, etc.
       type: <xref uid="excel!Excel.RunOptions:interface" />
     - id: batch
-      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Excel. Como o complemento do Office e o aplicativo excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Excel a partir do complemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o Excel aplicativo. Como o Office e o aplicativo Excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto Excel do add-in.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -545,7 +548,7 @@ functions:
 - name: Excel.run(context, batch)
   uid: excel!Excel.run:function(5)
   package: excel!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do Excel, usando o RequestContext de um objeto criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto Excel, usando o RequestContext de um objeto criado anteriormente. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -556,15 +559,15 @@ functions:
       description: Um objeto criado anteriormente. O lote usará o mesmo RequestContext do objeto passado, o que significa que quaisquer alterações aplicadas ao objeto serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientRequestContext:class" />
     - id: batch
-      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo Excel. Como o complemento do Office e o aplicativo excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto do Excel a partir do complemento.
+      description: Uma função que recebe um RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o Excel aplicativo. Como o Office e o aplicativo Excel são executados em dois processos diferentes, o RequestContext é necessário para obter acesso ao modelo de objeto Excel do add-in.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 9f5e3095f2bf6da741e001ecd968008c5a7ef3df
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 6e9a06946a818d8f7caf50ee6bd7efeb897acdab
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51512512"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59680569"
