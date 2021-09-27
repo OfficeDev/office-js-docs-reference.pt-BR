@@ -3,12 +3,8 @@ name: Excel.CellValueConditionalFormat
 uid: excel!Excel.CellValueConditionalFormat:class
 package: excel!
 fullName: Excel.CellValueConditionalFormat
-summary: >-
-  Representa um formato condicional de valor de célula.
-
-
-  \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa um formato condicional de valor de célula.
+remarks: '\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.CellValueConditionalFormat#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,36 +25,70 @@ properties:
   uid: excel!Excel.CellValueConditionalFormat#format:member
   package: excel!
   fullName: format
-  summary: >-
-    Retorna um objeto format, encapsulando a fonte de formatos condicionais, preenchimento, bordas e outras propriedades.
+  summary: Retorna um objeto format, encapsulando a fonte de formatos condicionais, preenchimento, bordas e outras propriedades.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Sample");
+        const range = sheet.getRange("B21:E23");
+        const conditionalFormat = range.conditionalFormats
+            .add(Excel.ConditionalFormatType.cellValue);
+        conditionalFormat.cellValue.format.font.color = "red";
+        conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'readonly format: Excel.ConditionalRangeFormat;'
     return:
       type: <xref uid="excel!Excel.ConditionalRangeFormat:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B21:E23\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.cellValue);\n    conditionalFormat.cellValue.format.font.color = \"red\";\n    conditionalFormat.cellValue.rule = { formula1: \"=0\", operator: \"LessThan\" };\n\n    await context.sync();\n});\n```"
 - name: rule
   uid: excel!Excel.CellValueConditionalFormat#rule:member
   package: excel!
   fullName: rule
-  summary: >-
-    Especifica o objeto rule neste formato condicional.
+  summary: Especifica o objeto rule neste formato condicional.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml
+
+    await Excel.run(async (context) => {
+        const sheet = context.workbook.worksheets.getItem("Sample");
+        const range = sheet.getRange("B21:E23");
+        const conditionalFormat = range.conditionalFormats
+            .add(Excel.ConditionalFormatType.cellValue);
+        conditionalFormat.cellValue.format.font.color = "red";
+        conditionalFormat.cellValue.rule = { formula1: "=0", operator: "LessThan" };
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'rule: Excel.ConditionalCellValueRule;'
     return:
       type: <xref uid="excel!Excel.ConditionalCellValueRule:interface" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/14-conditional-formatting/conditional-formatting-basic.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B21:E23\");\n    const conditionalFormat = range.conditionalFormats\n        .add(Excel.ConditionalFormatType.cellValue);\n    conditionalFormat.cellValue.format.font.color = \"red\";\n    conditionalFormat.cellValue.rule = { formula1: \"=0\", operator: \"LessThan\" };\n\n    await context.sync();\n});\n```"
 methods:
 - name: load(options)
   uid: excel!Excel.CellValueConditionalFormat#load:member(1)
@@ -124,11 +154,7 @@ methods:
   package: excel!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.CellValueConditionalFormat): void`
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
@@ -164,7 +190,7 @@ methods:
   uid: excel!Excel.CellValueConditionalFormat#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.CellValueConditionalFormat original é um objeto API, o método retorna um objeto `toJSON` JavaScript simples (digitado como `Excel.Interfaces.CellValueConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto CellValueConditionalFormat é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CellValueConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -175,9 +201,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6b9e5724b35e4f622f2f1671d2db99754488b619
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: dac4d9e61577f0a382103ea5434a5ba085662851
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51530263"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59723784"
