@@ -3,12 +3,8 @@ name: Excel.PivotTableCollection
 uid: excel!Excel.PivotTableCollection:class
 package: excel!
 fullName: Excel.PivotTableCollection
-summary: >-
-  Representa uma coleção de todas as Tabelas Dinâmicas que fazem parte da pasta de trabalho ou planilha.
-
-
-  \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa uma coleção de todas as Tabelas Dinâmicas que fazem parte da pasta de trabalho ou planilha.
+remarks: '\[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.PivotTableCollection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -42,12 +38,27 @@ methods:
   uid: excel!Excel.PivotTableCollection#add:member(1)
   package: excel!
   fullName: add(name, source, destination)
-  summary: >-
-    Adicione uma Tabela Dinâmica com base nos dados de origem especificados e insira-a na célula superior esquerda do intervalo de destino.
+  summary: Adicione uma Tabela Dinâmica com base nos dados de origem especificados e insira-a na célula superior esquerda do intervalo de destino.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml
+
+    await Excel.run(async (context) => {
+        const rangeToAnalyze = context.workbook.worksheets.getItem("Data").getRange("A1:E21");
+        const rangeToPlacePivot = context.workbook.worksheets.getItem("Pivot").getRange("A2");
+        context.workbook.worksheets.getItem("Pivot").pivotTables.add("Farm Sales", rangeToAnalyze, rangeToPlacePivot);
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -64,36 +75,13 @@ methods:
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.PivotTable:class" />
-      description: >-
-        Retorna a tabela dinâmica recém-inserida.
-
-
-        #### <a name="examples"></a>Exemplos
-
-
-        ```typescript
-
-        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-create-and-modify.yaml
-
-        await Excel.run(async (context) => {
-            const rangeToAnalyze = context.workbook.worksheets.getItem("Data").getRange("A1:E21");
-            const rangeToPlacePivot = context.workbook.worksheets.getItem("Pivot").getRange("A2");
-            context.workbook.worksheets.getItem("Pivot").pivotTables.add("Farm Sales", rangeToAnalyze, rangeToPlacePivot);
-
-            await context.sync();
-        });
-
-        ```
+      description: Retorna a tabela dinâmica recém-inserida.
 - name: getCount()
   uid: excel!Excel.PivotTableCollection#getCount:member(1)
   package: excel!
   fullName: getCount()
-  summary: >-
-    Obtém o número de tabelas dinâmicas na coleção.
-
-
-    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o número de tabelas dinâmicas na coleção.
+  remarks: '\[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -105,12 +93,8 @@ methods:
   uid: excel!Excel.PivotTableCollection#getItem:member(1)
   package: excel!
   fullName: getItem(name)
-  summary: >-
-    Obtém uma Tabela Dinâmica por nome.
-
-
-    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém uma Tabela Dinâmica por nome.
+  remarks: '\[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -126,12 +110,8 @@ methods:
   uid: excel!Excel.PivotTableCollection#getItemOrNullObject:member(1)
   package: excel!
   fullName: getItemOrNullObject(name)
-  summary: >-
-    Obtém uma Tabela Dinâmica por nome. Se a Tabela Dinâmica não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
-
-
-    \[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém uma Tabela Dinâmica por nome. Se a Tabela Dinâmica não existir, essa função retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+  remarks: '\[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -198,12 +178,8 @@ methods:
   uid: excel!Excel.PivotTableCollection#refreshAll:member(1)
   package: excel!
   fullName: refreshAll()
-  summary: >-
-    Atualiza todas as tabelas dinâmicas da coleção.
-
-
-    \[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Atualiza todas as tabelas dinâmicas da coleção.
+  remarks: '\[[Conjunto de API: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -226,9 +202,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 1b6b5626e11e185cec3a2d87feb97ee52e76b35d
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 08d91b44daf6d78f2ae1242d868c39a264800307
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51528898"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59690990"
