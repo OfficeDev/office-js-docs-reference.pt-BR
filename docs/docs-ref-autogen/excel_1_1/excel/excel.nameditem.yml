@@ -3,12 +3,8 @@ name: Excel.NamedItem
 uid: excel!Excel.NamedItem:class
 package: excel!
 fullName: Excel.NamedItem
-summary: >-
-  Representa um nome definido para um intervalo de células ou um valor. Os nomes podem ser objetos nomeados primitivos (como visto no tipo abaixo), objeto range ou uma referência a um intervalo. Use esse objeto para obter um objeto de intervalo associado aos nomes.
-
-
-  \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa um nome definido para um intervalo de células ou um valor. Os nomes podem ser objetos nomeados primitivos (como visto no tipo abaixo), objeto range ou uma referência a um intervalo. Use esse objeto para obter um objeto de intervalo associado aos nomes.
+remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: excel!Excel.NamedItem#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,12 +25,8 @@ properties:
   uid: excel!Excel.NamedItem#name:member
   package: excel!
   fullName: name
-  summary: >-
-    O nome do objeto.
-
-
-    \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: O nome do objeto.
+  remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -45,12 +37,8 @@ properties:
   uid: excel!Excel.NamedItem#type:member
   package: excel!
   fullName: type
-  summary: >-
-    Especifica o tipo do valor retornado pela fórmula do nome. Consulte `Excel.NamedItemType` para obter detalhes.
-
-
-    \[[Conjunto de API: ExcelApi 1.1 para String,Integer,Double,Boolean,Range,Error; 1.7 para Array](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Especifica o tipo do valor retornado pela fórmula do nome. Consulte `Excel.NamedItemType` para obter detalhes.
+  remarks: '\[[Conjunto de API: ExcelApi 1.1 para String,Integer,Double,Boolean,Range,Error; 1.7 para Array](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -61,12 +49,8 @@ properties:
   uid: excel!Excel.NamedItem#value:member
   package: excel!
   fullName: value
-  summary: >-
-    Representa o valor calculado pela fórmula do nome. Para um intervalo nomeado, retornará o endereço do intervalo.
-
-
-    \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Representa o valor calculado pela fórmula do nome. Para um intervalo nomeado, retornará o endereço do intervalo.
+  remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -77,12 +61,8 @@ properties:
   uid: excel!Excel.NamedItem#visible:member
   package: excel!
   fullName: visible
-  summary: >-
-    Especifica se o objeto está visível.
-
-
-    \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Especifica se o objeto está visível.
+  remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -94,19 +74,15 @@ methods:
   uid: excel!Excel.NamedItem#getRange:member(1)
   package: excel!
   fullName: getRange()
-  summary: >-
-    Retorna o objeto Range associado ao nome. Gerará um erro se o tipo do item nomeado não for um intervalo.
-
-
-    \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna o objeto Range associado ao nome. Gerará um erro se o tipo do item nomeado não for um intervalo.
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Returns the Range object that is associated with the name. \n// null if the name is not of the type Range.\n// Note: This API currently supports only the Workbook scoped items.\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var range = names.getItem('MyRange').getRange();\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getRange(): Excel.Range;'
     return:
       type: <xref uid="excel!Excel.Range:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Returns the Range object that is associated with the name. \n// null if the name is not of the type Range.\n// Note: This API currently supports only the Workbook scoped items.\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var range = names.getItem('MyRange').getRange();\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: load(options)
   uid: excel!Excel.NamedItem#load:member(1)
   package: excel!
@@ -171,11 +147,7 @@ methods:
   package: excel!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: >-
-    Este método tem a seguinte assinatura adicional:
-
-
-    `set(properties: Excel.NamedItem): void`
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
@@ -211,7 +183,7 @@ methods:
   uid: excel!Excel.NamedItem#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.NamedItem original é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.NamedItemData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto NamedItem é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.NamedItemData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -222,9 +194,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: ccd3d831047901f1f7463e617fb7b2c7b332cd42
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: 96b66ca7f3cf51ed700f609a6a54ebb695c07b29
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51555752"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59680408"
