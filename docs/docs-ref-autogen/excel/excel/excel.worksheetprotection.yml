@@ -3,21 +3,41 @@ name: Excel.WorksheetProtection
 uid: excel!Excel.WorksheetProtection:class
 package: excel!
 fullName: Excel.WorksheetProtection
-summary: >-
-  Representa a proteção de um objeto sheet.
-
-
-  \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-remarks: ''
+summary: Representa a proteção de um objeto sheet.
+remarks: '\[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
 properties:
+- name: allowEditRanges
+  uid: excel!Excel.WorksheetProtection#allowEditRanges:member
+  package: excel!
+  fullName: allowEditRanges
+  summary: Especifica o `AllowEditRangeCollection` encontrado nesta planilha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly allowEditRanges: Excel.AllowEditRangeCollection;'
+    return:
+      type: <xref uid="excel!Excel.AllowEditRangeCollection:class" />
+- name: canPauseProtection
+  uid: excel!Excel.WorksheetProtection#canPauseProtection:member
+  package: excel!
+  fullName: canPauseProtection
+  summary: Especifica se a proteção pode ser pausada para esta planilha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly canPauseProtection: boolean;'
+    return:
+      type: boolean
 - name: context
   uid: excel!Excel.WorksheetProtection#context:member
   package: excel!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -25,16 +45,36 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="excel!Excel.RequestContext:class" />
+- name: isPasswordProtected
+  uid: excel!Excel.WorksheetProtection#isPasswordProtected:member
+  package: excel!
+  fullName: isPasswordProtected
+  summary: Especifica se a planilha está protegida por senha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly isPasswordProtected: boolean;'
+    return:
+      type: boolean
+- name: isPaused
+  uid: excel!Excel.WorksheetProtection#isPaused:member
+  package: excel!
+  fullName: isPaused
+  summary: Especifica se a proteção da planilha está pausada.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly isPaused: boolean;'
+    return:
+      type: boolean
 - name: options
   uid: excel!Excel.WorksheetProtection#options:member
   package: excel!
   fullName: options
-  summary: >-
-    Especifica as opções de proteção para a planilha.
-
-
-    \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Especifica as opções de proteção para a planilha.
+  remarks: '\[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -45,12 +85,8 @@ properties:
   uid: excel!Excel.WorksheetProtection#protected:member
   package: excel!
   fullName: protected
-  summary: >-
-    Especifica se a planilha está protegida.
-
-
-    \[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+  summary: Especifica se a planilha está protegida.
+  remarks: '\[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -58,6 +94,23 @@ properties:
     return:
       type: boolean
 methods:
+- name: checkPassword(password)
+  uid: excel!Excel.WorksheetProtection#checkPassword:member(1)
+  package: excel!
+  fullName: checkPassword(password)
+  summary: Especifica se a senha pode ser usada para desbloquear a proteção da planilha. Este método não altera o estado de proteção da planilha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'checkPassword(password?: string): OfficeExtension.ClientResult<boolean>;'
+    parameters:
+    - id: password
+      description: A senha associada à planilha protegida.
+      type: string
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
+      description: Retorna `true` se a senha puder ser usada para desbloquear a proteção da planilha. Caso contrário, retorna `false`<!-- -->.
 - name: load(options)
   uid: excel!Excel.WorksheetProtection#load:member(1)
   package: excel!
@@ -117,16 +170,72 @@ methods:
     return:
       type: <xref uid="excel!Excel.WorksheetProtection:class" />
       description: ''
+- name: pauseProtection(password)
+  uid: excel!Excel.WorksheetProtection#pauseProtection:member(1)
+  package: excel!
+  fullName: pauseProtection(password)
+  summary: Pausa a proteção da planilha para o objeto de planilha determinado para o usuário em uma determinada sessão. Se a senha estiver incorreta, esse método lançará um erro `UnsupportedOperation` e falhará ao pausar a proteção. Este método não alterará o estado de proteção se a proteção da planilha não estiver habilitada ou já estiver pausada.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'pauseProtection(password?: string): void;'
+    parameters:
+    - id: password
+      description: A senha associada à planilha protegida.
+      type: string
+    return:
+      type: void
+      description: ''
 - name: protect(options, password)
   uid: excel!Excel.WorksheetProtection#protect:member(1)
   package: excel!
   fullName: protect(options, password)
-  summary: >-
-    Protege uma planilha. Falha se a planilha já tiver sido protegida.
+  summary: Protege uma planilha. Falha se a planilha já tiver sido protegida.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.2 para opções; 1,7 para senha](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.2 para opções; 1,7 para senha](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml
+
+    await Excel.run(async (context) => {
+        let activeSheet = context.workbook.worksheets.getActiveWorksheet();
+        activeSheet.load("protection/protected");
+
+        await context.sync();
+
+        if (!activeSheet.protection.protected) {
+            activeSheet.protection.protect();
+        }
+    });
+
+    ```
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml
+
+    let password = await passwordHandler();
+
+    passwordHelper(password);
+
+    await Excel.run(async (context) => {
+        let activeSheet = context.workbook.worksheets.getActiveWorksheet();
+        activeSheet.load("protection/protected");
+
+        await context.sync();
+
+        if (!activeSheet.protection.protected) {
+            activeSheet.protection.protect(null, password);
+        }
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -140,12 +249,42 @@ methods:
       type: string
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!activeSheet.protection.protected) {\n        activeSheet.protection.protect();\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!activeSheet.protection.protected) {\n        activeSheet.protection.protect(null, password);\n    }\n});\n```"
+      description: ''
+- name: resumeProtection()
+  uid: excel!Excel.WorksheetProtection#resumeProtection:member(1)
+  package: excel!
+  fullName: resumeProtection()
+  summary: Retoma a proteção da planilha para o objeto de planilha determinado para o usuário em uma determinada sessão. A proteção de planilha deve ser pausada para que esse método funcione. Se a proteção da planilha não estiver pausada, esse método não alterará o estado de proteção da planilha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'resumeProtection(): void;'
+    return:
+      type: void
+      description: ''
+- name: setPassword(password)
+  uid: excel!Excel.WorksheetProtection#setPassword:member(1)
+  package: excel!
+  fullName: setPassword(password)
+  summary: Altera a senha associada ao `WorksheetProtection` objeto. Definir a senha como uma cadeia de caracteres vazia ("") ou como removerá a proteção `null` de senha do `WorksheetProtection` objeto. A proteção de planilha deve ser habilitada e pausada para que esse método funcione corretamente. Se a proteção da planilha estiver desabilitada, esse método lançará um `InvalidOperation` erro e falhará ao alterar a senha. Se a proteção da planilha estiver habilitada e não pausada, esse método lançará um `AccessDenied` erro e falhará ao alterar a senha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'setPassword(password?: string): void;'
+    parameters:
+    - id: password
+      description: A senha associada ao `WorksheetProtection` objeto.
+      type: string
+    return:
+      type: void
+      description: ''
 - name: toJSON()
   uid: excel!Excel.WorksheetProtection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Excel.WorksheetProtection original é um objeto API, o método retorna um `toJSON` objeto JavaScript simples (digitado como `Excel.Interfaces.WorksheetProtectionData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto WorksheetProtection é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.WorksheetProtectionData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -158,12 +297,39 @@ methods:
   uid: excel!Excel.WorksheetProtection#unprotect:member(1)
   package: excel!
   fullName: unprotect(password)
-  summary: >-
-    Desprotege uma planilha.
+  summary: Desprotege uma planilha.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.7 para senha](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: ExcelApi 1.7 para senha](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml
+
+    await Excel.run(async (context) => {
+        let activeSheet = context.workbook.worksheets.getActiveWorksheet();
+        activeSheet.protection.unprotect();
+    });
+
+    ```
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml
+
+    let password = await passwordHandler();
+
+    passwordHelper(password);
+
+    await Excel.run(async (context) => {
+        let activeSheet = context.workbook.worksheets.getActiveWorksheet();
+        activeSheet.protection.unprotect(password);
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -174,12 +340,29 @@ methods:
       type: string
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.protection.unprotect();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.protection.unprotect(password);\n});\n```"
+      description: ''
+- name: updateOptions(options)
+  uid: excel!Excel.WorksheetProtection#updateOptions:member(1)
+  package: excel!
+  fullName: updateOptions(options)
+  summary: Altere as opções de proteção da planilha associadas ao `WorksheetProtection` objeto. A proteção de planilha deve ser desabilitada ou pausada para que esse método funcione corretamente. Se a proteção da planilha estiver habilitada e não pausada, esse método lançará um erro e falhará ao alterar as opções de proteção `AccessDenied` da planilha.
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'updateOptions(options: Excel.WorksheetProtectionOptions): void;'
+    parameters:
+    - id: options
+      description: A interface de opções associada ao `WorksheetProtection` objeto.
+      type: <xref uid="excel!Excel.WorksheetProtectionOptions:interface" />
+    return:
+      type: void
+      description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: d234df00a1865d0c7b13169a418c1bc1838efc36
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 284faf27e43366b395cd5a0e76a430575b3656cf
+  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51247410"
+  ms.lasthandoff: 09/24/2021
+  ms.locfileid: "59701700"

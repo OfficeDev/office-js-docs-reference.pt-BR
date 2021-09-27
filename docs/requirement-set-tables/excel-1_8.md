@@ -3,7 +3,7 @@
 |[BasicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|[formula1](/javascript/api/excel/excel.basicdatavalidation#formula1)|Especifica o operador à direita quando a propriedade operator é definida como um operador binário como GreaterThan (o operand à esquerda é o valor que o usuário tenta inserir na célula).|
 ||[formula2](/javascript/api/excel/excel.basicdatavalidation#formula2)|Com os operadores ternários Between e NotBetween, especifica o operand superior ligado.|
 ||[operator](/javascript/api/excel/excel.basicdatavalidation#operator)|O operador a ser usado para validar os dados.|
-|[Gráfico](/javascript/api/excel/excel.chart)|[categoryLabelLevel](/javascript/api/excel/excel.chart#categoryLabelLevel)|Especifica uma constante de enumeração de nível de rótulo de categoria de gráfico, referindo-se ao nível dos rótulos de categoria de origem.|
+|[Chart](/javascript/api/excel/excel.chart)|[categoryLabelLevel](/javascript/api/excel/excel.chart#categoryLabelLevel)|Especifica uma constante de enumeração de nível de rótulo de categoria de gráfico, referindo-se ao nível dos rótulos de categoria de origem.|
 ||[displayBlanksAs](/javascript/api/excel/excel.chart#displayBlanksAs)|Especifica a maneira como as células em branco são plotadas em um gráfico.|
 ||[plotBy](/javascript/api/excel/excel.chart#plotBy)|Especifica a forma como as colunas ou linhas são usadas como série de dados no gráfico.|
 ||[plotVisibleOnly](/javascript/api/excel/excel.chart#plotVisibleOnly)|Verdadeiro se apenas as células visíveis forem plotadas.|
@@ -31,7 +31,7 @@
 ||[textOrientation](/javascript/api/excel/excel.chartaxis#textOrientation)|Especifica o ângulo para o qual o texto é orientado para o rótulo de escala do eixo do gráfico.|
 |[ChartAxisFormat](/javascript/api/excel/excel.chartaxisformat)|[fill](/javascript/api/excel/excel.chartaxisformat#fill)|Especifica a formatação de preenchimento do gráfico.|
 |[ChartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|[setFormula(formula: string)](/javascript/api/excel/excel.chartaxistitle#setFormula_formula_)|Um valor de cadeia de caracteres que representa a fórmula do título do eixo do gráfico usando a notação no estilo A1.|
-|[ChartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|[border](/javascript/api/excel/excel.chartaxistitleformat#border)|Especifica o formato de borda do título do eixo do gráfico, que inclui cor, estilo de linha e peso.|
+|[ChartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|[borda](/javascript/api/excel/excel.chartaxistitleformat#border)|Especifica o formato de borda do título do eixo do gráfico, que inclui cor, estilo de linha e peso.|
 ||[fill](/javascript/api/excel/excel.chartaxistitleformat#fill)|Especifica a formatação de preenchimento do título do eixo do gráfico.|
 |[ChartBorder](/javascript/api/excel/excel.chartborder)|[clear()](/javascript/api/excel/excel.chartborder#clear__)|Limpa a formatação da borda de um elemento do gráfico.|
 |[ChartCollection](/javascript/api/excel/excel.chartcollection)|[onActivated](/javascript/api/excel/excel.chartcollection#onActivated)|Ocorre quando um gráfico é ativado.|
@@ -50,7 +50,7 @@
 ||[textOrientation](/javascript/api/excel/excel.chartdatalabel#textOrientation)|Representa o ângulo para o qual o texto é orientado para o rótulo de dados do gráfico.|
 ||[top](/javascript/api/excel/excel.chartdatalabel#top)|Representa a distância, em pontos, da borda superior do rótulo de dados do gráfico até a borda superior da área do gráfico.|
 ||[verticalAlignment](/javascript/api/excel/excel.chartdatalabel#verticalAlignment)|Representa o alinhamento vertical do rótulo de dados do gráfico.|
-|[ChartDataLabelFormat](/javascript/api/excel/excel.chartdatalabelformat)|[border](/javascript/api/excel/excel.chartdatalabelformat#border)|Representa o formato de borda, que inclui a espessura de cor e estilo de linha.|
+|[ChartDataLabelFormat](/javascript/api/excel/excel.chartdatalabelformat)|[borda](/javascript/api/excel/excel.chartdatalabelformat#border)|Representa o formato de borda, que inclui a espessura de cor e estilo de linha.|
 |[ChartDataLabels](/javascript/api/excel/excel.chartdatalabels)|[autoText](/javascript/api/excel/excel.chartdatalabels#autoText)|Especifica se os rótulos de dados geram automaticamente o texto apropriado com base no contexto.|
 ||[horizontalAlignment](/javascript/api/excel/excel.chartdatalabels#horizontalAlignment)|Especifica o alinhamento horizontal para o rótulo de dados do gráfico.|
 ||[numberFormat](/javascript/api/excel/excel.chartdatalabels#numberFormat)|Especifica o código de formato para rótulos de dados.|
@@ -64,11 +64,11 @@
 ||[tipo](/javascript/api/excel/excel.chartdeletedeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.chartdeletedeventargs#worksheetId)|Obtém a ID da planilha na qual o gráfico é excluído.|
 |[ChartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|[height](/javascript/api/excel/excel.chartlegendentry#height)|Especifica a altura da entrada da legenda na legenda do gráfico.|
-||[index](/javascript/api/excel/excel.chartlegendentry#index)|Especifica o índice da entrada da legenda na legenda do gráfico.|
+||[índice](/javascript/api/excel/excel.chartlegendentry#index)|Especifica o índice da entrada da legenda na legenda do gráfico.|
 ||[left](/javascript/api/excel/excel.chartlegendentry#left)|Especifica o valor esquerdo de uma entrada de legenda de gráfico.|
 ||[top](/javascript/api/excel/excel.chartlegendentry#top)|Especifica a parte superior de uma entrada de legenda de gráfico.|
 ||[width](/javascript/api/excel/excel.chartlegendentry#width)|Representa a largura da entrada da legenda no gráfico Legend.|
-|[ChartLegendFormat](/javascript/api/excel/excel.chartlegendformat)|[border](/javascript/api/excel/excel.chartlegendformat#border)|Representa o formato de borda, que inclui a espessura de cor e estilo de linha.|
+|[ChartLegendFormat](/javascript/api/excel/excel.chartlegendformat)|[borda](/javascript/api/excel/excel.chartlegendformat#border)|Representa o formato de borda, que inclui a espessura de cor e estilo de linha.|
 |[ChartPlotArea](/javascript/api/excel/excel.chartplotarea)|[height](/javascript/api/excel/excel.chartplotarea#height)|Especifica o valor de altura de uma área de plotagem.|
 ||[insideHeight](/javascript/api/excel/excel.chartplotarea#insideHeight)|Especifica o valor de altura interna de uma área de plotagem.|
 ||[insideLeft](/javascript/api/excel/excel.chartplotarea#insideLeft)|Especifica o valor interno esquerdo de uma área de plotagem.|
@@ -79,7 +79,7 @@
 ||[format](/javascript/api/excel/excel.chartplotarea#format)|Especifica a formatação de uma área de plotagem de gráfico.|
 ||[top](/javascript/api/excel/excel.chartplotarea#top)|Especifica o valor superior de uma área de plotagem.|
 ||[width](/javascript/api/excel/excel.chartplotarea#width)|Especifica o valor de largura de uma área de plotagem.|
-|[ChartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|[border](/javascript/api/excel/excel.chartplotareaformat#border)|Especifica os atributos de borda de uma área de plotagem de gráfico.|
+|[ChartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|[borda](/javascript/api/excel/excel.chartplotareaformat#border)|Especifica os atributos de borda de uma área de plotagem de gráfico.|
 ||[fill](/javascript/api/excel/excel.chartplotareaformat#fill)|Especifica o formato de preenchimento de um objeto, que inclui informações de formatação em segundo plano.|
 |[ChartSeries](/javascript/api/excel/excel.chartseries)|[axisGroup](/javascript/api/excel/excel.chartseries#axisGroup)|Especifica o grupo da série especificada.|
 ||[explosion](/javascript/api/excel/excel.chartseries#explosion)|Especifica o valor de explosão para uma fatia de gráfico de pizza ou gráfico de rosca.|
@@ -92,7 +92,7 @@
 ||[varyByCategories](/javascript/api/excel/excel.chartseries#varyByCategories)|True se Excel atribuir uma cor ou padrão diferente a cada marcador de dados.|
 |[ChartTrendline](/javascript/api/excel/excel.charttrendline)|[backwardPeriod](/javascript/api/excel/excel.charttrendline#backwardPeriod)|Representa o número de períodos que a linha de tendência se estende para trás.|
 ||[forwardPeriod](/javascript/api/excel/excel.charttrendline#forwardPeriod)|Representa o número de períodos que a linha de tendência se estende para frente.|
-||[rótulo](/javascript/api/excel/excel.charttrendline#label)|Representa o rótulo de linha de tendência um gráfico.|
+||[label](/javascript/api/excel/excel.charttrendline#label)|Representa o rótulo de linha de tendência um gráfico.|
 ||[showEquation](/javascript/api/excel/excel.charttrendline#showEquation)|Verdadeiro se a equação da linha de tendência for exibida no gráfico.|
 ||[showRSquared](/javascript/api/excel/excel.charttrendline#showRSquared)|True se o valor r-quadrado da linha de tendência for exibido no gráfico.|
 |[ChartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|[autoText](/javascript/api/excel/excel.charttrendlinelabel#autoText)|Especifica se o rótulo da linha de tendência gera automaticamente o texto apropriado com base no contexto.|
@@ -107,7 +107,7 @@
 ||[textOrientation](/javascript/api/excel/excel.charttrendlinelabel#textOrientation)|Representa o ângulo para o qual o texto é orientado para o rótulo de linha de tendência do gráfico.|
 ||[top](/javascript/api/excel/excel.charttrendlinelabel#top)|Representa a distância, em pontos, da borda superior do rótulo de linha de tendência do gráfico até a parte superior da área do gráfico.|
 ||[verticalAlignment](/javascript/api/excel/excel.charttrendlinelabel#verticalAlignment)|Representa o alinhamento vertical do rótulo de linha de tendência do gráfico.|
-|[ChartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|[border](/javascript/api/excel/excel.charttrendlinelabelformat#border)|Especifica o formato de borda, que inclui cor, estilo de linha e peso.|
+|[ChartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|[borda](/javascript/api/excel/excel.charttrendlinelabelformat#border)|Especifica o formato de borda, que inclui cor, estilo de linha e peso.|
 ||[fill](/javascript/api/excel/excel.charttrendlinelabelformat#fill)|Especifica o formato de preenchimento do rótulo de linha de tendência do gráfico atual.|
 ||[font](/javascript/api/excel/excel.charttrendlinelabelformat#font)|Especifica os atributos de fonte (como nome da fonte, tamanho da fonte e cor) para um rótulo de linha de tendência de gráfico.|
 |[CustomDataValidation](/javascript/api/excel/excel.customdatavalidation)|[formula](/javascript/api/excel/excel.customdatavalidation#formula)|Uma fórmula de validação de dados personalizados.|
@@ -142,7 +142,7 @@
 |[DataValidationRule](/javascript/api/excel/excel.datavalidationrule)|[custom](/javascript/api/excel/excel.datavalidationrule#custom)|Critérios de validação de dados personalizados.|
 ||[data](/javascript/api/excel/excel.datavalidationrule#date)|Critérios de validação de dados de data.|
 ||[decimal](/javascript/api/excel/excel.datavalidationrule#decimal)|Critérios de validação de dados decimais.|
-||[list](/javascript/api/excel/excel.datavalidationrule#list)|Critérios de validação de dados da lista.|
+||[lista](/javascript/api/excel/excel.datavalidationrule#list)|Critérios de validação de dados da lista.|
 ||[textLength](/javascript/api/excel/excel.datavalidationrule#textLength)|Critérios de validação de dados de comprimento de texto.|
 ||[time](/javascript/api/excel/excel.datavalidationrule#time)|Critérios de validação de dados de tempo.|
 ||[wholeNumber](/javascript/api/excel/excel.datavalidationrule#wholeNumber)|Critérios de validação de dados de número inteiro.|
@@ -165,7 +165,7 @@
 ||[source](/javascript/api/excel/excel.listdatavalidation#source)|Fonte da lista de validação de dados|
 |[PivotField](/javascript/api/excel/excel.pivotfield)|[name](/javascript/api/excel/excel.pivotfield#name)|Nome do PivotField.|
 ||[id](/javascript/api/excel/excel.pivotfield#id)|ID do PivotField.|
-||[items](/javascript/api/excel/excel.pivotfield#items)|Retorna PivotFields associados ao PivotField.|
+||[items](/javascript/api/excel/excel.pivotfield#items)|Retorna os PivotItems associados ao PivotField.|
 ||[showAllItems](/javascript/api/excel/excel.pivotfield#showAllItems)|Determina se deseja mostrar todos os itens de PivotField.|
 ||[sortByLabels(sortBy: SortBy)](/javascript/api/excel/excel.pivotfield#sortByLabels_sortBy_)|Classifica o PivotField.|
 ||[subtotals](/javascript/api/excel/excel.pivotfield#subtotals)|Subtotais de PivotField.|
@@ -217,11 +217,11 @@
 ||[getItemOrNullObject(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection#getItemOrNullObject_name_)|Obtém um RowColumnPivotHierarchy por nome.|
 ||[items](/javascript/api/excel/excel.rowcolumnpivothierarchycollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[remove(rowColumnPivotHierarchy: Excel. RowColumnPivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection#remove_rowColumnPivotHierarchy_)|Remove o PivotHierarchy do eixo atual.|
-|[Runtime](/javascript/api/excel/excel.runtime)|[enableEvents](/javascript/api/excel/excel.runtime#enableEvents)|Alterne eventos JavaScript no painel de tarefas ou no complemento de conteúdo atual.|
+|[Tempo de execução](/javascript/api/excel/excel.runtime)|[enableEvents](/javascript/api/excel/excel.runtime#enableEvents)|Alterne eventos JavaScript no painel de tarefas ou no complemento de conteúdo atual.|
 |[ShowAsRule](/javascript/api/excel/excel.showasrule)|[baseField](/javascript/api/excel/excel.showasrule#baseField)|O PivotField para basear `ShowAs` o cálculo, se aplicável de acordo com o `ShowAsCalculation` tipo, senão `null` .|
 ||[baseItem](/javascript/api/excel/excel.showasrule#baseItem)|O item no qual basear `ShowAs` o cálculo, se aplicável de acordo com `ShowAsCalculation` o tipo, mais `null` .|
 ||[calculation](/javascript/api/excel/excel.showasrule#calculation)|O `ShowAs` cálculo a ser usado para o PivotField.|
-|[Estilo](/javascript/api/excel/excel.style)|[autoIndent](/javascript/api/excel/excel.style#autoIndent)|Especifica se o texto é recuado automaticamente quando o alinhamento de texto em uma célula é definido como distribuição igual.|
+|[Style](/javascript/api/excel/excel.style)|[autoIndent](/javascript/api/excel/excel.style#autoIndent)|Especifica se o texto é recuado automaticamente quando o alinhamento de texto em uma célula é definido como distribuição igual.|
 ||[textOrientation](/javascript/api/excel/excel.style#textOrientation)|A orientação de texto para o estilo.|
 |[Subtotals](/javascript/api/excel/excel.subtotals)|[automatic](/javascript/api/excel/excel.subtotals#automatic)|Se `Automatic` estiver definido como , todos os outros valores serão `true` ignorados ao definir o `Subtotals` .|
 ||[average](/javascript/api/excel/excel.subtotals#average)||
@@ -238,8 +238,8 @@
 |[Table](/javascript/api/excel/excel.table)|[legacyId](/javascript/api/excel/excel.table#legacyId)|Retorna uma ID numérica.|
 |[TableChangedEventArgs](/javascript/api/excel/excel.tablechangedeventargs)|[getRange(ctx: Excel.RequestContext)](/javascript/api/excel/excel.tablechangedeventargs#getRange_ctx_)|Obtém o intervalo que representa a área alterada de uma tabela em uma planilha específica.|
 ||[getRangeOrNullObject(ctx: Excel.RequestContext)](/javascript/api/excel/excel.tablechangedeventargs#getRangeOrNullObject_ctx_)|Obtém o intervalo que representa a área alterada de uma tabela em uma planilha específica.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[readOnly](/javascript/api/excel/excel.workbook#readOnly)|Retorna `true` se a workbook estiver aberta no modo somente leitura.|
-|[WorkbookCreated](/javascript/api/excel/excel.workbookcreated)||[Planilha](/javascript/api/excel/excel.worksheet)|[onCalculated](/javascript/api/excel/excel.worksheet#onCalculated)|Ocorre quando a planilha é calculada.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[readOnly](/javascript/api/excel/excel.workbook#readOnly)|Retorna `true` se a workbook estiver aberta no modo somente leitura.|
+|[WorkbookCreated](/javascript/api/excel/excel.workbookcreated)||[Worksheet](/javascript/api/excel/excel.worksheet)|[onCalculated](/javascript/api/excel/excel.worksheet#onCalculated)|Ocorre quando a planilha é calculada.|
 ||[showGridlines](/javascript/api/excel/excel.worksheet#showGridlines)|Especifica se as linhas de grade estão visíveis para o usuário.|
 ||[showHeadings](/javascript/api/excel/excel.worksheet#showHeadings)|Especifica se os títulos estão visíveis para o usuário.|
 |[WorksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|[tipo](/javascript/api/excel/excel.worksheetcalculatedeventargs#type)|Obtém o tipo do evento.|
