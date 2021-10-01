@@ -3,12 +3,8 @@ name: Word.ContentControlCollection
 uid: word!Word.ContentControlCollection:class
 package: word!
 fullName: Word.ContentControlCollection
-summary: >-
-  Contém uma coleção de [objetos Word.ContentControl.](xref:word!Word.ContentControl:class) Os controles de conteúdo são regiões associadas e potencialmente rotuladas em um documento que servem como contêineres para tipos específicos de conteúdo. Os controles de conteúdo individuais podem incluir conteúdo, como imagens, tabelas ou parágrafos de texto formatado. Atualmente, temos suporte apenas para controles de conteúdo de rich text.
-
-
-  \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-remarks: ''
+summary: Contém uma coleção de [objetos Word.ContentControl.](xref:word!Word.ContentControl:class) Os controles de conteúdo são regiões associadas e potencialmente rotuladas em um documento que servem como contêineres para tipos específicos de conteúdo. Os controles de conteúdo individuais podem incluir conteúdo, como imagens, tabelas ou parágrafos de texto formatado. Atualmente, temos suporte apenas para controles de conteúdo de rich text.
+remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: word!Word.ContentControlCollection#context:member
   package: word!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -42,12 +38,41 @@ methods:
   uid: word!Word.ContentControlCollection#getById:member(1)
   package: word!
   fullName: getById(id)
-  summary: >-
-    Obtém um controle de conteúdo pelo respectivo identificador. Ocorre um erro se não houver um controle de conteúdo com o identificador nesta coleção.
+  summary: Obtém um controle de conteúdo pelo respectivo identificador. Ocorre um erro se não houver um controle de conteúdo com o identificador nesta coleção.
+  remarks: >-
+    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+
+        // Create a proxy object for the content control that contains a specific id.
+        var contentControl = context.document.contentControls.getById(30086310);
+
+        // Queue a command to load the text property for a content control.
+        context.load(contentControl, 'text');
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            console.log('The content control with that Id has been found in this document.');
+        });
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -58,17 +83,37 @@ methods:
       type: number
     return:
       type: <xref uid="word!Word.ContentControl:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content control that contains a specific id.\n    var contentControl = context.document.contentControls.getById(30086310);\n\n    // Queue a command to load the text property for a content control.\n    context.load(contentControl, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('The content control with that Id has been found in this document.');\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getByTag(tag)
   uid: word!Word.ContentControlCollection#getByTag:member(1)
   package: word!
   fullName: getByTag(tag)
-  summary: >-
-    Obtém os controles de conteúdo com a marca especificada.
+  summary: Obtém os controles de conteúdo com a marca especificada.
+  remarks: >-
+    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/90-scenarios/doc-assembly.yaml
+
+    await Word.run(async (context) => {
+        let contentControls = context.document.contentControls.getByTag("customer");
+        contentControls.load("text");
+
+        await context.sync();
+
+        for (let i = 0; i < contentControls.items.length; i++) {
+          contentControls.items[i].insertText("Fabrikam", "Replace");
+        }
+
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -79,17 +124,13 @@ methods:
       type: string
     return:
       type: <xref uid="word!Word.ContentControlCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/90-scenarios/doc-assembly.yaml\nawait Word.run(async (context) => {\n    let contentControls = context.document.contentControls.getByTag(\"customer\");\n    contentControls.load(\"text\");\n\n    await context.sync();\n\n    for (let i = 0; i < contentControls.items.length; i++) {\n      contentControls.items[i].insertText(\"Fabrikam\", \"Replace\");\n    }\n\n    await context.sync();\n});\n```"
+      description: ''
 - name: getByTitle(title)
   uid: word!Word.ContentControlCollection#getByTitle:member(1)
   package: word!
   fullName: getByTitle(title)
-  summary: >-
-    Obtém os controles de conteúdo com o título especificado.
-
-
-    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém os controles de conteúdo com o título especificado.
+  remarks: "\\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection that contains a specific title.\n    var contentControlsWithTitle = context.document.contentControls.getByTitle('Enter Customer Address Here');\n\n    // Queue a command to load the text property for all of content controls with a specific title.\n    context.load(contentControlsWithTitle, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTitle.items.length === 0) {\n            console.log(\n                \"There isn't a content control with a title of 'Enter Customer Address Here' in this document.\");\n        } else {\n            console.log(\n                \"The first content control with the title of 'Enter Customer Address Here' has this text: \" + \n                contentControlsWithTitle.items[0].text);\n        }\n\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample has another example of using the getByTitle method.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -100,17 +141,13 @@ methods:
       type: string
     return:
       type: <xref uid="word!Word.ContentControlCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Create a proxy object for the content controls collection that contains a specific title.\n    var contentControlsWithTitle = context.document.contentControls.getByTitle('Enter Customer Address Here');\n\n    // Queue a command to load the text property for all of content controls with a specific title.\n    context.load(contentControlsWithTitle, 'text');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTitle.items.length === 0) {\n            console.log(\n                \"There isn't a content control with a title of 'Enter Customer Address Here' in this document.\");\n        } else {\n            console.log(\n                \"The first content control with the title of 'Enter Customer Address Here' has this text: \" + \n                contentControlsWithTitle.items[0].text);\n        }\n\n    });\n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n\n// The Word-Add-in-DocumentAssembly sample has another example of using the getByTitle method.\n// https://github.com/OfficeDev/Word-Add-in-DocumentAssembly\n```"
+      description: ''
 - name: getItem(index)
   uid: word!Word.ContentControlCollection#getItem:member(1)
   package: word!
   fullName: getItem(index)
-  summary: >-
-    Obtém um controle de conteúdo pelo índice na coleção.
-
-
-    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém um controle de conteúdo pelo índice na coleção.
+  remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -214,9 +251,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6a0d5c219322e4a4b603950d4a17e2d9fa3c6596
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: a83a6a39962be64c1db652d1eadf9fda198dcd69
+  ms.sourcegitcommit: 99af6ef6ec4bcc36262b4e532e212d14eabdbccb
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51351526"
+  ms.lasthandoff: 10/01/2021
+  ms.locfileid: "60046511"

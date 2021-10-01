@@ -55,7 +55,7 @@
 ||[paragraphs](/javascript/api/word/word.contentcontrol#paragraphs)|Obtém a coleção de objetos Paragraph no controle de conteúdo.|
 ||[parentContentControl](/javascript/api/word/word.contentcontrol#parentContentControl)|Obtém o controle de conteúdo que inclui o controle de conteúdo.|
 ||[text](/javascript/api/word/word.contentcontrol#text)|Obtém o texto do controle de conteúdo.|
-||[type](/javascript/api/word/word.contentcontrol#type)|Obtém o tipo de controle de conteúdo.|
+||[tipo](/javascript/api/word/word.contentcontrol#type)|Obtém o tipo de controle de conteúdo.|
 ||[removeWhenEdited](/javascript/api/word/word.contentcontrol#removeWhenEdited)|Obtém ou define um valor que determina quando o controle de conteúdo é removido após a edição.|
 ||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.contentcontrol#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto de controle de conteúdo.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.contentcontrol#select_selectionMode_)|Seleciona o controle de conteúdo.|
@@ -68,7 +68,7 @@
 ||[getItem(index: number)](/javascript/api/word/word.contentcontrolcollection#getItem_index_)|Obtém um controle de conteúdo pelo índice na coleção.|
 ||[items](/javascript/api/word/word.contentcontrolcollection#items)|Obtém os itens filhos carregados nesta coleção.|
 |[Document](/javascript/api/word/word.document)|[getSelection()](/javascript/api/word/word.document#getSelection__)|Obtém a seleção atual do documento.|
-||[body](/javascript/api/word/word.document#body)|Obtém o objeto body do documento.|
+||[body](/javascript/api/word/word.document#body)|Obtém o objeto body do documento principal.|
 ||[contentControls](/javascript/api/word/word.document#contentControls)|Obtém a coleção de objetos de controle de conteúdo no documento.|
 ||[saved](/javascript/api/word/word.document#saved)|Indica se as alterações do documento foram salvas.|
 ||[sections](/javascript/api/word/word.document#sections)|Obtém a coleção de objetos de seção no documento.|
