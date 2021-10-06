@@ -3,7 +3,7 @@ name: Office.Actions
 uid: office!Office.Actions:interface
 package: office!
 fullName: Office.Actions
-summary: Usado para associar um nome de ação a uma função.
+summary: Gerencia ações e atalhos de teclado.
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,18 +13,66 @@ properties:
   uid: office!Office.Actions#associate:member
   package: office!
   fullName: associate
-  summary: Função para associar um nome à função Action.
+  summary: Associa a ID de uma ação a uma função.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'associate: (actionName: string, action: (arg?: any) => void) => void;'
+    content: 'associate: (actionId: string, actionFunction: (arg?: any) => void) => void;'
     return:
-      type: '(actionName: string, action: (arg?: any) =&gt; void) =&gt; void'
+      type: '(actionId: string, actionFunction: (arg?: any) =&gt; void) =&gt; void'
+methods:
+- name: areShortcutsInUse(shortcuts)
+  uid: office!Office.Actions#areShortcutsInUse:member(1)
+  package: office!
+  fullName: areShortcutsInUse(shortcuts)
+  summary: Verifica se um conjunto de combinações de atalhos está em uso para o usuário, conforme definido por outro complemento ou pelo aplicativo Office host.
+  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'areShortcutsInUse(shortcuts: string[]): Promise<{shortcut:string, inUse:boolean}[]>;'
+    parameters:
+    - id: shortcuts
+      description: Uma matriz de combinações de atalho. Por exemplo, `["Ctrl+1", "Ctrl+2"]`<!-- -->.
+      type: string[]
+    return:
+      type: Promise&lt;{<xref uid="shortcut:string" />, <xref uid="inUse:boolean" />}[]&gt;
+      description: Uma promessa que resolve uma matriz de objetos. Cada objeto consiste em uma combinação de atalho e um valor Boolean. O valor é se a combinação de atalho entrar em conflito com um atalho de outro add-in ou com um atalho do aplicativo Office `true` de atalho; caso contrário,`false`<!-- -->. Por exemplo, `[{shortcut:"Ctrl+1", inUse:true},{shortcut:"Ctrl+2", inUse:false}]`<!-- -->.
+- name: getShortcuts()
+  uid: office!Office.Actions#getShortcuts:member(1)
+  package: office!
+  fullName: getShortcuts()
+  summary: Obtém os atalhos existentes para o complemento. O conjunto sempre inclui (1) os atalhos definidos no manifesto estendido do complemento para atalhos de teclado e (2) os atalhos personalizados do usuário atual, se eles existirem. O atalho pode ser se ele entrar em conflito com o atalho de outro `null` add-in ou com o Office aplicativo. Especificamente, seria se, quando solicitado a escolher qual atalho usar, o usuário não escolhesse a ação `null` do complemento atual. Para obter mais informações sobre conflitos com atalhos, consulte [Avoid key combinations in use by other add-ins](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts#avoid-key-combinations-in-use-by-other-add-ins)<!-- -->.
+  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getShortcuts(): Promise<{[actionId:string]:string|null}>;'
+    return:
+      type: Promise&lt;{[<xref uid="actionId:string" />]:string|null}&gt;
+      description: 'Uma promessa que resolve para um objeto de atalhos, com chaves sendo as IDs das ações (conforme definido em um manifesto estendido) e valores sendo as combinações de atalho. Por exemplo, `{"SetItalic": "Ctrl+1", "SetBold": "Ctrl+2", "SetUnderline": null}`<!-- -->.'
+- name: replaceShortcuts(shortcuts)
+  uid: office!Office.Actions#replaceShortcuts:member(1)
+  package: office!
+  fullName: replaceShortcuts(shortcuts)
+  summary: Substitui atalhos de add-in existentes por atalhos personalizados para o usuário.
+  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'replaceShortcuts(shortcuts: {[actionId:string]:string}): Promise<void>;'
+    parameters:
+    - id: shortcuts
+      description: 'Um objeto de atalhos personalizados com chaves sendo as IDs das ações (conforme definido em um manifesto estendido) e valores sendo as combinações de atalho. Por exemplo, `{"SetItalic": "Ctrl+1", "SetBold": "Ctrl+2"}`<!-- -->. Para saber como especificar uma ID de ação válida e uma combinação de [teclas,](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts) consulte Adicionar atalhos de teclado personalizados aos seus Office de usuário<!-- -->. (Observe que uma combinação de teclas pode ser `null`<!-- -->, nesse caso, a ação mantém a combinação de teclas especificada no arquivo JSON.)'
+      type: '{[<xref uid="actionId:string" />]:string}'
+    return:
+      type: Promise&lt;void&gt;
+      description: Uma promessa que resolve quando cada atribuição de atalho personalizada `shortcuts` em foi registrada. Mesmo que haja um conflito com atalhos existentes, o atalho personalizado será registrado. Caso contrário, a promessa será rejeitada com código de erro e mensagem de erro. Um código de erro "InvalidOperation" é retornado se qualquer ID de ação em não existir ou se a combinação de atalho `shortcuts` for inválida.
 metadata:
-  ms.openlocfilehash: ac2b33fe9eec530a604ba1fca34dfe001bc9521b
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: a70f75b5183b377a0958b88597942ddbb85445a7
+  ms.sourcegitcommit: caeb77dfdc8cf9a424d802da7a2f65820554490b
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49143565"
+  ms.lasthandoff: 10/06/2021
+  ms.locfileid: "60138797"
