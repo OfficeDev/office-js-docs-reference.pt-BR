@@ -50,10 +50,10 @@ properties:
     return:
       type: <xref uid="excel!Excel.TableRow:class" />[]
 methods:
-- name: add(index, values)
+- name: add(index, values, alwaysInsert)
   uid: excel!Excel.TableRowCollection#add:member(1)
   package: excel!
-  fullName: add(index, values)
+  fullName: add(index, values, alwaysInsert)
   summary: >-
     Adiciona uma ou mais linhas à tabela. O objeto de retorno será a parte superior das linhas adicionadas recentemente.
 
@@ -63,7 +63,7 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
+    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number, alwaysInsert?: boolean): Excel.TableRow;'
     parameters:
     - id: index
       description: Opcional. Especifica a posição relativa da nova linha. Se for null ou -1, a adição ocorre no final. Todas as linhas abaixo da linha inserida serão deslocadas para baixo. Indexado com zero.
@@ -71,8 +71,48 @@ methods:
     - id: values
       description: Opcional. Uma matriz 2D de valores não formatados da linha de tabela.
       type: Array&lt;Array&lt;boolean | string | number&gt;&gt; | boolean | string | number
+    - id: alwaysInsert
+      description: ''
+      type: boolean
     return:
       type: <xref uid="excel!Excel.TableRow:class" />
+      description: ''
+- name: deleteRows(rows)
+  uid: excel!Excel.TableRowCollection#deleteRows:member(1)
+  package: excel!
+  fullName: deleteRows(rows)
+  summary: Exclua várias linhas de uma tabela. Essas linhas não precisam ser sequenciais. Esse método lançará o erro se uma linha escolhida já tiver sido `InvalidArgument` excluída ou não existir. Este método lançará o `InsertDeleteConflict` erro se a tabela na qual o método é chamado tiver um filtro aplicado.
+  remarks: '\[[Conjunto de API: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'deleteRows(rows: number[] | TableRow[]): void;'
+    parameters:
+    - id: rows
+      description: Uma matriz de números de índice de linha ou objetos de linha a ser excluídos da tabela.
+      type: number[] | <xref uid="excel!Excel.TableRow:class" />[]
+    return:
+      type: void
+      description: ''
+- name: deleteRowsAt(index, count)
+  uid: excel!Excel.TableRowCollection#deleteRowsAt:member(1)
+  package: excel!
+  fullName: deleteRowsAt(index, count)
+  summary: Exclua um número especificado de linhas de uma tabela, começando em um determinado índice. Este método lançará o `InsertDeleteConflict` erro se a tabela na qual o método é chamado tiver um filtro aplicado.
+  remarks: '\[[Conjunto de API: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'deleteRowsAt(index: number, count?: number): void;'
+    parameters:
+    - id: index
+      description: 'O valor de índice da linha a ser excluída. Observação: os índices de linha são atualizados sempre que uma linha anterior na tabela é excluída, após cada operação de exclusão. Verifique se o índice da linha que você deseja excluir não foi alterado entre o tempo que você determinou o valor e a hora em que você executar a operação.'
+      type: number
+    - id: count
+      description: Número de linhas a ser excluído. Por padrão, uma única linha será excluída.
+      type: number
+    return:
+      type: void
       description: ''
 - name: getCount()
   uid: excel!Excel.TableRowCollection#getCount:member(1)
@@ -174,9 +214,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 7e2bea4809d17e3ed55e5ee5acf9d21f56ea36f1
-  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
+  ms.openlocfilehash: f10f0e0604795a160757e4e8277cb3b72b51e3ba
+  ms.sourcegitcommit: 95efa452ba59614b52a8756db5185935b4d44f58
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 09/24/2021
-  ms.locfileid: "59647684"
+  ms.lasthandoff: 10/13/2021
+  ms.locfileid: "60316246"

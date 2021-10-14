@@ -13,7 +13,7 @@ properties:
   uid: word!Word.Range#contentControls:member
   package: word!
   fullName: contentControls
-  summary: Obtém a coleção de objetos de controle de conteúdo no intervalo. Somente leitura.
+  summary: Obtém a coleção de objetos de controle de conteúdo no intervalo. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -33,6 +33,18 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="word!Word.RequestContext:class" />
+- name: endnotes
+  uid: word!Word.Range#endnotes:member
+  package: word!
+  fullName: endnotes
+  summary: Obtém a coleção de notas de fim no Intervalo. Somente leitura
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly endnotes: Word.NoteItemCollection;'
+    return:
+      type: <xref uid="word!Word.NoteItemCollection:class" />
 - name: font
   uid: word!Word.Range#font:member
   package: word!
@@ -45,6 +57,18 @@ properties:
     content: 'readonly font: Word.Font;'
     return:
       type: <xref uid="word!Word.Font:class" />
+- name: footnotes
+  uid: word!Word.Range#footnotes:member
+  package: word!
+  fullName: footnotes
+  summary: Obtém a coleção de notas de rodapé no Intervalo. Somente leitura
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly footnotes: Word.NoteItemCollection;'
+    return:
+      type: <xref uid="word!Word.NoteItemCollection:class" />
 - name: hyperlink
   uid: word!Word.Range#hyperlink:member
   package: word!
@@ -121,7 +145,7 @@ properties:
   uid: word!Word.Range#parentContentControl:member
   package: word!
   fullName: parentContentControl
-  summary: Obtém o controle de conteúdo que inclui o intervalo. Lança um erro se não houver um controle de conteúdo pai. Somente leitura.
+  summary: Obtém o controle de conteúdo que inclui o intervalo. Lança um erro se não houver um controle de conteúdo pai. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -402,6 +426,19 @@ methods:
       type: boolean
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
+      description: ''
+- name: getComments()
+  uid: word!Word.Range#getComments:member(1)
+  package: word!
+  fullName: getComments()
+  summary: Obtém comentários associados ao intervalo.
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'getComments(): Word.CommentCollection;'
+    return:
+      type: <xref uid="word!Word.CommentCollection:class" />
       description: ''
 - name: getHtml()
   uid: word!Word.Range#getHtml:member(1)
@@ -732,6 +769,23 @@ methods:
     return:
       type: void
       description: ''
+- name: insertComment(commentText)
+  uid: word!Word.Range#insertComment:member(1)
+  package: word!
+  fullName: insertComment(commentText)
+  summary: Insira um comentário no intervalo.
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'insertComment(commentText: string): Word.Comment;'
+    parameters:
+    - id: commentText
+      description: Obrigatório. Texto do comentário.
+      type: string
+    return:
+      type: <xref uid="word!Word.Comment:class" />
+      description: objeto comment
 - name: insertContentControl()
   uid: word!Word.Range#insertContentControl:member(1)
   package: word!
@@ -744,6 +798,23 @@ methods:
     content: 'insertContentControl(): Word.ContentControl;'
     return:
       type: <xref uid="word!Word.ContentControl:class" />
+      description: ''
+- name: insertEndnote(insertText)
+  uid: word!Word.Range#insertEndnote:member(1)
+  package: word!
+  fullName: insertEndnote(insertText)
+  summary: Insere uma nota de fim. A referência de nota de fim é colocada após o intervalo.
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'insertEndnote(insertText?: string): Word.NoteItem;'
+    parameters:
+    - id: insertText
+      description: ''
+      type: string
+    return:
+      type: <xref uid="word!Word.NoteItem:class" />
       description: ''
 - name: insertFileFromBase64(base64File, insertLocation)
   uid: word!Word.Range#insertFileFromBase64:member(1)
@@ -819,6 +890,23 @@ methods:
       type: "\"Before\" | \"After\" | \"Start\" | \"End\" | \"Replace\""
     return:
       type: <xref uid="word!Word.Range:class" />
+      description: ''
+- name: insertFootnote(insertText)
+  uid: word!Word.Range#insertFootnote:member(1)
+  package: word!
+  fullName: insertFootnote(insertText)
+  summary: Insere uma nota de rodapé. A referência de nota de rodapé é colocada após o intervalo.
+  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'insertFootnote(insertText?: string): Word.NoteItem;'
+    parameters:
+    - id: insertText
+      description: ''
+      type: string
+    return:
+      type: <xref uid="word!Word.NoteItem:class" />
       description: ''
 - name: insertHtml(html, insertLocation)
   uid: word!Word.Range#insertHtml:member(1)
@@ -1519,9 +1607,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: d6de34ab115eb3d295bea4cfb9844b6adeb32547
-  ms.sourcegitcommit: 99af6ef6ec4bcc36262b4e532e212d14eabdbccb
+  ms.openlocfilehash: 158962c3e5eaee50c2690944bbd3bc8843e69a92
+  ms.sourcegitcommit: 95efa452ba59614b52a8756db5185935b4d44f58
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 10/01/2021
-  ms.locfileid: "60050248"
+  ms.lasthandoff: 10/13/2021
+  ms.locfileid: "60316477"

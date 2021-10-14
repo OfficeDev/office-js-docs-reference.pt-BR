@@ -1,0 +1,176 @@
+### YamlMime:TSType
+name: Excel.Query
+uid: excel!Excel.Query:class
+package: excel!
+fullName: Excel.Query
+summary: Representa uma consulta de consulta do Power.
+remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.Query#context:member
+  package: excel!
+  fullName: context
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: error
+  uid: excel!Excel.Query#error:member
+  package: excel!
+  fullName: error
+  summary: Obtém a mensagem de erro de consulta de quando a consulta foi atualizada pela última vez.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly error: Excel.QueryError | "Unknown" | "None" | "FailedLoadToWorksheet" | "FailedLoadToDataModel" | "FailedDownload" | "FailedToCompleteDownload";'
+    return:
+      type: <xref uid="excel!Excel.QueryError:enum" /> | "Unknown" | "None" | "FailedLoadToWorksheet" | "FailedLoadToDataModel" | "FailedDownload" | "FailedToCompleteDownload"
+- name: loadedTo
+  uid: excel!Excel.Query#loadedTo:member
+  package: excel!
+  fullName: loadedTo
+  summary: Obtém a consulta carregada para o tipo de objeto.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly loadedTo: Excel.LoadToType | "ConnectionOnly" | "Table" | "PivotTable" | "PivotChart";'
+    return:
+      type: <xref uid="excel!Excel.LoadToType:enum" /> | "ConnectionOnly" | "Table" | "PivotTable" | "PivotChart"
+- name: loadedToDataModel
+  uid: excel!Excel.Query#loadedToDataModel:member
+  package: excel!
+  fullName: loadedToDataModel
+  summary: Especifica se a consulta foi carregada para o modelo de dados.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly loadedToDataModel: boolean;'
+    return:
+      type: boolean
+- name: name
+  uid: excel!Excel.Query#name:member
+  package: excel!
+  fullName: name
+  summary: Obtém o nome da consulta. Os nomes de consulta não podem conter períodos ou aspas.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly name: string;'
+    return:
+      type: string
+- name: refreshDate
+  uid: excel!Excel.Query#refreshDate:member
+  package: excel!
+  fullName: refreshDate
+  summary: Obtém a data e a hora em que a consulta foi atualizada pela última vez.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly refreshDate: Date;'
+    return:
+      type: Date
+- name: rowsLoadedCount
+  uid: excel!Excel.Query#rowsLoadedCount:member
+  package: excel!
+  fullName: rowsLoadedCount
+  summary: Obtém o número de linhas que foram carregadas quando a consulta foi atualizada pela última vez. Se a última atualização tiver erros, o valor será -1.
+  remarks: '\[[Conjunto de API: ExcelApi 1.14](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly rowsLoadedCount: number;'
+    return:
+      type: number
+methods:
+- name: load(options)
+  uid: excel!Excel.Query#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.QueryLoadOptions): Excel.Query;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
+      type: <xref uid="excel!Excel.Interfaces.QueryLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.Query:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.Query#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Query;'
+    parameters:
+    - id: propertyNames
+      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.Query:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.Query#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.Query;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.Query:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.Query#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto Query é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.QueryData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.QueryData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.QueryData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: fc67637e59b034aa5bed4a2ca9df0d27b289e5eb
+  ms.sourcegitcommit: 95efa452ba59614b52a8756db5185935b4d44f58
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 10/13/2021
+  ms.locfileid: "60317118"
