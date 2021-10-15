@@ -12,5 +12,5 @@
 ||[insertText(text: string, insertLocation: Word.InsertLocation)](/javascript/api/word/word.inlinepicture#insertText_text__insertLocation_)|Insere um texto no local especificado.|
 ||[paragraph](/javascript/api/word/word.inlinepicture#paragraph)|Obtém o parágrafo pai que inclui a imagem embutida.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.inlinepicture#select_selectionMode_)|Seleciona a imagem embutida.|
-|[Range](/javascript/api/word/word.range)|[insertInlinePictureFromBase64(base64EncodedImage: string, insertLocation: Word.InsertLocation)](/javascript/api/word/word.range#insertInlinePictureFromBase64_base64EncodedImage__insertLocation_)|Insere uma imagem no local especificado.|
-||[inlinePictures](/javascript/api/word/word.range#inlinePictures)|Obtém a coleção de objetos de imagem embutida presentes no intervalo.|
+|[Range](/javascript/api/word/word.range)|[inlinePictures](/javascript/api/word/word.range#inlinePictures)|Obtém a coleção de objetos de imagem embutida presentes no intervalo.|
+||[insertInlinePictureFromBase64(base64EncodedImage: string, insertLocation: Word.InsertLocation)](/javascript/api/word/word.range#insertInlinePictureFromBase64_base64EncodedImage__insertLocation_)|Insere uma imagem no local especificado.|

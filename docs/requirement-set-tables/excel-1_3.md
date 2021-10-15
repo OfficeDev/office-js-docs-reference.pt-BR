@@ -5,20 +5,20 @@
 ||[addFromNamedItem(name: string, bindingType: Excel. BindingType, id: string)](/javascript/api/excel/excel.bindingcollection#addFromNamedItem_name__bindingType__id_)|Adiciona uma nova associação com base em um item nomeado na pasta de trabalho.|
 ||[addFromSelection(bindingType: Excel. BindingType, id: string)](/javascript/api/excel/excel.bindingcollection#addFromSelection_bindingType__id_)|Adiciona uma nova associação com base na seleção atual.|
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[name](/javascript/api/excel/excel.pivottable#name)|Nome da Tabela Dinâmica.|
-||[worksheet](/javascript/api/excel/excel.pivottable#worksheet)|A planilha que contém a Tabela Dinâmica atual.|
 ||[refresh()](/javascript/api/excel/excel.pivottable#refresh__)|Atualiza a Tabela Dinâmica.|
+||[worksheet](/javascript/api/excel/excel.pivottable#worksheet)|A planilha que contém a Tabela Dinâmica atual.|
 |[PivotTableCollection](/javascript/api/excel/excel.pivottablecollection)|[getItem(name: string)](/javascript/api/excel/excel.pivottablecollection#getItem_name_)|Obtém uma Tabela Dinâmica por nome.|
 ||[items](/javascript/api/excel/excel.pivottablecollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[refreshAll()](/javascript/api/excel/excel.pivottablecollection#refreshAll__)|Atualiza todas as tabelas dinâmicas da coleção.|
 |[Range](/javascript/api/excel/excel.range)|[getVisibleView()](/javascript/api/excel/excel.range#getVisibleView__)|Representa as linhas visíveis do intervalo atual.|
-|[RangeView](/javascript/api/excel/excel.rangeview)|[fórmulas](/javascript/api/excel/excel.rangeview#formulas)|Representa a fórmula em notação A1.|
+|[RangeView](/javascript/api/excel/excel.rangeview)|[cellAddresses](/javascript/api/excel/excel.rangeview#cellAddresses)|Representa os endereços de célula do `RangeView` .|
+||[columnCount](/javascript/api/excel/excel.rangeview#columnCount)|O número de colunas visíveis.|
+||[fórmulas](/javascript/api/excel/excel.rangeview#formulas)|Representa a fórmula em notação A1.|
 ||[formulasLocal](/javascript/api/excel/excel.rangeview#formulasLocal)|Representa a fórmula em notação A1, na formatação de número da localidade e no idioma do usuário.|
 ||[formulasR1C1](/javascript/api/excel/excel.rangeview#formulasR1C1)|Representa a fórmula em notação no estilo L1C1.|
 ||[getRange()](/javascript/api/excel/excel.rangeview#getRange__)|Obtém o intervalo pai associado ao `RangeView` atual .|
+||[índice](/javascript/api/excel/excel.rangeview#index)|Retorna um valor que representa o índice do `RangeView` .|
 ||[numberFormat](/javascript/api/excel/excel.rangeview#numberFormat)|Representa o código de formato de número do Excel para determinada célula.|
-||[cellAddresses](/javascript/api/excel/excel.rangeview#cellAddresses)|Representa os endereços de célula do `RangeView` .|
-||[columnCount](/javascript/api/excel/excel.rangeview#columnCount)|O número de colunas visíveis.|
-||[index](/javascript/api/excel/excel.rangeview#index)|Retorna um valor que representa o índice do `RangeView` .|
 ||[rowCount](/javascript/api/excel/excel.rangeview#rowCount)|O número de linhas visíveis.|
 ||[rows](/javascript/api/excel/excel.rangeview#rows)|Representa uma coleção de exibições de tabelas associadas ao intervalo.|
 ||[text](/javascript/api/excel/excel.rangeview#text)|Valores de texto do intervalo especificado.|
@@ -31,5 +31,5 @@
 ||[showBandedColumns](/javascript/api/excel/excel.table#showBandedColumns)|Especifica se as colunas mostram formatação em faixa na qual as colunas ímpares são realçadas de forma diferente de outras, para facilitar a leitura da tabela.|
 ||[showBandedRows](/javascript/api/excel/excel.table#showBandedRows)|Especifica se as linhas mostram formatação em faixa na qual linhas ímpares são realçadas de forma diferente de outras, para facilitar a leitura da tabela.|
 ||[showFilterButton](/javascript/api/excel/excel.table#showFilterButton)|Especifica se os botões de filtro estão visíveis na parte superior de cada header de coluna.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[pivotTables](/javascript/api/excel/excel.workbook#pivotTables)|Representa uma coleção de Tabelas Dinâmicas associadas à pasta de trabalho.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[pivotTables](/javascript/api/excel/excel.worksheet#pivotTables)|Coleção de Tabelas Dinâmicas que fazem parte da planilha.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[pivotTables](/javascript/api/excel/excel.workbook#pivotTables)|Representa uma coleção de Tabelas Dinâmicas associadas à pasta de trabalho.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[pivotTables](/javascript/api/excel/excel.worksheet#pivotTables)|Coleção de Tabelas Dinâmicas que fazem parte da planilha.|

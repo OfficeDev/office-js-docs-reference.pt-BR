@@ -1,11 +1,11 @@
 | Classe | Campos | Descrição |
 |:---|:---|:---|
-|[Comment](/javascript/api/excel/excel.comment)|[content](/javascript/api/excel/excel.comment#content)|O conteúdo do comentário.|
+|[Comment](/javascript/api/excel/excel.comment)|[authorEmail](/javascript/api/excel/excel.comment#authorEmail)|Obtém o email do autor do comentário.|
+||[authorName](/javascript/api/excel/excel.comment#authorName)|Obtém o nome do autor do comentário.|
+||[content](/javascript/api/excel/excel.comment#content)|O conteúdo do comentário.|
+||[creationDate](/javascript/api/excel/excel.comment#creationDate)|Obtém o horário de criação do comentário.|
 ||[delete()](/javascript/api/excel/excel.comment#delete__)|Exclui o comentário e todas as respostas conectadas.|
 ||[getLocation()](/javascript/api/excel/excel.comment#getLocation__)|Obtém a célula onde este comentário está localizado.|
-||[authorEmail](/javascript/api/excel/excel.comment#authorEmail)|Obtém o email do autor do comentário.|
-||[authorName](/javascript/api/excel/excel.comment#authorName)|Obtém o nome do autor do comentário.|
-||[creationDate](/javascript/api/excel/excel.comment#creationDate)|Obtém o horário de criação do comentário.|
 ||[id](/javascript/api/excel/excel.comment#id)|Especifica o identificador de comentário.|
 ||[replies](/javascript/api/excel/excel.comment#replies)|Representa uma coleção de objetos de resposta associados ao comentário.|
 |[CommentCollection](/javascript/api/excel/excel.commentcollection)|[add(cellAddress: Cadeia \| de caracteres de intervalo, conteúdo: cadeia de caracteres, contentType?: Excel. ContentType)](/javascript/api/excel/excel.commentcollection#add_cellAddress__content__contentType_)|Cria um novo comentário com o conteúdo fornecido na célula especificada.|
@@ -15,13 +15,13 @@
 ||[getItemByCell(cellAddress: Range \| string)](/javascript/api/excel/excel.commentcollection#getItemByCell_cellAddress_)|Obtém o comentário da célula especificada.|
 ||[getItemByReplyId(replyId: string)](/javascript/api/excel/excel.commentcollection#getItemByReplyId_replyId_)|Obtém o comentário ao qual a resposta dada está conectada.|
 ||[items](/javascript/api/excel/excel.commentcollection#items)|Obtém os itens filhos carregados nesta coleção.|
-|[CommentReply](/javascript/api/excel/excel.commentreply)|[content](/javascript/api/excel/excel.commentreply#content)|O conteúdo da resposta ao comentário.|
+|[CommentReply](/javascript/api/excel/excel.commentreply)|[authorEmail](/javascript/api/excel/excel.commentreply#authorEmail)|Obtém o email do autor da resposta do comentário.|
+||[authorName](/javascript/api/excel/excel.commentreply#authorName)|Obtém o nome do autor da resposta do comentário.|
+||[content](/javascript/api/excel/excel.commentreply#content)|O conteúdo da resposta ao comentário.|
+||[creationDate](/javascript/api/excel/excel.commentreply#creationDate)|Obtém o horário de criação da resposta do comentário.|
 ||[delete()](/javascript/api/excel/excel.commentreply#delete__)|Exclui a resposta do comentário. |
 ||[getLocation()](/javascript/api/excel/excel.commentreply#getLocation__)|Obtém a célula onde esta resposta de comentário está localizada.|
 ||[getParentComment()](/javascript/api/excel/excel.commentreply#getParentComment__)|Obtém o comentário pai desta resposta.|
-||[authorEmail](/javascript/api/excel/excel.commentreply#authorEmail)|Obtém o email do autor da resposta do comentário.|
-||[authorName](/javascript/api/excel/excel.commentreply#authorName)|Obtém o nome do autor da resposta do comentário.|
-||[creationDate](/javascript/api/excel/excel.commentreply#creationDate)|Obtém o horário de criação da resposta do comentário.|
 ||[id](/javascript/api/excel/excel.commentreply#id)|Especifica o identificador de resposta de comentário.|
 |[CommentReplyCollection](/javascript/api/excel/excel.commentreplycollection)|[add(content: string, contentType?: Excel.ContentType)](/javascript/api/excel/excel.commentreplycollection#add_content__contentType_)|Cria uma resposta de comentário para um comentário.|
 ||[getCount()](/javascript/api/excel/excel.commentreplycollection#getCount__)|Obtém o número de respostas de comentários na coleção.|
@@ -41,13 +41,13 @@
 ||[items](/javascript/api/excel/excel.pivottablestylecollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[setDefault (newDefaultStyle: PivotTableStyle \| cadeia de caracteres)](/javascript/api/excel/excel.pivottablestylecollection#setDefault_newDefaultStyle_)|Define o estilo de tabela dinâmica padrão para uso no escopo do objeto pai.|
 |[Range](/javascript/api/excel/excel.range)|[group(groupOption: Excel. GroupOption)](/javascript/api/excel/excel.range#group_groupOption_)|Grupos colunas e linhas para um contorno.|
-||[hideGroupDetails(groupOption: Excel. GroupOption)](/javascript/api/excel/excel.range#hideGroupDetails_groupOption_)|Oculta os detalhes da linha ou do grupo de colunas.|
 ||[height](/javascript/api/excel/excel.range#height)|Retorna a distância em pontos, para zoom de 100%, da borda superior do intervalo até a borda inferior do intervalo.|
+||[hideGroupDetails(groupOption: Excel. GroupOption)](/javascript/api/excel/excel.range#hideGroupDetails_groupOption_)|Oculta os detalhes da linha ou do grupo de colunas.|
 ||[left](/javascript/api/excel/excel.range#left)|Retorna a distância em pontos, para zoom de 100%, da borda esquerda da planilha até a borda esquerda do intervalo.|
-||[top](/javascript/api/excel/excel.range#top)|Retorna a distância em pontos, para zoom de 100%, da borda superior da planilha até a borda superior do intervalo.|
-||[width](/javascript/api/excel/excel.range#width)|Retorna a distância em pontos, para zoom de 100%, da borda esquerda do intervalo até a borda direita do intervalo.|
 ||[showGroupDetails(groupOption: Excel. GroupOption)](/javascript/api/excel/excel.range#showGroupDetails_groupOption_)|Mostra os detalhes da linha ou do grupo de colunas.|
+||[top](/javascript/api/excel/excel.range#top)|Retorna a distância em pontos, para zoom de 100%, da borda superior da planilha até a borda superior do intervalo.|
 ||[ungroup(groupOption: Excel. GroupOption)](/javascript/api/excel/excel.range#ungroup_groupOption_)|Desagrupa colunas e linhas para um contorno.|
+||[width](/javascript/api/excel/excel.range#width)|Retorna a distância em pontos, para zoom de 100%, da borda esquerda do intervalo até a borda direita do intervalo.|
 |[Shape](/javascript/api/excel/excel.shape)|[copyTo(destinationSheet?: Worksheet \| string)](/javascript/api/excel/excel.shape#copyTo_destinationSheet_)|Copia e colará um `Shape` objeto.|
 ||[placement](/javascript/api/excel/excel.shape#placement)|Representa como o objeto é anexado às células abaixo dela.|
 |[Segmentação de dados](/javascript/api/excel/excel.slicer)|[caption](/javascript/api/excel/excel.slicer#caption)|Representa a legenda da slicer.|
@@ -55,25 +55,25 @@
 ||[delete()](/javascript/api/excel/excel.slicer#delete__)|Exclui a segmentação de dados.|
 ||[getSelectedItems()](/javascript/api/excel/excel.slicer#getSelectedItems__)|Retorna uma matriz de chaves de itens selecionados.|
 ||[height](/javascript/api/excel/excel.slicer#height)|Representa a altura, em pontos, da segmentação de dados.|
-||[left](/javascript/api/excel/excel.slicer#left)|Representa a distância, em pontos, da lateral esquerda da segmentação de dados à esquerda da planilha.|
-||[name](/javascript/api/excel/excel.slicer#name)|Representa o nome da slicer.|
 ||[id](/javascript/api/excel/excel.slicer#id)|Representa a ID exclusiva da slicer.|
 ||[isFilterCleared](/javascript/api/excel/excel.slicer#isFilterCleared)|O valor `true` é se todos os filtros atualmente aplicados à slicer são limpos.|
-||[slicerItems](/javascript/api/excel/excel.slicer#slicerItems)|Representa a coleção de itens de slicer que fazem parte da slicer.|
-||[worksheet](/javascript/api/excel/excel.slicer#worksheet)|Representa a planilha que contém a segmentação de dados.|
+||[left](/javascript/api/excel/excel.slicer#left)|Representa a distância, em pontos, da lateral esquerda da segmentação de dados à esquerda da planilha.|
+||[name](/javascript/api/excel/excel.slicer#name)|Representa o nome da slicer.|
 ||[selectItems(items?: string[])](/javascript/api/excel/excel.slicer#selectItems_items_)|Seleciona itens de slicer com base em suas chaves.|
+||[slicerItems](/javascript/api/excel/excel.slicer#slicerItems)|Representa a coleção de itens de slicer que fazem parte da slicer.|
 ||[sortBy](/javascript/api/excel/excel.slicer#sortBy)|Representa a ordem de classificação dos itens na segmentação de dados.|
 ||[style](/javascript/api/excel/excel.slicer#style)|Valor constante que representa o estilo da slicer.|
 ||[top](/javascript/api/excel/excel.slicer#top)|Representa a distância, em pontos, da borda superior da segmentação de dados na parte superior da planilha.|
 ||[width](/javascript/api/excel/excel.slicer#width)|Representa a largura, em pontos, da segmentação de dados.|
+||[worksheet](/javascript/api/excel/excel.slicer#worksheet)|Representa a planilha que contém a segmentação de dados.|
 |[SlicerCollection](/javascript/api/excel/excel.slicercollection)|[add(slicerSource: string \| PivotTable \| Table, sourceField: string \| PivotField \| number \| TableColumn, slicerDestination?: string \| Worksheet)](/javascript/api/excel/excel.slicercollection#add_slicerSource__sourceField__slicerDestination_)|Adiciona uma nova segmentação de dados à pasta de trabalho.|
 ||[getCount()](/javascript/api/excel/excel.slicercollection#getCount__)|Retorna o número de segmentações de dados na coleção.|
 ||[getItem(key: string)](/javascript/api/excel/excel.slicercollection#getItem_key_)|Obtém um objeto slicer usando seu nome ou ID.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.slicercollection#getItemAt_index_)|Obtém uma segmentação de dados com base em sua posição na coleção.|
 ||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.slicercollection#getItemOrNullObject_key_)|Obtém uma slicer usando seu nome ou ID.|
 ||[items](/javascript/api/excel/excel.slicercollection#items)|Obtém os itens filhos carregados nesta coleção.|
-|[SlicerItem](/javascript/api/excel/excel.sliceritem)|[isSelected](/javascript/api/excel/excel.sliceritem#isSelected)|O valor `true` será se o item da slicer estiver selecionado.|
-||[hasData](/javascript/api/excel/excel.sliceritem#hasData)|O valor `true` é se o item da slicer tiver dados.|
+|[SlicerItem](/javascript/api/excel/excel.sliceritem)|[hasData](/javascript/api/excel/excel.sliceritem#hasData)|O valor `true` é se o item da slicer tiver dados.|
+||[isSelected](/javascript/api/excel/excel.sliceritem#isSelected)|O valor `true` será se o item da slicer estiver selecionado.|
 ||[key](/javascript/api/excel/excel.sliceritem#key)|Representa o valor exclusivo que representa o item da segmentação de dados.|
 ||[name](/javascript/api/excel/excel.sliceritem#name)|Representa o título exibido na interface Excel interface do usuário.|
 |[SlicerItemCollection](/javascript/api/excel/excel.sliceritemcollection)|[getCount()](/javascript/api/excel/excel.sliceritemcollection#getCount__)|Retorna o número de itens da segmentação de dados na segmentação de dados.|
@@ -114,9 +114,9 @@
 ||[getItemOrNullObject(name: string)](/javascript/api/excel/excel.timelinestylecollection#getItemOrNullObject_name_)|Obtém `TimelineStyle` um pelo nome.|
 ||[items](/javascript/api/excel/excel.timelinestylecollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[setDefault(newDefaultStyle: TimelineStyle \| string)](/javascript/api/excel/excel.timelinestylecollection#setDefault_newDefaultStyle_)|Define o estilo de linha do tempo padrão para uso no escopo do objeto pai.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[getActiveSlicer()](/javascript/api/excel/excel.workbook#getActiveSlicer__)|Obtém a segmentação de dados ativa no momento na pasta de trabalho.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[comments](/javascript/api/excel/excel.workbook#comments)|Representa uma coleção de comentários associados à workbook.|
+||[getActiveSlicer()](/javascript/api/excel/excel.workbook#getActiveSlicer__)|Obtém a segmentação de dados ativa no momento na pasta de trabalho.|
 ||[getActiveSlicerOrNullObject()](/javascript/api/excel/excel.workbook#getActiveSlicerOrNullObject__)|Obtém a segmentação de dados ativa no momento na pasta de trabalho.|
-||[comments](/javascript/api/excel/excel.workbook#comments)|Representa uma coleção de comentários associados à workbook.|
 ||[pivotTableStyles](/javascript/api/excel/excel.workbook#pivotTableStyles)|Representa uma coleção de Tabelas Dinâmicas associadas à pasta de trabalho.|
 ||[slicerStyles](/javascript/api/excel/excel.workbook#slicerStyles)|Representa uma coleção de SlicerStyles associados à pasta de trabalho.|
 ||[slicers](/javascript/api/excel/excel.workbook#slicers)|Representa uma coleção de slicers associadas à workbook.|
@@ -126,8 +126,8 @@
 ||[onColumnSorted](/javascript/api/excel/excel.worksheet#onColumnSorted)|Ocorre quando uma ou mais colunas são classificadas.|
 ||[onRowSorted](/javascript/api/excel/excel.worksheet#onRowSorted)|Ocorre quando uma ou mais linhas são classificadas.|
 ||[onSingleClicked](/javascript/api/excel/excel.worksheet#onSingleClicked)|Ocorre quando uma ação clicada à esquerda/mapeada ocorre na planilha.|
-||[slicers](/javascript/api/excel/excel.worksheet#slicers)|Retorna uma coleção de slicers que fazem parte da planilha.|
 ||[showOutlineLevels(rowLevels: number, columnLevels: number)](/javascript/api/excel/excel.worksheet#showOutlineLevels_rowLevels__columnLevels_)|Mostra grupos de linhas ou colunas por seus níveis de contorno.|
+||[slicers](/javascript/api/excel/excel.worksheet#slicers)|Retorna uma coleção de slicers que fazem parte da planilha.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onColumnSorted](/javascript/api/excel/excel.worksheetcollection#onColumnSorted)|Ocorre quando uma ou mais colunas são classificadas.|
 ||[onRowSorted](/javascript/api/excel/excel.worksheetcollection#onRowSorted)|Ocorre quando uma ou mais linhas são classificadas.|
 ||[onSingleClicked](/javascript/api/excel/excel.worksheetcollection#onSingleClicked)|Ocorre quando a operação clicada à esquerda/mapeada ocorre na coleção de planilhas.|

@@ -5,8 +5,8 @@
 ||[thousandsSeparator](/javascript/api/excel/excel.application#thousandsSeparator)|Obtém a cadeia de caracteres usada para separar grupos de dígitos à esquerda do decimal para valores numéricos.|
 ||[useSystemSeparators](/javascript/api/excel/excel.application#useSystemSeparators)|Especifica se os separadores do sistema de Excel estão habilitados.|
 |[Comentário](/javascript/api/excel/excel.comment)|[menções](/javascript/api/excel/excel.comment#mentions)|Obtém as entidades (por exemplo, pessoas) mencionadas nos comentários.|
-||[richContent](/javascript/api/excel/excel.comment#richContent)|Obtém o conteúdo rich comment (por exemplo, menções nos comentários).|
 ||[resolvido](/javascript/api/excel/excel.comment#resolved)|O status do thread de comentário.|
+||[richContent](/javascript/api/excel/excel.comment#richContent)|Obtém o conteúdo rich comment (por exemplo, menções nos comentários).|
 ||[updateMentions(contentWithMentions: Excel. CommentRichContent)](/javascript/api/excel/excel.comment#updateMentions_contentWithMentions_)|Atualiza o conteúdo do comentário com uma cadeia de caracteres especialmente formatada e uma lista de menções.|
 |[CommentCollection](/javascript/api/excel/excel.commentcollection)|[add(cellAddress: Cadeia de caracteres de intervalo, conteúdo: cadeia de caracteres \| CommentRichContent, \| contentType?: Excel. ContentType)](/javascript/api/excel/excel.commentcollection#add_cellAddress__content__contentType_)|Cria um novo comentário com o conteúdo fornecido na célula especificada.|
 |[CommentMention](/javascript/api/excel/excel.commentmention)|[email](/javascript/api/excel/excel.commentmention#email)|O endereço de email da entidade mencionada em um comentário.|
@@ -25,9 +25,9 @@
 ||[numberGroupSeparator](/javascript/api/excel/excel.numberformatinfo#numberGroupSeparator)|Obtém a cadeia de caracteres usada para separar grupos de dígitos à esquerda do decimal para valores numéricos.|
 |[Range](/javascript/api/excel/excel.range)|[moveTo(destinationRange: Cadeia de \| caracteres de intervalo)](/javascript/api/excel/excel.range#moveTo_destinationRange_)|Move valores de célula, formatação e fórmulas do intervalo atual para o intervalo de destino, substituindo as informações antigas nessas células.|
 |[RangeFormat](/javascript/api/excel/excel.rangeformat)|[adjustIndent(amount: number)](/javascript/api/excel/excel.rangeformat#adjustIndent_amount_)|Ajusta o recuo da formatação do intervalo.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[close(closeBehavior?: Excel.CloseBehavior)](/javascript/api/excel/excel.workbook#close_closeBehavior_)|Fechar a pasta de trabalho atual.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[close(closeBehavior?: Excel.CloseBehavior)](/javascript/api/excel/excel.workbook#close_closeBehavior_)|Fechar a pasta de trabalho atual.|
 ||[save(saveBehavior?: Excel.SaveBehavior)](/javascript/api/excel/excel.workbook#save_saveBehavior_)|Salvar a pasta de trabalho atual.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[onRowHiddenChanged](/javascript/api/excel/excel.worksheet#onRowHiddenChanged)|Ocorre quando o estado oculto de uma ou mais linhas foi alterado em uma planilha específica.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[onRowHiddenChanged](/javascript/api/excel/excel.worksheet#onRowHiddenChanged)|Ocorre quando o estado oculto de uma ou mais linhas foi alterado em uma planilha específica.|
 |[WorksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|[address](/javascript/api/excel/excel.worksheetcalculatedeventargs#address)|O endereço do intervalo que concluiu o cálculo.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onRowHiddenChanged](/javascript/api/excel/excel.worksheetcollection#onRowHiddenChanged)|Ocorre quando o estado oculto de uma ou mais linhas foi alterado em uma planilha específica.|
 |[WorksheetRowHiddenChangedEventArgs](/javascript/api/excel/excel.worksheetrowhiddenchangedeventargs)|[address](/javascript/api/excel/excel.worksheetrowhiddenchangedeventargs#address)|Obtém o endereço do intervalo que representa a área alterada de uma planilha específica.|

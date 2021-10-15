@@ -8,7 +8,7 @@
 ||[rowCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#rowCount)|Obtém o número de linhas selecionadas.|
 ||[startColumn](/javascript/api/excel/excel.bindingselectionchangedeventargs#startColumn)|Obtém o índice da primeira coluna da seleção (com base em zero).|
 ||[startRow](/javascript/api/excel/excel.bindingselectionchangedeventargs#startRow)|Obtém o índice da primeira linha da seleção (com base em zero).|
-|[Gráfico](/javascript/api/excel/excel.chart)|[getImage(width?: number, height?: number, fittingMode?: Excel. ImageFittingMode)](/javascript/api/excel/excel.chart#getImage_width__height__fittingMode_)|Processa o gráfico como uma imagem codificada em base64, dimensionando o gráfico para se ajustar às dimensões especificadas.|
+|[Chart](/javascript/api/excel/excel.chart)|[getImage(width?: number, height?: number, fittingMode?: Excel. ImageFittingMode)](/javascript/api/excel/excel.chart#getImage_width__height__fittingMode_)|Processa o gráfico como uma imagem codificada em base64, dimensionando o gráfico para se ajustar às dimensões especificadas.|
 ||[worksheet](/javascript/api/excel/excel.chart#worksheet)|A planilha que contém o gráfico atual.|
 |[Filter](/javascript/api/excel/excel.filter)|[apply(criteria: Excel. FilterCriteria)](/javascript/api/excel/excel.filter#apply_criteria_)|Aplica os critérios de filtro determinados à coluna fornecida.|
 ||[applyBottomItemsFilter(count: number)](/javascript/api/excel/excel.filter#applyBottomItemsFilter_count_)|Aplica um filtro "Item Inferior" à coluna para obter o número de elementos fornecido.|
@@ -22,7 +22,7 @@
 ||[applyTopPercentFilter(percent: number)](/javascript/api/excel/excel.filter#applyTopPercentFilter_percent_)|Aplica um filtro "Percentual Superior" à coluna para obter a porcentagem de elementos fornecida.|
 ||[applyValuesFilter(values: Array<\| string FilterDatetime>)](/javascript/api/excel/excel.filter#applyValuesFilter_values_)|Aplica um filtro "Valores" à coluna para obter os valores fornecidos.|
 ||[clear()](/javascript/api/excel/excel.filter#clear__)|Limpa o filtro na coluna fornecida.|
-||[criteria](/javascript/api/excel/excel.filter#criteria)|O filtro aplicado no momento à coluna fornecida.|
+||[critério](/javascript/api/excel/excel.filter#criteria)|O filtro aplicado no momento à coluna fornecida.|
 |[FilterCriteria](/javascript/api/excel/excel.filtercriteria)|[color](/javascript/api/excel/excel.filtercriteria#color)|A cadeia HTML de cor usada para filtrar células.|
 ||[criterion1](/javascript/api/excel/excel.filtercriteria#criterion1)|O primeiro critério usado para filtrar os dados.|
 ||[criterion2](/javascript/api/excel/excel.filtercriteria#criterion2)|O segundo critério usado para filtrar os dados.|
@@ -448,7 +448,7 @@
 ||[yieldDisc(settlement: number \| string \| boolean \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult , vencimento: cadeia de caracteres de número <any> \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , pr: cadeia de caracteres de número \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , resgate: cadeia de caracteres de número \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , basis?: number \| string \| boolean \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> )](/javascript/api/excel/excel.functions#yieldDisc_settlement__maturity__pr__redemption__basis_)|Retorna o rendimento anual de um título descontado.|
 ||[yieldMat(settlement: number \| string \| boolean \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult , vencimento: cadeia de caracteres de número <any> \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , issue: number \| string \| boolean \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , taxa: cadeia de caracteres de número \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , pr: cadeia de caracteres de número \| \| \| booleano Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , basis?: number \| string \| boolean \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> )](/javascript/api/excel/excel.functions#yieldMat_settlement__maturity__issue__rate__pr__basis_)|Retorna o rendimento anual de um título que paga juros no vencimento.|
 ||[z_Test(matriz: número \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , x: número \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> , sigma?: número \| Excel. Intervalo \| Excel. RangeReference \| Excel. FunctionResult <any> )](/javascript/api/excel/excel.functions#z_Test_array__x__sigma_)|Retorna o valor P de cauda única de um teste z.|
-|[Icon](/javascript/api/excel/excel.icon)|[index](/javascript/api/excel/excel.icon#index)|Especifica o índice do ícone no conjunto determinado.|
+|[Icon](/javascript/api/excel/excel.icon)|[índice](/javascript/api/excel/excel.icon#index)|Especifica o índice do ícone no conjunto determinado.|
 |[IconCollections](/javascript/api/excel/excel.iconcollections)|[fiveArrows](/javascript/api/excel/excel.iconcollections#fiveArrows)||
 ||[fiveArrowsGray](/javascript/api/excel/excel.iconcollections#fiveArrowsGray)||
 ||[fiveBoxes](/javascript/api/excel/excel.iconcollections#fiveBoxes)|[Conjunto de api: ExcelApi 1.2]|
@@ -477,10 +477,10 @@
 ||[getRowsAbove(count?: number)](/javascript/api/excel/excel.range#getRowsAbove_count_)|Obtém um determinado número de linhas acima do objeto `Range` atual.|
 ||[getRowsBelow(count?: number)](/javascript/api/excel/excel.range#getRowsBelow_count_)|Obtém um determinado número de linhas abaixo do objeto `Range` atual.|
 ||[getUsedRange(valuesOnly?: boolean)](/javascript/api/excel/excel.range#getUsedRange_valuesOnly_)|Retorna o intervalo usado do objeto de intervalo determinado.|
-||[merge(across?: boolean)](/javascript/api/excel/excel.range#merge_across_)|Mescla as células do intervalo em uma região da planilha.|
 ||[hidden](/javascript/api/excel/excel.range#hidden)|Representa se todas as células no intervalo atual estão ocultas.|
-||[sort](/javascript/api/excel/excel.range#sort)|Representa a classificação de intervalo do intervalo atual.|
+||[merge(across?: boolean)](/javascript/api/excel/excel.range#merge_across_)|Mescla as células do intervalo em uma região da planilha.|
 ||[rowHidden](/javascript/api/excel/excel.range#rowHidden)|Representa se todas as linhas no intervalo atual estão ocultas.|
+||[sort](/javascript/api/excel/excel.range#sort)|Representa a classificação de intervalo do intervalo atual.|
 ||[unmerge()](/javascript/api/excel/excel.range#unmerge__)|Desfaz a mesclagem das células do intervalo em células separadas.|
 |[RangeFormat](/javascript/api/excel/excel.rangeformat)|[autofitColumns()](/javascript/api/excel/excel.rangeformat#autofitColumns__)|Altera a largura das colunas do intervalo atual para obter o melhor ajuste, com base nos dados atuais nas colunas.|
 ||[autofitRows()](/javascript/api/excel/excel.rangeformat#autofitRows__)|Altera a altura das linhas do intervalo atual para obter o melhor ajuste, com base nos dados atuais nas colunas.|
@@ -498,9 +498,9 @@
 ||[sortOn](/javascript/api/excel/excel.sortfield#sortOn)|Especifica o tipo de classificação dessa condição.|
 |[Table](/javascript/api/excel/excel.table)|[clearFilters()](/javascript/api/excel/excel.table#clearFilters__)|Limpa todos os filtros aplicados no momento na tabela.|
 ||[convertToRange()](/javascript/api/excel/excel.table#convertToRange__)|Converte a tabela em um intervalo de células normal.|
+||[reapplyFilters()](/javascript/api/excel/excel.table#reapplyFilters__)|Aplica novamente todos os filtros à tabela.|
 ||[sort](/javascript/api/excel/excel.table#sort)|Representa a classificação da tabela.|
 ||[worksheet](/javascript/api/excel/excel.table#worksheet)|A planilha que contém a tabela atual.|
-||[reapplyFilters()](/javascript/api/excel/excel.table#reapplyFilters__)|Aplica novamente todos os filtros à tabela.|
 |[TableColumn](/javascript/api/excel/excel.tablecolumn)|[filter](/javascript/api/excel/excel.tablecolumn#filter)|Recupera o filtro aplicado à coluna.|
 |[TableSort](/javascript/api/excel/excel.tablesort)|[apply(fields: Excel. SortField[], matchCase?: boolean, method?: Excel. SortMethod)](/javascript/api/excel/excel.tablesort#apply_fields__matchCase__method_)|Executam uma operação de classificação.|
 ||[clear()](/javascript/api/excel/excel.tablesort#clear__)|Limpa a classificação que está na tabela.|
@@ -538,12 +538,12 @@
 |[ThreeTrianglesSet](/javascript/api/excel/excel.threetrianglesset)|[greenUpTriangle](/javascript/api/excel/excel.threetrianglesset#greenUpTriangle)||
 ||[redDownTriangle](/javascript/api/excel/excel.threetrianglesset#redDownTriangle)||
 ||[yellowDash](/javascript/api/excel/excel.threetrianglesset#yellowDash)||
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[funções](/javascript/api/excel/excel.workbook#functions)|Representa uma coleção de funções de planilha que podem ser usadas para computação.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[funções](/javascript/api/excel/excel.workbook#functions)|Representa uma coleção de funções de planilha que podem ser usadas para computação.|
 ||[onSelectionChanged](/javascript/api/excel/excel.workbook#onSelectionChanged)|Ocorre quando a seleção no documento é alterada.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[getUsedRange(valuesOnly?: boolean)](/javascript/api/excel/excel.worksheet#getUsedRange_valuesOnly_)|O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[getUsedRange(valuesOnly?: boolean)](/javascript/api/excel/excel.worksheet#getUsedRange_valuesOnly_)|O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas.|
 ||[protection](/javascript/api/excel/excel.worksheet#protection)|Retorna o objeto de proteção de planilha para uma planilha.|
-|[WorksheetProtection](/javascript/api/excel/excel.worksheetprotection)|[protect(options?: Excel. WorksheetProtectionOptions, password?: string)](/javascript/api/excel/excel.worksheetprotection#protect_options__password_)|Protege uma planilha.|
-||[options](/javascript/api/excel/excel.worksheetprotection#options)|Especifica as opções de proteção para a planilha.|
+|[WorksheetProtection](/javascript/api/excel/excel.worksheetprotection)|[options](/javascript/api/excel/excel.worksheetprotection#options)|Especifica as opções de proteção para a planilha.|
+||[protect(options?: Excel. WorksheetProtectionOptions, password?: string)](/javascript/api/excel/excel.worksheetprotection#protect_options__password_)|Protege uma planilha.|
 ||[protegido](/javascript/api/excel/excel.worksheetprotection#protected)|Especifica se a planilha está protegida.|
 |[WorksheetProtectionOptions](/javascript/api/excel/excel.worksheetprotectionoptions)|[allowAutoFilter](/javascript/api/excel/excel.worksheetprotectionoptions#allowAutoFilter)|Representa a opção de proteção de planilha que permite o uso do recurso AutoFilter.|
 ||[allowDeleteColumns](/javascript/api/excel/excel.worksheetprotectionoptions#allowDeleteColumns)|Representa a opção de proteção de planilha que permite a exclusão de colunas.|

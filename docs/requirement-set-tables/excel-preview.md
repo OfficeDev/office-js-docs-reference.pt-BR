@@ -2,8 +2,8 @@
 |:---|:---|:---|
 |[AllowEditRange](/javascript/api/excel/excel.alloweditrange)|[address](/javascript/api/excel/excel.alloweditrange#address)|Especifica o intervalo associado ao objeto.|
 ||[delete()](/javascript/api/excel/excel.alloweditrange#delete__)|Exclui esse objeto do `AllowEditRangeCollection` .|
-||[pauseProtection(password?: string)](/javascript/api/excel/excel.alloweditrange#pauseProtection_password_)|Pausa a proteção da planilha para o `AllowEditRange` objeto dado para o usuário em uma determinada sessão.|
 ||[isPasswordProtected](/javascript/api/excel/excel.alloweditrange#isPasswordProtected)|Especifica se a `AllowEditRange` senha está protegida.|
+||[pauseProtection(password?: string)](/javascript/api/excel/excel.alloweditrange#pauseProtection_password_)|Pausa a proteção da planilha para o `AllowEditRange` objeto dado para o usuário em uma determinada sessão.|
 ||[setPassword(password?: string)](/javascript/api/excel/excel.alloweditrange#setPassword_password_)|Altera a senha associada ao `AllowEditRange` .|
 ||[title](/javascript/api/excel/excel.alloweditrange#title)|Especifica o título do objeto.|
 |[AllowEditRangeCollection](/javascript/api/excel/excel.alloweditrangecollection)|[add(title: string, rangeAddress: string, options?: Excel. AllowEditRangeOptions)](/javascript/api/excel/excel.alloweditrangecollection#add_title__rangeAddress__options_)|Adiciona um `AllowEditRange` objeto à coleção.|
@@ -11,8 +11,8 @@
 ||[getItem(key: string)](/javascript/api/excel/excel.alloweditrangecollection#getItem_key_)|Obtém `AllowEditRange` o objeto pelo título.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.alloweditrangecollection#getItemAt_index_)|Retorna um `AllowEditRange` objeto pelo índice na coleção.|
 ||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.alloweditrangecollection#getItemOrNullObject_key_)|Obtém `AllowEditRange` o objeto pelo título.|
-||[pauseProtection(password: string)](/javascript/api/excel/excel.alloweditrangecollection#pauseProtection_password_)|Pausa a proteção da planilha para todos os objetos da coleção que têm a `AllowEditRange` senha dada para o usuário em uma determinada sessão.|
 ||[items](/javascript/api/excel/excel.alloweditrangecollection#items)|Obtém os itens filhos carregados nesta coleção.|
+||[pauseProtection(password: string)](/javascript/api/excel/excel.alloweditrangecollection#pauseProtection_password_)|Pausa a proteção da planilha para todos os objetos da coleção que têm a `AllowEditRange` senha dada para o usuário em uma determinada sessão.|
 |[AllowEditRangeOptions](/javascript/api/excel/excel.alloweditrangeoptions)|[senha](/javascript/api/excel/excel.alloweditrangeoptions#password)|A senha associada ao `AllowEditRange` .|
 |[BlockedErrorCellValue](/javascript/api/excel/excel.blockederrorcellvalue)|[errorSubType](/javascript/api/excel/excel.blockederrorcellvalue#errorSubType)|Representa o tipo de `BlockedErrorCellValue` .|
 ||[errorType](/javascript/api/excel/excel.blockederrorcellvalue#errorType)|Representa o tipo de `ErrorCellValue` .|
@@ -54,9 +54,7 @@
 ||[primitive](/javascript/api/excel/excel.div0errorcellvalue#primitive)|Representa o valor que seria retornado por `Range.values` uma célula com esse valor.|
 ||[primitiveType](/javascript/api/excel/excel.div0errorcellvalue#primitiveType)|Representa o valor que seria retornado por `Range.valueTypes` uma célula com esse valor.|
 ||[tipo](/javascript/api/excel/excel.div0errorcellvalue#type)|Representa o tipo desse valor de célula.|
-|[DocumentTask](/javascript/api/excel/excel.documenttask)|[percentComplete](/javascript/api/excel/excel.documenttask#percentComplete)|Especifica a porcentagem de conclusão da tarefa.|
-||[priority](/javascript/api/excel/excel.documenttask#priority)|Especifica a prioridade da tarefa.|
-||[assignees](/javascript/api/excel/excel.documenttask#assignees)|Retorna uma coleção de atribuídos da tarefa.|
+|[DocumentTask](/javascript/api/excel/excel.documenttask)|[assignees](/javascript/api/excel/excel.documenttask#assignees)|Retorna uma coleção de atribuídos da tarefa.|
 ||[changes](/javascript/api/excel/excel.documenttask#changes)|Obtém os registros de alteração da tarefa.|
 ||[comment](/javascript/api/excel/excel.documenttask#comment)|Obtém o comentário associado à tarefa.|
 ||[completedBy](/javascript/api/excel/excel.documenttask#completedBy)|Obtém o usuário mais recente para ter concluído a tarefa.|
@@ -64,6 +62,8 @@
 ||[createdBy](/javascript/api/excel/excel.documenttask#createdBy)|Obtém o usuário que criou a tarefa.|
 ||[createdDateTime](/javascript/api/excel/excel.documenttask#createdDateTime)|Obtém a data e a hora em que a tarefa foi criada.|
 ||[id](/javascript/api/excel/excel.documenttask#id)|Obtém a ID da tarefa.|
+||[percentComplete](/javascript/api/excel/excel.documenttask#percentComplete)|Especifica a porcentagem de conclusão da tarefa.|
+||[priority](/javascript/api/excel/excel.documenttask#priority)|Especifica a prioridade da tarefa.|
 ||[setStartAndDueDateTime(startDateTime: Date, dueDateTime: Date)](/javascript/api/excel/excel.documenttask#setStartAndDueDateTime_startDateTime__dueDateTime_)|Altera o início e as datas de vencimento da tarefa.|
 ||[startAndDueDateTime](/javascript/api/excel/excel.documenttask#startAndDueDateTime)|Obtém ou define a data e a hora em que a tarefa deve começar e deve ser final.|
 ||[title](/javascript/api/excel/excel.documenttask#title)|Especifica o título da tarefa.|
@@ -125,10 +125,10 @@
 ||[name](/javascript/api/excel/excel.linkeddatatype#name)|O nome do tipo de dados vinculado.|
 ||[periodicRefreshInterval](/javascript/api/excel/excel.linkeddatatype#periodicRefreshInterval)|A frequência, em segundos, na qual o tipo de dados vinculado é atualizado se `refreshMode` estiver definido como "Periódico".|
 ||[refreshMode](/javascript/api/excel/excel.linkeddatatype#refreshMode)|O mecanismo pelo qual os dados do tipo de dados vinculados são recuperados.|
-||[serviceId](/javascript/api/excel/excel.linkeddatatype#serviceId)|A ID exclusiva do tipo de dados vinculado.|
-||[supportedRefreshModes](/javascript/api/excel/excel.linkeddatatype#supportedRefreshModes)|Retorna uma matriz com todos os modos de atualização suportados pelo tipo de dados vinculado.|
 ||[requestRefresh()](/javascript/api/excel/excel.linkeddatatype#requestRefresh__)|Faz uma solicitação para atualizar o tipo de dados vinculado.|
 ||[requestSetRefreshMode(refreshMode: Excel. LinkedDataTypeRefreshMode)](/javascript/api/excel/excel.linkeddatatype#requestSetRefreshMode_refreshMode_)|Faz uma solicitação para alterar o modo de atualização para esse tipo de dados vinculado.|
+||[serviceId](/javascript/api/excel/excel.linkeddatatype#serviceId)|A ID exclusiva do tipo de dados vinculado.|
+||[supportedRefreshModes](/javascript/api/excel/excel.linkeddatatype#supportedRefreshModes)|Retorna uma matriz com todos os modos de atualização suportados pelo tipo de dados vinculado.|
 |[LinkedDataTypeAddedEventArgs](/javascript/api/excel/excel.linkeddatatypeaddedeventargs)|[serviceId](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#serviceId)|A ID exclusiva do novo tipo de dados vinculado.|
 ||[source](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#source)|Obtém a origem do evento.|
 ||[tipo](/javascript/api/excel/excel.linkeddatatypeaddedeventargs#type)|Obtém o tipo do evento.|
@@ -179,8 +179,8 @@
 |[Shape](/javascript/api/excel/excel.shape)|[displayName](/javascript/api/excel/excel.shape#displayName)|Obtém o nome de exibição da forma.|
 |[ShapeCollection](/javascript/api/excel/excel.shapecollection)|[addSvg(xml: string)](/javascript/api/excel/excel.shapecollection#addSvg_xml_)|Cria um gráfico vetorial escalável (SVG) de uma cadeia de caracteres XML e a adiciona à planilha.|
 |[Segmentação de dados](/javascript/api/excel/excel.slicer)|[nameInFormula](/javascript/api/excel/excel.slicer#nameInFormula)|Representa o nome da segmentação de dados usada na fórmula.|
-||[slicerStyle](/javascript/api/excel/excel.slicer#slicerStyle)|O estilo aplicado à slicer.|
 ||[setStyle(style: string \| SlicerStyle \| BuiltInSlicerStyle)](/javascript/api/excel/excel.slicer#setStyle_style_)|Define o estilo aplicado à slicer.|
+||[slicerStyle](/javascript/api/excel/excel.slicer#slicerStyle)|O estilo aplicado à slicer.|
 |[SpillErrorCellValue](/javascript/api/excel/excel.spillerrorcellvalue)|[errorSubType](/javascript/api/excel/excel.spillerrorcellvalue#errorSubType)|Representa o tipo de `SpillErrorCellValue` .|
 ||[errorType](/javascript/api/excel/excel.spillerrorcellvalue#errorType)|Representa o tipo de `ErrorCellValue` .|
 ||[primitive](/javascript/api/excel/excel.spillerrorcellvalue#primitive)|Representa o valor que seria retornado por `Range.values` uma célula com esse valor.|
@@ -193,8 +193,8 @@
 ||[tipo](/javascript/api/excel/excel.stringcellvalue#type)|Representa o tipo desse valor de célula.|
 |[Table](/javascript/api/excel/excel.table)|[clearStyle()](/javascript/api/excel/excel.table#clearStyle__)|Altera a tabela para usar o estilo de tabela padrão.|
 ||[onFiltered](/javascript/api/excel/excel.table#onFiltered)|Ocorre quando um filtro é aplicado em uma tabela específica.|
-||[tableStyle](/javascript/api/excel/excel.table#tableStyle)|O estilo aplicado à tabela.|
 ||[setStyle(style: string \| TableStyle \| BuiltInTableStyle)](/javascript/api/excel/excel.table#setStyle_style_)|Define o estilo aplicado à tabela.|
+||[tableStyle](/javascript/api/excel/excel.table#tableStyle)|O estilo aplicado à tabela.|
 |[TableCollection](/javascript/api/excel/excel.tablecollection)|[onFiltered](/javascript/api/excel/excel.tablecollection#onFiltered)|Ocorre quando um filtro é aplicado em qualquer tabela em uma pasta de trabalho ou em uma planilha.|
 |[TableFilteredEventArgs](/javascript/api/excel/excel.tablefilteredeventargs)|[tableId](/javascript/api/excel/excel.tablefilteredeventargs#tableId)|Obtém a ID da tabela na qual o filtro é aplicado.|
 ||[tipo](/javascript/api/excel/excel.tablefilteredeventargs#type)|Obtém o tipo do evento.|
@@ -216,8 +216,8 @@
 ||[relatedImagesAddress](/javascript/api/excel/excel.webimagecellvalue#relatedImagesAddress)|Representa a URL de uma página da Web com imagens consideradas relacionadas a este `WebImageCellValue` .|
 ||[tipo](/javascript/api/excel/excel.webimagecellvalue#type)|Representa o tipo desse valor de célula.|
 |[Workbook](/javascript/api/excel/excel.workbook)|[linkedDataTypes](/javascript/api/excel/excel.workbook#linkedDataTypes)|Retorna uma coleção de tipos de dados vinculados que fazem parte da lista de trabalho.|
-||[tasks](/javascript/api/excel/excel.workbook#tasks)|Retorna uma coleção de tarefas que estão presentes na workbook.|
 ||[showPivotFieldList](/javascript/api/excel/excel.workbook#showPivotFieldList)|Especifica se o painel de lista de campos da Tabela Dinâmica é mostrado no nível da lista de trabalho.|
+||[tasks](/javascript/api/excel/excel.workbook#tasks)|Retorna uma coleção de tarefas que estão presentes na workbook.|
 ||[use1904DateSystem](/javascript/api/excel/excel.workbook#use1904DateSystem)|True se a pasta de trabalho usar o sistema de dados 1904.|
 |[Worksheet](/javascript/api/excel/excel.worksheet)|[onFiltered](/javascript/api/excel/excel.worksheet#onFiltered)|Ocorre quando um filtro é aplicado em uma planilha específica.|
 ||[tasks](/javascript/api/excel/excel.worksheet#tasks)|Retorna uma coleção de tarefas presentes na planilha.|
@@ -225,12 +225,12 @@
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onFiltered)|Ocorre quando filtro de uma planilha é aplicado na pasta de trabalho.|
 |[WorksheetFilteredEventArgs](/javascript/api/excel/excel.worksheetfilteredeventargs)|[tipo](/javascript/api/excel/excel.worksheetfilteredeventargs#type)|Obtém o tipo do evento.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetfilteredeventargs#worksheetId)|Obtém a ID da planilha na qual o filtro é aplicado.|
-|[WorksheetProtection](/javascript/api/excel/excel.worksheetprotection)|[checkPassword(password?: string)](/javascript/api/excel/excel.worksheetprotection#checkPassword_password_)|Especifica se a senha pode ser usada para desbloquear a proteção da planilha.|
-||[pauseProtection(password?: string)](/javascript/api/excel/excel.worksheetprotection#pauseProtection_password_)|Pausa a proteção da planilha para o objeto de planilha determinado para o usuário em uma determinada sessão.|
-||[allowEditRanges](/javascript/api/excel/excel.worksheetprotection#allowEditRanges)|Especifica o `AllowEditRangeCollection` encontrado nesta planilha.|
+|[WorksheetProtection](/javascript/api/excel/excel.worksheetprotection)|[allowEditRanges](/javascript/api/excel/excel.worksheetprotection#allowEditRanges)|Especifica o `AllowEditRangeCollection` encontrado nesta planilha.|
 ||[canPauseProtection](/javascript/api/excel/excel.worksheetprotection#canPauseProtection)|Especifica se a proteção pode ser pausada para esta planilha.|
+||[checkPassword(password?: string)](/javascript/api/excel/excel.worksheetprotection#checkPassword_password_)|Especifica se a senha pode ser usada para desbloquear a proteção da planilha.|
 ||[isPasswordProtected](/javascript/api/excel/excel.worksheetprotection#isPasswordProtected)|Especifica se a planilha está protegida por senha.|
 ||[isPaused](/javascript/api/excel/excel.worksheetprotection#isPaused)|Especifica se a proteção da planilha está pausada.|
+||[pauseProtection(password?: string)](/javascript/api/excel/excel.worksheetprotection#pauseProtection_password_)|Pausa a proteção da planilha para o objeto de planilha determinado para o usuário em uma determinada sessão.|
 ||[resumeProtection()](/javascript/api/excel/excel.worksheetprotection#resumeProtection__)|Retoma a proteção da planilha para o objeto de planilha determinado para o usuário em uma determinada sessão.|
 ||[setPassword(password?: string)](/javascript/api/excel/excel.worksheetprotection#setPassword_password_)|Altera a senha associada ao `WorksheetProtection` objeto.|
 ||[updateOptions(options: Excel. WorksheetProtectionOptions)](/javascript/api/excel/excel.worksheetprotection#updateOptions_options_)|Altere as opções de proteção da planilha associadas ao `WorksheetProtection` objeto.|
