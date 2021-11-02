@@ -51,7 +51,7 @@
 ||[matchSuffix](/javascript/api/word/word.contentcontrol#matchSuffix)||
 ||[matchWholeWord](/javascript/api/word/word.contentcontrol#matchWholeWord)||
 ||[matchWildcards](/javascript/api/word/word.contentcontrol#matchWildcards)||
-||[paragraphs](/javascript/api/word/word.contentcontrol#paragraphs)|Obtém a coleção de objetos Paragraph no controle de conteúdo.|
+||[paragraphs](/javascript/api/word/word.contentcontrol#paragraphs)|Obtém a coleção de objetos de parágrafo no controle de conteúdo.|
 ||[parentContentControl](/javascript/api/word/word.contentcontrol#parentContentControl)|Obtém o controle de conteúdo que inclui o controle de conteúdo.|
 ||[placeholderText](/javascript/api/word/word.contentcontrol#placeholderText)|Obtém ou define o texto do espaço reservado do controle de conteúdo.|
 ||[removeWhenEdited](/javascript/api/word/word.contentcontrol#removeWhenEdited)|Obtém ou define um valor que determina quando o controle de conteúdo é removido após a edição.|

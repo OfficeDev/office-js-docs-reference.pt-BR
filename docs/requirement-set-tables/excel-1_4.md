@@ -24,7 +24,7 @@
 |[Configuração](/javascript/api/excel/excel.setting)|[delete()](/javascript/api/excel/excel.setting#delete__)|Exclui a configuração.|
 ||[key](/javascript/api/excel/excel.setting#key)|A chave que representa a ID da configuração.|
 ||[value](/javascript/api/excel/excel.setting#value)|Representa o valor armazenado para esta configuração.|
-|[SettingCollection](/javascript/api/excel/excel.settingcollection)|[add(key: string, value: string \| number \| boolean \| Date Array \| <any> \| any)](/javascript/api/excel/excel.settingcollection#add_key__value_)|Define na pasta de trabalho ou adiciona a ela a configuração especificada.|
+|[SettingCollection](/javascript/api/excel/excel.settingcollection)|[add(key: string, value: string \| number \| boolean \| Date Array \| \| any)](/javascript/api/excel/excel.settingcollection#add_key__value_)|Define na pasta de trabalho ou adiciona a ela a configuração especificada.|
 ||[getCount()](/javascript/api/excel/excel.settingcollection#getCount__)|Obtém o número de configurações na coleção.|
 ||[getItem(key: string)](/javascript/api/excel/excel.settingcollection#getItem_key_)|Obtém uma entrada de configuração por meio da chave.|
 ||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.settingcollection#getItemOrNullObject_key_)|Obtém uma entrada de configuração por meio da chave.|
@@ -36,8 +36,8 @@
 |[TableColumnCollection](/javascript/api/excel/excel.tablecolumncollection)|[getCount()](/javascript/api/excel/excel.tablecolumncollection#getCount__)|Obtém a quantidade de colunas na tabela.|
 ||[getItemOrNullObject(key: number \| string)](/javascript/api/excel/excel.tablecolumncollection#getItemOrNullObject_key_)|Obtém um objeto de coluna por nome ou ID.|
 |[TableRowCollection](/javascript/api/excel/excel.tablerowcollection)|[getCount()](/javascript/api/excel/excel.tablerowcollection#getCount__)|Obtém a quantidade de linhas na tabela.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[configurações](/javascript/api/excel/excel.workbook#settings)|Representa uma coleção de configurações associadas à workbook.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[getUsedRangeOrNullObject(valuesOnly?: boolean)](/javascript/api/excel/excel.worksheet#getUsedRangeOrNullObject_valuesOnly_)|O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[configurações](/javascript/api/excel/excel.workbook#settings)|Representa uma coleção de configurações associadas à workbook.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[getUsedRangeOrNullObject(valuesOnly?: boolean)](/javascript/api/excel/excel.worksheet#getUsedRangeOrNullObject_valuesOnly_)|O intervalo usado é o menor intervalo que abrange todas as células que têm um valor ou uma formatação atribuída a elas.|
 ||[names](/javascript/api/excel/excel.worksheet#names)|Coleção de nomes com escopo para a planilha atual.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[getCount(visibleOnly?: boolean)](/javascript/api/excel/excel.worksheetcollection#getCount_visibleOnly_)|Obtém o número de planilhas na coleção.|
 ||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.worksheetcollection#getItemOrNullObject_key_)|Obtém um objeto de planilha usando o nome ou ID dele.|
