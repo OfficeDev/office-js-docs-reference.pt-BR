@@ -1,0 +1,151 @@
+### YamlMime:TSType
+name: OfficeExtension.ClientRequestContext
+uid: office!OfficeExtension.ClientRequestContext:class
+package: office!
+fullName: OfficeExtension.ClientRequestContext
+summary: Um objeto RequestContext abstrato que facilita solicitações para o aplicativo Office host. Os `Excel.run` métodos e fornecem um contexto de `Word.run` solicitação.
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+constructors:
+- name: (constructor)(url)
+  uid: office!OfficeExtension.ClientRequestContext:constructor(1)
+  package: office!
+  fullName: (constructor)(url)
+  summary: Constrói uma nova instância da `ClientRequestContext` classe
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'constructor(url?: string);'
+    parameters:
+    - id: url
+      description: ''
+      type: string
+properties:
+- name: debugInfo
+  uid: office!OfficeExtension.ClientRequestContext#debugInfo:member
+  package: office!
+  fullName: debugInfo
+  summary: Informações de depuração
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly debugInfo: RequestContextDebugInfo;'
+    return:
+      type: <xref uid="office!OfficeExtension.RequestContextDebugInfo:interface" />
+- name: requestHeaders
+  uid: office!OfficeExtension.ClientRequestContext#requestHeaders:member
+  package: office!
+  fullName: requestHeaders
+  summary: Cabeçalhos de solicitação
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'requestHeaders: { [name: string]: string };'
+    return:
+      type: '{ [name: string]: string }'
+- name: trackedObjects
+  uid: office!OfficeExtension.ClientRequestContext#trackedObjects:member
+  package: office!
+  fullName: trackedObjects
+  summary: Coleção de objetos que são rastreados para ajustes automáticos com base nas alterações ao redor do documento.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'trackedObjects: TrackedObjects;'
+    return:
+      type: <xref uid="office!OfficeExtension.TrackedObjects:class" />
+methods:
+- name: load(object, option)
+  uid: office!OfficeExtension.ClientRequestContext#load:member(1)
+  package: office!
+  fullName: load(object, option)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(object: ClientObject, option?: string | string[] | LoadOption): void;'
+    parameters:
+    - id: object
+      description: O objeto cujas propriedades são carregadas.
+      type: <xref uid="office!OfficeExtension.ClientObject:class" />
+    - id: option
+      description: Uma cadeia de caracteres delimitada por vírgula ou matriz de cadeias de caracteres que especifica as propriedades a carregar ou um [objeto OfficeExtension.LoadOption.](xref:office!OfficeExtension.LoadOption:interface)
+      type: string | string[] | <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: void
+      description: ''
+- name: loadRecursive(object, options, maxDepth)
+  uid: office!OfficeExtension.ClientRequestContext#loadRecursive:member(1)
+  package: office!
+  fullName: loadRecursive(object, options, maxDepth)
+  summary: >-
+    Faz filas em um comando para carregar recursivamente as propriedades especificadas do objeto e suas propriedades de navegação.
+
+
+    Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'loadRecursive(object: ClientObject, options: { [typeName: string]: string | string[] | LoadOption }, maxDepth?: number): void;'
+    parameters:
+    - id: object
+      description: O objeto a ser carregado.
+      type: <xref uid="office!OfficeExtension.ClientObject:class" />
+    - id: options
+      description: 'O emparelhamento de valores-chave das opções de carga para os tipos, como `{ "Workbook": "worksheets,tables",  "Worksheet": "tables",  "Tables": "name" }`'
+      type: '{ [typeName: string]: string | string[] | <xref uid="office!OfficeExtension.LoadOption:interface" /> }'
+    - id: maxDepth
+      description: A profundidade recursiva máxima.
+      type: number
+    return:
+      type: void
+      description: ''
+- name: sync(passThroughValue)
+  uid: office!OfficeExtension.ClientRequestContext#sync:member(1)
+  package: office!
+  fullName: sync(passThroughValue)
+  summary: Sincroniza o estado entre os objetos proxy JavaScript e o documento Office, executando instruções enlutados no contexto de solicitação e recuperando propriedades de objetos Office carregados para uso em seu código. Este método retorna uma promessa, que é resolvida quando a sincronização é concluída.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'sync<T>(passThroughValue?: T): Promise<T>;'
+    parameters:
+    - id: passThroughValue
+      description: ''
+      type: T
+    return:
+      type: Promise&lt;T&gt;
+      description: ''
+- name: trace(message)
+  uid: office!OfficeExtension.ClientRequestContext#trace:member(1)
+  package: office!
+  fullName: trace(message)
+  summary: Adiciona uma mensagem de rastreamento à fila. Se a promessa retornada por for rejeitada devido a um erro, isso adiciona uma matriz `context.sync()` ".traceMessages" ao objeto OfficeExtension.Error, contendo todas as mensagens de rastreamento que foram executadas. Essas mensagens podem ajudar você a monitorar a sequência de execução do programa e detectar a causa do erro.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'trace(message: string): void;'
+    parameters:
+    - id: message
+      description: ''
+      type: string
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: c0825a8a62900b93b93165e1614a8fbe6157ea77
+  ms.sourcegitcommit: acfa7744e00932ab2537acbc9ce8393108112c18
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 12/03/2021
+  ms.locfileid: "61280125"

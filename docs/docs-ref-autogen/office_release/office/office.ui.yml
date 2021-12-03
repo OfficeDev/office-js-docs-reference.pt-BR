@@ -1,0 +1,329 @@
+### YamlMime:TSType
+name: Office.UI
+uid: office!Office.UI:interface
+package: office!
+fullName: Office.UI
+summary: >-
+  Fornece objetos e métodos que você pode usar para criar e manipular componentes da interface do usuário, como caixas de diálogo, em seus Office de usuário.
+
+
+  Visitar "[Use a API de Diálogo em seus Office Desempis](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-api-in-office-add-ins)<!-- -->" para obter mais informações.
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addHandlerAsync(eventType, handler, options, callback)
+  uid: office!Office.UI#addHandlerAsync:member(1)
+  package: office!
+  fullName: addHandlerAsync(eventType, handler, options, callback)
+  summary: Adiciona um manipulador de eventos ao objeto usando o tipo de evento especificado.
+  remarks: >-
+    **Conjunto de requisitos**: [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    Você pode adicionar vários manipuladores de eventos para o tipo de evento especificado, desde que o nome de cada função de manipulador de eventos seja exclusivo.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: DialogParentMessageReceivedEventArgs) => void, options: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: Especifica o tipo de evento a ser adicionado. Isso deve ser `Office.EventType.DialogParentMessageReceived`<!-- -->.
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: handler
+      description: A função de manipulador de eventos a ser acrescentada, cujo único parâmetro é do tipo [Office. DialogParentMessageReceivedEventArgs](xref:office!Office.DialogParentMessageReceivedEventArgs:interface)<!-- -->.
+      type: '(result: <xref uid="office!Office.DialogParentMessageReceivedEventArgs:interface" />) =&gt; void'
+    - id: options
+      description: Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterado, para uso em um retorno de chamada.
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Opcional. Uma função que é invocada quando o registro do manipulador retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addHandlerAsync(eventType, handler, callback)
+  uid: office!Office.UI#addHandlerAsync:member(2)
+  package: office!
+  fullName: addHandlerAsync(eventType, handler, callback)
+  summary: Adiciona um manipulador de eventos ao objeto usando o tipo de evento especificado.
+  remarks: >-
+    **Conjunto de requisitos**: [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    Você pode adicionar vários manipuladores de eventos para o tipo de evento especificado, desde que o nome de cada função de manipulador de eventos seja exclusivo.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: DialogParentMessageReceivedEventArgs) => void, callback?: (result: AsyncResult<void>) => void): void;'
+    parameters:
+    - id: eventType
+      description: Especifica o tipo de evento a ser adicionado. Isso deve ser `Office.EventType.DialogParentMessageReceived`<!-- -->.
+      type: <xref uid="office!Office.EventType:enum" />
+    - id: handler
+      description: A função de manipulador de eventos a ser acrescentada, cujo único parâmetro é do tipo [Office. DialogParentMessageReceivedEventArgs](xref:office!Office.DialogParentMessageReceivedEventArgs:interface)<!-- -->.
+      type: '(result: <xref uid="office!Office.DialogParentMessageReceivedEventArgs:interface" />) =&gt; void'
+    - id: callback
+      description: Opcional. Uma função que é invocada quando o registro do manipulador retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: closeContainer()
+  uid: office!Office.UI#closeContainer:member(1)
+  package: office!
+  fullName: closeContainer()
+  summary: Fecha o contêiner de interface de usuário onde o JavaScript está sendo executado.
+  remarks: >-
+    **Hosts**: Excel, Outlook (Conjunto de requisitos mínimo: Caixa de Correio 1.5), PowerPoint, Word
+
+
+    **Conjuntos de requisitos**:
+
+
+    - [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    - [Caixa de correio 1.5](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+
+
+    O comportamento deste método é especificado pelo seguinte:
+
+
+    - Chamado de um botão de comando sem interface do usuário: sem efeito. Qualquer caixa de diálogo aberta por displayDialogAsync permanecerá aberta.
+
+
+    - Chamado de um painel de tarefas: o painel de tarefas será fechado. Qualquer caixa de diálogo aberta por displayDialogAsync também será fechado. Se o painel de tarefas for compatível com o pinning e tiver sido fixado pelo usuário, ele não será fixado.
+
+
+    - Chamado de uma extensão de módulo: Sem efeito.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'closeContainer(): void;'
+    return:
+      type: void
+      description: ''
+- name: displayDialogAsync(startAddress, options, callback)
+  uid: office!Office.UI#displayDialogAsync:member(1)
+  package: office!
+  fullName: displayDialogAsync(startAddress, options, callback)
+  summary: Exibe uma caixa de diálogo para mostrar ou coletar informações do usuário ou para facilitar a navegação da Web.
+  remarks: >-
+    **Hosts**: Excel, Outlook, PowerPoint, Word
+
+
+    **Conjuntos de requisitos**:
+
+
+    - [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    - [Caixa de correio 1.4](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+
+
+    Este método está disponível no conjunto de requisitos DialogApi para os Excel, PowerPoint ou do Word e no conjunto de requisitos de Caixa de Correio 1,4 para Outlook. Para obter mais informações sobre como especificar um conjunto de requisitos em seu manifesto, consulte [Specify Office hosts and API requirements](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)<!-- -->.
+
+
+    A página inicial deve estar no mesmo domínio que a página pai (o parâmetro startAddress). Depois que a página inicial for carregada, você poderá ir para outros domínios.
+
+
+    Qualquer chamada de `Office.context.ui.messageParent` página também deve estar no mesmo domínio que a página pai.
+
+
+    **Considerações sobre design:**
+
+
+    As seguintes considerações de design aplicam-se às caixas de diálogo:
+
+
+    - Um Office de tarefas de complemento pode ter apenas uma caixa de diálogo aberta a qualquer momento. Várias caixas de diálogo podem ser abertas ao mesmo tempo em Comandos de Complemento (botões de faixa de opções personalizados ou itens de menu).
+
+
+    - Todas as caixas de diálogo podem ser movidas e redimensionadas pelo usuário.
+
+
+    - Todas as caixas de diálogo são centralizadas na tela quando abertas.
+
+
+    - As caixas de diálogo aparecem na parte superior do aplicativo host e na ordem em que foram criadas.
+
+
+    Usar uma caixa de diálogo para:
+
+
+    - Exibir páginas de autenticação para coletar credenciais de usuário.
+
+
+    - Exibe uma tela de erro/progresso/entrada de um comando ShowTaskpane ou ExecuteAction.
+
+
+    - Aumentar temporariamente a área de superfície de que um usuário dispõe para concluir uma tarefa.
+
+
+    Não use uma caixa de diálogo para interagir com um documento. Use um painel de tarefas em vez disso.
+
+
+    **erros displayDialogAsync**:
+
+
+    <table> <tr> <th>Número do código</th> <th>Significado</th> </tr> <tr> <td>12004</td> <td>O domínio da URL passada para displayDialogAsync não é confiável. O domínio deve ser o mesmo domínio da página de host (incluindo o protocolo e o número da porta) ou deve ser registrado na seção `AppDomains` do manifesto do suplemento.</td> </tr> <tr> <td>12005</td> <td>A URL passada para displayDialogAsync usa o protocolo HTTP. HTTPS é necessário. (Em algumas versões do Office, a mensagem de erro retornada com 12005 é a mesma retornada para 12004.)</td> </tr> <tr> <td>12007</td> <td>Uma caixa de diálogo já está aberta no painel de tarefas. Um suplemento de painel só pode abrir uma caixa de diálogo por vez.</td> </tr> <tr> <td>12009</td> <td>O usuário opta por ignorar a caixa de diálogo. Este erro pode ocorrer em versões online do Office, em que os usuários podem optar por não permitir que um suplemento apresente uma caixa de diálogo.</td> </tr> </table>
+
+
+    Na função de retorno de chamada passada para o método displayDialogAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
+
+
+    <table> <tr> <th>Propriedade</th> <th>Use para</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Diálogo.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Acessar o objeto ou valor definido pelo usuário se você passou um como o parâmetro asyncContext.</td> </tr> </table>
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'displayDialogAsync(startAddress: string, options?: DialogOptions, callback?: (result: AsyncResult<Dialog>) => void): void;'
+    parameters:
+    - id: startAddress
+      description: Aceita a URL HTTPS completa inicial que é aberta na caixa de diálogo. UrLs relativas não devem ser usadas.
+      type: string
+    - id: options
+      description: Opcional. Aceita uma [Office. Objeto DialogOptions](xref:office!Office.DialogOptions:interface) para definir a exibição de caixa de diálogo.
+      type: <xref uid="office!Office.DialogOptions:interface" />
+    - id: callback
+      description: Opcional. Aceita um método de retorno de chamada para manipular a tentativa de criação da caixa de diálogo. Se tiver êxito, AsyncResult.value será um objeto Dialog.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Dialog:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: displayDialogAsync(startAddress, callback)
+  uid: office!Office.UI#displayDialogAsync:member(2)
+  package: office!
+  fullName: displayDialogAsync(startAddress, callback)
+  summary: Exibe uma caixa de diálogo para mostrar ou coletar informações do usuário ou para facilitar a navegação da Web.
+  remarks: >-
+    **Hosts**: Excel, Outlook, PowerPoint, Word
+
+
+    **Conjuntos de requisitos**:
+
+
+    - [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    - [Caixa de correio 1.4](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+
+
+    Este método está disponível no conjunto de requisitos DialogApi para os Excel, PowerPoint ou do Word e no conjunto de requisitos de Caixa de Correio 1,4 para Outlook. Para obter mais informações sobre como especificar um conjunto de requisitos em seu manifesto, consulte [Specify Office hosts and API requirements](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)<!-- -->.
+
+
+    A página inicial deve estar no mesmo domínio que a página pai (o parâmetro startAddress). Depois que a página inicial for carregada, você poderá ir para outros domínios.
+
+
+    Qualquer chamada de `Office.context.ui.messageParent` página também deve estar no mesmo domínio que a página pai.
+
+
+    **Considerações sobre design:**
+
+
+    As seguintes considerações de design aplicam-se às caixas de diálogo:
+
+
+    - Um Office de tarefas de complemento pode ter apenas uma caixa de diálogo aberta a qualquer momento. Várias caixas de diálogo podem ser abertas ao mesmo tempo em Comandos de Complemento (botões de faixa de opções personalizados ou itens de menu).
+
+
+    - Todas as caixas de diálogo podem ser movidas e redimensionadas pelo usuário.
+
+
+    - Todas as caixas de diálogo são centralizadas na tela quando abertas.
+
+
+    - As caixas de diálogo aparecem na parte superior do aplicativo host e na ordem em que foram criadas.
+
+
+    Usar uma caixa de diálogo para:
+
+
+    - Exibir páginas de autenticação para coletar credenciais de usuário.
+
+
+    - Exibe uma tela de erro/progresso/entrada de um comando ShowTaskpane ou ExecuteAction.
+
+
+    - Aumentar temporariamente a área de superfície de que um usuário dispõe para concluir uma tarefa.
+
+
+    Não use uma caixa de diálogo para interagir com um documento. Use um painel de tarefas em vez disso.
+
+
+    **erros displayDialogAsync**:
+
+
+    <table> <tr> <th>Número do código</th> <th>Significado</th> </tr> <tr> <td>12004</td> <td>O domínio da URL passada para displayDialogAsync não é confiável. O domínio deve ser o mesmo domínio da página de host (incluindo o protocolo e o número da porta) ou deve ser registrado na seção `AppDomains` do manifesto do suplemento.</td> </tr> <tr> <td>12005</td> <td>A URL passada para displayDialogAsync usa o protocolo HTTP. HTTPS é necessário. (Em algumas versões do Office, a mensagem de erro retornada com 12005 é a mesma retornada para 12004.)</td> </tr> <tr> <td>12007</td> <td>Uma caixa de diálogo já está aberta no painel de tarefas. Um suplemento de painel só pode abrir uma caixa de diálogo por vez.</td> </tr> <tr> <td>12009</td> <td>O usuário opta por ignorar a caixa de diálogo. Este erro pode ocorrer em versões online do Office, em que os usuários podem optar por não permitir que um suplemento apresente uma caixa de diálogo.</td> </tr> </table>
+
+
+    Na função de retorno de chamada passada para o método displayDialogAsync, você pode usar as propriedades do objeto AsyncResult para retornar as informações a seguir.
+
+
+    <table> <tr> <th>Propriedade</th> <th>Use para</th> </tr> <tr> <td>AsyncResult.value</td> <td>Acessar o objeto Diálogo.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Determinar o sucesso ou falha da operação.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Acessar um objeto Error que fornecerá informações de erro se a operação tiver falhado.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Acessar o objeto ou valor definido pelo usuário se você passou um como o parâmetro asyncContext.</td> </tr> </table>
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'displayDialogAsync(startAddress: string, callback?: (result: AsyncResult<Dialog>) => void): void;'
+    parameters:
+    - id: startAddress
+      description: Aceita a URL HTTPS completa inicial que é aberta na caixa de diálogo. UrLs relativas não devem ser usadas.
+      type: string
+    - id: callback
+      description: Opcional. Aceita um método de retorno de chamada para manipular a tentativa de criação da caixa de diálogo. Se tiver êxito, AsyncResult.value será um objeto Dialog.
+      type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Dialog:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: messageParent(message, messageOptions)
+  uid: office!Office.UI#messageParent:member(1)
+  package: office!
+  fullName: messageParent(message, messageOptions)
+  summary: Fornece uma mensagem da caixa de diálogo a sua página pai/de abertura.
+  remarks: >-
+    **Conjuntos de requisitos**:
+
+
+    - [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+
+
+    - Se o `messageOptions` parâmetro for usado, [DialogOrigin 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-origin-requirement-sets) também será necessário.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'messageParent(message: string, messageOptions?: DialogMessageOptions): void;'
+    parameters:
+    - id: message
+      description: Aceita uma mensagem da caixa de diálogo para entregar para o suplemento. Qualquer coisa que possa ser serializada para uma cadeia de caracteres, incluindo JSON e XML, pode ser enviada.
+      type: string
+    - id: messageOptions
+      description: Opcional. Fornece opções de como enviar a mensagem.
+      type: <xref uid="office!Office.DialogMessageOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: openBrowserWindow(url)
+  uid: office!Office.UI#openBrowserWindow:member(1)
+  package: office!
+  fullName: openBrowserWindow(url)
+  summary: Abre uma janela do navegador e carrega a URL especificada.
+  remarks: '**Conjunto de requisitos**: [OpenBrowserWindowAPI 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/open-browser-window-api-requirement-sets)'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'openBrowserWindow(url: string): void;'
+    parameters:
+    - id: url
+      description: A URL completa a ser aberta, incluindo o protocolo (por exemplo, https) e o número da porta, se for o caso.
+      type: string
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 6e5b9f60a115fd076f4d863af5217f6e86ccb609
+  ms.sourcegitcommit: acfa7744e00932ab2537acbc9ce8393108112c18
+  ms.translationtype: MT
+  ms.contentlocale: pt-BR
+  ms.lasthandoff: 12/03/2021
+  ms.locfileid: "61280084"
