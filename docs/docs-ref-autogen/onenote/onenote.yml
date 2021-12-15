@@ -28,6 +28,8 @@ classes:
 - onenote!OneNote.PageContentCollection:class
 - onenote!OneNote.Paragraph:class
 - onenote!OneNote.ParagraphCollection:class
+- onenote!OneNote.Point:class
+- onenote!OneNote.PointCollection:class
 - onenote!OneNote.RequestContext:class
 - onenote!OneNote.RichText:class
 - onenote!OneNote.Section:class
@@ -41,18 +43,21 @@ classes:
 - onenote!OneNote.TableRowCollection:class
 enums:
 - onenote!OneNote.ErrorCodes:enum
+- onenote!OneNote.EventType:enum
 - onenote!OneNote.InsertLocation:enum
 - onenote!OneNote.ListType:enum
 - onenote!OneNote.NoteTagStatus:enum
 - onenote!OneNote.NoteTagType:enum
 - onenote!OneNote.NumberType:enum
 - onenote!OneNote.PageContentType:enum
+- onenote!OneNote.ParagraphStyle:enum
 - onenote!OneNote.ParagraphType:enum
 interfaces:
 - onenote!OneNote.ImageOcrData:interface
 - onenote!OneNote.InkStrokePointer:interface
 - onenote!OneNote.Interfaces.ApplicationData:interface
 - onenote!OneNote.Interfaces.ApplicationLoadOptions:interface
+- onenote!OneNote.Interfaces.ApplicationUpdateData:interface
 - onenote!OneNote.Interfaces.CollectionLoadOptions:interface
 - onenote!OneNote.Interfaces.FloatingInkData:interface
 - onenote!OneNote.Interfaces.FloatingInkLoadOptions:interface
@@ -117,6 +122,11 @@ interfaces:
 - onenote!OneNote.Interfaces.ParagraphData:interface
 - onenote!OneNote.Interfaces.ParagraphLoadOptions:interface
 - onenote!OneNote.Interfaces.ParagraphUpdateData:interface
+- onenote!OneNote.Interfaces.PointCollectionData:interface
+- onenote!OneNote.Interfaces.PointCollectionLoadOptions:interface
+- onenote!OneNote.Interfaces.PointCollectionUpdateData:interface
+- onenote!OneNote.Interfaces.PointData:interface
+- onenote!OneNote.Interfaces.PointLoadOptions:interface
 - onenote!OneNote.Interfaces.RichTextData:interface
 - onenote!OneNote.Interfaces.RichTextLoadOptions:interface
 - onenote!OneNote.Interfaces.SectionCollectionData:interface
@@ -148,7 +158,7 @@ functions:
 - name: OneNote.run(batch)
   uid: onenote!OneNote.run:function(1)
   package: onenote!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do OneNote, usando um novo contexto de solicitação. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+  summary: Executa um script em lotes que executa ações no modelo de objeto OneNote, usando um novo contexto de solicitação. Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -156,7 +166,7 @@ functions:
     content: 'export function run<T>(batch: (context: OneNote.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: Uma função que recebe um OneNote.RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o aplicativo OneNote. Como o complemento do Office e o aplicativo do OneNote são executados em dois processos diferentes, o contexto de solicitação é necessário para obter acesso ao modelo de objeto do OneNote a partir do complemento.
+      description: Uma função que assume um OneNote. RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). O parâmetro context facilita as solicitações para o OneNote aplicativo. Como o Office e o aplicativo OneNote são executados em dois processos diferentes, o contexto de solicitação é necessário para obter acesso ao modelo de objeto OneNote do add-in.
       type: '(context: <xref uid="onenote!OneNote.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -164,7 +174,7 @@ functions:
 - name: OneNote.run(object, batch)
   uid: onenote!OneNote.run:function(2)
   package: onenote!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do OneNote, usando o contexto de solicitação de um objeto API criado anteriormente.
+  summary: Executa um script em lotes que executa ações no modelo de objeto OneNote, usando o contexto de solicitação de um objeto API criado anteriormente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -175,7 +185,7 @@ functions:
       description: Um objeto API criado anteriormente. O lote usará o mesmo contexto de solicitação que o objeto passado, o que significa que quaisquer alterações aplicadas ao objeto serão escolhidas por "context.sync()".
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: Uma função que recebe um OneNote.RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+      description: Uma função que assume um OneNote. RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
       type: '(context: <xref uid="onenote!OneNote.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -183,7 +193,7 @@ functions:
 - name: OneNote.run(objects, batch)
   uid: onenote!OneNote.run:function(3)
   package: onenote!
-  summary: Executa um script em lotes que executa ações no modelo de objeto do OneNote, usando o contexto de solicitação de objetos API criados anteriormente.
+  summary: Executa um script em lotes que executa ações no modelo de objeto OneNote, usando o contexto de solicitação de objetos API criados anteriormente.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -194,15 +204,15 @@ functions:
       description: ''
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: Uma função que recebe um OneNote.RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
+      description: Uma função que assume um OneNote. RequestContext e retorna uma promessa (normalmente, apenas o resultado de "context.sync()"). Quando a promessa for resolvida, todos os objetos rastreados que foram alocados automaticamente durante a execução serão liberados.
       type: '(context: <xref uid="onenote!OneNote.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 48529e7f318bd237a41229ed4958e9ce56d0de48
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 1d0d269ed21b54a00898c7727cec0a5a2da1eacc
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51253759"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61515265"

@@ -3,8 +3,8 @@ name: PowerPoint.Presentation
 uid: powerpoint!PowerPoint.Presentation:class
 package: powerpoint!
 fullName: PowerPoint.Presentation
-summary: '\[[Conjunto de API: PowerPointApi 1.0](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]'
-remarks: ''
+summary: ''
+remarks: '\[[Conjunto de API: PowerPointApi 1.0](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -13,7 +13,7 @@ properties:
   uid: powerpoint!PowerPoint.Presentation#context:member
   package: powerpoint!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -25,12 +25,8 @@ properties:
   uid: powerpoint!PowerPoint.Presentation#slides:member
   package: powerpoint!
   fullName: slides
-  summary: >-
-    Retorna uma coleção ordenada de slides na apresentação.
-
-
-    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna uma coleção ordenada de slides na apresentação.
+  remarks: '\[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -54,12 +50,29 @@ methods:
   uid: powerpoint!PowerPoint.Presentation#insertSlidesFromBase64:member(1)
   package: powerpoint!
   fullName: insertSlidesFromBase64(base64File, options)
-  summary: >-
-    Insere os slides especificados de uma apresentação na apresentação atual.
+  summary: Insere os slides especificados de uma apresentação na apresentação atual.
+  remarks: >-
+    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/slide-management/insert-slides.yaml
+
+    await PowerPoint.run(async function(context) {
+        const selectedSlideID = await getSelectedSlideID();
+
+        context.presentation.insertSlidesFromBase64(chosenFileBase64, {
+            formatting: PowerPoint.InsertSlideFormatting.useDestinationTheme,
+            targetSlideId: selectedSlideID + "#"
+        });
+        await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -73,7 +86,7 @@ methods:
       type: <xref uid="powerpoint!PowerPoint.InsertSlideOptions:interface" />
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/slide-management/insert-slides.yaml\nawait PowerPoint.run(async function(context) {\n    const selectedSlideID = await getSelectedSlideID();\n\n    context.presentation.insertSlidesFromBase64(chosenFileBase64, {\n        formatting: PowerPoint.InsertSlideFormatting.useDestinationTheme,\n        targetSlideId: selectedSlideID + \"#\"\n    });\n    await context.sync();\n});\n```"
+      description: ''
 - name: load(options)
   uid: powerpoint!PowerPoint.Presentation#load:member(1)
   package: powerpoint!
@@ -137,7 +150,7 @@ methods:
   uid: powerpoint!PowerPoint.Presentation#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto PowerPoint.Presentation original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `PowerPoint.Interfaces.PresentationData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original PowerPoint. Objeto Presentation é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`PowerPoint.Interfaces.PresentationData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -148,9 +161,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 718c57e019c9720231878fe2a955888244aded7a
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 5b3e77bc3dbd10c3d3c68b24d45158b6a29442fb
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51306667"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61516434"

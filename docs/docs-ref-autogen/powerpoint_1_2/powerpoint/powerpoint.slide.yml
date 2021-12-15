@@ -3,12 +3,8 @@ name: PowerPoint.Slide
 uid: powerpoint!PowerPoint.Slide:class
 package: powerpoint!
 fullName: PowerPoint.Slide
-summary: >-
-  Representa um único slide de uma apresentação.
-
-
-  \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
-remarks: ''
+summary: Representa um único slide de uma apresentação.
+remarks: '\[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: powerpoint!PowerPoint.Slide#context:member
   package: powerpoint!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,12 +25,8 @@ properties:
   uid: powerpoint!PowerPoint.Slide#id:member
   package: powerpoint!
   fullName: id
-  summary: >-
-    Obtém a ID exclusiva do slide.
-
-
-    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a ID exclusiva do slide.
+  remarks: '\[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -46,19 +38,45 @@ methods:
   uid: powerpoint!PowerPoint.Slide#delete:member(1)
   package: powerpoint!
   fullName: delete()
-  summary: >-
-    Exclui o slide da apresentação. Não faz nada se o slide não existir.
+  summary: Exclui o slide da apresentação. Não faz nada se o slide não existir.
+  remarks: >-
+    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/preview-apis/tags.yaml
+
+    await PowerPoint.run(async function(context) {
+      const slides = context.presentation.slides;
+      slides.load("tags/key, tags/value");
+
+      await context.sync();
+
+      for (let i = 0; i < slides.items.length; i++) {
+        let currentSlide = slides.items[i];
+        for (let j = 0; j < currentSlide.tags.items.length; j++) {
+          let currentTag = currentSlide.tags.items[j];
+          if (currentTag.key === "CUSTOMER_TYPE" && currentTag.value === "Premium") {
+            currentSlide.delete();
+          }
+        }
+      }
+
+      await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'delete(): void;'
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/preview-apis/tags.yaml\nawait PowerPoint.run(async function(context) {\n  const slides = context.presentation.slides;\n  slides.load(\"tags/key, tags/value\");\n\n  await context.sync();\n\n  for (let i = 0; i < slides.items.length; i++) {\n    let currentSlide = slides.items[i];\n    for (let j = 0; j < currentSlide.tags.items.length; j++) {\n      let currentTag = currentSlide.tags.items[j];\n      if (currentTag.key === \"CUSTOMER_TYPE\" && currentTag.value === \"Premium\") {\n        currentSlide.delete();\n      }\n    }\n  }\n\n  await context.sync();\n});\n```"
+      description: ''
 - name: load(options)
   uid: powerpoint!PowerPoint.Slide#load:member(1)
   package: powerpoint!
@@ -122,7 +140,7 @@ methods:
   uid: powerpoint!PowerPoint.Slide#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto PowerPoint.Slide original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `PowerPoint.Interfaces.SlideData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original PowerPoint. Objeto Slide é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`PowerPoint.Interfaces.SlideData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -133,9 +151,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a50c7e5b661531e8d6388625fd35844b78a35632
-  ms.sourcegitcommit: 66ce950cede0c44d43deef165ca96e9f5875d63f
+  ms.openlocfilehash: aafc25b1550742ac3863f57bc494f63a5d1be3aa
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 04/21/2021
-  ms.locfileid: "51910804"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61518653"
