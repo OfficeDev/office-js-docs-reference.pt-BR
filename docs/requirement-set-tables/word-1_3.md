@@ -154,7 +154,7 @@
 ||[tables](/javascript/api/word/word.range#tables)|Obtém a coleção de tabelas de objetos no intervalo.|
 |[RangeCollection](/javascript/api/word/word.rangecollection)|[getFirst()](/javascript/api/word/word.rangecollection#getFirst__)|Obtém o primeiro intervalo nesta coleção.|
 ||[getFirstOrNullObject()](/javascript/api/word/word.rangecollection#getFirstOrNullObject__)|Obtém o primeiro intervalo nesta coleção.|
-|[RequestContext](/javascript/api/word/word.requestcontext)|[aplicativo](/javascript/api/word/word.requestcontext#application)|[Conjunto de api: WordApi 1.3] *|
+|[RequestContext](/javascript/api/word/word.requestcontext)|[application](/javascript/api/word/word.requestcontext#application)|[Conjunto de api: WordApi 1.3] *|
 |[Section](/javascript/api/word/word.section)|[getNext()](/javascript/api/word/word.section#getNext__)|Obtém a próxima seção.|
 ||[getNextOrNullObject()](/javascript/api/word/word.section#getNextOrNullObject__)|Obtém a próxima seção.|
 |[SectionCollection](/javascript/api/word/word.sectioncollection)|[getFirst()](/javascript/api/word/word.sectioncollection#getFirst__)|Obtém a primeira seção nesta coleção.|
@@ -203,7 +203,7 @@
 ||[parentTableOrNullObject](/javascript/api/word/word.table#parentTableOrNullObject)|Obtém a tabela que contém esta tabela.|
 ||[rowCount](/javascript/api/word/word.table#rowCount)|Obtém a quantidade de linhas na tabela.|
 ||[rows](/javascript/api/word/word.table#rows)|Obtém todas as linhas da tabela.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.table#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto table.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.table#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto table.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.table#select_selectionMode_)|Seleciona a tabela, ou então, a posição no início ou no final da tabela e navega na interface do usuário do Word até ela.|
 ||[setCellPadding(cellPaddingLocation: Word.CellPaddingLocation, cellPadding: number)](/javascript/api/word/word.table#setCellPadding_cellPaddingLocation__cellPadding_)|Define o preenchimento de célula em pontos.|
 ||[shadingColor](/javascript/api/word/word.table#shadingColor)|Obtém e define a cor de sombreamento.|
@@ -269,7 +269,7 @@
 ||[parentTable](/javascript/api/word/word.tablerow#parentTable)|Obtém uma tabela pai.|
 ||[preferredHeight](/javascript/api/word/word.tablerow#preferredHeight)|Obtém e define a altura da linha preferencial em pontos.|
 ||[rowIndex](/javascript/api/word/word.tablerow#rowIndex)|Obtém o índice da linha em sua tabela pai.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.tablerow#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo da linha.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.tablerow#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo da linha.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.tablerow#select_selectionMode_)|Seleciona a linha e navega na interface do usuário do Word até ele.|
 ||[setCellPadding(cellPaddingLocation: Word.CellPaddingLocation, cellPadding: number)](/javascript/api/word/word.tablerow#setCellPadding_cellPaddingLocation__cellPadding_)|Define o preenchimento de célula em pontos.|
 ||[shadingColor](/javascript/api/word/word.tablerow#shadingColor)|Obtém e define a cor de sombreamento.|

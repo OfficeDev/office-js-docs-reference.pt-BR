@@ -3,12 +3,8 @@ name: OneNote.Application
 uid: onenote!OneNote.Application:class
 package: onenote!
 fullName: OneNote.Application
-summary: >-
-  Representa o objeto de nível superior que contém todos os objetos do OneNote globalmente endereçados como blocos de anotações, o bloco de anotações ativo e a sessão ativa.
-
-
-  \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-remarks: ''
+summary: Representa o objeto de nível superior que contém todos os objetos do OneNote globalmente endereçados como blocos de anotações, o bloco de anotações ativo e a sessão ativa.
+remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: onenote!OneNote.Application#context:member
   package: onenote!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,12 +25,8 @@ properties:
   uid: onenote!OneNote.Application#notebooks:member
   package: onenote!
   fullName: notebooks
-  summary: >-
-    Obtém a coleção de blocos de notas abertos na instância do aplicativo OneNote. No OneNote na Web, apenas um bloco de anotações por vez está aberto na instância do aplicativo. Somente leitura.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a coleção de blocos de notas abertos na instância do aplicativo OneNote. No OneNote Online, apenas um bloco de anotações de cada vez é aberto na instância do aplicativo. Somente leitura.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -46,114 +38,86 @@ methods:
   uid: onenote!OneNote.Application#getActiveNotebook:member(1)
   package: onenote!
   fullName: getActiveNotebook()
-  summary: >-
-    Obtém o bloco de anotações ativo, se houver um. Se não houver nenhum bloco de anotações ativo, gera ItemNotFound.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o bloco de anotações ativo, se houver um. Se não houver nenhum bloco de anotações ativo, gera ItemNotFound.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Notebook name: \" + notebook.name);\n            console.log(\"Notebook ID: \" + notebook.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveNotebook(): OneNote.Notebook;'
     return:
       type: <xref uid="onenote!OneNote.Notebook:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebook();\n            \n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Notebook name: \" + notebook.name);\n            console.log(\"Notebook ID: \" + notebook.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActiveNotebookOrNull()
   uid: onenote!OneNote.Application#getActiveNotebookOrNull:member(1)
   package: onenote!
   fullName: getActiveNotebookOrNull()
-  summary: >-
-    Obtém o bloco de anotações ativo, se houver um. Se não houver nenhum bloco de anotações ativo, retorna nulo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o bloco de anotações ativo, se houver um. Se não houver nenhum bloco de anotações ativo, retorna nulo.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebookOrNull();\n\n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // check if active notebook is set.\n            if (!notebook.isNull) {\n                console.log(\"Notebook name: \" + notebook.name);\n                console.log(\"Notebook ID: \" + notebook.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveNotebookOrNull(): OneNote.Notebook;'
     return:
       type: <xref uid="onenote!OneNote.Notebook:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active notebook.\n    var notebook = context.application.getActiveNotebookOrNull();\n\n    // Queue a command to load the notebook. \n    // For best performance, request specific properties.           \n    notebook.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // check if active notebook is set.\n            if (!notebook.isNull) {\n                console.log(\"Notebook name: \" + notebook.name);\n                console.log(\"Notebook ID: \" + notebook.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActiveOutline()
   uid: onenote!OneNote.Application#getActiveOutline:member(1)
   package: onenote!
   fullName: getActiveOutline()
-  summary: >-
-    Obtém a estrutura de tópicos ativa, se houver uma. Caso contrário, gera ItemNotFound.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a estrutura de tópicos ativa, se houver uma. Caso contrário, gera ItemNotFound.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutline();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Show some properties.\n            console.log(\"outline id: \" + outline.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveOutline(): OneNote.Outline;'
     return:
       type: <xref uid="onenote!OneNote.Outline:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutline();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // Show some properties.\n            console.log(\"outline id: \" + outline.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActiveOutlineOrNull()
   uid: onenote!OneNote.Application#getActiveOutlineOrNull:member(1)
   package: onenote!
   fullName: getActiveOutlineOrNull()
-  summary: >-
-    Obtém a estrutura de tópicos ativa, se houver uma; caso contrário, retorna nulo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a estrutura de tópicos ativa, se houver uma; caso contrário, retorna nulo.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutlineOrNull();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            if (!outline.isNull) {\n                console.log(\"outline id: \" + outline.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveOutlineOrNull(): OneNote.Outline;'
     return:
       type: <xref uid="onenote!OneNote.Outline:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // get active outline.\n    var outline = context.application.getActiveOutlineOrNull();\n\n    // Queue a command to load the id of the outline.         \n    outline.load('id');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            if (!outline.isNull) {\n                console.log(\"outline id: \" + outline.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActivePage()
   uid: onenote!OneNote.Application#getActivePage:member(1)
   package: onenote!
   fullName: getActivePage()
-  summary: >-
-    Obtém a página ativa, se houver uma. Se não houver nenhuma página ativa, gera ItemNotFound.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a página ativa, se houver uma. Se não houver nenhuma página ativa, gera ItemNotFound.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active page.\n    var page = context.application.getActivePage();\n            \n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Page title: \" + page.title);\n            console.log(\"Page ID: \" + page.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActivePage(): OneNote.Page;'
     return:
       type: <xref uid="onenote!OneNote.Page:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active page.\n    var page = context.application.getActivePage();\n            \n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Page title: \" + page.title);\n            console.log(\"Page ID: \" + page.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActivePageOrNull()
   uid: onenote!OneNote.Application#getActivePageOrNull:member(1)
   package: onenote!
   fullName: getActivePageOrNull()
-  summary: >-
-    Obtém a página ativa, se houver uma. Se não houver nenhuma página ativa, retorna nulo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a página ativa, se houver uma. Se não houver nenhuma página ativa, retorna nulo.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active page.\n    var page = context.application.getActivePageOrNull();\n\n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            if (!page.isNull) {\n                // Show some properties.\n                console.log(\"Page title: \" + page.title);\n                console.log(\"Page ID: \" + page.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActivePageOrNull(): OneNote.Page;'
     return:
       type: <xref uid="onenote!OneNote.Page:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active page.\n    var page = context.application.getActivePageOrNull();\n\n    // Queue a command to load the page. \n    // For best performance, request specific properties.           \n    page.load('id,title');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            \n            if (!page.isNull) {\n                // Show some properties.\n                console.log(\"Page title: \" + page.title);\n                console.log(\"Page ID: \" + page.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActiveParagraph()
   uid: onenote!OneNote.Application#getActiveParagraph:member(1)
   package: onenote!
   fullName: getActiveParagraph()
-  summary: >-
-    Obtém o Parágrafo ativo se houver um, Se nenhum Parágrafo estiver ativo, lançará ItemNotFound.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o Parágrafo ativo se houver um, Se nenhum Parágrafo estiver ativo, lançará ItemNotFound.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -165,12 +129,8 @@ methods:
   uid: onenote!OneNote.Application#getActiveParagraphOrNull:member(1)
   package: onenote!
   fullName: getActiveParagraphOrNull()
-  summary: >-
-    Obtém o Parágrafo ativo se houver um, caso contrário, retornará null.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém o Parágrafo ativo se houver um, caso contrário, retornará null.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -182,36 +142,41 @@ methods:
   uid: onenote!OneNote.Application#getActiveSection:member(1)
   package: onenote!
   fullName: getActiveSection()
-  summary: >-
-    Obtém a seção ativa, se houver uma. Se não houver nenhuma seção ativa, gera ItemNotFound.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a seção ativa, se houver uma. Se não houver nenhuma seção ativa, gera ItemNotFound.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active section.\n    var section = context.application.getActiveSection();\n            \n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Section name: \" + section.name);\n            console.log(\"Section ID: \" + section.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveSection(): OneNote.Section;'
     return:
       type: <xref uid="onenote!OneNote.Section:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the active section.\n    var section = context.application.getActiveSection();\n            \n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // Show some properties.\n            console.log(\"Section name: \" + section.name);\n            console.log(\"Section ID: \" + section.id);\n            \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: getActiveSectionOrNull()
   uid: onenote!OneNote.Application#getActiveSectionOrNull:member(1)
   package: onenote!
   fullName: getActiveSectionOrNull()
-  summary: >-
-    Obtém a seção ativa, se houver uma. Se não houver nenhuma seção ativa, retorna nulo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a seção ativa, se houver uma. Se não houver nenhuma seção ativa, retorna nulo.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active section.\n    var section = context.application.getActiveSectionOrNull();\n\n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            if (!section.isNull) {\n                // Show some properties.\n                console.log(\"Section name: \" + section.name);\n                console.log(\"Section ID: \" + section.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getActiveSectionOrNull(): OneNote.Section;'
     return:
       type: <xref uid="onenote!OneNote.Section:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the active section.\n    var section = context.application.getActiveSectionOrNull();\n\n    // Queue a command to load the section. \n    // For best performance, request specific properties.           \n    section.load('id,name');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            if (!section.isNull) {\n                // Show some properties.\n                console.log(\"Section name: \" + section.name);\n                console.log(\"Section ID: \" + section.id);\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
+- name: getSelectedInkStrokes()
+  uid: onenote!OneNote.Application#getSelectedInkStrokes:member(1)
+  package: onenote!
+  fullName: getSelectedInkStrokes()
+  summary: Obtém os traços de tinta selecionados no momento.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.9](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getSelectedInkStrokes(): OneNote.InkStrokeCollection;'
+    return:
+      type: <xref uid="onenote!OneNote.InkStrokeCollection:class" />
+      description: ''
 - name: getWindowSize()
   uid: onenote!OneNote.Application#getWindowSize:member(1)
   package: onenote!
@@ -255,29 +220,19 @@ methods:
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;boolean&gt;
       description: ''
-- name: load(option)
+- name: load(options)
   uid: onenote!OneNote.Application#load:member(1)
   package: onenote!
-  fullName: load(option)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
-
-
-    `load(option?: string | string[]): OneNote.Application` - Onde a opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; }): OneNote.Application` - Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Application` - Disponível somente em tipos de coleção. É semelhante à assinatura anterior. Option.top especifica o número máximo de itens de coleção que podem ser incluídos no resultado. Option.skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se option.top for especificado, o conjunto de resultados começará depois de ignorar o número especificado de itens.
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(option?: OneNote.Interfaces.ApplicationLoadOptions): OneNote.Application;'
+    content: 'load(options?: OneNote.Interfaces.ApplicationLoadOptions): OneNote.Application;'
     parameters:
-    - id: option
-      description: ''
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
       type: <xref uid="onenote!OneNote.Interfaces.ApplicationLoadOptions:interface" />
     return:
       type: <xref uid="onenote!OneNote.Application:class" />
@@ -308,11 +263,19 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Application;'
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): OneNote.Application;
     parameters:
     - id: propertyNamesAndPaths
-      description: Onde propertyNamesAndPaths.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a ser carregadas, e propertyNamesAndPaths.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a ser carregadas.
-      type: '{ select?: string; expand?: string; }'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
     return:
       type: <xref uid="onenote!OneNote.Application:class" />
       description: ''
@@ -320,12 +283,8 @@ methods:
   uid: onenote!OneNote.Application#navigateToPage:member(1)
   package: onenote!
   fullName: navigateToPage(page)
-  summary: >-
-    Abre a página especificada na instância do aplicativo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Abre a página especificada na instância do aplicativo.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n            \n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('id');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // This example loads the first page in the section.\n            var page = pages.items[0];\n                        \n            // Open the page in the application.                    \n            context.application.navigateToPage(page);\n                    \n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -336,17 +295,13 @@ methods:
       type: <xref uid="onenote!OneNote.Page:class" />
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n        \n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n            \n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('id');\n            \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n                    \n            // This example loads the first page in the section.\n            var page = pages.items[0];\n                        \n            // Open the page in the application.                    \n            context.application.navigateToPage(page);\n                    \n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
 - name: navigateToPageWithClientUrl(url)
   uid: onenote!OneNote.Application#navigateToPageWithClientUrl:member(1)
   package: onenote!
   fullName: navigateToPageWithClientUrl(url)
-  summary: >-
-    Obtém a página especificada e a abre na instância do aplicativo.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém a página especificada e a abre na instância do aplicativo. A navegação ainda pode não ser executada quando não há falha. O chamador deve validar a página retornada, se assim desejar.
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('clientUrl');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // This example loads the first page in the section.\n            var page = pages.items[0];\n\n            // Open the page in the application.                    \n            context.application.navigateToPageWithClientUrl(page.clientUrl);\n\n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -357,12 +312,49 @@ methods:
       type: string
     return:
       type: <xref uid="onenote!OneNote.Page:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages. \n    // For best performance, request specific properties.           \n    pages.load('clientUrl');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            // This example loads the first page in the section.\n            var page = pages.items[0];\n\n            // Open the page in the application.                    \n            context.application.navigateToPageWithClientUrl(page.clientUrl);\n\n            // Run the queued command.\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
+- name: set(properties, options)
+  uid: onenote!OneNote.Application#set:member(1)
+  package: onenote!
+  fullName: set(properties, options)
+  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.ApplicationUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+      type: <xref uid="onenote!OneNote.Interfaces.ApplicationUpdateData:interface" />
+    - id: options
+      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: onenote!OneNote.Application#set:member(2)
+  package: onenote!
+  fullName: set(properties)
+  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: OneNote.Application): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="onenote!OneNote.Application:class" />
+    return:
+      type: void
+      description: ''
 - name: toJSON()
   uid: onenote!OneNote.Application#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto OneNote.Application original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `OneNote.Interfaces.ApplicationData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original OneNote. Objeto Application é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.ApplicationData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -373,9 +365,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 885f1acb8d79a516b0a778b7cadfc0ae695f964e
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: a633b1b87dc585c42dd9b8cc2102c59ef1e35d92
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51352842"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61516238"

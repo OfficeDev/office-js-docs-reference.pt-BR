@@ -18,10 +18,10 @@
 ||[getMergedAreasOrNullObject()](/javascript/api/excel/excel.range#getMergedAreasOrNullObject__)|Retorna um objeto RangeAreas que representa as áreas mescladas nesse intervalo.|
 ||[getRangeEdge(direction: Excel. KeyboardDirection, activeCell?: Cadeia de \| caracteres de intervalo)](/javascript/api/excel/excel.range#getRangeEdge_direction__activeCell_)|Retorna um objeto range que é a célula de borda da região de dados que corresponde à direção fornecida.|
 |[Table](/javascript/api/excel/excel.table)|[resize(newRange: Range \| string)](/javascript/api/excel/excel.table#resize_newRange_)|Resize a tabela para o novo intervalo.|
-|[Pasta de trabalho](/javascript/api/excel/excel.workbook)|[insertWorksheetsFromBase64(base64File: string, options?: Excel. InsertWorksheetOptions)](/javascript/api/excel/excel.workbook#insertWorksheetsFromBase64_base64File__options_)|Insere as planilhas especificadas de uma pasta de trabalho de origem na pasta de trabalho atual.|
-||[onActivated](/javascript/api/excel/excel.workbook#onActivated)|Ocorre quando a guia de trabalho é ativada.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[insertWorksheetsFromBase64(base64File: string, options?: Excel. InsertWorksheetOptions)](/javascript/api/excel/excel.workbook#insertWorksheetsFromBase64_base64File__options_)|Insere as planilhas especificadas de uma pasta de trabalho de origem na pasta de trabalho atual.|
+||[onActivated](/javascript/api/excel/excel.workbook#onActivated)|Ocorre quando a agenda de trabalho é ativada.|
 |[WorkbookActivatedEventArgs](/javascript/api/excel/excel.workbookactivatedeventargs)|[tipo](/javascript/api/excel/excel.workbookactivatedeventargs#type)|Obtém o tipo do evento.|
-|[Planilha](/javascript/api/excel/excel.worksheet)|[onFormulaChanged](/javascript/api/excel/excel.worksheet#onFormulaChanged)|Ocorre quando uma ou mais fórmulas são alteradas nesta planilha.|
+|[Worksheet](/javascript/api/excel/excel.worksheet)|[onFormulaChanged](/javascript/api/excel/excel.worksheet#onFormulaChanged)|Ocorre quando uma ou mais fórmulas são alteradas nesta planilha.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onFormulaChanged](/javascript/api/excel/excel.worksheetcollection#onFormulaChanged)|Ocorre quando uma ou mais fórmulas são alteradas em qualquer planilha dessa coleção.|
 |[WorksheetFormulaChangedEventArgs](/javascript/api/excel/excel.worksheetformulachangedeventargs)|[formulaDetails](/javascript/api/excel/excel.worksheetformulachangedeventargs#formulaDetails)|Obtém uma matriz `FormulaChangedEventDetail` de objetos, que contém os detalhes sobre todas as fórmulas alteradas.|
 ||[source](/javascript/api/excel/excel.worksheetformulachangedeventargs#source)|A origem do evento.|

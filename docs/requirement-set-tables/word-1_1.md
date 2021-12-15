@@ -22,7 +22,7 @@
 ||[matchWildcards](/javascript/api/word/word.body#matchWildcards)||
 ||[paragraphs](/javascript/api/word/word.body#paragraphs)|Obtém a coleção de objetos de parágrafo no corpo.|
 ||[parentContentControl](/javascript/api/word/word.body#parentContentControl)|Obtém o controle de conteúdo que inclui o corpo.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.body#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto body.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.body#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto body.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.body#select_selectionMode_)|Seleciona o corpo e navega na interface do usuário do Word até ele.|
 ||[style](/javascript/api/word/word.body#style)|Obtém ou define o nome de estilo do corpo.|
 ||[text](/javascript/api/word/word.body#text)|Obtém o texto do corpo.|
@@ -55,7 +55,7 @@
 ||[parentContentControl](/javascript/api/word/word.contentcontrol#parentContentControl)|Obtém o controle de conteúdo que inclui o controle de conteúdo.|
 ||[placeholderText](/javascript/api/word/word.contentcontrol#placeholderText)|Obtém ou define o texto do espaço reservado do controle de conteúdo.|
 ||[removeWhenEdited](/javascript/api/word/word.contentcontrol#removeWhenEdited)|Obtém ou define um valor que determina quando o controle de conteúdo é removido após a edição.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.contentcontrol#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto de controle de conteúdo.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.contentcontrol#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto de controle de conteúdo.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.contentcontrol#select_selectionMode_)|Seleciona o controle de conteúdo.|
 ||[style](/javascript/api/word/word.contentcontrol#style)|Obtém ou define o nome de estilo do controle de conteúdo.|
 ||[marcar](/javascript/api/word/word.contentcontrol#tag)|Obtém ou define uma marca para identificar um controle de conteúdo.|
@@ -125,7 +125,7 @@
 ||[outlineLevel](/javascript/api/word/word.paragraph#outlineLevel)|Obtém ou define o nível de estrutura de tópicos para o parágrafo.|
 ||[parentContentControl](/javascript/api/word/word.paragraph#parentContentControl)|Obtém o controle de conteúdo que inclui o parágrafo.|
 ||[rightIndent](/javascript/api/word/word.paragraph#rightIndent)|Obtém ou define o valor de recuo à direita, em pontos, para o parágrafo.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.paragraph#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto paragraph.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.paragraph#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto paragraph.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.paragraph#select_selectionMode_)|Seleciona e navega na interface do usuário do Word até o parágrafo.|
 ||[spaceAfter](/javascript/api/word/word.paragraph#spaceAfter)|Obtém ou define o espaçamento, em pontos, após o parágrafo.|
 ||[spaceBefore](/javascript/api/word/word.paragraph#spaceBefore)|Obtém ou define o espaçamento, em pontos, antes o parágrafo.|
@@ -154,7 +154,7 @@
 ||[matchWildcards](/javascript/api/word/word.range#matchWildcards)||
 ||[paragraphs](/javascript/api/word/word.range#paragraphs)|Obtém a coleção de objetos de parágrafo no intervalo.|
 ||[parentContentControl](/javascript/api/word/word.range#parentContentControl)|Obtém o controle de conteúdo que inclui o intervalo.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.range#search_searchText__searchOptions__ignorePunct__ignoreSpace__matchCase__matchPrefix__matchSuffix__matchWholeWord__matchWildcards_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto range.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.range#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo do objeto range.|
 ||[select(selectionMode?: Word.SelectionMode)](/javascript/api/word/word.range#select_selectionMode_)|Seleciona e navega na interface do usuário do Word até o intervalo.|
 ||[style](/javascript/api/word/word.range#style)|Obtém ou define o nome de estilo do intervalo.|
 ||[text](/javascript/api/word/word.range#text)|Obtém o texto do intervalo.|

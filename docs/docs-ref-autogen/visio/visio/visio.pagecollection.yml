@@ -7,7 +7,7 @@ summary: >-
   Representa uma coleção de todos os objetos da Página que fazem parte do documento.
 
 
-  \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: visio!Visio.PageCollection#context:member
   package: visio!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -38,6 +38,27 @@ properties:
     return:
       type: <xref uid="visio!Visio.Page:class" />[]
 methods:
+- name: add(FileName)
+  uid: visio!Visio.PageCollection#add:member(1)
+  package: visio!
+  fullName: add(FileName)
+  summary: >-
+    Adiciona uma nova página a uma coleção.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(FileName: string): Visio.Page;'
+    parameters:
+    - id: FileName
+      description: '*'
+      type: string
+    return:
+      type: <xref uid="visio!Visio.Page:class" />
+      description: ''
 - name: getCount()
   uid: visio!Visio.PageCollection#getCount:member(1)
   package: visio!
@@ -46,7 +67,7 @@ methods:
     Obtém a quantidade de páginas da coleção.
 
 
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -59,11 +80,7 @@ methods:
   uid: visio!Visio.PageCollection#getItem:member(1)
   package: visio!
   fullName: getItem(key)
-  summary: >-
-    Obtém uma página usando sua chave (nome ou Id).
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  summary: ''
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -71,34 +88,45 @@ methods:
     content: 'getItem(key: number | string): Visio.Page;'
     parameters:
     - id: key
-      description: A chave é o nome ou Id da página a ser recuperada.
+      description: ''
       type: number | string
     return:
       type: <xref uid="visio!Visio.Page:class" />
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var pageName = 'Page-1';\n    var page = ctx.document.pages.getItem(pageName);\n    page.activate();\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: load(option)
-  uid: visio!Visio.PageCollection#load:member(1)
+- name: getItemOrNullObject(index)
+  uid: visio!Visio.PageCollection#getItemOrNullObject:member(1)
   package: visio!
-  fullName: load(option)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
+  fullName: getItemOrNullObject(index)
+  summary: >-
+    Retorna um item de uma coleção.
 
 
-    `load(option?: string | string[]): Visio.PageCollection` - Onde a opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; }): Visio.PageCollection` - Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.PageCollection` - Disponível somente em tipos de coleção. É semelhante à assinatura anterior. Option.top especifica o número máximo de itens de coleção que podem ser incluídos no resultado. Option.skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se option.top for especificado, o conjunto de resultados começará depois de ignorar o número especificado de itens.
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(option?: Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.PageCollection;'
+    content: 'getItemOrNullObject(index: number): Visio.Page;'
     parameters:
-    - id: option
+    - id: index
+      description: '*'
+      type: number
+    return:
+      type: <xref uid="visio!Visio.Page:class" />
       description: ''
+- name: load(options)
+  uid: visio!Visio.PageCollection#load:member(1)
+  package: visio!
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Visio.Interfaces.PageCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions): Visio.PageCollection;'
+    parameters:
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
       type: <xref uid="visio!Visio.Interfaces.PageCollectionLoadOptions:interface" /> & <xref uid="visio!Visio.Interfaces.CollectionLoadOptions:interface" />
     return:
       type: <xref uid="visio!Visio.PageCollection:class" />
@@ -120,19 +148,19 @@ methods:
     return:
       type: <xref uid="visio!Visio.PageCollection:class" />
       description: ''
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: visio!Visio.PageCollection#load:member(3)
   package: visio!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): Visio.PageCollection;'
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Visio.PageCollection;'
     parameters:
-    - id: option
-      description: ''
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="visio!Visio.PageCollection:class" />
@@ -152,9 +180,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: f00db895bd8bf355cd1a9fbcaef319f0ea959546
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 6bb35764dcf6423288b84c532c60776958cd796a
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51358064"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61516007"

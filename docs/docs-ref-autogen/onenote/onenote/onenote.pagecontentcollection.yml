@@ -3,12 +3,8 @@ name: OneNote.PageContentCollection
 uid: onenote!OneNote.PageContentCollection:class
 package: onenote!
 fullName: OneNote.PageContentCollection
-summary: >-
-  Representa o conteúdo de uma página, como um conjunto de objetos PageContent.
-
-
-  \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-remarks: ''
+summary: Representa o conteúdo de uma página, como um conjunto de objetos PageContent.
+remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
 type: class
@@ -17,7 +13,7 @@ properties:
   uid: onenote!OneNote.PageContentCollection#context:member
   package: onenote!
   fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do complemento ao processo do aplicativo host do Office.
+  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -29,12 +25,8 @@ properties:
   uid: onenote!OneNote.PageContentCollection#count:member
   package: onenote!
   fullName: count
-  summary: >-
-    Retorna a quantidade de conteúdo da página no conjunto. Somente leitura.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Retorna a quantidade de conteúdo da página no conjunto. Somente leitura.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -58,12 +50,8 @@ methods:
   uid: onenote!OneNote.PageContentCollection#getItem:member(1)
   package: onenote!
   fullName: getItem(index)
-  summary: >-
-    Obtém um objeto PageContent pela ID ou pelo índice na coleção. Somente leitura.
-
-
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+  summary: Obtém um objeto PageContent pela ID ou pelo índice na coleção. Somente leitura.
+  remarks: '\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -79,12 +67,39 @@ methods:
   uid: onenote!OneNote.PageContentCollection#getItemAt:member(1)
   package: onenote!
   fullName: getItemAt(index)
-  summary: >-
-    Obtém um conteúdo de página na posição dela na coleção.
+  summary: Obtém um conteúdo de página na posição dela na coleção.
+  remarks: >-
+    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]
 
 
-    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
-  remarks: ''
+    #### <a name="examples"></a>Exemplos
+
+
+    ```javascript
+
+    OneNote.run(function (context) {
+
+        var page = context.application.getActivePage();
+        var pageContents = page.contents;
+        var firstPageContent = pageContents.getItemAt(0);
+        firstPageContent.load('type');
+
+        // Run the queued commands, and return a promise to indicate task completion.
+        return context.sync()
+            .then(function () {
+                console.log("The first page content item is of type: " + firstPageContent.type);
+                return context.sync();
+            });
+    })
+
+    .catch(function(error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -95,30 +110,20 @@ methods:
       type: number
     return:
       type: <xref uid="onenote!OneNote.PageContent:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    var page = context.application.getActivePage();\n    var pageContents = page.contents;\n    var firstPageContent = pageContents.getItemAt(0);\n    firstPageContent.load('type');\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            console.log(\"The first page content item is of type: \" + firstPageContent.type);\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: load(option)
+      description: ''
+- name: load(options)
   uid: onenote!OneNote.PageContentCollection#load:member(1)
   package: onenote!
-  fullName: load(option)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar "context.sync()" antes de ler as propriedades.
-  remarks: >-
-    Além dessa assinatura, este método tem as seguintes assinaturas:
-
-
-    `load(option?: string | string[]): OneNote.PageContentCollection` - Onde a opção é uma cadeia de caracteres delimitada por vírgula ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; }): OneNote.PageContentCollection` - Onde option.select é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades a carregar e options.expand é uma cadeia de caracteres delimitada por vírgula que especifica as propriedades de navegação a ser carregadas.
-
-
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageContentCollection` - Disponível somente em tipos de coleção. É semelhante à assinatura anterior. Option.top especifica o número máximo de itens de coleção que podem ser incluídos no resultado. Option.skip especifica o número de itens que devem ser ignorados e não incluídos no resultado. Se option.top for especificado, o conjunto de resultados começará depois de ignorar o número especificado de itens.
+  fullName: load(options)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+  remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(option?: OneNote.Interfaces.PageContentCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageContentCollection;'
+    content: 'load(options?: OneNote.Interfaces.PageContentCollectionLoadOptions & OneNote.Interfaces.CollectionLoadOptions): OneNote.PageContentCollection;'
     parameters:
-    - id: option
-      description: ''
+    - id: options
+      description: Fornece opções para quais propriedades do objeto deve ser carregado.
       type: <xref uid="onenote!OneNote.Interfaces.PageContentCollectionLoadOptions:interface" /> & <xref uid="onenote!OneNote.Interfaces.CollectionLoadOptions:interface" />
     return:
       type: <xref uid="onenote!OneNote.PageContentCollection:class" />
@@ -140,19 +145,19 @@ methods:
     return:
       type: <xref uid="onenote!OneNote.PageContentCollection:class" />
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Queue a command to load the type of each pageContent.\n    pageContents.load(\"type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n\n            $.each(pageContents.items, function(index, pageContent) {\n                console.log(\"PageContent type: \" + pageContent.type);\n            });\n        });\n})                \n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n   var page = context.application.getActivePage();\n   var pageContents = page.contents;\n   pageContents.load('type');\n   var outlines = ;\n   return context.sync()\n       .then(function () {      \n              $.each(pageContents.items, function (index, pageContent) {\n                     console.log(pageContent.type);\n                     if (pageContent.type === 'Outline') {\n                           outlines.push(pageContent);\n                     }\n              });\n              $.each(outlines, function (index, outline) {\n                     outline.load(\"id,paragraphs,paragraphs/type\");\n              });\n              return context.sync();\n       })\n       .then(function () {\n              $.each(outlines, function (index, outline) {\n                     console.log(\"An outline was found with id : \" + outline.id);\n              });\n              return Promise.resolve(outlines);\n       });\n});\n```"
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.PageContentCollection#load:member(3)
   package: onenote!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(option?: OfficeExtension.LoadOption): OneNote.PageContentCollection;'
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): OneNote.PageContentCollection;'
     parameters:
-    - id: option
-      description: ''
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="onenote!OneNote.PageContentCollection:class" />
@@ -174,7 +179,7 @@ methods:
   uid: onenote!OneNote.PageContentCollection#track:member(1)
   package: onenote!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Essa chamada é uma abreviação de context.trackedObjects.add(thisObject). Se você estiver usando esse objeto em chamadas ".sync" e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, era necessário ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -187,7 +192,7 @@ methods:
   uid: onenote!OneNote.PageContentCollection#untrack:member(1)
   package: onenote!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Essa chamada é uma abreviação de context.trackedObjects.remove(thisObject). Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisa chamar "context.sync()" antes da liberação da memória entrar em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -198,9 +203,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 978c88e0bc73e105b59519ed777dc7274d81bbe2
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 90688c7d1020377e1d86e9c194dbec874abd5f9e
+  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51253430"
+  ms.lasthandoff: 12/15/2021
+  ms.locfileid: "61516147"
