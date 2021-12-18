@@ -3,6 +3,7 @@
 |[Body](/javascript/api/word/word.body)|[endnotes](/javascript/api/word/word.body#endnotes)|Obtém a coleção de notas de fim no corpo.|
 ||[notas de rodapé](/javascript/api/word/word.body#footnotes)|Obtém a coleção de notas de rodapé no corpo.|
 ||[getComments()](/javascript/api/word/word.body#getComments__)|Obtém comentários associados ao corpo.|
+||[getReviewedText(changeTrackingVersion?: Word.ChangeTrackingVersion)](/javascript/api/word/word.body#getReviewedText_changeTrackingVersion_)|Obtém texto revisado com base na seleção ChangeTrackingVersion.|
 ||[tipo](/javascript/api/word/word.body#type)|Obtém o tipo do corpo.|
 |[Comment](/javascript/api/word/word.comment)|[authorEmail](/javascript/api/word/word.comment#authorEmail)|Obtém o email do autor do comentário.|
 ||[authorName](/javascript/api/word/word.comment#authorName)|Obtém o nome do autor do comentário.|
@@ -32,6 +33,7 @@
 |[ContentControl](/javascript/api/word/word.contentcontrol)|[endnotes](/javascript/api/word/word.contentcontrol#endnotes)|Obtém a coleção de notas de fim no controle de conteúdo.|
 ||[notas de rodapé](/javascript/api/word/word.contentcontrol#footnotes)|Obtém a coleção de notas de rodapé no controle de conteúdo.|
 ||[getComments()](/javascript/api/word/word.contentcontrol#getComments__)|Obtém comentários associados ao corpo.|
+||[getReviewedText(changeTrackingVersion?: Word.ChangeTrackingVersion)](/javascript/api/word/word.contentcontrol#getReviewedText_changeTrackingVersion_)|Obtém texto revisado com base na seleção ChangeTrackingVersion.|
 ||[onDataChanged](/javascript/api/word/word.contentcontrol#onDataChanged)|Ocorre quando os dados dentro do controle de conteúdo são alterados.|
 ||[onDeleted](/javascript/api/word/word.contentcontrol#onDeleted)|Ocorre quando o controle de conteúdo é excluído.|
 ||[onSelectionChanged](/javascript/api/word/word.contentcontrol#onSelectionChanged)|Ocorre quando a seleção dentro do controle de conteúdo é alterada.|
@@ -61,12 +63,13 @@
 ||[getOnlyItem()](/javascript/api/word/word.customxmlpartscopedcollection#getOnlyItem__)|Se o conjunto contiver exatamente um item, esse método o retornará.|
 ||[getOnlyItemOrNullObject()](/javascript/api/word/word.customxmlpartscopedcollection#getOnlyItemOrNullObject__)|Se o conjunto contiver exatamente um item, esse método o retornará.|
 ||[items](/javascript/api/word/word.customxmlpartscopedcollection#items)|Obtém os itens filhos carregados nesta coleção.|
-|[Document](/javascript/api/word/word.document)|[customXmlParts](/javascript/api/word/word.document#customXmlParts)|Obtém as partes XML personalizadas no documento.|
+|[Document](/javascript/api/word/word.document)|[changeTrackingMode](/javascript/api/word/word.document#changeTrackingMode)|Obtém ou define o modo ChangeTracking.|
+||[customXmlParts](/javascript/api/word/word.document#customXmlParts)|Obtém as partes XML personalizadas no documento.|
 ||[deleteBookmark(name: string)](/javascript/api/word/word.document#deleteBookmark_name_)|Exclui um indicador, se existir, do documento.|
 ||[getBookmarkRange(name: string)](/javascript/api/word/word.document#getBookmarkRange_name_)|Obtém o intervalo de um indicador.|
 ||[getBookmarkRangeOrNullObject(name: string)](/javascript/api/word/word.document#getBookmarkRangeOrNullObject_name_)|Obtém o intervalo de um indicador.|
-||[getEndnoteBody()](/javascript/api/word/word.document#getEndnoteBody__)|Obtém o corpo das notas de fim do documento.|
-||[getFootnoteBody()](/javascript/api/word/word.document#getFootnoteBody__)|Obtém o corpo das notas de rodapé do documento.|
+||[getEndnoteBody()](/javascript/api/word/word.document#getEndnoteBody__)|Obtém as notas de fim do documento em um único corpo.|
+||[getFootnoteBody()](/javascript/api/word/word.document#getFootnoteBody__)|Obtém as notas de rodapé do documento em um único corpo.|
 ||[ignorePunct](/javascript/api/word/word.document#ignorePunct)||
 ||[ignoreSpace](/javascript/api/word/word.document#ignoreSpace)||
 ||[matchCase](/javascript/api/word/word.document#matchCase)||
@@ -75,7 +78,7 @@
 ||[matchWholeWord](/javascript/api/word/word.document#matchWholeWord)||
 ||[matchWildcards](/javascript/api/word/word.document#matchWildcards)||
 ||[onContentControlAdded](/javascript/api/word/word.document#onContentControlAdded)|Ocorre quando um controle de conteúdo é adicionado.|
-||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.document#search_searchText__searchOptions_)|Executa uma pesquisa com as SearchOptions especificadas no escopo de todo o documento.|
+||[search(searchText: string, searchOptions?: Word.SearchOptions \| { ignorePunct?: boolean ignoreSpace?: boolean matchCase?: boolean matchPrefix?: boolean matchSuffix?: boolean matchWholeWord?: boolean matchWildcards?: boolean })](/javascript/api/word/word.document#search_searchText__searchOptions_)|Executa uma pesquisa com as opções de pesquisa especificadas no escopo de todo o documento.|
 ||[configurações](/javascript/api/word/word.document#settings)|Obtém as configurações do complemento no documento.|
 |[DocumentCreated](/javascript/api/word/word.documentcreated)|[customXmlParts](/javascript/api/word/word.documentcreated#customXmlParts)|Obtém as partes XML personalizadas no documento.|
 ||[deleteBookmark(name: string)](/javascript/api/word/word.documentcreated#deleteBookmark_name_)|Exclui um indicador, se existir, do documento.|
@@ -91,18 +94,20 @@
 ||[delete()](/javascript/api/word/word.noteitem#delete__)|Exclui o item de anotação.|
 ||[getNext()](/javascript/api/word/word.noteitem#getNext__)|Obtém o próximo item de anotação do mesmo tipo.|
 ||[getNextOrNullObject()](/javascript/api/word/word.noteitem#getNextOrNullObject__)|Obtém o próximo item de anotação do mesmo tipo.|
-||[reference](/javascript/api/word/word.noteitem#reference)|Representa uma referência de nota de rodapé/nota de fim no documento principal.|
-||[tipo](/javascript/api/word/word.noteitem#type)|Represente o tipo de item de nota: nota de rodapé ou nota de fim.|
+||[reference](/javascript/api/word/word.noteitem#reference)|Representa uma referência de nota de rodapé ou nota de fim no documento principal.|
+||[tipo](/javascript/api/word/word.noteitem#type)|Representa o tipo de item de nota: nota de rodapé ou nota de fim.|
 |[NoteItemCollection](/javascript/api/word/word.noteitemcollection)|[getFirst()](/javascript/api/word/word.noteitemcollection#getFirst__)|Obtém o primeiro item de anotação nesta coleção.|
 ||[getFirstOrNullObject()](/javascript/api/word/word.noteitemcollection#getFirstOrNullObject__)|Obtém o primeiro item de anotação nesta coleção.|
 ||[items](/javascript/api/word/word.noteitemcollection#items)|Obtém os itens filhos carregados nesta coleção.|
-|[Paragraph](/javascript/api/word/word.paragraph)|[endnotes](/javascript/api/word/word.paragraph#endnotes)|Obtém a coleção de notas de fim no Parágrafo.|
-||[notas de rodapé](/javascript/api/word/word.paragraph#footnotes)|Obtém a coleção de notas de rodapé no Parágrafo.|
+|[Paragraph](/javascript/api/word/word.paragraph)|[endnotes](/javascript/api/word/word.paragraph#endnotes)|Obtém a coleção de notas de fim no parágrafo.|
+||[notas de rodapé](/javascript/api/word/word.paragraph#footnotes)|Obtém a coleção de notas de rodapé no parágrafo.|
 ||[getComments()](/javascript/api/word/word.paragraph#getComments__)|Obtém comentários associados ao parágrafo.|
-|[Range](/javascript/api/word/word.range)|[endnotes](/javascript/api/word/word.range#endnotes)|Obtém a coleção de notas de fim no Intervalo.|
-||[notas de rodapé](/javascript/api/word/word.range#footnotes)|Obtém a coleção de notas de rodapé no Intervalo.|
+||[getReviewedText(changeTrackingVersion?: Word.ChangeTrackingVersion)](/javascript/api/word/word.paragraph#getReviewedText_changeTrackingVersion_)|Obtém texto revisado com base na seleção ChangeTrackingVersion.|
+|[Range](/javascript/api/word/word.range)|[endnotes](/javascript/api/word/word.range#endnotes)|Obtém a coleção de notas de fim no intervalo.|
+||[notas de rodapé](/javascript/api/word/word.range#footnotes)|Obtém a coleção de notas de rodapé no intervalo.|
 ||[getBookmarks(includeHidden?: boolean, includeAdjacent?: boolean)](/javascript/api/word/word.range#getBookmarks_includeHidden__includeAdjacent_)|Obtém os nomes de todos os indicadores ou sobrepostos ao intervalo.|
 ||[getComments()](/javascript/api/word/word.range#getComments__)|Obtém comentários associados ao intervalo.|
+||[getReviewedText(changeTrackingVersion?: Word.ChangeTrackingVersion)](/javascript/api/word/word.range#getReviewedText_changeTrackingVersion_)|Obtém texto revisado com base na seleção ChangeTrackingVersion.|
 ||[insertBookmark(name: string)](/javascript/api/word/word.range#insertBookmark_name_)|Insere um indicador no intervalo.|
 ||[insertComment(commentText: string)](/javascript/api/word/word.range#insertComment_commentText_)|Insira um comentário no intervalo.|
 ||[insertEndnote(insertText?: string)](/javascript/api/word/word.range#insertEndnote_insertText_)|Insere uma nota de fim.|
