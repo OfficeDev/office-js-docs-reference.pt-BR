@@ -104,7 +104,26 @@ properties:
   package: word!
   fullName: footnotes
   summary: Obtém a coleção de notas de rodapé no corpo. Somente leitura.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-footnotes.yaml
+
+    await Word.run(async (context) => {
+      const footnotes = context.document.body.footnotes;
+      footnotes.load("length");
+      await context.sync();
+
+      console.log("Number of footnotes in the document body: " + footnotes.items.length);
+    });
+
+    ```
   isPreview: true
   isDeprecated: false
   syntax:
@@ -393,7 +412,29 @@ methods:
   package: word!
   fullName: getComments()
   summary: Obtém comentários associados ao corpo.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+
+    await Word.run(async (context) => {
+      let comments = context.document.body.getComments();
+
+      // Load objects for display in Script Lab console.
+      context.load(comments);
+      await context.sync();
+
+      console.log("All comments:");
+      console.log(comments);
+    });
+
+    ```
   isPreview: true
   isDeprecated: false
   syntax:
@@ -1520,9 +1561,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 3e45fd4bd8f1766d36077727dbd5e84fd2139472
-  ms.sourcegitcommit: 080eae011bc786105caabe110849467131a7be05
+  ms.openlocfilehash: 5b469c1cc0b2649461c52f120dc6c31afeeb973f
+  ms.sourcegitcommit: 14744f5eb3bb5023d61de44f5042e2e8d63e9a99
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/17/2021
-  ms.locfileid: "61565599"
+  ms.lasthandoff: 12/23/2021
+  ms.locfileid: "61598685"
