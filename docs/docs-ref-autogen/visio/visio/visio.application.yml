@@ -3,44 +3,16 @@ name: Visio.Application
 uid: visio!Visio.Application:class
 package: visio!
 fullName: Visio.Application
-summary: '\[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]'
+summary: >-
+  Representa o Aplicativo.
+
+
+  \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
 remarks: ''
 isPreview: false
 isDeprecated: false
 type: class
 properties:
-- name: activeDocument
-  uid: visio!Visio.Application#activeDocument:member
-  package: visio!
-  fullName: activeDocument
-  summary: >-
-    Retorna o documento ativo. Somente leitura.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly activeDocument: Visio.Document;'
-    return:
-      type: <xref uid="visio!Visio.Document:class" />
-- name: activePage
-  uid: visio!Visio.Application#activePage:member
-  package: visio!
-  fullName: activePage
-  summary: >-
-    Retorna a página ativa. Somente leitura.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly activePage: Visio.Page;'
-    return:
-      type: <xref uid="visio!Visio.Page:class" />
 - name: context
   uid: visio!Visio.Application#context:member
   package: visio!
@@ -53,12 +25,12 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="visio!Visio.RequestContext:class" />
-- name: documents
-  uid: visio!Visio.Application#documents:member
+- name: showBorders
+  uid: visio!Visio.Application#showBorders:member
   package: visio!
-  fullName: documents
+  fullName: showBorders
   summary: >-
-    Retorna a coleção documents de uma instância Visio Microsoft. Somente leitura.
+    Mostrar ou ocultar as bordas do aplicativo iFrame.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -66,31 +38,16 @@ properties:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'readonly documents: Visio.DocumentCollection;'
-    return:
-      type: <xref uid="visio!Visio.DocumentCollection:class" />
-- name: isVisible
-  uid: visio!Visio.Application#isVisible:member
-  package: visio!
-  fullName: isVisible
-  summary: >-
-    Obtém ou define se o aplicativo estiver visível.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'isVisible: boolean;'
+    content: 'showBorders: boolean;'
     return:
       type: boolean
-- name: name
-  uid: visio!Visio.Application#name:member
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var application = ctx.document.application;\n    application.showToolbars = false;\n    application.showBorders = false;\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: showToolbars
+  uid: visio!Visio.Application#showToolbars:member
   package: visio!
-  fullName: name
+  fullName: showToolbars
   summary: >-
-    Especifica o nome do aplicativo. Somente leitura.
+    Mostrar ou ocultar as barras de ferramentas padrão.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -98,50 +55,10 @@ properties:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'readonly name: string;'
+    content: 'showToolbars: boolean;'
     return:
-      type: string
-- name: userName
-  uid: visio!Visio.Application#userName:member
-  package: visio!
-  fullName: userName
-  summary: >-
-    Obtém ou define o nome de usuário do aplicativo.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'userName: string;'
-    return:
-      type: string
+      type: boolean
 methods:
-- name: getStencilInfo(stencilName, includeHiddenMasters)
-  uid: visio!Visio.Application#getStencilInfo:member(1)
-  package: visio!
-  fullName: getStencilInfo(stencilName, includeHiddenMasters)
-  summary: >-
-    Obter as informações de estêncil.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'getStencilInfo(stencilName: string, includeHiddenMasters?: boolean): OfficeExtension.ClientResult<Visio.StencilInfo>;'
-    parameters:
-    - id: stencilName
-      description: StencilName representa o nome de arquivo de um estêncil.
-      type: string
-    - id: includeHiddenMasters
-      description: Especifica se deve incluir mestres ocultos da interface do Visio da interface do usuário (como Painel de Formas). O valor padrão é false.
-      type: boolean
-    return:
-      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;<xref uid="visio!Visio.StencilInfo:interface" />&gt;
-      description: ''
 - name: load(options)
   uid: visio!Visio.Application#load:member(1)
   package: visio!
@@ -206,7 +123,11 @@ methods:
   package: visio!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: ''
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Visio.Application): void`
   isPreview: false
   isDeprecated: false
   syntax:
@@ -238,6 +159,71 @@ methods:
     return:
       type: void
       description: ''
+- name: setMockData(data)
+  uid: visio!Visio.Application#setMockData:member(1)
+  package: visio!
+  fullName: setMockData(data)
+  summary: Definir dados simulados
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setMockData(data: Visio.Interfaces.ApplicationData): void;'
+    parameters:
+    - id: data
+      description: ''
+      type: <xref uid="visio!Visio.Interfaces.ApplicationData:interface" />
+    return:
+      type: void
+      description: ''
+- name: showToolbar(id, show)
+  uid: visio!Visio.Application#showToolbar:member(1)
+  package: visio!
+  fullName: showToolbar(id, show)
+  summary: >-
+    Define a visibilidade de uma barra de ferramentas específica no aplicativo.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'showToolbar(id: Visio.ToolBarType, show: boolean): void;'
+    parameters:
+    - id: id
+      description: O tipo da Barra de Ferramentas
+      type: <xref uid="visio!Visio.ToolBarType:enum" />
+    - id: show
+      description: Se a barra de ferramentas é visibile ou não.
+      type: boolean
+    return:
+      type: void
+      description: ''
+- name: showToolbar(idString, show)
+  uid: visio!Visio.Application#showToolbar:member(2)
+  package: visio!
+  fullName: showToolbar(idString, show)
+  summary: >-
+    Define a visibilidade de uma barra de ferramentas específica no aplicativo.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'showToolbar(idString: "CommandBar" | "PageNavigationBar" | "StatusBar", show: boolean): void;'
+    parameters:
+    - id: idString
+      description: O tipo da Barra de Ferramentas
+      type: "\"CommandBar\" | \"PageNavigationBar\" | \"StatusBar\""
+    - id: show
+      description: Se a barra de ferramentas é visibile ou não.
+      type: boolean
+    return:
+      type: void
+      description: ''
 - name: toJSON()
   uid: visio!Visio.Application#toJSON:member(1)
   package: visio!
@@ -253,9 +239,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 35ce3c0dbfc7541691858daa20fe5fc373eaa7f0
-  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
+  ms.openlocfilehash: 34d742609762edb9316a0975576401ed70b70ba2
+  ms.sourcegitcommit: fb28bc8fd0536b2e640f5039194fdbc31b30f5dc
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/15/2021
-  ms.locfileid: "61514971"
+  ms.lasthandoff: 01/12/2022
+  ms.locfileid: "61763417"

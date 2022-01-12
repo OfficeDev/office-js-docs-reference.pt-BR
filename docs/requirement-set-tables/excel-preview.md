@@ -167,6 +167,18 @@
 ||[getItemOrNullObject(key: number)](/javascript/api/excel/excel.linkeddatatypecollection#getItemOrNullObject_key_)|Obtém um tipo de dados vinculado por ID.|
 ||[items](/javascript/api/excel/excel.linkeddatatypecollection#items)|Obtém os itens filhos carregados nesta coleção.|
 ||[requestRefreshAll()](/javascript/api/excel/excel.linkeddatatypecollection#requestRefreshAll__)|Faz uma solicitação para atualizar todos os tipos de dados vinculados na coleção.|
+|[LinkedEntityCellValue](/javascript/api/excel/excel.linkedentitycellvalue)|[basicType](/javascript/api/excel/excel.linkedentitycellvalue#basicType)|Representa o valor que seria retornado por `Range.valueTypes` uma célula com esse valor.|
+||[basicValue](/javascript/api/excel/excel.linkedentitycellvalue#basicValue)|Representa o valor que seria retornado por `Range.values` uma célula com esse valor.|
+||[id](/javascript/api/excel/excel.linkedentitycellvalue#id)|Representa a fonte de serviço que forneceu as informações nesse valor.|
+||[properties: { [key: string]: CellValue & { propertyMetadata](/javascript/api/excel/excel.linkedentitycellvalue#properties)|Representa as propriedades dessa entidade e seus metadados.|
+||[propertyMetadata](/javascript/api/excel/excel.linkedentitycellvalue#propertyMetadata)||
+||[provider](/javascript/api/excel/excel.linkedentitycellvalue#provider)|Representa informações que descrevem o serviço que forneceu a imagem.|
+||[text](/javascript/api/excel/excel.linkedentitycellvalue#text)|Representa o texto mostrado quando uma célula com esse valor é renderizada.|
+||[tipo](/javascript/api/excel/excel.linkedentitycellvalue#type)|Representa o tipo desse valor de célula.|
+|[LinkedEntityId](/javascript/api/excel/excel.linkedentityid)|[culture](/javascript/api/excel/excel.linkedentityid#culture)|Representa qual cultura de idioma foi usada para criar isso `CellValue` .|
+||[domainId](/javascript/api/excel/excel.linkedentityid#domainId)|Representa um domínio específico de um serviço usado para criar `CellValue` o .|
+||[entityId](/javascript/api/excel/excel.linkedentityid#entityId)|Representa um identificador específico de um serviço usado para criar `CellValue` o .|
+||[serviceId](/javascript/api/excel/excel.linkedentityid#serviceId)|Representa qual serviço foi usado para criar `CellValue` o .|
 |[NameErrorCellValue](/javascript/api/excel/excel.nameerrorcellvalue)|[basicType](/javascript/api/excel/excel.nameerrorcellvalue#basicType)|Representa o valor que seria retornado por `Range.valueTypes` uma célula com esse valor.|
 ||[basicValue](/javascript/api/excel/excel.nameerrorcellvalue#basicValue)|Representa o valor que seria retornado por `Range.values` uma célula com esse valor.|
 ||[errorType](/javascript/api/excel/excel.nameerrorcellvalue#errorType)|Representa o tipo de `ErrorCellValue` .|
@@ -250,7 +262,8 @@
 ||[provider](/javascript/api/excel/excel.webimagecellvalue#provider)|Representa informações que descrevem a entidade ou indivíduo que forneceu a imagem.|
 ||[relatedImagesAddress](/javascript/api/excel/excel.webimagecellvalue#relatedImagesAddress)|Representa a URL de uma página da Web com imagens consideradas relacionadas a este `WebImageCellValue` .|
 ||[tipo](/javascript/api/excel/excel.webimagecellvalue#type)|Representa o tipo desse valor de célula.|
-|[Workbook](/javascript/api/excel/excel.workbook)|[linkedDataTypes](/javascript/api/excel/excel.workbook#linkedDataTypes)|Retorna uma coleção de tipos de dados vinculados que fazem parte da lista de trabalho.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[getLinkedEntityCellValue(linkedEntityCellValueId: LinkedEntityId)](/javascript/api/excel/excel.workbook#getLinkedEntityCellValue_linkedEntityCellValueId_)|Retorna um `LinkedEntityCellValue` com base no fornecido `LinkedEntityId` .|
+||[linkedDataTypes](/javascript/api/excel/excel.workbook#linkedDataTypes)|Retorna uma coleção de tipos de dados vinculados que fazem parte da lista de trabalho.|
 ||[showPivotFieldList](/javascript/api/excel/excel.workbook#showPivotFieldList)|Especifica se o painel de lista de campos da Tabela Dinâmica é mostrado no nível da lista de trabalho.|
 ||[tasks](/javascript/api/excel/excel.workbook#tasks)|Retorna uma coleção de tarefas que estão presentes na workbook.|
 ||[use1904DateSystem](/javascript/api/excel/excel.workbook#use1904DateSystem)|True se a pasta de trabalho usar o sistema de dados 1904.|

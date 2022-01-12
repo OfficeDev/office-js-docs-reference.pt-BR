@@ -3,7 +3,11 @@ name: Visio.Document
 uid: visio!Visio.Document:class
 package: visio!
 fullName: Visio.Document
-summary: '\[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]'
+summary: >-
+  Representa a classe Document.
+
+
+  \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -37,86 +41,6 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="visio!Visio.RequestContext:class" />
-- name: description
-  uid: visio!Visio.Document#description:member
-  package: visio!
-  fullName: description
-  summary: >-
-    Obtém ou define a descrição do documento.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'description: string;'
-    return:
-      type: string
-- name: fullName
-  uid: visio!Visio.Document#fullName:member
-  package: visio!
-  fullName: fullName
-  summary: >-
-    Retorna o nome do documento, incluindo a unidade e o caminho. Somente leitura.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly fullName: string;'
-    return:
-      type: string
-- name: id
-  uid: visio!Visio.Document#id:member
-  package: visio!
-  fullName: id
-  summary: >-
-    Retorna a ID do documento. Somente leitura
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly id: string;'
-    return:
-      type: string
-- name: index
-  uid: visio!Visio.Document#index:member
-  package: visio!
-  fullName: index
-  summary: >-
-    Retorna a posição ordinal de um objeto Document na Coleção Documents. Somente leitura.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly index: number;'
-    return:
-      type: number
-- name: name
-  uid: visio!Visio.Document#name:member
-  package: visio!
-  fullName: name
-  summary: >-
-    Retorna o nome do documento.
-
-
-    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly name: string;'
-    return:
-      type: string
 - name: pages
   uid: visio!Visio.Document#pages:member
   package: visio!
@@ -134,13 +58,12 @@ properties:
     return:
       type: <xref uid="visio!Visio.PageCollection:class" />
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var pages = ctx.document.pages;\n    var pageCount = pages.getCount();\n    return ctx.sync().then(function () {\n        console.log(\"Pages Count: \" +pageCount.value);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-methods:
-- name: close()
-  uid: visio!Visio.Document#close:member(1)
+- name: view
+  uid: visio!Visio.Document#view:member
   package: visio!
-  fullName: close()
+  fullName: view
   summary: >-
-    Fecha um documento.
+    Retorna o objeto DocumentView. Somente leitura.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -148,16 +71,16 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'close(): void;'
+    content: 'readonly view: Visio.DocumentView;'
     return:
-      type: void
-      description: ''
+      type: <xref uid="visio!Visio.DocumentView:class" />
+methods:
 - name: getActivePage()
   uid: visio!Visio.Document#getActivePage:member(1)
   package: visio!
   fullName: getActivePage()
   summary: >-
-    Retorna a página ativa do documento.
+    Retorna a Página Ativa do documento.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -233,7 +156,11 @@ methods:
   package: visio!
   fullName: set(properties, options)
   summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: ''
+  remarks: >-
+    Este método tem a seguinte assinatura adicional:
+
+
+    `set(properties: Visio.Document): void`
   isPreview: false
   isDeprecated: false
   syntax:
@@ -270,7 +197,7 @@ methods:
   package: visio!
   fullName: setActivePage(PageName)
   summary: >-
-    De definir a página ativa do documento.
+    Define a Página Ativa do documento.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -286,6 +213,23 @@ methods:
     return:
       type: void
       description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var document = ctx.document;\n    var pageName = \"Page-1\";\n    document.setActivePage(pageName);\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: setMockData(data)
+  uid: visio!Visio.Document#setMockData:member(1)
+  package: visio!
+  fullName: setMockData(data)
+  summary: Definir dados simulados
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setMockData(data: Visio.Interfaces.DocumentData): void;'
+    parameters:
+    - id: data
+      description: ''
+      type: <xref uid="visio!Visio.Interfaces.DocumentData:interface" />
+    return:
+      type: void
+      description: ''
 - name: showTaskPane(taskPaneType, initialProps, show)
   uid: visio!Visio.Document#showTaskPane:member(1)
   package: visio!
@@ -302,13 +246,13 @@ methods:
     content: 'showTaskPane(taskPaneType: Visio.TaskPaneType, initialProps?: any, show?: boolean): void;'
     parameters:
     - id: taskPaneType
-      description: Tipo do TaskPane da 1ª Parte. Ele pode levar valores do enum TaskPaneType.
+      description: Tipo do TaskPane da 1ª Parte. Ele pode levar valores de enum TaskPaneType
       type: <xref uid="visio!Visio.TaskPaneType:enum" />
     - id: initialProps
-      description: Parâmetro Opcional. Esta é uma estrutura de dados genérica que seria preenchida com os dados iniciais necessários para inicializar o conteúdo do Taskpane.
+      description: Parâmetro Opcional. Esta é uma estrutura de dados genérica que seria preenchida com dados iniciais necessários para inicializar o conteúdo do Taskpane
       type: any
     - id: show
-      description: Parâmetro Opcional. Se estiver definido como false, ele ocultará o conjunto de tarefas especificado.
+      description: Parâmetro Opcional. Se estiver definido como false, ele ocultará o conjunto de tarefas especificado
       type: boolean
     return:
       type: void
@@ -329,17 +273,34 @@ methods:
     content: 'showTaskPane(taskPaneTypeString: "None" | "DataVisualizerProcessMappings" | "DataVisualizerOrgChartMappings", initialProps?: any, show?: boolean): void;'
     parameters:
     - id: taskPaneTypeString
-      description: Tipo do TaskPane da 1ª Parte. Ele pode levar valores do enum TaskPaneType.
+      description: Tipo do TaskPane da 1ª Parte. Ele pode levar valores de enum TaskPaneType
       type: "\"None\" | \"DataVisualizerProcessMappings\" | \"DataVisualizerOrgChartMappings\""
     - id: initialProps
-      description: Parâmetro Opcional. Esta é uma estrutura de dados genérica que seria preenchida com os dados iniciais necessários para inicializar o conteúdo do Taskpane.
+      description: Parâmetro Opcional. Esta é uma estrutura de dados genérica que seria preenchida com dados iniciais necessários para inicializar o conteúdo do Taskpane
       type: any
     - id: show
-      description: Parâmetro Opcional. Se estiver definido como false, ele ocultará o conjunto de tarefas especificado.
+      description: Parâmetro Opcional. Se estiver definido como false, ele ocultará o conjunto de tarefas especificado
       type: boolean
     return:
       type: void
       description: ''
+- name: startDataRefresh()
+  uid: visio!Visio.Document#startDataRefresh:member(1)
+  package: visio!
+  fullName: startDataRefresh()
+  summary: >-
+    Dispara a atualização dos dados no Diagrama, para todas as páginas.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'startDataRefresh(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nVisio.run(session, function (ctx) {\n    var document = ctx.document;\n    document.startDataRefresh();\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - name: toJSON()
   uid: visio!Visio.Document#toJSON:member(1)
   package: visio!
@@ -354,6 +315,70 @@ methods:
       type: <xref uid="visio!Visio.Interfaces.DocumentData:interface" />
       description: ''
 events:
+- name: onDataRefreshComplete
+  uid: visio!Visio.Document#onDataRefreshComplete:member
+  package: visio!
+  fullName: onDataRefreshComplete
+  summary: >-
+    Ocorre quando os dados são atualizados no diagrama.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDataRefreshComplete: OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.DataRefreshCompleteEventArgs:interface" />&gt;
+- name: onDocumentError
+  uid: visio!Visio.Document#onDocumentError:member
+  package: visio!
+  fullName: onDocumentError
+  summary: >-
+    Ocorre quando ocorreu um erro esperado ou inesperado na sessão.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDocumentError: OfficeExtension.EventHandlers<Visio.DocumentErrorEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.DocumentErrorEventArgs:interface" />&gt;
+- name: onDocumentLoadComplete
+  uid: visio!Visio.Document#onDocumentLoadComplete:member
+  package: visio!
+  fullName: onDocumentLoadComplete
+  summary: >-
+    Ocorre quando o Documento é carregado, atualizado ou alterado.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDocumentLoadComplete: OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.DocumentLoadCompleteEventArgs:interface" />&gt;
+- name: onPageLoadComplete
+  uid: visio!Visio.Document#onPageLoadComplete:member
+  package: visio!
+  fullName: onPageLoadComplete
+  summary: >-
+    Ocorre quando a página termina de carregar.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onPageLoadComplete: OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.PageLoadCompleteEventArgs:interface" />&gt;
 - name: onSelectionChanged
   uid: visio!Visio.Document#onSelectionChanged:member
   package: visio!
@@ -370,12 +395,12 @@ events:
     content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.SelectionChangedEventArgs:interface" />&gt;
-- name: onShapeAdded
-  uid: visio!Visio.Document#onShapeAdded:member
+- name: onShapeMouseEnter
+  uid: visio!Visio.Document#onShapeMouseEnter:member
   package: visio!
-  fullName: onShapeAdded
+  fullName: onShapeMouseEnter
   summary: >-
-    Ocorre quando a forma é adicionada.
+    Ocorre quando o usuário move o ponteiro do mouse para a caixa delimitada de uma forma.
 
 
     \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
@@ -383,14 +408,46 @@ events:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'readonly onShapeAdded: OfficeExtension.EventHandlers<Visio.ShapeAddedEventArgs>;'
+    content: 'readonly onShapeMouseEnter: OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>;'
     return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.ShapeAddedEventArgs:interface" />&gt;
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.ShapeMouseEnterEventArgs:interface" />&gt;
+- name: onShapeMouseLeave
+  uid: visio!Visio.Document#onShapeMouseLeave:member
+  package: visio!
+  fullName: onShapeMouseLeave
+  summary: >-
+    Ocorre quando o usuário move o mouse para fora da caixa delimitada de uma forma.
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onShapeMouseLeave: OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.ShapeMouseLeaveEventArgs:interface" />&gt;
+- name: onTaskPaneStateChanged
+  uid: visio!Visio.Document#onTaskPaneStateChanged:member
+  package: visio!
+  fullName: onTaskPaneStateChanged
+  summary: >-
+    Ocorre sempre que um estado do painel de tarefas é alterado
+
+
+    \[[Conjunto de API: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onTaskPaneStateChanged: OfficeExtension.EventHandlers<Visio.TaskPaneStateChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="visio!Visio.TaskPaneStateChangedEventArgs:interface" />&gt;
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 2c732968c5b88fd018ff54043c996ef03e037598
-  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
+  ms.openlocfilehash: 01d19cce9e509e1682c0c413efad0a9e9239ff7c
+  ms.sourcegitcommit: fb28bc8fd0536b2e640f5039194fdbc31b30f5dc
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/15/2021
-  ms.locfileid: "61516672"
+  ms.lasthandoff: 01/12/2022
+  ms.locfileid: "61763363"
