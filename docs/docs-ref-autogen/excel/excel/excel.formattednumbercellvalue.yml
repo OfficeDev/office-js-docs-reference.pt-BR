@@ -38,7 +38,40 @@ properties:
   package: excel!
   fullName: numberFormat
   summary: Retorna a cadeia de caracteres de formato de número usada para exibir esse valor. As cadeias de caracteres de formato de número devem estar em conformidade Excel diretrizes. Para saber mais, confira [Revisar diretrizes para personalizar um formato de número](https://support.microsoft.com/office/review-guidelines-for-customizing-a-number-format-c0a1d1fa-d3f4-4018-96b7-9c9354dd99f5)<!-- -->.
-  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/data-types-formatted-number.yaml
+
+    await Excel.run(async (context) => {
+      // This method creates a formatted number data type,
+      // and sets the format of this data type as a currency.
+
+      // Get the Sample worksheet and a range on that sheet.
+      const sheet = context.workbook.worksheets.getItemOrNullObject("Sample");
+      const currencyRange = sheet.getRange("A2");
+
+      // Write a number formatted as currency to cell A2.
+      currencyRange.valuesAsJson = [
+        [
+          {
+            type: Excel.CellValueType.formattedNumber,
+            basicValue: 12.34,
+            numberFormat: "$* #,##0.00"
+          }
+        ]
+      ];
+
+      await context.sync();
+    });
+
+    ```
   isPreview: true
   isDeprecated: false
   syntax:
@@ -50,7 +83,39 @@ properties:
   package: excel!
   fullName: type
   summary: Representa o tipo desse valor de célula.
-  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/data-types-formatted-number.yaml
+
+    await Excel.run(async (context) => {
+      // This method creates a formatted number data type,
+      // and sets the format of this data type as a date.
+
+      // Get the Sample worksheet and a range on that sheet.
+      const sheet = context.workbook.worksheets.getItemOrNullObject("Sample");
+      const dateRange = sheet.getRange("A1");
+
+      // Write a number formatted as a date to cell A1.
+      dateRange.valuesAsJson = [
+        [
+          {
+            type: Excel.CellValueType.formattedNumber,
+            basicValue: 32889.0,
+            numberFormat: "m/d/yyyy"
+          }
+        ]
+      ];
+      await context.sync();
+    });
+
+    ```
   isPreview: true
   isDeprecated: false
   syntax:
@@ -58,9 +123,9 @@ properties:
     return:
       type: <xref uid="excel!Excel.CellValueType.formattedNumber:member" /> | "FormattedNumber"
 metadata:
-  ms.openlocfilehash: 2c0d120b038756f70ae31bc1d2ae93ad1ecb368b
-  ms.sourcegitcommit: ff54d254f5c60765eedbc5bbebab0a56a0a2699a
+  ms.openlocfilehash: af636f9e2ddc81b385793b0945eaebc7728c94df
+  ms.sourcegitcommit: 97b6056165fcb3d657b823d857e01fc09820b24e
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/02/2021
-  ms.locfileid: "60659991"
+  ms.lasthandoff: 01/28/2022
+  ms.locfileid: "62262958"
