@@ -103,11 +103,7 @@ properties:
   uid: word!Word.Body#paragraphs:member
   package: word!
   fullName: paragraphs
-  summary: >-
-    Obtém o conjunto de objetos Paragraph presentes no corpo. Somente leitura.
-
-
-    **Importante**: Os parágrafos nas tabelas não são retornados para os conjuntos de requisitos 1.1 e 1.2. No conjunto de requisitos 1.3, parágrafos em tabelas também são retornados.
+  summary: 'Obtém a coleção de objetos de parágrafo no corpo. Apenas leitura. **Importante**: parágrafos em tabelas não são retornados para conjuntos de requisitos 1.1 e 1.2. No conjunto de requisitos 1.3, parágrafos em tabelas também são retornados.'
   remarks: >-
     \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
@@ -260,7 +256,7 @@ methods:
   uid: word!Word.Body#getHtml:member(1)
   package: word!
   fullName: getHtml()
-  summary: Obtém uma representação HTML do objeto body. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use e converta o `Body.getOoxml()` XML retornado em HTML.
+  summary: Obtém uma representação HTML do objeto body. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use `Body.getOoxml()` e converta o XML retornado em HTML.
   remarks: >-
     \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
@@ -801,7 +797,35 @@ methods:
   package: word!
   fullName: insertParagraph(paragraphText, insertLocationString)
   summary: Insere um parágrafo no local especificado.
-  remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/insert-formatted-text.yaml
+
+    await Word.run(async (context) => {
+      // Second sentence, let's insert it as a paragraph after the previously inserted one.
+      let secondSentence = context.document.body.insertParagraph(
+        "This is the first text with a custom style.",
+        "End"
+      );
+      secondSentence.font.set({
+        bold: false,
+        italic: true,
+        name: "Berlin Sans FB",
+        color: "blue",
+        size: 30
+      });
+
+      await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -939,7 +963,7 @@ methods:
               }): Word.Body;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -1194,7 +1218,7 @@ methods:
   uid: word!Word.Body#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Word.Body original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.Body original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1207,7 +1231,7 @@ methods:
   uid: word!Word.Body#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1220,7 +1244,7 @@ methods:
   uid: word!Word.Body#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1231,9 +1255,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 260443b4956566ba4c455a8fc21ca37efa76500b
-  ms.sourcegitcommit: ff54d254f5c60765eedbc5bbebab0a56a0a2699a
+  ms.openlocfilehash: 061f461acb380a264df0232a59c2706f82ceec2b
+  ms.sourcegitcommit: 997292a6842ddd12e944eb27d0e480e0421f2569
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/02/2021
-  ms.locfileid: "60664917"
+  ms.lasthandoff: 02/02/2022
+  ms.locfileid: "62324230"

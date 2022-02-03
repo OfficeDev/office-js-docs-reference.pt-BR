@@ -8,6 +8,7 @@
 |[Comment](/javascript/api/word/word.comment)|[authorEmail](/javascript/api/word/word.comment#authorEmail)|Obtém o email do autor do comentário.|
 ||[authorName](/javascript/api/word/word.comment#authorName)|Obtém o nome do autor do comentário.|
 ||[content](/javascript/api/word/word.comment#content)|Obtém ou define o conteúdo do comentário como texto sem texto.|
+||[contentRange](/javascript/api/word/word.comment#contentRange)|Obtém ou define o status do thread de comentário.|
 ||[creationDate](/javascript/api/word/word.comment#creationDate)|Obtém a data de criação do comentário.|
 ||[delete()](/javascript/api/word/word.comment#delete__)|Exclui o comentário e suas respostas.|
 ||[getRange()](/javascript/api/word/word.comment#getRange__)|Obtém o intervalo no documento principal em que o comentário está.|
@@ -16,18 +17,27 @@
 ||[reply(replyText: string)](/javascript/api/word/word.comment#reply_replyText_)|Adiciona uma nova resposta ao final do thread de comentário.|
 ||[resolvido](/javascript/api/word/word.comment#resolved)|Obtém ou define o status do thread de comentário.|
 |[CommentCollection](/javascript/api/word/word.commentcollection)|[getFirst()](/javascript/api/word/word.commentcollection#getFirst__)|Obtém o primeiro comentário na coleção.|
-||[getFirstOrNullObject()](/javascript/api/word/word.commentcollection#getFirstOrNullObject__)|Obtém o primeiro comentário ou objeto nulo na coleção.|
+||[getFirstOrNullObject()](/javascript/api/word/word.commentcollection#getFirstOrNullObject__)|Obtém o primeiro comentário na coleção.|
 ||[getItem(index: number)](/javascript/api/word/word.commentcollection#getItem_index_)|Obtém um objeto comment por seu índice na coleção.|
 ||[items](/javascript/api/word/word.commentcollection#items)|Obtém os itens filhos carregados nesta coleção.|
+|[CommentContentRange](/javascript/api/word/word.commentcontentrange)|[bold](/javascript/api/word/word.commentcontentrange#bold)|Obtém ou define um valor que indica se o texto do comentário está em negrito.|
+||[hiperlink](/javascript/api/word/word.commentcontentrange#hyperlink)|Obtém o primeiro hiperlink no intervalo ou define um hiperlink no intervalo.|
+||[insertText(text: string, insertLocation: Word.InsertLocation)](/javascript/api/word/word.commentcontentrange#insertText_text__insertLocation_)|Insere texto no local especificado.|
+||[isEmpty](/javascript/api/word/word.commentcontentrange#isEmpty)|Verifica se o comprimento do intervalo é zero.|
+||[italic](/javascript/api/word/word.commentcontentrange#italic)|Obtém ou define um valor que indica se o texto do comentário é itálico.|
+||[strikeThrough](/javascript/api/word/word.commentcontentrange#strikeThrough)|Obtém ou define um valor que indica se o texto do comentário tem um tachado.|
+||[text](/javascript/api/word/word.commentcontentrange#text)|Obtém o texto do intervalo de comentários.|
+||[underline](/javascript/api/word/word.commentcontentrange#underline)|Obtém ou define um valor que indica o tipo de sublinhado do texto de comentário.|
 |[CommentReply](/javascript/api/word/word.commentreply)|[authorEmail](/javascript/api/word/word.commentreply#authorEmail)|Obtém o email do autor da resposta do comentário.|
 ||[authorName](/javascript/api/word/word.commentreply#authorName)|Obtém o nome do autor da resposta do comentário.|
 ||[content](/javascript/api/word/word.commentreply#content)|Obtém ou define o conteúdo da resposta do comentário.|
+||[contentRange](/javascript/api/word/word.commentreply#contentRange)|Obtém ou define o intervalo de conteúdo do commentReply.|
 ||[creationDate](/javascript/api/word/word.commentreply#creationDate)|Obtém a data de criação da resposta de comentário.|
 ||[delete()](/javascript/api/word/word.commentreply#delete__)|Exclui a resposta do comentário. |
 ||[id](/javascript/api/word/word.commentreply#id)|ID|
 ||[parentComment](/javascript/api/word/word.commentreply#parentComment)|Obtém o comentário pai desta resposta.|
 |[CommentReplyCollection](/javascript/api/word/word.commentreplycollection)|[getFirst()](/javascript/api/word/word.commentreplycollection#getFirst__)|Obtém a primeira resposta de comentário na coleção.|
-||[getFirstOrNullObject()](/javascript/api/word/word.commentreplycollection#getFirstOrNullObject__)|Obtém a primeira resposta de comentário ou objeto nulo na coleção.|
+||[getFirstOrNullObject()](/javascript/api/word/word.commentreplycollection#getFirstOrNullObject__)|Obtém a primeira resposta de comentário na coleção.|
 ||[getItem(index: number)](/javascript/api/word/word.commentreplycollection#getItem_index_)|Obtém um objeto de resposta de comentário pelo índice na coleção.|
 ||[items](/javascript/api/word/word.commentreplycollection#items)|Obtém os itens filhos carregados nesta coleção.|
 |[ContentControl](/javascript/api/word/word.contentcontrol)|[endnotes](/javascript/api/word/word.contentcontrol#endnotes)|Obtém a coleção de notas de fim no controle de conteúdo.|

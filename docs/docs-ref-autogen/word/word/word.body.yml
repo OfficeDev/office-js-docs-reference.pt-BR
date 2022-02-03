@@ -37,7 +37,7 @@ properties:
   uid: word!Word.Body#endnotes:member
   package: word!
   fullName: endnotes
-  summary: Obtém a coleção de notas de fim no corpo. Somente leitura.
+  summary: Obtém a coleção de notas de fim no corpo. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: true
   isDeprecated: false
@@ -103,7 +103,7 @@ properties:
   uid: word!Word.Body#footnotes:member
   package: word!
   fullName: footnotes
-  summary: Obtém a coleção de notas de rodapé no corpo. Somente leitura.
+  summary: Obtém a coleção de notas de rodapé no corpo. Apenas leitura.
   remarks: >-
     \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
@@ -158,11 +158,7 @@ properties:
   uid: word!Word.Body#paragraphs:member
   package: word!
   fullName: paragraphs
-  summary: >-
-    Obtém o conjunto de objetos Paragraph presentes no corpo. Somente leitura.
-
-
-    **Importante**: Os parágrafos nas tabelas não são retornados para os conjuntos de requisitos 1.1 e 1.2. No conjunto de requisitos 1.3, parágrafos em tabelas também são retornados.
+  summary: 'Obtém a coleção de objetos de parágrafo no corpo. Apenas leitura. **Importante**: parágrafos em tabelas não são retornados para conjuntos de requisitos 1.1 e 1.2. No conjunto de requisitos 1.3, parágrafos em tabelas também são retornados.'
   remarks: >-
     \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
@@ -230,7 +226,7 @@ properties:
   uid: word!Word.Body#parentBody:member
   package: word!
   fullName: parentBody
-  summary: Obtém o corpo pai do corpo. Por exemplo, o corpo pai do corpo de uma célula de tabela poderia ser um cabeçalho. Ocorre um erro se não houver um corpo pai. Somente leitura.
+  summary: Obtém o corpo pai do corpo. Por exemplo, o corpo pai do corpo de uma célula de tabela poderia ser um cabeçalho. Ocorre um erro se não houver um corpo pai. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -254,7 +250,7 @@ properties:
   uid: word!Word.Body#parentContentControl:member
   package: word!
   fullName: parentContentControl
-  summary: Obtém o controle de conteúdo que inclui o corpo. Lança um erro se não houver um controle de conteúdo pai. Somente leitura.
+  summary: Obtém o controle de conteúdo que inclui o corpo. Lança um erro se não houver um controle de conteúdo pai. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -278,7 +274,7 @@ properties:
   uid: word!Word.Body#parentSection:member
   package: word!
   fullName: parentSection
-  summary: Obtém a seção pai do corpo. Lança um erro se não houver uma seção pai. Somente leitura.
+  summary: Obtém a seção pai do corpo. Lança um erro se não houver uma seção pai. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -446,7 +442,7 @@ methods:
   uid: word!Word.Body#getHtml:member(1)
   package: word!
   fullName: getHtml()
-  summary: Obtém uma representação HTML do objeto body. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use e converta o `Body.getOoxml()` XML retornado em HTML.
+  summary: Obtém uma representação HTML do objeto body. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use `Body.getOoxml()` e converta o XML retornado em HTML.
   remarks: >-
     \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
@@ -1055,7 +1051,35 @@ methods:
   package: word!
   fullName: insertParagraph(paragraphText, insertLocationString)
   summary: Insere um parágrafo no local especificado.
-  remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+  remarks: >-
+    \[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/25-paragraph/insert-formatted-text.yaml
+
+    await Word.run(async (context) => {
+      // Second sentence, let's insert it as a paragraph after the previously inserted one.
+      let secondSentence = context.document.body.insertParagraph(
+        "This is the first text with a custom style.",
+        "End"
+      );
+      secondSentence.font.set({
+        bold: false,
+        italic: true,
+        name: "Berlin Sans FB",
+        color: "blue",
+        size: 30
+      });
+
+      await context.sync();
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -1269,7 +1293,7 @@ methods:
               }): Word.Body;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -1524,7 +1548,7 @@ methods:
   uid: word!Word.Body#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Word.Body original é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.Body original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.BodyData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1537,7 +1561,7 @@ methods:
   uid: word!Word.Body#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1550,7 +1574,7 @@ methods:
   uid: word!Word.Body#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1561,9 +1585,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 5b469c1cc0b2649461c52f120dc6c31afeeb973f
-  ms.sourcegitcommit: 14744f5eb3bb5023d61de44f5042e2e8d63e9a99
+  ms.openlocfilehash: 37510767095c7927faf9f4db9d7ff0303372b710
+  ms.sourcegitcommit: 997292a6842ddd12e944eb27d0e480e0421f2569
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/23/2021
-  ms.locfileid: "61598685"
+  ms.lasthandoff: 02/02/2022
+  ms.locfileid: "62324447"
