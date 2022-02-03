@@ -49,7 +49,7 @@ properties:
   uid: word!Word.ContentControl#color:member
   package: word!
   fullName: color
-  summary: Obtém ou define a cor do controle de conteúdo. A cor é especificada no formato ' \# RRGGBB' ou usando o nome da cor.
+  summary: Obtém ou define a cor do controle de conteúdo. A cor é especificada no formato '\#RRGGBB' ou usando o nome da cor.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -133,11 +133,7 @@ properties:
   uid: word!Word.ContentControl#paragraphs:member
   package: word!
   fullName: paragraphs
-  summary: >-
-    Obtém a coleção de objetos de parágrafo no controle de conteúdo. Somente leitura.
-
-
-    **Importante**: para conjuntos de requisitos 1.1 e 1.2, parágrafos em tabelas totalmente contidas neste controle de conteúdo não são retornados. No conjunto de requisitos 1.3, os parágrafos dessas tabelas também são retornados.
+  summary: 'Obtém a coleção de objetos de parágrafo no controle de conteúdo. Apenas leitura. **Importante**: para os conjuntos de requisitos 1.1 e 1.2, parágrafos em tabelas totalmente contidas neste controle de conteúdo não são retornados. No conjunto de requisitos 1.3, os parágrafos dessas tabelas também são retornados.'
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -185,7 +181,7 @@ properties:
   uid: word!Word.ContentControl#parentTable:member
   package: word!
   fullName: parentTable
-  summary: Obtém a tabela que contém o controle de conteúdo. Lança um erro se ele não estiver contido em uma tabela. Somente leitura.
+  summary: Obtém a tabela que contém o controle de conteúdo. Lança um erro se ele não estiver contido em uma tabela. Apenas leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -237,7 +233,7 @@ properties:
     Obtém ou define o texto do espaço reservado do controle de conteúdo. Quando o controle de conteúdo está vazio, o sistema exibe o texto esmaecido.
 
 
-    **Observação**: a operação de conjunto dessa propriedade não é suportada em Word na Web.
+    **Observação**: a operação de conjunto dessa propriedade não é suportada Word na Web.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -421,7 +417,7 @@ methods:
   uid: word!Word.ContentControl#getHtml:member(1)
   package: word!
   fullName: getHtml()
-  summary: Obtém uma representação HTML do objeto de controle de conteúdo. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use e converta o `ContentControl.getOoxml()` XML retornado em HTML.
+  summary: Obtém uma representação HTML do objeto de controle de conteúdo. Quando renderizado em uma página da Web ou visualizador HTML, a formatação será uma próxima, mas não exata, para a formatação do documento. Esse método não retorna exatamente o mesmo HTML para o mesmo documento em plataformas diferentes (Windows, Mac, Word na Web etc.). Se você precisar de fidelidade exata ou consistência entre plataformas, use `ContentControl.getOoxml()` e converta o XML retornado em HTML.
   remarks: "\\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the content controls collection that contains a specific tag.\n    var contentControlsWithTag = context.document.contentControls.getByTag('Customer-Address');\n    \n    // Queue a command to load the tag property for all of content controls. \n    context.load(contentControlsWithTag, 'tag');\n     \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (contentControlsWithTag.items.length === 0) {\n            console.log('No content control found.');\n        }\n        else {\n            // Queue a command to get the HTML contents of the first content control.\n            var html = contentControlsWithTag.items[0].getHtml();\n        \n            // Synchronize the document state by executing the queued commands, \n            // and return a promise to indicate task completion.\n            return context.sync()\n                .then(function () {\n                    console.log('Content control HTML: ' + html.value);\n            });\n        }\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   isPreview: false
   isDeprecated: false
@@ -879,7 +875,7 @@ methods:
               }): Word.ContentControl;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -1027,7 +1023,7 @@ methods:
   uid: word!Word.ContentControl#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Word.ContentControl original é um objeto API, o método `toJSON` retorna um objeto JavaScript simples (digitado como `Word.Interfaces.ContentControlData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.ContentControl original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.ContentControlData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1040,7 +1036,7 @@ methods:
   uid: word!Word.ContentControl#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1053,7 +1049,7 @@ methods:
   uid: word!Word.ContentControl#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1064,9 +1060,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 44804d557b7b1afb5f299efb9f01b316833173e5
-  ms.sourcegitcommit: ff54d254f5c60765eedbc5bbebab0a56a0a2699a
+  ms.openlocfilehash: b6e386455966a94fbe0035c481ed8bfc1da739f3
+  ms.sourcegitcommit: 997292a6842ddd12e944eb27d0e480e0421f2569
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 11/02/2021
-  ms.locfileid: "60661228"
+  ms.lasthandoff: 02/02/2022
+  ms.locfileid: "62324173"
