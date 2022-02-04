@@ -1,6 +1,6 @@
 ### YamlMime:TSType
 name: Word.Comment
-uid: word!Word.Comment:class
+uid: 'word!Word.Comment:class'
 package: word!
 fullName: Word.Comment
 summary: Representa um comentário no documento.
@@ -9,430 +9,398 @@ isPreview: true
 isDeprecated: false
 type: class
 properties:
-- name: authorEmail
-  uid: word!Word.Comment#authorEmail:member
-  package: word!
-  fullName: authorEmail
-  summary: Obtém o email do autor do comentário.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'readonly authorEmail: string;'
-    return:
-      type: string
-- name: authorName
-  uid: word!Word.Comment#authorName:member
-  package: word!
-  fullName: authorName
-  summary: Obtém o nome do autor do comentário.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'readonly authorName: string;'
-    return:
-      type: string
-- name: content
-  uid: word!Word.Comment#content:member
-  package: word!
-  fullName: content
-  summary: Obtém ou define o conteúdo do comentário como texto sem texto.
-  remarks: >-
-    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+  - name: authorEmail
+    uid: 'word!Word.Comment#authorEmail:member'
+    package: word!
+    fullName: authorEmail
+    summary: Obtém o email do autor do comentário.
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'readonly authorEmail: string;'
+      return:
+        type: string
+  - name: authorName
+    uid: 'word!Word.Comment#authorName:member'
+    package: word!
+    fullName: authorName
+    summary: Obtém o nome do autor do comentário.
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'readonly authorName: string;'
+      return:
+        type: string
+  - name: content
+    uid: 'word!Word.Comment#content:member'
+    package: word!
+    fullName: content
+    summary: Obtém ou define o conteúdo do comentário como texto sem texto.
+    remarks: |-
+      \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
+      #### <a name="examples"></a>Exemplos
 
-    #### <a name="examples"></a>Exemplos
+      ```typescript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      await Word.run(async (context) => {
+        let text = $("#edit-comment-text")
+          .val()
+          .toString();
+        let comment = context.document
+          .getSelection()
+          .getComments()
+          .getFirst();
+        comment.content = text;
 
+        // Load object for display in Script Lab console.
+        comment.load();
+        await context.sync();
 
-    ```typescript
+        console.log("Comment content changed:");
+        console.log(comment);
+      });
+      ```
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'content: string;'
+      return:
+        type: string
+  - name: contentRange
+    uid: 'word!Word.Comment#contentRange:member'
+    package: word!
+    fullName: contentRange
+    summary: Obtém ou define o status do thread de comentário. Um valor verdadeiro significa que o thread de comentário está resolvido.
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'contentRange: Word.CommentContentRange;'
+      return:
+        type: '<xref uid="word!Word.CommentContentRange:class" />'
+  - name: context
+    uid: 'word!Word.Comment#context:member'
+    package: word!
+    fullName: context
+    summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type: '<xref uid="word!Word.RequestContext:class" />'
+  - name: creationDate
+    uid: 'word!Word.Comment#creationDate:member'
+    package: word!
+    fullName: creationDate
+    summary: Obtém a data de criação do comentário.
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'readonly creationDate: Date;'
+      return:
+        type: Date
+  - name: id
+    uid: 'word!Word.Comment#id:member'
+    package: word!
+    fullName: id
+    summary: ID
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type: string
+  - name: replies
+    uid: 'word!Word.Comment#replies:member'
+    package: word!
+    fullName: replies
+    summary: Obtém a coleção de objetos de resposta associados ao comentário.
+    remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'readonly replies: Word.CommentReplyCollection;'
+      return:
+        type: '<xref uid="word!Word.CommentReplyCollection:class" />'
+  - name: resolved
+    uid: 'word!Word.Comment#resolved:member'
+    package: word!
+    fullName: resolved
+    summary: Obtém ou define o status do thread de comentário. A configuração como true resolve o thread de comentário. Obter um valor verdadeiro significa que o thread de comentário está resolvido.
+    remarks: |-
+      \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      #### <a name="examples"></a>Exemplos
 
-    await Word.run(async (context) => {
-      let text = $("#edit-comment-text")
-        .val()
-        .toString();
-      let comment = context.document
-        .getSelection()
-        .getComments()
-        .getFirst();
-      comment.content = text;
+      ```typescript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      await Word.run(async (context) => {
+        let comment = context.document
+          .getSelection()
+          .getComments()
+          .getFirst();
+        comment.load("resolved");
+        await context.sync();
 
-      // Load object for display in Script Lab console.
-      context.load(comment);
-      await context.sync();
+        // Toggle resolved status.
+        // If the comment is active, set as resolved.
+        // If it's resolved, set resolved to false.
+        let toggleResolved: boolean = comment.resolved;
+        comment.resolved = !toggleResolved;
+        comment.load();
+        await context.sync();
 
-      console.log("Comment content changed:");
-      console.log(comment);
-    });
-
-    ```
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'content: string;'
-    return:
-      type: string
-- name: contentRange
-  uid: word!Word.Comment#contentRange:member
-  package: word!
-  fullName: contentRange
-  summary: Obtém ou define o status do thread de comentário. Um valor verdadeiro significa que o thread de comentário está resolvido.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'contentRange: Word.CommentContentRange;'
-    return:
-      type: <xref uid="word!Word.CommentContentRange:class" />
-- name: context
-  uid: word!Word.Comment#context:member
-  package: word!
-  fullName: context
-  summary: O contexto de solicitação associado ao objeto. Isso conecta o processo do Office do aplicativo host.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type: <xref uid="word!Word.RequestContext:class" />
-- name: creationDate
-  uid: word!Word.Comment#creationDate:member
-  package: word!
-  fullName: creationDate
-  summary: Obtém a data de criação do comentário.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'readonly creationDate: Date;'
-    return:
-      type: Date
-- name: id
-  uid: word!Word.Comment#id:member
-  package: word!
-  fullName: id
-  summary: ID
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'readonly id: string;'
-    return:
-      type: string
-- name: replies
-  uid: word!Word.Comment#replies:member
-  package: word!
-  fullName: replies
-  summary: Obtém a coleção de objetos de resposta associados ao comentário.
-  remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'readonly replies: Word.CommentReplyCollection;'
-    return:
-      type: <xref uid="word!Word.CommentReplyCollection:class" />
-- name: resolved
-  uid: word!Word.Comment#resolved:member
-  package: word!
-  fullName: resolved
-  summary: Obtém ou define o status do thread de comentário. A configuração como true resolve o thread de comentário. Obter um valor verdadeiro significa que o thread de comentário está resolvido.
-  remarks: >-
-    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
-
-
-    #### <a name="examples"></a>Exemplos
-
-
-    ```typescript
-
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
-
-    await Word.run(async (context) => {
-      let comment = context.document
-        .getSelection()
-        .getComments()
-        .getFirst();
-      comment.load("resolved");
-      await context.sync();
-
-      // Toggle resolved status.
-      // If the comment is active, set as resolved.
-      // If it's resolved, set resolved to false.
-      let toggleResolved: boolean = comment.resolved;
-      comment.resolved = !toggleResolved;
-      context.load(comment);
-      await context.sync();
-
-      console.log(`Comment Resolved status: ${comment.resolved}`);
-      console.log(comment);
-    });
-
-    ```
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'resolved: boolean;'
-    return:
-      type: boolean
+        console.log(`Comment Resolved status: ${comment.resolved}`);
+        console.log(comment);
+      });
+      ```
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'resolved: boolean;'
+      return:
+        type: boolean
 methods:
-- name: delete()
-  uid: word!Word.Comment#delete:member(1)
-  package: word!
-  fullName: delete()
-  summary: Exclui o comentário e suas respostas.
-  remarks: >-
-    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+  - name: delete()
+    uid: 'word!Word.Comment#delete:member(1)'
+    package: word!
+    fullName: delete()
+    summary: Exclui o comentário e suas respostas.
+    remarks: |-
+      \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
+      #### <a name="examples"></a>Exemplos
 
-    #### <a name="examples"></a>Exemplos
+      ```typescript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      await Word.run(async (context) => {
+        context.document
+          .getSelection()
+          .getComments()
+          .getFirst()
+          .delete();
+        await context.sync();
 
+        console.log("Comment deleted");
+      });
+      ```
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type: void
+        description: ''
+  - name: getRange()
+    uid: 'word!Word.Comment#getRange:member(1)'
+    package: word!
+    fullName: getRange()
+    summary: Obtém o intervalo no documento principal em que o comentário está.
+    remarks: |-
+      \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
-    ```typescript
+      #### <a name="examples"></a>Exemplos
 
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      ```typescript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      await Word.run(async (context) => {
+        let range = context.document
+          .getSelection()
+          .getComments()
+          .getFirst()
+          .getRange();
+        range.load("text");
+        await context.sync();
 
-    await Word.run(async (context) => {
-      context.document
-        .getSelection()
-        .getComments()
-        .getFirst()
-        .delete();
-      await context.sync();
-
-      console.log("Comment deleted");
-    });
-
-    ```
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'delete(): void;'
-    return:
-      type: void
-      description: ''
-- name: getRange()
-  uid: word!Word.Comment#getRange:member(1)
-  package: word!
-  fullName: getRange()
-  summary: Obtém o intervalo no documento principal em que o comentário está.
-  remarks: >-
-    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
-
-
-    #### <a name="examples"></a>Exemplos
-
-
-    ```typescript
-
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
-
-    await Word.run(async (context) => {
-      let range = context.document
-        .getSelection()
-        .getComments()
-        .getFirst()
-        .getRange();
-      range.load("text");
-      await context.sync();
-
-      console.log(`Comment location: ${range.text}`);
-    });
-
-    ```
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'getRange(): Word.Range;'
-    return:
-      type: <xref uid="word!Word.Range:class" />
-      description: ''
-- name: load(options)
-  uid: word!Word.Comment#load:member(1)
-  package: word!
-  fullName: load(options)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'load(options?: Word.Interfaces.CommentLoadOptions): Word.Comment;'
-    parameters:
-    - id: options
-      description: Fornece opções para quais propriedades do objeto deve ser carregado.
-      type: <xref uid="word!Word.Interfaces.CommentLoadOptions:interface" />
-    return:
-      type: <xref uid="word!Word.Comment:class" />
-      description: ''
-- name: load(propertyNames)
-  uid: word!Word.Comment#load:member(2)
-  package: word!
-  fullName: load(propertyNames)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'load(propertyNames?: string | string[]): Word.Comment;'
-    parameters:
-    - id: propertyNames
-      description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
-      type: string | string[]
-    return:
-      type: <xref uid="word!Word.Comment:class" />
-      description: ''
-- name: load(propertyNamesAndPaths)
-  uid: word!Word.Comment#load:member(3)
-  package: word!
-  fullName: load(propertyNamesAndPaths)
-  summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: >-
-      load(propertyNamesAndPaths?: {
-                  select?: string;
-                  expand?: string;
-              }): Word.Comment;
-    parameters:
-    - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
-      type: >-
-        {
+        console.log(`Comment location: ${range.text}`);
+      });
+      ```
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'getRange(): Word.Range;'
+      return:
+        type: '<xref uid="word!Word.Range:class" />'
+        description: ''
+  - name: load(options)
+    uid: 'word!Word.Comment#load:member(1)'
+    package: word!
+    fullName: load(options)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'load(options?: Word.Interfaces.CommentLoadOptions): Word.Comment;'
+      parameters:
+        - id: options
+          description: Fornece opções para quais propriedades do objeto deve ser carregado.
+          type: '<xref uid="word!Word.Interfaces.CommentLoadOptions:interface" />'
+      return:
+        type: '<xref uid="word!Word.Comment:class" />'
+        description: ''
+  - name: load(propertyNames)
+    uid: 'word!Word.Comment#load:member(2)'
+    package: word!
+    fullName: load(propertyNames)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.Comment;'
+      parameters:
+        - id: propertyNames
+          description: Uma cadeia de caracteres delimitada por vírgulas ou uma matriz de cadeias de caracteres que especificam as propriedades a ser carregadas.
+          type: 'string | string[]'
+      return:
+        type: '<xref uid="word!Word.Comment:class" />'
+        description: ''
+  - name: load(propertyNamesAndPaths)
+    uid: 'word!Word.Comment#load:member(3)'
+    package: word!
+    fullName: load(propertyNamesAndPaths)
+    summary: Coloca um comando na fila para carregar as propriedades especificadas do objeto. Você deve chamar `context.sync()` antes de ler as propriedades.
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: |-
+        load(propertyNamesAndPaths?: {
                     select?: string;
                     expand?: string;
-                }
-    return:
-      type: <xref uid="word!Word.Comment:class" />
-      description: ''
-- name: reply(replyText)
-  uid: word!Word.Comment#reply:member(1)
-  package: word!
-  fullName: reply(replyText)
-  summary: Adiciona uma nova resposta ao final do thread de comentário.
-  remarks: >-
-    \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
+                }): Word.Comment;
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
+          type: |-
+            {
+                        select?: string;
+                        expand?: string;
+                    }
+      return:
+        type: '<xref uid="word!Word.Comment:class" />'
+        description: ''
+  - name: reply(replyText)
+    uid: 'word!Word.Comment#reply:member(1)'
+    package: word!
+    fullName: reply(replyText)
+    summary: Adiciona uma nova resposta ao final do thread de comentário.
+    remarks: |-
+      \[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]
 
+      #### <a name="examples"></a>Exemplos
 
-    #### <a name="examples"></a>Exemplos
-
-
-    ```typescript
-
-    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
-
-    await Word.run(async (context) => {
-      let text = $("#reply-text")
-        .val()
-        .toString();
-      let comments = context.document.getSelection().getComments();
-      comments.load("items");
-      await context.sync();
-      let firstActiveComment = comments.items.find((item) => item.resolved !== true);
-      if (firstActiveComment) {
-        let reply = firstActiveComment.reply(text);
-        console.log("Reply added");
-      } else {
-        console.log("No active comment was found in the selection so couldn't reply.");
-      }
-    });
-
-    ```
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'reply(replyText: string): Word.CommentReply;'
-    parameters:
-    - id: replyText
-      description: Obrigatório. Texto de resposta.
-      type: string
-    return:
-      type: <xref uid="word!Word.CommentReply:class" />
-      description: ''
-- name: set(properties, options)
-  uid: word!Word.Comment#set:member(1)
-  package: word!
-  fullName: set(properties, options)
-  summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'set(properties: Interfaces.CommentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    parameters:
-    - id: properties
-      description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
-      type: <xref uid="word!Word.Interfaces.CommentUpdateData:interface" />
-    - id: options
-      description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
-      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
-    return:
-      type: void
-      description: ''
-- name: set(properties)
-  uid: word!Word.Comment#set:member(2)
-  package: word!
-  fullName: set(properties)
-  summary: Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'set(properties: Word.Comment): void;'
-    parameters:
-    - id: properties
-      description: ''
-      type: <xref uid="word!Word.Comment:class" />
-    return:
-      type: void
-      description: ''
-- name: toJSON()
-  uid: word!Word.Comment#toJSON:member(1)
-  package: word!
-  fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.Comment original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.CommentData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'toJSON(): Word.Interfaces.CommentData;'
-    return:
-      type: <xref uid="word!Word.Interfaces.CommentData:interface" />
-      description: ''
-- name: track()
-  uid: word!Word.Comment#track:member(1)
-  package: word!
-  fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'track(): Word.Comment;'
-    return:
-      type: <xref uid="word!Word.Comment:class" />
-      description: ''
-- name: untrack()
-  uid: word!Word.Comment#untrack:member(1)
-  package: word!
-  fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
-  remarks: ''
-  isPreview: true
-  isDeprecated: false
-  syntax:
-    content: 'untrack(): Word.Comment;'
-    return:
-      type: <xref uid="word!Word.Comment:class" />
-      description: ''
-extends: <xref uid="office!OfficeExtension.ClientObject:class" />
-metadata:
-  ms.openlocfilehash: da08202ce6860574c1615045f26cea06a448c397
-  ms.sourcegitcommit: 997292a6842ddd12e944eb27d0e480e0421f2569
-  ms.translationtype: MT
-  ms.contentlocale: pt-BR
-  ms.lasthandoff: 02/02/2022
-  ms.locfileid: "62324587"
+      ```typescript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/word/99-preview-apis/manage-comments.yaml
+      await Word.run(async (context) => {
+        let text = $("#reply-text")
+          .val()
+          .toString();
+        let comments = context.document.getSelection().getComments();
+        comments.load("items");
+        await context.sync();
+        let firstActiveComment = comments.items.find((item) => item.resolved !== true);
+        if (firstActiveComment) {
+          let reply = firstActiveComment.reply(text);
+          console.log("Reply added");
+        } else {
+          console.log("No active comment was found in the selection so couldn't reply.");
+        }
+      });
+      ```
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'reply(replyText: string): Word.CommentReply;'
+      parameters:
+        - id: replyText
+          description: Obrigatório. Texto de resposta.
+          type: string
+      return:
+        type: '<xref uid="word!Word.CommentReply:class" />'
+        description: ''
+  - name: 'set(properties, options)'
+    uid: 'word!Word.Comment#set:member(1)'
+    package: word!
+    fullName: 'set(properties, options)'
+    summary: Define várias propriedades de um objeto ao mesmo tempo. Você pode passar um objeto simples com as propriedades apropriadas ou outro objeto API do mesmo tipo.
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'set(properties: Interfaces.CommentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      parameters:
+        - id: properties
+          description: Um objeto JavaScript com propriedades estruturadas isomorficamente para as propriedades do objeto no qual o método é chamado.
+          type: '<xref uid="word!Word.Interfaces.CommentUpdateData:interface" />'
+        - id: options
+          description: Fornece uma opção para suprimir erros se o objeto properties tentar definir qualquer propriedade somente leitura.
+          type: '<xref uid="office!OfficeExtension.UpdateOptions:interface" />'
+      return:
+        type: void
+        description: ''
+  - name: set(properties)
+    uid: 'word!Word.Comment#set:member(2)'
+    package: word!
+    fullName: set(properties)
+    summary: 'Define várias propriedades no objeto ao mesmo tempo, com base em um objeto carregado existente.'
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'set(properties: Word.Comment): void;'
+      parameters:
+        - id: properties
+          description: ''
+          type: '<xref uid="word!Word.Comment:class" />'
+      return:
+        type: void
+        description: ''
+  - name: toJSON()
+    uid: 'word!Word.Comment#toJSON:member(1)'
+    package: word!
+    fullName: toJSON()
+    summary: 'Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.Comment original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.CommentData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.'
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'toJSON(): Word.Interfaces.CommentData;'
+      return:
+        type: '<xref uid="word!Word.Interfaces.CommentData:interface" />'
+        description: ''
+  - name: track()
+    uid: 'word!Word.Comment#track:member(1)'
+    package: word!
+    fullName: track()
+    summary: 'Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.'
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'track(): Word.Comment;'
+      return:
+        type: '<xref uid="word!Word.Comment:class" />'
+        description: ''
+  - name: untrack()
+    uid: 'word!Word.Comment#untrack:member(1)'
+    package: word!
+    fullName: untrack()
+    summary: 'Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.'
+    remarks: ''
+    isPreview: true
+    isDeprecated: false
+    syntax:
+      content: 'untrack(): Word.Comment;'
+      return:
+        type: '<xref uid="word!Word.Comment:class" />'
+        description: ''
+extends: '<xref uid="office!OfficeExtension.ClientObject:class" />'

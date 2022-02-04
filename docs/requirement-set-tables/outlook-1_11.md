@@ -1,4 +1,4 @@
 | Classe | Campos | Descrição |
 |:---|:---|:---|
-|[AppointmentCompose](/javascript/api/outlook/outlook.appointmentcompose)|[sessionData](/javascript/api/outlook/outlook.appointmentcompose#sessionData)|Gerencia o {@link Office. SessionData | SessionData} de um item no modo Redação.|
-|[MessageCompose](/javascript/api/outlook/outlook.messagecompose)|[sessionData](/javascript/api/outlook/outlook.messagecompose#sessionData)|Gerencia o {@link Office. SessionData | SessionData} de um item no modo Redação.|
+|[AppointmentCompose](/javascript/api/outlook/office.appointmentcompose)|[sessionData](/javascript/api/outlook/office.appointmentcompose#outlook-office-appointmentcompose-sessiondata-member)|Gerencia o {@link Office. SessionData | SessionData} de um item no modo Redação.|
+|[MessageCompose](/javascript/api/outlook/office.messagecompose)|[sessionData](/javascript/api/outlook/office.messagecompose#outlook-office-messagecompose-sessiondata-member)|Gerencia o {@link Office. SessionData | SessionData} de um item no modo Redação.|
