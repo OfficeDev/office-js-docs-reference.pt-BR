@@ -4,7 +4,7 @@ uid: office!Office.Actions:interface
 package: office!
 fullName: Office.Actions
 summary: Gerencia ações e atalhos de teclado.
-remarks: ''
+remarks: '**Conjunto de requisitos**: [SharedRuntime 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/shared-runtime-requirement-sets)'
 isPreview: false
 isDeprecated: false
 type: interface
@@ -14,7 +14,7 @@ properties:
   package: office!
   fullName: associate
   summary: Associa a ID de uma ação a uma função.
-  remarks: ''
+  remarks: '**Conjunto de requisitos**: [SharedRuntime 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/shared-runtime-requirement-sets)'
   isPreview: false
   isDeprecated: false
   syntax:
@@ -27,7 +27,7 @@ methods:
   package: office!
   fullName: areShortcutsInUse(shortcuts)
   summary: Verifica se um conjunto de combinações de atalhos está em uso para o usuário, conforme definido por outro complemento ou pelo aplicativo Office host.
-  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  remarks: '**Conjunto de requisitos**: [KeyboardShortcuts 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/keyboard-shortcuts-requirement-sets)'
   isPreview: true
   isDeprecated: false
   syntax:
@@ -38,13 +38,13 @@ methods:
       type: string[]
     return:
       type: 'Promise&lt;{shortcut: string, inUse: boolean}[]&gt;'
-      description: Uma promessa que resolve uma matriz de objetos. Cada objeto consiste em uma combinação de atalho e um valor Boolean. O valor é se a combinação de atalho entrar em conflito com um atalho de outro add-in ou com um atalho do aplicativo Office `true` de atalho; caso contrário,`false`<!-- -->. Por exemplo, `[{shortcut:"Ctrl+1", inUse:true},{shortcut:"Ctrl+2", inUse:false}]`<!-- -->.
+      description: Uma promessa que resolve uma matriz de objetos. Cada objeto consiste em uma combinação de atalho e um valor Boolean. O valor é `true` se a combinação de atalho entrar em conflito com um atalho de outro add-in ou com um atalho do aplicativo Office de atalho; caso contrário,`false`<!-- -->. Por exemplo, `[{shortcut:"Ctrl+1", inUse:true},{shortcut:"Ctrl+2", inUse:false}]`<!-- -->.
 - name: getShortcuts()
   uid: office!Office.Actions#getShortcuts:member(1)
   package: office!
   fullName: getShortcuts()
-  summary: Obtém os atalhos existentes para o complemento. O conjunto sempre inclui (1) os atalhos definidos no manifesto estendido do complemento para atalhos de teclado e (2) os atalhos personalizados do usuário atual, se eles existirem. O atalho pode ser se ele entrar em conflito com o atalho de outro `null` add-in ou com o Office aplicativo. Especificamente, seria se, quando solicitado a escolher qual atalho usar, o usuário não escolhesse a ação `null` do complemento atual. Para obter mais informações sobre conflitos com atalhos, consulte [Avoid key combinations in use by other add-ins](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts#avoid-key-combinations-in-use-by-other-add-ins)<!-- -->.
-  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  summary: Obtém os atalhos existentes para o complemento. O conjunto sempre inclui (1) os atalhos definidos no manifesto estendido do complemento para atalhos de teclado e (2) os atalhos personalizados do usuário atual, se eles existirem. O atalho pode ser `null` se ele entrar em conflito com o atalho de outro add-in ou com o Office aplicativo. Especificamente, seria se `null` , quando solicitado a escolher qual atalho usar, o usuário não escolhesse a ação do complemento atual. Para obter mais informações sobre conflitos com atalhos, consulte [Avoid key combinations in use by other add-ins](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts#avoid-key-combinations-in-use-by-other-add-ins)<!-- -->.
+  remarks: '**Conjunto de requisitos**: [KeyboardShortcuts 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/keyboard-shortcuts-requirement-sets)'
   isPreview: true
   isDeprecated: false
   syntax:
@@ -57,22 +57,22 @@ methods:
   package: office!
   fullName: replaceShortcuts(shortcuts)
   summary: Substitui atalhos de add-in existentes por atalhos personalizados para o usuário.
-  remarks: '**Conjunto de requisitos**: KeyboardShortcuts 1.1'
+  remarks: '**Conjunto de requisitos**: [KeyboardShortcuts 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/keyboard-shortcuts-requirement-sets)'
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'replaceShortcuts(shortcuts: {[actionId: string]: string}): Promise<void>;'
     parameters:
     - id: shortcuts
-      description: 'Um objeto de atalhos personalizados com chaves sendo as IDs das ações (conforme definido em um manifesto estendido) e valores sendo as combinações de atalho. Por exemplo, `{"SetItalic": "Ctrl+1", "SetBold": "Ctrl+2"}`<!-- -->. Para saber como especificar uma ID de ação válida e uma combinação de [teclas,](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts) consulte Adicionar atalhos de teclado personalizados aos seus Office de usuário<!-- -->. (Observe que uma combinação de teclas pode ser `null`<!-- -->, nesse caso, a ação mantém a combinação de teclas especificada no arquivo JSON.)'
+      description: 'Um objeto de atalhos personalizados com chaves sendo as IDs das ações (conforme definido em um manifesto estendido) e valores sendo as combinações de atalho. Por exemplo, `{"SetItalic": "Ctrl+1", "SetBold": "Ctrl+2"}`<!-- -->. Para saber como especificar uma ID de ação válida e uma combinação de teclas, consulte [Adicionar atalhos de teclado personalizados](https://docs.microsoft.com/office/dev/add-ins/design/keyboard-shortcuts) aos seus Office de usuário<!-- -->. (Observe que uma combinação de teclas pode ser `null`<!-- -->, nesse caso, a ação mantém a combinação de teclas especificada no arquivo JSON.)'
       type: '{[actionId: string]: string}'
     return:
       type: Promise&lt;void&gt;
-      description: Uma promessa que resolve quando cada atribuição de atalho personalizada `shortcuts` em foi registrada. Mesmo que haja um conflito com atalhos existentes, o atalho personalizado será registrado. Caso contrário, a promessa será rejeitada com código de erro e mensagem de erro. Um código de erro "InvalidOperation" é retornado se qualquer ID de ação em não existir ou se a combinação de atalho `shortcuts` for inválida.
+      description: Uma promessa que resolve quando cada atribuição de atalho personalizada `shortcuts` em foi registrada. Mesmo que haja um conflito com atalhos existentes, o atalho personalizado será registrado. Caso contrário, a promessa será rejeitada com código de erro e mensagem de erro. Um código de erro "InvalidOperation" é retornado se qualquer ID `shortcuts` de ação em não existir ou se a combinação de atalho for inválida.
 metadata:
-  ms.openlocfilehash: f9e1c6a36ec648c8dce728f6a8789c7479aa0c9b
-  ms.sourcegitcommit: 76fc791ac5804a15c94eb5d93d21116dc6ffe753
+  ms.openlocfilehash: 1bc0231ade91b68d62b1cd0efee5d2aa333540d8
+  ms.sourcegitcommit: 4df843325f40111a29f85b605bc2b17bb2e050c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 10/15/2021
-  ms.locfileid: "60377303"
+  ms.lasthandoff: 02/09/2022
+  ms.locfileid: "62466380"
