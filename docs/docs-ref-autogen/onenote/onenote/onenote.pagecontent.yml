@@ -130,9 +130,9 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
-    OneNote.run(function (context) {
+    await OneNote.run(async (context) => {
 
         var page = context.application.getActivePage();
         var pageContents = page.contents;
@@ -141,19 +141,10 @@ methods:
         firstPageContent.load('type');
 
         // Run the queued commands, and return a promise to indicate task completion.
-        return context.sync()
-            .then(function () {
-                if(firstPageContent.isNull === false) {
-                    firstPageContent.delete();
-                    return context.sync();
-                }
-            });
-    })
-
-    .catch(function(error) {
-        console.log("Error: " + error);
-        if (error instanceof OfficeExtension.Error) {
-            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        await context.sync();
+        if (firstPageContent.isNullObject === false) {
+            firstPageContent.delete();
+            await context.sync();
         }
     });
 
@@ -215,7 +206,7 @@ methods:
               }): OneNote.PageContent;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -265,7 +256,7 @@ methods:
   uid: onenote!OneNote.PageContent#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original OneNote. Objeto PageContent é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.PageContentData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original OneNote. Objeto PageContent é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.PageContentData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -278,7 +269,7 @@ methods:
   uid: onenote!OneNote.PageContent#track:member(1)
   package: onenote!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -291,7 +282,7 @@ methods:
   uid: onenote!OneNote.PageContent#untrack:member(1)
   package: onenote!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -302,9 +293,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 8b40062e693c7861e8b330b1de5834d50873173b
-  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
+  ms.openlocfilehash: a950dcb1d625fabd4decadf9142fdb019ac3a6c4
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/15/2021
-  ms.locfileid: "61518681"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62843933"

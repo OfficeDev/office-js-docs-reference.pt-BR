@@ -61,7 +61,7 @@ properties:
   uid: word!Word.InlinePicture#hyperlink:member
   package: word!
   fullName: hyperlink
-  summary: Obtém ou define um hiperlink na imagem. Use um ' \# ' para separar a parte de endereço da parte de local opcional.
+  summary: Obtém ou define um hiperlink na imagem. Use um '\#' para separar a parte de endereço da parte de local opcional.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -245,7 +245,7 @@ methods:
   package: word!
   fullName: getNext()
   summary: Obtém a próxima imagem embutida. Lançará um erro se essa imagem em linha for a última.
-  remarks: "\\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (firstPicture.isNullObject) {\n            console.log('There are no inline pictures in this document.')\n        } else {\n            console.log(firstPicture.altTextTitle);\n        }\n    });   \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nawait Word.run(async (context) => {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    await context.sync();\n    if (firstPicture.isNullObject) {\n        console.log('There are no inline pictures in this document.')\n    } else {\n        console.log(firstPicture.altTextTitle);\n    }\n}); \n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -258,7 +258,7 @@ methods:
   package: word!
   fullName: getNextOrNullObject()
   summary: Obtém a próxima imagem embutida. Retorna um objeto nulo se essa imagem em linha for a última.
-  remarks: "\\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        if (firstPicture.isNullObject) {\n            console.log('There are no inline pictures in this document.')\n        } else {\n            console.log(firstPicture.altTextTitle);\n        }\n    });   \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// To use this snippet, add an inline picture to the document and assign it an alt text title.\n// Run a batch operation against the Word object model.\nawait Word.run(async (context) => {\n    \n    // Create a proxy object for the first inline picture.\n    var firstPicture = context.document.body.inlinePictures.getFirstOrNullObject();\n\n    // Queue a command to load the alternative text title of the picture.\n    context.load(firstPicture, 'altTextTitle');\n\n    // Synchronize the document state by executing the queued commands,\n    // and return a promise to indicate task completion.\n    await context.sync();\n    if (firstPicture.isNullObject) {\n        console.log('There are no inline pictures in this document.')\n    } else {\n        console.log(firstPicture.altTextTitle);\n    }\n}); \n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -643,7 +643,7 @@ methods:
               }): Word.InlinePicture;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -727,7 +727,7 @@ methods:
   uid: word!Word.InlinePicture#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto Word.InlinePicture original é um objeto API, o método retorna um `toJSON` objeto JavaScript simples (digitado como `Word.Interfaces.InlinePictureData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto Word.InlinePicture original é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como `Word.Interfaces.InlinePictureData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -740,7 +740,7 @@ methods:
   uid: word!Word.InlinePicture#track:member(1)
   package: word!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -753,7 +753,7 @@ methods:
   uid: word!Word.InlinePicture#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -764,9 +764,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 854df5bc8c7d8b34181bc1babdb8138322da93d7
-  ms.sourcegitcommit: 99af6ef6ec4bcc36262b4e532e212d14eabdbccb
+  ms.openlocfilehash: 1458f7d85222480d13f821e3cb568850757df84e
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 10/01/2021
-  ms.locfileid: "60050367"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62842086"
