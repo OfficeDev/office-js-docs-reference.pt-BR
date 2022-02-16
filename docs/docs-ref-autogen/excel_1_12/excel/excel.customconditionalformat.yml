@@ -58,7 +58,7 @@ properties:
   uid: excel!Excel.CustomConditionalFormat#rule:member
   package: excel!
   fullName: rule
-  summary: Especifica o `Rule` objeto nesse formato condicional.
+  summary: Especifica o objeto `Rule` nesse formato condicional.
   remarks: >-
     \[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
@@ -66,24 +66,19 @@ properties:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
-    Excel.run(function (ctx) {
-        var sheet = ctx.workbook.worksheets.getActiveWorksheet();
+    await Excel.run(async (context) => {
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
         var range = sheet.getRange("A1:A5");
         range.values = [[1], [20], [""], [5], ["test"]];
         var cf = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);
         var cfCustom = cf.customOrNullObject;
         cfCustom.rule.formula = "=ISBLANK(A1)";
         cfCustom.format.fill.color = "#00FF00";
-        return ctx.sync().then(function () {
-            console.log("Added new custom conditional format highlighting all blank cells.");
-        });
-    }).catch(function (error) {
-        console.log("Error: " + error);
-        if (error instanceof OfficeExtension.Error) {
-            console.log("Debug info: " + JSON.stringify(error.debugInfo));
-        }
+        await context.sync()
+
+        console.log("Added new custom conditional format highlighting all blank cells.");
     });
 
     ```
@@ -144,7 +139,7 @@ methods:
               }): Excel.CustomConditionalFormat;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -194,7 +189,7 @@ methods:
   uid: excel!Excel.CustomConditionalFormat#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto CustomConditionalFormat é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CustomConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto CustomConditionalFormat é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.CustomConditionalFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -205,9 +200,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: df07016383e0a03de9fc1ef208d2a0281f40c3b5
-  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
+  ms.openlocfilehash: 1c2ef24a7f2ce6cbd42f13b5bc8b5efa248cf3d9
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 09/24/2021
-  ms.locfileid: "59665894"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62838451"

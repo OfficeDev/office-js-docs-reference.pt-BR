@@ -43,7 +43,7 @@ properties:
   uid: word!Word.Paragraph#contentControls:member
   package: word!
   fullName: contentControls
-  summary: Obtém a coleção de objetos de controle de conteúdo no parágrafo. Apenas leitura.
+  summary: Obtém a coleção de objetos de controle de conteúdo no parágrafo. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -67,7 +67,7 @@ properties:
   uid: word!Word.Paragraph#endnotes:member
   package: word!
   fullName: endnotes
-  summary: Obtém a coleção de notas de fim no parágrafo. Apenas leitura.
+  summary: Obtém a coleção de notas de fim no parágrafo. Somente leitura.
   remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: true
   isDeprecated: false
@@ -103,7 +103,7 @@ properties:
   uid: word!Word.Paragraph#footnotes:member
   package: word!
   fullName: footnotes
-  summary: Obtém a coleção de notas de rodapé no parágrafo. Apenas leitura.
+  summary: Obtém a coleção de notas de rodapé no parágrafo. Somente leitura.
   remarks: '\[[Conjunto de API: WordApiOnline BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: true
   isDeprecated: false
@@ -235,7 +235,7 @@ properties:
   uid: word!Word.Paragraph#list:member
   package: word!
   fullName: list
-  summary: Obtém a lista à qual pertence esse parágrafo. Lançará um erro se o parágrafo não estiver em uma lista. Apenas leitura.
+  summary: Obtém a lista à qual pertence esse parágrafo. Lançará um erro se o parágrafo não estiver em uma lista. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -247,7 +247,7 @@ properties:
   uid: word!Word.Paragraph#listItem:member
   package: word!
   fullName: listItem
-  summary: Obtém o ListItem para o parágrafo. Ocorre um erro se o parágrafo não faz parte de uma lista. Apenas leitura.
+  summary: Obtém o ListItem para o parágrafo. Ocorre um erro se o parágrafo não faz parte de uma lista. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -307,7 +307,7 @@ properties:
   uid: word!Word.Paragraph#parentContentControl:member
   package: word!
   fullName: parentContentControl
-  summary: Obtém o controle de conteúdo que inclui o parágrafo. Lança um erro se não houver um controle de conteúdo pai. Apenas leitura.
+  summary: Obtém o controle de conteúdo que inclui o parágrafo. Lança um erro se não houver um controle de conteúdo pai. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -319,7 +319,7 @@ properties:
   uid: word!Word.Paragraph#parentContentControlOrNullObject:member
   package: word!
   fullName: parentContentControlOrNullObject
-  summary: Obtém o controle de conteúdo que inclui o parágrafo. Retorna um objeto nulo se não houver um controle de conteúdo pai. Apenas leitura.
+  summary: Obtém o controle de conteúdo que inclui o parágrafo. Retorna um objeto nulo se não houver um controle de conteúdo pai. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -331,7 +331,7 @@ properties:
   uid: word!Word.Paragraph#parentTable:member
   package: word!
   fullName: parentTable
-  summary: Obtém a tabela que contém o parágrafo. Lança um erro se ele não estiver contido em uma tabela. Apenas leitura.
+  summary: Obtém a tabela que contém o parágrafo. Lança um erro se ele não estiver contido em uma tabela. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -343,7 +343,7 @@ properties:
   uid: word!Word.Paragraph#parentTableCell:member
   package: word!
   fullName: parentTableCell
-  summary: Obtém a célula de tabela que contém o parágrafo. Lança um erro se ele não estiver contido em uma célula de tabela. Apenas leitura.
+  summary: Obtém a célula de tabela que contém o parágrafo. Lança um erro se ele não estiver contido em uma célula de tabela. Somente leitura.
   remarks: '\[[Conjunto de API: WordApi 1.3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -530,11 +530,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -544,24 +544,15 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to clear the contents of the first paragraph.
-            paragraphs.items[0].clear();
+        // Queue a command to clear the contents of the first paragraph.
+        paragraphs.items[0].clear();
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Cleared the contents of the first paragraph.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Cleared the contents of the first paragraph.');
     });
 
     ```
@@ -584,11 +575,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -598,24 +589,15 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to delete the first paragraph.
-            paragraphs.items[0].delete();
+        // Queue a command to delete the first paragraph.
+        paragraphs.items[0].delete();
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Deleted the first paragraph.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Deleted the first paragraph.');
     });
 
     ```
@@ -664,11 +646,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -678,24 +660,15 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a a set of commands to get the HTML of the first paragraph.
-            var html = paragraphs.items[0].getHtml();
+        // Queue a set of commands to get the HTML of the first paragraph.
+        var html = paragraphs.items[0].getHtml();
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Paragraph HTML: ' + html.value);
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Paragraph HTML: ' + html.value);
     });
 
     ```
@@ -744,11 +717,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -758,24 +731,15 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a a set of commands to get the OOXML of the first paragraph.
-            var ooxml = paragraphs.items[0].getOoxml();
+        // Queue a set of commands to get the OOXML of the first paragraph.
+        var ooxml = paragraphs.items[0].getOoxml();
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Paragraph OOXML: ' + ooxml.value);
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Paragraph OOXML: ' + ooxml.value);
     });
 
     ```
@@ -811,11 +775,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -825,29 +789,22 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue commands to create a proxy object for the next-to-last paragraph.
-            var indexOfLastParagraph = paragraphs.items.length - 1;
-            var precedingParagraph = paragraphs.items[indexOfLastParagraph].getPreviousOrNullObject();
+        // Queue commands to create a proxy object for the next-to-last paragraph.
+        var indexOfLastParagraph = paragraphs.items.length - 1;
+        var precedingParagraph = paragraphs.items[indexOfLastParagraph].getPreviousOrNullObject();
 
-            // Queue a command to load the text of the preceding paragraph.
-            context.load(precedingParagraph, 'text');
+        // Queue a command to load the text of the preceding paragraph.
+        context.load(precedingParagraph, 'text');
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                if (precedingParagraph.isNullObject) {
-                    console.log('There are no paragraphs before the current one.');
-                } else {
-                    console.log('The preceding paragraph is: ' + precedingParagraph.text);
-                }
-            });
-        });
-    }).catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        if (precedingParagraph.isNullObject) {
+            console.log('There are no paragraphs before the current one.');
+        } else {
+            console.log('The preceding paragraph is: ' + precedingParagraph.text);
         }
     });
 
@@ -997,11 +954,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -1012,27 +969,18 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to get the first paragraph.
-            var paragraph = paragraphs.items[0];
+        // Queue a command to get the first paragraph.
+        var paragraph = paragraphs.items[0];
 
-            // Queue a command to insert a page break after the first paragraph.
-            paragraph.insertBreak('page', 'After');
+        // Queue a command to insert a page break after the first paragraph.
+        paragraph.insertBreak(Word.BreakType.page, Word.InsertLocation.after);
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Inserted a page break after the paragraph.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Inserted a page break after the paragraph.');
     });
 
     ```
@@ -1062,11 +1010,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -1077,27 +1025,18 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to get the first paragraph.
-            var paragraph = paragraphs.items[0];
+        // Queue a command to get the first paragraph.
+        var paragraph = paragraphs.items[0];
 
-            // Queue a command to wrap the first paragraph in a rich text content control.
-            paragraph.insertContentControl();
+        // Queue a command to wrap the first paragraph in a rich text content control.
+        paragraph.insertContentControl();
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Wrapped the first paragraph in a content control.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Wrapped the first paragraph in a content control.');
     });
 
     ```
@@ -1160,11 +1099,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -1175,27 +1114,18 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to get the first paragraph.
-            var paragraph = paragraphs.items[0];
+        // Queue a command to get the first paragraph.
+        var paragraph = paragraphs.items[0];
 
-            // Queue a command to insert HTML content at the end of the first paragraph.
-            paragraph.insertHtml('<strong>Inserted HTML.</strong>', Word.InsertLocation.end);
+        // Queue a command to insert HTML content at the end of the first paragraph.
+        paragraph.insertHtml('<strong>Inserted HTML.</strong>', Word.InsertLocation.end);
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Inserted HTML content at the end of the first paragraph.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Inserted HTML content at the end of the first paragraph.');
     });
 
     ```
@@ -1245,11 +1175,11 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
     // Run a batch operation against the Word object model.
 
-    Word.run(function (context) {
+    await Word.run(async (context) => {
 
         // Create a proxy object for the paragraphs collection.
         var paragraphs = context.document.body.paragraphs;
@@ -1259,29 +1189,20 @@ methods:
 
         // Synchronize the document state by executing the queued commands,
         // and return a promise to indicate task completion.
-        return context.sync().then(function () {
+        await context.sync();
 
-            // Queue a command to get the first paragraph.
-            var paragraph = paragraphs.items[0];
+        // Queue a command to get the first paragraph.
+        var paragraph = paragraphs.items[0];
 
-            var b64encodedImg = "iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAIAAAAxEEnAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACFSURBVDhPtY1BEoQwDMP6/0+XgIMTBAeYoTqso9Rkx1zG+tNj1H94jgGzeNSjteO5vtQQuG2seO0av8LzGbe3anzRoJ4ybm/VeKEerAEbAUpW4aWQCmrGFWykRzGBCnYy2ha3oAIq2MloW9yCCqhgJ6NtcQsqoIKdjLbFLaiACnYyf2fODbrjZcXfr2F4AAAAAElFTkSuQmCC";
+        var b64encodedImg = "iVBORw0KGgoAAAANSUhEUgAAAB4AAAANCAIAAAAxEEnAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACFSURBVDhPtY1BEoQwDMP6/0+XgIMTBAeYoTqso9Rkx1zG+tNj1H94jgGzeNSjteO5vtQQuG2seO0av8LzGbe3anzRoJ4ybm/VeKEerAEbAUpW4aWQCmrGFWykRzGBCnYy2ha3oAIq2MloW9yCCqhgJ6NtcQsqoIKdjLbFLaiACnYyf2fODbrjZcXfr2F4AAAAAElFTkSuQmCC";
 
-            // Queue a command to insert a base64 encoded image at the beginning of the first paragraph.
-            paragraph.insertInlinePictureFromBase64(b64encodedImg, Word.InsertLocation.start);
+        // Queue a command to insert a base64 encoded image at the beginning of the first paragraph.
+        paragraph.insertInlinePictureFromBase64(b64encodedImg, Word.InsertLocation.start);
 
-            // Synchronize the document state by executing the queued commands,
-            // and return a promise to indicate task completion.
-            return context.sync().then(function () {
-                console.log('Added an image to the first paragraph.');
-            });
-        });
-    })
-
-    .catch(function (error) {
-        console.log('Error: ' + JSON.stringify(error));
-        if (error instanceof OfficeExtension.Error) {
-            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-        }
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        await context.sync();
+        console.log('Added an image to the first paragraph.');
     });
 
     ```
@@ -1850,9 +1771,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: cbd3c30be28691da47043f776bb9d4125faebf31
-  ms.sourcegitcommit: 997292a6842ddd12e944eb27d0e480e0421f2569
+  ms.openlocfilehash: ef77a87fa751c9d4af979bec0e9b6c77d7f91aa9
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 02/02/2022
-  ms.locfileid: "62324160"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62837286"
