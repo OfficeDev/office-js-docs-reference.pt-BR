@@ -133,7 +133,7 @@ properties:
   uid: excel!Excel.RangeFormat#rowHeight:member
   package: excel!
   fullName: rowHeight
-  summary: A altura de todas as linhas no intervalo. Se as alturas da linha não são `null` uniformes, serão retornadas.
+  summary: A altura de todas as linhas no intervalo. Se as alturas da linha não são uniformes, `null` serão retornadas.
   remarks: '\[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -157,7 +157,7 @@ properties:
   uid: excel!Excel.RangeFormat#textOrientation:member
   package: excel!
   fullName: textOrientation
-  summary: A orientação de texto de todas as células dentro do intervalo. A orientação de texto deve ser um inteiro de -90 a 90 ou 180 para texto orientado verticalmente. Se a orientação dentro de um intervalo não for uniforme, `null` será retornada.
+  summary: A orientação de texto de todas as células dentro do intervalo. A orientação de texto deve ser um inteiro de -90 a 90 ou 180 para texto orientado verticalmente. Se a orientação dentro de um intervalo não for uniforme, será `null` retornada.
   remarks: >-
     \[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
 
@@ -191,7 +191,7 @@ properties:
   uid: excel!Excel.RangeFormat#useStandardHeight:member
   package: excel!
   fullName: useStandardHeight
-  summary: 'Determina se a altura da linha do objeto é igual à altura `Range` padrão da planilha. Retorna `true` se a altura da linha do objeto for igual à altura padrão da `Range` planilha. Retorna `null` se o intervalo contiver mais de uma linha e as linhas não têm a mesma altura. Retorna `false` caso contrário. Observação: essa propriedade destina-se apenas a ser definida como `true`<!-- -->. Defini-lo `false` como não tem efeito.'
+  summary: 'Determina se a altura da linha do `Range` objeto é igual à altura padrão da planilha. Retorna `true` se a altura da linha do `Range` objeto for igual à altura padrão da planilha. Retorna `null` se o intervalo contiver mais de uma linha e as linhas não têm a mesma altura. Retorna caso `false` contrário. Observação: essa propriedade destina-se apenas a ser definida como `true`<!-- -->. Defini-lo como `false` não tem efeito.'
   remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -203,7 +203,7 @@ properties:
   uid: excel!Excel.RangeFormat#useStandardWidth:member
   package: excel!
   fullName: useStandardWidth
-  summary: 'Especifica se a largura da coluna do `Range` objeto é igual à largura padrão da planilha. Retorna `true` se a largura da coluna do objeto for igual à largura padrão da `Range` planilha. Retorna `null` se o intervalo contiver mais de uma coluna e as colunas não têm a mesma altura. Retorna `false` caso contrário. Observação: essa propriedade destina-se apenas a ser definida como `true`<!-- -->. Defini-lo `false` como não tem efeito.'
+  summary: 'Especifica se a largura da coluna do `Range` objeto é igual à largura padrão da planilha. Retorna `true` se a largura da coluna do `Range` objeto for igual à largura padrão da planilha. Retorna `null` se o intervalo contiver mais de uma coluna e as colunas não têm a mesma altura. Retorna caso `false` contrário. Observação: essa propriedade destina-se apenas a ser definida como `true`<!-- -->. Defini-lo como `false` não tem efeito.'
   remarks: '\[[Conjunto de API: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -295,7 +295,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.RangeFormat:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Below example selects all of the Range's format properties. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var worksheet = ctx.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load([\"format/*\", \"format/fill\", \"format/borders\", \"format/font\"]);\n    return ctx.sync().then(function() {\n        console.log(range.format.wrapText);\n        console.log(range.format.fill.color);\n        console.log(range.format.font.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below sets font name, fill color and wraps text. \nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.wrapText = true;\n    range.format.font.name = 'Times New Roman';\n    range.format.fill.color = '0000FF';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// The example below adds grid border around the range.\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.format.borders.getItem('InsideHorizontal').style = 'Continuous';\n    range.format.borders.getItem('InsideVertical').style = 'Continuous';\n    range.format.borders.getItem('EdgeBottom').style = 'Continuous';\n    range.format.borders.getItem('EdgeLeft').style = 'Continuous';\n    range.format.borders.getItem('EdgeRight').style = 'Continuous';\n    range.format.borders.getItem('EdgeTop').style = 'Continuous';\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Select all of the range's format properties.\nawait Excel.run(async (context) => { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F:G\";\n    var worksheet = context.workbook.worksheets.getItem(sheetName);\n    var range = worksheet.getRange(rangeAddress);\n    range.load([\"format/*\", \"format/fill\", \"format/borders\", \"format/font\"]);\n    await context.sync();\n    \n    console.log(range.format.wrapText);\n    console.log(range.format.fill.color);\n    console.log(range.format.font.name);\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: excel!Excel.RangeFormat#load:member(3)
   package: excel!
@@ -312,7 +312,7 @@ methods:
               }): Excel.RangeFormat;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -362,7 +362,7 @@ methods:
   uid: excel!Excel.RangeFormat#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto RangeFormat é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.RangeFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto RangeFormat é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.RangeFormatData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -373,9 +373,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 1b58f79c2748bc8af68a6ccfc8a41d8edea172ec
-  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
+  ms.openlocfilehash: 03990711e8683b1d42c23ac39c2836648937c787
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 09/24/2021
-  ms.locfileid: "59703054"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62841306"

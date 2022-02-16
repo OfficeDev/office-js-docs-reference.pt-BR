@@ -68,7 +68,7 @@ methods:
   package: onenote!
   fullName: getItemAt(index)
   summary: Obtém um parágrafo na posição dele na coleção.
-  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its Outline's first paragraph.\n    var pageContent = pageContents.getItemAt(0);\n    var paragraphs = pageContent.outline.paragraphs;\n\n    var firstParagraph = paragraphs.getItemAt(0);\n\n    // Queue a command to load the type and richText.text property of this paragraph.\n    firstParagraph.load(\"id,type\");\n\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            // Write text from paragraph to console\n            console.log(\n                \"First Paragraph found with id : \" + \n                firstParagraph.id + \" and type \" + firstParagraph.type);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait OneNote.run(async (context) => {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its Outline's first paragraph.\n    var pageContent = pageContents.getItemAt(0);\n    var paragraphs = pageContent.outline.paragraphs;\n\n    var firstParagraph = paragraphs.getItemAt(0);\n\n    // Queue a command to load the id and type properties of this paragraph.\n    firstParagraph.load(\"id,type\");\n\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    await context.sync();\n    // Write text from paragraph to console.\n    console.log(\n        \"First Paragraph found with id : \" + \n        firstParagraph.id + \" and type \" + firstParagraph.type);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -113,7 +113,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="onenote!OneNote.ParagraphCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its Outline's first paragraph.\n    var pageContent = pageContents.getItem(0);\n    var paragraphs = pageContent.outline.paragraphs;\n    \n    // Queue a command to load the id and type of each paragraph.\n    paragraphs.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            var firstParagraph = paragraphs.items[0];\n            // Write text from first paragraph to console\n            console.log(\n                \"First Paragraph found with id : \" + \n                firstParagraph.id + \" and type \" + firstParagraph.type);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its outline's paragraphs.\n    var outlinePageContents = ;\n    var paragraphs = ;\n    var richTextParagraphs = ;\n    // Queue a command to load the id and type of each page content in the outline.\n    pageContents.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            // Load all page contents of type Outline\n            $.each(pageContents.items, function(index, pageContent) {\n                if(pageContent.type == 'Outline')\n                {\n                    pageContent.load('outline,outline/paragraphs,outline/paragraphs/type');\n                    outlinePageContents.push(pageContent);\n                }\n            });\n            return context.sync();\n        })\n        .then(function () {\n            // Load all rich text paragraphs across outlines\n            $.each(outlinePageContents, function(index, outlinePageContent) {\n                var outline = outlinePageContent.outline;\n                paragraphs = paragraphs.concat(outline.paragraphs.items);\n            });\n            $.each(paragraphs, function(index, paragraph) {\n                if(paragraph.type == 'RichText')\n                {\n                    richTextParagraphs.push(paragraph);\n                    paragraph.load(\"id,richText/text\");\n                }\n            });\n            return context.sync();\n        })\n        .then(function () {\n            // Display all rich text paragraphs to the console\n            $.each(richTextParagraphs, function(index, richTextParagraph) {\n                var richText = richTextParagraph.richText;\n                console.log(\n                    \"Paragraph found with richtext content : \" + \n                    richText.text + \" and richtext id : \" + richText.id);\n            });\n            return context.sync();\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait OneNote.run(async (context) => {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its Outline's first paragraph.\n    var pageContent = pageContents.getItem(0);\n    var paragraphs = pageContent.outline.paragraphs;\n    \n    // Queue a command to load the id and type of each paragraph.\n    paragraphs.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    await context.sync();\n    var firstParagraph = paragraphs.items[0];\n    // Write text from first paragraph to console.\n    console.log(\n        \"First Paragraph found with id : \" + \n        firstParagraph.id + \" and type \" + firstParagraph.type);\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.ParagraphCollection#load:member(3)
   package: onenote!
@@ -126,7 +126,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): OneNote.ParagraphCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="onenote!OneNote.ParagraphCollection:class" />
@@ -135,7 +135,7 @@ methods:
   uid: onenote!OneNote.ParagraphCollection#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto original `OneNote.ParagraphCollection` é um objeto API, o método retorna `toJSON` um objeto JavaScript simples (digitado como `OneNote.Interfaces.ParagraphCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto original `OneNote.ParagraphCollection` é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `OneNote.Interfaces.ParagraphCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -148,7 +148,7 @@ methods:
   uid: onenote!OneNote.ParagraphCollection#track:member(1)
   package: onenote!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -161,7 +161,7 @@ methods:
   uid: onenote!OneNote.ParagraphCollection#untrack:member(1)
   package: onenote!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -172,9 +172,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e6b6377acf5a2290709c611bd22cf8cd2ecb328c
-  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
+  ms.openlocfilehash: 4b8517e3893aeb1fce85b805d31def3f4d953850
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/15/2021
-  ms.locfileid: "61515342"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62843919"

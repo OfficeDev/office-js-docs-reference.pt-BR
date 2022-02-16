@@ -7,7 +7,7 @@ summary: >-
   Representa uma coleção de todas as linhas que fazem parte da tabela.
 
 
-  Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o local físico da linha de tabela, mas não os `TableRow` dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
+  Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o `TableRow` local físico da linha de tabela, mas não os dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
 remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
@@ -58,8 +58,8 @@ methods:
     Adiciona uma ou mais linhas à tabela. O objeto de retorno será a parte superior das linhas adicionadas recentemente.
 
 
-    Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o local físico da linha de tabela, mas não os `TableRow` dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) para adicionar uma única linha; 1.4 permite adicionar várias linhas. \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var row = tables.getItem(\"Table1\").rows.add(null, values);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o `TableRow` local físico da linha de tabela, mas não os dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1 para adicionar uma única linha; 1.4 permite adicionar várias linhas.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var tables = context.workbook.tables;\n    var values = [[\"Sample\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var row = tables.getItem(\"Table1\").rows.add(null, values);\n    row.load('index');\n    await context.sync();\n    \n    console.log(row.index);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -98,8 +98,24 @@ methods:
     Obtém uma linha com base em sua posição na coleção.
 
 
-    Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o local físico da linha de tabela, mas não os `TableRow` dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);\n    tablerow.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablerow.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o `TableRow` local físico da linha de tabela, mas não os dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
+  remarks: >-
+    \[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    await Excel.run(async (context) => {
+        var tablerow = context.workbook.tables.getItem('Table1').rows.getItemAt(0);
+        tablerow.load('values');
+        await context.sync();
+        console.log(tablerow.values);
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -144,7 +160,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.TableRowCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerows = ctx.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablerows Count: \" + tablerows.count);\n        for (var i = 0; i < tablerows.items.length; i++) {\n            console.log(tablerows.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// In the example, we'll select the top 100 rows of the table.\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItem(\"Table1\");\n    var tableRows = table.rows.load({\"select\" : \"index, values\",\"top\": 100, \"skip\": 0 })\n    return ctx.sync().then(function() {\n        for (var i = 0; i < tableRows.items.length; i++) {\n            console.log(tableRows.items[i].index);\n            console.log(tableRows.items[i].values);\n        }\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var tablerows = context.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    await context.sync();\n    \n    console.log(\"tablerows Count: \" + tablerows.count);\n    for (var i = 0; i < tablerows.items.length; i++) {\n        console.log(tablerows.items[i].index);\n    }\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: excel!Excel.TableRowCollection#load:member(3)
   package: excel!
@@ -157,7 +173,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.TableRowCollection:class" />
@@ -166,7 +182,7 @@ methods:
   uid: excel!Excel.TableRowCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto original `Excel.TableRowCollection` é um objeto API, o método retorna `toJSON` um objeto JavaScript simples (digitado como `Excel.Interfaces.TableRowCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto original `Excel.TableRowCollection` é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.TableRowCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -177,9 +193,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e2f9ae3c2d14ceb0b83f81e7452f176136123780
-  ms.sourcegitcommit: 95efa452ba59614b52a8756db5185935b4d44f58
+  ms.openlocfilehash: 003cfd5b90a9abb546b3190fa0ba73f53c174c96
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 10/13/2021
-  ms.locfileid: "60311183"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62840063"

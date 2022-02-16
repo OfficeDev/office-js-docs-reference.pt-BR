@@ -114,17 +114,9 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: >-
-      readonly valueAsJson: ArrayCellValue | BooleanCellValue | DoubleCellValue | EntityCellValue | EmptyCellValue | BlockedErrorCellValue | BusyErrorCellValue | CalcErrorCellValue | ConnectErrorCellValue | Div0ErrorCellValue | FieldErrorCellValue | GettingDataErrorCellValue | NotAvailableErrorCellValue | NameErrorCellValue | NullErrorCellValue | NumErrorCellValue | RefErrorCellValue | SpillErrorCellValue | ValueErrorCellValue | FormattedNumberCellValue | LinkedEntityCellValue | StringCellValue | ValueTypeNotAvailableCellValue | WebImageCellValue & {
-                  writable?: boolean;
-                  writableNote?: string;
-              };
+    content: 'readonly valueAsJson: CellValue;'
     return:
-      type: >-
-        <xref uid="excel!Excel.ArrayCellValue:interface" /> | <xref uid="excel!Excel.BooleanCellValue:interface" /> | <xref uid="excel!Excel.DoubleCellValue:interface" /> | <xref uid="excel!Excel.EntityCellValue:interface" /> | <xref uid="excel!Excel.EmptyCellValue:interface" /> | <xref uid="excel!Excel.BlockedErrorCellValue:interface" /> | <xref uid="excel!Excel.BusyErrorCellValue:interface" /> | <xref uid="excel!Excel.CalcErrorCellValue:interface" /> | <xref uid="excel!Excel.ConnectErrorCellValue:interface" /> | <xref uid="excel!Excel.Div0ErrorCellValue:interface" /> | <xref uid="excel!Excel.FieldErrorCellValue:interface" /> | <xref uid="excel!Excel.GettingDataErrorCellValue:interface" /> | <xref uid="excel!Excel.NotAvailableErrorCellValue:interface" /> | <xref uid="excel!Excel.NameErrorCellValue:interface" /> | <xref uid="excel!Excel.NullErrorCellValue:interface" /> | <xref uid="excel!Excel.NumErrorCellValue:interface" /> | <xref uid="excel!Excel.RefErrorCellValue:interface" /> | <xref uid="excel!Excel.SpillErrorCellValue:interface" /> | <xref uid="excel!Excel.ValueErrorCellValue:interface" /> | <xref uid="excel!Excel.FormattedNumberCellValue:interface" /> | <xref uid="excel!Excel.LinkedEntityCellValue:interface" /> | <xref uid="excel!Excel.StringCellValue:interface" /> | <xref uid="excel!Excel.ValueTypeNotAvailableCellValue:interface" /> | <xref uid="excel!Excel.WebImageCellValue:interface" /> & {
-                    writable?: boolean;
-                    writableNote?: string;
-                }
+      type: <xref uid="excel!Excel.CellValue:type" />
 - name: visible
   uid: excel!Excel.NamedItem#visible:member
   package: excel!
@@ -153,7 +145,7 @@ properties:
   uid: excel!Excel.NamedItem#worksheetOrNullObject:member
   package: excel!
   fullName: worksheetOrNullObject
-  summary: Retorna a planilha à qual o item nomeado é escopo. Se o item tiver escopo para a lista de trabalho, este método retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+  summary: Retorna a planilha à qual o item nomeado é escopo. Se o item tiver escopo para a lista de trabalho, este método retornará um objeto com `isNullObject` sua propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
   remarks: '\[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -209,7 +201,7 @@ methods:
   package: excel!
   fullName: getRange()
   summary: Retorna o objeto Range associado ao nome. Gerará um erro se o tipo do item nomeado não for um intervalo.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// Returns the Range object that is associated with the name. \n// null if the name is not of the type Range.\n// Note: This API currently supports only the Workbook scoped items.\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var range = names.getItem('MyRange').getRange();\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\n// Returns the Range object that is associated with the name.\n// Returns `null` if the name is not of type Range.\n// Note: This API currently supports only the Workbook scoped items.\nawait Excel.run(async (context) => { \n    var names = context.workbook.names;\n    var range = names.getItem('MyRange').getRange();\n    range.load('address');\n    await context.sync();\n\n    console.log(range.address);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -221,7 +213,7 @@ methods:
   uid: excel!Excel.NamedItem#getRangeOrNullObject:member(1)
   package: excel!
   fullName: getRangeOrNullObject()
-  summary: Retorna o objeto Range associado ao nome. Se o tipo do item nomeado não for um intervalo, este método retornará um objeto com sua `isNullObject` propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+  summary: Retorna o objeto Range associado ao nome. Se o tipo do item nomeado não for um intervalo, este método retornará um objeto com `isNullObject` sua propriedade definida como `true`<!-- -->. Para obter mais informações, [consulte *OrNullObject methods and properties](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
   remarks: '\[[Conjunto de API: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -263,7 +255,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.NamedItem:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var names = ctx.workbook.names;\n    var namedItem = names.getItem('MyRange');\n    namedItem.load('type');\n    return ctx.sync().then(function() {\n            console.log(namedItem.type);\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var names = context.workbook.names;\n    var namedItem = names.getItem('MyRange');\n    namedItem.load('type');\n    await context.sync();\n    \n    console.log(namedItem.type);\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: excel!Excel.NamedItem#load:member(3)
   package: excel!
@@ -280,7 +272,7 @@ methods:
               }): Excel.NamedItem;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -330,7 +322,7 @@ methods:
   uid: excel!Excel.NamedItem#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto NamedItem é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.NamedItemData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto NamedItem é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.NamedItemData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -341,9 +333,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: df133c8d3ea0bc34c4e2e82ceed314dd9d814847
-  ms.sourcegitcommit: 6e02b85fb05123b10f85db6c2ac009fa60f24a6f
+  ms.openlocfilehash: 57b33539da07ec3be85caed42e5fea40aac2e3e6
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 01/14/2022
-  ms.locfileid: "62040485"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62840647"

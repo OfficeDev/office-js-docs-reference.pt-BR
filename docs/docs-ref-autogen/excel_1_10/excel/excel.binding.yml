@@ -64,7 +64,7 @@ methods:
   package: excel!
   fullName: getRange()
   summary: Retorna o intervalo representado pela associação. Lançará um erro se a associação não for do tipo correto.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var range = binding.getRange();\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var binding = context.workbook.bindings.getItemAt(0);\n    var range = binding.getRange();\n    range.load('cellCount');\n    await context.sync();\n\n    console.log(range.cellCount);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -77,7 +77,7 @@ methods:
   package: excel!
   fullName: getTable()
   summary: Retorna a tabela representada pela associação. Lançará um erro se a associação não for do tipo correto.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var table = binding.getTable();\n    table.load('name');\n    return ctx.sync().then(function() {\n            console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var binding = context.workbook.bindings.getItemAt(0);\n    var table = binding.getTable();\n    table.load('name');\n    await context.sync();\n\n    console.log(table.name);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -90,7 +90,7 @@ methods:
   package: excel!
   fullName: getText()
   summary: Retorna o texto representado pela associação. Lançará um erro se a associação não for do tipo correto.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var text = binding.getText();\n    binding.load('text');\n    return ctx.sync().then(function() {\n        console.log(text);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var binding = context.workbook.bindings.getItemAt(0);\n    var text = binding.getText();\n    binding.load('text');\n    await context.sync();\n\n    console.log(text);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -131,7 +131,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Binding:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    return ctx.sync().then(function() {\n        console.log(binding.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => { \n    var binding = context.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    await context.sync();\n\n    console.log(binding.type);\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: excel!Excel.Binding#load:member(3)
   package: excel!
@@ -148,7 +148,7 @@ methods:
               }): Excel.Binding;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -161,7 +161,7 @@ methods:
   uid: excel!Excel.Binding#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto Binding é um objeto API, `toJSON` o método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.BindingData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original Excel. Objeto Binding é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`Excel.Interfaces.BindingData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -191,7 +191,7 @@ events:
     Ocorre quando o conteúdo selecionado na associação é alterado.
 
 
-    *Observação**: se várias células desconsiguadas forem selecionadas, somente relatórios informações de linha e `Binding.onSelectionChanged` coluna para uma seleção. Use `Worksheet.onSelectionChanged` para vários intervalos selecionados.
+    *Observação**: se várias células desconsiguadas forem selecionadas, `Binding.onSelectionChanged` somente relatórios informações de linha e coluna para uma seleção. Use `Worksheet.onSelectionChanged` para vários intervalos selecionados.
   remarks: '\[[Conjunto de API: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: false
   isDeprecated: false
@@ -201,9 +201,9 @@ events:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.BindingSelectionChangedEventArgs:interface" />&gt;
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 87df795c2f864f62d0f5232cf06b25e48262dee6
-  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
+  ms.openlocfilehash: 39ad1bd546388ef29acf1d991c6f336a207368b0
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 09/24/2021
-  ms.locfileid: "59687446"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62841980"

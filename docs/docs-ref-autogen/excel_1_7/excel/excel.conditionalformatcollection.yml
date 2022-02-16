@@ -133,7 +133,7 @@ methods:
   package: excel!
   fullName: getCount()
   summary: Retorna o número de formatos condicionais na guia de trabalho.
-  remarks: "\\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.iconSet);\n    conditionalFormat.iconOrNull.style = Excel.IconSet.fourTrafficLights;\n    var cfCount = range.conditionalFormats.getCount(); \n\n    return ctx.sync().then(function () {\n        console.log(\"Count: \" + cfCount.value);\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait Excel.run(async (context) => {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = context.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    var conditionalFormat = range.conditionalFormats.add(Excel.ConditionalFormatType.iconSet);\n    conditionalFormat.iconSetOrNullObject.style = Excel.IconSet.fourTrafficLights;\n    var cfCount = range.conditionalFormats.getCount(); \n\n    await context.sync()\n    console.log(\"Count: \" + cfCount.value);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -153,22 +153,17 @@ methods:
     #### <a name="examples"></a>Exemplos
 
 
-    ```javascript
+    ```typescript
 
-    Excel.run(function (ctx) {
+    await Excel.run(async (context) => {
         var sheetName = "Sheet1";
         var rangeAddress = "A1:C3";
-        var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+        var range = context.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
         var conditionalFormats = range.conditionalFormats;
         var conditionalFormat = conditionalFormats.getItemAt(3);
-        return ctx.sync().then(function () {
-            console.log("Conditional Format at Item 3 Loaded");
-        });
-    }).catch(function (error) {
-        console.log("Error: " + error);
-        if (error instanceof OfficeExtension.Error) {
-            console.log("Debug info: " + JSON.stringify(error.debugInfo));
-        }
+        await context.sync()
+
+        console.log("Conditional Format at Item 3 Loaded");
     });
 
     ```
@@ -283,7 +278,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.ConditionalFormatCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.ConditionalFormatCollection:class" />
@@ -292,7 +287,7 @@ methods:
   uid: excel!Excel.ConditionalFormatCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto o objeto original `Excel.ConditionalFormatCollection` é um objeto API, o método retorna `toJSON` um objeto JavaScript simples (digitado como `Excel.Interfaces.ConditionalFormatCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto o objeto original `Excel.ConditionalFormatCollection` é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como `Excel.Interfaces.ConditionalFormatCollectionData`<!-- -->) que contém uma matriz "items" com cópias rasas de quaisquer propriedades carregadas dos itens da coleção.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -303,9 +298,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 9fafba2f1aa82dcaf6e29a258e3acf1975769c87
-  ms.sourcegitcommit: dbd80963feb8cee59ceaa0facc9f24743e386216
+  ms.openlocfilehash: a39f01dce1dce6aef5e2cb2acfe7cf6da1ac3649
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 09/24/2021
-  ms.locfileid: "59657458"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62841804"

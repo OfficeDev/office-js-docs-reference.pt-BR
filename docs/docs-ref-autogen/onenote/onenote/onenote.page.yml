@@ -135,7 +135,7 @@ methods:
   package: onenote!
   fullName: addOutline(left, top, html)
   summary: Adiciona uma estrutura de página em uma posição especificada.
-  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n\n    // Queue a command to add an outline with given html. \n    var outline = page.addOutline(200, 200,\n\"<p>Images and a table below:</p> \\\n <img src=\\\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\"> \\\n <img src=\\\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\\\"> \\\n <table> \\\n   <tr> \\\n     <td>Jill</td> \\\n     <td>Smith</td> \\\n     <td>50</td> \\\n   </tr> \\\n   <tr> \\\n     <td>Eve</td> \\\n     <td>Jackson</td> \\\n     <td>94</td> \\\n   </tr> \\\n </table>\"     \n        );\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .catch(function(error) {\n            console.log(\"Error: \" + error);\n            if (error instanceof OfficeExtension.Error) {\n                console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n            }\n        });\n});\n```"
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait OneNote.run(async (context) => {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n\n    // Queue a command to add an outline with given html.\n    var outline = page.addOutline(200, 200,\n\"<p>Images and a table below:</p> \\\n <img src=\\\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\\\"> \\\n <img src=\\\"http://imagenes.es.sftcdn.net/es/scrn/6653000/6653659/microsoft-onenote-2013-01-535x535.png\\\"> \\\n <table> \\\n   <tr> \\\n     <td>Jill</td> \\\n     <td>Smith</td> \\\n     <td>50</td> \\\n   </tr> \\\n   <tr> \\\n     <td>Eve</td> \\\n     <td>Jackson</td> \\\n     <td>94</td> \\\n   </tr> \\\n </table>\"     \n        );\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    await context.sync();\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -188,7 +188,7 @@ methods:
   package: onenote!
   fullName: copyToSection(destinationSection)
   summary: Copia esta página para a seção especificada.
-  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    \n    // Gets the active notebook.\n    var notebook = app.getActiveNotebook();\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load sections under the notebook.\n    notebook.load('sections');\n    \n    var newPage;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync()\n        .then(function() {\n            var section = notebook.sections.items[0];\n            \n            // copy page to the section.\n            newPage = page.copyToSection(section);\n            newPage.load('id');\n            return ctx.sync();\n        })\n        .then(function() {\n            console.log(newPage.id);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait OneNote.run(async (context) => {\n    var app = context.application;\n    \n    // Gets the active notebook.\n    var notebook = app.getActiveNotebook();\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load sections under the notebook.\n    notebook.load('sections');\n    \n    var newPage;\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    await context.sync();\n\n    var section = notebook.sections.items[0];\n    \n    // Copy page to the section.\n    newPage = page.copyToSection(section);\n    newPage.load('id');\n    await context.sync();\n    \n    console.log(newPage.id);\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -222,7 +222,30 @@ methods:
   package: onenote!
   fullName: getRestApiId()
   summary: Obtém a ID da API REST.
-  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function(ctx){\n    // Get the current page.         \n    var page = ctx.application.getActivePage();\n    var restApiId = page.getRestApiId();\n\n    return ctx.sync().\n        then(function(){\n            console.log(\"The REST API ID is \" + restApiId.value);\n            // Note that the REST API ID isn't all you need to interact with the OneNote REST API.\n            // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.\n            // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API\n            // according to the OneNote Development Blog.\n            // https://blogs.msdn.microsoft.com/onenotedev/2015/06/11/and-sharepoint-makes-three/\n        });\n});\n```"
+  remarks: >-
+    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    await OneNote.run(async (context) => {
+        // Get the current page.
+        var page = context.application.getActivePage();
+        var restApiId = page.getRestApiId();
+
+        await context.sync();
+        console.log("The REST API ID is " + restApiId.value);
+        // Note that the REST API ID isn't all you need to interact with the OneNote REST API.
+        // This is only required for SharePoint notebooks. baseUrl will be null for OneDrive notebooks.
+        // For SharePoint notebooks, the notebook baseUrl should be used to talk to the OneNote REST API
+        // according to the OneNote Development Blog.
+        // https://docs.microsoft.com/archive/blogs/onenotedev/and-sharepoint-makes-three
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -268,7 +291,32 @@ methods:
   package: onenote!
   fullName: insertPageAsSibling(locationString, title)
   summary: Insere uma nova página antes ou depois da página atual.
-  remarks: "\\[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \\]\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var newPage = activePage.insertPageAsSibling(\"After\", \"Next Page\");\n\n    // Queue a command to load the newPage to access its data.\n    context.load(newPage);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(\"page is created with title: \" + newPage.title);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    \[[Conjunto de API: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]
+
+
+    #### <a name="examples"></a>Exemplos
+
+
+    ```typescript
+
+    await OneNote.run(async (context) => {
+
+        // Gets the active page.
+        var activePage = context.application.getActivePage();
+
+        // Queue a command to add a new page after the active page.
+        var newPage = activePage.insertPageAsSibling("After", "Next Page");
+
+        // Queue a command to load the newPage to access its data.
+        context.load(newPage);
+
+        // Run the queued commands, and return a promise to indicate task completion.
+        await context.sync();
+        console.log("page is created with title: " + newPage.title);
+    });
+
+    ```
   isPreview: false
   isDeprecated: false
   syntax:
@@ -316,7 +364,7 @@ methods:
       type: string | string[]
     return:
       type: <xref uid="onenote!OneNote.Page:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            for(var i=0; i < pageContents.items.length; i++)\n            {\n                var pageContent = pageContents.items[i];\n                if (pageContent.type == \"Outline\")\n                {\n                    console.log(\"Found an outline\");\n                }\n                else if (pageContent.type == \"Image\")\n                {\n                    console.log(\"Found an image\");\n                }\n                else if (pageContent.type == \"Other\")\n                {\n                    console.log(\"Found a type not supported yet.\");\n                }\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (context) {\n\n    var app = context.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Queue a command to load the webUrl of the page.\n    page.load(\"webUrl\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            console.log(page.webUrl);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Load ink words\n    page.load('inkAnalysisOrNull/paragraphs/lines/words');\n    \n    return ctx.sync()\n        .then(function() {\n            if (!page.inkAnalysisOrNull.isNull)\n                console.log(page.inkAnalysisOrNull.paragraphs.length);\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Exemplos\n\n```typescript\nawait OneNote.run(async (context) => {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Queue a command to add a new page after the active page.\n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    await context.sync()\n    for(var i=0; i < pageContents.items.length; i++) {\n        var pageContent = pageContents.items[i];\n        if (pageContent.type == \"Outline\") {\n            console.log(\"Found an outline\");\n        } else if (pageContent.type == \"Image\") {\n            console.log(\"Found an image\");\n        } else if (pageContent.type == \"Other\") {\n            console.log(\"Found a type not supported yet.\");\n        }\n    }\n});\n```"
 - name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.Page#load:member(3)
   package: onenote!
@@ -333,7 +381,7 @@ methods:
               }): OneNote.Page;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a `propertyNamesAndPaths.expand` ser carregadas.'
+      description: '`propertyNamesAndPaths.select` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades a ser carregadas e `propertyNamesAndPaths.expand` é uma cadeia de caracteres delimitada por vírgulas que especifica as propriedades de navegação a ser carregadas.'
       type: >-
         {
                     select?: string;
@@ -383,7 +431,7 @@ methods:
   uid: onenote!OneNote.Page#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama `toJSON` o método do objeto que é passado a ele.) Enquanto a versão original OneNote. Objeto Page é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.PageData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
+  summary: Substitui o método JavaScript `toJSON()` para fornecer uma saída mais útil quando um objeto API é passado para `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->, por sua vez, chama o `toJSON` método do objeto que é passado a ele.) Enquanto a versão original OneNote. Objeto Page é um objeto API, o `toJSON` método retorna um objeto JavaScript simples (digitado como`OneNote.Interfaces.PageData`<!-- -->) que contém cópias rasas de quaisquer propriedades filho carregadas do objeto original.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -396,7 +444,7 @@ methods:
   uid: onenote!OneNote.Page#track:member(1)
   package: onenote!
   fullName: track()
-  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira `.sync` vez.
+  summary: Acompanha o objeto para ajuste automático com base nas alterações adjacentes no documento. Esta chamada é uma forma de atalho para `context.trackedObjects.add(thisObject)`<!-- -->. `.sync` Se você estiver usando esse objeto entre chamadas e fora da execução sequencial de um lote ".run" e receber um erro "InvalidObjectPath" ao definir uma propriedade ou invocar um método no objeto, você precisava ter adicionado o objeto à coleção de objetos rastreados quando o objeto foi criado pela primeira vez.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -409,7 +457,7 @@ methods:
   uid: onenote!OneNote.Page#untrack:member(1)
   package: onenote!
   fullName: untrack()
-  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes `context.sync()` que a liberação de memória entre em vigor.
+  summary: Libere a memória associada a este objeto, se ele já tiver sido rastreado anteriormente. Esta chamada é taquigrafia para `context.trackedObjects.remove(thisObject)`<!-- -->. Ter muitos objetos rastreados desacelera o aplicativo host, por isso, lembre-se de liberar todos os objetos adicionados após usá-los. Você precisará chamar antes que a `context.sync()` liberação de memória entre em vigor.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -420,9 +468,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: d1a6287f2c9ef1e0c8b0eba67d130cfafb33b3f8
-  ms.sourcegitcommit: 45b9cfd5647a37b668c32ebe089158815b79161c
+  ms.openlocfilehash: 180808d36886662b561dc469c7e68011beb06111
+  ms.sourcegitcommit: 09e003571c8c452459593f6d4513c692335d39c7
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/15/2021
-  ms.locfileid: "61516441"
+  ms.lasthandoff: 02/16/2022
+  ms.locfileid: "62839505"
