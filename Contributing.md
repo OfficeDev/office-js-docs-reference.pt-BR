@@ -44,10 +44,10 @@ O uso desse método permite que você contribua para um artigo por vez.
 #### <a name="to-contribute-using-github"></a>Para contribuir usando GitHub
 
 1. Encontre o artigo para o GitHub.
-2. Depois de entrar no artigo no GitHub, entre no GitHub (obter uma conta [gratuita GitHub](https://github.com/join)).
-3. Escolha o **ícone de lápis** (edite o arquivo em sua bifurcação deste projeto) e faça suas alterações na janela editar<>**arquivo Edit** .
-4. Role até a parte inferior e insira uma descrição.
-5. Escolha **Propor alteração de arquivoCriar** >  **solicitação de pull**.
+1. Depois de entrar no artigo no GitHub, entre no GitHub (para obter uma conta [gratuita, Participe GitHub](https://github.com/join)).
+1. Escolha o **ícone de lápis** (edite o arquivo em seu bifurcação deste projeto) e faça suas alterações na janela editar<>**arquivo Edit** .
+1. Role até a parte inferior e insira uma descrição.
+1. Escolha **Propor alteração de arquivoCriar** >  **solicitação de pull**.
 
 Agora você enviou com êxito uma solicitação de pull. Normalmente, as solicitações de pull são revisadas dentro de 10 dias úteis.
 
@@ -63,27 +63,27 @@ Use o Git para contribuir com alterações substantivas, como:
 #### <a name="to-contribute-using-git"></a>Para contribuir usando o Git
 
 1. Se você não tiver uma conta GitHub, desarmá-la no [GitHub](https://github.com/join).
-2. Depois de ter uma conta, instale o Git no computador. Siga as etapas no tutorial [Configurar Git] .
-3. Para enviar uma solicitação pull usando o Git, siga as etapas em [Usar GitHub, Git e este repositório](#use-github-git-and-this-repository).
-4. Você será solicitado a assinar o Contrato de Licença do Colaborador se estiver:
+1. Depois de ter uma conta, instale o Git no computador. Siga as etapas no tutorial [Configurar Git] .
+1. Para enviar uma solicitação pull usando o Git, siga as etapas em [Usar GitHub, Git e este repositório](#use-github-git-and-this-repository).
+1. Você será solicitado a assinar o Contrato de Licença do Colaborador se estiver:
 
     * Um membro do grupo Microsoft Open Technologies.
     * Um colaborador que não trabalha para a Microsoft.
 
 Como membro da comunidade, você deve assinar o Contrato de Licença de Contribuição (CLA) antes de poder contribuir com grandes envios para um projeto. Você só precisa concluir e enviar a documentação uma vez. Reveja cuidadosamente o documento. Talvez seja necessário que seu empregador assine o documento.
 
-A assinatura do CLA não concede direitos de confirmação ao repositório principal, mas significa que as equipes de Publicação de Conteúdo de Desenvolvedor Office e Office desenvolvedores poderão revisar e aprovar suas contribuições. Você é creditado por seus envios.
+Assinar o CLA não concede direitos de confirmação ao repositório principal, mas significa que as equipes de Publicação de Conteúdo de Desenvolvedor Office e Office desenvolvedores poderão revisar e aprovar suas contribuições. Você é creditado por seus envios.
 
 ## <a name="use-github-git-and-this-repository"></a>Use o GitHub, o Git e este repositório
 
-**Observação:** a maior parte das informações desta seção pode ser encontrada nos artigos de [ajuda no GitHub]. Se você estiver familiarizado com Git e GitHub, pule para a seção Contribuir e **editar** conteúdo para saber mais sobre os detalhes do fluxo de código/conteúdo deste repositório.
+**Observação:** a maior parte das informações desta seção pode ser encontrada nos artigos de [ajuda no GitHub]. Se você estiver familiarizado com Git e GitHub, pule para a seção Contribuir e [editar](#contribute-and-edit-content) conteúdo para saber mais sobre as especificações do fluxo de código/conteúdo deste repositório.
 
 ### <a name="to-set-up-your-fork-of-the-repository"></a>Para configurar seu bifurcação do repositório
 
 1. Configure uma conta GitHub para que você pode contribuir para esse projeto. Se você ainda não fez isso, [vá para GitHub](https://github.com/join) e faça isso agora.
-2. Instale o Git em seu computador. Siga as etapas no tutorial [Configurar Git] .
-3. Crie sua própria bifurcação para este repositório. Para fazer isso, na parte superior da página, escolha o **botão Bifurcação** .
-4. Copie sua bifurcação para o computador. Para fazer isso, abra Git Bash. No prompt de comando, digite:
+1. Instale o Git em seu computador. Siga as etapas no tutorial [Configurar Git] .
+1. Crie sua própria bifurcação para este repositório. Para fazer isso, na parte superior da página, escolha o **botão Bifurcação** .
+1. Copie sua bifurcação para o computador. Para fazer isso, abra Git Bash. No prompt de comando, digite:
 
         git clone https://github.com/<your user name>/office-js-docs-reference.git
 
@@ -102,9 +102,9 @@ Para tornar o processo de contribuição o mais contínuo possível, siga estas 
 #### <a name="to-contribute-and-edit-content"></a>Para contribuir e editar conteúdo
 
 1. Crie uma nova ramificação.
-2. Adicione novo conteúdo ou edite o conteúdo existente.
-3. Envie uma solicitação pull para o repositório principal.
-4. Exclua a ramificação.
+1. Adicione novo conteúdo ou edite o conteúdo existente.
+1. Envie uma solicitação pull para o repositório principal.
+1. Exclua a ramificação.
 
 **Importante**: limite cada filial a um único conceito/artigo para simplificar o fluxo de trabalho e reduzir a chance de conflitos de mesclagem. O conteúdo apropriado para um novo branch inclui:
 
@@ -115,9 +115,9 @@ Para tornar o processo de contribuição o mais contínuo possível, siga estas 
 #### <a name="to-create-a-new-branch"></a>Para criar um novo branch
 
 1. Abra Git Bash.
-2. No prompt de comando Git Bash, digite `git pull upstream main:<new branch name>`. Isso cria uma nova filial localmente copiada da filial principal mais recente do OfficeDev.
-3. No prompt de comando Git Bash, digite `git push origin <new branch name>`. Isso alerta GitHub para a nova filial. Agora você deverá surgir a nova ramificação na sua bifurcação do repositório no GitHub.
-4. No prompt de comando Git Bash, digite para `git checkout <new branch name>` alternar para sua nova filial.
+1. No prompt de comando Git Bash, digite `git pull upstream main:<new branch name>`. Isso cria uma nova filial localmente copiada da filial principal mais recente do OfficeDev.
+1. No prompt de comando Git Bash, digite `git push origin <new branch name>`. Isso alerta GitHub para a nova filial. Agora você deverá surgir a nova ramificação na sua bifurcação do repositório no GitHub.
+1. No prompt de comando Git Bash, digite para `git checkout <new branch name>` alternar para sua nova filial.
 
 #### <a name="add-new-content-or-edit-existing-content"></a>Adicionar novo conteúdo ou editar o conteúdo existente
 
@@ -125,7 +125,7 @@ Navegue até o repositório em seu computador usando o Explorador de Arquivos. O
 
 Para editar arquivos, abra-os em um editor de sua escolha e modifique-os. Para criar um novo arquivo, use o editor de sua escolha e salve o novo arquivo no local apropriado em sua cópia local do repositório. Durante o trabalho, salve seu trabalho com frequência.
 
-Os arquivos em `C:\Users\<yourusername>\office-js-docs-reference` são uma cópia de trabalho da nova ramificação que você criou no repositório local. Qualquer que seja a alteração você faça nessa pasta, ela só afetará o repositório local quando você confirmar uma alteração. Para confirmar uma alteração no repositório local, digite os seguintes comandos no GitBash:
+Os arquivos em `C:\Users\<yourusername>\office-js-docs-reference` são uma cópia de trabalho da nova ramificação que você criou no repositório local. Qualquer que seja a alteração você faça nessa pasta, ela só afetará o repositório local quando você confirmar uma alteração. Para confirmação de uma alteração no repositório local, digite os seguintes comandos no GitBash.
 
     git add .
     git commit -v -a -m "<Describe the changes made in this commit>"
@@ -143,12 +143,12 @@ Quando terminar o trabalho e estiver pronto para mesclar no repositório princip
 #### <a name="to-submit-a-pull-request-to-the-main-repository"></a>Para enviar uma solicitação pull ao repositório principal
 
 1. No prompt de comando Git Bash, digite `git push origin <new branch name>`. Em seu repositório local, `origin` refere-se ao repositório do GitHub a partir do qual você clonou o repositório local. Esse comando coloca o estado atual do sua nova ramificação, incluindo todas as confirmações feitas nas etapas anteriores, na ramificação do GitHub.
-2. No site do GitHub, navegue em sua bifurcação para a nova ramificação.
-3. Escolha o **botão Puxar Solicitação** na parte superior da página.
-4. Verifique se o branch Base é `OfficeDev/office-js-docs-reference@main` e o branch Head é `<your username>/office-js-docs-reference@<branch name>`.
-5. Escolha o **botão Atualizar Intervalo de Confirmação** .
-6. Adicione um título à sua solicitação de pull e descreva todas as alterações que você está fazendo.
-7. Envie a solicitação pull.
+1. No site do GitHub, navegue em sua bifurcação para a nova ramificação.
+1. Escolha o **botão Puxar Solicitação** na parte superior da página.
+1. Verifique se o branch Base é `OfficeDev/office-js-docs-reference@main` e o branch Head é `<your username>/office-js-docs-reference@<branch name>`.
+1. Escolha o **botão Atualizar Intervalo de Confirmação** .
+1. Adicione um título à sua solicitação de pull e descreva todas as alterações que você está fazendo.
+1. Envie a solicitação pull.
 
 Um dos administradores do site processará sua solicitação de pull. Sua solicitação pull será a tona no site de referência do [OfficeDev/office-js-docs em](https://github.com/OfficeDev/office-js-docs-reference/pulls) **Solicitações pull**. Quando a solicitação pull for aceita, o problema será resolvido.
 
@@ -156,7 +156,7 @@ Um dos administradores do site processará sua solicitação de pull. Sua solici
 
 Depois que uma ramificação é mesclada com êxito (ou seja, sua solicitação pull é aceita), não continue trabalhando nesse branch local. Isso pode levar a conflitos de mesclagem se você enviar outra solicitação pull. Para fazer outra atualização, crie uma nova ramificação local a partir da ramificação upstream mesclada com êxito e exclua sua ramificação local inicial.
 
-Por exemplo, se sua filial local X foi mesclada com êxito no branch principal do OfficeDev/office-js-docs-reference e você deseja fazer atualizações adicionais para o conteúdo mesclado. Crie uma nova filial local, X2, a partir do branch principal officeDev/office-js-docs-reference. Para fazer isso, abra o GitBash e execute os seguintes comandos:
+Por exemplo, se sua filial local X foi mesclada com êxito no branch principal do OfficeDev/office-js-docs-reference e você deseja fazer atualizações adicionais para o conteúdo mesclado. Crie uma nova filial local, X2, a partir do branch principal officeDev/office-js-docs-reference. Para fazer isso, abra o GitBash e execute os seguintes comandos.
 
     cd office-js-docs-reference
     git pull upstream main:X2
@@ -175,8 +175,8 @@ Depois que suas alterações são mescladas com êxito no repositório principal
 #### <a name="to-delete-a-branch"></a>Para excluir um branch
 
 1. No prompt de comando Git Bash, digite `git checkout main`. Isso garante que você não fique na ramificação a ser excluída (o que não é permitido).
-2. Em seguida, no prompt de comando, digite `git branch -d <branch name>`. Isso exclui a ramificação em seu computador somente se tiver sido mesclada com êxito ao repositório upstream. (Você pode substituir esse comportamento com o sinalizador `–D`, mas primeiro certifique-se de que deseja fazer isso).
-3. Por fim, digite `git push origin :<branch name>` no comando prompt (um espaço antes dos dois pontos e nenhum espaço depois deles).   Essa ação excluirá a ramificação em uma bifurcação do github.  
+1. Em seguida, no prompt de comando, digite `git branch -d <branch name>`. Isso exclui a ramificação em seu computador somente se tiver sido mesclada com êxito ao repositório upstream. (Você pode substituir esse comportamento com o sinalizador `–D`, mas primeiro certifique-se de que deseja fazer isso).
+1. Por fim, digite `git push origin :<branch name>` no comando prompt (um espaço antes dos dois pontos e nenhum espaço depois deles).   Essa ação excluirá a ramificação em uma bifurcação do github.  
 
 Parabéns, você contribuiu com êxito para o projeto!
 
@@ -194,7 +194,7 @@ Como membro da comunidade, **você deve assinar o CLA (Contrato de Licença do C
 
 ### <a name="what-happens-with-my-contributions"></a>O que acontece com minhas contribuições?
 
-Quando você enviar suas alterações, por meio de uma solicitação pull, nossa equipe será notificada e revisará sua solicitação de pull. Você receberá notificações sobre sua solicitação de pull do GitHub; você também poderá ser notificado por alguém da nossa equipe se precisarmos de mais informações. Se sua solicitação de pull for aprovada, atualizaremos a documentação. Reservamo-nos o direito de editar seu envio para questões legais, de estilo, de clareza ou de outros problemas.
+Quando você enviar suas alterações, por meio de uma solicitação pull, nossa equipe será notificada e revisará sua solicitação de pull. Você receberá notificações sobre sua solicitação de GitHub; você também poderá ser notificado por alguém da nossa equipe se precisarmos de mais informações. Se sua solicitação de pull for aprovada, atualizaremos a documentação. Reservamo-nos o direito de editar seu envio para questões legais, de estilo, de clareza ou de outros problemas.
 
 ### <a name="can-i-become-an-approver-for-this-repositorys-github-pull-requests"></a>Posso me tornar um aprovador para as solicitações de GitHub pull deste repositório?
 
@@ -206,7 +206,7 @@ Normalmente, as solicitações de pull são revisadas dentro de 10 dias úteis.
 
 ## <a name="more-resources"></a>Mais recursos
 
-* Para saber mais sobre como usar o Git e GitHub, confira primeiro a [GitHub Ajuda].
+* Para saber mais sobre como usar o Git e GitHub, confira primeiro o [GitHub Ajuda].
 
 [Ajuda do GitHub]: https://docs.github.com
 [Configurar o Git]: https://docs.github.com/get-started/quickstart/set-up-git
