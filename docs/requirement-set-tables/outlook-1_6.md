@@ -1,8 +1,0 @@
-| Classe | Campos | Descrição |
-|:---|:---|:---|
-|[AppointmentRead](/javascript/api/outlook/office.appointmentread)|[getSelectedEntities()](/javascript/api/outlook/office.appointmentread#outlook-office-appointmentread-getselectedentities-member(1))|Obtém as entidades encontradas em uma correspondência realçada que um usuário selecionou.|
-||[getSelectedRegExMatches()](/javascript/api/outlook/office.appointmentread#outlook-office-appointmentread-getselectedregexmatches-member(1))|Retorna valores de cadeia de caracteres em uma correspondência realçada que corresponde às expressões regulares definidas no arquivo de manifesto XML.|
-|[Caixa de Correio](/javascript/api/outlook/office.mailbox)|[displayNewMessageForm(parameters: any)](/javascript/api/outlook/office.mailbox#outlook-office-mailbox-displaynewmessageform-member(1))|Exibe um formulário para criar uma nova mensagem.|
-|[MessageRead](/javascript/api/outlook/office.messageread)|[getSelectedEntities()](/javascript/api/outlook/office.messageread#outlook-office-messageread-getselectedentities-member(1))|Obtém as entidades encontradas em uma correspondência realçada que um usuário selecionou.|
-||[getSelectedRegExMatches()](/javascript/api/outlook/office.messageread#outlook-office-messageread-getselectedregexmatches-member(1))|Retorna valores de cadeia de caracteres em uma correspondência realçada que corresponde às expressões regulares definidas no arquivo de manifesto XML.|
-|[UserProfile](/javascript/api/outlook/office.userprofile)|[accountType](/javascript/api/outlook/office.userprofile#outlook-office-userprofile-accounttype-member)|Obtém o tipo de conta do usuário associado à caixa de correio.|
