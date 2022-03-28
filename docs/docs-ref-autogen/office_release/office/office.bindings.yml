@@ -27,7 +27,7 @@ methods:
   package: office!
   fullName: addFromNamedItemAsync(itemName, bindingType, options, callback)
   summary: Cria uma associação em relação a um objeto nomeado no documento.
-  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)\n\nPara Excel, o parâmetro itemName pode se referir a um intervalo nomeado ou a uma tabela.\n\nPor padrão, a adição de uma tabela no Excel atribui o nome \"Tabela1\" à primeira tabela que você adicionar, \"Tabela2\" para a segunda tabela adicionada e assim por diante. Para atribuir um nome significativo para uma tabela na interface do usuário Excel, use a propriedade Nome da Tabela na guia Design de Ferramentas de Tabela \\| da faixa de opções.\n\n**Observação**: Excel, ao especificar uma tabela como um item nomeado, você deve qualificar totalmente o nome para incluir o nome da planilha no nome da tabela neste formato: \"Sheet1! Table1\"\n\nPara o Word, o parâmetro itemName refere-se à propriedade Title de um controle de conteúdo Rich Text. (Não é possível vincular a controles de conteúdo que não o controle de conteúdo Rich Text).\n\nPor padrão, um controle de conteúdo não tem nenhum valor Title atribuído. Para atribuir um nome significativo na interface do usuário do Word, depois de inserir um controle de conteúdo Rich Text do grupo Controles na guia Desenvolvedor da faixa de opções, use o comando Propriedades no grupo Controles para exibir a caixa de diálogo Propriedades de Controle de Conteúdo. Em seguida, defina a propriedade Title do controle de conteúdo para o nome ao qual você deseja fazer referência por meio do seu código.\n\n**Observação**: no Word, se houver vários controles de conteúdo rich text com o mesmo valor da propriedade Title (nome) e você tentar vincular a um desses controles de conteúdo com esse método (especificando seu nome como parâmetro itemName), a operação falhará.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// The following example adds a binding to the myRange named item in Excel as a \"matrix\" binding,\n// and assigns the binding's id as myMatrix.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"myRange\", \"matrix\", {id:'myMatrix'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example adds a binding to the Table1 named item in Excel as a \"table\" binding,\n// and assigns the binding's id as myTable.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", \"table\", {id:'myTable'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example creates a text binding in Word to a rich text content control named \"FirstName\",\n// assigns the id \"firstName\", and then displays that information.\nfunction bindContentControl() {\n    Office.context.document.bindings.addFromNamedItemAsync('FirstName', \n        Office.BindingType.Text, {id:'firstName'},\n        function (result) {\n            if (result.status === Office.AsyncResultStatus.Succeeded) {\n                write('Control bound. Binding.id: '\n                    + result.value.id + ' Binding.type: ' + result.value.type);\n            } else {\n                write('Error:', result.error.message);\n            }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)\n\nPara Excel, o parâmetro itemName pode se referir a um intervalo nomeado ou a uma tabela.\n\nPor padrão, a adição de uma tabela no Excel atribui o nome \"Tabela1\" à primeira tabela que você adicionar, \"Tabela2\" para a segunda tabela adicionada e assim por diante. Para atribuir um nome significativo para uma tabela na interface do usuário Excel, use a propriedade Nome \\| da Tabela na guia Design de Ferramentas de Tabela da faixa de opções.\n\n**Observação**: Excel, ao especificar uma tabela como um item nomeado, você deve qualificar totalmente o nome para incluir o nome da planilha no nome da tabela neste formato: \"Sheet1! Table1\"\n\nPara o Word, o parâmetro itemName refere-se à propriedade Title de um controle de conteúdo Rich Text. (Não é possível vincular a controles de conteúdo que não o controle de conteúdo Rich Text).\n\nPor padrão, um controle de conteúdo não tem nenhum valor Title atribuído. Para atribuir um nome significativo na interface do usuário do Word, depois de inserir um controle de conteúdo Rich Text do grupo Controles na guia Desenvolvedor da faixa de opções, use o comando Propriedades no grupo Controles para exibir a caixa de diálogo Propriedades de Controle de Conteúdo. Em seguida, defina a propriedade Title do controle de conteúdo para o nome ao qual você deseja fazer referência por meio do seu código.\n\n**Observação**: no Word, se houver vários controles de conteúdo Rich Text com o mesmo valor da propriedade Title (nome) e você tentar vincular a um desses controles de conteúdo com esse método (especificando seu nome como parâmetro itemName), a operação falhará.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\n// The following example adds a binding to the myRange named item in Excel as a \"matrix\" binding,\n// and assigns the binding's id as myMatrix.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"myRange\", \"matrix\", {id:'myMatrix'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example adds a binding to the Table1 named item in Excel as a \"table\" binding,\n// and assigns the binding's id as myTable.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", \"table\", {id:'myTable'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example creates a text binding in Word to a rich text content control named \"FirstName\",\n// assigns the id \"firstName\", and then displays that information.\nfunction bindContentControl() {\n    Office.context.document.bindings.addFromNamedItemAsync('FirstName', \n        Office.BindingType.Text, {id:'firstName'},\n        function (result) {\n            if (result.status === Office.AsyncResultStatus.Succeeded) {\n                write('Control bound. Binding.id: '\n                    + result.value.id + ' Binding.type: ' + result.value.type);\n            } else {\n                write('Error:', result.error.message);\n            }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -54,13 +54,13 @@ methods:
   fullName: addFromNamedItemAsync(itemName, bindingType, callback)
   summary: Cria uma associação em relação a um objeto nomeado no documento.
   remarks: >-
-    [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)<!-- -->, [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)<!-- -->, [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)
+    [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)<!-- -->, [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)<!-- -->, [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)
 
 
     Para Excel, o parâmetro itemName pode se referir a um intervalo nomeado ou a uma tabela.
 
 
-    Por padrão, a adição de uma tabela no Excel atribui o nome "Tabela1" à primeira tabela que você adicionar, "Tabela2" para a segunda tabela adicionada e assim por diante. Para atribuir um nome significativo para uma tabela na interface do usuário Excel, use a propriedade Nome da Tabela na guia Design de Ferramentas de Tabela \| da faixa de opções.
+    Por padrão, a adição de uma tabela no Excel atribui o nome "Tabela1" à primeira tabela que você adicionar, "Tabela2" para a segunda tabela adicionada e assim por diante. Para atribuir um nome significativo para uma tabela na interface do usuário Excel, use a propriedade Nome \| da Tabela na guia Design de Ferramentas de Tabela da faixa de opções.
 
 
     **Observação**: Excel, ao especificar uma tabela como um item nomeado, você deve qualificar totalmente o nome para incluir o nome da planilha no nome da tabela neste formato: "Sheet1! Table1"
@@ -72,7 +72,7 @@ methods:
     Por padrão, um controle de conteúdo não tem nenhum valor Title atribuído. Para atribuir um nome significativo na interface do usuário do Word, depois de inserir um controle de conteúdo Rich Text do grupo Controles na guia Desenvolvedor da faixa de opções, use o comando Propriedades no grupo Controles para exibir a caixa de diálogo Propriedades de Controle de Conteúdo. Em seguida, defina a propriedade Title do controle de conteúdo para o nome ao qual você deseja fazer referência por meio do seu código.
 
 
-    **Observação**: no Word, se houver vários controles de conteúdo rich text com o mesmo valor da propriedade Title (nome) e você tentar vincular a um desses controles de conteúdo com esse método (especificando seu nome como parâmetro itemName), a operação falhará.
+    **Observação**: no Word, se houver vários controles de conteúdo Rich Text com o mesmo valor da propriedade Title (nome) e você tentar vincular a um desses controles de conteúdo com esse método (especificando seu nome como parâmetro itemName), a operação falhará.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -95,7 +95,7 @@ methods:
   package: office!
   fullName: addFromPromptAsync(bindingType, options, callback)
   summary: Crie uma associação solicitando que o usuário faça uma seleção no documento.
-  remarks: "**Conjunto de requisitos**: [Não em um conjunto](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)\n\nAdiciona um objeto de associação do tipo especificado à coleção Bindings, que será identificado com a id especificada. O método falhará se a seleção especificada não puder ser associada.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction addBindingFromPrompt() {\n    Office.context.document.bindings.addFromPromptAsync(\n        Office.BindingType.Text, \n        { id: 'MyBinding', promptText: 'Select text to bind to.' },\n        function (asyncResult) {\n            write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Conjunto de requisitos**: [não em um conjunto](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)\n\nAdiciona um objeto de associação do tipo especificado à coleção Bindings, que será identificado com a id especificada. O método falhará se a seleção especificada não puder ser associada.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction addBindingFromPrompt() {\n    Office.context.document.bindings.addFromPromptAsync(\n        Office.BindingType.Text, \n        { id: 'MyBinding', promptText: 'Select text to bind to.' },\n        function (asyncResult) {\n            write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -108,7 +108,7 @@ methods:
       description: Fornece opções para configurar o prompt e identificar a associação criada.
       type: <xref uid="office!Office.AddBindingFromPromptOptions:interface" />
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é o objeto Binding que representa a `value` seleção especificada pelo usuário.
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é o objeto Binding que representa a seleção especificada pelo usuário.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -119,7 +119,7 @@ methods:
   fullName: addFromPromptAsync(bindingType, callback)
   summary: Crie uma associação solicitando que o usuário faça uma seleção no documento.
   remarks: >-
-    **Conjunto de requisitos**: [Não em um conjunto](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+    **Conjunto de requisitos**: [não em um conjunto](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
 
 
     Adiciona um objeto de associação do tipo especificado à coleção Bindings, que será identificado com a id especificada. O método falhará se a seleção especificada não puder ser associada.
@@ -132,7 +132,7 @@ methods:
       description: Especifica o tipo do objeto de associação a ser criado. Obrigatório. Retorna null se o objeto selecionado não puder ser coa cedido ao tipo especificado.
       type: <xref uid="office!Office.BindingType:enum" />
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é o objeto Binding que representa a `value` seleção especificada pelo usuário.
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é o objeto Binding que representa a seleção especificada pelo usuário.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -142,7 +142,7 @@ methods:
   package: office!
   fullName: addFromSelectionAsync(bindingType, options, callback)
   summary: Crie uma associação com base na seleção atual do usuário.
-  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)\n\nAdiciona o tipo especificado de objeto de associação à coleção Bindings, que será identificada com a id fornecida.\n\nObservação No Excel, se você chamar o método addFromSelectionAsync passando o Binding.id de uma associação existente, o Binding.type dessa associação será usado e seu tipo não poderá ser alterado especificando um valor diferente para o parâmetro bindingType. Se você precisar usar uma id existente e alterar o bindingType, chame o método Bindings.releaseByIdAsync primeiro para liberar a associação e chame o método addFromSelectionAsync para restabelecer a associação com um novo tipo.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction addBindingFromSelection() {\n    Office.context.document.bindings.addFromSelectionAsync(Office.BindingType.Text, { id: 'MyBinding' }, \n        function (asyncResult) {\n        write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n        }\n    );\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)\n\nAdiciona o tipo especificado de objeto de associação à coleção Bindings, que será identificada com a id fornecida.\n\nObservação No Excel, se você chamar o método addFromSelectionAsync passando o Binding.id de uma associação existente, o Binding.type dessa associação será usado e seu tipo não poderá ser alterado especificando um valor diferente para o parâmetro bindingType. Se você precisar usar uma id existente e alterar o bindingType, chame o método Bindings.releaseByIdAsync primeiro para liberar a associação e chame o método addFromSelectionAsync para restabelecer a associação com um novo tipo.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction addBindingFromSelection() {\n    Office.context.document.bindings.addFromSelectionAsync(Office.BindingType.Text, { id: 'MyBinding' }, \n        function (asyncResult) {\n        write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n        }\n    );\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -155,7 +155,7 @@ methods:
       description: Fornece opções para identificar a associação criada.
       type: <xref uid="office!Office.AddBindingFromSelectionOptions:interface" />
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é o objeto Binding que representa a `value` seleção especificada pelo usuário.
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é o objeto Binding que representa a seleção especificada pelo usuário.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -169,13 +169,13 @@ methods:
     **Conjuntos de requisitos**:
 
 
-    - [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)
+    - [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)
 
 
-    - [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)
+    - [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)
 
 
-    - [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)
+    - [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)
 
 
     Adiciona o tipo especificado de objeto de associação à coleção Bindings, que será identificada com a id fornecida.
@@ -191,7 +191,7 @@ methods:
       description: Especifica o tipo do objeto de associação a ser criado. Obrigatório. Retorna null se o objeto selecionado não puder ser coa cedido ao tipo especificado.
       type: <xref uid="office!Office.BindingType:enum" />
     - id: callback
-      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é o objeto Binding que representa a `value` seleção especificada pelo usuário.
+      description: Opcional. Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é o objeto Binding que representa a seleção especificada pelo usuário.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -205,13 +205,13 @@ methods:
     **Conjuntos de requisitos**:
 
 
-    - [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)
+    - [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)
 
 
-    - [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)
+    - [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)
 
 
-    - [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)
+    - [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)
   isPreview: false
   isDeprecated: false
   syntax:
@@ -221,7 +221,7 @@ methods:
       description: Fornece uma opção para preservar dados de contexto de qualquer tipo, inalterado, para uso em um retorno de chamada.
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é uma matriz que contém cada `value` associação criada para o objeto Bindings referenciado.
+      description: Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é uma matriz que contém cada associação criada para o objeto Bindings referenciado.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -231,14 +231,14 @@ methods:
   package: office!
   fullName: getAllAsync(callback)
   summary: Obtém todas as associações criadas anteriormente.
-  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction displayAllBindingNames() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction displayAllBindingNames() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getAllAsync(callback?: (result: AsyncResult<Binding[]>) => void): void;'
     parameters:
     - id: callback
-      description: Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A propriedade do resultado é uma matriz que contém cada `value` associação criada para o objeto Bindings referenciado.
+      description: Uma função que é invocada quando o retorno de chamada retorna, cujo único parâmetro é do tipo [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->. A `value` propriedade do resultado é uma matriz que contém cada associação criada para o objeto Bindings referenciado.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.Binding:interface" />[]&gt;) =&gt; void'
     return:
       type: void
@@ -252,13 +252,13 @@ methods:
     **Conjuntos de requisitos**:
 
 
-    - [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)
+    - [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)
 
 
-    - [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)
+    - [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)
 
 
-    - [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)
+    - [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)
 
 
     Falhará se a id especificada não existir.
@@ -284,7 +284,7 @@ methods:
   package: office!
   fullName: getByIdAsync(id, callback)
   summary: Recupera uma associação com base em seu nome
-  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)\n\nFalhará se a id especificada não existir.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction displayBindingType() {\n    Office.context.document.bindings.getByIdAsync('MyBinding', function (asyncResult) {\n        write('Retrieved binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)\n\nFalhará se a id especificada não existir.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nfunction displayBindingType() {\n    Office.context.document.bindings.getByIdAsync('MyBinding', function (asyncResult) {\n        write('Retrieved binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -308,13 +308,13 @@ methods:
     **Conjuntos de requisitos**:
 
 
-    - [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)
+    - [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)
 
 
-    - [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)
+    - [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)
 
 
-    - [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)
+    - [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)
 
 
     Falhará se a id especificada não existir.
@@ -340,7 +340,7 @@ methods:
   package: office!
   fullName: releaseByIdAsync(id, callback)
   summary: Remove a associação do documento
-  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#textbindings)\n\nFalhará se a id especificada não existir.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOffice.context.document.bindings.releaseByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(\"Released MyBinding!\"); \n}); \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"
+  remarks: "**Conjuntos de requisitos**:\n\n- [MatrixBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#matrixbindings)\n\n- [TableBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#tablebindings)\n\n- [TextBindings](https://docs.microsoft.com/javascript/api/requirement-sets/common/office-add-in-requirement-sets#textbindings)\n\nFalhará se a id especificada não existir.\n\n#### <a name=\"examples\"></a>Exemplos\n\n```javascript\nOffice.context.document.bindings.releaseByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(\"Released MyBinding!\"); \n}); \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -356,9 +356,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 61c0d43ef26b369fcf535acbd3bb55c8f1ad8d3b
-  ms.sourcegitcommit: acfa7744e00932ab2537acbc9ce8393108112c18
+  ms.openlocfilehash: 18cf46a5bd070334ac88d5657541508d5d9165f2
+  ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/03/2021
-  ms.locfileid: "61279928"
+  ms.lasthandoff: 03/26/2022
+  ms.locfileid: "64481999"

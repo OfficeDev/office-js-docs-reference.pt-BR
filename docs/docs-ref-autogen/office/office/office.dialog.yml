@@ -4,7 +4,7 @@ uid: office!Office.Dialog:interface
 package: office!
 fullName: Office.Dialog
 summary: O objeto retornado quando `UI.displayDialogAsync` é chamado. Ele expõe métodos para registrar manipuladores de eventos e fechar a caixa de diálogo.
-remarks: '**Conjunto de requisitos**: [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
+remarks: '**Conjunto de requisitos**: [DialogAPI](https://docs.microsoft.com/javascript/api/requirement-sets/common/dialog-api-requirement-sets)'
 isPreview: false
 isDeprecated: false
 type: interface
@@ -31,7 +31,7 @@ methods:
       description: Deve ser DialogMessageReceived ou DialogEventReceived.
       type: <xref uid="office!Office.EventType:enum" />
     - id: handler
-      description: Uma função que aceita um objeto com uma `message` propriedade `origin` e, `eventType` se for `DialogMessageReceived`<!-- -->, ou um objeto com uma `error` propriedade, `eventType` se for `DialogEventReceived`<!-- -->. Observe que a `origin` propriedade está em clientes que não `undefined` suportam [DialogOrigin 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-origin-requirement-sets)<!-- -->.
+      description: Uma função que aceita um objeto com uma `message` propriedade e `origin` , se `eventType` for `DialogMessageReceived`<!-- -->, ou um objeto com uma `error` propriedade, se `eventType` for `DialogEventReceived`<!-- -->. Observe que a `origin` propriedade está `undefined` em clientes que não suportam [DialogOrigin 1.1](https://docs.microsoft.com/javascript/api/requirement-sets/common/dialog-origin-requirement-sets)<!-- -->.
       type: '(args: {message: string, origin: string | undefined} | {error: number}) =&gt; void'
     return:
       type: void
@@ -44,7 +44,7 @@ methods:
     Chamado de uma página pai para fechar a caixa de diálogo correspondente.
 
 
-    Esse método é assíncrono. Ele não tem um parâmetro de retorno de chamada e não retorna um objeto Promise, portanto, ele não pode ser aguardado com a palavra-chave `await` ou a `then` função. Confira esta prática prática para obter mais informações: Abrir outra caixa de [diálogo imediatamente após o fechamento de uma](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-best-practices#opening-another-dialog-immediately-after-closing-one)
+    Esse método é assíncrono. Ele não tem um parâmetro de retorno de chamada e não retorna um objeto Promise, portanto, ele não pode ser aguardado `await` com a palavra-chave ou a `then` função. Confira esta prática prática para obter mais informações: [Abrir outra caixa de diálogo imediatamente após o fechamento de uma](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-best-practices#opening-another-dialog-immediately-after-closing-one)
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -59,19 +59,19 @@ methods:
   fullName: messageChild(message, messageOptions)
   summary: Entrega uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, para uma caixa de diálogo aberta na página.
   remarks: >-
-    **Hosts**: Excel, Outlook (Conjunto de requisitos mínimos: Caixa de Correio 1.9), PowerPoint, Word
+    **Hosts**: Excel, Outlook (Conjunto de requisitos mínimo: Caixa de Correio 1.9), PowerPoint, Word
 
 
     **Conjuntos de requisitos**:
 
 
-    - [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+    - [DialogAPI 1.2](https://docs.microsoft.com/javascript/api/requirement-sets/common/dialog-api-requirement-sets)
 
 
-    - [Caixa de correio 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
+    - [Caixa de correio 1.9](https://docs.microsoft.com/javascript/api/requirement-sets/outlook/outlook-api-requirement-sets)
 
 
-    - Se o `messageOptions` parâmetro for usado, [DialogOrigin 1.1](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-origin-requirement-sets) também será necessário.
+    - Se o `messageOptions` parâmetro for usado, [DialogOrigin 1.1](https://docs.microsoft.com/javascript/api/requirement-sets/common/dialog-origin-requirement-sets) também será necessário.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -104,9 +104,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 283d8bf0325236380c4797756901aaba80b4141a
-  ms.sourcegitcommit: 299ab01d75899a5547557dd4a40728b385dc16f1
+  ms.openlocfilehash: 7d4109c1e1bf651a5fe428a077b6ee0e36588dea
+  ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 07/22/2021
-  ms.locfileid: "53532743"
+  ms.lasthandoff: 03/26/2022
+  ms.locfileid: "64482848"
