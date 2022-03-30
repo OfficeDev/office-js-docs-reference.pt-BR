@@ -3,12 +3,12 @@ title: Disponibilidade de aplicativos e plataformas do cliente Office para Suple
 description: Conjuntos de requisitos com suporte para o Excel, OneNote, Outlook, PowerPoint, Project e Word.
 ms.date: 02/15/2022
 ms.localizationpriority: high
-ms.openlocfilehash: 8c42c0d548121e14171209309c435d37b44a3153
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: d8476386631e148cf5ed6a72eb3cfb5f41caf50f
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485213"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64501808"
 ---
 # <a name="office-client-application-and-platform-availability-for-office-add-ins"></a>Disponibilidade de aplicativos e plataformas do cliente Office para Suplementos do Office
 
@@ -132,11 +132,11 @@ Para funcionar conforme o esperado, o Suplemento do Office pode depender de um a
 
 ## <a name="see-also"></a>Confira também
 
-- [Visão geral da plataforma Suplementos do Office](/office/dev/add-ins/office-add-ins)
+- [Visão geral da plataforma Suplementos do Office](/office/dev/add-ins/overview/office-add-ins)
 - [Versões do Office e conjuntos de requisitos](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
 - [Conjuntos de requisitos comuns da API](common/office-add-in-requirement-sets.md)
 - [Conjuntos de requisitos dos comandos de suplemento](common/add-in-commands-requirement-sets.md)
-- [Documentação de Referência da API](/office/dev/add-ins/javascript-api-for-office)
+- [Documentação de Referência da API](/javascript/api/overview)
 - [Histórico de atualizações para Microsoft 365 Apps](/officeupdates/update-history-office365-proplus-by-date)
 - [Histórico de atualizações do Office 2016 e 2019 (Clique para Executar)](/officeupdates/update-history-office-2019)
 - [Histórico de atualizações do Office 2013 (clique para executar)](/officeupdates/update-history-office-2013)

@@ -3,12 +3,12 @@ title: Office.context - conjunto de requisitos 1.3
 description: Office. Membros do objeto Context disponíveis para Outlook de entrada usando o conjunto de requisitos da API de Caixa de Correio 1.3.
 ms.date: 10/08/2021
 ms.localizationpriority: medium
-ms.openlocfilehash: 55887e5f11953973d60acc41e5b7610a87cedf7c
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 56c94c4b4d04e72438b1ccafd486897313049ac4
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484816"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503040"
 ---
 # <a name="context-mailbox-requirement-set-13"></a>context (Conjunto de requisitos de caixa de correio 1.3)
 
@@ -21,15 +21,15 @@ Office.context fornece interfaces compartilhadas que são usadas por complemento
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ## <a name="properties"></a>Propriedades
 
 | Propriedade | Modos | Tipo de retorno | Minimum<br>conjunto de requisitos |
 |---|---|---|:---:|
-| [contentLanguage](#contentlanguage-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [contentLanguage](#contentlanguage-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [diagnostics](#diagnostics-contextinformation) | Escrever<br>Read | [ContextInformation](/javascript/api/office/office.contextinformation?view=outlook-js-1.3&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [displayLanguage](#displaylanguage-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [displayLanguage](#displaylanguage-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [mailbox](office.context.mailbox.md) | Escrever<br>Read | [Caixa de Correio](/javascript/api/outlook/office.mailbox?view=outlook-js-1.3&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [requirements](#requirements-requirementsetsupport) | Escrever<br>Read | [RequirementSetSupport](/javascript/api/office/office.requirementsetsupport?view=outlook-js-1.3&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [roamingSettings](#roamingsettings-roamingsettings) | Escrever<br>Read | [RoamingSettings](/javascript/api/outlook/office.roamingsettings?view=outlook-js-1.3&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
@@ -52,7 +52,7 @@ O `contentLanguage` valor reflete a **configuração** atual de Idioma de Ediç�
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -93,7 +93,7 @@ Obtém informações sobre o ambiente no qual o complemento está sendo executad
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -124,7 +124,7 @@ O `displayLanguage` valor reflete a configuração atual **de Idioma** de Exibi�
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -165,7 +165,7 @@ Fornece um método para determinar quais conjuntos de requisitos são suportados
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -197,7 +197,7 @@ O `RoamingSettings` objeto permite que você armazene e acesse dados para um com
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
 |[Nível de permissão mínimo](/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)| Restrito|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 <br>
 
@@ -217,4 +217,4 @@ Fornece objetos e métodos que você pode usar para criar e manipular componente
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|

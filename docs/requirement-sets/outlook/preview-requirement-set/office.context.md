@@ -3,12 +3,12 @@ title: Office.context - conjunto de requisitos de visualização
 description: Office. Membros do objeto Context disponíveis para Outlook de usuário usando conjunto de requisitos de visualização da API de Caixa de Correio.
 ms.date: 12/03/2020
 ms.localizationpriority: medium
-ms.openlocfilehash: 3a31488626bd675b6500e5153ece0b8c9da4e7a4
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: c572b9f1904baa22ce3e14456bfe74d66edc0d70
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484822"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502326"
 ---
 # <a name="context-mailbox-preview-requirement-set"></a>context (Conjunto de requisitos de visualização de caixa de correio)
 
@@ -21,16 +21,16 @@ Office.context fornece interfaces compartilhadas que são usadas por complemento
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ## <a name="properties"></a>Propriedades
 
 | Propriedade | Modos | Tipo de retorno | Minimum<br>conjunto de requisitos |
 |---|---|---|:---:|
 | [auth](#auth-auth) | Escrever<br>Read | [Auth](/javascript/api/office/office.auth?view=outlook-js-preview&preserve-view=true) | [IdentityAPI 1.3](../../common/identity-api-requirement-sets.md) |
-| [contentLanguage](#contentlanguage-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [contentLanguage](#contentlanguage-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [diagnostics](#diagnostics-contextinformation) | Escrever<br>Read | [ContextInformation](/javascript/api/office/office.contextinformation?view=outlook-js-preview&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [displayLanguage](#displaylanguage-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [displayLanguage](#displaylanguage-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [host](#host-hosttype) | Escrever<br>Read | [HostType](/javascript/api/office/office.hosttype?view=outlook-js-preview&preserve-view=true) | [1.5](../requirement-set-1.5/outlook-requirement-set-1.5.md) |
 | [mailbox](office.context.mailbox.md) | Escrever<br>Read | [Caixa de Correio](/javascript/api/outlook/office.mailbox?view=outlook-js-preview&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [officeTheme](#officetheme-officetheme) | Escrever<br>Read | [OfficeTheme](/javascript/api/office/office.officetheme?view=outlook-js-preview&preserve-view=true) | [Visualização](../preview-requirement-set/outlook-requirement-set-preview.md) |
@@ -54,7 +54,7 @@ Oferece [suporte ao SSO (](/office/dev/add-ins/outlook/authenticate-a-user-with-
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| Visualização|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -89,7 +89,7 @@ O `contentLanguage` valor reflete a **configuração** atual de Idioma de Ediç�
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -130,7 +130,7 @@ Obtém informações sobre o ambiente no qual o complemento está sendo executad
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -161,7 +161,7 @@ O `displayLanguage` valor reflete a configuração atual **de Idioma** de Exibi�
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -205,7 +205,7 @@ Obtém Office aplicativo que está hospedando o complemento.
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1,5|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -235,7 +235,7 @@ O uso de cores de tema Office > Office permite coordenar o esquema de cores do s
 
 |Nome| Tipo| Descrição|
 |---|---|---|
-|`bodyBackgroundColor`| Cadeia de caracteres|Obtém a cor de plano de fundo do corpo de tema do Office como um tripleto hexadecimal de cores.|
+|`bodyBackgroundColor`| String|Obtém a cor de plano de fundo do corpo de tema do Office como um tripleto hexadecimal de cores.|
 |`bodyForegroundColor`| String|Obtém a cor de primeiro plano do corpo de tema do Office como um tripleto hexadecimal de cores.|
 |`controlBackgroundColor`| String|Obtém a cor de plano de fundo do controle do tema do Office como um tripleto hexadecimal de cores.|
 |`controlForegroundColor`| String|Obtém a cor de controle do corpo de tema do Office como um tripleto hexadecimal de cores.|
@@ -245,7 +245,7 @@ O uso de cores de tema Office > Office permite coordenar o esquema de cores do s
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| Visualização|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -283,7 +283,7 @@ Fornece a plataforma na qual o complemento está sendo executado.
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1,5|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -309,7 +309,7 @@ Fornece um método para determinar quais conjuntos de requisitos são suportados
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ##### <a name="example"></a>Exemplo
 
@@ -338,7 +338,7 @@ O `RoamingSettings` objeto permite que você armazene e acesse dados para um com
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
 |[Nível de permissão mínimo](/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)| Restrito|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 <br>
 
@@ -358,4 +358,4 @@ Fornece objetos e métodos que você pode usar para criar e manipular componente
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/../outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/../outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|

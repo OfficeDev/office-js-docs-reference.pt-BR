@@ -3,12 +3,12 @@ title: 'Office.context.mailbox: conjunto de requisitos da versão 1.5'
 description: Outlook conjunto de requisitos da API de Caixa de Correio 1.5 do modelo de objeto mailbox.
 ms.date: 05/17/2021
 ms.localizationpriority: medium
-ms.openlocfilehash: bddbd030507d0af047f929762f6fd5f43562559d
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: e24b9f9f9e5fad3a28a9c6cfea87e0780f584a83
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484773"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502242"
 ---
 # <a name="mailbox-requirement-set-15"></a>mailbox (conjunto de requisitos 1.5)
 
@@ -22,19 +22,19 @@ Fornece acesso ao modelo de objeto de suplemento do Outlook para o Microsoft Out
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
 |[Nível de permissão mínimo](/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)| Restrito|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ## <a name="properties"></a>Propriedades
 
 | Propriedade | Minimum<br>nível de permissão | Modos | Tipo de retorno | Minimum<br>conjunto de requisitos |
 |---|---|---|---|:---:|
-| [diagnostics](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-diagnostics-member) | ReadItem | Escrever<br>Read | [Diagnóstico](/javascript/api/outlook/office.diagnostics?view=outlook-js-1.5&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [ewsUrl](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-ewsurl-member) | ReadItem | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [diagnostics](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-diagnostics-member) | ReadItem | Escrever<br>Read | [Diagnostics](/javascript/api/outlook/office.diagnostics?view=outlook-js-1.5&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [ewsUrl](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-ewsurl-member) | ReadItem | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 | [item](office.context.mailbox.item.md) | Restricted | Escrever<br>Read | [Item](/javascript/api/outlook/office.item?view=outlook-js-1.5&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [restUrl](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-resturl-member) | ReadItem | Escrever<br>Read | Cadeia de Caracteres | [1.5](../requirement-set-1.5/outlook-requirement-set-1.5.md) |
+| [restUrl](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-resturl-member) | ReadItem | Escrever<br>Read | Cadeia de caracteres | [1.5](../requirement-set-1.5/outlook-requirement-set-1.5.md) |
 | [userProfile](/javascript/api/outlook/office.mailbox?view=outlook-js-1.5&preserve-view=true#outlook-office-mailbox-userprofile-member) | ReadItem | Escrever<br>Read | [UserProfile](/javascript/api/outlook/office.userprofile?view=outlook-js-1.5&preserve-view=true) | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 
-## <a name="methods"></a>Métodos
+## <a name="methods"></a>Methods
 
 | Método | Minimum<br>nível de permissão | Modos | Minimum<br>conjunto de requisitos |
 |---|---|---|:---:|

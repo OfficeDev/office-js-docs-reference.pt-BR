@@ -3,12 +3,12 @@ title: Elemento Override no arquivo de manifesto
 description: O elemento Override permite que você especifique o valor de uma configuração dependendo de uma condição especificada.
 ms.date: 01/22/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 4cedc68a766b599e143b9e71f272d4d2aa600be3
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: f6a13d981f249f2095136bed8e1adc5c02332d8f
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485122"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503488"
 ---
 # <a name="override-element"></a>Elemento Override
 
@@ -143,7 +143,7 @@ Um **elemento Override** expressa uma condição e pode ser lido como um "Se ...
 
 ### <a name="must-contain"></a>Deve conter
 
-|Elemento|Conteúdo|Correio|TaskPane|
+|Elemento|Conteúdo|Email|TaskPane|
 |:-----|:-----|:-----|:-----|
 |[Requisitos](requirements.md)|||x|
 
@@ -198,7 +198,7 @@ Um **elemento Override** expressa uma condição e pode ser lido como um "Se ...
 ## <a name="override-element-for-runtime"></a>Elemento Override para `Runtime`
 
 > [!IMPORTANT]
-> O suporte para esse elemento foi introduzido no conjunto de requisitos de Caixa de [Correio 1.10](/office/dev/add-ins/reference/objectmodel/requirement-set-1.10/outlook-requirement-set-1.10) com o [recurso de ativação baseada em evento](/office/dev/add-ins/outlook/autolaunch). Confira, [clientes e plataformas](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets#requirement-sets-supported-by-exchange-servers-and-outlook-clients) que oferecem suporte a esse conjunto de requisitos.
+> O suporte para esse elemento foi introduzido no conjunto de requisitos de Caixa de [Correio 1.10](../requirement-sets/outlook/requirement-set-1.10/outlook-requirement-set-1.10.md) com o [recurso de ativação baseada em evento](/office/dev/add-ins/outlook/autolaunch). Confira, [clientes e plataformas](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets#requirement-sets-supported-by-exchange-servers-and-outlook-clients) que oferecem suporte a esse conjunto de requisitos.
 
 Um **elemento Override** expressa uma condição e pode ser lido como um "Se ... then ..." instrução. Se o **elemento Override** for do tipo **RuntimeOverride**, `type` o atributo será a condição e `resid` o atributo será o conseqüente. Por exemplo, o seguinte é ler "Se o tipo for 'javascript', `resid` será 'JSRuntime.Url'." Outlook Desktop requer esse elemento para [manipuladores de ponto de extensão LaunchEvent](/office/dev/add-ins/reference/manifest/extensionpoint#launchevent).
 

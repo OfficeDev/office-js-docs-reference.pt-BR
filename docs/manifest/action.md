@@ -3,12 +3,12 @@ title: Elemento Action no arquivo de manifesto
 description: Esse elemento especifica a ação a ser executar quando o usuário seleciona um botão ou um controle de menu.
 ms.date: 02/25/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 1f35fe9b1d9048424b0a96988eff529e7917dc0f
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 46bddb5c26bb22736bdf79bebb4a22d509f3b83c
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484894"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503432"
 ---
 # <a name="action-element"></a>Elemento Action
 
@@ -54,7 +54,7 @@ Este atributo especifica o tipo de ação realizada quando o usuário seleciona 
 Depois que o usuário selecionar um botão `ExecuteFunction` que inicia a ação, o complemento terminará após 5 minutos se ele ainda não tiver sido concluído.
 
 > [!IMPORTANT]
-> Outlook: Registrar eventos [de Caixa de Correio](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox#events) e [Item](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox.item#events) não está disponível quando **xsi:type** é `ExecuteFunction`.
+> Outlook: Registrar eventos [de Caixa de Correio](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.md#events) e [Item](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.item.md#events) não está disponível quando **xsi:type** é `ExecuteFunction`.
 
 ## <a name="functionname"></a>FunctionName
 
@@ -186,10 +186,10 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 
 **Associado a esses conjuntos de requisitos**:
 
-- [Caixa de correio 1.5](/office/dev/add-ins/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5)
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md)
 
 > [!IMPORTANT]
-> Embora o **elemento SupportsPinning** tenha sido introduzido no conjunto de requisitos [1.5](/office/dev/add-ins/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5), ele atualmente só tem suporte para assinantes Microsoft 365 usando o seguinte:
+> Embora o **elemento SupportsPinning** tenha sido introduzido no conjunto de requisitos [1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md), ele atualmente só tem suporte para assinantes Microsoft 365 usando o seguinte:
 >
 > - Outlook 2016 ou posterior no Windows (build 7628.1000 ou posterior)
 > - Outlook 2016 ou posterior no Mac (build 16.13.503 ou posterior)

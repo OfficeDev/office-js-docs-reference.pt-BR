@@ -3,12 +3,12 @@ title: Elemento VersionOverrides 1.0 no arquivo de manifesto para um complemento
 description: Documentação de referência do elemento VersionOverrides (painel de tarefas) para arquivos XML (manifesto de Office de complementos).
 ms.date: 02/18/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 9a4a31e67ee1beec7a2634fe00748ca252797064
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: da5416247aba36a51878b8c56d943e5c0ca031a2
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484788"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64501779"
 ---
 # <a name="versionoverrides-10-element-in-the-manifest-file-for-a-task-pane-add-in"></a>Elemento VersionOverrides 1.0 no arquivo de manifesto para um complemento do painel de tarefas
 
@@ -64,8 +64,8 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 **Associado a esses conjuntos de requisitos**:
 
 - [AddinCommands 1.1](../requirement-sets/common/add-in-commands-requirement-sets.md) quando o **VersionOverrides** pai é o tipo Taskpane 1.0.
-- [Caixa de correio 1.3](/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/outlook-requirement-set-1.3) quando o **VersionOverrides** pai é o tipo Mail 1.0.
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5) quando o **VersionOverrides** pai é o tipo Mail 1.1.
+- [Caixa de correio 1.3](../requirement-sets/outlook/requirement-set-1.3/outlook-requirement-set-1.3.md) quando o **VersionOverrides** pai é o tipo Mail 1.0.
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md) quando o **VersionOverrides** pai é o tipo Mail 1.1.
 
 ## <a name="example"></a>Exemplo
 

@@ -3,12 +3,12 @@ title: Elemento Supertip no arquivo de manifesto
 description: O elemento Supertip define uma dica de ferramenta rica (título e descrição).
 ms.date: 02/04/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 3d2a55eb01732e93b144bdda665c477448e4eb03
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: d4e59970af7c41f5303ec9cf94ef70e1373d1a59
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484941"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64501772"
 ---
 # <a name="supertip"></a>Supertip
 
@@ -27,8 +27,8 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 **Associado a esses conjuntos de requisitos**:
 
 - [AddinCommands 1.1](../requirement-sets/common/add-in-commands-requirement-sets.md) quando o **VersionOverrides** pai é o tipo Taskpane 1.0.
-- [Caixa de correio 1.3](/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/outlook-requirement-set-1.3) quando o **VersionOverrides** pai é o tipo Mail 1.0.
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5) quando o **VersionOverrides** pai é o tipo Mail 1.1.
+- [Caixa de correio 1.3](../requirement-sets/outlook/requirement-set-1.3/outlook-requirement-set-1.3.md) quando o **VersionOverrides** pai é o tipo Mail 1.0.
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md) quando o **VersionOverrides** pai é o tipo Mail 1.1.
 
 ## <a name="child-elements"></a>Elementos filho
 

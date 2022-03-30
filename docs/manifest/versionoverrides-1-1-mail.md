@@ -3,12 +3,12 @@ title: Elemento VersionOverrides 1.1 no arquivo de manifesto para um complemento
 description: Documentação de referência do elemento VersionOverrides 1.1 (email) para Office arquivos XML (manifesto de complementos).
 ms.date: 02/18/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: b5c2abe200bfd37849e379aa925327feb97e44a0
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: df96c4235e40b23dcf82acff6e8a4b995e1ecc90
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484937"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502361"
 ---
 # <a name="versionoverrides-11-element-in-the-manifest-file-for-a-mail-add-in"></a>Elemento VersionOverrides 1.1 no arquivo de manifesto para um complemento de email
 
@@ -27,7 +27,7 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 
 **Associado a esses conjuntos de requisitos**:
 
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5)
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md)
 - Alguns elementos filho podem estar associados a conjuntos de requisitos adicionais.
 
 ## <a name="child-elements"></a>Elementos filho
@@ -65,8 +65,8 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 **Associado a esses conjuntos de requisitos**:
 
 - [AddinCommands 1.1](../requirement-sets/common/add-in-commands-requirement-sets.md) quando o **VersionOverrides** pai é o tipo Taskpane 1.0.
-- [Caixa de correio 1.3](/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/outlook-requirement-set-1.3) quando o **VersionOverrides** pai é o tipo Mail 1.0.
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5) quando o **VersionOverrides** pai é o tipo Mail 1.1.
+- [Caixa de correio 1.3](../requirement-sets/outlook/requirement-set-1.3/outlook-requirement-set-1.3.md) quando o **VersionOverrides** pai é o tipo Mail 1.0.
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md) quando o **VersionOverrides** pai é o tipo Mail 1.1.
 
 ## <a name="example"></a>Exemplo
 

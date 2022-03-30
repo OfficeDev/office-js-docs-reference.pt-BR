@@ -3,12 +3,12 @@ title: Elemento Items no arquivo de manifesto
 description: Especifica os itens em um menu.
 ms.date: 02/04/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 08259a621f519da5c26e56611e3fe3dae855138f
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 15702e2cdbeb6d8df6d714d59206b6e03143b6a4
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485259"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503390"
 ---
 # <a name="items-element"></a>Elemento Items
 
@@ -27,8 +27,8 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 **Associado a esses conjuntos de requisitos**:
 
 - [AddinCommands 1.1](../requirement-sets/common/add-in-commands-requirement-sets.md) quando o **VersionOverrides** pai é o tipo Taskpane 1.0.
-- [Caixa de correio 1.3](/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/outlook-requirement-set-1.3) quando o **VersionOverrides** pai é o tipo Mail 1.0.
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5) quando o **VersionOverrides** pai é o tipo Mail 1.1.
+- [Caixa de correio 1.3](../requirement-sets/outlook/requirement-set-1.3/outlook-requirement-set-1.3.md) quando o **VersionOverrides** pai é o tipo Mail 1.0.
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md) quando o **VersionOverrides** pai é o tipo Mail 1.1.
 
 ## <a name="syntax"></a>Sintaxe
 

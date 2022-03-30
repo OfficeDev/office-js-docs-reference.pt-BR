@@ -4,12 +4,12 @@ description: Detalhes sobre o conjunto de requisitos do ExcelApi 1.11.
 ms.date: 04/01/2021
 ms.prod: excel
 ms.localizationpriority: medium
-ms.openlocfilehash: 284480174dc2f634576476fc4e2493026819ff20
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 1d002e1884e8b18981b00160d8a498ec0ff3ea51
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485254"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503180"
 ---
 # <a name="whats-new-in-excel-javascript-api-111"></a>Novidades na EXCEL JavaScript 1.11
 
@@ -17,11 +17,11 @@ O ExcelApi 1.11 aprimorou o suporte para comentários e controles no nível da p
 
 | Área de recurso | Descrição | Objetos relevantes |
 |:--- |:--- |:--- |
-| [Menções de comentário](/office/dev/add-ins/excel/excel-add-ins-comments.md#mentions) |Marca e notifica outros usuários da área de trabalho por meio de comentários. | [Comment](/javascript/api/excel/excel.comment), [CommentRichContent](/javascript/api/excel/excel.commentrichcontent) |
-| Resolução de [comentários](/office/dev/add-ins/excel/excel-add-ins-comments.md#resolve-comment-threads) | Resolver threads de comentário e obter o status da resolução. | [Comment](/javascript/api/excel/excel.comment) |
-| [Configurações de cultura](/office/dev/add-ins/excel/excel-add-ins-workbooks.md#access-application-culture-settings) | Obtém configurações do sistema cultural para a caixa de trabalho, como formatação de número. | [CultureInfo](/javascript/api/excel/excel.cultureinfo), [Aplicativo NumberFormatInfo](/javascript/api/excel/excel.numberformatinfo) [](/javascript/api/excel/excel.application) |
+| [Menções de comentário](/office/dev/add-ins/excel/excel-add-ins-comments#mentions) |Marca e notifica outros usuários da área de trabalho por meio de comentários. | [Comment](/javascript/api/excel/excel.comment), [CommentRichContent](/javascript/api/excel/excel.commentrichcontent) |
+| Resolução de [comentários](/office/dev/add-ins/excel/excel-add-ins-comments#resolve-comment-threads) | Resolver threads de comentário e obter o status da resolução. | [Comment](/javascript/api/excel/excel.comment) |
+| [Configurações de cultura](/office/dev/add-ins/excel/excel-add-ins-workbooks#access-application-culture-settings) | Obtém configurações do sistema cultural para a caixa de trabalho, como formatação de número. | [CultureInfo](/javascript/api/excel/excel.cultureinfo), [Aplicativo NumberFormatInfo](/javascript/api/excel/excel.numberformatinfo) [](/javascript/api/excel/excel.application) |
 | [Cortar e colar (moveTo)](/office/dev/add-ins/excel/excel-add-ins-ranges-cut-copy-paste) | Replica a funcionalidade de recorte e colar no Excel para um Range. | [Range](/javascript/api/excel/excel.range) |
-| [Salvar](/office/dev/add-ins/excel/excel-add-ins-workbooks.md#save-the-workbook) e [Fechar](/office/dev/add-ins/excel/excel-add-ins-workbooks.md#close-the-workbook) a pasta de trabalho | Salve e feche a pasta de trabalho. | [Workbook](/javascript/api/excel/excel.workbook) |
+| [Salvar](/office/dev/add-ins/excel/excel-add-ins-workbooks.md#save-the-workbook) e [Fechar](/office/dev/add-ins/excel/excel-add-ins-workbooks#close-the-workbook) a pasta de trabalho | Salve e feche a pasta de trabalho. | [Workbook](/javascript/api/excel/excel.workbook) |
 | Eventos de planilha | Eventos adicionais e informações de evento para cálculos de planilha e linhas ocultas. | [WorksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs), [WorksheetRowHiddenChangedEventArgs](/javascript/api/excel/excel.worksheetrowhiddenchangedeventargs) |
 
 ## <a name="api-list"></a>Lista de API

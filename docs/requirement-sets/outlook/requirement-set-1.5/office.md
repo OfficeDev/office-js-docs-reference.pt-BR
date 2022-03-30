@@ -3,12 +3,12 @@ title: Office namespace - conjunto de requisitos 1.5
 description: Office namespace disponíveis para os Outlook que usam o conjunto de requisitos da API de Caixa de Correio 1.5.
 ms.date: 05/17/2021
 ms.localizationpriority: medium
-ms.openlocfilehash: 15de2707c160d379a494c55c6eef693bf42bcc47
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 3bb4a1aaa62e4ca01dde474b366d26b2aa7968e1
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484815"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502935"
 ---
 # <a name="office-mailbox-requirement-set-15"></a>Office (conjunto de requisitos de caixa de correio 1.5)
 
@@ -19,7 +19,7 @@ O namespace do Office fornece interfaces compartilhadas que são usadas pelos su
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 ## <a name="properties"></a>Propriedades
 
@@ -31,10 +31,10 @@ O namespace do Office fornece interfaces compartilhadas que são usadas pelos su
 
 | Enumeração | Modos | Tipo de retorno | Minimum<br>conjunto de requisitos |
 |---|---|---|:---:|
-| [AsyncResultStatus](#asyncresultstatus-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [CoercionType](#coerciontype-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
-| [EventType](#eventtype-string) | Escrever<br>Read | Cadeia de Caracteres | [1.5](../requirement-set-1.5/outlook-requirement-set-1.5.md) |
-| [SourceProperty](#sourceproperty-string) | Escrever<br>Read | Cadeia de Caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [AsyncResultStatus](#asyncresultstatus-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [CoercionType](#coerciontype-string) | Escrever<br>Read | String | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
+| [EventType](#eventtype-string) | Escrever<br>Read | Cadeia de caracteres | [1.5](../requirement-set-1.5/outlook-requirement-set-1.5.md) |
+| [SourceProperty](#sourceproperty-string) | Escrever<br>Read | Cadeia de caracteres | [1.1](../requirement-set-1.1/outlook-requirement-set-1.1.md) |
 
 ## <a name="namespaces"></a>Namespaces
 
@@ -62,7 +62,7 @@ Especifica o resultado de uma chamada assíncrona.
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 <br>
 
@@ -81,7 +81,7 @@ Especifica como forçar dados retornados ou definidos pelo método invocado.
 
 |Nome| Tipo| Descrição|
 |---|---|---|
-|`Html`| Cadeia de caracteres|Solicita que os dados sejam retornados no formato HTML.|
+|`Html`| String|Solicita que os dados sejam retornados no formato HTML.|
 |`Text`| String|Solicita que os dados sejam retornados no formato de texto.|
 
 ##### <a name="requirements"></a>Requisitos
@@ -89,7 +89,7 @@ Especifica como forçar dados retornados ou definidos pelo método invocado.
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|
 
 <br>
 
@@ -108,14 +108,14 @@ Especifica o evento associado a um manipulador de eventos.
 
 | Nome | Tipo | Descrição | Conjunto de requisitos mínimo |
 |---|---|---|:---:|
-|`ItemChanged`| Cadeia de Caracteres | Um item Outlook diferente é selecionado para exibição enquanto o painel de tarefas é fixado. | 1,5 |
+|`ItemChanged`| String | Um item Outlook diferente é selecionado para exibição enquanto o painel de tarefas é fixado. | 1,5 |
 
 ##### <a name="requirements"></a>Requisitos
 
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1,5 |
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler |
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler |
 
 <br>
 
@@ -142,4 +142,4 @@ Especifica a origem dos dados retornados pelo método chamado.
 |Requisito| Valor|
 |---|---|
 |[Versão do conjunto de requisitos mínimos da caixa de correio](../outlook-api-requirement-sets.md)| 1.1|
-|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview.md#extension-points)| Escrever ou Ler|
+|[Modo do Outlook aplicável](/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)| Escrever ou Ler|

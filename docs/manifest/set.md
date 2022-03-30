@@ -3,12 +3,12 @@ title: Elemento Set no arquivo de manifesto
 description: O elemento Set especifica um conjunto de requisitos da API JavaScript Office que seu Office Add-in requer para ser ativado por Office ou para substituir as configurações de manifesto base.
 ms.date: 01/22/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 9f5e8273e07e1abf959def7eac262264bc922f45
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 1584a8ddff2cb03b507954d57565907eea81069c
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484985"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502494"
 ---
 # <a name="set-element"></a>Elemento Set
 
@@ -22,7 +22,7 @@ Quando usado no manifesto base (ou seja, o elemento Requisitos do vôrent **é**
 
 ## <a name="as-a-great-grandchild-of-a-versionoverrides-element"></a>Como bisneto de um elemento VersionOverrides
 
-Especifica um conjunto [](/office/dev/add-ins/develop/office-versions-and-requirement-sets.md#specify-office-applications-and-requirement-sets) de requisitos da API javaScript do Office que deve ser suportado pela versão e plataforma do Office (como Windows, Mac, Web e iOS ou iPad) para que [o VersionOverrides](versionoverrides.md) entre em vigor.
+Especifica um conjunto [](/office/dev/add-ins/develop/office-versions-and-requirement-sets#specify-office-applications-and-requirement-sets) de requisitos da API javaScript do Office que deve ser suportado pela versão e plataforma do Office (como Windows, Mac, Web e iOS ou iPad) para que [o VersionOverrides](versionoverrides.md) entre em vigor.
 
 **Tipo de complemento:** Painel de tarefas, Email
 

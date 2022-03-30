@@ -4,16 +4,16 @@ description: Detalhes sobre o conjunto de requisitos do PowerPointApi 1.1.
 ms.date: 01/08/2021
 ms.prod: powerpoint
 ms.localizationpriority: medium
-ms.openlocfilehash: d6167eb1c4dc5162a72c2aa9634ac34c63fe50cf
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 93245ef6e892bbfae44545606719388eba483f29
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484961"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502788"
 ---
 # <a name="whats-new-in-powerpoint-javascript-api-11"></a>Novidades na API JavaScript 1.1 PowerPoint JavaScript
 
-O PowerPoint JavaScript API 1.1 contém uma [única API para criar uma nova apresentação](/javascript/api/powerpoint#PowerPoint_createPresentation_base64File_). Para obter detalhes sobre a API, confira [Criar uma apresentação](/office/dev/add-ins/powerpoint/powerpoint-add-ins.md#create-a-presentation).
+O PowerPoint JavaScript API 1.1 contém uma [única API para criar uma nova apresentação](/javascript/api/powerpoint#PowerPoint_createPresentation_base64File_). Para obter detalhes sobre a API, confira [Criar uma apresentação](/office/dev/add-ins/powerpoint/powerpoint-add-ins#create-a-presentation).
 
 ## <a name="api-list"></a>Lista de API
 

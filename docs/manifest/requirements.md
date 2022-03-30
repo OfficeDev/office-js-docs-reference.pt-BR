@@ -3,12 +3,12 @@ title: Elemento Requirements no arquivo de manifesto
 description: O elemento Requirements especifica o conjunto de requisitos mínimo e os métodos que seu Office Add-in precisa ser ativado pelo Office ou para substituir as configurações de manifesto base.
 ms.date: 01/26/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: a46d2e7b9573048be46ca2995148038fe957e7a2
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: c08197c4b1438bc0aef4e33efa9332fb735688e8
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485256"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503187"
 ---
 # <a name="requirements-element"></a>Elemento Requirements
 
@@ -46,8 +46,8 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 **Associado a esses conjuntos de requisitos**:
 
 - [AddinCommands 1.1](../requirement-sets/common/add-in-commands-requirement-sets.md) quando o **VersionOverrides** pai é o tipo Taskpane 1.0.
-- [Caixa de correio 1.3](/office/dev/add-ins/reference/objectmodel/requirement-set-1.3/outlook-requirement-set-1.3) quando o **VersionOverrides** pai é o tipo Mail 1.0.
-- [Caixa de correio 1.5](/office/dev/add-ins/reference/objectmodel/requirement-set-1.5/outlook-requirement-set-1.5) quando o **VersionOverrides** pai é o tipo Mail 1.1.
+- [Caixa de correio 1.3](../requirement-sets/outlook/requirement-set-1.3/outlook-requirement-set-1.3.md) quando o **VersionOverrides** pai é o tipo Mail 1.0.
+- [Caixa de correio 1.5](../requirement-sets/outlook/requirement-set-1.5/outlook-requirement-set-1.5.md) quando o **VersionOverrides** pai é o tipo Mail 1.1.
 
 ### <a name="remarks"></a>Comentários
 
@@ -80,7 +80,7 @@ O **elemento Requirements** não serve para nada em **um VersionOverrides** se n
 
 ## <a name="can-contain"></a>Pode conter
 
-|Elemento|Conteúdo|Correio|TaskPane|
+|Elemento|Conteúdo|Email|TaskPane|
 |:-----|:-----|:-----|:-----|
 |[Sets](sets.md)|x|x|x|
 |[Métodos](methods.md)|x||x|

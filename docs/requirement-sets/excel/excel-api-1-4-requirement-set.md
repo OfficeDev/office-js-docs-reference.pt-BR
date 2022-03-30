@@ -4,12 +4,12 @@ description: Detalhes sobre o conjunto de requisitos do ExcelApi 1.4.
 ms.date: 11/09/2020
 ms.prod: excel
 ms.localizationpriority: medium
-ms.openlocfilehash: cbd3545aedbcb68af0ab487516e7c241bc814fd5
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 555e75fe4d7a210e22a74081b29869a2dc17b0cb
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484917"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503467"
 ---
 # <a name="whats-new-in-excel-javascript-api-14"></a>Quais são as novidades na API JavaScript do Excel 1.4
 
@@ -40,7 +40,7 @@ As APIs incluem `getItem()` obter a entrada de configuração por `add()` meio d
 * Adicione uma coluna de tabela ao final da tabela.
 * Adicione várias linhas a uma tabela de cada vez.
 * `range.getColumnsAfter(count: number)` e `range.getColumnsBefore(count: number)` para obter determinado número de colunas à direita/esquerda do objeto Range atual.
-* Os [\*métodos e propriedades OrNullObject](/office/dev/add-ins/develop/application-specific-api-model.md#ornullobject-methods-and-properties): Essa funcionalidade permite obter um objeto usando uma chave. Se o objeto não existir, a propriedade do `isNullObject` objeto retornado será true. Isso permite que os desenvolvedores verifiquem se existe um objeto sem precisar lidar com ele por meio do tratamento de exceção. Um `*OrNullObject` método está disponível na maioria dos objetos da coleção.
+* Os [\*métodos e propriedades OrNullObject](/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties): Essa funcionalidade permite obter um objeto usando uma chave. Se o objeto não existir, a propriedade do `isNullObject` objeto retornado será true. Isso permite que os desenvolvedores verifiquem se existe um objeto sem precisar lidar com ele por meio do tratamento de exceção. Um `*OrNullObject` método está disponível na maioria dos objetos da coleção.
 
 ```js
 worksheet.getItemOrNullObject("itemName")

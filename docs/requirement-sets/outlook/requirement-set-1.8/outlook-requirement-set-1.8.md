@@ -3,12 +3,12 @@ title: Conjunto de requisitos 1.8 da API de suplemento do Outlook
 description: Conjunto de requisitos 1.8 para Outlook api de complemento.
 ms.date: 05/17/2021
 ms.localizationpriority: medium
-ms.openlocfilehash: 12137c1e36186a48f0e0e770bdd8102a11beac40
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 299451f0c5159d602750b1646c2b43596b646b88
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485220"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502921"
 ---
 # <a name="outlook-add-in-api-requirement-set-18"></a>Conjunto de requisitos 1.8 da API de suplemento do Outlook
 
@@ -37,7 +37,7 @@ O conjunto de requisitos 1.8 inclui todos os recursos do conjunto [de requisitos
 - Adicionado [LocationIdentifier](/javascript/api/outlook/office.locationidentifier?view=outlook-js-1.8&preserve-view=true): adiciona um novo objeto que representa a ID de um local.
 - Adicionado [MasterCategories](/javascript/api/outlook/office.mastercategories?view=outlook-js-1.8&preserve-view=true): adiciona um novo objeto que representa a lista mestre de categorias em uma caixa de correio.
 - [SharedProperties adicionado](/javascript/api/outlook/office.sharedproperties?view=outlook-js-1.8&preserve-view=true): adiciona um novo objeto que representa as propriedades de um compromisso ou item de mensagem em uma pasta compartilhada.
-- Adicionado [elemento de manifesto SupportsSharedFolders](//javascript/api/manifest/supportssharedfolders): adiciona um elemento filho ao elemento de manifesto [DesktopFormFactor](/javascript/api/desktopformfactor). Define se o suplemento está disponível nos cenários de representante.
+- Adicionado [elemento de manifesto SupportsSharedFolders](/javascript/api/manifest/supportssharedfolders): adiciona um elemento filho ao elemento de manifesto [DesktopFormFactor](/javascript/api/manifest/desktopformfactor). Define se o suplemento está disponível nos cenários de representante.
 - Adicionado [Office.context.mailbox.masterCategories](office.context.mailbox.md#properties): adiciona uma nova propriedade que representa a lista principal de categorias em uma caixa de correio.
 - Adicionado [Office.context.mailbox.item.categories](office.context.mailbox.item.md#properties): adiciona uma nova propriedade que representa o conjunto de categorias em um item.
 - Adicionado [Office.context.mailbox.item.addFileAttachmentFromBase64Async](office.context.mailbox.item.md#methods): adiciona um novo método que permite anexar um arquivo representado como uma cadeia de caracteres codificada em base64 a uma mensagem ou compromisso.

@@ -4,12 +4,12 @@ description: Visão geral Office conjuntos de requisitos de comandos de compleme
 ms.date: 03/12/2022
 ms.prod: non-product-specific
 ms.localizationpriority: medium
-ms.openlocfilehash: fac029b0b9041956365025b3fcfba0fe91f3cc7e
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: a7314fb84c7011c2fc9ab8cb3f2a9ee7d5346fa0
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485121"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503474"
 ---
 # <a name="add-in-commands-requirement-sets"></a>Conjuntos de requisitos dos comandos de suplemento
 
@@ -18,7 +18,7 @@ Os conjuntos de requisitos são grupos nomeados de membros da API. Os suplemento
 Comandos de suplemento são elementos de interface do usuário que estendem a interface do usuário do Office e iniciam ações no suplemento. Você pode usar comandos de suplemento para adicionar um botão à faixa de opções ou um item a um menu de contexto. Para saber mais, confira [Comandos de suplemento para Excel, Word e PowerPoint](/office/dev/add-ins/design/add-in-commands) e [Comandos de suplemento para Outlook](/office/dev/add-ins/outlook/add-in-commands-for-outlook).
 
 > [!NOTE]
-> Outlook os complementos suportam comandos de add-in, mas as APIs e os elementos de manifesto que habilitam comandos de complemento no Outlook estão no conjunto de requisitos [de Caixa de Correio 1.3](/outlook/requirement-set-1.3/outlook-requirement-set-1.3). Os conjuntos de requisitos AddinCommands não são aplicáveis a Outlook.
+> Outlook os complementos suportam comandos de add-in, mas as APIs e os elementos de manifesto que habilitam comandos de complemento no Outlook estão no conjunto de requisitos [de Caixa de Correio 1.3](../outlook/requirement-set-1.3/outlook-requirement-set-1.3.md). Os conjuntos de requisitos AddinCommands não são aplicáveis a Outlook.
 
 A versão inicial dos comandos de complemento não tem um conjunto de requisitos correspondente (ou seja, não há um conjunto de requisitos AddinCommands 1.0). A tabela a seguir lista os aplicativos Office cliente que suportam a versão de versão inicial e as versões de com build ou número desses aplicativos.  
 

@@ -3,12 +3,12 @@ title: Elemento ExtensionPoint no arquivo de manifesto
 description: Define onde um suplemento expõe a funcionalidade na interface de usuário do Office.
 ms.date: 02/11/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 43507df9b1be11ffb8d3444d8ca6f0e0696395a2
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: f3a409557fec2f48a4aaf93f5a93fd8c17648a7c
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484852"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503208"
 ---
 # <a name="extensionpoint-element"></a>Elemento ExtensionPoint
 
@@ -276,7 +276,7 @@ Este ponto de extensão coloca botões na faixa de opções para o formulário e
 Este ponto de extensão coloca botões na faixa de opções para a extensão do módulo.
 
 > [!IMPORTANT]
-> Registrar eventos [de Caixa de](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox#events) Correio e [Item](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox.item#events) não está disponível com esse ponto de extensão.
+> Registrar eventos [de Caixa de](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.md#events) Correio e [Item](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.item.md#events) não está disponível com esse ponto de extensão.
 
 #### <a name="child-elements"></a>Elementos filho
 
@@ -319,7 +319,7 @@ Esse ponto de extensão coloca uma alternância apropriada para o modo na superf
 > [!NOTE]
 > Esse ponto de extensão só tem suporte para Android e iOS com uma assinatura Microsoft 365 assinatura.
 >
-> Registrar eventos [de Caixa de](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox#events) Correio e [Item](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox.item#events) não está disponível com esse ponto de extensão.
+> Registrar eventos [de Caixa de](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.md#events) Correio e [Item](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.item.md#events) não está disponível com esse ponto de extensão.
 
 #### <a name="child-elements"></a>Elementos filho
 
@@ -362,7 +362,7 @@ As `Icon` imagens devem estar em escala de cinza usando código hexaxa `#919191`
 Esse ponto de extensão permite que um complemento seja ativado com base em eventos suportados no fator de formulário da área de trabalho. Para saber mais sobre esse cenário e para obter a lista completa de eventos com suporte, consulte o artigo Configurar seu Outlook [de](/office/dev/add-ins/outlook/autolaunch) ativação baseada em eventos.
 
 > [!IMPORTANT]
-> Registrar eventos [de Caixa de](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox#events) Correio e [Item](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox.item#events) não está disponível com esse ponto de extensão.
+> Registrar eventos [de Caixa de](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.md#events) Correio e [Item](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.item.md#events) não está disponível com esse ponto de extensão.
 
 #### <a name="child-elements"></a>Elementos filho
 
@@ -389,7 +389,7 @@ Esse ponto de extensão permite que um complemento seja ativado com base em even
 Este ponto de extensão adiciona um manipulador de eventos para um evento especificado. Para obter mais informações sobre como usar esse ponto de extensão, consulte Recurso Ao enviar [para Outlook de complementos](/office/dev/add-ins/outlook/outlook-on-send-addins).
 
 > [!IMPORTANT]
-> Registrar eventos [de Caixa de](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox#events) Correio e [Item](/office/dev/add-ins/objectmodel/preview-requirement-set/office.context.mailbox.item#events) não está disponível com esse ponto de extensão.
+> Registrar eventos [de Caixa de](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.md#events) Correio e [Item](../requirement-sets/outlook/preview-requirement-set/office.context.mailbox.item.md#events) não está disponível com esse ponto de extensão.
 
 | Elemento | Descrição  |
 |:-----|:-----|

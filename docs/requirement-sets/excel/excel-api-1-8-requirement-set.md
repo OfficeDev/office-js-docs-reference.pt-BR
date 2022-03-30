@@ -4,12 +4,12 @@ description: Detalhes sobre o conjunto de requisitos do ExcelApi 1.8.
 ms.date: 03/19/2021
 ms.prod: excel
 ms.localizationpriority: medium
-ms.openlocfilehash: 0fcef590c8688d76f86ceae9c0c70585ec6d0b25
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 7461792da8d6a110c27a6ea0ad80ea433057f1a7
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484867"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502074"
 ---
 # <a name="whats-new-in-excel-javascript-api-18"></a>Novidades na API JavaScript 1.8 Excel JavaScript
 
@@ -29,7 +29,7 @@ Outra rodada de APIs de gráficos traz um controle programático ainda maior sob
 
 ## <a name="events"></a>Eventos
 
-Mais [eventos](/office/dev/add-ins/excel/excel-add-ins-events) foram adicionados para os gráficos. Faça o seu suplemento reagir aos usuários interagindo com o gráfico. Você também pode [alternar eventos](/office/dev/add-ins/excel/performance.md#enable-and-disable-events) disparados em toda a pasta de trabalho.
+Mais [eventos](/office/dev/add-ins/excel/excel-add-ins-events) foram adicionados para os gráficos. Faça o seu suplemento reagir aos usuários interagindo com o gráfico. Você também pode [alternar eventos](/office/dev/add-ins/excel/performance#enable-and-disable-events) disparados em toda a pasta de trabalho.
 
 ## <a name="api-list"></a>Lista de API
 

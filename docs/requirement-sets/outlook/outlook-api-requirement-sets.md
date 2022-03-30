@@ -4,12 +4,12 @@ description: Saiba mais sobre os conjuntos de requisitos da API JavaScript do Ou
 ms.date: 02/15/2022
 ms.prod: outlook
 ms.localizationpriority: high
-ms.openlocfilehash: f85523dc686edbad9211e14ce5665a1da79f3423
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 79efccfd2378f6c301370a107c9b2ad2c19c2bd7
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484914"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64503167"
 ---
 # <a name="outlook-javascript-api-requirement-sets"></a>Conjuntos de requisitos de API JavaScript do Outlook
 
@@ -117,11 +117,11 @@ Os suplementos são compatíveis com o Outlook nas seguintes plataformas.
 >
 > <sup>3</sup> O suporte de 1.3 no Outlook 2013 foi adicionado como parte da atualização de [8 de dezembro de 2015 do Outlook 2013 (KB3114349).](https://support.microsoft.com/kb/3114349). O suporte para a versão 1.4 no Outlook 2013 foi adicionado como parte da [atualização para Outlook 2013 de 13 de setembro de 2016 (KB3118280)](https://support.microsoft.com/help/3118280). O suporte para a versão 1.4 no Outlook 2016 (compra única) foi adicionado como parte da [atualização para o Office 2016 de 3 de julho de 2018 (KB4022223)](https://support.microsoft.com/help/4022223).
 >
-> <sup>4</sup> O suporte para a nova Interface do Usuário do Mac (visualização) está disponível no Outlook versão 16.38.506. Para mais informações, consulte a seção [Suporte de Suplemento no Outlook na nova Interface do Usuário do Mac](/office/dev/add-ins/outlook/compare-outlook-add-in-support-in-outlook-for-mac.md#add-in-support-in-outlook-on-new-mac-ui-preview).
+> <sup>4</sup> O suporte para a nova Interface do Usuário do Mac (visualização) está disponível no Outlook versão 16.38.506. Para mais informações, consulte a seção [Suporte de Suplemento no Outlook na nova Interface do Usuário do Mac](/office/dev/add-ins/outlook/compare-outlook-add-in-support-in-outlook-for-mac#add-in-support-in-outlook-on-new-mac-ui-preview).
 >
-> <sup>5</sup> No momento, existem considerações adicionais ao se projetar e implementar suplementos para clientes móveis. Por exemplo, o único modo suportado é o Message Read. Para obter mais detalhes, consulte [considerações de código ao adicionar suporte aos comandos de suplemento do Outlook Mobile](/office/dev/add-ins/outlook/add-mobile-support.md#code-considerations).
+> <sup>5</sup> No momento, existem considerações adicionais ao se projetar e implementar suplementos para clientes móveis. Por exemplo, o único modo suportado é o Message Read. Para obter mais detalhes, consulte [considerações de código ao adicionar suporte aos comandos de suplemento do Outlook Mobile](/office/dev/add-ins/outlook/add-mobile-support#code-considerations).
 >
-> <sup>6</sup> Os complementos não funcionam em sistemas Outlook na Web modernos em smartphones iPhone e Android. Para obter informações sobre os dispositivos suportados, confira [Requisitos para executar Suplementos do Office](/office/dev/add-ins/concepts/requirements-for-running-office-add-ins.md#client-requirements-non-windows-smartphone-and-tablet).
+> <sup>6</sup> Os complementos não funcionam em sistemas Outlook na Web modernos em smartphones iPhone e Android. Para obter informações sobre os dispositivos suportados, confira [Requisitos para executar Suplementos do Office](/office/dev/add-ins/concepts/requirements-for-running-office-add-ins#client-requirements-non-windows-smartphone-and-tablet).
 
 > [!TIP]
 > É possível distinguir o Outlook clássico do moderno no navegador da Web, verificando sua barra de ferramentas da caixa de correio.

@@ -3,12 +3,12 @@ title: Elemento ExtendedPermissions no arquivo de manifesto
 description: Define a coleção de permissões estendidas que o add-in precisa para acessar APIs ou recursos associados.
 ms.date: 01/04/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 78ff52c6b4e529709591c424bd01f540a85806ab
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: 6fc50641384948ff7748b19e446aca3832d70eab
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64484994"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502101"
 ---
 # <a name="extendedpermissions-element"></a>Elemento ExtendedPermissions
 
@@ -27,7 +27,7 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 
 **Associado a esses conjuntos de requisitos**:
 
-- [Caixa de correio 1.9](/office/dev/add-ins/reference/objectmodel/requirement-set-1.9/outlook-requirement-set-1.9)
+- [Caixa de correio 1.9](../requirement-sets/outlook/requirement-set-1.9/outlook-requirement-set-1.9.md)
 
 ## <a name="child-elements"></a>Elementos filho
 

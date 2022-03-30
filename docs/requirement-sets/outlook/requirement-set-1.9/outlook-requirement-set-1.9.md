@@ -3,12 +3,12 @@ title: Outlook conjunto de requisitos de API de complemento 1.9
 description: Conjunto de requisitos 1.9 para Outlook api de complemento.
 ms.date: 05/17/2021
 ms.localizationpriority: medium
-ms.openlocfilehash: b6abba58e7f0ebcd3c7bfc80a9596bc9e024e3c0
-ms.sourcegitcommit: dc06d41f1d4f0b25bf32d14c1ff377b1e77b7240
+ms.openlocfilehash: d1268a2c12aed07d3c7bec6207d1eb6975ee6b68
+ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/26/2022
-ms.locfileid: "64485009"
+ms.lasthandoff: 03/28/2022
+ms.locfileid: "64502809"
 ---
 # <a name="outlook-add-in-api-requirement-set-19"></a>Outlook conjunto de requisitos de API de complemento 1.9
 
@@ -27,8 +27,8 @@ O conjunto de requisitos 1.9 inclui todos os recursos do conjunto [de requisitos
 ### <a name="change-log"></a>Log de mudanças
 
 - [CustomProperties.getAll](/javascript/api/outlook/office.customproperties?view=outlook-js-1.9&preserve-view=true#outlook-office-customproperties-getall-member(1)) adicionado: adiciona uma nova função ao `CustomProperties` objeto que obtém todas as propriedades personalizadas.
-- Adicionado [Dialog.messageChild](/office/dev/add-ins/develop/dialog-api-in-office-add-ins.md#pass-information-to-the-dialog-box): adiciona um novo método que fornece uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, a uma caixa de diálogo aberta na página.
-- Adicionado [elemento de manifesto ExtendedPermissions](/javascript/api/extendedpermissions): adiciona um elemento filho ao [elemento de manifesto VersionOverrides](/javascript/api/versionoverrides) . Para que um add-in suporte ao recurso [append-on-send](/office/dev/add-ins/outlook/append-on-send), `AppendOnSend` a permissão estendida deve ser incluída na coleção de permissões estendidas.
+- Adicionado [Dialog.messageChild](/office/dev/add-ins/develop/dialog-api-in-office-add-ins#pass-information-to-the-dialog-box): adiciona um novo método que fornece uma mensagem da página host, como um painel de tarefas ou um arquivo de função sem interface do usuário, a uma caixa de diálogo aberta na página.
+- Adicionado [elemento de manifesto ExtendedPermissions](/javascript/api/manifest/extendedpermissions): adiciona um elemento filho ao [elemento de manifesto VersionOverrides](/javascript/api/manifest/versionoverrides) . Para que um add-in suporte ao recurso [append-on-send](/office/dev/add-ins/outlook/append-on-send), `AppendOnSend` a permissão estendida deve ser incluída na coleção de permissões estendidas.
 - Adicionado [Office.context.mailbox.displayAppointmentFormAsync](/javascript/api/outlook/office.mailbox?view=outlook-js-1.9&preserve-view=true#outlook-office-mailbox-displayappointmentformasync-member(1)): `Mailbox` adiciona uma nova função ao objeto que exibe um compromisso existente. Esta é a versão assíncrona do `displayAppointmentForm` método.
 - Adicionado [Office.context.mailbox.displayMessageFormAsync](/javascript/api/outlook/office.mailbox?view=outlook-js-1.9&preserve-view=true#outlook-office-mailbox-displaymessageformasync-member(1)): `Mailbox` adiciona uma nova função ao objeto que exibe uma mensagem existente. Esta é a versão assíncrona do `displayMessageForm` método.
 - Adicionado [Office.context.mailbox.displayNewAppointmentFormAsync](/javascript/api/outlook/office.mailbox?view=outlook-js-1.9&preserve-view=true#outlook-office-mailbox-displaynewappointmentformasync-member(1)): `Mailbox` adiciona uma nova função ao objeto que exibe um novo formulário de compromisso. Esta é a versão assíncrona do `displayNewAppointmentForm` método.
