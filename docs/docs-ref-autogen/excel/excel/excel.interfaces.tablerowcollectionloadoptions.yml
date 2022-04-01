@@ -7,7 +7,7 @@ summary: >-
   Representa uma coleção de todas as linhas que fazem parte da tabela.
 
 
-  Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o local físico da linha de tabela, mas não os `TableRow` dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
+  Observe que, diferentemente de intervalos ou colunas, que se ajustarão se novas linhas ou colunas são adicionadas antes delas, um objeto representa o `TableRow` local físico da linha de tabela, mas não os dados. Ou seja, se os dados são organizados ou se novas linhas são adicionadas, uma linha de tabela continuará a apontar para o índice para o qual foi criado.
 remarks: '\[[Conjunto de API: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.Interfaces.TableRowCollectionLoadOptions#$all:member
   package: excel!
   fullName: $all
-  summary: 'A `$all` especificação do LoadOptions carrega todas as propriedades escalares (por exemplo: `Range.address`<!-- -->), mas não as propriedades de navegação (por exemplo: `Range.format.fill.color`<!-- -->).'
+  summary: 'A especificação `$all` do LoadOptions carrega todas as propriedades escalares (por exemplo: `Range.address`<!-- -->), mas não as propriedades de navegação (por exemplo: `Range.format.fill.color`<!-- -->).'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,7 +53,7 @@ properties:
   uid: excel!Excel.Interfaces.TableRowCollectionLoadOptions#valuesAsJson:member
   package: excel!
   fullName: valuesAsJson
-  summary: 'Para CADA ITEM na coleção: uma representação JSON dos valores nas células nesta linha de tabela. Ao contrário `TableRow.values`<!-- -->, `TableRow.valuesAsJson` oferece suporte a todos os tipos de dados que podem estar em uma célula.'
+  summary: 'Para CADA ITEM na coleção: uma representação JSON dos valores nas células nesta linha de tabela. Ao contrário `TableRow.values`<!-- -->, `TableRow.valuesAsJson` oferece suporte a todos os tipos de dados que podem estar em uma célula. Exemplos incluem valores de número formatados e imagens da Web, além dos valores padrão booleano, número e cadeia de caracteres. Os dados retornados dessa API sempre se alinham com a localidade en-US. Para recuperar dados na localidade de exibição do usuário, use `TableRow.valuesAsJsonLocal`<!-- -->.'
   remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
   isPreview: true
   isDeprecated: false
@@ -61,10 +61,22 @@ properties:
     content: 'valuesAsJson?: boolean;'
     return:
       type: boolean
+- name: valuesAsJsonLocal
+  uid: excel!Excel.Interfaces.TableRowCollectionLoadOptions#valuesAsJsonLocal:member
+  package: excel!
+  fullName: valuesAsJsonLocal
+  summary: 'Para CADA ITEM na coleção: uma representação JSON dos valores nas células nesta linha de tabela. Ao contrário `TableRow.values`<!-- -->, `TableRow.valuesAsJsonLocal` oferece suporte a todos os tipos de dados que podem estar em uma célula. Exemplos incluem valores de número formatados e imagens da Web, além dos valores padrão booleano, número e cadeia de caracteres. Os dados retornados dessa API sempre se alinham com a localidade de exibição do usuário. Para recuperar dados independentes da localidade, use `TableRow.valuesAsJson`<!-- -->.'
+  remarks: '\[[Conjunto de API: ExcelApi BETA (SOMENTE VISUALIZAÇÃO)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]'
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'valuesAsJsonLocal?: boolean;'
+    return:
+      type: boolean
 metadata:
-  ms.openlocfilehash: 162d68682c3e6e4a37a643cf180ace5f2d22c235
-  ms.sourcegitcommit: 5863bf5474de0ab25b54f42a367fbfc02a14e167
+  ms.openlocfilehash: 3adede244292abd61ff986d6c7d390323b46f1e6
+  ms.sourcegitcommit: 07f76f08c7952f0777a7aa163fa734f88f6dee9b
   ms.translationtype: MT
   ms.contentlocale: pt-BR
-  ms.lasthandoff: 12/08/2021
-  ms.locfileid: "61332649"
+  ms.lasthandoff: 04/01/2022
+  ms.locfileid: "64603810"

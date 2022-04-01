@@ -1,14 +1,14 @@
 ---
 title: Elemento Item no arquivo de manifesto
 description: Especifica um item em um menu.
-ms.date: 02/04/2022
+ms.date: 03/29/2022
 ms.localizationpriority: medium
-ms.openlocfilehash: 6b717bcb3041a0164716b50116f387f0b581f2ea
-ms.sourcegitcommit: fe8d1195ab75ae24f88ac54b1d40e0a89dae2d89
+ms.openlocfilehash: a2ea0d1dd8d0b01f91340c61ebf2e21abf598b84
+ms.sourcegitcommit: 07f76f08c7952f0777a7aa163fa734f88f6dee9b
 ms.translationtype: MT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 03/28/2022
-ms.locfileid: "64502627"
+ms.lasthandoff: 04/01/2022
+ms.locfileid: "64604244"
 ---
 # <a name="item-element"></a>Elemento Item
 
@@ -34,12 +34,12 @@ Para obter mais informações, consulte [Substituições de versão no manifesto
 
 |  Elemento |  Obrigatório  |  Descrição  |
 |:-----|:-----|:-----|
-|  [Label](#label)     | Sim |  O texto do botão. |
-|  [Supertip](supertip.md)  | Sim |  A dica detalhada do botão.    |
-|  [Icon](icon.md)      | Sim |  Uma imagem para o botão.         |
+|  [Label](#label)     | Sim |  O texto do item de menu. |
+|  [Supertip](supertip.md)  | Sim |  A super dica do item de menu.    |
+|  [Icon](icon.md)      | Não |  Uma imagem do item de menu.         |
 |  [Action](action.md)    | Sim |  Especifica a ação a ser executada. Pode haver apenas um **filho action** de um **elemento Item** .  |
-|  [Enabled](enabled.md)    | Não |  Especifica se o controle está habilitado quando o complemento é lançado.  |
-|  [OverriddenByRibbonApi](overriddenbyribbonapi.md)      | Não |  Especifica se o botão deve aparecer em combinações de aplicativos e plataformas que suportam guias contextuais personalizadas. Se usado, ele deve ser o *primeiro* elemento filho. |
+|  [Enabled](enabled.md)    | Não |  Especifica se o item de menu está habilitado quando o complemento é lançado.  |
+|  [OverriddenByRibbonApi](overriddenbyribbonapi.md)      | Não |  Especifica se o item de menu deve aparecer em combinações de aplicativos e plataformas que suportam guias contextuais personalizadas. Se usado, ele deve ser o *primeiro* elemento filho. |
 
 ### <a name="label"></a>Rótulo
 
