@@ -27,7 +27,7 @@
 |[Worksheet](/javascript/api/excel/excel.worksheet)|[namedSheetViews](/javascript/api/excel/excel.worksheet#excel-excel-worksheet-namedsheetviews-member)|Retorna uma coleção de exibições de planilha presentes na planilha.|
 ||[onNameChanged](/javascript/api/excel/excel.worksheet#excel-excel-worksheet-onnamechanged-member)|Ocorre quando o nome da planilha é alterado.|
 ||[onVisibilityChanged](/javascript/api/excel/excel.worksheet#excel-excel-worksheet-onvisibilitychanged-member)|Ocorre quando a visibilidade da planilha é alterada.|
-|[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onMoved](/javascript/api/excel/excel.worksheetcollection#excel-excel-worksheetcollection-onmoved-member)|Ocorre quando uma planilha é movida por um usuário dentro de uma pasta de trabalho.|
+|[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onMoved](/javascript/api/excel/excel.worksheetcollection#excel-excel-worksheetcollection-onmoved-member)|Ocorre quando uma planilha é movida dentro de uma pasta de trabalho.|
 ||[onNameChanged](/javascript/api/excel/excel.worksheetcollection#excel-excel-worksheetcollection-onnamechanged-member)|Ocorre quando o nome da planilha é alterado na coleção de planilhas.|
 ||[onVisibilityChanged](/javascript/api/excel/excel.worksheetcollection#excel-excel-worksheetcollection-onvisibilitychanged-member)|Ocorre quando a visibilidade da planilha é alterada na coleção de planilhas.|
 |[WorksheetMovedEventArgs](/javascript/api/excel/excel.worksheetmovedeventargs)|[positionAfter](/javascript/api/excel/excel.worksheetmovedeventargs#excel-excel-worksheetmovedeventargs-positionafter-member)|Obtém a nova posição da planilha, após a movimentação.|

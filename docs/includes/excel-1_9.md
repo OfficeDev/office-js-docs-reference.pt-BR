@@ -11,7 +11,7 @@
 ||[getRange()](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-getrange-member(1))|Retorna o `Range` objeto que representa o intervalo ao qual o AutoFilter se aplica.|
 ||[getRangeOrNullObject()](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-getrangeornullobject-member(1))|Retorna o `Range` objeto que representa o intervalo ao qual o AutoFilter se aplica.|
 ||[isDataFiltered](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-isdatafiltered-member)|Especifica se o Filtro Automático tem critérios de filtro.|
-||[reapply()](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-reapply-member(1))|Aplica o objeto Autofilter especificado que está atualmente no intervalo.|
+||[reapply()](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-reapply-member(1))|Aplica o objeto AutoFilter especificado atualmente no intervalo.|
 ||[remove()](/javascript/api/excel/excel.autofilter#excel-excel-autofilter-remove-member(1))|Remove o Filtro automático do intervalo.|
 |[CellBorder](/javascript/api/excel/excel.cellborder)|[color](/javascript/api/excel/excel.cellborder#excel-excel-cellborder-color-member)|Representa a propriedade `color` de uma única borda.|
 ||[style](/javascript/api/excel/excel.cellborder#excel-excel-cellborder-style-member)|Representa a propriedade `style` de uma única borda.|
@@ -224,7 +224,7 @@
 ||[setAutoSortOnCell(cell: Range \| string, sortBy: Excel.SortBy)](/javascript/api/excel/excel.pivotlayout#excel-excel-pivotlayout-setautosortoncell-member(1))|Define a Tabela Dinâmica para classificar automaticamente usando a célula especificada para selecionar automaticamente todos os critérios e contextos necessários.|
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[enableDataValueEditing](/javascript/api/excel/excel.pivottable#excel-excel-pivottable-enabledatavalueediting-member)|Especifica se a Tabela Dinâmica permite que os valores no corpo dos dados sejam editados pelo usuário.|
 ||[useCustomSortLists](/javascript/api/excel/excel.pivottable#excel-excel-pivottable-usecustomsortlists-member)|Especifica se a Tabela Dinâmica usa listas personalizadas ao classificar.|
-|[Range](/javascript/api/excel/excel.range)|[autoFill(destinationRange?: Cadeia de caracteres \| de intervalo, autoFillType?: Excel. AutoFillType)](/javascript/api/excel/excel.range#excel-excel-range-autofill-member(1))|Preenche o intervalo do intervalo atual até o intervalo de destino usando a lógica AutoFill especificada.|
+|[Range](/javascript/api/excel/excel.range)|[autoFill(destinationRange?: Cadeia de caracteres \| de intervalo, autoFillType?: Excel. AutoFillType)](/javascript/api/excel/excel.range#excel-excel-range-autofill-member(1))|Preenche um intervalo do intervalo atual até o intervalo de destino usando a lógica AutoFill especificada.|
 ||[convertDataTypeToText()](/javascript/api/excel/excel.range#excel-excel-range-convertdatatypetotext-member(1))|Converte as células de intervalo com tipos de dados em texto.|
 ||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.range#excel-excel-range-converttolinkeddatatype-member(1))|Converte as células de intervalo em tipos de dados vinculados na planilha.|
 ||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.range#excel-excel-range-copyfrom-member(1))|Copia dados da célula ou formatação do intervalo de origem ou `RangeAreas` do intervalo atual.|
